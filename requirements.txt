@@ -1,0 +1,4 @@
+# live-document requirements
+# 核心无外部依赖，仅使用 Python 标准库
+# 以下为可选开发/测试依赖
+pytest>=7.0

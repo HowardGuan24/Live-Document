@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "section": "机器学习基础",
+    "text": "梯度下降沿负梯度方向更新参数：θ = θ - α·∇L(θ)，其中 α 是学习率，∇L 是损失函数的梯度。",
+    "expected_type": "formula",
+    "expected_dynamic": true
+  },
+  {
+    "id": 2,
+    "section": "机器学习基础",
+    "text": "今天的天气很好，阳光明媚，适合出去散步。",
+    "expected_type": null,
+    "expected_dynamic": false
+  },
+  {
+    "id": 3,
+    "section": "神经网络",
+    "text": "反向传播算法分为三个阶段：首先前向传播计算输出，然后计算损失函数，最后沿梯度方向更新权重和偏置。",
+    "expected_type": "process",
+    "expected_dynamic": true
+  },
+  {
+    "id": 4,
+    "section": "数据处理",
+    "text": "该模型在 ImageNet 上的 Top-1 准确率达到 78.6%，相比基线模型提升了 3.2%，推理速度为每秒 120 帧。",
+    "expected_type": "dataflow",
+    "expected_dynamic": true
+  },
+  {
+    "id": 5,
+    "section": "操作指南",
+    "text": "首先打开终端，然后输入 pip install torch 命令安装 PyTorch，接着运行 python train.py 启动训练，最后查看 loss.log 确认收敛。",
+    "expected_type": "operation",
+    "expected_dynamic": true
+  },
+  {
+    "id": 6,
+    "section": "几何",
+    "text": "在二维坐标系中，点 P 从原点出发沿 x 轴正方向移动，到达 (3, 0) 后旋转 90° 向 y 轴正方向移动至 (3, 4)。",
+    "expected_type": "scene",
+    "expected_dynamic": true
+  },
+  {
+    "id": 7,
+    "section": "优化理论",
+    "text": "Adam 优化器结合了动量法和 RMSProp 的优点，通过 m_t = β₁·m_{t-1} + (1-β₁)·g_t 和 v_t = β₂·v_{t-1} + (1-β₂)·g_t² 分别估计梯度的一阶矩和二阶矩。",
+    "expected_type": "formula",
+    "expected_dynamic": true
+  },
+  {
+    "id": 8,
+    "section": "公司简介",
+    "text": "本公司成立于2010年，总部位于北京，现有员工500人，年营收超过10亿元。",
+    "expected_type": null,
+    "expected_dynamic": false
+  },
+  {
+    "id": 9,
+    "section": "卷积神经网络",
+    "text": "卷积操作的输出尺寸计算公式为：out = (in - kernel + 2·padding) / stride + 1，其中 in 是输入尺寸，kernel 是卷积核大小。",
+    "expected_type": "formula",
+    "expected_dynamic": true
+  },
+  {
+    "id": 10,
+    "section": "数据流",
+    "text": "数据从输入层进入，经过卷积层提取特征，通过池化层降维，再由全连接层映射到输出空间，最终通过 softmax 函数得到分类概率。",
+    "expected_type": "dataflow",
+    "expected_dynamic": true
+  },
+  {
+    "id": 11,
+    "section": "循环神经网络",
+    "text": "LSTM 通过遗忘门、输入门和输出门控制信息流动，解决长序列中的梯度消失问题。遗忘门决定丢弃哪些信息，输入门决定存储哪些新信息。",
+    "expected_type": "process",
+    "expected_dynamic": true
+  },
+  {
+    "id": 12,
+    "section": "注意事项",
+    "text": "请确保在运行脚本前已安装所有依赖包。如有问题请联系管理员。",
+    "expected_type": null,
+    "expected_dynamic": false
+  },
+  {
+    "id": 13,
+    "section": "损失函数",
+    "text": "交叉熵损失函数定义为 L = -Σ y_i · log(ŷ_i)，其中 y_i 是真实标签，ŷ_i 是预测概率。当预测越准确时，损失值越接近 0。",
+    "expected_type": "formula",
+    "expected_dynamic": true
+  },
+  {
+    "id": 14,
+    "section": "训练流程",
+    "text": "训练过程分为五个阶段：数据预处理、模型初始化、前向传播、反向传播、参数更新。每个 epoch 重复以上步骤，直到损失收敛。",
+    "expected_type": "process",
+    "expected_dynamic": true
+  },
+  {
+    "id": 15,
+    "section": "性能对比",
+    "text": "ResNet-50 在 GPU 上的推理延迟为 4.2ms，吞吐量为 238 FPS；而在 CPU 上延迟为 32.1ms，吞吐量仅为 31 FPS。加速比达到 7.6 倍。",
+    "expected_type": "dataflow",
+    "expected_dynamic": true
+  },
+  {
+    "id": 16,
+    "section": "项目背景",
+    "text": "本项目旨在开发一套高效的内容创作工具，服务于新媒体运营和个人创作者。项目周期为6个月，团队共5人。",
+    "expected_type": null,
+    "expected_dynamic": false
+  },
+  {
+    "id": 17,
+    "section": "注意力机制",
+    "text": "自注意力机制通过 Q、K、V 三个矩阵计算注意力权重：Attention(Q,K,V) = softmax(QK^T / √d_k) · V，其中 d_k 是键向量的维度。",
+    "expected_type": "formula",
+    "expected_dynamic": true
+  },
+  {
+    "id": 18,
+    "section": "部署指南",
+    "text": "第一步：克隆仓库 git clone https://github.com/example/project.git；第二步：安装依赖 pip install -r requirements.txt；第三步：启动服务 python app.py --port 8080。",
+    "expected_type": "operation",
+    "expected_dynamic": true
+  },
+  {
+    "id": 19,
+    "section": "空间变换",
+    "text": "物体在三维空间中沿 z 轴旋转 45° 后，沿 x 轴平移 5 个单位，再缩放到原来的 0.8 倍。旋转矩阵 R_z 的元素为 cos(45°) 和 sin(45°)。",
+    "expected_type": "scene",
+    "expected_dynamic": true
+  },
+  {
+    "id": 20,
+    "section": "正则化",
+    "text": "L2 正则化在损失函数中添加权重的平方和项：L_total = L_data + λ·Σ w_i²，其中 λ 控制正则化强度，防止模型过拟合。",
+    "expected_type": "formula",
+    "expected_dynamic": true
+  }
+]
