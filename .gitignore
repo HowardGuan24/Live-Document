@@ -1,1 +1,5 @@
 .venv/
+README_local.md
+__pycache__/
+*.pyc
+output.json
