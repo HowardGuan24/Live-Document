@@ -2,9 +2,9 @@
 live-document 入口 — 文档 → ExplanationSpec 全流程
 
 用法：
-    python -m src.main data/test_paragraphs.json
-    python -m src.main --file document.md
-    python -m src.main --text "梯度下降沿负梯度方向更新参数"
+    python main.py data/test_paragraphs.json
+    python main.py --file document.md
+    python main.py --text "梯度下降沿负梯度方向更新参数"
 """
 
 import argparse
@@ -12,8 +12,8 @@ import json
 import sys
 from pathlib import Path
 
-from .parser import parse_document
-from .generator import generate_spec
+from modules.doc_planner.parser import parse_document
+from modules.doc_planner.generator import generate_spec
 
 
 def process_text(text: str) -> list:
@@ -40,7 +40,6 @@ def process_file(filepath: str) -> list:
     if path.suffix == ".json":
         data = json.loads(text)
         if isinstance(data, list):
-            # 列表格式：每个元素是 {"text": "...", "section": "..."} 或纯字符串
             all_text = ""
             for item in data:
                 if isinstance(item, dict):
@@ -54,7 +53,6 @@ def process_file(filepath: str) -> list:
                     all_text += f"\n{item}\n"
             return process_text(all_text)
 
-    # Markdown / 纯文本
     return process_text(text)
 
 
@@ -72,14 +70,12 @@ def main():
 
     args = parser.parse_args()
 
-    # 获取输入
     if args.text:
         specs = process_text(args.text)
     else:
         filepath = args.filepath or args.file
         specs = process_file(filepath)
 
-    # 输出
     result = [spec.__dict__ for spec in specs]
     indent = 2 if args.pretty else None
     output = json.dumps(result, ensure_ascii=False, indent=indent)
@@ -90,7 +86,6 @@ def main():
     else:
         print(output)
 
-    # 统计
     suitable = sum(1 for s in specs if s.type != "unsuitable")
     print(f"\n共 {len(specs)} 段，其中 {suitable} 段适合动态化", file=sys.stderr)
 

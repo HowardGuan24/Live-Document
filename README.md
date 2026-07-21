@@ -24,10 +24,10 @@ generator.py    生成 ExplanationSpec（结构化 JSON）
 
 ```bash
 # 处理单段文本
-python -m src.main --text "梯度下降沿负梯度方向更新参数" --pretty
+python main.py --text "梯度下降沿负梯度方向更新参数" --pretty
 
 # 处理文件
-python -m src.main data/test_paragraphs.json -o output.json -p
+python main.py data/test_paragraphs.json -o output.json -p
 
 # 运行验收测试
 python tests/test_acceptance.py
@@ -62,19 +62,23 @@ python tests/test_acceptance.py
 ### 目录结构
 
 ```text
-├── src/
-│   ├── models.py          # 数据模型：Segment、ExplanationSpec、枚举
-│   ├── parser.py          # 文档分段 + 章节上下文
-│   ├── scorer.py          # 5 维动态化评分器
-│   ├── classifier.py      # 5 类分类器
-│   ├── router.py          # 类型 → 渲染器路由
-│   ├── generator.py       # ExplanationSpec 生成
-│   └── main.py            # CLI 入口
+├── main.py                         # CLI 入口
+├── competition.md                  # 比赛规则
+├── requirements.txt                # 环境依赖
 ├── data/
-│   └── test_paragraphs.json   # 20 段验收测试数据
+│   └── test_paragraphs.json        # 20 段验收测试数据
+├── modules/
+│   ├── doc_planner/                # 模块 A：文档理解与动画规划
+│   │   ├── models.py               # 数据模型
+│   │   ├── parser.py               # 文档分段 + 章节上下文
+│   │   ├── scorer.py               # 5 维动态化评分器
+│   │   ├── classifier.py           # 5 类分类器
+│   │   ├── router.py               # 渲染器路由
+│   │   └── generator.py            # ExplanationSpec 生成
+│   └── video_model/                # 模块 B：概率生成（视频模型 → GIF）
 ├── tests/
-│   └── test_acceptance.py     # 验收测试
-├── demo/                      # 概念演示
+│   └── test_acceptance.py          # 验收测试
+├── demo/                           # 概念演示
 └── plans/
-    └── v1                     # MVP 初始计划
+    └── v1                          # MVP 初始计划
 ```

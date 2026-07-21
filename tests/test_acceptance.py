@@ -21,12 +21,12 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
 # 确保能导入 src
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.parser import parse_document
-from src.scorer import is_worth_dynamicizing, score_segment
-from src.classifier import classify_segment
-from src.router import route_renderer
-from src.generator import generate_spec
-from src.models import ExplanationType, Renderer, ExplanationSpec
+from modules.doc_planner.parser import parse_document
+from modules.doc_planner.scorer import is_worth_dynamicizing, score_segment
+from modules.doc_planner.classifier import classify_segment
+from modules.doc_planner.router import route_renderer
+from modules.doc_planner.generator import generate_spec
+from modules.doc_planner.models import ExplanationType, Renderer, ExplanationSpec
 
 
 # --- 加载测试数据 ---
