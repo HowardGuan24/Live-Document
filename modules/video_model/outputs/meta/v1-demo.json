@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "run_id": "v1-demo",
+  "status": "success",
+  "started_at": "2026-07-21T14:35:46.691263+00:00",
+  "finished_at": "2026-07-21T14:35:48.710835+00:00",
+  "input_file": "/workspace/ai-concept-animator/modules/video_model/samples/gradient_descent.json",
+  "input": {
+    "source_text": "Gradient descent updates parameters along the negative gradient direction.",
+    "visual_goal": "Help the user understand that a point moves step by step downhill on a loss curve.",
+    "video_prompt": "A clean educational animation showing one red point moving down a smooth blue loss curve toward its minimum.",
+    "content_type": "process"
+  },
+  "requested_backend": "auto",
+  "chosen_workflow": {
+    "backend": "procedural",
+    "workflow": "deterministic explanation animation (smoke-test/fallback)",
+    "model_id": null,
+    "num_frames": 80,
+    "device": "CPU",
+    "rocm_version": null
+  },
+  "generation_parameters": {
+    "model_id": "Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
+    "duration_seconds": 5.0,
+    "fps": 16,
+    "width": 832,
+    "height": 480,
+    "seed": 42,
+    "inference_steps": 30,
+    "guidance_scale": 5.0,
+    "cpu_offload": false,
+    "loop_mode": "none"
+  },
+  "prepared_prompts": {
+    "positive": "Create a short educational explainer animation, not a cinematic scene. Use a clean flat diagram-like style, high contrast, a plain uncluttered background, one focal action, stable object shapes, and a fixed orthographic or front-facing camera. Use no cuts, no camera movement, no decorative motion, and no people. Leave text and labels out because they will be added deterministically in post-production.\nShow one subject completing one ordered action from start to finish. Use a single obvious path, small incremental movement, and a clearly visible end state.\nSource concept: Gradient descent updates parameters along the negative gradient direction.\nTeaching goal: Help the user understand that a point moves step by step downhill on a loss curve.\nRequested visual: A clean educational animation showing one red point moving down a smooth blue loss curve toward its minimum.\nThe action should be loop-friendly: begin and end on visually compatible frames, with gentle motion and no abrupt appearance or disappearance.",
+    "negative": "cinematic camera, camera pan, camera zoom, camera shake, scene cut, photorealistic, busy background, clutter, decorative objects, multiple simultaneous actions, object duplication, object morphing, warped geometry, inconsistent shape, flicker, jitter, motion blur, noise, unreadable text, letters, words, subtitles, watermark, logo, low contrast"
+  },
+  "environment": {
+    "wan": {
+      "available": false,
+      "torch_installed": false,
+      "diffusers_installed": false,
+      "accelerator_available": false,
+      "rocm_version": null,
+      "reason": "PyTorch is not installed"
+    }
+  },
+  "runtime_seconds": {
+    "generation": 0.304,
+    "post_processing": 1.569,
+    "total": 2.02
+  },
+  "outputs": {
+    "video": {
+      "path": "/workspace/ai-concept-animator/modules/video_model/outputs/video/v1-demo.mp4",
+      "codec": "h264",
+      "width": 832,
+      "height": 480,
+      "average_frame_rate": "16/1",
+      "frame_count": "80",
+      "duration_seconds": 5.0,
+      "size_bytes": 19479
+    },
+    "webm": {
+      "path": "/workspace/ai-concept-animator/modules/video_model/outputs/webm/v1-demo.webm",
+      "codec": "vp9",
+      "width": 832,
+      "height": 480,
+      "average_frame_rate": "16/1",
+      "frame_count": null,
+      "duration_seconds": 5.001,
+      "size_bytes": 15153
+    },
+    "gif": {
+      "path": "/workspace/ai-concept-animator/modules/video_model/outputs/gif/v1-demo.gif",
+      "codec": "gif",
+      "width": 640,
+      "height": 370,
+      "average_frame_rate": "25/2",
+      "frame_count": "60",
+      "duration_seconds": 5.0,
+      "size_bytes": 95203
+    }
+  },
+  "fallback": {
+    "used": true,
+    "reason": "PyTorch is not installed"
+  },
+  "failure": null,
+  "quality_review": {
+    "automated_checks": {
+      "duration_in_range": true,
+      "duration_matches_request": true,
+      "dimensions_match": true,
+      "all_outputs_nonempty": true
+    },
+    "manual_review_required": [
+      "object_drift",
+      "incoherent_motion",
+      "bad_loop",
+      "semantically_unclear",
+      "prompt_ignored",
+      "noisy_or_cluttered"
+    ],
+    "reported_issues": []
+  },
+  "notes": [
+    "Automated checks cover file integrity only; explanation clarity and model artifacts require human review.",
+    "Procedural output is a runnable baseline/fallback, not evidence that the probabilistic model succeeded."
+  ]
+}

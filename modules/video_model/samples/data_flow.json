@@ -1,0 +1,6 @@
+{
+  "source_text": "The encoder transforms the input tokens into a compact representation that is passed to the decoder.",
+  "visual_goal": "Make the left-to-right flow from input through encoder to decoder immediately visible.",
+  "content_type": "data_flow",
+  "video_prompt": "Three simple boxes in one row; a few identical dots move from input through encoder to decoder along straight arrows."
+}

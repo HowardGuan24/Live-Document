@@ -1,0 +1,6 @@
+{
+  "source_text": "Gradient descent updates parameters along the negative gradient direction.",
+  "visual_goal": "Help the user understand that a point moves step by step downhill on a loss curve.",
+  "content_type": "process",
+  "video_prompt": "A clean educational animation showing one red point moving down a smooth blue loss curve toward its minimum."
+}
