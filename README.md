@@ -1,5 +1,14 @@
 # Live-Document
 
+Live-Document 将技术或教学文档中的知识片段转换为动态解释。目前仓库包含三条可以独立运行的能力链路：
+
+```text
+文档内容
+  → 文档理解与动画规划（ExplanationSpec）
+  → 确定性动画（DSL → Manim → MP4/GIF）
+  → 概率生成动画（LTX/Wan → MP4/WebM/GIF）
+```
+
 ## 模块 A：文档理解与动画规划
 
 从文档到 `ExplanationSpec` 的全流程管线，负责识别值得动态化的内容片段，分类并生成结构化动画计划。
@@ -59,6 +68,95 @@ python tests/test_acceptance.py
 }
 ```
 
+## 确定性动画引擎
+
+`modules/animation_engine` 实现了完整的 `JSON → DSL 校验 → Manim → MP4 → GIF` 流程。JSON 不会被转换成任意 Python 执行，而是由固定解释器映射到白名单 Manim 对象和动作。
+
+### 工作流
+
+```text
+动画 DSL / 旧版 ExplanationSpec
+  ↓
+输入归一化与引用校验
+  ↓
+对象工厂创建 Manim Mobject
+  ↓
+动作解释器执行 timeline
+  ↓
+Manim 输出 MP4
+  ↓
+FFmpeg 调色板优化
+  ↓
+GIF + normalized_spec.json + result.json
+```
+
+### 安装与运行
+
+```bash
+# 安装 pytest、Manim 和内置 FFmpeg 运行包
+python -m pip install -r requirements.txt
+
+# 仅校验 DSL，不启动渲染
+python -m modules.animation_engine \
+  modules/animation_engine/examples/gradient_descent.json \
+  --validate-only
+
+# 生成梯度下降 MP4 和 GIF
+python -m modules.animation_engine \
+  modules/animation_engine/examples/gradient_descent.json \
+  -o outputs
+
+# 生成 Transformer 数据流 MP4 和 GIF
+python -m modules.animation_engine \
+  modules/animation_engine/examples/data_flow.json \
+  -o outputs
+```
+
+Windows PowerShell 同样可以直接执行以上命令；多行命令可改写为单行，或者将 `\` 替换为 PowerShell 续行符。
+
+每个任务写入独立目录：
+
+```text
+outputs/<animation-id>/
+├── animation.mp4
+├── animation.gif
+├── normalized_spec.json
+└── result.json
+```
+
+### DSL能力
+
+当前支持的对象：
+
+- `text`、`formula`、`circle`、`rectangle`、`point`
+- `axes`、`graph`、`arrow`、`line`、`group`、`image`
+
+当前支持的动作：
+
+- `create`、`write`、`fade_in`、`fade_out`
+- `move`、`move_by`、`follow_path`、`transform`
+- `highlight`、`change_color`、`scale`、`rotate`
+- `grow_arrow`、`add`、`wait`
+
+时间线支持顺序动作和 `parallel` 并行动作。对象 ID、依赖关系、坐标、动作参数、输出尺寸和帧率都会在渲染前验证。
+
+对于旧版 `ExplanationSpec` 中的字符串 `objects` 和 `steps`，引擎会生成通用步骤动画作为兼容兜底。需要精确控制曲线、节点、箭头和运动轨迹时，应使用显式的 DSL `objects` 与 `timeline`。
+
+### 当前示例与结果
+
+- 梯度下降：损失曲线、参数点、负梯度箭头和逐步收敛，输出为 768×432、约 6.5 秒、97 帧 GIF。
+- Transformer 数据流：输入、编码器和输出节点，以及数据标记沿箭头移动，输出为 768×432、108 帧 GIF。
+- FFmpeg 优先使用系统 `PATH`，找不到时自动使用 `imageio-ffmpeg` 提供的二进制文件。
+- 普通图形和文字动画不要求 LaTeX；`formula` 对象以及开启坐标轴数值标签时需要可用的 LaTeX 环境。
+
+### 测试
+
+```bash
+python -m pytest -q
+```
+
+当前全仓测试结果为 `26 passed, 3 skipped`，其中确定性动画引擎包含真实的 JSON → Manim → MP4 → GIF 集成测试。
+
 ### 目录结构
 
 ```text
@@ -75,9 +173,17 @@ python tests/test_acceptance.py
 │   │   ├── classifier.py           # 5 类分类器
 │   │   ├── router.py               # 渲染器路由
 │   │   └── generator.py            # ExplanationSpec 生成
+│   ├── animation_engine/            # 确定性动画：DSL → Manim → GIF
+│   │   ├── schema.py                # DSL 归一化与校验
+│   │   ├── manim_renderer.py        # 对象工厂与动作解释器
+│   │   ├── media.py                 # FFmpeg GIF 转码与产物检查
+│   │   ├── pipeline.py              # 端到端生成流程
+│   │   ├── cli.py                   # 命令行入口
+│   │   └── examples/                # 梯度下降与数据流示例
 │   └── video_model/                # 模块 B：概率生成（视频模型 → GIF）
 ├── tests/
-│   └── test_acceptance.py          # 验收测试
+│   ├── test_acceptance.py           # 文档规划验收测试
+│   └── test_animation_engine.py     # 动画引擎单元与集成测试
 ├── demo/                           # 概念演示
 └── plans/
     └── v1                          # MVP 初始计划

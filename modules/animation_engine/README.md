@@ -9,9 +9,10 @@ palette-optimized GIF. It never executes Python supplied by the JSON.
 python -m pip install -r requirements.txt
 ```
 
-Manim needs a working LaTeX installation only when the DSL uses `formula`
-objects. Other included object types do not require LaTeX. FFmpeg is resolved
-from `PATH` first and falls back to the binary bundled by `imageio-ffmpeg`.
+Manim needs a working LaTeX installation when the DSL uses `formula` objects or
+enables numeric coordinate labels on `axes`. Other included object types do not
+require LaTeX. FFmpeg is resolved from `PATH` first and falls back to the binary
+bundled by `imageio-ffmpeg`.
 
 ## Run
 
@@ -25,6 +26,12 @@ Render MP4, GIF, normalized JSON and result metadata:
 
 ```powershell
 python -m modules.animation_engine modules/animation_engine/examples/data_flow.json -o outputs
+```
+
+Render the gradient descent example:
+
+```powershell
+python -m modules.animation_engine modules/animation_engine/examples/gradient_descent.json -o outputs
 ```
 
 Artifacts are written to `outputs/<id>/`:
