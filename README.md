@@ -110,6 +110,11 @@ python -m modules.animation_engine \
 python -m modules.animation_engine \
   modules/animation_engine/examples/data_flow.json \
   -o outputs
+
+# 生成公式逐步推导 MP4 和 GIF（无需 LaTeX）
+python -m modules.animation_engine \
+  modules/animation_engine/examples/formula_derivation.json \
+  -o outputs
 ```
 
 Windows PowerShell 同样可以直接执行以上命令；多行命令可改写为单行，或者将 `\` 替换为 PowerShell 续行符。
@@ -135,6 +140,7 @@ outputs/<animation-id>/
 
 - `create`、`write`、`fade_in`、`fade_out`
 - `move`、`move_by`、`follow_path`、`transform`
+- `formula_transform`、`highlight_parts`
 - `highlight`、`change_color`、`scale`、`rotate`
 - `grow_arrow`、`add`、`wait`
 
@@ -145,6 +151,7 @@ outputs/<animation-id>/
 ### 当前示例与结果
 
 - 梯度下降：损失曲线、参数点、负梯度箭头和逐步收敛，输出为 768×432、约 6.5 秒、97 帧 GIF。
+- 公式逐步变化：支持匹配符号变换、指定子式高亮，以及 LaTeX/Unicode 文本两种渲染模式。
 - Transformer 数据流：输入、编码器和输出节点，以及数据标记沿箭头移动，输出为 768×432、108 帧 GIF。
 - FFmpeg 优先使用系统 `PATH`，找不到时自动使用 `imageio-ffmpeg` 提供的二进制文件。
 - 普通图形和文字动画不要求 LaTeX；`formula` 对象以及开启坐标轴数值标签时需要可用的 LaTeX 环境。
@@ -155,7 +162,7 @@ outputs/<animation-id>/
 python -m pytest -q
 ```
 
-当前全仓测试结果为 `26 passed, 3 skipped`，其中确定性动画引擎包含真实的 JSON → Manim → MP4 → GIF 集成测试。
+当前全仓测试结果为 `30 passed, 3 skipped`，其中确定性动画引擎包含数据流与公式推导的真实 JSON → Manim → MP4 → GIF 集成测试。
 
 ### 目录结构
 

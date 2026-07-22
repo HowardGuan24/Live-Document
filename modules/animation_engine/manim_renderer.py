@@ -145,7 +145,19 @@ class ManimDSLScene:
             if p.get("max_width") and obj.width > float(p["max_width"]):
                 obj.scale_to_fit_width(float(p["max_width"]))
         elif item.type == "formula":
-            obj = m.MathTex(p["content"], font_size=float(p.get("font_size", 42)), color=color)
+            if p.get("render_mode", "latex") == "text":
+                obj = m.Text(
+                    p["content"],
+                    font_size=float(p.get("font_size", 42)),
+                    color=color,
+                )
+            else:
+                obj = m.MathTex(
+                    p["content"],
+                    substrings_to_isolate=p.get("isolate", []),
+                    font_size=float(p.get("font_size", 42)),
+                    color=color,
+                )
             if p.get("max_width") and obj.width > float(p["max_width"]):
                 obj.scale_to_fit_width(float(p["max_width"]))
         elif item.type == "circle":
@@ -285,6 +297,27 @@ class ManimDSLScene:
             return m.FadeOut(target)
         if action.action == "highlight":
             return m.Indicate(target, color=p.get("color", "#FFD166"), scale_factor=float(p.get("scale_factor", 1.15)))
+        if action.action == "highlight_parts":
+            if isinstance(target, m.MathTex):
+                parts = [
+                    part
+                    for tex in p["parts"]
+                    for part in target.get_parts_by_tex(tex)
+                ]
+                if not parts:
+                    raise ValueError(
+                        f"None of the requested formula parts were found: {p['parts']}"
+                    )
+                highlighted = m.VGroup(*parts)
+            else:
+                # Text mode avoids a LaTeX dependency. Pango Text does not keep
+                # semantic token groups, so the whole expression is indicated.
+                highlighted = target
+            return m.Indicate(
+                highlighted,
+                color=p.get("color", "#FFD166"),
+                scale_factor=float(p.get("scale_factor", 1.12)),
+            )
         if action.action == "grow_arrow":
             return m.GrowArrow(target)
         if action.action == "move":
@@ -299,6 +332,19 @@ class ManimDSLScene:
             return m.Rotate(target, angle=float(p.get("angle", math.pi / 2)))
         if action.action == "transform":
             return m.Transform(target, registry[p["replacement"]].copy())
+        if action.action == "formula_transform":
+            replacement = registry[p["replacement"]]
+            if isinstance(target, m.MathTex) and isinstance(replacement, m.MathTex):
+                return m.TransformMatchingTex(
+                    target,
+                    replacement,
+                    key_map=p.get("key_map", {}),
+                    transform_mismatches=bool(p.get("transform_mismatches", True)),
+                    fade_transform_mismatches=bool(
+                        p.get("fade_transform_mismatches", False)
+                    ),
+                )
+            return m.TransformMatchingShapes(target, replacement)
         if action.action == "follow_path":
             return m.MoveAlongPath(target, registry[p["path"]])
         raise ValueError(f"Action {action.action!r} cannot be compiled as an animation")
@@ -307,11 +353,21 @@ class ManimDSLScene:
         if action.parallel:
             animations = [self._compile_animation(child, registry) for child in action.parallel]
             scene.play(*animations, run_time=action.duration)
+            for child in action.parallel:
+                self._update_registry_after_transform(child, registry)
             return
         if action.action == "wait":
             scene.wait(action.duration)
             return
         scene.play(self._compile_animation(action, registry), run_time=action.duration)
+        self._update_registry_after_transform(action, registry)
+
+    @staticmethod
+    def _update_registry_after_transform(
+        action: ActionSpec, registry: dict[str, Any]
+    ) -> None:
+        if action.action == "formula_transform":
+            registry[action.target] = registry[action.properties["replacement"]]
 
 
 def render_manim(spec: AnimationSpec, job_dir: Path, asset_root: Path) -> Path:

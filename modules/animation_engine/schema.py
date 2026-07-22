@@ -37,8 +37,10 @@ SUPPORTED_ACTIONS = {
     "fade_in",
     "fade_out",
     "follow_path",
+    "formula_transform",
     "grow_arrow",
     "highlight",
+    "highlight_parts",
     "move",
     "move_by",
     "rotate",
@@ -264,6 +266,13 @@ def _parse_objects(raw_objects: Any, issues: list[str]) -> list[ObjectSpec]:
             issues.append(f"{path}.position must contain two or three finite numbers")
         if object_type in {"text", "formula"} and not isinstance(properties.get("content"), str):
             issues.append(f"{path}.content must be a string")
+        if object_type == "formula":
+            render_mode = properties.get("render_mode", "latex")
+            if render_mode not in {"latex", "text"}:
+                issues.append(f"{path}.render_mode must be 'latex' or 'text'")
+            isolate = properties.get("isolate", [])
+            if not isinstance(isolate, list) or not all(isinstance(part, str) for part in isolate):
+                issues.append(f"{path}.isolate must be an array of strings")
         if object_type == "graph" and properties.get("function") not in FUNCTIONS:
             issues.append(f"{path}.function must be one of {sorted(FUNCTIONS)}")
         if object_type in {"arrow", "line"}:
@@ -317,6 +326,8 @@ def _parse_action(raw: Any, path: str, issues: list[str]) -> ActionSpec | None:
     required_properties = {
         "change_color": ("color",),
         "follow_path": ("path",),
+        "formula_transform": ("replacement",),
+        "highlight_parts": ("parts",),
         "move": ("to",),
         "move_by": ("vector",),
         "scale": ("factor",),
@@ -378,6 +389,26 @@ def _validate_references(objects: list[ObjectSpec], timeline: list[ActionSpec], 
             issues.append(f"{path}.factor must be numeric")
         if action.action == "change_color" and not isinstance(action.properties.get("color"), str):
             issues.append(f"{path}.color must be a string")
+        if action.action == "formula_transform":
+            replacement = by_id.get(action.properties.get("replacement"))
+            target = by_id.get(action.target)
+            if target and target.type != "formula":
+                issues.append(f"{path}.target must be a formula object")
+            if replacement and replacement.type != "formula":
+                issues.append(f"{path}.replacement must be a formula object")
+            key_map = action.properties.get("key_map", {})
+            if not isinstance(key_map, dict) or not all(
+                isinstance(key, str) and isinstance(value, str)
+                for key, value in key_map.items()
+            ):
+                issues.append(f"{path}.key_map must map strings to strings")
+        if action.action == "highlight_parts":
+            target = by_id.get(action.target)
+            parts = action.properties.get("parts")
+            if target and target.type != "formula":
+                issues.append(f"{path}.target must be a formula object")
+            if not isinstance(parts, list) or not parts or not all(isinstance(part, str) for part in parts):
+                issues.append(f"{path}.parts must be a non-empty array of strings")
 
     for index, action in enumerate(timeline):
         check_action(action, f"timeline[{index}]")

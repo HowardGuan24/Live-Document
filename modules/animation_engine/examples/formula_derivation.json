@@ -1,0 +1,175 @@
+{
+  "id": "formula_derivation_demo",
+  "source_text": "Solve the equation (x + 1)^2 = 9.",
+  "explanation_goal": "Show each algebraic transformation while preserving matching symbols.",
+  "background_color": "#10151C",
+  "output": {
+    "width": 768,
+    "height": 432,
+    "fps": 30,
+    "gif_fps": 15,
+    "formats": ["mp4", "gif"]
+  },
+  "objects": [
+    {
+      "id": "title",
+      "type": "text",
+      "content": "Solving an Equation Step by Step",
+      "font_size": 36,
+      "color": "#F7F9FC",
+      "position": [0, 2.8, 0]
+    },
+    {
+      "id": "equation",
+      "type": "formula",
+      "render_mode": "text",
+      "content": "(x + 1)² = 9",
+      "font_size": 58,
+      "color": "#F7F9FC",
+      "position": [0, 0.45, 0]
+    },
+    {
+      "id": "equation_2",
+      "type": "formula",
+      "render_mode": "text",
+      "content": "x + 1 = ±3",
+      "font_size": 58,
+      "color": "#F7F9FC",
+      "position": [0, 0.45, 0]
+    },
+    {
+      "id": "equation_3",
+      "type": "formula",
+      "render_mode": "text",
+      "content": "x = -1 ± 3",
+      "font_size": 58,
+      "color": "#F7F9FC",
+      "position": [0, 0.45, 0]
+    },
+    {
+      "id": "equation_4",
+      "type": "formula",
+      "render_mode": "text",
+      "content": "x = 2    or    x = -4",
+      "font_size": 52,
+      "color": "#7AE582",
+      "position": [0, 0.45, 0]
+    },
+    {
+      "id": "note",
+      "type": "text",
+      "content": "Start with the original equation",
+      "font_size": 25,
+      "color": "#AEB9C7",
+      "position": [0, -1.55, 0]
+    },
+    {
+      "id": "note_2",
+      "type": "text",
+      "content": "Take both square roots",
+      "font_size": 25,
+      "color": "#FFD166",
+      "position": [0, -1.55, 0]
+    },
+    {
+      "id": "note_3",
+      "type": "text",
+      "content": "Subtract 1 from both sides",
+      "font_size": 25,
+      "color": "#FFD166",
+      "position": [0, -1.55, 0]
+    },
+    {
+      "id": "note_4",
+      "type": "text",
+      "content": "Evaluate the two branches",
+      "font_size": 25,
+      "color": "#7AE582",
+      "position": [0, -1.55, 0]
+    }
+  ],
+  "timeline": [
+    {"action": "write", "target": "title", "duration": 0.5},
+    {
+      "parallel": [
+        {"action": "write", "target": "equation"},
+        {"action": "fade_in", "target": "note"}
+      ],
+      "duration": 0.7
+    },
+    {
+      "action": "highlight_parts",
+      "target": "equation",
+      "parts": ["²", "9"],
+      "color": "#FFD166",
+      "duration": 0.5
+    },
+    {
+      "parallel": [
+        {
+          "action": "formula_transform",
+          "target": "equation",
+          "replacement": "equation_2"
+        },
+        {
+          "action": "transform",
+          "target": "note",
+          "replacement": "note_2"
+        }
+      ],
+      "duration": 0.8
+    },
+    {
+      "action": "highlight_parts",
+      "target": "equation",
+      "parts": ["±3"],
+      "color": "#FFD166",
+      "duration": 0.45
+    },
+    {
+      "parallel": [
+        {
+          "action": "formula_transform",
+          "target": "equation",
+          "replacement": "equation_3"
+        },
+        {
+          "action": "transform",
+          "target": "note",
+          "replacement": "note_3"
+        }
+      ],
+      "duration": 0.8
+    },
+    {
+      "action": "highlight_parts",
+      "target": "equation",
+      "parts": ["-1", "±3"],
+      "color": "#FFD166",
+      "duration": 0.45
+    },
+    {
+      "parallel": [
+        {
+          "action": "formula_transform",
+          "target": "equation",
+          "replacement": "equation_4"
+        },
+        {
+          "action": "transform",
+          "target": "note",
+          "replacement": "note_4"
+        }
+      ],
+      "duration": 0.9
+    },
+    {
+      "action": "highlight_parts",
+      "target": "equation",
+      "parts": ["x = 2", "x = -4"],
+      "color": "#7AE582",
+      "duration": 0.6
+    },
+    {"action": "wait", "duration": 0.5}
+  ]
+}

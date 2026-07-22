@@ -1,0 +1,262 @@
+{
+  "id": "brownian_motion_demo",
+  "source_text": "A suspended particle is struck unevenly by surrounding molecules and follows an irregular path.",
+  "explanation_goal": "Show Brownian motion as a random walk caused by many microscopic collisions.",
+  "background_color": "#0E141B",
+  "output": {
+    "width": 768,
+    "height": 432,
+    "fps": 30,
+    "gif_fps": 15,
+    "formats": ["mp4", "gif"]
+  },
+  "objects": [
+    {
+      "id": "title",
+      "type": "text",
+      "content": "Brownian Motion",
+      "font_size": 38,
+      "color": "#F7F9FC",
+      "position": [0, 3.25, 0]
+    },
+    {
+      "id": "caption",
+      "type": "text",
+      "content": "random molecular impacts create an irregular path",
+      "font_size": 20,
+      "wrap_width": 80,
+      "color": "#AEB9C7",
+      "position": [0, 2.58, 0]
+    },
+    {
+      "id": "field",
+      "type": "rectangle",
+      "width": 11.6,
+      "height": 5.0,
+      "corner_radius": 0.08,
+      "color": "#536170",
+      "fill_color": "#101A24",
+      "fill_opacity": 0.45,
+      "stroke_width": 2,
+      "position": [0, -0.2, 0]
+    },
+    {
+      "id": "legend_dot",
+      "type": "point",
+      "radius": 0.11,
+      "color": "#FFD166",
+      "position": [-5.25, 1.85, 0]
+    },
+    {
+      "id": "legend_text",
+      "type": "text",
+      "content": "tracked particle",
+      "font_size": 21,
+      "color": "#DDE5EE",
+      "position": [-4.0, 1.85, 0]
+    },
+    {"id": "m1", "type": "point", "radius": 0.055, "color": "#48CAE4", "opacity": 0.7, "position": [-4.7, 1.0, 0]},
+    {"id": "m2", "type": "point", "radius": 0.05, "color": "#48CAE4", "opacity": 0.6, "position": [-3.7, -1.6, 0]},
+    {"id": "m3", "type": "point", "radius": 0.06, "color": "#48CAE4", "opacity": 0.75, "position": [-2.8, 1.65, 0]},
+    {"id": "m4", "type": "point", "radius": 0.05, "color": "#48CAE4", "opacity": 0.65, "position": [-1.7, -1.9, 0]},
+    {"id": "m5", "type": "point", "radius": 0.055, "color": "#48CAE4", "opacity": 0.7, "position": [-0.6, 1.5, 0]},
+    {"id": "m6", "type": "point", "radius": 0.05, "color": "#48CAE4", "opacity": 0.6, "position": [0.2, -0.1, 0]},
+    {"id": "m7", "type": "point", "radius": 0.06, "color": "#48CAE4", "opacity": 0.75, "position": [0.9, 1.85, 0]},
+    {"id": "m8", "type": "point", "radius": 0.05, "color": "#48CAE4", "opacity": 0.65, "position": [2.0, -1.75, 0]},
+    {"id": "m9", "type": "point", "radius": 0.055, "color": "#48CAE4", "opacity": 0.7, "position": [3.0, 0.15, 0]},
+    {"id": "m10", "type": "point", "radius": 0.05, "color": "#48CAE4", "opacity": 0.6, "position": [4.35, -1.2, 0]},
+    {
+      "id": "particle",
+      "type": "point",
+      "radius": 0.16,
+      "color": "#FFD166",
+      "position": [-3.2, 0.4, 0],
+      "z_index": 5
+    },
+    {"id": "trail_01", "type": "line", "from": [-3.2, 0.4, 0], "to": [-2.75, 0.95, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_02", "type": "line", "from": [-2.75, 0.95, 0], "to": [-2.1, 0.6, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_03", "type": "line", "from": [-2.1, 0.6, 0], "to": [-2.45, -0.15, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_04", "type": "line", "from": [-2.45, -0.15, 0], "to": [-1.7, -0.55, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_05", "type": "line", "from": [-1.7, -0.55, 0], "to": [-1.15, 0.05, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_06", "type": "line", "from": [-1.15, 0.05, 0], "to": [-0.45, -0.35, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_07", "type": "line", "from": [-0.45, -0.35, 0], "to": [-0.75, -1.15, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_08", "type": "line", "from": [-0.75, -1.15, 0], "to": [0.05, -1.45, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_09", "type": "line", "from": [0.05, -1.45, 0], "to": [0.55, -0.75, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_10", "type": "line", "from": [0.55, -0.75, 0], "to": [1.25, -1.05, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_11", "type": "line", "from": [1.25, -1.05, 0], "to": [1.05, -0.2, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_12", "type": "line", "from": [1.05, -0.2, 0], "to": [1.85, 0.25, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_13", "type": "line", "from": [1.85, 0.25, 0], "to": [1.4, 1.05, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_14", "type": "line", "from": [1.4, 1.05, 0], "to": [2.15, 1.45, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_15", "type": "line", "from": [2.15, 1.45, 0], "to": [2.8, 0.95, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9},
+    {"id": "trail_16", "type": "line", "from": [2.8, 0.95, 0], "to": [3.45, 1.35, 0], "color": "#FF8FAB", "stroke_width": 4, "opacity": 0.9}
+  ],
+  "timeline": [
+    {"action": "write", "target": "title", "duration": 0.4},
+    {"action": "write", "target": "caption", "duration": 0.35},
+    {"action": "create", "target": "field", "duration": 0.35},
+    {
+      "parallel": [
+        {"action": "fade_in", "target": "legend_dot"},
+        {"action": "write", "target": "legend_text"},
+        {"action": "fade_in", "target": "m1"},
+        {"action": "fade_in", "target": "m2"},
+        {"action": "fade_in", "target": "m3"},
+        {"action": "fade_in", "target": "m4"},
+        {"action": "fade_in", "target": "m5"},
+        {"action": "fade_in", "target": "m6"},
+        {"action": "fade_in", "target": "m7"},
+        {"action": "fade_in", "target": "m8"},
+        {"action": "fade_in", "target": "m9"},
+        {"action": "fade_in", "target": "m10"}
+      ],
+      "duration": 0.4
+    },
+    {"action": "fade_in", "target": "particle", "duration": 0.25},
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_01"},
+        {"action": "move", "target": "particle", "to": [-2.75, 0.95, 0]},
+        {"action": "move_by", "target": "m1", "vector": [0.35, -0.25, 0]},
+        {"action": "move_by", "target": "m3", "vector": [-0.25, 0.2, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_02"},
+        {"action": "move", "target": "particle", "to": [-2.1, 0.6, 0]},
+        {"action": "move_by", "target": "m2", "vector": [0.25, 0.3, 0]},
+        {"action": "move_by", "target": "m4", "vector": [-0.2, -0.15, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_03"},
+        {"action": "move", "target": "particle", "to": [-2.45, -0.15, 0]},
+        {"action": "move_by", "target": "m3", "vector": [0.3, -0.35, 0]},
+        {"action": "move_by", "target": "m5", "vector": [0.2, 0.25, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_04"},
+        {"action": "move", "target": "particle", "to": [-1.7, -0.55, 0]},
+        {"action": "move_by", "target": "m4", "vector": [0.35, 0.2, 0]},
+        {"action": "move_by", "target": "m6", "vector": [-0.25, -0.3, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_05"},
+        {"action": "move", "target": "particle", "to": [-1.15, 0.05, 0]},
+        {"action": "move_by", "target": "m5", "vector": [-0.3, -0.2, 0]},
+        {"action": "move_by", "target": "m7", "vector": [0.3, -0.25, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_06"},
+        {"action": "move", "target": "particle", "to": [-0.45, -0.35, 0]},
+        {"action": "move_by", "target": "m6", "vector": [0.3, 0.35, 0]},
+        {"action": "move_by", "target": "m8", "vector": [-0.25, 0.2, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_07"},
+        {"action": "move", "target": "particle", "to": [-0.75, -1.15, 0]},
+        {"action": "move_by", "target": "m7", "vector": [-0.2, 0.3, 0]},
+        {"action": "move_by", "target": "m9", "vector": [0.25, -0.2, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_08"},
+        {"action": "move", "target": "particle", "to": [0.05, -1.45, 0]},
+        {"action": "move_by", "target": "m8", "vector": [0.25, -0.25, 0]},
+        {"action": "move_by", "target": "m10", "vector": [-0.3, 0.25, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_09"},
+        {"action": "move", "target": "particle", "to": [0.55, -0.75, 0]},
+        {"action": "move_by", "target": "m1", "vector": [-0.2, 0.3, 0]},
+        {"action": "move_by", "target": "m9", "vector": [-0.25, 0.3, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_10"},
+        {"action": "move", "target": "particle", "to": [1.25, -1.05, 0]},
+        {"action": "move_by", "target": "m2", "vector": [-0.3, -0.2, 0]},
+        {"action": "move_by", "target": "m10", "vector": [0.2, -0.3, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_11"},
+        {"action": "move", "target": "particle", "to": [1.05, -0.2, 0]},
+        {"action": "move_by", "target": "m3", "vector": [0.2, 0.25, 0]},
+        {"action": "move_by", "target": "m6", "vector": [-0.3, 0.15, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_12"},
+        {"action": "move", "target": "particle", "to": [1.85, 0.25, 0]},
+        {"action": "move_by", "target": "m4", "vector": [-0.25, 0.3, 0]},
+        {"action": "move_by", "target": "m7", "vector": [0.25, -0.2, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_13"},
+        {"action": "move", "target": "particle", "to": [1.4, 1.05, 0]},
+        {"action": "move_by", "target": "m5", "vector": [0.25, -0.3, 0]},
+        {"action": "move_by", "target": "m8", "vector": [-0.2, 0.3, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_14"},
+        {"action": "move", "target": "particle", "to": [2.15, 1.45, 0]},
+        {"action": "move_by", "target": "m6", "vector": [0.25, -0.25, 0]},
+        {"action": "move_by", "target": "m9", "vector": [0.3, 0.2, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_15"},
+        {"action": "move", "target": "particle", "to": [2.8, 0.95, 0]},
+        {"action": "move_by", "target": "m7", "vector": [-0.3, 0.2, 0]},
+        {"action": "move_by", "target": "m10", "vector": [-0.25, -0.2, 0]}
+      ],
+      "duration": 0.22
+    },
+    {
+      "parallel": [
+        {"action": "create", "target": "trail_16"},
+        {"action": "move", "target": "particle", "to": [3.45, 1.35, 0]},
+        {"action": "move_by", "target": "m8", "vector": [0.3, -0.2, 0]},
+        {"action": "move_by", "target": "m9", "vector": [-0.2, -0.3, 0]}
+      ],
+      "duration": 0.22
+    },
+    {"action": "highlight", "target": "particle", "color": "#FFD166", "duration": 0.45},
+    {"action": "wait", "duration": 0.45}
+  ]
+}
