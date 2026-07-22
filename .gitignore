@@ -3,3 +3,5 @@ README_local.md
 __pycache__/
 *.pyc
 output.json
+outputs/
+media/

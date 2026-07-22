@@ -1,0 +1,228 @@
+{
+  "id": "gradient_descent_demo",
+  "source_text": "Gradient descent repeatedly moves parameters in the negative gradient direction.",
+  "explanation_goal": "Show a parameter descending a loss curve step by step until it reaches the minimum.",
+  "background_color": "#10151C",
+  "output": {
+    "width": 768,
+    "height": 432,
+    "fps": 30,
+    "gif_fps": 15,
+    "formats": ["mp4", "gif"]
+  },
+  "objects": [
+    {
+      "id": "title",
+      "type": "text",
+      "content": "Gradient Descent",
+      "font_size": 38,
+      "color": "#F7F9FC",
+      "position": [0, 3.25, 0]
+    },
+    {
+      "id": "axes",
+      "type": "axes",
+      "x_range": [-4, 4, 1],
+      "y_range": [0, 10, 2],
+      "x_length": 8,
+      "y_length": 5,
+      "labels": false,
+      "label_font_size": 18,
+      "color": "#7D8998",
+      "position": [0, -0.15, 0]
+    },
+    {
+      "id": "loss_curve",
+      "type": "graph",
+      "axes": "axes",
+      "function": "quadratic",
+      "parameters": {
+        "center": 1,
+        "scale": 0.55,
+        "offset": 0.5
+      },
+      "x_range": [-3.1, 4],
+      "color": "#48CAE4",
+      "stroke_width": 5
+    },
+    {
+      "id": "x_label",
+      "type": "text",
+      "content": "parameter",
+      "font_size": 22,
+      "color": "#AEB9C7",
+      "position": [4.85, -2.45, 0]
+    },
+    {
+      "id": "y_label",
+      "type": "text",
+      "content": "loss",
+      "font_size": 22,
+      "color": "#AEB9C7",
+      "position": [-4.6, 2.25, 0]
+    },
+    {
+      "id": "minimum",
+      "type": "point",
+      "radius": 0.11,
+      "color": "#7AE582",
+      "position": [1, -2.4, 0]
+    },
+    {
+      "id": "minimum_label",
+      "type": "text",
+      "content": "minimum",
+      "font_size": 22,
+      "color": "#7AE582",
+      "position": [1.95, -2.45, 0]
+    },
+    {
+      "id": "parameter_point",
+      "type": "point",
+      "radius": 0.16,
+      "color": "#FF5D8F",
+      "position": [-2.5, 0.97, 0]
+    },
+    {
+      "id": "step_label",
+      "type": "text",
+      "content": "Start: large loss",
+      "font_size": 25,
+      "color": "#FFD166",
+      "position": [2.7, 2.2, 0]
+    },
+    {
+      "id": "step_1",
+      "type": "text",
+      "content": "Step 1: follow -gradient",
+      "font_size": 25,
+      "color": "#FFD166",
+      "position": [2.7, 2.2, 0]
+    },
+    {
+      "id": "step_2",
+      "type": "text",
+      "content": "Step 2: loss decreases",
+      "font_size": 25,
+      "color": "#FFD166",
+      "position": [2.7, 2.2, 0]
+    },
+    {
+      "id": "step_3",
+      "type": "text",
+      "content": "Step 3: smaller update",
+      "font_size": 25,
+      "color": "#FFD166",
+      "position": [2.7, 2.2, 0]
+    },
+    {
+      "id": "step_4",
+      "type": "text",
+      "content": "Converged near minimum",
+      "font_size": 25,
+      "color": "#7AE582",
+      "position": [2.7, 2.2, 0]
+    },
+    {
+      "id": "gradient_1",
+      "type": "arrow",
+      "from": [-2.35, 0.85, 0],
+      "to": [-1.5, -0.68, 0],
+      "color": "#FFD166",
+      "stroke_width": 5,
+      "buff": 0.05
+    },
+    {
+      "id": "gradient_2",
+      "type": "arrow",
+      "from": [-1.35, -0.75, 0],
+      "to": [-0.55, -1.7, 0],
+      "color": "#FFD166",
+      "stroke_width": 5,
+      "buff": 0.05
+    },
+    {
+      "id": "gradient_3",
+      "type": "arrow",
+      "from": [-0.4, -1.75, 0],
+      "to": [0.25, -2.15, 0],
+      "color": "#FFD166",
+      "stroke_width": 5,
+      "buff": 0.05
+    },
+    {
+      "id": "gradient_4",
+      "type": "arrow",
+      "from": [0.4, -2.15, 0],
+      "to": [0.85, -2.38, 0],
+      "color": "#FFD166",
+      "stroke_width": 5,
+      "buff": 0.05
+    }
+  ],
+  "timeline": [
+    {"action": "write", "target": "title", "duration": 0.4},
+    {
+      "parallel": [
+        {"action": "create", "target": "axes"},
+        {"action": "write", "target": "x_label"},
+        {"action": "write", "target": "y_label"}
+      ],
+      "duration": 0.6
+    },
+    {"action": "create", "target": "loss_curve", "duration": 0.6},
+    {
+      "parallel": [
+        {"action": "fade_in", "target": "parameter_point"},
+        {"action": "fade_in", "target": "minimum"},
+        {"action": "write", "target": "minimum_label"},
+        {"action": "write", "target": "step_label"}
+      ],
+      "duration": 0.4
+    },
+    {"action": "grow_arrow", "target": "gradient_1", "duration": 0.25},
+    {
+      "parallel": [
+        {"action": "move", "target": "parameter_point", "to": [-1.5, -0.68, 0]},
+        {"action": "transform", "target": "step_label", "replacement": "step_1"}
+      ],
+      "duration": 0.6
+    },
+    {"action": "fade_out", "target": "gradient_1", "duration": 0.15},
+    {"action": "grow_arrow", "target": "gradient_2", "duration": 0.2},
+    {
+      "parallel": [
+        {"action": "move", "target": "parameter_point", "to": [-0.55, -1.7, 0]},
+        {"action": "transform", "target": "step_label", "replacement": "step_2"}
+      ],
+      "duration": 0.55
+    },
+    {"action": "fade_out", "target": "gradient_2", "duration": 0.15},
+    {"action": "grow_arrow", "target": "gradient_3", "duration": 0.2},
+    {
+      "parallel": [
+        {"action": "move", "target": "parameter_point", "to": [0.25, -2.15, 0]},
+        {"action": "transform", "target": "step_label", "replacement": "step_3"}
+      ],
+      "duration": 0.5
+    },
+    {"action": "fade_out", "target": "gradient_3", "duration": 0.15},
+    {"action": "grow_arrow", "target": "gradient_4", "duration": 0.2},
+    {
+      "parallel": [
+        {"action": "move", "target": "parameter_point", "to": [0.85, -2.38, 0]},
+        {"action": "transform", "target": "step_label", "replacement": "step_4"}
+      ],
+      "duration": 0.45
+    },
+    {"action": "fade_out", "target": "gradient_4", "duration": 0.15},
+    {
+      "parallel": [
+        {"action": "highlight", "target": "parameter_point", "color": "#7AE582"},
+        {"action": "highlight", "target": "minimum", "color": "#7AE582"}
+      ],
+      "duration": 0.45
+    },
+    {"action": "wait", "duration": 0.35}
+  ]
+}

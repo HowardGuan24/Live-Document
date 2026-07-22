@@ -1,0 +1,130 @@
+{
+  "id": "data_flow_demo",
+  "source_text": "A token moves from the input through the encoder to the output.",
+  "explanation_goal": "Show the direction and order of the data flow.",
+  "background_color": "#10151C",
+  "output": {
+    "width": 768,
+    "height": 432,
+    "fps": 30,
+    "gif_fps": 15,
+    "formats": ["mp4", "gif"]
+  },
+  "objects": [
+    {
+      "id": "title",
+      "type": "text",
+      "content": "Transformer Data Flow",
+      "font_size": 38,
+      "color": "#F7F9FC",
+      "position": [0, 2.8, 0]
+    },
+    {
+      "id": "input_box",
+      "type": "rectangle",
+      "width": 2.2,
+      "height": 1.2,
+      "color": "#48CAE4",
+      "fill_color": "#123341",
+      "fill_opacity": 0.8,
+      "position": [-4.4, 0, 0]
+    },
+    {
+      "id": "encoder_box",
+      "type": "rectangle",
+      "width": 2.2,
+      "height": 1.2,
+      "color": "#FFD166",
+      "fill_color": "#40351B",
+      "fill_opacity": 0.8,
+      "position": [0, 0, 0]
+    },
+    {
+      "id": "output_box",
+      "type": "rectangle",
+      "width": 2.2,
+      "height": 1.2,
+      "color": "#7AE582",
+      "fill_color": "#173A26",
+      "fill_opacity": 0.8,
+      "position": [4.4, 0, 0]
+    },
+    {
+      "id": "input_label",
+      "type": "text",
+      "content": "Input",
+      "font_size": 28,
+      "position": [-4.4, 0, 0]
+    },
+    {
+      "id": "encoder_label",
+      "type": "text",
+      "content": "Encoder",
+      "font_size": 28,
+      "position": [0, 0, 0]
+    },
+    {
+      "id": "output_label",
+      "type": "text",
+      "content": "Output",
+      "font_size": 28,
+      "position": [4.4, 0, 0]
+    },
+    {
+      "id": "edge_1",
+      "type": "arrow",
+      "from": "input_box",
+      "to": "encoder_box",
+      "color": "#A9B4C4"
+    },
+    {
+      "id": "edge_2",
+      "type": "arrow",
+      "from": "encoder_box",
+      "to": "output_box",
+      "color": "#A9B4C4"
+    },
+    {
+      "id": "token",
+      "type": "circle",
+      "radius": 0.22,
+      "color": "#FF5D8F",
+      "fill_color": "#FF5D8F",
+      "fill_opacity": 1,
+      "position": [-4.4, -1.7, 0]
+    }
+  ],
+  "timeline": [
+    {"action": "write", "target": "title", "duration": 0.7},
+    {
+      "parallel": [
+        {"action": "create", "target": "input_box"},
+        {"action": "create", "target": "encoder_box"},
+        {"action": "create", "target": "output_box"}
+      ],
+      "duration": 0.8
+    },
+    {
+      "parallel": [
+        {"action": "write", "target": "input_label"},
+        {"action": "write", "target": "encoder_label"},
+        {"action": "write", "target": "output_label"}
+      ],
+      "duration": 0.6
+    },
+    {
+      "parallel": [
+        {"action": "grow_arrow", "target": "edge_1"},
+        {"action": "grow_arrow", "target": "edge_2"}
+      ],
+      "duration": 0.6
+    },
+    {"action": "fade_in", "target": "token", "duration": 0.3},
+    {"action": "move", "target": "token", "to": "input_box", "duration": 0.7},
+    {"action": "move", "target": "token", "to": "encoder_box", "duration": 1.0},
+    {"action": "highlight", "target": "encoder_box", "duration": 0.5},
+    {"action": "move", "target": "token", "to": "output_box", "duration": 1.0},
+    {"action": "highlight", "target": "output_box", "duration": 0.5},
+    {"action": "wait", "duration": 0.5}
+  ]
+}
