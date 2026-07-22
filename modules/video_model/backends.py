@@ -1,10 +1,16 @@
-"""Generation backends: Wan2.1 for production and a local smoke-test renderer."""
+"""Reusable LTX primary, Wan baseline, and procedural fallback backends."""
 
 from __future__ import annotations
 
+import gc
+import importlib.metadata
+import importlib.util
 import math
+import os
 import shutil
 import subprocess
+import time
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -23,8 +29,130 @@ class GenerationSettings:
     seed: int
     inference_steps: int
     guidance_scale: float
-    model_id: str
+    model_id: str | None
     cpu_offload: bool = False
+    num_frames: int | None = None
+    model_revision: str = "main"
+    ltx_checkpoint: str = "ltxv-2b-0.9.8-distilled.safetensors"
+    ltx_text_encoder: str = "PixArt-alpha/PixArt-XL-2-1024-MS"
+    ltx_upscaler: str = "ltxv-spatial-upscaler-0.9.8.safetensors"
+    use_multiscale: bool = False
+    vae_tiling: bool = False
+    vae_slicing: bool = False
+    first_frame: str | None = None
+
+
+LTX_REPO_ID = "Lightricks/LTX-Video"
+LTX_CHECKPOINT = "ltxv-2b-0.9.8-distilled.safetensors"
+LTX_DISTILLED_TIMESTEPS = [1.0, 0.9937, 0.9875, 0.9812, 0.9750, 0.9094, 0.7250]
+LTX_SECOND_PASS = [0.9094, 0.7250, 0.4219]
+
+
+def _package_version(name: str) -> str | None:
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        return None
+
+
+def _torch_environment() -> dict[str, Any]:
+    details: dict[str, Any] = {
+        "torch_installed": False,
+        "torch_version": None,
+        "accelerator_available": False,
+        "rocm_version": None,
+        "gpu_name": None,
+        "gpu_arch": None,
+        "gpu_pci_bus_id": None,
+        "gpu_memory_gib": None,
+    }
+    try:
+        import torch
+    except ImportError:
+        return details
+    details["torch_installed"] = True
+    details["torch_version"] = torch.__version__
+    details["accelerator_available"] = bool(torch.cuda.is_available())
+    details["rocm_version"] = getattr(torch.version, "hip", None)
+    if details["accelerator_available"]:
+        properties = torch.cuda.get_device_properties(0)
+        details["gpu_name"] = properties.name
+        details["gpu_arch"] = getattr(properties, "gcnArchName", None)
+        details["gpu_pci_bus_id"] = getattr(properties, "pci_bus_id", None)
+        details["gpu_memory_gib"] = round(properties.total_memory / 1024**3, 2)
+    return details
+
+
+@contextmanager
+def _rocm_safe_optional_imports() -> Any:
+    """Hide NVIDIA-only optional packages that may be installed but unusable on ROCm.
+
+    Some shared environments contain FlashAttention metadata even though its CUDA
+    extension cannot load. Transformers/Diffusers then import it opportunistically.
+    LTX does not require these kernels, so report them unavailable during imports.
+    """
+
+    import torch
+
+    if not getattr(torch.version, "hip", None):
+        yield
+        return
+    original_find_spec = importlib.util.find_spec
+    blocked = {"flash_attn", "flash_attn_3", "xformers"}
+    if os.environ.get("HF_HUB_DISABLE_XET", "").lower() in {"1", "true", "yes"}:
+        # huggingface-hub 0.30 does not yet implement HF_HUB_DISABLE_XET.
+        # Honor the modern variable locally so a broken optional hf_xet install
+        # cannot make checkpoint downloads hang.
+        blocked.add("hf_xet")
+
+    def safe_find_spec(name: str, package: str | None = None) -> Any:
+        if name.split(".", 1)[0] in blocked:
+            return None
+        return original_find_spec(name, package)
+
+    importlib.util.find_spec = safe_find_spec
+    try:
+        yield
+    finally:
+        importlib.util.find_spec = original_find_spec
+
+
+def _honor_hf_hub_disable_xet() -> None:
+    """Backport HF_HUB_DISABLE_XET behavior for huggingface-hub 0.30."""
+
+    if os.environ.get("HF_HUB_DISABLE_XET", "").lower() not in {"1", "true", "yes"}:
+        return
+    from huggingface_hub.utils import _runtime as hub_runtime
+
+    package_versions = getattr(hub_runtime, "_package_versions", None)
+    if isinstance(package_versions, dict):
+        package_versions["hf_xet"] = "N/A"
+
+
+def ltx_environment() -> dict[str, Any]:
+    """Detect the official LTX package and a real ROCm accelerator."""
+
+    details = _torch_environment()
+    details.update(
+        {
+            "available": False,
+            "ltx_video_installed": importlib.util.find_spec("ltx_video") is not None,
+            "ltx_video_version": _package_version("ltx-video"),
+            "diffusers_version": _package_version("diffusers"),
+            "reason": None,
+        }
+    )
+    if not details["torch_installed"]:
+        details["reason"] = "PyTorch is not installed"
+    elif not details["accelerator_available"]:
+        details["reason"] = "PyTorch cannot see an accelerator"
+    elif not details["rocm_version"]:
+        details["reason"] = "ROCm PyTorch is required for the V2 LTX backend (torch.version.hip is empty)"
+    elif not details["ltx_video_installed"]:
+        details["reason"] = "the official ltx-video package is not installed"
+    else:
+        details["available"] = True
+    return details
 
 
 def wan_environment() -> dict[str, Any]:
@@ -49,7 +177,8 @@ def wan_environment() -> dict[str, Any]:
         return details
 
     try:
-        from diffusers import WanPipeline  # noqa: F401
+        with _rocm_safe_optional_imports():
+            from diffusers import WanPipeline  # noqa: F401
 
         details["diffusers_installed"] = True
     except (ImportError, RuntimeError) as exc:
@@ -64,64 +193,508 @@ def wan_environment() -> dict[str, Any]:
     return details
 
 
+def _resolved_revision(path: str | Path) -> str | None:
+    parts = Path(path).parts
+    if "snapshots" in parts:
+        index = parts.index("snapshots")
+        if index + 1 < len(parts):
+            return parts[index + 1]
+    return None
+
+
+def _select_ltx_timesteps(steps: int) -> list[float]:
+    if not 1 <= steps <= len(LTX_DISTILLED_TIMESTEPS):
+        raise ValueError(
+            f"LTX 0.9.8 2B distilled supports 1-{len(LTX_DISTILLED_TIMESTEPS)} "
+            "first-pass steps in this runner"
+        )
+    if steps == 1:
+        return [LTX_DISTILLED_TIMESTEPS[0]]
+    last = len(LTX_DISTILLED_TIMESTEPS) - 1
+    indices = [round(index * last / (steps - 1)) for index in range(steps)]
+    # Rounding can duplicate an index for unusual lengths; preserve order.
+    return [LTX_DISTILLED_TIMESTEPS[index] for index in dict.fromkeys(indices)]
+
+
+def _write_tensor_video(images: Any, output_path: Path, fps: int) -> float:
+    """Encode official LTX tensor output (B,C,F,H,W) as a raw MP4."""
+
+    import imageio
+    import numpy as np
+
+    started = time.perf_counter()
+    video = images[0].permute(1, 2, 3, 0).detach().cpu().float().numpy()
+    video = np.clip(video * 255.0, 0, 255).astype(np.uint8)
+    with imageio.get_writer(output_path, fps=fps, codec="libx264", pixelformat="yuv420p") as writer:
+        for frame in video:
+            writer.append_data(frame)
+    return time.perf_counter() - started
+
+
+class LTXRunner:
+    """Reusable official LTX-Video 0.9.8 2B distilled runner."""
+
+    backend = "ltx"
+
+    def __init__(self) -> None:
+        self.pipeline: Any = None
+        self.multiscale_pipeline: Any = None
+        self._load_info: dict[str, Any] = {}
+        self._model_key: tuple[Any, ...] | None = None
+
+    @property
+    def loaded(self) -> bool:
+        return self.pipeline is not None
+
+    def _configure_vae(self, settings: GenerationSettings) -> None:
+        vae = self.pipeline.vae
+        if settings.vae_tiling:
+            if hasattr(vae, "enable_hw_tiling"):
+                vae.enable_hw_tiling()
+            elif hasattr(vae, "enable_tiling"):
+                vae.enable_tiling()
+            else:
+                raise RuntimeError("installed official LTX VAE does not expose spatial tiling")
+        elif hasattr(vae, "disable_hw_tiling"):
+            vae.disable_hw_tiling()
+        elif hasattr(vae, "disable_tiling"):
+            vae.disable_tiling()
+
+        if settings.vae_slicing:
+            if hasattr(vae, "enable_z_tiling"):
+                vae.enable_z_tiling(z_sample_size=8)
+            elif hasattr(vae, "enable_slicing"):
+                vae.enable_slicing()
+            else:
+                raise RuntimeError("installed official LTX VAE does not expose temporal slicing")
+        elif hasattr(vae, "disable_z_tiling"):
+            vae.disable_z_tiling()
+        elif hasattr(vae, "disable_slicing"):
+            vae.disable_slicing()
+
+    def load(self, settings: GenerationSettings) -> tuple[float, dict[str, Any]]:
+        if not settings.model_id:
+            raise ValueError("LTX runner requires a model_id")
+        model_key = (
+            settings.model_id,
+            settings.model_revision,
+            settings.ltx_checkpoint,
+            settings.ltx_text_encoder,
+        )
+        if self.loaded:
+            if model_key != self._model_key:
+                raise ValueError("a reusable LTX runner cannot change model or revision")
+            self._configure_vae(settings)
+            return 0.0, {
+                **self._load_info,
+                "model_reused": True,
+                "vae_spatial_tiling": settings.vae_tiling,
+                "vae_temporal_slicing": settings.vae_slicing,
+            }
+        environment = ltx_environment()
+        if not environment["available"]:
+            raise RuntimeError(f"LTX backend unavailable: {environment['reason']}")
+
+        import torch
+        with _rocm_safe_optional_imports():
+            from huggingface_hub import hf_hub_download
+            _honor_hf_hub_disable_xet()
+            from ltx_video.inference import create_ltx_video_pipeline
+
+        started = time.perf_counter()
+        checkpoint_path = hf_hub_download(
+            repo_id=settings.model_id,
+            filename=settings.ltx_checkpoint,
+            revision=settings.model_revision,
+        )
+        self.pipeline = create_ltx_video_pipeline(
+            ckpt_path=checkpoint_path,
+            precision="bfloat16",
+            text_encoder_model_name_or_path=settings.ltx_text_encoder,
+            sampler="from_checkpoint",
+            device="cuda",
+            enhance_prompt=False,
+        )
+        self._model_key = model_key
+        self._configure_vae(settings)
+        torch.cuda.synchronize()
+        elapsed = time.perf_counter() - started
+        self._load_info = {
+            "model_id": settings.model_id,
+            "checkpoint": settings.ltx_checkpoint,
+            "requested_revision": settings.model_revision,
+            "resolved_revision": _resolved_revision(checkpoint_path),
+            "precision": "bfloat16",
+            "torch_version": torch.__version__,
+            "rocm_version": torch.version.hip,
+            "gpu_name": torch.cuda.get_device_name(0),
+            "gpu_arch": getattr(torch.cuda.get_device_properties(0), "gcnArchName", None),
+            "diffusers_version": _package_version("diffusers"),
+            "ltx_video_version": _package_version("ltx-video"),
+            "text_encoder_model_id": settings.ltx_text_encoder,
+            "text_encoder_revision": getattr(self.pipeline.text_encoder.config, "_commit_hash", None),
+            "vae_spatial_tiling": settings.vae_tiling,
+            "vae_temporal_slicing": settings.vae_slicing,
+            "model_reused": False,
+        }
+        return elapsed, dict(self._load_info)
+
+    def _ensure_multiscale(self, settings: GenerationSettings) -> float:
+        if self.multiscale_pipeline is not None:
+            return 0.0
+        from huggingface_hub import hf_hub_download
+        _honor_hf_hub_disable_xet()
+        from ltx_video.inference import create_latent_upsampler
+        from ltx_video.pipelines.pipeline_ltx_video import LTXMultiScalePipeline
+
+        started = time.perf_counter()
+        upscaler_path = hf_hub_download(
+            repo_id=settings.model_id,
+            filename=settings.ltx_upscaler,
+            revision=settings.model_revision,
+        )
+        upscaler = create_latent_upsampler(upscaler_path, "cuda")
+        self.multiscale_pipeline = LTXMultiScalePipeline(self.pipeline, latent_upsampler=upscaler)
+        import torch
+
+        torch.cuda.synchronize()
+        return time.perf_counter() - started
+
+    def generate(
+        self,
+        positive_prompt: str,
+        negative_prompt: str,
+        output_path: Path,
+        settings: GenerationSettings,
+    ) -> dict[str, Any]:
+        import torch
+        from ltx_video.inference import calculate_padding, prepare_conditioning
+        from ltx_video.utils.skip_layer_strategy import SkipLayerStrategy
+
+        if not self.loaded:
+            raise RuntimeError("LTX runner must be loaded before generation")
+        if settings.guidance_scale != 1.0:
+            raise ValueError("LTX 0.9.8 distilled requires guidance_scale=1.0")
+        num_frames = settings.num_frames or (math.ceil(settings.duration * settings.fps / 8) * 8 + 1)
+        if (num_frames - 1) % 8:
+            raise ValueError("LTX num_frames must follow the 8*k+1 constraint")
+        if settings.width % 32 or settings.height % 32:
+            raise ValueError("LTX width and height must be divisible by 32")
+
+        extra_load = self._ensure_multiscale(settings) if settings.use_multiscale else 0.0
+        torch.cuda.reset_peak_memory_stats()
+        generator = torch.Generator(device="cuda").manual_seed(settings.seed)
+        conditioning_items = None
+        if settings.first_frame:
+            padding = calculate_padding(settings.height, settings.width, settings.height, settings.width)
+            conditioning_items = prepare_conditioning(
+                conditioning_media_paths=[settings.first_frame],
+                conditioning_strengths=[1.0],
+                conditioning_start_frames=[0],
+                height=settings.height,
+                width=settings.width,
+                num_frames=num_frames,
+                padding=padding,
+                pipeline=self.pipeline,
+            )
+
+        common: dict[str, Any] = {
+            "prompt": positive_prompt,
+            "negative_prompt": negative_prompt,
+            "height": settings.height,
+            "width": settings.width,
+            "num_frames": num_frames,
+            "frame_rate": settings.fps,
+            "skip_layer_strategy": SkipLayerStrategy.AttentionValues,
+            "generator": generator,
+            "output_type": "pt",
+            "conditioning_items": conditioning_items,
+            "is_video": True,
+            "vae_per_channel_normalize": True,
+            "image_cond_noise_scale": 0.025,
+            "mixed_precision": False,
+            "offload_to_cpu": settings.cpu_offload,
+            "device": "cuda",
+            "enhance_prompt": False,
+            "stochastic_sampling": False,
+            "decode_timestep": 0.05,
+            "decode_noise_scale": 0.025,
+        }
+        torch.cuda.synchronize()
+        started = time.perf_counter()
+        if settings.use_multiscale:
+            images = self.multiscale_pipeline(
+                downscale_factor=2 / 3,
+                first_pass={
+                    "timesteps": LTX_DISTILLED_TIMESTEPS,
+                    "guidance_scale": 1.0,
+                    "stg_scale": 0.0,
+                    "rescaling_scale": 1.0,
+                    "skip_block_list": [42],
+                },
+                second_pass={
+                    "timesteps": LTX_SECOND_PASS,
+                    "guidance_scale": 1.0,
+                    "stg_scale": 0.0,
+                    "rescaling_scale": 1.0,
+                    "skip_block_list": [42],
+                },
+                tone_map_compression_ratio=0.6,
+                **common,
+            ).images
+            effective_steps = len(LTX_DISTILLED_TIMESTEPS) + len(LTX_SECOND_PASS)
+        else:
+            timesteps = _select_ltx_timesteps(settings.inference_steps)
+            images = self.pipeline(
+                timesteps=timesteps,
+                guidance_scale=1.0,
+                stg_scale=0.0,
+                rescaling_scale=1.0,
+                skip_block_list=[42],
+                tone_map_compression_ratio=0.6,
+                **common,
+            ).images
+            effective_steps = len(timesteps)
+        torch.cuda.synchronize()
+        inference = time.perf_counter() - started
+        raw_encoding = _write_tensor_video(images, output_path, settings.fps)
+        peak_memory = round(torch.cuda.max_memory_allocated() / 1024**3, 3)
+        return {
+            "backend": "ltx",
+            "workflow": "LTX-Video 0.9.8 2B distilled official Python pipeline",
+            "model_id": settings.model_id,
+            "checkpoint": settings.ltx_checkpoint,
+            "num_frames": num_frames,
+            "effective_inference_steps": effective_steps,
+            "generation_mode": "i2v" if settings.first_frame else "t2v",
+            "first_frame": str(Path(settings.first_frame).resolve()) if settings.first_frame else None,
+            "device": "cuda (ROCm PyTorch API)",
+            "rocm_version": torch.version.hip,
+            "gpu_name": torch.cuda.get_device_name(0),
+            "peak_gpu_memory_gib": peak_memory,
+            "timing_seconds": {
+                "additional_model_load": round(extra_load, 3),
+                "inference": round(inference, 3),
+                "vae_decode": None,
+                "encoding_mp4": round(raw_encoding, 3),
+            },
+            "timing_limitations": [
+                "The official LTX pipeline performs denoising and VAE decode in one call; inference includes VAE decode."
+            ],
+        }
+
+
+class WanRunner:
+    """Reusable Wan baseline runner for warm benchmark comparisons."""
+
+    backend = "wan"
+
+    def __init__(self) -> None:
+        self.pipeline: Any = None
+        self._load_info: dict[str, Any] = {}
+        self._model_key: tuple[Any, ...] | None = None
+
+    @property
+    def loaded(self) -> bool:
+        return self.pipeline is not None
+
+    def load(self, settings: GenerationSettings) -> tuple[float, dict[str, Any]]:
+        if not settings.model_id:
+            raise ValueError("Wan runner requires a model_id")
+        model_key = (settings.model_id, settings.model_revision, settings.cpu_offload)
+        if self.loaded:
+            if model_key != self._model_key:
+                raise ValueError("a reusable Wan runner cannot change model or revision")
+            return 0.0, {**self._load_info, "model_reused": True}
+        environment = wan_environment()
+        if not environment["available"]:
+            raise RuntimeError(f"Wan backend unavailable: {environment['reason']}")
+        import torch
+        with _rocm_safe_optional_imports():
+            from diffusers import AutoencoderKLWan, WanPipeline
+            from diffusers.schedulers.scheduling_unipc_multistep import UniPCMultistepScheduler
+        _honor_hf_hub_disable_xet()
+
+        started = time.perf_counter()
+        vae = AutoencoderKLWan.from_pretrained(
+            settings.model_id,
+            subfolder="vae",
+            torch_dtype=torch.float32,
+            revision=settings.model_revision,
+        )
+        self.pipeline = WanPipeline.from_pretrained(
+            settings.model_id,
+            vae=vae,
+            torch_dtype=torch.bfloat16,
+            revision=settings.model_revision,
+        )
+        self.pipeline.scheduler = UniPCMultistepScheduler.from_config(
+            self.pipeline.scheduler.config,
+            flow_shift=3.0,
+        )
+        if settings.cpu_offload:
+            self.pipeline.enable_model_cpu_offload()
+        else:
+            self.pipeline.to("cuda")
+        self._model_key = model_key
+        torch.cuda.synchronize()
+        elapsed = time.perf_counter() - started
+        self._load_info = {
+            "model_id": settings.model_id,
+            "requested_revision": settings.model_revision,
+            "resolved_revision": getattr(self.pipeline.config, "_commit_hash", None),
+            "precision": "bfloat16 (VAE float32)",
+            "torch_version": torch.__version__,
+            "rocm_version": getattr(torch.version, "hip", None),
+            "gpu_name": torch.cuda.get_device_name(0),
+            "gpu_arch": getattr(torch.cuda.get_device_properties(0), "gcnArchName", None),
+            "diffusers_version": _package_version("diffusers"),
+            "ltx_video_version": None,
+            "model_reused": False,
+        }
+        return elapsed, dict(self._load_info)
+
+    def generate(
+        self,
+        positive_prompt: str,
+        negative_prompt: str,
+        output_path: Path,
+        settings: GenerationSettings,
+    ) -> dict[str, Any]:
+        import torch
+        from diffusers.utils import export_to_video
+
+        if not self.loaded:
+            raise RuntimeError("Wan runner must be loaded before generation")
+        requested_frames = settings.num_frames or max(9, round(settings.duration * settings.fps))
+        num_frames = max(9, math.ceil((requested_frames - 1) / 4) * 4 + 1)
+        torch.cuda.reset_peak_memory_stats()
+        generator = torch.Generator(device="cuda").manual_seed(settings.seed)
+        torch.cuda.synchronize()
+        started = time.perf_counter()
+        frames = self.pipeline(
+            prompt=positive_prompt,
+            negative_prompt=negative_prompt,
+            height=settings.height,
+            width=settings.width,
+            num_frames=num_frames,
+            num_inference_steps=settings.inference_steps,
+            guidance_scale=settings.guidance_scale,
+            generator=generator,
+        ).frames[0]
+        torch.cuda.synchronize()
+        inference = time.perf_counter() - started
+        encode_started = time.perf_counter()
+        export_to_video(frames, str(output_path), fps=settings.fps)
+        raw_encoding = time.perf_counter() - encode_started
+        return {
+            "backend": "wan",
+            "workflow": "text-to-video with Wan2.1 via Diffusers",
+            "model_id": settings.model_id,
+            "num_frames": num_frames,
+            "generation_mode": "t2v",
+            "device": "cuda (ROCm when torch.version.hip is set)",
+            "rocm_version": getattr(torch.version, "hip", None),
+            "gpu_name": torch.cuda.get_device_name(0),
+            "peak_gpu_memory_gib": round(torch.cuda.max_memory_allocated() / 1024**3, 3),
+            "timing_seconds": {
+                "additional_model_load": 0.0,
+                "inference": round(inference, 3),
+                "vae_decode": None,
+                "encoding_mp4": round(raw_encoding, 3),
+            },
+            "timing_limitations": ["Diffusers WanPipeline returns decoded frames; inference includes VAE decode."],
+        }
+
+
+class ProceduralRunner:
+    backend = "procedural"
+
+    @property
+    def loaded(self) -> bool:
+        return True
+
+    def load(self, settings: GenerationSettings) -> tuple[float, dict[str, Any]]:
+        return 0.0, {
+            "model_id": None,
+            "requested_revision": None,
+            "resolved_revision": None,
+            "precision": None,
+            "torch_version": _package_version("torch"),
+            "rocm_version": None,
+            "gpu_name": None,
+            "diffusers_version": _package_version("diffusers"),
+            "ltx_video_version": _package_version("ltx-video"),
+            "model_reused": True,
+        }
+
+    def generate(
+        self,
+        spec: InputSpec,
+        output_path: Path,
+        settings: GenerationSettings,
+    ) -> dict[str, Any]:
+        started = time.perf_counter()
+        details = generate_procedural(spec, output_path, settings)
+        elapsed = time.perf_counter() - started
+        details.update(
+            {
+                "generation_mode": "deterministic",
+                "peak_gpu_memory_gib": None,
+                "timing_seconds": {
+                    "additional_model_load": 0.0,
+                    "inference": None,
+                    "vae_decode": None,
+                    "encoding_mp4": round(elapsed, 3),
+                },
+                "timing_limitations": [
+                    "Procedural frame rendering and raw MP4 encoding are measured together as encoding_mp4."
+                ],
+            }
+        )
+        return details
+
+
+def make_runner(backend: str) -> LTXRunner | WanRunner | ProceduralRunner:
+    if backend == "ltx":
+        return LTXRunner()
+    if backend == "wan":
+        return WanRunner()
+    if backend == "procedural":
+        return ProceduralRunner()
+    raise ValueError(f"unsupported concrete backend: {backend}")
+
+
+def release_runner(runner: Any) -> None:
+    """Release a failed model runner before trying the next auto backend."""
+
+    for attribute in ("multiscale_pipeline", "pipeline"):
+        if hasattr(runner, attribute):
+            setattr(runner, attribute, None)
+    gc.collect()
+    try:
+        import torch
+
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+    except ImportError:
+        pass
+
+
 def generate_wan(
     positive_prompt: str,
     negative_prompt: str,
     output_path: Path,
     settings: GenerationSettings,
 ) -> dict[str, Any]:
-    """Generate a raw MP4 with the official Diffusers Wan pipeline."""
+    """Backward-compatible one-shot wrapper around the reusable Wan runner."""
 
-    import torch
-    from diffusers import AutoencoderKLWan, WanPipeline
-    from diffusers.schedulers.scheduling_unipc_multistep import UniPCMultistepScheduler
-    from diffusers.utils import export_to_video
-
-    # Wan temporal compression requires 4*k+1 frames.
-    requested_frames = max(9, round(settings.duration * settings.fps))
-    num_frames = max(9, math.ceil((requested_frames - 1) / 4) * 4 + 1)
-
-    vae = AutoencoderKLWan.from_pretrained(
-        settings.model_id,
-        subfolder="vae",
-        torch_dtype=torch.float32,
-    )
-    pipeline = WanPipeline.from_pretrained(
-        settings.model_id,
-        vae=vae,
-        torch_dtype=torch.bfloat16,
-    )
-    pipeline.scheduler = UniPCMultistepScheduler.from_config(
-        pipeline.scheduler.config,
-        flow_shift=3.0,
-    )
-    if settings.cpu_offload:
-        pipeline.enable_model_cpu_offload()
-    else:
-        # ROCm intentionally uses PyTorch's CUDA-compatible API surface.
-        pipeline.to("cuda")
-
-    generator = torch.Generator(device="cuda").manual_seed(settings.seed)
-    frames = pipeline(
-        prompt=positive_prompt,
-        negative_prompt=negative_prompt,
-        height=settings.height,
-        width=settings.width,
-        num_frames=num_frames,
-        num_inference_steps=settings.inference_steps,
-        guidance_scale=settings.guidance_scale,
-        generator=generator,
-    ).frames[0]
-    export_to_video(frames, str(output_path), fps=settings.fps)
-
-    return {
-        "backend": "wan",
-        "workflow": "text-to-video with Wan2.1 via Diffusers",
-        "model_id": settings.model_id,
-        "num_frames": num_frames,
-        "device": "cuda (PyTorch API; ROCm when torch.version.hip is set)",
-        "rocm_version": getattr(torch.version, "hip", None),
-    }
+    runner = WanRunner()
+    load_seconds, load_info = runner.load(settings)
+    result = runner.generate(positive_prompt, negative_prompt, output_path, settings)
+    result["one_shot_model_load_seconds"] = round(load_seconds, 3)
+    result["load_info"] = load_info
+    return result
 
 
 def _font(size: int) -> ImageFont.ImageFont:

@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_04_magnet",
+  "seed": 2104,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "scene",
+  "source_text": "A magnet pulls a nearby metal ball toward itself without touching it.",
+  "visual_goal": "Make the direction and cause of attraction obvious.",
+  "content_type": "scene",
+  "video_prompt": "One blue metal ball slides directly toward one stationary red magnet on a clean white tabletop.",
+  "required_visual_elements": ["one ball", "one magnet", "motion toward magnet"],
+  "forbidden_or_risky_behavior": ["magnet moving", "ball duplication", "curved path"],
+  "expected_takeaway": "The stationary magnet attracts the ball."
+}

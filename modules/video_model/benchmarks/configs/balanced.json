@@ -1,0 +1,16 @@
+{
+  "name": "balanced",
+  "description": "Default MVP profile using all seven official distilled first-pass timesteps.",
+  "width": 640,
+  "height": 384,
+  "num_frames": 49,
+  "fps": 12,
+  "duration_seconds": 4.0,
+  "inference_steps": 7,
+  "guidance_scale": 1.0,
+  "prompt_template_version": "ltx-explainer-v2.1",
+  "use_multiscale": false,
+  "vae_tiling": false,
+  "vae_slicing": false,
+  "cpu_offload": false
+}

@@ -1,0 +1,14 @@
+raw/*
+!raw/.gitkeep
+evaluations/*
+!evaluations/.gitkeep
+video/*
+!video/.gitkeep
+webm/*
+!webm/.gitkeep
+gif/*
+!gif/.gitkeep
+meta/*
+!meta/.gitkeep
+
+# V1's explicitly selected small demo remains tracked despite these rules.

@@ -1,0 +1,10 @@
+{
+  "case_id": "speed_03_state_change",
+  "seed": 1103,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "state_change",
+  "source_text": "An ice cube melts into a small puddle when warmed.",
+  "visual_goal": "Show one object changing from solid ice to liquid water.",
+  "content_type": "state_change",
+  "video_prompt": "One blue ice cube gradually softens and becomes one small clear puddle on a plain white surface."
+}

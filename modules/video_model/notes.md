@@ -1,5 +1,7 @@
 # v1 实验说明
 
+> 本文件保留 V1 决策历史。V2 已把 LTX 0.9.8 2B distilled 提升为主后端；当前 profile、实测和优化结论以 [`benchmarks/V2_REPORT.md`](benchmarks/V2_REPORT.md) 为准。
+
 ## 候选方案
 
 | 方案 | 优点 | 风险 / v1 结论 |

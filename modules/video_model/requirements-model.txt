@@ -1,11 +1,13 @@
 -r requirements.txt
 accelerate>=1.0,<2
-diffusers>=0.35.1,<1
-huggingface-hub>=0.27,<2
+av>=12,<17
+diffusers>=0.35.1,<0.36
+huggingface-hub>=0.30,<0.31
 imageio>=2.34,<3
 imageio-ffmpeg>=0.5,<1
 safetensors>=0.4,<1
 sentencepiece>=0.2,<1
-transformers>=4.46,<6
+transformers>=4.47.2,<4.52
+ltx-video @ git+https://github.com/Lightricks/LTX-Video.git@4b2d053057623ddd4d0a1d3e9cd28890e9ef487f
 
 # Install the PyTorch wheel matching the host ROCm version separately.

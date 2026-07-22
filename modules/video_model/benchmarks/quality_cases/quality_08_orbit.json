@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_08_orbit",
+  "seed": 2108,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "scene",
+  "source_text": "A small planet follows a stable orbit around a larger star.",
+  "visual_goal": "Show one persistent spatial relationship through repeated motion.",
+  "content_type": "scene",
+  "video_prompt": "One small blue planet follows one smooth circular orbit around one stationary yellow star in a sparse dark diagram.",
+  "required_visual_elements": ["one planet", "one star", "closed orbit"],
+  "forbidden_or_risky_behavior": ["extra planets", "moving star", "spiraling away"],
+  "expected_takeaway": "The planet repeatedly orbits the stationary star."
+}

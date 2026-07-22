@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Module B V2 benchmark result",
+  "type": "object",
+  "required": ["run_id", "status", "backend", "profile", "total_seconds", "resolution", "frame_count", "fps"],
+  "properties": {
+    "case_id": {"type": ["string", "null"]},
+    "run_id": {"type": "string"},
+    "status": {"enum": ["success_model", "success_fallback", "failed"]},
+    "backend": {"enum": ["ltx", "wan", "procedural", null]},
+    "profile": {"enum": ["fast", "balanced", "quality"]},
+    "cold_start_seconds": {"type": ["number", "null"]},
+    "warm_inference_seconds": {"type": ["number", "null"]},
+    "total_seconds": {"type": ["number", "null"]},
+    "seconds_per_generated_second": {"type": ["number", "null"]},
+    "resolution": {"type": "string"},
+    "frame_count": {"type": "integer"},
+    "fps": {"type": "integer"},
+    "inference_steps": {"type": "integer"},
+    "peak_gpu_memory_gib": {"type": ["number", "null"]},
+    "output_sizes_bytes": {"type": "object"}
+  }
+}

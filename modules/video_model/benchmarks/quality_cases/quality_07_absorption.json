@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_07_absorption",
+  "seed": 2107,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "process",
+  "source_text": "A dry sponge absorbs water through its pores.",
+  "visual_goal": "Show water moving into the same sponge and remaining there.",
+  "content_type": "process",
+  "video_prompt": "One yellow sponge touches one small blue puddle and the water visibly moves upward into the sponge while the camera stays fixed.",
+  "required_visual_elements": ["one sponge", "one puddle", "water entering sponge"],
+  "forbidden_or_risky_behavior": ["sponge duplication", "water moving away", "scene cut"],
+  "expected_takeaway": "The sponge draws water into itself."
+}

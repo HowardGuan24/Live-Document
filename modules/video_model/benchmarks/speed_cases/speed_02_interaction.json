@@ -1,0 +1,10 @@
+{
+  "case_id": "speed_02_interaction",
+  "seed": 1102,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "scene",
+  "source_text": "A small magnet attracts one metal ball across a flat surface.",
+  "visual_goal": "Show that the ball moves toward the magnet because of attraction.",
+  "content_type": "scene",
+  "video_prompt": "One blue metal ball slides in a straight line toward one red horseshoe magnet on a plain tabletop."
+}

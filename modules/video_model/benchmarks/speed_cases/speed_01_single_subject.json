@@ -1,0 +1,10 @@
+{
+  "case_id": "speed_01_single_subject",
+  "seed": 1101,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "process",
+  "source_text": "A red leaf falls slowly from a branch to the ground.",
+  "visual_goal": "Show one subject moving clearly downward.",
+  "content_type": "process",
+  "video_prompt": "One red leaf moves steadily downward from a simple branch to the ground in a single fixed shot."
+}

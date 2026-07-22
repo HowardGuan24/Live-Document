@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import shutil
 import subprocess
 from pathlib import Path
@@ -16,11 +17,12 @@ def _binary(name: str) -> str:
     return path
 
 
-def _run(command: list[str]) -> None:
+def _run(command: list[str]) -> list[str]:
     completed = subprocess.run(command, capture_output=True, text=True, check=False)
     if completed.returncode != 0:
         message = completed.stderr.strip() or completed.stdout.strip()
         raise RuntimeError(f"ffmpeg post-processing failed: {message}")
+    return command
 
 
 def normalize_video(
@@ -32,7 +34,7 @@ def normalize_video(
     width: int,
     height: int,
     loop_mode: str,
-) -> None:
+) -> list[str]:
     ffmpeg = _binary("ffmpeg")
     base_filter = (
         f"fps={fps},scale={width}:{height}:force_original_aspect_ratio=decrease:flags=lanczos,"
@@ -70,11 +72,11 @@ def normalize_video(
             str(output),
         ]
     )
-    _run(command)
+    return _run(command)
 
 
-def export_webm(source: Path, output: Path) -> None:
-    _run(
+def export_webm(source: Path, output: Path) -> list[str]:
+    return _run(
         [
             _binary("ffmpeg"),
             "-hide_banner",
@@ -97,13 +99,13 @@ def export_webm(source: Path, output: Path) -> None:
     )
 
 
-def export_gif(source: Path, output: Path, max_width: int = 640, fps: int = 12) -> None:
+def export_gif(source: Path, output: Path, max_width: int = 640, fps: int = 12) -> list[str]:
     filter_graph = (
         f"fps={fps},scale='min({max_width},iw)':-2:flags=lanczos,split[s0][s1];"
         "[s0]palettegen=max_colors=128:stats_mode=diff[p];"
         "[s1][p]paletteuse=dither=bayer:bayer_scale=3:diff_mode=rectangle"
     )
-    _run(
+    return _run(
         [
             _binary("ffmpeg"),
             "-hide_banner",
@@ -122,8 +124,7 @@ def export_gif(source: Path, output: Path, max_width: int = 640, fps: int = 12) 
 
 
 def probe_media(path: Path) -> dict[str, Any]:
-    completed = subprocess.run(
-        [
+    command = [
             _binary("ffprobe"),
             "-v",
             "error",
@@ -134,7 +135,9 @@ def probe_media(path: Path) -> dict[str, Any]:
             "-of",
             "json",
             str(path),
-        ],
+        ]
+    completed = subprocess.run(
+        command,
         capture_output=True,
         text=True,
         check=False,
@@ -153,4 +156,14 @@ def probe_media(path: Path) -> dict[str, Any]:
         "frame_count": stream.get("nb_frames"),
         "duration_seconds": float(media_format["duration"]) if media_format.get("duration") else None,
         "size_bytes": int(media_format["size"]) if media_format.get("size") else path.stat().st_size,
+        "sha256": sha256_file(path),
+        "ffprobe_command": command,
     }
+
+
+def sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        while chunk := handle.read(chunk_size):
+            digest.update(chunk)
+    return digest.hexdigest()

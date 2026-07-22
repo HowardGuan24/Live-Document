@@ -21,6 +21,8 @@ CONTENT_TYPE_ALIASES = {
     "analogy": "scene",
 }
 
+DEFAULT_PROMPT_TEMPLATE_VERSION = "ltx-explainer-v2.1"
+
 TYPE_DIRECTIONS = {
     "process": (
         "Show one subject completing one ordered action from start to finish. "
@@ -40,13 +42,23 @@ TYPE_DIRECTIONS = {
     ),
 }
 
-GLOBAL_DIRECTION = (
-    "Create a short educational explainer animation, not a cinematic scene. "
-    "Use a clean flat diagram-like style, high contrast, a plain uncluttered background, "
-    "one focal action, stable object shapes, and a fixed orthographic or front-facing camera. "
-    "Use no cuts, no camera movement, no decorative motion, and no people. "
-    "Leave text and labels out because they will be added deterministically in post-production."
-)
+GLOBAL_DIRECTIONS = {
+    "explainer-v1": (
+        "Create a short educational explainer animation, not a cinematic scene. "
+        "Use a clean flat diagram-like style, high contrast, a plain uncluttered background, "
+        "one focal action, stable object shapes, and a fixed orthographic or front-facing camera. "
+        "Use no cuts, no camera movement, no decorative motion, and no people. "
+        "Leave text and labels out because they will be added deterministically in post-production."
+    ),
+    "ltx-explainer-v2.1": (
+        "Create one continuous short educational shot. Show no more than three major objects, "
+        "and preserve each object's color, shape, scale, and identity for the full shot. "
+        "Use one literal, easy-to-follow action with a clear direction and a visible cause-and-effect relationship. "
+        "Keep the camera completely fixed, front-facing, and wide enough to contain the whole action. "
+        "Use a clean high-contrast diagram-like scene with a plain background and no decorative details. "
+        "Do not render letters, labels, captions, numbers, logos, or watermarks."
+    ),
+}
 
 LOOP_DIRECTION = (
     "The action should be loop-friendly: begin and end on visually compatible frames, "
@@ -112,12 +124,19 @@ def load_input(path: str | Path) -> InputSpec:
     return validate_input(data)
 
 
-def build_prompts(spec: InputSpec) -> tuple[str, str]:
+def build_prompts(
+    spec: InputSpec,
+    template_version: str = DEFAULT_PROMPT_TEMPLATE_VERSION,
+) -> tuple[str, str]:
     """Use all semantic inputs while adding strict explanation-video constraints."""
+
+    if template_version not in GLOBAL_DIRECTIONS:
+        versions = ", ".join(sorted(GLOBAL_DIRECTIONS))
+        raise ValueError(f"unknown prompt template version '{template_version}'; available: {versions}")
 
     positive = "\n".join(
         [
-            GLOBAL_DIRECTION,
+            GLOBAL_DIRECTIONS[template_version],
             TYPE_DIRECTIONS[spec.content_type],
             f"Source concept: {spec.source_text}",
             f"Teaching goal: {spec.visual_goal}",

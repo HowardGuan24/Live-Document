@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "experiments": [
+    {
+      "experiment_id": "exp_model_reuse",
+      "backend": "ltx",
+      "baseline_configuration": "balanced cold start",
+      "changed_variable": "model_reuse",
+      "baseline": {"profile": "balanced"},
+      "variant": {"model_reuse": true},
+      "case_id": "speed_01_single_subject",
+      "expected_effect": "Remove repeated checkpoint and text-encoder loading without changing generated pixels for a fixed seed.",
+      "measured_speed": null,
+      "measured_quality": null,
+      "conclusion": null,
+      "status": "pending"
+    },
+    {
+      "experiment_id": "exp_steps_4_vs_7",
+      "backend": "ltx",
+      "baseline_configuration": "balanced with 7 official first-pass timesteps",
+      "changed_variable": "inference_steps",
+      "baseline": {"profile": "balanced"},
+      "variant": {"inference_steps": 4},
+      "case_id": "speed_01_single_subject",
+      "expected_effect": "Reduce latency with possible motion/detail loss.",
+      "measured_speed": null,
+      "measured_quality": null,
+      "conclusion": null,
+      "status": "pending"
+    },
+    {
+      "experiment_id": "exp_resolution_512_vs_640",
+      "backend": "ltx",
+      "baseline_configuration": "balanced 640x384",
+      "changed_variable": "resolution",
+      "baseline": {"profile": "balanced"},
+      "variant": {"width": 512, "height": 320},
+      "case_id": "speed_01_single_subject",
+      "expected_effect": "Reduce latency and memory while preserving frame count and steps.",
+      "measured_speed": null,
+      "measured_quality": null,
+      "conclusion": null,
+      "status": "pending"
+    }
+  ]
+}

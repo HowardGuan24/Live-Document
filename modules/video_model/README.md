@@ -1,146 +1,189 @@
-# 模块 B：解释型短视频生成
+# 模块 B V2：解释型短视频生成
 
-本模块接收文档模块产出的 JSON，生成 3–8 秒的 MP4、WebM、GIF，以及包含输入、完整提示词、参数、耗时、产物探测结果和失败信息的元数据 JSON。
+模块 B 接收 `ExplanationSpec` 风格 JSON，生成 3–8 秒的原始视频、标准化 MP4、WebM、GIF 和可追溯 metadata。V2 的重点是让 W7900 + ROCm 上的速度/质量取舍可测量，而不是把文件可播放误当成解释正确。
 
-## v1 工作流
+## 后端选择
+
+| 后端 | `auto` 顺序 | 优点 | 代价与适用边界 |
+| --- | ---: | --- | --- |
+| `ltx` | 1 | 2B distilled，少步推理；V2 主优化对象；支持可选首帧 I2V | 概率模型仍会漂移、复制物体或忽略因果关系 |
+| `wan` | 2 | 保留 V1 基线，便于同案例横向比较 | 通常比 LTX distilled 慢；当前实现不支持 I2V |
+| `procedural` | 3 | 无模型下载、稳定、适合 CI/安装检查 | 仅类型级模板，不理解具体语义，不是模型质量结果 |
+
+`--backend auto` 按 LTX → Wan → procedural 选择；加载或生成失败都会继续尝试并记录原因。状态只有：
+
+- `success_model`：显式选择的 LTX/Wan，或 `auto` 首选 LTX，实际成功且没有后端替换；
+- `success_fallback`：`auto` 替换到 Wan/程序化后成功，或显式程序化产物成功；`actual_backend` 会继续区分两者；
+- `failed`：没有得到有效产物。
+
+若要验证某个模型且禁止回退，明确指定 `--backend ltx` 或 `--backend wan`。
+
+## 工作流
 
 ```text
 输入 JSON
-  → 校验与 content_type 归一化
-  → 解释型正/负提示词
-  → Wan2.1-T2V-1.3B（AMD/ROCm + Diffusers）
-      ↘ auto 模式不可用/失败时：procedural 可运行基线
-  → ffmpeg 统一时长、帧率、尺寸和画幅
-  → MP4 + WebM + GIF
-  → ffprobe 完整性检查 + metadata JSON
+  → 输入校验和 content_type 归一化
+  → ltx-explainer-v2.1 正/负提示词
+  → 可复用的 LTX / Wan runner（或程序化回退）
+  → outputs/raw 原始模型 MP4
+  → ffmpeg 尺寸、帧率、时长标准化
+  → MP4 + WebM + 可选 GIF
+  → ffprobe、SHA-256、完整性检查和 V2 metadata
 ```
 
-生产候选采用 [Wan2.1-T2V-1.3B-Diffusers](https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B-Diffusers)：模型卡给出的显存需求约为 8.19GB，官方 [Diffusers Wan 文档](https://huggingface.co/docs/diffusers/api/pipelines/wan) 提供原生 `WanPipeline`。在 48GB AMD GPU 上，使用与本机 ROCm 匹配的 PyTorch wheel 后余量充足。PyTorch 在 ROCm 上仍使用 `torch.cuda` 这一兼容 API，元数据会通过 `torch.version.hip` 记录实际 ROCm 版本。
-
-`procedural` 不是视频模型，而是 CI、首次安装验证和模型故障时的解释动画基线。`--backend auto` 会优先使用 Wan；缺少模型依赖/GPU或推理异常时回退，并在元数据的 `fallback` 字段中明确记录原因。要验证真实模型且禁止回退，请使用 `--backend wan`。
+LTX 使用 Lightricks 官方 Python pipeline 和 `ltxv-2b-0.9.8-distilled.safetensors`。W7900 路径使用 BF16 和 PyTorch 的 `cuda` 兼容 API，同时强制检测 `torch.version.hip`；不依赖 xFormers、FlashAttention、NVIDIA FP8 或自定义 CUDA 扩展。
 
 ## 安装
 
-需要 Python 3.10+ 和 `ffmpeg`（包含 `ffprobe`、libx264、libvpx-vp9）。
-
-仅运行本地基线：
+需要 Python 3.10+、ffmpeg/ffprobe，以及与主机 ROCm 匹配的 PyTorch。不要让普通 CPU/CUDA wheel 覆盖 ROCm wheel。
 
 ```bash
 cd /workspace/ai-concept-animator
 python -m venv .venv
 source .venv/bin/activate
 pip install -r modules/video_model/requirements.txt
+
+# 按 https://pytorch.org/get-started/locally/ 安装匹配主机 ROCm 的 torch/torchvision
+pip install -r modules/video_model/requirements-model.txt
+
+python -c "import torch; print(torch.__version__, torch.cuda.is_available(), torch.version.hip, torch.cuda.get_device_name(0))"
 ```
 
-AMD/ROCm 模型后端：
-
-1. 根据当前 ROCm 版本，在 [PyTorch 安装选择器](https://pytorch.org/get-started/locally/) 选择 Linux / Pip / Python / ROCm，先安装匹配的 `torch`。不要用普通 PyPI 的 CPU wheel 覆盖它。
-2. 安装模型层依赖并验证设备：
+`requirements-model.txt` 固定官方 LTX 仓库 commit `4b2d053057623ddd4d0a1d3e9cd28890e9ef487f`，并使用同时能导入 LTX 与 `WanPipeline` 的依赖区间。首次运行需下载约 6.34 GB LTX checkpoint，以及官方 PixArt 仓库中约 19.05 GB 的 T5-XXL 文本编码器分片。若旧版 `huggingface-hub` 的可选 Xet 下载器在代理环境中失败，可临时使用：
 
 ```bash
-pip install -r modules/video_model/requirements-model.txt
-python -c "import torch; print(torch.cuda.is_available(), torch.version.hip)"
+HF_HUB_DISABLE_XET=1 python modules/video_model/generate_explainer_video.py \
+  modules/video_model/benchmarks/speed_cases/speed_01_single_subject.json \
+  --backend ltx --profile fast --no-gif --run-name ltx-smoke
 ```
 
-首次模型运行会从 Hugging Face 下载约 29GB 的仓库文件，需要网络和足够磁盘空间。若模型受本地 Hugging Face 配置限制，请先执行 `huggingface-cli login`。
+`--vae-tiling` 对应官方 VAE 的空间 `enable_hw_tiling()`；`--vae-slicing` 对应按时间 latent 分片的 `enable_z_tiling(8)`。两者默认关闭，因为 48 GB 显存应先测不分片的速度基线。
 
-## 输入
+## 输入与运行
 
 ```json
 {
-  "source_text": "Gradient descent updates parameters along the negative gradient direction.",
-  "visual_goal": "Help the user understand that a point moves step by step downhill on a loss curve.",
+  "source_text": "Water evaporates, rises, cools, and condenses into clouds.",
+  "visual_goal": "Show the upward transformation into a cloud.",
   "content_type": "process",
-  "video_prompt": "A clean educational animation showing a point moving down a smooth loss curve."
+  "video_prompt": "Water vapor rises from one calm pool and gathers into one cloud."
 }
 ```
 
-三个文本字段必须是非空字符串。`content_type` 支持：
+`content_type` 支持 `process`、`state_change`、`data_flow`、`scene`，并保留 V1 别名。精确公式、符号和路径应优先交给确定性动画；`data_flow` 的 metadata 会明确提示这一风险。
 
-- `process`（也接受 `formula`、`operation`）
-- `state_change`
-- `data_flow`（也接受 `dataflow`）
-- `scene`（也接受 `analogy`）
+真实 LTX 冒烟测试：
 
-## 运行
+```bash
+python modules/video_model/generate_explainer_video.py \
+  modules/video_model/benchmarks/speed_cases/speed_01_single_subject.json \
+  --backend ltx --profile fast --seed 1101 --no-gif --run-name ltx-fast-s1101
+```
 
-无需下载模型的端到端冒烟测试：
+自动选择和多候选：
 
 ```bash
 python modules/video_model/generate_explainer_video.py \
   modules/video_model/samples/gradient_descent.json \
-  --backend procedural \
-  --run-name gradient-smoke
+  --backend auto --profile balanced --num-candidates 3 --batch-id gradient-batch
 ```
 
-在 AMD GPU 上执行真实生成：
+候选分别使用递增 seed 和 `gradient-batch-c01-s…` 文件名，共享 batch ID 与已加载模型；系统不会在没有评测方法时自动宣称“最佳候选”。
+
+其它常用控制：`--failure-note object_drift` 可重复记录人工发现的问题；`--no-gif` 跳过 GIF；`--overwrite` 只覆盖同一安全 run ID 的精确产物路径。`--loop-mode pingpong` 会用倒放生成严格往返循环，但可能把有方向的因果/流程动作反转，因此默认仍为 `none`。
+
+实验性首帧 I2V：
 
 ```bash
-python modules/video_model/generate_explainer_video.py \
-  modules/video_model/samples/gradient_descent.json \
-  --backend wan \
-  --seed 42 \
-  --duration 5 \
-  --run-name gradient-wan-s42
+python modules/video_model/generate_explainer_video.py INPUT.json \
+  --backend ltx --profile balanced --first-frame first-frame.png --run-name i2v-test
 ```
 
-自动选择（适合演示环境）：
+## 三个速度/质量 profile
+
+| Profile | 分辨率 | 帧数/FPS | LTX 步数 | 用途 |
+| --- | ---: | ---: | ---: | --- |
+| `fast` | 512×320 | 49 / 12 | 4 | 低成本预览 |
+| `balanced` | 640×384 | 49 / 12 | 7 | 默认候选；完整 distilled 首轮 schedule |
+| `quality` | 768×480 | 73 / 18 | 7+3 双阶段 | 较慢的 multiscale 最终候选 |
+
+这些是初始可复现配置，不是预先假定的最终最优值。实测结果与接受/拒绝结论见 [V2 实验报告](benchmarks/V2_REPORT.md)。
+
+Profile 的步数/guidance 是 LTX 参数。Wan 对照在未显式覆盖时保留 V1 的 30 steps / guidance 5.0，同时沿用相同案例、seed、提示词版本、分辨率、帧数和 FPS；metadata 会记录实际参数，避免把模型专用 schedule 假装成完全相同配置。
+
+## 固定 Benchmark
+
+速度集包含单主体运动、双物体交互、状态变化和自然场景；质量集包含 8 个自然过程/简单因果案例。runner 会在同一后端内复用模型，以区分首次 `model_load` 和后续 warm inference。
 
 ```bash
-python modules/video_model/generate_explainer_video.py \
-  modules/video_model/samples/data_flow.json \
-  --backend auto
+# 三 profile 的 LTX 固定速度基准
+python -m modules.video_model.benchmarks.runner \
+  --backend ltx --profile fast --profile balanced --profile quality \
+  --case-set speed --no-gif
+
+# 相同案例的 LTX/Wan 对照
+python -m modules.video_model.benchmarks.runner \
+  --backend ltx --backend wan --profile balanced \
+  --case-set speed --no-gif
+
+# 只跑固定案例，适合快速复现
+python -m modules.video_model.benchmarks.runner \
+  --backend ltx --profile fast --case-set speed \
+  --case-id speed_01_single_subject --no-gif
 ```
 
-常用选项：
+输出位于 `benchmarks/results/`：每次运行生成 JSONL、聚合 JSON 和 Markdown 表。指标包括冷加载、warm inference、端到端时间、每生成一秒视频所需秒数、规格、步骤、峰值 VRAM、文件大小、后端、状态和模型 revision。
 
-- `--width 832 --height 480 --fps 16`：默认输出规格；宽高必须能被 16 整除。
-- `--seed 42`：固定随机种子。未指定时会生成种子，并写入元数据。
-- `--cpu-offload`：显存不足时启用，代价是速度明显下降；48GB 卡通常不需要。
-- `--loop-mode pingpong`：前半段后接倒放，得到严格往返循环。它可能破坏有方向的流程语义，默认关闭。
-- `--failure-note object_drift`：记录人工观察到的问题，可重复传入。可选项见 `--help`。
-- `--no-gif`：仅生成 MP4 和 WebM。
-- `--overwrite`：允许覆盖同名运行产物。
+## 质量评测
 
-成功产物位于：
+[固定 rubric](evaluations/quality_rubric.json) 对语义忠实度、解释清晰度、物体一致性、镜头稳定、视觉简洁和循环适配分别给出 1–5 锚点，并记录漂移、复制、语义错误等失败标签。
+
+AI 评测只是可选、离线兼容的结构化导入，不是 ground truth：
+
+```bash
+python -m modules.video_model.evaluation make-ai-packet \
+  outputs/meta/RUN.json --frame frame-000.png --output outputs/evaluations/RUN-packet.json
+python -m modules.video_model.evaluation validate-ai-review review.json
+```
+
+人工评测使用 [成对比较 CSV](evaluations/human_pairwise_template.csv)，比较 baseline/optimized、LTX/Wan、fast/balanced 或 T2V/I2V：
+
+```bash
+python -m modules.video_model.evaluation validate-human-csv \
+  modules/video_model/evaluations/human_pairwise_template.csv
+```
+
+## Metadata 与产物
 
 ```text
 outputs/
+├── raw/<run-id>.mp4
 ├── video/<run-id>.mp4
 ├── webm/<run-id>.webm
 ├── gif/<run-id>.gif
-└── meta/<run-id>.json
+├── meta/<run-id>.json
+└── evaluations/
 ```
 
-即使生成失败，`meta/<run-id>.json` 也会保留异常类型、消息、traceback、已用参数和总耗时。输出文件名默认包含 UTC 时间和种子，不会意外覆盖先前实验。
+V2 metadata 保存 requested/actual backend、回退原因、模型与 revision、GPU/ROCm/PyTorch/库版本、最终提示词及版本、seed、profile、分辨率/帧数/FPS/步数/guidance、峰值显存、ffmpeg/ffprobe 命令、SHA-256、人工问题和评测引用。
 
-## 提示词策略
-
-所有输入字段都会进入最终提示词。通用约束固定画面风格和摄像机，再按类型增加运动结构：
-
-| 类型 | 正向结构 | 适合的动作 |
-| --- | --- | --- |
-| process | 单主体、单路径、按顺序完成 | 点沿曲线移动、一个步骤推进 |
-| state_change | 同一对象的 before → after | 颜色、形状或状态渐变 |
-| data_flow | source → transform → output | 少量粒子沿固定路径移动 |
-| scene / analogy | 最多三个对象、一个关系 | 轨道、平衡、因果互动 |
-
-负向提示词压制镜头移动、切镜、物体复制/形变、闪烁、杂乱背景和不可读文字。模型不可靠地生成标签，因此 v1 明确要求模型不要画文字；标签应在后续确定性覆盖层中加入。
+计时字段固定为 `model_load`、`prompt_preparation`、`inference`、`vae_decode`、`postprocess`、`encoding_mp4/webm/gif`、`probe_validation` 和 `total`。官方 LTX/Wan pipeline 在一次调用中返回已解码帧，因此当前 `inference` 包含 VAE decode，`vae_decode` 为 `null` 并附说明，不伪造拆分数字。
 
 ## 测试
 
 ```bash
 python -m unittest discover -s modules/video_model/tests -v
+python -m py_compile modules/video_model/*.py modules/video_model/benchmarks/*.py
 ```
 
-测试覆盖输入校验、四类提示词、自动后端检测，以及真实 ffmpeg 的端到端 MP4/WebM/GIF/metadata 生成。模型下载与视觉质量不属于自动测试，真实模型实验需按 `notes.md` 的检查表人工验收。
+正常单元测试不下载模型；它覆盖 LTX/ROCm 检测、profile 和案例校验、计时 schema、显式回退、提示词版本、候选命名、结果聚合、人工模板与真实 ffmpeg 程序化端到端路径。
 
 ## 已知限制
 
-- 概率视频可能漂亮但不能正确解释原文；文件完整不等于语义正确。
-- Wan 文生视频对精确路径、对象恒常性和闭环没有保证。
-- v1 没有自动语义评估或漂移检测；元数据列出必须人工检查的类别。
-- 程序化回退只能提供类型级模板，不能替代模型结果，也不能证明模型环境安装成功。
-- 模型权重和 ROCm/PyTorch 不写死在同一 requirements 文件中，因为 wheel 必须与主机 ROCm 版本匹配。
-
-模型比较、适用内容和实验记录规范见 [notes.md](notes.md)。
+- MP4 可播放、尺寸正确和哈希存在只能证明产物完整，不能证明解释语义正确。
+- 概率模型不适合精确公式、算法轨迹或必须逐字正确的标签；文字应由后续确定性覆盖层添加。
+- LTX/Wan 的 pipeline API 没有暴露独立 VAE decode 计时。
+- `quality` multiscale 需要额外 upscaler checkpoint；速度和视觉收益必须分别测量。
+- I2V 已接入官方 conditioning 路径，但保持 experimental，不能替代 T2V/Wan 的固定比较。
+- 对外发布前需单独审阅 LTX checkpoint 的模型许可；代码依赖许可不等同于权重许可。
+- 大型 raw/video/webm/gif 与临时评测产物默认不应提交 Git；只选择明确的小样本纳入版本控制。

@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_02_pollination",
+  "seed": 2102,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "scene",
+  "source_text": "A bee carries pollen from one flower to another.",
+  "visual_goal": "Show pollen transfer caused by the bee moving between two flowers.",
+  "content_type": "scene",
+  "video_prompt": "One bee moves from the yellow flower on the left to the blue flower on the right, carrying a small visible dusting of pollen.",
+  "required_visual_elements": ["one bee", "two flowers", "left-to-right transfer"],
+  "forbidden_or_risky_behavior": ["extra bees", "flower duplication", "camera tracking"],
+  "expected_takeaway": "The bee transfers pollen between flowers."
+}

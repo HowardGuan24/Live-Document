@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_05_freezing",
+  "seed": 2105,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "state_change",
+  "source_text": "Cooling liquid water changes it into solid ice.",
+  "visual_goal": "Show a continuous liquid-to-solid state transition.",
+  "content_type": "state_change",
+  "video_prompt": "One shallow pool of blue water gradually becomes one solid transparent ice slab without changing location.",
+  "required_visual_elements": ["water", "ice", "same location"],
+  "forbidden_or_risky_behavior": ["boiling", "object replacement", "camera movement"],
+  "expected_takeaway": "Cooling changes liquid water into solid ice."
+}

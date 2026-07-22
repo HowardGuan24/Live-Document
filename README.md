@@ -82,3 +82,40 @@ python tests/test_acceptance.py
 └── plans/
     └── v1                          # MVP 初始计划
 ```
+
+<!-- MODULE_B_START -->
+
+## 模块 B：解释型短视频生成
+
+### 当前工作流
+
+`ExplanationSpec JSON → 版本化解释型提示词 → LTX/Wan/程序化后端 → 原始 MP4 → ffmpeg 标准化 → MP4/WebM/GIF → ffprobe、哈希与 V2 metadata`。
+
+### 当前支持的后端
+
+- `ltx`：V2 主后端，LTX-Video 0.9.8 2B distilled，面向 W7900 + ROCm。
+- `wan`：Wan2.1-T2V-1.3B 对照基线。
+- `procedural`：安装、CI 和故障回退；状态为 `success_fallback`，不会伪装成模型成功。
+- `auto`：按 LTX → Wan → procedural 尝试并记录每次失败原因；发生任何后端替换时状态为 `success_fallback`。
+
+### 当前最佳配置
+
+待固定基准完成后填写；在有视觉评测证据前，不宣称 `fast`、`balanced` 或 `quality` 最优。
+
+### Benchmark
+
+已固定 4 个速度案例、8 个质量案例、3 个 profile，并支持冷/热耗时、VRAM、JSONL 与 Markdown 汇总。真实 GPU 结果见 `modules/video_model/benchmarks/results/`。
+
+### 已完成
+
+V2 后端接口、模型复用、原始产物保留、显式回退状态、版本化提示词、多人候选、质量 rubric、AI 导入格式、人工成对 CSV 和单元测试。
+
+### 当前问题
+
+本机首次 6.34 GB LTX 权重下载的可选 Xet 路径返回 HTTP 416；标准分块 HTTP 可继续下载。概率生成的语义质量仍必须由固定 rubric 的 AI/人工评测确认。
+
+### 下一步
+
+完成真实 LTX/Wan 同案例对照，记录受控实验的接受/拒绝结论，再据速度与人工质量选择默认 profile。
+
+<!-- MODULE_B_END -->
