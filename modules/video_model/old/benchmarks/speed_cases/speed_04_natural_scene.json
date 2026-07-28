@@ -1,0 +1,10 @@
+{
+  "case_id": "speed_04_natural_scene",
+  "seed": 1104,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "scene",
+  "source_text": "Wind pushes a small field of grass consistently from left to right.",
+  "visual_goal": "Show the common direction of motion caused by wind.",
+  "content_type": "scene",
+  "video_prompt": "A moderately detailed patch of green grass bends gently from left to right under one steady breeze; fixed wide camera."
+}

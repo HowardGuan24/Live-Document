@@ -1,0 +1,104 @@
+{
+  "status": "prepared",
+  "experiment_design": {
+    "changed_variable": "control image only",
+    "fixed": [
+      "SDXL Base model and weights",
+      "SDXL Canny ControlNet and weights",
+      "pure text-to-image ControlNet pipeline",
+      "prompt and negative prompt",
+      "four seeds",
+      "resolution, steps, guidance, and control scale"
+    ],
+    "img2img_initial_image": null,
+    "mask_projection": false
+  },
+  "conditions": {
+    "sparse_canny": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/sparse_canny.png",
+      "sha256": "6849d6fd1f74d1d6dadc7d0a5c2ba722b5bbc484a303ea782ace1f93fff544c6",
+      "size": [
+        1344,
+        768
+      ],
+      "edge_pixels": 1734,
+      "edge_fraction": 0.00168,
+      "unique_values": [
+        0,
+        255
+      ]
+    },
+    "detailed_lineart": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/detailed_lineart.png",
+      "sha256": "13c7683b68847f6dde66151271a71ec3024f3872a4eb5eb0a9fe5b23c0f1fef7",
+      "size": [
+        1344,
+        768
+      ],
+      "edge_pixels": 25352,
+      "edge_fraction": 0.024561,
+      "unique_values": [
+        0,
+        255
+      ]
+    },
+    "reference_canny": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/reference_canny.png",
+      "sha256": "eedc2261d653397ab10219f81d86fd1a1a6deb922f95d4fea49892f768cfb337",
+      "size": [
+        1344,
+        768
+      ],
+      "edge_pixels": 5240,
+      "edge_fraction": 0.005077,
+      "unique_values": [
+        0,
+        255
+      ]
+    }
+  },
+  "detailed_lineart_contents": [
+    "naturalized continuous coastline",
+    "one gently meandering river with widening mouth",
+    "six restrained land contours",
+    "three near-shore bathymetric contours",
+    "five widening plume streamlines"
+  ],
+  "reference_image": {
+    "purpose": "demo-like reconstruction control only; its geography is not a valid target composition",
+    "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/reference_image.png",
+    "sha256": "e019d938d20ee9e8fd7d6c2099e83f632f6f69279312ce8ed519a7b2c4446894",
+    "size": [
+      1344,
+      768
+    ],
+    "canny_method": "OpenCV Canny thresholds 100/200"
+  },
+  "prompt": {
+    "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/prompts/topdown.txt",
+    "sha256": "0dc67bd4f7ef13712499f0f872256981be5399ab7ae0f679c31268b0d4b3c1ee",
+    "text": "photorealistic scientific aerial view, strict orthographic top-down,\none river enters a blue-green coastal sea from the left,\na broad ochre sediment plume spreads beyond the mouth through shallow water,\ncontinuous coastline, realistic natural textures,\nnatural turbidity and depth gradients,\nno emerged delta island, extra channels, text, arrows, boats, or buildings"
+  },
+  "negative_prompt": {
+    "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/prompts/topdown_negative.txt",
+    "sha256": "24c7ae0294f916eabe55c037fc704bfcc306dab6208bfe4ca874cf926db6cf70",
+    "text": "pixel art, flat vector, infographic, schematic map, plastic, resin, clay,\nglossy miniature, watercolor, blurry, dreamy, low detail, delta island,\nextra islands, branching river, extra channels, oblique view, horizon,\nperspective, boats, buildings, roads, people, text, labels, arrows, legend, watermark"
+  },
+  "settings": {
+    "width": 1344,
+    "height": 768,
+    "steps": 36,
+    "guidance_scale": 6.5,
+    "controlnet_conditioning_scale": 0.5,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "pipeline": "StableDiffusionXLControlNetPipeline",
+    "img2img_initial_image": null,
+    "strength": null,
+    "dtype": "float16"
+  }
+}

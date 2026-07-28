@@ -1,0 +1,126 @@
+{
+  "status": "complete",
+  "classification": "LTX-2.3 first-last-frame conditioned video",
+  "prompt_id": "c729bb48-3c22-4954-b75d-a98ece771498",
+  "generation_seconds": 235.363,
+  "model": {
+    "checkpoint": "ltx-2.3-22b-dev-fp8.safetensors",
+    "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+    "distilled_lora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+    "lora_strength": 0.5
+  },
+  "settings": {
+    "width": 512,
+    "height": 320,
+    "fps": 24,
+    "duration_seconds_requested": 4,
+    "frame_count": 97,
+    "noise_seed": 20260728,
+    "guide_strength": 0.7,
+    "sampler": "euler_ancestral",
+    "sigmas": [
+      1.0,
+      0.99375,
+      0.9875,
+      0.98125,
+      0.975,
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ]
+  },
+  "inputs": {
+    "first": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/final/in_channel.png",
+      "sha256": "be2b359e41e6fdae3bc23b3761c7b69bf333773e09d83649e8f3c344ae7b6764"
+    },
+    "last": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/final/at_outlet.png",
+      "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763"
+    }
+  },
+  "video": {
+    "codec": "h264",
+    "width": 512,
+    "height": 320,
+    "fps": 24.0,
+    "frame_count": 97,
+    "duration_seconds": 4.041666666666667,
+    "has_audio": true,
+    "path": "/workspace/Live-Document/modules/video_model/stage1/output/video_transition/ltx23_flf/transition.mp4",
+    "sha256": "7db2a431b6b7eb68953efbf213d7a283ba62ddab6b9f4057369b46b7d77b3be0",
+    "size_bytes": 166607
+  },
+  "endpoint_comparison": {
+    "first": {
+      "mean_absolute_pixel_error_0_255": 4.018,
+      "psnr_db": 33.862
+    },
+    "last": {
+      "mean_absolute_pixel_error_0_255": 3.13,
+      "psnr_db": 35.547
+    },
+    "note": "Pixel metrics include VAE reconstruction, resizing, and H.264 compression; use them for audit, not semantic acceptance."
+  },
+  "files": {
+    "workflow": "/workspace/Live-Document/modules/video_model/stage1/output/video_transition/ltx23_flf/workflow_api.json",
+    "prompt": "/workspace/Live-Document/modules/video_model/stage1/output/video_transition/ltx23_flf/prompt.txt",
+    "preview": "/workspace/Live-Document/modules/video_model/stage1/output/video_transition/ltx23_flf/generated_frames.jpg"
+  },
+  "temporal_audit": {
+    "mean_consecutive_frame_mae_0_255": 0.4952,
+    "p95_consecutive_frame_mae_0_255": 0.708,
+    "maximum_consecutive_frame_mae_0_255": 1.1343,
+    "sediment_front_samples": [
+      {
+        "frame": 0,
+        "seconds": 0.0,
+        "front_x": 159
+      },
+      {
+        "frame": 12,
+        "seconds": 0.5,
+        "front_x": 168
+      },
+      {
+        "frame": 24,
+        "seconds": 1.0,
+        "front_x": 176
+      },
+      {
+        "frame": 36,
+        "seconds": 1.5,
+        "front_x": 185
+      },
+      {
+        "frame": 48,
+        "seconds": 2.0,
+        "front_x": 193
+      },
+      {
+        "frame": 60,
+        "seconds": 2.5,
+        "front_x": 200
+      },
+      {
+        "frame": 72,
+        "seconds": 3.0,
+        "front_x": 207
+      },
+      {
+        "frame": 84,
+        "seconds": 3.5,
+        "front_x": 212
+      },
+      {
+        "frame": 96,
+        "seconds": 4.0,
+        "front_x": 214
+      }
+    ],
+    "sediment_front_progress_pixels": 55,
+    "all_sampled_intervals_move_downstream": true,
+    "front_tracking_method": "Scene-specific audit heuristic at 512x320: average red-minus-blue over the horizontal river band y=128:180, smooth over 9 pixels, and take the rightmost x<=230 above 20. This measures visible brown-front motion; it is not a physical sediment measurement."
+  }
+}

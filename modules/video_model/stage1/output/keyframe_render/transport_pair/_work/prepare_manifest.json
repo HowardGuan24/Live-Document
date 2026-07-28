@@ -1,0 +1,170 @@
+{
+  "status": "prepared",
+  "experiment": "Stage 1.2 sediment-transport two-keyframe pair",
+  "mechanism_sources": {
+    "timeline": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/timeline.json",
+    "states": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/mechanism/states.jsonl",
+    "simulation_config": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/mechanism/simulation_config.json"
+  },
+  "selections": {
+    "in_channel": {
+      "display_frame": 10,
+      "state_frame": 21,
+      "beat_id": "transport",
+      "caption": "河流输送悬浮泥沙",
+      "rendered_file": "frames/0010.png",
+      "state_stats": {
+        "injected_particles": 308,
+        "suspended_particles": 308,
+        "settled_particles": 0,
+        "settled_this_frame": 0,
+        "max_thickness": 0.0,
+        "underwater_deposit_cells": 0,
+        "new_land_cells": 0,
+        "new_land_front_x": null,
+        "deposit_front_x": null,
+        "raw_channel_count": 1
+      },
+      "particle_count_from_state": 308,
+      "particle_min_x": 1.8,
+      "particle_max_x": 29.9138,
+      "particle_mean_x": 15.4439,
+      "particles_at_or_beyond_coast": 0,
+      "coastline_x": 38,
+      "distance_from_front_to_coast": 8.0862
+    },
+    "at_outlet": {
+      "display_frame": 13,
+      "state_frame": 27,
+      "beat_id": "transport",
+      "caption": "河流输送悬浮泥沙",
+      "rendered_file": "frames/0013.png",
+      "state_stats": {
+        "injected_particles": 392,
+        "suspended_particles": 392,
+        "settled_particles": 0,
+        "settled_this_frame": 0,
+        "max_thickness": 0.0,
+        "underwater_deposit_cells": 0,
+        "new_land_cells": 0,
+        "new_land_front_x": null,
+        "deposit_front_x": null,
+        "raw_channel_count": 1
+      },
+      "particle_count_from_state": 392,
+      "particle_min_x": 1.8,
+      "particle_max_x": 37.8227,
+      "particle_mean_x": 19.3426,
+      "particles_at_or_beyond_coast": 0,
+      "coastline_x": 38,
+      "distance_from_front_to_coast": 0.1773
+    }
+  },
+  "audit_frames": {
+    "in_channel": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/in_channel_mechanism_audit.png",
+      "sha256": "27d3c3c122c60bdc2a0bb873323d0ef536ea5da03afe19c64212f577ed4c5df9",
+      "size": [
+        768,
+        512
+      ],
+      "model_input": false
+    },
+    "at_outlet": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/at_outlet_mechanism_audit.png",
+      "sha256": "7988316e366a04e53e97fda221588fc52b19e210690e324ba56832a8ceb21f80",
+      "size": [
+        768,
+        512
+      ],
+      "model_input": false
+    }
+  },
+  "control": {
+    "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+    "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+    "size": [
+      1344,
+      768
+    ],
+    "mode": "L",
+    "edge_pixels": 6227,
+    "edge_fraction": 0.006033,
+    "contents": [
+      "one naturalized continuous coastline",
+      "two gently curved river banks with a slightly widening outlet"
+    ],
+    "excluded": [
+      "sediment and plume edges",
+      "bathymetry and contour lines",
+      "particles, arrows, labels, text, and masks"
+    ]
+  },
+  "prompts": {
+    "at_outlet.txt": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet.txt",
+      "sha256": "d22bcca3c756e7a412ccfa5507d171f28b213e643cc0b4571da64fae4939cf6b",
+      "text": "photorealistic aerial view, strict orthographic top-down,\none river crosses sandy land from left into a blue-green coastal sea,\nnatural sand and water texture,\nthe dense ochre sediment current has reached the river outlet,\na compact turbidity front touches the mouth, clear seawater beyond,\nno delta island, branches, text, or arrows"
+    },
+    "at_outlet_negative.txt": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_negative.txt",
+      "sha256": "b7eac20cf8bebc63174d046520917d0cca38c0dfa1ef2560dcfe6c7e36545710",
+      "text": "oblique view, horizon, perspective, pixel art, flat vector, infographic,\nschematic map, plastic, resin, clay, glossy miniature, watercolor, blurry,\nlow detail, delta island, branching river, extra channel, broad offshore plume,\ndistant sediment plume, beach, buildings, roads, boats, people, text, labels, arrows, watermark"
+    },
+    "at_outlet_v2.txt": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_v2.txt",
+      "sha256": "26e3b7fa5ec9bf43a16a41677f6d91959a9accdb6bc46280fdabc5d657d962bf",
+      "text": "photorealistic satellite image, orthographic top-down,\none river crosses sand from left into blue-green coastal sea,\nnatural water and earth texture,\nopaque rust-brown sediment water fills river from left edge to outlet,\na rust-brown turbidity front ends at mouth, sea beyond stays clear blue-green,\nno delta island, branches, text, arrows"
+    },
+    "in_channel.txt": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel.txt",
+      "sha256": "16818128641f7980a778ce1f879a483f60c44fbf6af2a6b2327a49c235873132",
+      "text": "photorealistic aerial view, strict orthographic top-down,\none river crosses sandy land from left into a blue-green coastal sea,\nnatural sand and water texture,\na dense ochre sediment current travels inside the river channel toward the coast,\nsediment remains upstream of the mouth, clear seawater beyond,\nno delta island, branches, text, or arrows"
+    },
+    "in_channel_negative.txt": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_negative.txt",
+      "sha256": "b077e36fb1d64b309b5b35115936b36232b921c7b37460afb3f3a5b84bb43912",
+      "text": "oblique view, horizon, perspective, pixel art, flat vector, infographic,\nschematic map, plastic, resin, clay, glossy miniature, watercolor, blurry,\nlow detail, delta island, branching river, extra channel, sediment plume in sea,\nmuddy ocean, beach, buildings, roads, boats, people, text, labels, arrows, watermark"
+    },
+    "in_channel_v2.txt": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_v2.txt",
+      "sha256": "f228ade6dd559d55b6bf3e0c4ce3d4f96836a6c3b2cdc8cd8571c450704c3f14",
+      "text": "photorealistic satellite image, orthographic top-down,\none river crosses sand from left into blue-green coastal sea,\nnatural water and earth texture,\nopaque rust-brown sediment water fills river from left edge to mid-channel,\ndownstream river and sea stay clear blue-green,\nno delta island, branches, text, arrows"
+    },
+    "sediment_emphasis_negative.txt": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "sha256": "53e6c780ccad9d773d1d8fd832c5b0d052d3b4eccc97e2aa6a41e39c43b596c7",
+      "text": "oblique view, horizon, perspective, pixel art, vector, infographic,\nschematic map, plastic, resin, clay, miniature, watercolor, blurry, low detail,\ndry riverbed, road, trench, canal, delta island, branching river, extra channel,\noffshore plume, muddy sea, buildings, boats, people, text, labels, arrows, watermark"
+    }
+  },
+  "settings": {
+    "width": 1344,
+    "height": 768,
+    "steps": 36,
+    "guidance_scale": 6.5,
+    "controlnet_conditioning_scale": 0.6,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "pipeline": "StableDiffusionXLControlNetPipeline",
+    "dtype": "float16",
+    "img2img_initial_image": null,
+    "strength": null,
+    "mask_projection": false
+  },
+  "experiment_design": {
+    "shared_between_keyframes": [
+      "SDXL and ControlNet weights",
+      "natural sparse Canny",
+      "seed within each pair",
+      "resolution, steps, guidance, and control scale",
+      "camera, geography, material, and negative style constraints"
+    ],
+    "changed_between_keyframes": "prompt clauses describing sediment-front position",
+    "img2img": false,
+    "mask_projection": false
+  }
+}

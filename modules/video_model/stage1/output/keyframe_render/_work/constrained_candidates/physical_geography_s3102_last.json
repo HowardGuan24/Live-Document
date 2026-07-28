@@ -1,0 +1,59 @@
+{
+  "status": "projected",
+  "candidate": "physical_geography_s3102",
+  "keyframe": "last",
+  "proposal": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/selected_pair/physical_geography_s3102_last_proposal.png",
+  "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+  "output": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/constrained_candidates/physical_geography_s3102_last.png",
+  "output_sha256": "e1254edac11e9402480cf23fd087c944bafb309a11c3a8fa48e1bb74aa6535b9",
+  "mask_sha256": {
+    "original_land": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+    "river": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1",
+    "ocean": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1",
+    "underwater_deposit": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157",
+    "new_land": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+  },
+  "projection": {
+    "geometry_source": "mechanism semantic masks",
+    "proposal_contribution": "in-mask medium/high-frequency texture only",
+    "proposal_color_layout_used": false,
+    "exclusive_exhaustive_masks": true,
+    "categories": {
+      "original_land": {
+        "pixels": 136192,
+        "interior_pixels": 127872,
+        "boundary_pixels": 8320,
+        "interior_model_weight": 0.62,
+        "boundary_model_weight": 0.14
+      },
+      "river": {
+        "pixels": 19456,
+        "interior_pixels": 16576,
+        "boundary_pixels": 2880,
+        "interior_model_weight": 0.62,
+        "boundary_model_weight": 0.14
+      },
+      "ocean": {
+        "pixels": 209216,
+        "interior_pixels": 197828,
+        "boundary_pixels": 11388,
+        "interior_model_weight": 0.62,
+        "boundary_model_weight": 0.14
+      },
+      "underwater_deposit": {
+        "pixels": 27776,
+        "interior_pixels": 22672,
+        "boundary_pixels": 5104,
+        "interior_model_weight": 0.62,
+        "boundary_model_weight": 0.14
+      },
+      "new_land": {
+        "pixels": 576,
+        "interior_pixels": 84,
+        "boundary_pixels": 492,
+        "interior_model_weight": 0.62,
+        "boundary_model_weight": 0.14
+      }
+    }
+  }
+}

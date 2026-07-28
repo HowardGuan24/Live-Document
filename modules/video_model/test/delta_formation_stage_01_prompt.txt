@@ -1,0 +1,19 @@
+Title: Delta formation — stage 1: sediment transport to the river mouth
+
+LTX-2.3 prompt:
+
+A clear educational scientific visualization in a polished, semi-realistic 3D style shows a wide river carrying sediment toward the sea. The camera stays steady at an oblique aerial cutaway angle, with the river flowing from the upper left toward a clearly visible estuary at the lower right. Thousands of fine ochre-brown sand and silt particles remain suspended throughout the blue-green water, moving continuously downstream with the current. Soft turbulence lifts and swirls the particles around the riverbed while the main flow steadily transports them toward the coast. During the shot, the sediment cloud advances along the river channel and reaches the open river mouth, where the river begins to spread into the calmer sea. Keep the process physically understandable and visually clean: one continuous shot, stable geography, realistic water motion, distinct moving sediment particles, natural daylight, neutral colors, no people, no buildings, no labels, no arrows, no captions, no map symbols, and no fully formed delta yet. Subtle flowing-water ambience, no speech and no music.
+
+Suggested generation settings:
+
+- Duration: 6 seconds
+- Frame rate: 24 fps
+- Working resolution: 512 × 320
+- Final resolution: 1024 × 640 after the built-in 2× latent upscaler
+- Camera: fixed oblique aerial cutaway
+- Prompt enhancement: off, to preserve the scientific staging
+- Output filename: delta_formation_stage_01_sediment_transport.mp4
+
+Negative guidance:
+
+Avoid a completed delta, branching distributary channels, mountains, waterfalls, flooding, storms, boats, people, buildings, text, subtitles, labels, arrows, logos, abrupt cuts, camera shake, time-lapse motion, muddy opaque water that hides all particles, frozen water, or sediment moving upstream.

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "scale": "1-5; higher is better",
+  "dimensions": {
+    "semantic_faithfulness": {
+      "question": "Does the visible action accurately represent the source text and visual goal?",
+      "anchors": {"1": "Contradicts the concept", "2": "Major concept error", "3": "Partly correct but ambiguous", "4": "Correct with minor omissions", "5": "Accurate and complete for the short format"}
+    },
+    "explanation_clarity": {
+      "question": "Can a viewer identify the intended relationship without reading extra prose?",
+      "anchors": {"1": "No understandable relationship", "2": "Mostly confusing", "3": "Understandable after effort", "4": "Clear", "5": "Immediately clear"}
+    },
+    "object_consistency": {
+      "question": "Do objects preserve identity, count, color, and shape?",
+      "anchors": {"1": "Severe drift or replacement", "2": "Several disruptive changes", "3": "One noticeable inconsistency", "4": "Minor harmless variation", "5": "Fully stable"}
+    },
+    "camera_stability": {
+      "question": "Does the camera stay fixed as requested?",
+      "anchors": {"1": "Cuts or strong movement", "2": "Distracting movement", "3": "Some drift", "4": "Nearly fixed", "5": "Completely fixed"}
+    },
+    "visual_simplicity": {
+      "question": "Is the relevant action visually isolated from clutter?",
+      "anchors": {"1": "Overwhelming clutter", "2": "Many distractions", "3": "Some unnecessary detail", "4": "Mostly simple", "5": "Minimal and focused"}
+    },
+    "loop_suitability": {
+      "question": "Can the clip repeat without a confusing discontinuity?",
+      "anchors": {"1": "Severe discontinuity", "2": "Obvious bad reset", "3": "Usable with editing", "4": "Small transition", "5": "Natural seamless loop"}
+    }
+  },
+  "failure_labels": [
+    "object_drift",
+    "object_duplication",
+    "object_disappearance",
+    "semantic_error",
+    "motion_unclear",
+    "camera_drift",
+    "visual_clutter",
+    "bad_loop",
+    "prompt_ignored",
+    "unreadable_generated_text",
+    "temporal_flicker"
+  ],
+  "reviewer_types": ["automated", "ai", "human"],
+  "warning": "AI review is advisory and must not be treated as ground truth."
+}

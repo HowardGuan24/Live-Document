@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "passed": true,
+  "checks": [
+    {
+      "name": "state_count",
+      "passed": true,
+      "evidence": {
+        "actual": 120,
+        "expected": 120
+      }
+    },
+    {
+      "name": "thickness_monotonic",
+      "passed": true,
+      "evidence": "all cells non-decreasing"
+    },
+    {
+      "name": "new_land_monotonic",
+      "passed": true,
+      "evidence": "all emerged cells persist"
+    },
+    {
+      "name": "land_threshold_exact",
+      "passed": true,
+      "evidence": "land == original_land OR (thickness > depth)"
+    },
+    {
+      "name": "arrival_before_settling",
+      "passed": true,
+      "evidence": {
+        "first_arrival": 28,
+        "first_settling": 32
+      }
+    },
+    {
+      "name": "visible_underwater_stage",
+      "passed": true,
+      "evidence": {
+        "first_underwater_deposit": 32,
+        "first_emergence": 101,
+        "lead_frames": 69
+      }
+    },
+    {
+      "name": "emergence_in_threshold_stage",
+      "passed": true,
+      "evidence": {
+        "first_emergence": 101,
+        "required_range": [
+          101,
+          107
+        ]
+      }
+    },
+    {
+      "name": "mouth_deceleration",
+      "passed": true,
+      "evidence": {
+        "upstream_mean_speed": 1.34,
+        "mouth_mean_speed": 0.45545,
+        "ratio": 0.33989
+      }
+    },
+    {
+      "name": "final_channel_count",
+      "passed": true,
+      "evidence": 2
+    },
+    {
+      "name": "stable_channels",
+      "passed": true,
+      "evidence": {
+        "tail_frames": 19,
+        "required": 5
+      }
+    },
+    {
+      "name": "new_land_connected",
+      "passed": true,
+      "evidence": {
+        "components": 1,
+        "cells": 15
+      }
+    },
+    {
+      "name": "land_and_deposit_extent",
+      "passed": true,
+      "evidence": {
+        "land_front_x": 52,
+        "deposit_front_x": 63
+      }
+    },
+    {
+      "name": "state_traceability",
+      "passed": true,
+      "evidence": "frame, beat, flow samples and stats present in every state"
+    }
+  ],
+  "model_usage": [],
+  "gpu_usage": false
+}

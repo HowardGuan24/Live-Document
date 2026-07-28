@@ -1,0 +1,425 @@
+{
+  "status": "generated",
+  "settings": {
+    "width": 768,
+    "height": 512,
+    "steps": 36,
+    "strength": 0.5,
+    "guidance_scale": 6.5,
+    "controlnet_scale": 1.35,
+    "seeds": [
+      3101,
+      3102
+    ],
+    "dtype": "float16"
+  },
+  "generation_order": "last keyframe first; first keyframe only after style selection",
+  "styles": [
+    "physical_geography",
+    "museum_infographic",
+    "remote_sensing"
+  ],
+  "candidates": [
+    {
+      "status": "projected",
+      "candidate": "physical_geography_s3101",
+      "keyframe": "last",
+      "proposal": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/raw_proposals/physical_geography_s3101_proposal.png",
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+      "output": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/constrained_candidates/physical_geography_s3101_last.png",
+      "output_sha256": "eeaa570001496cd3318227d414281c68a405f2ef7ead51a38f51d5caabbb5174",
+      "mask_sha256": {
+        "original_land": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+        "river": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1",
+        "ocean": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1",
+        "underwater_deposit": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157",
+        "new_land": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+      },
+      "projection": {
+        "geometry_source": "mechanism semantic masks",
+        "proposal_contribution": "in-mask medium/high-frequency texture only",
+        "proposal_color_layout_used": false,
+        "exclusive_exhaustive_masks": true,
+        "categories": {
+          "original_land": {
+            "pixels": 136192,
+            "interior_pixels": 127872,
+            "boundary_pixels": 8320,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "river": {
+            "pixels": 19456,
+            "interior_pixels": 16576,
+            "boundary_pixels": 2880,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "ocean": {
+            "pixels": 209216,
+            "interior_pixels": 197828,
+            "boundary_pixels": 11388,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "underwater_deposit": {
+            "pixels": 27776,
+            "interior_pixels": 22672,
+            "boundary_pixels": 5104,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "new_land": {
+            "pixels": 576,
+            "interior_pixels": 84,
+            "boundary_pixels": 492,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          }
+        }
+      },
+      "style": "physical_geography",
+      "seed": 3101,
+      "prompt_file": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/prompts/physical_geography.txt",
+      "inference_seconds": 4.809,
+      "proposal_reused": false,
+      "peak_gpu_memory_bytes": 11133547520
+    },
+    {
+      "status": "projected",
+      "candidate": "physical_geography_s3102",
+      "keyframe": "last",
+      "proposal": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/raw_proposals/physical_geography_s3102_proposal.png",
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+      "output": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/constrained_candidates/physical_geography_s3102_last.png",
+      "output_sha256": "e1254edac11e9402480cf23fd087c944bafb309a11c3a8fa48e1bb74aa6535b9",
+      "mask_sha256": {
+        "original_land": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+        "river": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1",
+        "ocean": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1",
+        "underwater_deposit": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157",
+        "new_land": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+      },
+      "projection": {
+        "geometry_source": "mechanism semantic masks",
+        "proposal_contribution": "in-mask medium/high-frequency texture only",
+        "proposal_color_layout_used": false,
+        "exclusive_exhaustive_masks": true,
+        "categories": {
+          "original_land": {
+            "pixels": 136192,
+            "interior_pixels": 127872,
+            "boundary_pixels": 8320,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "river": {
+            "pixels": 19456,
+            "interior_pixels": 16576,
+            "boundary_pixels": 2880,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "ocean": {
+            "pixels": 209216,
+            "interior_pixels": 197828,
+            "boundary_pixels": 11388,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "underwater_deposit": {
+            "pixels": 27776,
+            "interior_pixels": 22672,
+            "boundary_pixels": 5104,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "new_land": {
+            "pixels": 576,
+            "interior_pixels": 84,
+            "boundary_pixels": 492,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          }
+        }
+      },
+      "style": "physical_geography",
+      "seed": 3102,
+      "prompt_file": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/prompts/physical_geography.txt",
+      "inference_seconds": 3.724,
+      "proposal_reused": false,
+      "peak_gpu_memory_bytes": 11132761088
+    },
+    {
+      "status": "projected",
+      "candidate": "museum_infographic_s3101",
+      "keyframe": "last",
+      "proposal": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/raw_proposals/museum_infographic_s3101_proposal.png",
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+      "output": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/constrained_candidates/museum_infographic_s3101_last.png",
+      "output_sha256": "2ba50b5bdba0e6ace37901fc807c2c9d5070abe5db031c34457b2ad9770c11d3",
+      "mask_sha256": {
+        "original_land": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+        "river": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1",
+        "ocean": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1",
+        "underwater_deposit": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157",
+        "new_land": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+      },
+      "projection": {
+        "geometry_source": "mechanism semantic masks",
+        "proposal_contribution": "in-mask medium/high-frequency texture only",
+        "proposal_color_layout_used": false,
+        "exclusive_exhaustive_masks": true,
+        "categories": {
+          "original_land": {
+            "pixels": 136192,
+            "interior_pixels": 127872,
+            "boundary_pixels": 8320,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "river": {
+            "pixels": 19456,
+            "interior_pixels": 16576,
+            "boundary_pixels": 2880,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "ocean": {
+            "pixels": 209216,
+            "interior_pixels": 197828,
+            "boundary_pixels": 11388,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "underwater_deposit": {
+            "pixels": 27776,
+            "interior_pixels": 22672,
+            "boundary_pixels": 5104,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "new_land": {
+            "pixels": 576,
+            "interior_pixels": 84,
+            "boundary_pixels": 492,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          }
+        }
+      },
+      "style": "museum_infographic",
+      "seed": 3101,
+      "prompt_file": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/prompts/museum_infographic.txt",
+      "inference_seconds": 3.707,
+      "proposal_reused": false,
+      "peak_gpu_memory_bytes": 11133285376
+    },
+    {
+      "status": "projected",
+      "candidate": "museum_infographic_s3102",
+      "keyframe": "last",
+      "proposal": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/raw_proposals/museum_infographic_s3102_proposal.png",
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+      "output": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/constrained_candidates/museum_infographic_s3102_last.png",
+      "output_sha256": "fe8b19619540d1f3a900c8c33749b9f1d982810df5aa3604568b33a974005ca6",
+      "mask_sha256": {
+        "original_land": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+        "river": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1",
+        "ocean": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1",
+        "underwater_deposit": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157",
+        "new_land": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+      },
+      "projection": {
+        "geometry_source": "mechanism semantic masks",
+        "proposal_contribution": "in-mask medium/high-frequency texture only",
+        "proposal_color_layout_used": false,
+        "exclusive_exhaustive_masks": true,
+        "categories": {
+          "original_land": {
+            "pixels": 136192,
+            "interior_pixels": 127872,
+            "boundary_pixels": 8320,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "river": {
+            "pixels": 19456,
+            "interior_pixels": 16576,
+            "boundary_pixels": 2880,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "ocean": {
+            "pixels": 209216,
+            "interior_pixels": 197828,
+            "boundary_pixels": 11388,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "underwater_deposit": {
+            "pixels": 27776,
+            "interior_pixels": 22672,
+            "boundary_pixels": 5104,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "new_land": {
+            "pixels": 576,
+            "interior_pixels": 84,
+            "boundary_pixels": 492,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          }
+        }
+      },
+      "style": "museum_infographic",
+      "seed": 3102,
+      "prompt_file": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/prompts/museum_infographic.txt",
+      "inference_seconds": 3.714,
+      "proposal_reused": false,
+      "peak_gpu_memory_bytes": 11132236800
+    },
+    {
+      "status": "projected",
+      "candidate": "remote_sensing_s3101",
+      "keyframe": "last",
+      "proposal": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/raw_proposals/remote_sensing_s3101_proposal.png",
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+      "output": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/constrained_candidates/remote_sensing_s3101_last.png",
+      "output_sha256": "e4a4dbb293f92c30e56ed1975ba8e8def20c071ed08c61762a5daf3500613128",
+      "mask_sha256": {
+        "original_land": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+        "river": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1",
+        "ocean": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1",
+        "underwater_deposit": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157",
+        "new_land": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+      },
+      "projection": {
+        "geometry_source": "mechanism semantic masks",
+        "proposal_contribution": "in-mask medium/high-frequency texture only",
+        "proposal_color_layout_used": false,
+        "exclusive_exhaustive_masks": true,
+        "categories": {
+          "original_land": {
+            "pixels": 136192,
+            "interior_pixels": 127872,
+            "boundary_pixels": 8320,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "river": {
+            "pixels": 19456,
+            "interior_pixels": 16576,
+            "boundary_pixels": 2880,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "ocean": {
+            "pixels": 209216,
+            "interior_pixels": 197828,
+            "boundary_pixels": 11388,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "underwater_deposit": {
+            "pixels": 27776,
+            "interior_pixels": 22672,
+            "boundary_pixels": 5104,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "new_land": {
+            "pixels": 576,
+            "interior_pixels": 84,
+            "boundary_pixels": 492,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          }
+        }
+      },
+      "style": "remote_sensing",
+      "seed": 3101,
+      "prompt_file": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/prompts/remote_sensing.txt",
+      "inference_seconds": 3.7,
+      "proposal_reused": false,
+      "peak_gpu_memory_bytes": 11132236800
+    },
+    {
+      "status": "projected",
+      "candidate": "remote_sensing_s3102",
+      "keyframe": "last",
+      "proposal": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/raw_proposals/remote_sensing_s3102_proposal.png",
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+      "output": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/constrained_candidates/remote_sensing_s3102_last.png",
+      "output_sha256": "8ac1ea0c57d280f1bd9c79e81b5c2684087c9e3c7c93c89205d0cf7414cddae8",
+      "mask_sha256": {
+        "original_land": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+        "river": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1",
+        "ocean": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1",
+        "underwater_deposit": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157",
+        "new_land": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+      },
+      "projection": {
+        "geometry_source": "mechanism semantic masks",
+        "proposal_contribution": "in-mask medium/high-frequency texture only",
+        "proposal_color_layout_used": false,
+        "exclusive_exhaustive_masks": true,
+        "categories": {
+          "original_land": {
+            "pixels": 136192,
+            "interior_pixels": 127872,
+            "boundary_pixels": 8320,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "river": {
+            "pixels": 19456,
+            "interior_pixels": 16576,
+            "boundary_pixels": 2880,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "ocean": {
+            "pixels": 209216,
+            "interior_pixels": 197828,
+            "boundary_pixels": 11388,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "underwater_deposit": {
+            "pixels": 27776,
+            "interior_pixels": 22672,
+            "boundary_pixels": 5104,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          },
+          "new_land": {
+            "pixels": 576,
+            "interior_pixels": 84,
+            "boundary_pixels": 492,
+            "interior_model_weight": 0.62,
+            "boundary_model_weight": 0.14
+          }
+        }
+      },
+      "style": "remote_sensing",
+      "seed": 3102,
+      "prompt_file": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/prompts/remote_sensing.txt",
+      "inference_seconds": 3.704,
+      "proposal_reused": false,
+      "peak_gpu_memory_bytes": 11131712512
+    }
+  ],
+  "blocked_by": {
+    "models": [],
+    "packages": []
+  },
+  "model_load_seconds": 4.922,
+  "runtime": {
+    "torch": "2.9.1+gitff65f5b",
+    "hip": "7.2.53211-e1a6bc5663",
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336
+  }
+}

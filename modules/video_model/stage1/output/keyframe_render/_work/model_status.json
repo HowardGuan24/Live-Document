@@ -1,0 +1,45 @@
+{
+  "status": "ready",
+  "required_models": {
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "available": true
+    },
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "available": true
+    }
+  },
+  "required_packages": {
+    "torch": true,
+    "diffusers": true,
+    "transformers": true
+  },
+  "package_versions": {
+    "torch": "2.9.1+gitff65f5b",
+    "diffusers": "0.35.2",
+    "transformers": "4.57.6",
+    "accelerate": "1.13.0",
+    "safetensors": "0.7.0",
+    "opencv-python-headless": "4.13.0.92"
+  },
+  "missing_models": [],
+  "missing_packages": [],
+  "substitution_used": false,
+  "settings": {
+    "width": 768,
+    "height": 512,
+    "steps": 36,
+    "strength": 0.5,
+    "guidance_scale": 6.5,
+    "controlnet_scale": 1.35,
+    "seeds": [
+      3101,
+      3102
+    ],
+    "dtype": "float16"
+  },
+  "message": "Local SDXL Base 1.0 FP16 and SDXL Canny ControlNet FP16 are required; no fallback model will be selected."
+}

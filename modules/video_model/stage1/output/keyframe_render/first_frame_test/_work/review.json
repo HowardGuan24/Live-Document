@@ -1,0 +1,107 @@
+{
+  "review_method": "Inspect comparison-blind.jpg before opening blind_order.json, then inspect route contact sheets and selected PNG files at original resolution.",
+  "blind_review": {
+    "performed_before_route_mapping": true,
+    "summary": "第一轮对 Route A / B / C 的 15 张主候选做盲评，它们自然分成三类：高细节但地貌阶段错误的航空图、构图正确但仍像平滑程序底图的受控图、以及画面自然但镜头或泥沙语义错误的场景图。C2 是依据第一轮失败新增的单变量迭代，生成后单独按同一标准审查。没有一张同时满足画质、阶段语义和结构三项。",
+    "observations": [
+      "Candidate 01/02/03/06 的地表和水体细节明显最好，但画面主要是已露出的沙洲、泥滩或狭长水道，没有清楚的“左侧河流入海 + 水中泥沙羽流”。",
+      "Candidate 07/08/10/13/14/15 保留了直海岸和单河道轮廓，但仍是大色块、软边和低频渐变，几乎没有自然材质。",
+      "Candidate 12 增强了岸边纹理，却把泥沙羽流改成陆地凸出，且河道不再清楚。",
+      "Candidate 04/05/09/11 有自然场景观感，但都不是水下镜头，也没有可读的悬沙流。",
+      "C2 是看到首轮失败后新增的定向迭代，因此不在第一张 15 候选盲评图里；它在生成后单独按同一标准审查。"
+    ]
+  },
+  "routes": {
+    "model_sanity": {
+      "title": "Route 0：模型能力自检",
+      "selected": "sanity_s3100.png",
+      "pixel_style": "完全摆脱像素风。",
+      "surface_quality": "丛林、雾气、叶片和宇航服都有清楚的多尺度材质，整体不像塑料模型。",
+      "semantic_quality": "提示词中的宇航员、丛林、冷调和自然光都得到正确表达。",
+      "verdict": "本地 SDXL Base、权重和运行时是健康的；三角洲候选差不是因为模型文件损坏。",
+      "observations": [
+        "1344×768、36 步、seed 3100 的结果可作为模型正常工作的对照。",
+        "这一张不参与三角洲路线优胜比较。"
+      ]
+    },
+    "free_topdown": {
+      "title": "Route A：自由俯视",
+      "selected": "free_topdown_s3103.png",
+      "pixel_style": "四张都摆脱了像素风，细节远高于程序底图。",
+      "surface_quality": "有接近航拍照片的细沙、浅滩和水色纹理，不塑料；但局部纹理有扩散模型式涂抹，且并非严格正交俯视。",
+      "semantic_quality": "四张都把场景画成已有大片露出沙洲或泥滩的水道系统；没有一张准确呈现左侧单河道入海、海域占主体、无出水新陆、赭色悬沙羽流。",
+      "verdict": "画质上限高，但阶段语义和空间结构不可控，不能直接作为第一关键帧。s3103 只是这一组最连贯的图，不是合格答案。",
+      "observations": [
+        "s3101 主要是一大片浅滩与弯曲水带，河口关系不清。",
+        "s3102 出现多条交汇水道和大面积露出地貌，违背单河道与无新陆。",
+        "s3103 的单水道最清楚，但更像穿过泥滩的河槽，没有开阔海域和悬沙羽流。",
+        "s3104 仍是夹在两侧沙地间的狭长水道，不是河流从左侧进入海洋。"
+      ]
+    },
+    "controlled_topdown": {
+      "title": "Route B：受控俯视",
+      "selected": "controlled_str055_ctrl050_s3102.png",
+      "pixel_style": "去掉了硬像素格，但没有真正变成高质量自然图，仍可一眼看出程序底图。",
+      "surface_quality": "大面积颜色平、边缘软、细节贫乏，仍有塑料贴图和模糊渐变感。",
+      "semantic_quality": "strength 0.55 最能保留直海岸、单河道和羽流位置；strength 0.70 开始把赭色河水或羽流理解成陆地；strength 0.85 虽增加岸边纹理，却丢失清楚河道并把羽流变成海岸凸出。",
+      "verdict": "当前 96×64 直角几何 + 平滑底图 + Canny 的组合没有提供可用画质。选中的 s3102 只是最忠于结构，不达到演示基底标准。",
+      "observations": [
+        "固定 control=0.50 时，提高 strength 从 0.55 到 0.85 增加了一些岸边纹理，但语义漂移同步增大。",
+        "固定 strength=0.70 时，control 0.35/0.50/0.65 都没有解决平滑大色块问题，说明瓶颈不只是 ControlNet scale。",
+        "基线参数换 seed 3101/3103 后，河道和泥沙颜色仍容易被理解成陆地，结果不稳。",
+        "Canny 忠实锁住了输入中笔直海岸与矩形河道，这个低质量几何本身就是画面上限。"
+      ]
+    },
+    "underwater_scene": {
+      "title": "Route C：第一版水下场景",
+      "selected": "underwater_scene_s3104.png",
+      "pixel_style": "四张都摆脱像素风。",
+      "surface_quality": "水面、沙地和天空材质自然；s3102 有不合理的硬质长堤，其余更像真实河滩或海滩。",
+      "semantic_quality": "4/4 都出现天空、地平线、海滩或露出沙洲，镜头实际在水面以上；没有一张显示水下悬沙流。",
+      "verdict": "第一版 prompt 中 river mouth 和 sandy riverbed 的地表先验压过了 submerged camera，路线失败，因此触发 C2 单变量修订。",
+      "observations": [
+        "s3104 是这一组最自然的场景，但它明确是岸边视角，不能冒充水下镜头。",
+        "这一组证明只写 submerged camera 不足以让 SDXL Base 稳定保持水下视点。"
+      ]
+    },
+    "underwater_revised": {
+      "title": "Route C2：强化完全水下镜头",
+      "selected": "underwater_revised_s3102.png",
+      "pixel_style": "4/4 都是完整的非像素水下画面。",
+      "surface_quality": "水面折射、体积光、沙底、石块和水下雾化较自然，整体质量明显高于受控俯视；部分岩石仍有概念图式重复和轻微蜡感。",
+      "semantic_quality": "完全浸没镜头约束成功，4/4 没有天空和海滩；但模型把场景补成清澈的岩石水域，几乎没有赭色悬沙云、浑清水边界或从左向右的可读水流。",
+      "verdict": "这是当前最值得继续的视觉方向，但仍不是合格第一帧。s3102 只能作为水下构图和光照参考，不能宣称已经表达“水流携带泥沙”。",
+      "observations": [
+        "与 Route C 唯一实质变化是完全水下镜头锁定和对应负向词；从 0/4 水下提高到 4/4，说明这一修改有效。",
+        "4/4 自动出现大量岩石且水体过清，说明下一个单变量应是“浑浊泥沙流优先”，同时负向禁止 clear tropical water、rocks、reef。",
+        "不要在这一步加入程序底图或 Canny，否则会重新混入已经证实的平面几何问题。"
+      ]
+    }
+  },
+  "overall": {
+    "conclusion": "模型本身正常，但当前没有任何候选同时达到高画质、正确早期阶段和可读泥沙输运。自由俯视最好看但擅自生成已露出沙洲；受控俯视最守结构但仍像程序贴图；C2 成功解决水下镜头，却还没有解决泥沙流。当前主方向应从“美化像素地图”转为“先生成真实水下机制镜头，再只对泥沙浑浊度做一次针对性迭代”。",
+    "answers": [
+      {
+        "question": "自由生图是否能画出足够好的单张图？",
+        "answer": "能画出高细节航拍质感，但不能可靠画对本阶段，所以不能直接使用。"
+      },
+      {
+        "question": "受控生图是否明显摆脱像素风？",
+        "answer": "没有。它只是把硬像素变成软边和渐变，程序图骨架仍然非常明显。"
+      },
+      {
+        "question": "受控生图是否仍然过于塑料或模糊？",
+        "answer": "是。strength 0.55/0.70 模糊且平；0.85 略有纹理但结构和泥沙语义开始错误。"
+      },
+      {
+        "question": "哪条路线更适合作为后续关键帧主方案？",
+        "answer": "视觉方向选 C2 水下场景，但当前图不能直接进入后续；Route B 当前形式应停止。"
+      },
+      {
+        "question": "是否值得马上做第二张图与首尾一致性？",
+        "answer": "不值得。第一张图的泥沙机制还没表达正确，现在做第二张只会放大风格与语义问题。"
+      }
+    ],
+    "next_step": "先做一个严格受限的 C3 小实验：沿用 C2 的完全水下镜头，只把正向主体改为 murky ochre river water、dense suspended silt、visible turbidity boundary，把 clear tropical water、rocks、reef 加入负向词，仍跑 4 个固定 seed。只有至少一张一眼能看懂“浑浊河水携沙进入清水”后，再做第二关键帧和一致性。若仍失败，应换更强的生成模型或引入真实泥沙羽流参考图，而不是继续调 Canny / mask。"
+  }
+}

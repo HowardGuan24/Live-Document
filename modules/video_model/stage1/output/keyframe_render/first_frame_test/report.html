@@ -1,0 +1,392 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<title>Stage 1.1 第一张图实验报告</title>
+<style>
+body{max-width:1100px;margin:32px auto;padding:0 24px;background:#f8fafb;
+color:#182229;font:16px/1.65 system-ui,sans-serif}
+pre{white-space:pre-wrap;background:white;padding:28px;border-radius:12px;
+box-shadow:0 2px 16px #0001}
+</style></head><body><pre># Stage 1.1 第一张图实验报告
+
+## 先看结论
+
+### 盲评记录
+
+第一轮对 Route A / B / C 的 15 张主候选做盲评，它们自然分成三类：高细节但地貌阶段错误的航空图、构图正确但仍像平滑程序底图的受控图、以及画面自然但镜头或泥沙语义错误的场景图。C2 是依据第一轮失败新增的单变量迭代，生成后单独按同一标准审查。没有一张同时满足画质、阶段语义和结构三项。
+
+- Candidate 01/02/03/06 的地表和水体细节明显最好，但画面主要是已露出的沙洲、泥滩或狭长水道，没有清楚的“左侧河流入海 + 水中泥沙羽流”。
+- Candidate 07/08/10/13/14/15 保留了直海岸和单河道轮廓，但仍是大色块、软边和低频渐变，几乎没有自然材质。
+- Candidate 12 增强了岸边纹理，却把泥沙羽流改成陆地凸出，且河道不再清楚。
+- Candidate 04/05/09/11 有自然场景观感，但都不是水下镜头，也没有可读的悬沙流。
+- C2 是看到首轮失败后新增的定向迭代，因此不在第一张 15 候选盲评图里；它在生成后单独按同一标准审查。
+
+### Route 0：模型能力自检
+
+- 最佳候选：`sanity_s3100.png`
+- 是否摆脱像素风：完全摆脱像素风。
+- 塑料 / 模糊问题：丛林、雾气、叶片和宇航服都有清楚的多尺度材质，整体不像塑料模型。
+- 语义与物理可信度：提示词中的宇航员、丛林、冷调和自然光都得到正确表达。
+- 结论：本地 SDXL Base、权重和运行时是健康的；三角洲候选差不是因为模型文件损坏。
+- 1344×768、36 步、seed 3100 的结果可作为模型正常工作的对照。
+- 这一张不参与三角洲路线优胜比较。
+
+### Route A：自由俯视
+
+- 最佳候选：`free_topdown_s3103.png`
+- 是否摆脱像素风：四张都摆脱了像素风，细节远高于程序底图。
+- 塑料 / 模糊问题：有接近航拍照片的细沙、浅滩和水色纹理，不塑料；但局部纹理有扩散模型式涂抹，且并非严格正交俯视。
+- 语义与物理可信度：四张都把场景画成已有大片露出沙洲或泥滩的水道系统；没有一张准确呈现左侧单河道入海、海域占主体、无出水新陆、赭色悬沙羽流。
+- 结论：画质上限高，但阶段语义和空间结构不可控，不能直接作为第一关键帧。s3103 只是这一组最连贯的图，不是合格答案。
+- s3101 主要是一大片浅滩与弯曲水带，河口关系不清。
+- s3102 出现多条交汇水道和大面积露出地貌，违背单河道与无新陆。
+- s3103 的单水道最清楚，但更像穿过泥滩的河槽，没有开阔海域和悬沙羽流。
+- s3104 仍是夹在两侧沙地间的狭长水道，不是河流从左侧进入海洋。
+
+### Route B：受控俯视
+
+- 最佳候选：`controlled_str055_ctrl050_s3102.png`
+- 是否摆脱像素风：去掉了硬像素格，但没有真正变成高质量自然图，仍可一眼看出程序底图。
+- 塑料 / 模糊问题：大面积颜色平、边缘软、细节贫乏，仍有塑料贴图和模糊渐变感。
+- 语义与物理可信度：strength 0.55 最能保留直海岸、单河道和羽流位置；strength 0.70 开始把赭色河水或羽流理解成陆地；strength 0.85 虽增加岸边纹理，却丢失清楚河道并把羽流变成海岸凸出。
+- 结论：当前 96×64 直角几何 + 平滑底图 + Canny 的组合没有提供可用画质。选中的 s3102 只是最忠于结构，不达到演示基底标准。
+- 固定 control=0.50 时，提高 strength 从 0.55 到 0.85 增加了一些岸边纹理，但语义漂移同步增大。
+- 固定 strength=0.70 时，control 0.35/0.50/0.65 都没有解决平滑大色块问题，说明瓶颈不只是 ControlNet scale。
+- 基线参数换 seed 3101/3103 后，河道和泥沙颜色仍容易被理解成陆地，结果不稳。
+- Canny 忠实锁住了输入中笔直海岸与矩形河道，这个低质量几何本身就是画面上限。
+
+### Route C：第一版水下场景
+
+- 最佳候选：`underwater_scene_s3104.png`
+- 是否摆脱像素风：四张都摆脱像素风。
+- 塑料 / 模糊问题：水面、沙地和天空材质自然；s3102 有不合理的硬质长堤，其余更像真实河滩或海滩。
+- 语义与物理可信度：4/4 都出现天空、地平线、海滩或露出沙洲，镜头实际在水面以上；没有一张显示水下悬沙流。
+- 结论：第一版 prompt 中 river mouth 和 sandy riverbed 的地表先验压过了 submerged camera，路线失败，因此触发 C2 单变量修订。
+- s3104 是这一组最自然的场景，但它明确是岸边视角，不能冒充水下镜头。
+- 这一组证明只写 submerged camera 不足以让 SDXL Base 稳定保持水下视点。
+
+### Route C2：强化完全水下镜头
+
+- 最佳候选：`underwater_revised_s3102.png`
+- 是否摆脱像素风：4/4 都是完整的非像素水下画面。
+- 塑料 / 模糊问题：水面折射、体积光、沙底、石块和水下雾化较自然，整体质量明显高于受控俯视；部分岩石仍有概念图式重复和轻微蜡感。
+- 语义与物理可信度：完全浸没镜头约束成功，4/4 没有天空和海滩；但模型把场景补成清澈的岩石水域，几乎没有赭色悬沙云、浑清水边界或从左向右的可读水流。
+- 结论：这是当前最值得继续的视觉方向，但仍不是合格第一帧。s3102 只能作为水下构图和光照参考，不能宣称已经表达“水流携带泥沙”。
+- 与 Route C 唯一实质变化是完全水下镜头锁定和对应负向词；从 0/4 水下提高到 4/4，说明这一修改有效。
+- 4/4 自动出现大量岩石且水体过清，说明下一个单变量应是“浑浊泥沙流优先”，同时负向禁止 clear tropical water、rocks、reef。
+- 不要在这一步加入程序底图或 Canny，否则会重新混入已经证实的平面几何问题。
+
+### 总结
+
+模型本身正常，但当前没有任何候选同时达到高画质、正确早期阶段和可读泥沙输运。自由俯视最好看但擅自生成已露出沙洲；受控俯视最守结构但仍像程序贴图；C2 成功解决水下镜头，却还没有解决泥沙流。当前主方向应从“美化像素地图”转为“先生成真实水下机制镜头，再只对泥沙浑浊度做一次针对性迭代”。
+
+1. **自由生图是否能画出足够好的单张图？** 能画出高细节航拍质感，但不能可靠画对本阶段，所以不能直接使用。
+2. **受控生图是否明显摆脱像素风？** 没有。它只是把硬像素变成软边和渐变，程序图骨架仍然非常明显。
+3. **受控生图是否仍然过于塑料或模糊？** 是。strength 0.55/0.70 模糊且平；0.85 略有纹理但结构和泥沙语义开始错误。
+4. **哪条路线更适合作为后续关键帧主方案？** 视觉方向选 C2 水下场景，但当前图不能直接进入后续；Route B 当前形式应停止。
+5. **是否值得马上做第二张图与首尾一致性？** 不值得。第一张图的泥沙机制还没表达正确，现在做第二张只会放大风格与语义问题。
+
+下一步：先做一个严格受限的 C3 小实验：沿用 C2 的完全水下镜头，只把正向主体改为 murky ochre river water、dense suspended silt、visible turbidity boundary，把 clear tropical water、rocks、reef 加入负向词，仍跑 4 个固定 seed。只有至少一张一眼能看懂“浑浊河水携沙进入清水”后，再做第二关键帧和一致性。若仍失败，应换更强的生成模型或引入真实泥沙羽流参考图，而不是继续调 Canny / mask。
+
+本报告记录的是实际运行结果，不是设计草案。共生成 20 张：
+模型自检 1 张、自由俯视
+4 张、受控俯视
+7 张、水下场景
+第一版 4 张、水下场景修订版
+4 张。
+
+建议先看：
+
+- `comparison-blind.jpg`：隐藏路线名称的第一轮 15 张主候选；
+- `comparison-labeled.jpg`：显示路线和参数的全部候选；
+- `review/*/contact-sheet.jpg`：每条路线内部对比。
+
+## 1. 我实际做了什么
+
+1. 从 `output/causal_delta/timeline.json` 精确选择 display frame
+   25 / state frame 36。
+2. 保留原程序帧作审计参考，但没有直接把它放进模型。
+3. 从机制状态的全部 516 个悬浮颗粒坐标
+   计算连续羽流密度图。
+4. 用连续水深、原始陆地 / 河道、微量水下沉积和羽流密度合成
+   `smooth_base.png`。
+5. 只从原始陆地边界生成 Canny；颗粒、沉积斑点、文字、箭头、图例均不进入边缘图。
+6. 用相同的 SDXL Base 分别跑模型自检、自由俯视、水下场景；用 SDXL Base +
+   Canny ControlNet 跑受控俯视单变量参数实验。
+7. 生成盲评图、带标签总览图和各路线 contact sheet，再基于实际输出写结论。
+8. 第一版水下结果 4/4 变成水面以上的河滩后，只修改镜头约束，补跑 C2；
+   C2 明确写入“camera fully submerged, no sky or horizon”，负向增加
+   above-water / beach / shoreline / sandbar。
+
+**这次没有使用旧阶段的 semantic mask projection。** 因此候选图就是模型的原始输出，
+不是把模型纹理重新投影进程序图后的合成图。
+
+第一次 GPU 试运行在模型自检后发现原俯视 prompt 是 143 tokens，SDXL 的 CLIP 上限为
+77，后半段构图约束会被截断。我停止该轮，将正向和负向 prompt 都压缩并加入推理前
+硬校验，然后使用 `--force` 重新生成；本报告列出的最终候选不包含被截断 prompt 的结果。
+
+## 2. 为什么选择这一帧
+
+数据来源：
+
+- timeline：`/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/timeline.json`
+- states：`/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/mechanism/states.jsonl`
+- beat：`decelerate`（河水入海后减速）
+
+精确状态：
+
+- injected particles：518
+- suspended particles：516
+- settled particles：2
+- underwater deposit cells：50
+- new land cells：0
+
+这时泥沙已经从河口进入海域，足以表达“水流携沙”；同时 new land cells 为 0，
+不会把第一张图误画成已经形成三角洲。
+
+## 3. 四个输入文件是什么
+
+### `original_frame.png`
+
+路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/_work/source/original_frame.png`
+
+它是旧机制动画的原始第 25 个显示帧，保留文字、箭头、颗粒等，只用于核对所选状态。
+它没有输入 SDXL。SHA-256：`e8f599caa3c9b309041a7800c0efa065089fcc9e9e465c16e257124e5538c169`。
+
+### `plume_density.png`
+
+路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/_work/source/plume_density.png`
+
+把 state 36 的全部 516 个粒子以双线性权重落到 96×64 网格，使用
+`sigmaX=2.25 / sigmaY=2.60` 网格的高斯模糊，再按正值第 99 百分位归一化、
+做 `gamma=0.62`，最后双三次放大到 1344×768。白色代表羽流更密。
+它只用于生成下一项连续底图。SHA-256：`2ac1ca55d68aab5cb2c3bcd2a8d13a39aa735d15252e6c4b97d0c064e1c9cd86`。
+
+### `smooth_base.png`
+
+路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/_work/source/smooth_base.png`
+
+由连续水深色、抗锯齿陆地 / 河道、state 36 的水下沉积厚度和羽流密度组成。
+羽流以最大 0.66 的透明度混合；没有颗粒点、文字、箭头、图例或面板。
+它只输入 Route B 的 img2img。SHA-256：`75a47e9f5a1dceaee86df29c2c722eae74f31c6bd0635a1a1bf0d013e8492bdf`。
+
+### `coastline_canny.png`
+
+路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/_work/source/coastline_canny.png`
+
+只对 `original_land(config)` 的二值陆地掩码执行 OpenCV Canny 100/200，所以边缘只表示
+连续海岸和河道边界，不包含泥沙羽流与沉积斑点。它只输入 Route B 的 ControlNet。
+SHA-256：`6849d6fd1f74d1d6dadc7d0a5c2ba722b5bbc484a303ea782ace1f93fff544c6`。
+
+## 4. 路线、提示词和参数
+
+完整提示词原文保存在 `_work/prompts/`，并在 `prepare_manifest.json` 中记录文本和哈希。
+下面是本轮推理前实际检查的 token 数（包含首尾特殊 token）：
+
+- `sanity.txt`：tokenizer 29/77，tokenizer_2 29/77
+- `sanity_negative.txt`：tokenizer 27/77，tokenizer_2 27/77
+- `topdown.txt`：tokenizer 76/77，tokenizer_2 76/77
+- `topdown_controlled.txt`：tokenizer 77/77，tokenizer_2 77/77
+- `topdown_negative.txt`：tokenizer 71/77，tokenizer_2 71/77
+- `underwater.txt`：tokenizer 77/77，tokenizer_2 77/77
+- `underwater_negative.txt`：tokenizer 53/77，tokenizer_2 53/77
+- `underwater_revised.txt`：tokenizer 77/77，tokenizer_2 77/77
+- `underwater_revised_negative.txt`：tokenizer 59/77，tokenizer_2 59/77
+
+- Route 0：纯 SDXL 文生图，seed 3100，验证模型能否正常生成自然材质；
+- Route A：纯 SDXL 文生图，seeds 3101–3104，提示词要求正交俯视早期河口；
+- Route B：SDXL ControlNet img2img。固定 control=0.50 扫
+  strength=0.55/0.70/0.85；固定 strength=0.70 扫 control=0.35/0.50/0.65；
+  再用基线 0.70/0.50 跑 seeds 3101/3103；
+- Route C：纯 SDXL 文生图，seeds 3101–3104，把同一机制语义改写为真实水下镜头。
+- Route C2：Route C 首轮全部变成水面以上场景后的单变量提示词修订；仍用相同
+  seeds，只强化完全浸没镜头并禁止天空、地平线、海滩和沙洲。
+
+本次实际送入模型的完整提示词如下：
+
+### `sanity.txt`
+
+```text
+cinematic photograph of an astronaut exploring a dense jungle,
+cool muted color palette, natural atmospheric light,
+real fabric and vegetation texture, highly detailed
+```
+
+### `sanity_negative.txt`
+
+```text
+plastic toy, resin figurine, clay render, flat vector art,
+pixel art, blurry, low detail, text, watermark
+```
+
+### `topdown.txt`
+
+```text
+photorealistic scientific aerial view, strict orthographic top-down,
+one river enters a blue-green coastal sea from the left,
+a broad ochre sediment plume spreads beyond the mouth through shallow water,
+continuous coastline, realistic natural textures,
+natural turbidity and depth gradients,
+no emerged delta island, extra channels, text, arrows, boats, or buildings
+```
+
+### `topdown_controlled.txt`
+
+```text
+photorealistic scientific aerial view, strict orthographic top-down,
+preserve the supplied single river mouth and continuous coastline,
+a broad ochre sediment plume follows the supplied outflow into shallow blue-green water,
+realistic earth and water textures, natural turbidity and depth gradients,
+no emerged land, extra channels, text, arrows, boats, buildings, or people
+```
+
+### `topdown_negative.txt`
+
+```text
+pixel art, flat vector, infographic, schematic map, plastic, resin, clay,
+glossy miniature, watercolor, blurry, dreamy, low detail, delta island,
+extra islands, branching river, extra channels, oblique view, horizon,
+perspective, boats, buildings, roads, people, text, labels, arrows, legend, watermark
+```
+
+### `underwater.txt`
+
+```text
+photorealistic underwater documentary at a river mouth,
+camera just above the sandy riverbed,
+a broad freshwater current carries dense clouds of fine ochre silt
+into calm blue-green coastal water, physically plausible turbidity gradient,
+soft volumetric sunlight, natural water, sand and silt textures,
+wide cinematic frame, no animals, people, structures, text, or arrows
+```
+
+### `underwater_negative.txt`
+
+```text
+top-down map, infographic, vector art, pixel art, plastic, resin, clay,
+miniature, abstract smoke, fantasy, fish, diver, coral, plants,
+buildings, boats, text, labels, arrows, watermark, blurry, low detail
+```
+
+### `underwater_revised.txt`
+
+```text
+underwater photograph, camera fully submerged, no sky or horizon,
+blue-green water above a sandy bottom,
+dense ochre silt current moving left to right,
+volumetric sunbeams through suspended sediment,
+realistic haze and backscatter,
+turbid freshwater mixing with clear seawater, documentary, wide frame,
+no fish, divers, coral, plants, text, or arrows
+```
+
+### `underwater_revised_negative.txt`
+
+```text
+above-water, aerial, top-down, sky, horizon, beach, shoreline, sandbar,
+dry land, landscape, infographic, vector, pixel art, plastic, resin, clay,
+abstract smoke, fantasy, fish, diver, coral, plants, text, arrows, blurry
+```
+
+共同参数：1344×768、36 steps、guidance scale 6.5、FP16、模型默认 scheduler。
+
+| 文件 | 路线 | seed | strength | control | 秒 | SHA-256 |
+|---|---|---:|---:|---:|---:|---|
+| `sanity_s3100.png` | model_sanity | 3100 | — | — | 12.988 | `efd8c892d271e0c7bc7c15e6e1113272cf3d7123952481e6c8337a77314f3f37` |
+| `free_topdown_s3101.png` | free_topdown | 3101 | — | — | 11.880 | `3d4d3b533406db1d8ac2d016125758f1ee99775f2f5635fc45a6e6927f0fb524` |
+| `free_topdown_s3102.png` | free_topdown | 3102 | — | — | 11.863 | `8f55d2ef818dc9a7bb62d5f08f6755e66cf8387bf4e7fce43e714fb8fbd4c9d2` |
+| `free_topdown_s3103.png` | free_topdown | 3103 | — | — | 11.886 | `e019d938d20ee9e8fd7d6c2099e83f632f6f69279312ce8ed519a7b2c4446894` |
+| `free_topdown_s3104.png` | free_topdown | 3104 | — | — | 11.919 | `052066a5dfa28222b4576a235c3ca33c6156e5ae88915edf0c9809e5d87db899` |
+| `underwater_scene_s3101.png` | underwater_scene | 3101 | — | — | 11.863 | `13b4019dc4a67fd2b0ca1323409f3adae2a2ebcd5f61bbb5c643592e012dacd6` |
+| `underwater_scene_s3102.png` | underwater_scene | 3102 | — | — | 11.843 | `1e3c1abbabf5336458739a3d72c8eebacb7217d73e36fc1e0b187e5905323979` |
+| `underwater_scene_s3103.png` | underwater_scene | 3103 | — | — | 11.862 | `c990dcfc562a4a346ef58a48f7f352b692ebb1f4c693abd0fb00bd2d750172fc` |
+| `underwater_scene_s3104.png` | underwater_scene | 3104 | — | — | 11.891 | `1c40578c5e106f29be86d715c744750b0016dd903296c1a5b4a5b4c312ace778` |
+| `underwater_revised_s3101.png` | underwater_revised | 3101 | — | — | 11.893 | `b9a3f6863e5845d0ba14f1a3cb426e3a16e7149582a014f445601728f2d8c5c3` |
+| `underwater_revised_s3102.png` | underwater_revised | 3102 | — | — | 11.908 | `d84b3b702df2e2cbce7ff30e064b7a55ad1e2240f05dbf3f613fca93924ae6ec` |
+| `underwater_revised_s3103.png` | underwater_revised | 3103 | — | — | 11.922 | `446f9665b9fbc4a8718d2a12aeb68e279f48da1b023374f3e997e424e4d536a0` |
+| `underwater_revised_s3104.png` | underwater_revised | 3104 | — | — | 11.893 | `49320616ab46c8026c6a7f99355a62d5c54eeeb5cda1b08953d0876c00fd06d5` |
+| `controlled_str055_ctrl050_s3102.png` | controlled_topdown | 3102 | 0.55 | 0.50 | 9.444 | `2119bafafc5754bb4b361207ee814fae37c7b2e1fa4cd3581e9a699295286ac4` |
+| `controlled_str070_ctrl050_s3102.png` | controlled_topdown | 3102 | 0.70 | 0.50 | 12.108 | `7aefdf28b0c648b0d72b9006c5510e2de382a3e43e2b89044d6f528358c2f9f7` |
+| `controlled_str085_ctrl050_s3102.png` | controlled_topdown | 3102 | 0.85 | 0.50 | 14.424 | `776fbd6b7974ec66a76b54bede3d94f49c27d4a6838191331bcfc0fd8e60e8ca` |
+| `controlled_str070_ctrl035_s3102.png` | controlled_topdown | 3102 | 0.70 | 0.35 | 12.126 | `1e4b8be301fc2d36b8e04b97b9e5a73e34c330b5f5306517d900322e855f2c50` |
+| `controlled_str070_ctrl065_s3102.png` | controlled_topdown | 3102 | 0.70 | 0.65 | 12.100 | `0bd4de399ac34fd9e343ad38e1d41368c2ca72721d2fbfc9b1c068f195318fa7` |
+| `controlled_str070_ctrl050_s3101.png` | controlled_topdown | 3101 | 0.70 | 0.50 | 12.043 | `34571b0d6b58c9002ea453c966ddc1702622194d744870ca99730fe7c1fa7e79` |
+| `controlled_str070_ctrl050_s3103.png` | controlled_topdown | 3103 | 0.70 | 0.50 | 12.083 | `9cbdaf162790a5483554c04b66be2e282772ff6419393df206c3ba14b22442db` |
+
+## 5. 模型、运行时与时间
+
+- SDXL Base：`stabilityai/stable-diffusion-xl-base-1.0`
+  - 本地路径：`/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0`
+- Canny ControlNet：`diffusers/controlnet-canny-sdxl-1.0`
+  - 本地路径：`/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0`
+- Refiner：未使用
+- GPU：`AMD Radeon Graphics`
+- HIP：`7.2.53211-e1a6bc5663`
+- 总运行时间（含两次模型加载和 20 张推理）：249.936 秒
+- 文生图 pipeline 加载：4.266 秒
+- ControlNet pipeline 加载：5.402 秒
+- 文生图 scheduler：`EulerDiscreteScheduler`
+- ControlNet scheduler：`EulerDiscreteScheduler`
+
+软件版本：
+
+- torch: `2.9.1+gitff65f5b`
+- diffusers: `0.35.2`
+- transformers: `4.57.6`
+- accelerate: `1.13.0`
+- safetensors: `0.7.0`
+- opencv-python-headless: `4.13.0.92`
+- Pillow: `11.0.0`
+- numpy: `2.1.2`
+
+实际 FP16 权重 SHA-256：
+
+- `stabilityai/stable-diffusion-xl-base-1.0`
+  - `text_encoder/model.fp16.safetensors`: `660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd`
+  - `text_encoder_2/model.fp16.safetensors`: `ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4`
+  - `unet/diffusion_pytorch_model.fp16.safetensors`: `83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139`
+  - `vae/diffusion_pytorch_model.fp16.safetensors`: `bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68`
+- `diffusers/controlnet-canny-sdxl-1.0`
+  - `diffusion_pytorch_model.fp16.safetensors`: `b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25`
+
+## 6. 从零复现
+
+从仓库根目录运行：
+
+```bash
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.first_frame_test \
+  --prepare
+
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.first_frame_test \
+  --generate --force
+
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.first_frame_test \
+  --report
+```
+
+如果模型不在默认位置，先设置：
+
+```bash
+export SDXL_BASE_PATH=/absolute/path/to/sdxl-base-1.0
+export SDXL_CANNY_CONTROLNET_PATH=/absolute/path/to/controlnet-canny-sdxl-1.0
+```
+
+不带 `--force` 会复用同名 PNG；带 `--force` 才会重新推理。固定 prompt、参数、seed、
+权重和软件栈后结果可复现。ROCm / PyTorch 或 Diffusers 版本变化仍可能产生细微数值差异。
+
+## 7. 输出文件怎么读
+
+- `report.md` / `report.html`：过程、参数、审图结论和复现方法；
+- `comparison-blind.jpg`：最初三条主路线的 15 张盲评总览，不显示路线名；
+- `comparison-labeled.jpg`：全部候选以及真实路线 / 参数；
+- `review/model_sanity/`：模型健康检查，不参与路线优胜；
+- `review/free_topdown/`：Route A 原始模型输出；
+- `review/controlled_topdown/`：Route B 原始模型输出；
+- `review/underwater_scene/`：Route C 原始模型输出；
+- `review/underwater_revised/`：Route C2 单变量提示词修订后的原始模型输出；
+- `_work/source/`：可审计、可重建的输入，不是最终图；
+- `_work/prompts/`：本次实际送入模型的提示词；
+- `_work/prepare_manifest.json`：状态选择、输入生成方法与输入哈希；
+- `_work/metadata.json`：每张图的模型参数、耗时与哈希；
+- `_work/model_fingerprints.json`：实际使用的 FP16 权重哈希；
+- `_work/blind_order.json`：盲评编号与真实文件的映射；
+- `_work/review.json`：人工审图记录。
+</pre></body></html>

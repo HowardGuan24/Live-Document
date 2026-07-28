@@ -1,0 +1,4 @@
+high-resolution remote sensing view of a river delta, strict orthographic top-down view,
+realistic but scientifically legible coastal terrain, crisp shoreline and river channels,
+fine natural land texture, layered shallow bathymetry, visible suspended sediment plume,
+restrained satellite color grading, no clouds, no labels, no arrows

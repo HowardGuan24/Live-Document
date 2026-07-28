@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stage 1.3｜两张关键帧的 LTX-2.3 过渡测试</title>
+<style>
+:root{--ink:#17232a;--muted:#617078;--river:#0c6875;--sand:#f2eee3;--card:#fff;
+--line:#d8d4ca;--warn:#fff0dd}*{box-sizing:border-box}body{margin:0;background:var(--sand);
+color:var(--ink);font:16px/1.7 system-ui,"Noto Sans SC",sans-serif}header{padding:64px 24px;
+color:white;background:linear-gradient(120deg,#073c47,#13808c)}main,header>div{width:min(1120px,
+calc(100% - 32px));margin:auto}h1{max-width:850px;margin:0;font-size:clamp(2rem,5vw,3.8rem);
+line-height:1.12}header p{max-width:780px;color:#d8f0ed}main{padding:48px 0 72px}section{margin-bottom:58px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}figure,.card{margin:0;background:var(--card);
+border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 10px 30px #00000012}
+img,video{display:block;width:100%;height:auto}figcaption,.pad{padding:14px 17px}.note{padding:18px;
+border-left:5px solid var(--river);background:#e5f2ed;border-radius:9px}.warn{border-left-color:#a65127;
+background:var(--warn)}table{width:100%;border-collapse:collapse;background:white}td,th{padding:12px 15px;
+border-bottom:1px solid var(--line);text-align:left}th{background:#0b5661;color:white}details{margin:12px 0;
+border:1px solid var(--line);border-radius:10px;background:white}summary{padding:14px 17px;font-weight:700;
+cursor:pointer}pre{margin:0 17px 17px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere;color:#e8f5f2;
+background:#102d33;border-radius:8px}code{font-family:ui-monospace,monospace}@media(max-width:700px){
+.grid{grid-template-columns:1fr}}</style></head>
+<body><header><div><p>STAGE 1.3 · 首尾帧视频测试</p>
+<h1>让泥沙从河道中段移动到河口</h1>
+<p>这次不是纯文本生成。LTX-2.3 明确接收上一阶段选中的两张图：第一张固定视频开头，
+第二张固定视频结尾，模型只负责生成中间的连续运动。</p></div></header>
+<main>
+<section><h2>实际生成的视频</h2>
+<video controls muted loop poster="frame_048.png" src="transition.mp4"></video>
+<div class="note"><strong>怎么看：</strong>重点检查镜头和岸线是否稳定、泥沙是否从左向右推进、
+中间帧是否出现闪烁或凭空改变地形。模型同时生成了音轨，但本页默认静音播放。</div></section>
+<section><h2>这一版的判断</h2>
+<div class="grid">
+<div class="note"><h3>有效的部分</h3><p>首尾帧约束生效，没有换场，也没有提前长出三角洲。
+棕色泥沙前缘在 9 个采样时刻的位置依次是：</p>
+<p><strong>159 → 168 → 176 → 185 → 193 → 200 → 207 → 212 → 214 px</strong></p>
+<p>它累计向河口推进 55 px，
+且每个采样间隔都没有倒退，因此不只是静止画面上的随机闪烁。</p></div>
+<div class="note warn"><h3>仍然不足</h3><p>运动主要表现为柔和的棕色浑水前缘，
+没有形成可辨认的泥沙颗粒；水面纹理和岸边有轻微“呼吸感”。
+512×320 的首次测试也偏软。这一版适合验证 FLF2V 路线，不应直接当最终成片。</p></div>
+</div></section>
+<section><h2>输入的两张关键帧</h2><div class="grid">
+<figure><img src="input_first.png" alt="输入首帧"><figcaption><strong>首帧：</strong>
+泥沙仍在河道中。</figcaption></figure>
+<figure><img src="input_last.png" alt="输入尾帧"><figcaption><strong>尾帧：</strong>
+泥沙前缘到达河口。</figcaption></figure></div></section>
+<section><h2>模型实际生成的 9 个时间点</h2>
+<figure><a href="generated_frames.jpg"><img src="generated_frames.jpg"
+alt="按时间顺序排列的九张生成视频抽帧"></a>
+<figcaption>从左到右、从上到下依次展示 0 至 4 秒的 9 个时间点，
+用来检查首尾约束、泥沙推进、岸线稳定性和中途闪烁。</figcaption>
+</figure></section>
+<section><h2>这次怎么生成</h2>
+<table><tbody>
+<tr><td>模型</td><td>ltx-2.3-22b-dev-fp8.safetensors + distilled 1.1 LoRA</td></tr>
+<tr><td>流程</td><td>ComfyUI 官方 LTX-2.3 First-Last-Frame to Video 结构</td></tr>
+<tr><td>工作尺寸</td><td>512 × 320</td></tr>
+<tr><td>长度</td><td>97 帧，
+24 fps，约 4.04 秒</td></tr>
+<tr><td>首尾引导强度</td><td>0.7</td></tr>
+<tr><td>随机种子</td><td>20260728（只用于复现中间运动）</td></tr>
+<tr><td>生成耗时</td><td>3.92 分钟</td></tr>
+<tr><td>相邻帧平均像素变化</td><td>0.4952
+/ 255；变化平缓，没有检测到突然跳帧</td></tr>
+</tbody></table>
+<div class="note warn" style="margin-top:18px"><strong>首尾相似度不是质量裁判：</strong>
+压缩和 VAE 重建会造成像素差异。首帧 MAE 4.018，
+尾帧 MAE 3.13；仍需以实际画面判断岸线和泥沙位置。</div>
+</section>
+<section><h2>提示词与复现文件</h2>
+<details><summary>正向提示词</summary><pre>A fixed orthographic top-down aerial view of the exact same
+river, sandy coast, and blue-green sea shown in the supplied first and last
+frames. Preserve the geography, shoreline, riverbanks, framing, scale, natural
+daylight, and color palette. Only the water and suspended sediment move. A soft
+ochre-brown sediment cloud flows continuously downstream from left to right
+inside the river channel, with subtle fluid turbulence and small variations in
+concentration. Over the shot the sediment front advances smoothly from the
+middle-lower river and reaches the river outlet at the coast in the final frame.
+The camera remains completely locked. One continuous physically understandable
+scientific visualization. No sediment enters the open sea yet and no new delta
+land forms.</pre></details>
+<details><summary>负向提示词</summary><pre>camera movement, pan, zoom, tilt, rotation, perspective
+change, oblique view, shoreline movement, changing riverbanks, terrain morphing,
+new channels, branching distributaries, completed delta, new land, offshore
+sediment plume, sediment moving upstream, abrupt cut, scene change, flicker,
+jitter, pulsing, boiling texture, frozen water, opaque mud, plastic CGI, text,
+labels, arrows, people, buildings, boats, watermark, blurry, low quality</pre></details>
+<div class="card pad"><ul>
+<li><a href="workflow_api.json">完整 ComfyUI API 工作流</a></li>
+<li><a href="metadata.json">生成参数、耗时和文件哈希</a></li>
+<li><a href="prompt.txt">纯文本提示词</a></li>
+</ul><p>复现命令：<code>/workspace/comfyui-rocm-env/bin/python
+-m modules.video_model.stage1.video_transition</code></p></div>
+</section></main></body></html>

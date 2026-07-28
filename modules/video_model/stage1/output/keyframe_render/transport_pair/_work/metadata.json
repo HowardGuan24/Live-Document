@@ -1,0 +1,543 @@
+{
+  "status": "generated_with_revision",
+  "experiment": "Stage 1.2 sediment-transport two-keyframe pair",
+  "settings": {
+    "width": 1344,
+    "height": 768,
+    "steps": 36,
+    "guidance_scale": 6.5,
+    "controlnet_conditioning_scale": 0.6,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "pipeline": "StableDiffusionXLControlNetPipeline",
+    "dtype": "float16",
+    "img2img_initial_image": null,
+    "strength": null,
+    "mask_projection": false
+  },
+  "models": {
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    },
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "torch": "2.9.1+gitff65f5b",
+    "diffusers": "0.35.2",
+    "transformers": "4.57.6",
+    "accelerate": "1.13.0",
+    "safetensors": "0.7.0",
+    "opencv-python-headless": "4.13.0.92",
+    "Pillow": "11.0.0",
+    "numpy": "2.1.2"
+  },
+  "prompt_token_preflight": {
+    "at_outlet.txt": {
+      "counts_including_special_tokens": {
+        "tokenizer": 73,
+        "tokenizer_2": 73
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "at_outlet_negative.txt": {
+      "counts_including_special_tokens": {
+        "tokenizer": 75,
+        "tokenizer_2": 75
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "at_outlet_v2.txt": {
+      "counts_including_special_tokens": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "in_channel.txt": {
+      "counts_including_special_tokens": {
+        "tokenizer": 74,
+        "tokenizer_2": 74
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "in_channel_negative.txt": {
+      "counts_including_special_tokens": {
+        "tokenizer": 75,
+        "tokenizer_2": 75
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "in_channel_v2.txt": {
+      "counts_including_special_tokens": {
+        "tokenizer": 69,
+        "tokenizer_2": 69
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "sediment_emphasis_negative.txt": {
+      "counts_including_special_tokens": {
+        "tokenizer": 76,
+        "tokenizer_2": 76
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run.",
+    "model_roots": {
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0"
+    },
+    "models": {
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      },
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      }
+    }
+  },
+  "runtime": {
+    "torch": "2.9.1+gitff65f5b",
+    "hip": "7.2.53211-e1a6bc5663",
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336
+  },
+  "candidates": [
+    {
+      "name": "in_channel_s3101",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/in_channel/in_channel_s3101.png",
+      "sha256": "76ee5c3e9f18e27e16d196b28513a58cb2cf4d41cfd13984f289e57b1f8c80f0",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 18.249,
+      "peak_gpu_memory_bytes": 13168294400,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "at_outlet_s3101",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/at_outlet/at_outlet_s3101.png",
+      "sha256": "690f0a0338aebf4a25c224a5e3bd4e66d4beb97df6c8b4a3b5435c1cb858ae2e",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.058,
+      "peak_gpu_memory_bytes": 13170768384,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "in_channel_s3102",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/in_channel/in_channel_s3102.png",
+      "sha256": "b3f347b38cf7c78984236fd004ee1ce2b14817abeb3a873e76a97dd458652458",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.076,
+      "peak_gpu_memory_bytes": 13170326016,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "at_outlet_s3102",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/at_outlet/at_outlet_s3102.png",
+      "sha256": "56527b4adda3028c1d769a45b89943bdda50cb1c1fb5b186bf895d6e21777fd9",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.061,
+      "peak_gpu_memory_bytes": 13169949184,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "in_channel_s3103",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/in_channel/in_channel_s3103.png",
+      "sha256": "8966a387338db6e82b6a5263fee6c529d288ac9113201c193bc75829cdc9244b",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.084,
+      "peak_gpu_memory_bytes": 13169949184,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "at_outlet_s3103",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/at_outlet/at_outlet_s3103.png",
+      "sha256": "7409f95755a386ba1c433003e51c6e5be32f510cb5ff3743b4b443418f9cf041",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.079,
+      "peak_gpu_memory_bytes": 13169474048,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "in_channel_s3104",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/in_channel/in_channel_s3104.png",
+      "sha256": "20b10c8d9a28a9e9a4689c03b86f85867bc9565e248a5b6cb1742d3f5a741b82",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.073,
+      "peak_gpu_memory_bytes": 13169523200,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "at_outlet_s3104",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/at_outlet/at_outlet_s3104.png",
+      "sha256": "35d0aac56b527b19a46aba6112ecd9cee3ae4cad83ccf59a7f4e0e6e06c6a9bc",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.066,
+      "peak_gpu_memory_bytes": 13171685888,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+      "revision": "baseline"
+    },
+    {
+      "name": "in_channel_v2_s3101",
+      "revision": "sediment_emphasis",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/in_channel/in_channel_v2_s3101.png",
+      "sha256": "dbbe529275af9c2eb7fb4fe15cf7aaf68e8539f2cb029c6c3a0a28107a45cded",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 18.164,
+      "peak_gpu_memory_bytes": 13168294400,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    },
+    {
+      "name": "at_outlet_v2_s3101",
+      "revision": "sediment_emphasis",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/at_outlet/at_outlet_v2_s3101.png",
+      "sha256": "7c33c602beec8e2c8f53a8b18894511f8252fa156fb0044a257ab6c97b4def02",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.008,
+      "peak_gpu_memory_bytes": 13170768384,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    },
+    {
+      "name": "in_channel_v2_s3102",
+      "revision": "sediment_emphasis",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/in_channel/in_channel_v2_s3102.png",
+      "sha256": "d1c2cadcbeb5f4bce2ca0f9ac4314eefceb14a51f9058269a64ddf6eb20c8a07",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.033,
+      "peak_gpu_memory_bytes": 13170326016,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    },
+    {
+      "name": "at_outlet_v2_s3102",
+      "revision": "sediment_emphasis",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/at_outlet/at_outlet_v2_s3102.png",
+      "sha256": "1053dc9158cbeffae7a1efbae3696db9221db80a6cd34c9e44ccab697511fa35",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.055,
+      "peak_gpu_memory_bytes": 13169949184,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    },
+    {
+      "name": "in_channel_v2_s3103",
+      "revision": "sediment_emphasis",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/in_channel/in_channel_v2_s3103.png",
+      "sha256": "847f43b0fa7f60b3fcb6b1501675db0f72b24d843cc4902514e206a4c2390326",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.055,
+      "peak_gpu_memory_bytes": 13169949184,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    },
+    {
+      "name": "at_outlet_v2_s3103",
+      "revision": "sediment_emphasis",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/at_outlet/at_outlet_v2_s3103.png",
+      "sha256": "981766f6e55d78275d58330635af0e308de8f19377e1d391536d2fc0f5d718d0",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.05,
+      "peak_gpu_memory_bytes": 13169474048,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    },
+    {
+      "name": "in_channel_v2_s3104",
+      "revision": "sediment_emphasis",
+      "stage": "in_channel",
+      "meaning": "sediment moves downstream while remaining inside the river",
+      "display_frame": 10,
+      "state_frame": 21,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/in_channel/in_channel_v2_s3104.png",
+      "sha256": "a066b2ef281a907e3ee16e9a40dc69a2aa8ca7c8e01ade2226f75fc9edd81dc5",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.113,
+      "peak_gpu_memory_bytes": 13169523200,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/in_channel_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    },
+    {
+      "name": "at_outlet_v2_s3104",
+      "revision": "sediment_emphasis",
+      "stage": "at_outlet",
+      "meaning": "sediment front reaches the river outlet without entering the sea",
+      "display_frame": 13,
+      "state_frame": 27,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/sediment_emphasis/at_outlet/at_outlet_v2_s3104.png",
+      "sha256": "5138587796d4a3d86c9a066c1280497ff4e95b393fe9a4c801ab55e4dfb139b3",
+      "size": [
+        1344,
+        768
+      ],
+      "inference_seconds": 17.207,
+      "peak_gpu_memory_bytes": 13171685888,
+      "reused": false,
+      "prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/at_outlet_v2.txt",
+      "negative_prompt_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/prompts/sediment_emphasis_negative.txt",
+      "control_path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+    }
+  ],
+  "model_load_seconds": 5.333,
+  "scheduler": {
+    "class": "EulerDiscreteScheduler",
+    "config": {
+      "num_train_timesteps": 1000,
+      "beta_start": 0.00085,
+      "beta_end": 0.012,
+      "beta_schedule": "scaled_linear",
+      "trained_betas": null,
+      "prediction_type": "epsilon",
+      "interpolation_type": "linear",
+      "use_karras_sigmas": false,
+      "use_exponential_sigmas": false,
+      "use_beta_sigmas": false,
+      "sigma_min": null,
+      "sigma_max": null,
+      "timestep_spacing": "leading",
+      "timestep_type": "discrete",
+      "steps_offset": 1,
+      "rescale_betas_zero_snr": false,
+      "final_sigmas_type": "zero",
+      "_use_default_values": [
+        "sigma_max",
+        "timestep_type",
+        "rescale_betas_zero_snr",
+        "use_beta_sigmas",
+        "use_exponential_sigmas",
+        "final_sigmas_type",
+        "sigma_min"
+      ],
+      "_class_name": "EulerDiscreteScheduler",
+      "_diffusers_version": "0.19.0.dev0",
+      "clip_sample": false,
+      "sample_max_value": 1.0,
+      "set_alpha_to_one": false,
+      "skip_prk_steps": true
+    }
+  },
+  "started_at_unix": 1785240694.6847289,
+  "completed_at_unix": 1785240832.4333386,
+  "total_generation_seconds": 137.749,
+  "revision_run": {
+    "name": "sediment_emphasis",
+    "reason": "baseline pairs were consistent but 8/8 lacked a visible ochre sediment front",
+    "changed_variable": "sediment wording in prompt and negative prompt",
+    "unchanged": [
+      "model weights",
+      "control image",
+      "pipeline",
+      "resolution, steps, CFG, and ControlNet scale",
+      "four paired seeds"
+    ],
+    "model_load_seconds": 5.355,
+    "started_at_unix": 1785241039.8926356,
+    "completed_at_unix": 1785241177.588259,
+    "generation_seconds": 137.696
+  }
+}

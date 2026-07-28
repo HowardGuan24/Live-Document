@@ -1,0 +1,209 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<title>ControlNet 线稿对照实验</title>
+<style>body{max-width:1100px;margin:32px auto;padding:0 24px;background:#f7fafb;
+color:#172127;font:16px/1.65 system-ui,sans-serif}pre{white-space:pre-wrap;
+background:white;padding:28px;border-radius:12px;box-shadow:0 2px 16px #0001}
+</style></head><body><pre># ControlNet 线稿对照实验
+
+## 结论
+
+### 总结
+
+“缺少有效线稿”确实是旧结果差的原因之一，但准确说是缺少“来自一幅视觉上已经成立的目标构图的真实可见边缘”，不是单纯缺少更多线。去掉 smooth_base img2img 后，稀疏 Canny 组的自然纹理明显优于旧 Route B；给合成语义线图时，模型忠实生成地图式沟槽；给自然参考图提取的 Canny 时，四张又全部恢复自然航拍质感。ControlNet 和本地模型能够做出网上 demo 那类自然重绘，当前瓶颈主要是控制图内容不成立。12 张候选仍没有一张满足最终目标，因为唯一几何正确的机制图太粗，而自然参考图本身又是错误的斜视狭长水道。
+
+- 稀疏 Canny：四张都有比旧 Route B 更自然的沙地、水体和岸边纹理，证明纯 SDXL Canny 管线本身能生成细节；但 1734 个边缘像素只描述了一条笔直海岸和矩形河口，约束不足，模型仍按自身先验自由补成沙洲、狭长水道或斜岸，且没有可靠生成赭色水下羽流。
+- 详细线图：四张都明显遵循新增线条，25352 个边缘像素不是被模型忽略了；问题是模型把五条羽流流线当成五条硬水道，把水深线和陆地等高线当成可见地貌分界，结果更像地图或沟渠系统，画面结构虽然更受控，照片真实性反而下降。
+- 参考图实边 Canny：四张都保持了自然水岸、沙地和水体材质，没有详细线图组的网格与沟槽感。s3103 最接近源图，但源图本身也是 seed 3103，存在同 seed 先验重合，不能单独作为证据；不同 seed 的 s3101、s3102、s3104 也仍呈现自然航拍质感，并受源图强岸线锚定，但硬边之间的具体水域形状会漂移。它们证明这套 ControlNet 能使用自然图像边缘，却不能把错误参考构图自动改成目标河口。
+- 根因判断：旧 Route B 有两个不同问题：smooth_base img2img 把低频大色块直接带进输出；稀疏 Canny 又没有提供足够的自然几何。本轮移除前者后画质恢复，换成自然参考实边后自然性进一步稳定。合成语义线不等于照片边缘。Canny 适合锁定可见的岸线、河岸和物体轮廓，不适合表示没有硬边界的悬浮泥沙密度。
+
+### 盲评与逐组复核
+
+先查看隐藏路线和 seed 的 comparison-blind.jpg，再打开 blind_order.json 解盲。盲看时，Candidate 02/07/09/11 都有自然水岸和连续材质；Candidate 01/03/06/12 都有明显网格、沟槽、平行边界或多水道；Candidate 04/05/08/10 较自然但几何约束弱。解盲后三组分别完整对应 reference_canny、detailed_lineart 和 sparse_canny，说明结论不是看标签后倒推。
+
+- seed 3101：稀疏图生成了自然纹理但河口关系错误；详细图出现大量规则分区；参考实边图生成自然的弯曲岸带，但仍不是目标河口。
+- seed 3102：稀疏图最接近“左侧河流进入右侧水体”，但像人工直渠且没有赭色羽流；详细图把五条流线变成多条蓝色水道；参考实边图形成自然但错误的汇流水岸。
+- seed 3103：稀疏图退化为狭长纵向水带；详细图形成地图式平行线；参考实边图几乎重建自然源图，但同 seed 重合使这一张只能作直观展示，不能单独证明 ControlNet 贡献。
+- seed 3104：稀疏图是自然海岸局部但看不出目标河流；详细图形成台地和硬分叉；参考实边图保留自然弯曲水岸，且它与源图 seed 不同。
+
+- 稀疏组相对最好：`sparse_canny_s3102.png`，但不合格。
+- 详细组相对最好：`detailed_lineart_s3102.png`，但不合格。
+- 参考边缘组代表图：`reference_canny_s3104.png`，用于验证还原能力，不是目标构图。
+
+### 这次实验能证明什么、不能证明什么
+
+本实验能证明当前本地 SDXL Canny ControlNet 会响应控制线，也能证明旧 smooth_base 和稀疏机制边缘共同限制了结果。自然参考实边组证明，换成来自成立画面的边缘后，同一模型与 prompt 能恢复自然质感；但源图不是目标构图，因此不能证明我们已经有可用于最终画面的线稿。实验也没有测试 SoftEdge、Depth、Segmentation、IP-Adapter 或局部重绘。
+
+### 下一步
+
+先制作一张本身就视觉成立的粗参考构图：严格俯视、左侧单河道、自然海岸、开阔海域，随后只从其中真实可见的河岸和海岸提取 Canny；不要把等高线、水深线或羽流内部流线送给 Canny。ControlNet 只负责硬几何，赭色悬沙应作为软密度/颜色现象，用真实泥沙羽流参考图、SoftEdge/分割条件，或在锁定岸线后进行一次有明确记录的局部重绘。下一次仍应保留纯 ControlNet、相同 seed 的单变量对照。
+
+## 1. 这个实验回答什么
+
+旧 Route B 同时使用了 `smooth_base` img2img 和 Canny，因此无法区分结果差是因为平滑
+底图，还是因为控制线条太少。本实验移除 img2img，只运行
+`StableDiffusionXLControlNetPipeline`，并且只改变控制图：
+
+- A：原来的 `sparse_canny.png`；
+- B：新生成的 `detailed_lineart.png`；
+- C：从已有自然航拍图逐像素执行 Canny 得到的 `reference_canny.png`。
+
+模型、prompt、negative prompt、四个 seed、分辨率、步数、CFG 和 ControlNet scale
+全部相同。没有 strength，因为本实验没有 img2img 初始图；没有 mask projection。
+其中 C 最接近网上“从已有图像提取线条再重绘”的 demo，但它的源图不是合格目标构图，
+所以只检验 ControlNet 能否利用真实图像边缘，不参与最终地理构图优选。
+
+## 2. 三张控制图
+
+先看 `source-comparison.jpg`。
+
+### A：稀疏 Canny
+
+路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/sparse_canny.png`
+
+- edge pixels：1734
+- edge fraction：0.00168
+- SHA-256：`6849d6fd1f74d1d6dadc7d0a5c2ba722b5bbc484a303ea782ace1f93fff544c6`
+- 内容：原 96×64 机制陆地掩码放大后得到的笔直海岸和矩形河道边缘。
+
+### B：详细合成语义线图
+
+路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/detailed_lineart.png`
+
+- edge pixels：25352
+- edge fraction：0.024561
+- SHA-256：`13c7683b68847f6dde66151271a71ec3024f3872a4eb5eb0a9fe5b23c0f1fef7`
+- 内容：自然曲线海岸、单一缓弯河道、陆地等高线、近岸水深线，以及向海域扩张的
+  五条泥沙羽流流线。
+
+它的边缘像素是 A 的 14.6 倍。这里故意称它为“合成语义线图”，而不是
+“高质量线稿”：它由 `detailed_lineart()` 确定性生成，没有调用另一个图像模型，也
+不是人工挑选后隐藏来源的图片；但其中的等高线、水深线和羽流流线只是我们希望表达的
+概念，并不都是最终照片中真实可见的物体边缘。这个区别直接影响实验结果。
+
+### C：自然参考图的真实 Canny 边缘
+
+源图路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/reference_image.png`
+
+- 源图 SHA-256：`e019d938d20ee9e8fd7d6c2099e83f632f6f69279312ce8ed519a7b2c4446894`
+- Canny 路径：`/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/first_frame_test/controlnet_line_test/_work/source/reference_canny.png`
+- Canny edge pixels：5240
+- Canny edge fraction：0.005077
+- Canny SHA-256：`eedc2261d653397ab10219f81d86fd1a1a6deb922f95d4fea49892f768cfb337`
+- 提取方法：OpenCV Canny thresholds 100/200
+
+源图是前一轮纯 SDXL 生成的 `free_topdown_s3103.png`。它有连续、自然的真实可见岸线
+和地表纹理，但实际是斜视狭长水道，不符合本阶段的“左侧河流进入开阔海域”。选择它
+不是为了偷换目标，而是为了复刻网上 demo 的前提：控制边缘来自一幅视觉上已经成立的
+图像。
+
+## 3. 为什么网上的 Canny demo 看起来更好
+
+典型 Canny demo 的控制图通常来自一张已经有合理构图、透视、轮廓和物体比例的参考图。
+Canny 只删除颜色和纹理，却保留了这些真实可见边缘；扩散模型的工作主要是把纹理和
+风格重新填回去。
+
+本实验的 A 来自 96×64 机制图，只有笔直海岸和矩形河道，缺少足够几何信息。B 虽然
+线更多，却加入了地图式等高线、水深线和羽流内部流线。Canny ControlNet 不知道哪条线
+是“仅供理解的说明”，会把它们都当成应该出现在成图里的强边界，于是生成沟槽、额外
+水道和地质分界。悬浮泥沙本来是软密度场，也没有适合用 Canny 表达的硬轮廓。
+
+所以真正的差别不是简单的“有没有线稿”，而是控制图是否来自一幅视觉上已经成立的
+目标构图，以及其中每条边是否应该成为成图的可见边缘。C 组就是对此判断的直接检查。
+
+## 4. 实际提示词
+
+正向 prompt（两个 tokenizer 均为
+76/77 tokens）：
+
+```text
+photorealistic scientific aerial view, strict orthographic top-down,
+one river enters a blue-green coastal sea from the left,
+a broad ochre sediment plume spreads beyond the mouth through shallow water,
+continuous coastline, realistic natural textures,
+natural turbidity and depth gradients,
+no emerged delta island, extra channels, text, arrows, boats, or buildings
+```
+
+负向 prompt（两个 tokenizer 均为
+71/77 tokens）：
+
+```text
+pixel art, flat vector, infographic, schematic map, plastic, resin, clay,
+glossy miniature, watercolor, blurry, dreamy, low detail, delta island,
+extra islands, branching river, extra channels, oblique view, horizon,
+perspective, boats, buildings, roads, people, text, labels, arrows, legend, watermark
+```
+
+## 5. 固定推理参数
+
+- pipeline：`StableDiffusionXLControlNetPipeline`
+- size：1344×768
+- steps：36
+- guidance scale：6.5
+- ControlNet scale：0.5
+- seeds：[3101, 3102, 3103, 3104]
+- scheduler：`EulerDiscreteScheduler`
+- img2img initial image：无
+- strength：无
+- model load：5.328 秒
+- 本次调用 generation：69.671 秒
+- 本次调用新生成 / 复用：4 / 8 张
+- GPU：`AMD Radeon Graphics`
+- HIP：`7.2.53211-e1a6bc5663`
+
+这里的 total 只统计最后一次增量调用：A/B 两组已在上一批实际生成并通过哈希复用，
+本次新增 C 组四张。表中每张的秒数保留其实际生成时记录；使用复现命令中的 `--force`
+会在一次调用中重新生成全部 12 张。
+
+## 6. 全部候选
+
+| 文件 | 控制图 | seed | 秒 | 本次调用 | SHA-256 |
+|---|---|---:|---:|---|---|
+| `sparse_canny_s3101.png` | sparse_canny | 3101 | 18.274 | 复用原图 | `6021adf50a883bca482c15b44ef32af5adcc261ace9e34f803d82269ea338bc7` |
+| `sparse_canny_s3102.png` | sparse_canny | 3102 | 17.020 | 复用原图 | `ac4fe864a6b5e344b06b2cf1734105ab80b9f24b3ff9e5a8ac0ff91682370200` |
+| `sparse_canny_s3103.png` | sparse_canny | 3103 | 17.056 | 复用原图 | `77edb0b8d0f9ed7c10a70d49fa63cebc3a19d14fccf6fa3bf0a0b829ba40e52a` |
+| `sparse_canny_s3104.png` | sparse_canny | 3104 | 17.083 | 复用原图 | `5750593fadd676b156db5995c7c16c48432005b0d6625560611fe9f1de4dbd98` |
+| `detailed_lineart_s3101.png` | detailed_lineart | 3101 | 17.079 | 复用原图 | `20cc3291a7a6c5e2bc5a06590353538c798932c78bbcea1fc1b285e2fc5076db` |
+| `detailed_lineart_s3102.png` | detailed_lineart | 3102 | 17.071 | 复用原图 | `350398feb301023451b64c41ca2f1a9a9d2e81a55905b69fe186077124c92daa` |
+| `detailed_lineart_s3103.png` | detailed_lineart | 3103 | 17.066 | 复用原图 | `71e0bad0ca501a09dada1dca550767a3c380dd5b05edcb595d7275f6c61e618f` |
+| `detailed_lineart_s3104.png` | detailed_lineart | 3104 | 17.105 | 复用原图 | `7ee575b92ead26c3e2953b511eb958c5a15addf0e4d5f3580a2a682428b4bb4d` |
+| `reference_canny_s3101.png` | reference_canny | 3101 | 18.264 | 新生成 | `cb6a2c21a63bc39214fec445653f52aa427356f46b56c13ee7302044fc27e8f9` |
+| `reference_canny_s3102.png` | reference_canny | 3102 | 17.079 | 新生成 | `2c2dc703d1bd0319dfd8af7347aac684332126621074cf55d6df0217fe0da0d3` |
+| `reference_canny_s3103.png` | reference_canny | 3103 | 17.171 | 新生成 | `6260324d05cbed2f9a1834d3c67624bf482075d39ca268c1c6ba3ad3d55edd53` |
+| `reference_canny_s3104.png` | reference_canny | 3104 | 17.130 | 新生成 | `26beef74f4fe7ed05ae48258934454bd605b12c3c722c79f77567f0334741249` |
+
+查看方式：
+
+- `comparison-blind.jpg`：12 张随机排序，不显示控制图名称；
+- `comparison-labeled.jpg`：每行一个 seed，依次为稀疏、详细、参考边缘；
+- `reference-reconstruction.jpg`：自然源图与四张参考边缘重建结果；
+- `review/sparse_canny/contact-sheet.jpg`：稀疏控制内部对比；
+- `review/detailed_lineart/contact-sheet.jpg`：详细线图内部对比；
+- `review/reference_canny/contact-sheet.jpg`：真实参考边缘内部对比。
+
+## 7. 模型权重
+
+- `stabilityai/stable-diffusion-xl-base-1.0`
+  - `text_encoder/model.fp16.safetensors`: `660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd`
+  - `text_encoder_2/model.fp16.safetensors`: `ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4`
+  - `unet/diffusion_pytorch_model.fp16.safetensors`: `83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139`
+  - `vae/diffusion_pytorch_model.fp16.safetensors`: `bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68`
+- `diffusers/controlnet-canny-sdxl-1.0`
+  - `diffusion_pytorch_model.fp16.safetensors`: `b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25`
+
+## 8. 复现
+
+从仓库根目录运行：
+
+```bash
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.controlnet_line_test \
+  --prepare
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.controlnet_line_test \
+  --generate --force
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.controlnet_line_test \
+  --report
+```
+
+`_work/prepare_manifest.json` 保存控制图生成内容和哈希，`_work/metadata.json` 保存每张
+候选的参数、耗时和哈希，`_work/review.json` 保存人工审图结论。
+</pre></body></html>

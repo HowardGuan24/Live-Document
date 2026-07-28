@@ -1,0 +1,16 @@
+{
+  "name": "quality",
+  "description": "Higher-resolution multiscale final export using the official distilled two-pass schedule.",
+  "width": 768,
+  "height": 480,
+  "num_frames": 73,
+  "fps": 18,
+  "duration_seconds": 4.0,
+  "inference_steps": 7,
+  "guidance_scale": 1.0,
+  "prompt_template_version": "ltx-explainer-v2.1",
+  "use_multiscale": true,
+  "vae_tiling": false,
+  "vae_slicing": false,
+  "cpu_offload": false
+}

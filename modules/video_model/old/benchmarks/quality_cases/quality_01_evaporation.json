@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_01_evaporation",
+  "seed": 2101,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "process",
+  "source_text": "Water evaporates, rises, cools, and condenses into clouds.",
+  "visual_goal": "Show the transformation and upward movement of water during evaporation and condensation.",
+  "content_type": "process",
+  "video_prompt": "Water vapor rises from one calm blue pool and gathers into one small white cloud above it.",
+  "required_visual_elements": ["water surface", "upward vapor", "one cloud"],
+  "forbidden_or_risky_behavior": ["downward vapor", "camera movement", "extra clouds"],
+  "expected_takeaway": "Water moves upward as vapor and forms a cloud."
+}

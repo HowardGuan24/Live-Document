@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_06_shadow",
+  "seed": 2106,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "scene",
+  "source_text": "Moving a lamp closer makes an object's shadow larger.",
+  "visual_goal": "Show the cause-and-effect relation between lamp distance and shadow size.",
+  "content_type": "scene",
+  "video_prompt": "One lamp moves slowly toward one stationary cube while the cube's shadow on the wall grows larger; fixed side view.",
+  "required_visual_elements": ["one lamp", "one cube", "growing shadow"],
+  "forbidden_or_risky_behavior": ["cube moving", "multiple shadows", "camera zoom"],
+  "expected_takeaway": "A closer lamp creates a larger shadow."
+}

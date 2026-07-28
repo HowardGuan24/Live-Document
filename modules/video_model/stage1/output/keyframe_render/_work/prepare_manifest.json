@@ -1,0 +1,95 @@
+{
+  "status": "prepared",
+  "selection_method": "semantic beat lookup in timeline.json",
+  "source_timeline": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/timeline.json",
+  "keyframes": {
+    "first": {
+      "beat_id": "accumulate",
+      "display_frame": 71,
+      "state_frame": 100,
+      "is_hold": true,
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/first.png",
+      "conditioning_image": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/control_edges/first_canny.png",
+      "conditioning_method": "OpenCV Canny thresholds 100/200",
+      "masks": {
+        "original_land": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/first_original_land.png",
+          "grid_cells": 2128,
+          "sha256": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59"
+        },
+        "river": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/first_river.png",
+          "grid_cells": 304,
+          "sha256": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1"
+        },
+        "ocean": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/first_ocean.png",
+          "grid_cells": 3317,
+          "sha256": "243e62d38a82be54916abb4de11cc6f0fa3eb7152158a94ae1c7de7ae9728444"
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/first_underwater_deposit.png",
+          "grid_cells": 395,
+          "sha256": "d769e0055b5def8949e234856ea56e57ecc7b3f9d5a315d5c824652988669e66"
+        },
+        "new_land": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/first_new_land.png",
+          "grid_cells": 0,
+          "sha256": "97328da068aa15d0bc1ecc3421b535dc37595d14b11de8d74e863c0cf1ef813f"
+        }
+      },
+      "removed_overlays": [
+        "flow arrows",
+        "sediment particles",
+        "captions",
+        "legend",
+        "progress dots",
+        "bottom panel"
+      ]
+    },
+    "last": {
+      "beat_id": "threshold_change",
+      "display_frame": 85,
+      "state_frame": 107,
+      "is_hold": true,
+      "clean_base": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/base_images/last.png",
+      "conditioning_image": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/control_edges/last_canny.png",
+      "conditioning_method": "OpenCV Canny thresholds 100/200",
+      "masks": {
+        "original_land": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/last_original_land.png",
+          "grid_cells": 2128,
+          "sha256": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59"
+        },
+        "river": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/last_river.png",
+          "grid_cells": 304,
+          "sha256": "e5ea195e3f80dd0a5aa99c0e2cf75d13df6002d8f638f966e907e418337c68d1"
+        },
+        "ocean": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/last_ocean.png",
+          "grid_cells": 3269,
+          "sha256": "50967d4d55a18d30113e3599aacff4d82249b1bcf65d4df3a81986f3c690eda1"
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/last_underwater_deposit.png",
+          "grid_cells": 434,
+          "sha256": "5ef176015226534a81920277a7f93881f3c9b20e2eaa80dd1a6e7e1024926157"
+        },
+        "new_land": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/_work/semantic_masks/last_new_land.png",
+          "grid_cells": 9,
+          "sha256": "ebf3509bb8e0a0ec81ea1ab46add88d756ac27541f623184ccf06a400d9c9797"
+        }
+      },
+      "removed_overlays": [
+        "flow arrows",
+        "sediment particles",
+        "captions",
+        "legend",
+        "progress dots",
+        "bottom panel"
+      ]
+    }
+  }
+}

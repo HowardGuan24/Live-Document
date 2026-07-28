@@ -1,0 +1,13 @@
+{
+  "case_id": "quality_03_seed_growth",
+  "seed": 2103,
+  "prompt_version": "ltx-explainer-v2.1",
+  "expected_content_type": "state_change",
+  "source_text": "A seed absorbs water and sprouts a root before a shoot emerges.",
+  "visual_goal": "Show the ordered transformation from seed to sprout.",
+  "content_type": "state_change",
+  "video_prompt": "One brown seed swells, grows one white root downward, then one green shoot upward against a plain soil cross-section.",
+  "required_visual_elements": ["one seed", "root downward", "shoot upward"],
+  "forbidden_or_risky_behavior": ["multiple seeds", "reversed directions", "instant replacement"],
+  "expected_takeaway": "The root emerges before the upward shoot."
+}

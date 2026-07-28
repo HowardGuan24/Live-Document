@@ -1,0 +1,62 @@
+{
+  "Candidate 01": {
+    "name": "detailed_lineart_s3102",
+    "condition": "detailed_lineart",
+    "seed": 3102
+  },
+  "Candidate 02": {
+    "name": "reference_canny_s3103",
+    "condition": "reference_canny",
+    "seed": 3103
+  },
+  "Candidate 03": {
+    "name": "detailed_lineart_s3101",
+    "condition": "detailed_lineart",
+    "seed": 3101
+  },
+  "Candidate 04": {
+    "name": "sparse_canny_s3102",
+    "condition": "sparse_canny",
+    "seed": 3102
+  },
+  "Candidate 05": {
+    "name": "sparse_canny_s3104",
+    "condition": "sparse_canny",
+    "seed": 3104
+  },
+  "Candidate 06": {
+    "name": "detailed_lineart_s3103",
+    "condition": "detailed_lineart",
+    "seed": 3103
+  },
+  "Candidate 07": {
+    "name": "reference_canny_s3104",
+    "condition": "reference_canny",
+    "seed": 3104
+  },
+  "Candidate 08": {
+    "name": "sparse_canny_s3103",
+    "condition": "sparse_canny",
+    "seed": 3103
+  },
+  "Candidate 09": {
+    "name": "reference_canny_s3101",
+    "condition": "reference_canny",
+    "seed": 3101
+  },
+  "Candidate 10": {
+    "name": "sparse_canny_s3101",
+    "condition": "sparse_canny",
+    "seed": 3101
+  },
+  "Candidate 11": {
+    "name": "reference_canny_s3102",
+    "condition": "reference_canny",
+    "seed": 3102
+  },
+  "Candidate 12": {
+    "name": "detailed_lineart_s3104",
+    "condition": "detailed_lineart",
+    "seed": 3104
+  }
+}

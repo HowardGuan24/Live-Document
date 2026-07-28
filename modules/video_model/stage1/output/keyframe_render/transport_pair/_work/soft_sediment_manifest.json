@@ -1,0 +1,86 @@
+{
+  "status": "built",
+  "base_seed": 3102,
+  "classification": "hybrid: raw SDXL ControlNet base plus deterministic audited soft-sediment color layer",
+  "reason": "baseline and prompt revision both preserved scene geometry but 16/16 raw outputs failed to show an ochre sediment front",
+  "method": {
+    "coordinate_mapping": "Map every particle x from mechanism [0, coastline_x=38] to the naturalized river [0, mouth_x=0.43*1344]; map y relative to river_center_y=31.5 and river_half_width=4 into the local curved river corridor.",
+    "density": "Nearest-pixel particle splat, OpenCV GaussianBlur sigmaX=20/sigmaY=30 pixels, positive 99th-percentile normalization, gamma=0.72, multiplied by a 2.5-pixel soft river-corridor boundary.",
+    "color": "First normalize the softly feathered river corridor toward RGB(54,123,132) at alpha 0.62 while retaining raw-model luminance, fading that normalization over the last 70 pixels before the outlet; then blend particle density toward RGB(150,76,35) with maximum alpha 0.72.",
+    "geometry_change": false,
+    "model_input": false,
+    "mask_projection": "No model texture projection. One explicit post-generation river-corridor color constraint is used and recorded."
+  },
+  "records": {
+    "in_channel": {
+      "display_frame": 10,
+      "state_frame": 21,
+      "particle_count": 308,
+      "base_model_output": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/in_channel/in_channel_s3102.png",
+        "sha256": "b3f347b38cf7c78984236fd004ee1ce2b14817abeb3a873e76a97dd458652458"
+      },
+      "density": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/soft_sediment/in_channel_density.png",
+        "sha256": "8c9b91313d7f74a712e0784e018b612f6f456ae50128d69063044fed0e6e758d",
+        "nonzero_pixels": 69467,
+        "pixels_above_0_05": 60212,
+        "maximum": 1.0
+      },
+      "alpha": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/soft_sediment/in_channel_alpha.png",
+        "sha256": "0c5423df4711cd3ded7a274034850f443e00511966fa3f4a69246502a48bd4f7",
+        "maximum_opacity": 0.72,
+        "actual_maximum": 0.72
+      },
+      "river_corridor": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/soft_sediment/river_corridor.png",
+        "sha256": "1588033788a4257629974add656c271357dd827f180987b492c783793f336dd6",
+        "purpose": "The controlled region between the two river banks is mechanistically water; normalize only that region before applying sediment."
+      },
+      "result": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/soft_sediment/in_channel_s3102.png",
+        "sha256": "be2b359e41e6fdae3bc23b3761c7b69bf333773e09d83649e8f3c344ae7b6764",
+        "size": [
+          1344,
+          768
+        ]
+      }
+    },
+    "at_outlet": {
+      "display_frame": 13,
+      "state_frame": 27,
+      "particle_count": 392,
+      "base_model_output": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/at_outlet/at_outlet_s3102.png",
+        "sha256": "56527b4adda3028c1d769a45b89943bdda50cb1c1fb5b186bf895d6e21777fd9"
+      },
+      "density": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/soft_sediment/at_outlet_density.png",
+        "sha256": "ad55633e40caf15685f183dde0121062eaaa79ba941c03b0294e5c25d0bd7c1d",
+        "nonzero_pixels": 76887,
+        "pixels_above_0_05": 72962,
+        "maximum": 1.0
+      },
+      "alpha": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/soft_sediment/at_outlet_alpha.png",
+        "sha256": "16ae99969149949b255d50278e6fe511a85005c435786afda7b8fd4f4c0ef28a",
+        "maximum_opacity": 0.72,
+        "actual_maximum": 0.72
+      },
+      "river_corridor": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/soft_sediment/river_corridor.png",
+        "sha256": "1588033788a4257629974add656c271357dd827f180987b492c783793f336dd6",
+        "purpose": "The controlled region between the two river banks is mechanistically water; normalize only that region before applying sediment."
+      },
+      "result": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/review/soft_sediment/at_outlet_s3102.png",
+        "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763",
+        "size": [
+          1344,
+          768
+        ]
+      }
+    }
+  }
+}
