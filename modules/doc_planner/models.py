@@ -1,5 +1,5 @@
 """
-数据模型 — ExplanationSpec 及相关结构定义
+数据模型 — LearningSpec 及相关结构定义
 """
 
 from dataclasses import dataclass, field, asdict
@@ -35,17 +35,32 @@ class Segment:
 
 
 @dataclass
-class ExplanationSpec:
+class CausalStep:
+    """因果步骤"""
+    cause: str
+    change: str
+    visual_evidence: str
+
+
+@dataclass
+class LearningSpec:
     """
-    统一结构化 JSON — 提交给下游渲染器的动画计划
+    统一结构化 JSON — 文段的学习解释计划
+
+    字段说明：
+    - learning_goal: 本段核心学习主旨
+    - entities: 段落中的关键实体（事物、对象）
+    - state_variables: 动态过程中的可变参数
+    - causal_steps: 因果链（原因 → 变化 → 视觉证据）
+    - invariants: 过程中必须满足的约束
+    - comprehension_questions: 配套理解检测问题
     """
-    source_text: str
-    type: str
-    renderer: str
-    goal: str
-    objects: List[str]
-    steps: List[str]
-    confidence: float = 1.0
+    learning_goal: Optional[str]
+    entities: List[str]
+    state_variables: List[str]
+    causal_steps: List[dict]  # 每项: {"cause", "change", "visual_evidence"}
+    invariants: List[str]
+    comprehension_questions: List[str]
     fallback_reason: Optional[str] = None
 
     def to_json(self, indent=2) -> str:

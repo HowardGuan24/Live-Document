@@ -4,14 +4,14 @@ Live-Document 将技术或教学文档中的知识片段转换为动态解释。
 
 ```text
 文档内容
-  → 文档理解与动画规划（ExplanationSpec）
+  → 文档理解与动画规划（LearningSpec）
   → 确定性动画（DSL → Manim → MP4/GIF）
   → 概率生成动画（LTX/Wan → MP4/WebM/GIF）
 ```
 
 ## 模块 A：文档理解与动画规划
 
-从文档到 `ExplanationSpec` 的全流程管线，负责识别值得动态化的内容片段，分类并生成结构化动画计划。
+从文档到 `LearningSpec` 的全流程管线，负责识别值得动态化的内容片段，提取因果链条并生成结构化学习计划。
 
 ### 管线架构
 
@@ -26,7 +26,7 @@ classifier.py   分类：formula | process | dataflow | operation | scene
   ↓
 router.py       确定性路由 → manim | css_animation | three_js | svg | text_only
   ↓
-generator.py    生成 ExplanationSpec（结构化 JSON）
+generator.py    生成 LearningSpec（结构化 JSON）
 ```
 
 ### 快速开始
@@ -42,28 +42,52 @@ python main.py data/test_paragraphs.json -o output.json -p
 python tests/test_acceptance.py
 ```
 
-### 输出示例
+### 输出格式（LearningSpec）
 
 ```json
 {
-  "source_text": "梯度下降沿负梯度方向更新参数",
-  "type": "formula",
-  "renderer": "manim",
-  "goal": "直观展示公式的含义与变换过程",
-  "objects": ["gradient_arrow", "parameter_point"],
-  "steps": ["show_formula", "highlight_variables", "animate_transformation", "show_result"],
-  "confidence": 0.52,
-  "fallback_reason": null
+  "learning_goal": "理解三角洲为什么形成",
+  "entities": ["水流", "泥沙", "水下沉积", "新生陆地"],
+  "state_variables": ["流速", "泥沙位置", "沉积厚度", "陆地范围"],
+  "causal_steps": [
+    {
+      "cause": "河流进入开阔水域",
+      "change": "流速下降",
+      "visual_evidence": "箭头变短"
+    },
+    {
+      "cause": "流速下降",
+      "change": "泥沙沉降并累积",
+      "visual_evidence": "颗粒停止并形成褐色沉积层"
+    }
+  ],
+  "invariants": ["泥沙不能在到达河口前沉降"],
+  "comprehension_questions": [
+    "泥沙为什么在河口沉积？",
+    "河流为什么形成分流？"
+  ]
 }
 ```
+
+| 字段 | 含义 |
+|------|------|
+| `learning_goal` | 本段核心学习主旨 |
+| `entities` | 段落中的关键实体 |
+| `state_variables` | 动态过程中的可变参数 |
+| `causal_steps` | 因果链：原因 → 变化 → 图上效果 |
+| `invariants` | 过程中必须满足的约束 |
+| `comprehension_questions` | 配套理解检测问题 |
 
 不适合动态化的内容返回 fallback 而非硬生成：
 
 ```json
 {
-  "source_text": "今天的天气很好",
-  "type": "unsuitable",
-  "renderer": "text_only",
+  "learning_goal": null,
+  "entities": [],
+  "state_variables": [],
+  "causal_steps": [],
+  "invariants": [],
+  "comprehension_questions": [],
   "fallback_reason": "评分过低 (0/100)，内容不适合动态化展示"
 }
 ```
@@ -75,7 +99,7 @@ python tests/test_acceptance.py
 ### 工作流
 
 ```text
-动画 DSL / 旧版 ExplanationSpec
+动画 DSL / LearningSpec
   ↓
 输入归一化与引用校验
   ↓
@@ -146,7 +170,7 @@ outputs/<animation-id>/
 
 时间线支持顺序动作和 `parallel` 并行动作。对象 ID、依赖关系、坐标、动作参数、输出尺寸和帧率都会在渲染前验证。
 
-对于旧版 `ExplanationSpec` 中的字符串 `objects` 和 `steps`，引擎会生成通用步骤动画作为兼容兜底。需要精确控制曲线、节点、箭头和运动轨迹时，应使用显式的 DSL `objects` 与 `timeline`。
+对于旧版 `LearningSpec` 中的字符串 `objects` 和 `steps`，引擎会生成通用步骤动画作为兼容兜底。需要精确控制曲线、节点、箭头和运动轨迹时，应使用显式的 DSL `objects` 与 `timeline`。
 
 ### 当前示例与结果
 
@@ -179,7 +203,7 @@ python -m pytest -q
 │   │   ├── scorer.py               # 5 维动态化评分器
 │   │   ├── classifier.py           # 5 类分类器
 │   │   ├── router.py               # 渲染器路由
-│   │   └── generator.py            # ExplanationSpec 生成
+│   │   └── generator.py            # LearningSpec 生成
 │   ├── animation_engine/            # 确定性动画：DSL → Manim → GIF
 │   │   ├── schema.py                # DSL 归一化与校验
 │   │   ├── manim_renderer.py        # 对象工厂与动作解释器
@@ -202,7 +226,7 @@ python -m pytest -q
 
 ### 当前工作流
 
-`ExplanationSpec JSON → 版本化解释型提示词 → LTX/Wan/程序化后端 → 原始 MP4 → ffmpeg 标准化 → MP4/WebM/GIF → ffprobe、哈希与 V2 metadata`。
+`LearningSpec JSON → 版本化解释型提示词 → LTX/Wan/程序化后端 → 原始 MP4 → ffmpeg 标准化 → MP4/WebM/GIF → ffprobe、哈希与 V2 metadata`。
 
 ### 当前支持的后端
 

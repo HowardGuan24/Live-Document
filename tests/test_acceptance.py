@@ -18,7 +18,6 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-# 确保能导入 src
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from modules.doc_planner.parser import parse_document
@@ -26,7 +25,7 @@ from modules.doc_planner.scorer import is_worth_dynamicizing, score_segment
 from modules.doc_planner.classifier import classify_segment
 from modules.doc_planner.router import route_renderer
 from modules.doc_planner.generator import generate_spec
-from modules.doc_planner.models import ExplanationType, Renderer, ExplanationSpec
+from modules.doc_planner.models import ExplanationType, Renderer, LearningSpec
 
 
 # --- 加载测试数据 ---
@@ -51,7 +50,6 @@ def test_find_dynamicizable_positions():
         text = para["text"]
         expected = para["expected_dynamic"]
 
-        # 用 parse_document 处理（模拟实际流程）
         segments = parse_document(text)
         assert len(segments) >= 1, f"段落 {para['id']} 未能被解析"
 
@@ -74,7 +72,6 @@ def test_find_dynamicizable_positions():
     print(f"\n  动态化位置识别: 准确率={accuracy:.0%} "
           f"(TP={true_positives} TN={true_negatives} FP={false_positives} FN={false_negatives})")
 
-    # 容忍最多 3 个误判
     assert false_positives + false_negatives <= 3, (
         f"误判过多: FP={false_positives} FN={false_negatives}"
     )
@@ -98,7 +95,6 @@ def test_classify_correctly():
         exp_type = classify_segment(seg)
 
         expected = para["expected_type"]
-        # 允许一定的灵活度：process/operation 可互换
         compatible = {
             "process": {"process", "operation"},
             "operation": {"process", "operation"},
@@ -116,14 +112,13 @@ def test_classify_correctly():
 
     accuracy = correct / total if total > 0 else 0
     print(f"\n  分类准确率: {accuracy:.0%} ({correct}/{total})")
-    # 至少 70% 正确
     assert accuracy >= 0.7, f"分类准确率过低: {accuracy:.0%}"
 
 
 # --- 验收标准 3: 输出能够被下游程序读取的 JSON ---
 
 def test_output_is_valid_json():
-    """生成的 ExplanationSpec 可序列化为合法 JSON，且字段齐全"""
+    """生成的 LearningSpec 可序列化为合法 JSON，且字段齐全"""
     paragraphs = load_test_paragraphs()
 
     for para in paragraphs:
@@ -138,14 +133,23 @@ def test_output_is_valid_json():
         data = json.loads(json_str)
 
         # 必须包含的字段
-        required_fields = ["source_text", "type", "renderer", "goal", "objects", "steps"]
+        required_fields = [
+            "learning_goal", "entities", "state_variables",
+            "causal_steps", "invariants", "comprehension_questions",
+        ]
         for field in required_fields:
             assert field in data, f"段落 {para['id']} 缺少字段: {field}"
 
         # 类型检查
-        assert isinstance(data["objects"], list), f"段落 {para['id']} objects 不是列表"
-        assert isinstance(data["steps"], list), f"段落 {para['id']} steps 不是列表"
-        assert isinstance(data["confidence"], (int, float)), f"段落 {para['id']} confidence 不是数字"
+        assert isinstance(data["entities"], list), f"段落 {para['id']} entities 不是列表"
+        assert isinstance(data["state_variables"], list), f"段落 {para['id']} state_variables 不是列表"
+        assert isinstance(data["causal_steps"], list), f"段落 {para['id']} causal_steps 不是列表"
+        assert isinstance(data["invariants"], list), f"段落 {para['id']} invariants 不是列表"
+        assert isinstance(data["comprehension_questions"], list), f"段落 {para['id']} comprehension_questions 不是列表"
+
+        # 适合动态化的段落应有 learning_goal
+        if para["expected_dynamic"]:
+            assert data["learning_goal"] is not None, f"段落 {para['id']} 缺少 learning_goal"
 
     print(f"\n  JSON 输出验证: 全部 {len(paragraphs)} 段通过")
 
@@ -165,14 +169,14 @@ def test_unsuitable_returns_fallback():
         spec = generate_spec(seg)
 
         assert spec is not None, f"段落 {para['id']} 返回了 None（应返回 fallback）"
-        assert spec.type == "unsuitable", (
-            f"段落 {para['id']} 不适合动态化但 type={spec.type}"
+        assert spec.learning_goal is None, (
+            f"段落 {para['id']} 不适合动态化但 learning_goal={spec.learning_goal}"
         )
         assert spec.fallback_reason is not None, (
             f"段落 {para['id']} 缺少 fallback_reason"
         )
-        assert spec.renderer == "text_only", (
-            f"段落 {para['id']} renderer 应为 text_only，实际={spec.renderer}"
+        assert len(spec.causal_steps) == 0, (
+            f"段落 {para['id']} 不适合动态化但有 {len(spec.causal_steps)} 个 causal_steps"
         )
         print(f"  ✓ 段落 {para['id']}: 正确返回 fallback — {spec.fallback_reason}")
 

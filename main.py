@@ -1,5 +1,5 @@
 """
-live-document 入口 — 文档 → ExplanationSpec 全流程
+live-document 入口 — 文档 → LearningSpec 全流程
 
 用法：
     python main.py data/test_paragraphs.json
@@ -17,7 +17,7 @@ from modules.doc_planner.generator import generate_spec
 
 
 def process_text(text: str) -> list:
-    """处理纯文本，返回 ExplanationSpec 列表"""
+    """处理纯文本，返回 LearningSpec 列表"""
     segments = parse_document(text)
     specs = []
     for seg in segments:
@@ -28,7 +28,7 @@ def process_text(text: str) -> list:
 
 
 def process_file(filepath: str) -> list:
-    """处理文件，返回 ExplanationSpec 列表"""
+    """处理文件，返回 LearningSpec 列表"""
     path = Path(filepath)
     if not path.exists():
         print(f"错误：文件不存在 — {filepath}", file=sys.stderr)
@@ -58,7 +58,7 @@ def process_file(filepath: str) -> list:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="live-document: 文档 → ExplanationSpec"
+        description="live-document: 文档 → LearningSpec"
     )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("filepath", nargs="?", help="输入文件路径")
@@ -82,11 +82,11 @@ def main():
 
     if args.output:
         Path(args.output).write_text(output, encoding="utf-8")
-        print(f"已写入 {len(specs)} 条 ExplanationSpec → {args.output}")
+        print(f"已写入 {len(specs)} 条 LearningSpec → {args.output}")
     else:
         print(output)
 
-    suitable = sum(1 for s in specs if s.type != "unsuitable")
+    suitable = sum(1 for s in specs if s.fallback_reason is None)
     print(f"\n共 {len(specs)} 段，其中 {suitable} 段适合动态化", file=sys.stderr)
 
 
