@@ -192,6 +192,35 @@ def write_report(spec: dict[str, Any], output_root: Path) -> Path:
         composite = composed["keyframes"][keyframe_id]
         raw = raw_by_key_seed[(keyframe_id, report_seed)]
         tokens = entry["prompt"]["token_counts"]
+        flow_process = ""
+        if semantic["flow_paths"]["path_count"] > 0:
+            flow_process = (
+                '<div class="grid three compact">'
+                + _figure(
+                    output_root,
+                    semantic["flow_audit"]["path"],
+                    "程序流向审计",
+                    "箭头只用于核对绕流方向，不进入成品。",
+                )
+                + _figure(
+                    output_root,
+                    semantic["flow_paths"]["path"],
+                    "两侧水路区域",
+                    semantic["flow_paths"]["meaning"],
+                )
+                + _figure(
+                    output_root,
+                    composite["colored_layers"][
+                        "visible_flow_paths"
+                    ]["path"],
+                    "最终使用的水面增强层",
+                    (
+                        "宽走廊只做柔和水色迁移，保留原图纹理，"
+                        "不把流线或箭头画进成品。"
+                    ),
+                )
+                + "</div>"
+            )
         prompt_table = (
             "<table><thead><tr><th>提示词部分</th><th>实际内容</th></tr></thead>"
             "<tbody>"
@@ -215,6 +244,7 @@ def write_report(spec: dict[str, Any], output_root: Path) -> Path:
     {_figure(output_root, semantic['underwater_deposit']['path'], '水下沉积厚度', semantic['underwater_deposit']['meaning'])}
     {_figure(output_root, semantic['new_land_binary']['path'], '新生陆地', semantic['new_land_binary']['meaning'])}
   </div>
+{flow_process}
   <h4>B. Canny 控制图怎样得到</h4>
   <div class="flowline"><span>机制陆地图</span><b>→</b><span>投影边界</span><b>→</b>
   <span>二值 Canny</span><b>→</b><span>叠回锚点核对</span></div>
@@ -252,6 +282,11 @@ def write_report(spec: dict[str, Any], output_root: Path) -> Path:
     {_figure(output_root, composite['colored_layers']['underwater_deposit']['path'], '水下沉积颜色层', '保留水面亮度，以低透明度表现水底浅滩。')}
     {_figure(output_root, composite['colored_layers']['new_land_texture']['path'], '新生陆地纹理层', '只在程序 new_land 区域内出现，纹理统计来自现有沙地。')}
     {_figure(output_root, composite['difference']['path'], '相对锚点的变化图', '越亮表示变化越大；用于检查背景是否漂移。')}
+  </div>
+  <div class="grid three compact">
+    {_figure(output_root, composite['colored_layers']['visible_flow_paths']['path'], '水路颜色层', '只有规格允许的阶段使用；黑色表示本帧未增强绕流。')}
+    {_figure(output_root, composite['colored_layers']['waterline']['path'], '湿沙水线层', '沙洲外缘的低强度过渡，不是发光描边。')}
+    {_figure(output_root, semantic['flow_paths']['path'], '机制双侧水路', f"由程序方向与沙洲范围得到，共 {semantic['flow_paths']['path_count']} 条；不输入扩散模型。")}
   </div>
 </article>
 """
@@ -430,15 +465,18 @@ ControlNet 确实抓住了河道、海岸与出水斑块边界，但 text-to-ima
 <section id="evaluation"><p class="eyebrow">06 · 验收</p><h2>程序约束和文件完整性</h2>
 <table><thead><tr><th>检查</th><th>范围</th><th>结果</th><th>证据</th></tr></thead><tbody>$check_rows</tbody></table>
 <div class="grid" style="margin-top:20px"><div class="callout"><h3>已经解决</h3><p>五张图保持同一背景；
-水下沉积和新陆地按程序单调增长；两个出水斑块在最终连接；背景允许区域之外像素差为 0。</p></div>
+水下沉积和新陆地按程序单调增长；湿沙达到最低邻域对比；最终两条水路来自程序方向；
+背景允许区域之外像素差为 0。</p></div>
 <div class="callout warn"><h3>仍有局限</h3><p>泥沙和水下沉积仍是确定性颜色层，湿沙纹理也可能偏平滑。
-原始 SDXL 候选的全图漂移说明，当前模型还不能直接承担精准的机制定位。</p></div></div></section>
+两侧水路是机制引导的柔和水色迁移，不是流体渲染；原始 SDXL 候选的全图漂移说明，
+当前模型还不能直接承担精准的机制定位。</p></div></div></section>
 <section id="framework"><p class="eyebrow">07 · 通用化</p><h2>哪些保留，哪些换案例时替换</h2>
 <div class="architecture"><article><h3>通用核心：直接保留</h3><p>规格验证、投影接口、Canny 记录、
-提示词编译、候选管理、组合溯源、评估框架、HTML 报告和视频交接。</p></article>
-<article><h3>案例适配器：按机制替换</h3><p>当前
-<code>${state_adapter}</code> 把原始机制字段整理成流水线状态记录；其他程序提供自己的
-适配器即可，不应修改通用 schema。</p></article>
+提示词编译、候选缓存、插件调度、通用验收、HTML 报告和视频交接。</p></article>
+<article><h3>案例插件：按机制替换</h3><p>当前
+<code>${state_adapter}</code> adapter 读取原始状态；semantic builder 生成本案例语义图；
+composer 决定如何合成；case evaluator 负责单调性、连通性等案例规则。四者都由规格命名，
+不应塞回通用 schema 或 CLI。</p></article>
 <article><h3>规格文件：按故事替换</h3><p>状态编号、视觉锚点、坐标投影、每帧语言变化、禁区、
 语义层和案例验收规则都属于 JSON 配置。</p></article></div>
 <h3 style="margin-top:26px">现有例子带来的框架改进</h3>
@@ -448,6 +486,8 @@ ControlNet 确实抓住了河道、海岸与出水斑块边界，但 text-to-ima
 <tr><td>全图生成造成场景漂移</td><td>支持视觉锚点与允许修改区域；不把相同 seed 当作像素锁定。</td></tr>
 <tr><td>中间 mask 无法理解</td><td>每层必须有图片、来源、普通话含义和是否输入模型的声明。</td></tr>
 <tr><td>视频跨越太多机制会失控</td><td>关键帧规格把变化拆成单一阶段，再生成相邻首尾帧视频。</td></tr>
+<tr><td>分流统计存在但画面不够明显</td><td>从流向采样和新生陆地范围追踪两条宽水路，
+只迁移水色与纹理；同时验收路径数量和平均像素变化。</td></tr>
 </tbody></table>
 <p class="plain-note" style="margin-top:18px">额外的 display 40 / state 50 冒烟规格已经通过
 <code>--prepare</code>，并生成自己的一帧版 <code>prepare-audit.html</code>；没有修改通用代码，
@@ -544,6 +584,8 @@ Canny 阈值和 ControlNet 0.60 都来自当前案例；必须写进 config，�
 五张关键帧使用同一张 Stage 1.2 视觉锚点。四张后续图的悬浮泥沙、水下沉积和新生陆地
 来自对应程序状态，固定区域像素保持不变。当前阶段的 {len(generated["candidates"])}
 张 raw SDXL ControlNet 候选全部保留，但因全图漂移未直接用于最终像素。
+湿沙使用比周围浅水沉积更深的湿润灰褐色，并以邻域 RGB 距离验收可读性；最终分流帧
+根据程序流向和沙洲范围追踪上下两条宽水路，再用原图纹理做柔和水色迁移，不画箭头。
 
 生成链路是：
 
@@ -587,7 +629,8 @@ states.jsonl
 
 - 通用模块：规格验证、adapter 装载、投影接口、Canny、提示词编译、候选缓存、组合溯源、
   通用评估、HTML 报告和视频交接。
-- 三角洲 adapter：解释 `particles`、`thick`、`new_land`、`flow_samples`。
+- 三角洲案例插件：adapter 读取 `particles`、`thick`、`new_land`、`flow_samples`；
+  semantic builder 生成语义图；composer 组合固定锚点；case evaluator 检查案例规则。
 - 案例配置：状态、投影、提示差异、颜色参数和验收规则。
 - 没有硬边界的案例应关闭 ControlNet，不能把软浓度伪造成 Canny。
 - 最小接入需要视觉锚点或全图策略、唯一状态 ID、坐标或投影、至少一个有说明的语义层，

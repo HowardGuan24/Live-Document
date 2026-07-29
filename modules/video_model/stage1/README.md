@@ -128,7 +128,8 @@ prompt、参数和四个 seed，且都不使用 img2img、strength 或 mask。
 
 `stage1.3.md` 把程序中的悬浮泥沙、水下沉积和新生陆地转成四张后续关键帧。
 这套实现不是写死四张图的脚本：通用流水线负责规格校验、坐标投影、Canny、提示词、
-候选管理、约束组合、验收和报告；`delta_causal` 适配器只负责解释当前三角洲程序状态。
+候选缓存、验收调度和报告；三角洲的状态读取、语义层、约束组合与案例验收分别放在
+adapter、semantic builder、composer 和 case evaluator 插件中。
 
 ```bash
 /opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.sequence_pipeline.cli \

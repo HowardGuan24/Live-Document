@@ -26,7 +26,13 @@
       "sandbar_emergence": 2,
       "rerouted_flow": 1
     },
-    "final_channel_count": 2
+    "final_channel_count": 2,
+    "minimum_new_land_rgb_contrast": {
+      "sandbar_emergence": 22.0,
+      "rerouted_flow": 22.0
+    },
+    "final_visible_flow_paths": 2,
+    "minimum_final_flow_path_difference": 5.0
   },
   "projection": {
     "type": "piecewise_river_to_sea",
@@ -64,11 +70,21 @@
     "deposit_max_alpha": 0.36,
     "sediment_color_rgb": [145, 77, 38],
     "sediment_max_alpha": 0.50,
-    "wet_sand_color_rgb": [154, 126, 78],
-    "wet_sand_color_mix": 0.32,
-    "new_land_max_alpha": 0.96,
-    "wet_rim_color_rgb": [91, 94, 70],
-    "wet_rim_max_alpha": 0.22
+    "wet_sand_color_rgb": [105, 88, 52],
+    "wet_sand_color_mix": 0.78,
+    "wet_sand_texture_strength": 0.52,
+    "new_land_max_alpha": 0.98,
+    "wet_rim_color_rgb": [71, 64, 49],
+    "wet_rim_max_alpha": 0.10,
+    "waterline_color_rgb": [176, 194, 181],
+    "waterline_max_alpha": 0.06,
+    "flow_path_width_px": 44,
+    "flow_path_blur_px": 11.0,
+    "flow_path_color_rgb": [105, 164, 160],
+    "flow_path_max_alpha": 0.55,
+    "flow_target_color_mix": 0.60,
+    "flow_highlight_color_rgb": [205, 228, 218],
+    "flow_highlight_max_alpha": 0.025
   },
   "video_handoff": {
     "must_remain_fixed": "orthographic camera, original coast, upstream river, sand texture, lighting and color palette",
@@ -130,6 +146,9 @@
         "only_major_change": "Two adjacent wet sand patches belonging to one shoal break the water surface; no mature delta forms.",
         "forbidden": "camera motion, mature delta, many islands, complex channel network"
       },
+      "composite_overrides": {
+        "flow_path_strength": 0.10
+      },
       "mechanism_delta": "two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
       "stage_forbidden": "many islands, mature channels, large new land",
       "semantic_layers": ["suspended_density", "underwater_deposit", "new_land"],
@@ -145,6 +164,9 @@
       "video_transition": {
         "only_major_change": "The two wet patches connect into one sandbar and the flow separates into exactly two paths around it.",
         "forbidden": "camera motion, extra islands, three or more channels, mature distributary tree"
+      },
+      "composite_overrides": {
+        "flow_path_strength": 1.0
       },
       "mechanism_delta": "the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
       "stage_forbidden": "three or more main channels, extra islands",

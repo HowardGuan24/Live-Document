@@ -20,7 +20,6 @@ def evaluate_case(
     prepared: dict[str, Any],
     composed: dict[str, Any],
 ) -> list[dict[str, Any]]:
-    del composed
     rules = spec["case_evaluation"]
     ordered_ids = [item["id"] for item in spec["keyframes"]]
     stats = {
@@ -91,6 +90,58 @@ def evaluate_case(
             "evidence": {
                 "sequence": channels,
                 "expected_final": expected_final,
+            },
+        }
+    )
+
+    contrast_evidence = {}
+    contrast_passed = True
+    for item_id, minimum in rules.get(
+        "minimum_new_land_rgb_contrast", {}
+    ).items():
+        actual = float(
+            composed["keyframes"][item_id]["new_land_rgb_contrast"]
+        )
+        contrast_evidence[item_id] = {
+            "actual": actual,
+            "minimum": float(minimum),
+        }
+        contrast_passed &= actual >= float(minimum)
+    checks.append(
+        {
+            "name": "emergent_wet_sand_is_visually_distinct",
+            "scope": "delta_causal case",
+            "passed": contrast_passed,
+            "evidence": contrast_evidence,
+        }
+    )
+
+    final_id = ordered_ids[-1]
+    actual_paths = int(
+        composed["keyframes"][final_id]["visible_flow_path_count"]
+    )
+    expected_paths = int(rules["final_visible_flow_paths"])
+    actual_flow_difference = float(
+        composed["keyframes"][final_id][
+            "mean_flow_path_difference_0_255"
+        ]
+    )
+    minimum_flow_difference = float(
+        rules["minimum_final_flow_path_difference"]
+    )
+    checks.append(
+        {
+            "name": "final_two_flow_paths_are_visible",
+            "scope": "delta_causal case",
+            "passed": (
+                actual_paths == expected_paths
+                and actual_flow_difference >= minimum_flow_difference
+            ),
+            "evidence": {
+                "actual_path_count": actual_paths,
+                "expected_path_count": expected_paths,
+                "mean_pixel_difference": actual_flow_difference,
+                "minimum_mean_pixel_difference": minimum_flow_difference,
             },
         }
     )

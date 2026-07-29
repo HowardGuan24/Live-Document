@@ -13,9 +13,19 @@
       3103,
       3104
     ],
+    "report_seed": 3102,
+    "blind_shuffle_seed": 20260729,
     "dtype": "float16"
   },
-  "prepare_spec_sha256": "1c77e5cc5ec1594be3a3ec5070e5aa59616ebb04f0a159d8ab47255a306717a9",
+  "inference_settings": {
+    "width": 1344,
+    "height": 768,
+    "steps": 36,
+    "guidance_scale": 6.5,
+    "controlnet_conditioning_scale": 0.6,
+    "dtype": "float16"
+  },
+  "prepare_spec_sha256": "c4cd8ac4b3334f6664969cce460025b8aea740e06b64bc9ce96432467a498196",
   "models": {
     "sdxl_base": {
       "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
@@ -100,10 +110,10 @@
           255
         ]
       },
-      "inference_seconds": 0.007,
+      "inference_seconds": 0.008,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "16865f13bba1ca8ddcd5521f674d9d007279e9deabb8e24ea1b970f7d74e3ab4",
+      "input_signature": "e3829b0d91bbf14ca6a711338a98a1134c30b4f7495d3e6a6387d7c2a45fda9b",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -158,10 +168,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "b0d34ef588a4c5dba3aefc5229f28141ace1aca1a04943bb71ec818a6de691e0",
+      "input_signature": "55803936d53e620f530cc400f4b9ade02622bbdade285f764c807afd63a6c4da",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -216,10 +226,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "2df0ebebe2b57f45f0473232134ffc399bf6094a88399f5afe88d2cc7f80ed31",
+      "input_signature": "e28422954177874e5ed7bae7c6815e2935d7565c0d244defe282e6f81315933b",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -274,10 +284,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "fc09cc44817b172cb183e99af602922bbf1c31cdca5b71c6b68b99d6a20d187f",
+      "input_signature": "eca1b4e0d47707ebbfd6bc556dcded0d3f6f3332d4b5fda88016d2672fedb007",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -332,10 +342,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "84014f8f49bf3fe9ca5510c015cda420b4fa3f753458faff652531127f2aec72",
+      "input_signature": "7aa2d19ad6a049d27f0acff1df3a7ef97037df9f1c6ef78d0267121dfa30c59a",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -390,10 +400,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "5c3019de17ce98b0ecfc215807aa273b5a845b6295633e3e8ad80e7dfa12eb42",
+      "input_signature": "3871320bab4799e404ca46e5bb8938c9e77bcd00dacf0b263f9b0c3a2e007dff",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -448,10 +458,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "e6e5f146c06e0cdd93b978ab7ee6744f96edfdb962cb55034cee77f488adae18",
+      "input_signature": "f8eba056d4436acc292cdfb53998993c442d0022051ff6389d33b5f92a3c0d51",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -506,10 +516,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "c6af1fefd2d46081490ffd797daa9c3a43b01d024f9e0926c073143f58e3378b",
+      "input_signature": "aaebb44d8270209bdbc1d20f542ed3f7db41d0c8640ea6b4b3ff9903a024f6da",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -564,10 +574,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "4167f9ff4399a84b8e3269a06cc560dedd282ec723b8184aeaf02244fb20243b",
+      "input_signature": "7463ee864dd226933618f33b10b62a1a482e1c5316d1501169453c8a451ea25f",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -622,10 +632,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "9d3a190a9e0dacb1ee62cb4e063ba4af56a42ea8d7cc94cbc46bd47d25512b5d",
+      "input_signature": "03bdf58ae201c677bbdd40355d3ca699d305c3720206d26e7690a42cc52c1609",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -680,10 +690,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "b55ee679d3dd86c9e2b1bcbbeb1fd3c11f060d9fe37865a92f06d0267b0cda90",
+      "input_signature": "a21f526e6dda41755eb7be9e137400d6a6c45ffd8f935f8af9bd59ba43e2b59d",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -741,7 +751,7 @@
       "inference_seconds": 0.001,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "7f0b1f674d4fa473889c7b28fd1f60bd8a6c904c66db940a5f83df9120b6abc5",
+      "input_signature": "640c81cf5a4fde817cb63ecb68a0a52b36df8bf3dfcac855b2ddf6271a4acb9c",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -796,10 +806,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "b13db4a9d07da5a690602de0784b357790a2c9c1276ccd0b92b1ae592a995379",
+      "input_signature": "b7aa49b1c458b2efb0f3db77addd559cdd42f84246d4499fa0f3e8a38a490a12",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -854,10 +864,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "641806088c672db158ed4a773c59a2ec02b094aba854497261ff32c1c2b7deee",
+      "input_signature": "f4ea30cd71bfd525634e57eaf2db88be27d28a5cefe2cf9cad11092e7e3ad941",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -912,10 +922,10 @@
           255
         ]
       },
-      "inference_seconds": 0.001,
+      "inference_seconds": 0.002,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "3e2680da720493b1070872716a5382ac1d37fb955fafea7d62d5611cc63f72fe",
+      "input_signature": "8aa96e654b5ab192e43e5aa5cc48703212427d11d4d79e040d059f67c6445149",
       "classification": "raw SDXL ControlNet output"
     },
     {
@@ -973,7 +983,7 @@
       "inference_seconds": 0.001,
       "peak_gpu_memory_bytes": null,
       "reused": true,
-      "input_signature": "a9bc7dd030496c583779f4ea515a88ad6b7b941034e03ebb327356eb78c70b72",
+      "input_signature": "bcc5d6f445bb88ae16aaf9121e590ee35ccf6fb283db8d73bb0527b853c0a644",
       "classification": "raw SDXL ControlNet output"
     }
   ],
@@ -991,9 +1001,9 @@
     "generated": 0
   },
   "invocation": {
-    "started_at_unix": 1785287701.416735,
-    "completed_at_unix": 1785287701.4498427,
-    "wall_seconds": 0.033,
+    "started_at_unix": 1785290880.096135,
+    "completed_at_unix": 1785290880.1363053,
+    "wall_seconds": 0.04,
     "force": false
   },
   "total_generation_seconds": 274.43

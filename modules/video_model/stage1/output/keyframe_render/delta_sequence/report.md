@@ -5,6 +5,8 @@
 五张关键帧使用同一张 Stage 1.2 视觉锚点。四张后续图的悬浮泥沙、水下沉积和新生陆地
 来自对应程序状态，固定区域像素保持不变。当前阶段的 16
 张 raw SDXL ControlNet 候选全部保留，但因全图漂移未直接用于最终像素。
+湿沙使用比周围浅水沉积更深的湿润灰褐色，并以邻域 RGB 距离验收可读性；最终分流帧
+根据程序流向和沙洲范围追踪上下两条宽水路，再用原图纹理做柔和水色迁移，不画箭头。
 
 生成链路是：
 
@@ -31,7 +33,9 @@ states.jsonl
 
 - SDXL Base 1.0 FP16
 - SDXL Canny ControlNet FP16
-- 1344×768，36 steps，CFG 6.5，ControlNet scale 0.60
+- 1344×768，
+  36 steps，CFG 6.5，
+  ControlNet scale 0.6
 - seeds：3101、3102、3103、3104
 - raw 生成耗时：274.430 秒
 - 最近一次执行：缓存复用 16 张，重新生成 0 张
@@ -50,7 +54,8 @@ states.jsonl
 
 - 通用模块：规格验证、adapter 装载、投影接口、Canny、提示词编译、候选缓存、组合溯源、
   通用评估、HTML 报告和视频交接。
-- 三角洲 adapter：解释 `particles`、`thick`、`new_land`、`flow_samples`。
+- 三角洲案例插件：adapter 读取 `particles`、`thick`、`new_land`、`flow_samples`；
+  semantic builder 生成语义图；composer 组合固定锚点；case evaluator 检查案例规则。
 - 案例配置：状态、投影、提示差异、颜色参数和验收规则。
 - 没有硬边界的案例应关闭 ControlNet，不能把软浓度伪造成 Canny。
 - 最小接入需要视觉锚点或全图策略、唯一状态 ID、坐标或投影、至少一个有说明的语义层，
@@ -58,8 +63,8 @@ states.jsonl
 
 ## 验收
 
-通用与案例检查共 11 项，结果：
-`passed`。HTML 引用 76 个本地资源，缺失 0 个。
+通用与案例检查共 13 项，结果：
+`passed`。HTML 引用 90 个本地资源，缺失 0 个。
 display 40 / state 50 的单关键帧 smoke 规格也可独立生成 `prepare-audit.html`。
 
 完整可视化过程、Canny 制作、提示词拼装、语义层、候选图、验收和复现命令见

@@ -111,7 +111,11 @@ def prepare(
         "sources": sources,
         "projection": spec["projection"],
         "semantic_builder": spec["semantic_builder"],
-        "semantic_context": semantic_context,
+        "semantic_context": {
+            key: value
+            for key, value in semantic_context.items()
+            if not key.startswith("_")
+        },
         "anchor": {},
         "keyframes": {},
     }

@@ -1,9 +1,9 @@
 {
   "status": "passed",
   "passed": true,
-  "input_signature": "8ee94abf1ac9749f5e270f5332b997f872e2bc21e5ac2db7b9eef9aa8675f6d4",
+  "input_signature": "0aa99b2cbee7c75dabe22892cd3d443e1c40de21236ce0a00c8b7e4f105d1526",
   "cache": {
-    "reused": true
+    "reused": false
   },
   "sequence_id": "delta_formation_after_outlet",
   "checks": [
@@ -26,7 +26,7 @@
             768
           ],
           "mode": "RGB",
-          "sha256": "170da9f5031c78c57c5b1a180d77affa6c7ce40ee47829fefb13177b56ca6014"
+          "sha256": "6acac8af0cab1065a18d25e2d6c06a32d92b1f03524b06dcd1d079f00c0f70c8"
         },
         "02_underwater_accumulation.png": {
           "size": [
@@ -34,7 +34,7 @@
             768
           ],
           "mode": "RGB",
-          "sha256": "e69d673aea887fee7f5026955bc5114fd84e6f8a84f6720a17b6bcb3a3c0c01e"
+          "sha256": "84b84946bc09f4d7bf10c5c29cadb0efe83db23d16b361fcb5b9edc89a4d00f6"
         },
         "03_sandbar_emergence.png": {
           "size": [
@@ -42,7 +42,7 @@
             768
           ],
           "mode": "RGB",
-          "sha256": "9ea0cb5ce34bcbcf97f3b100398193e496d7b7287edad38ff3a7492575d88535"
+          "sha256": "1830b19ef2339db19f63c0dab1fa87417914966ba223e23b7b7b3d10e3bed824"
         },
         "04_rerouted_flow.png": {
           "size": [
@@ -50,7 +50,7 @@
             768
           ],
           "mode": "RGB",
-          "sha256": "9e8a34dcc1612acecda5eea7950f78809c89522c552db0b5e6f9fc050fd0dc57"
+          "sha256": "e90fb592ea60c35cec6d116865c079b85968918146c82e1eb5844e3f22d9156d"
         }
       }
     },
@@ -203,6 +203,32 @@
           2
         ],
         "expected_final": 2
+      }
+    },
+    {
+      "name": "emergent_wet_sand_is_visually_distinct",
+      "scope": "delta_causal case",
+      "passed": true,
+      "evidence": {
+        "sandbar_emergence": {
+          "actual": 33.393,
+          "minimum": 22.0
+        },
+        "rerouted_flow": {
+          "actual": 48.176,
+          "minimum": 22.0
+        }
+      }
+    },
+    {
+      "name": "final_two_flow_paths_are_visible",
+      "scope": "delta_causal case",
+      "passed": true,
+      "evidence": {
+        "actual_path_count": 2,
+        "expected_path_count": 2,
+        "mean_pixel_difference": 13.357,
+        "minimum_mean_pixel_difference": 5.0
       }
     }
   ],

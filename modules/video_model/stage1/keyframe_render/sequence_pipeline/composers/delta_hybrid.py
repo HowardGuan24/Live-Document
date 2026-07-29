@@ -51,7 +51,9 @@ def _sand_texture(
     ) * wet_mix
     return np.clip(
         wet_mean[None, None, :]
-        + texture[..., None] * std[None, None, :] * 0.23,
+        + texture[..., None]
+        * std[None, None, :]
+        * float(settings["wet_sand_texture_strength"]),
         0,
         255,
     )
@@ -164,6 +166,7 @@ def compose_sequence(
             layers["new_land_binary"]["path"]
         )
         new_land_alpha = _load_gray(layers["new_land_alpha"]["path"])
+        flow_paths = _load_gray(layers["flow_paths"]["path"])
 
         result = anchor.copy()
         deposit_color = (
@@ -196,6 +199,49 @@ def compose_sequence(
             + sediment_color * sediment_alpha[..., None]
         )
 
+        flow_strength = float(
+            keyframe.get("composite_overrides", {}).get(
+                "flow_path_strength", 0.0
+            )
+        )
+        flow_alpha = np.clip(
+            flow_paths
+            * float(settings["flow_path_max_alpha"])
+            * flow_strength,
+            0.0,
+            1.0,
+        )
+        flow_noise = np.random.default_rng(
+            int(keyframe["state_frame"]) + 901
+        ).normal(0.0, 1.0, flow_paths.shape).astype(np.float32)
+        flow_noise = cv2.GaussianBlur(flow_noise, (0, 0), 18.0)
+        flow_noise /= max(float(flow_noise.std()), 1e-6)
+        flow_alpha *= np.clip(0.88 + flow_noise * 0.06, 0.72, 1.0)
+        flow_color = np.asarray(
+            settings["flow_path_color_rgb"], dtype=np.float32
+        )
+        flow_color_mix = float(settings["flow_target_color_mix"])
+        flow_target = (
+            anchor * (1.0 - flow_color_mix)
+            + flow_color * flow_color_mix
+        )
+        result = (
+            result * (1.0 - flow_alpha[..., None])
+            + flow_target * flow_alpha[..., None]
+        )
+        flow_highlight_alpha = (
+            np.clip((flow_paths - 0.52) / 0.48, 0.0, 1.0)
+            * float(settings["flow_highlight_max_alpha"])
+            * flow_strength
+        )
+        flow_highlight = np.asarray(
+            settings["flow_highlight_color_rgb"], dtype=np.float32
+        )
+        result = (
+            result * (1.0 - flow_highlight_alpha[..., None])
+            + flow_highlight * flow_highlight_alpha[..., None]
+        )
+
         sand = _sand_texture(
             anchor, int(keyframe["state_frame"]), settings
         )
@@ -223,9 +269,32 @@ def compose_sequence(
             result * (1.0 - rim_alpha[..., None])
             + wet_rim * rim_alpha[..., None]
         )
+        outer = cv2.dilate(
+            binary, np.ones((13, 13), np.uint8)
+        ) - cv2.dilate(binary, np.ones((3, 3), np.uint8))
+        waterline_alpha = (
+            cv2.GaussianBlur(np.float32(outer > 0), (0, 0), 2.0)
+            * (1.0 - new_land_alpha)
+            * float(settings["waterline_max_alpha"])
+        )
+        waterline = np.asarray(
+            settings["waterline_color_rgb"], dtype=np.float32
+        )
+        result = (
+            result * (1.0 - waterline_alpha[..., None])
+            + waterline * waterline_alpha[..., None]
+        )
         allowed = np.clip(
             np.maximum.reduce(
-                (deposit_alpha, sediment_alpha, land_alpha, rim_alpha)
+                (
+                    deposit_alpha,
+                    sediment_alpha,
+                    flow_alpha,
+                    flow_highlight_alpha,
+                    land_alpha,
+                    rim_alpha,
+                    waterline_alpha,
+                )
             ),
             0.0,
             1.0,
@@ -245,6 +314,8 @@ def compose_sequence(
             composite_root / f"{keyframe_id}_suspended.png"
         )
         sand_path = composite_root / f"{keyframe_id}_new_land_texture.png"
+        flow_path = composite_root / f"{keyframe_id}_flow_paths.png"
+        waterline_path = composite_root / f"{keyframe_id}_waterline.png"
         save_gray(allowed_path, allowed)
         difference = np.max(
             np.abs(result_uint8.astype(np.float32) - anchor), axis=2
@@ -260,6 +331,13 @@ def compose_sequence(
         ).save(
             sediment_color_path
         )
+        _colored_layer(
+            tuple(settings["flow_path_color_rgb"]),
+            np.maximum(flow_alpha, flow_highlight_alpha),
+        ).save(flow_path)
+        _colored_layer(
+            tuple(settings["waterline_color_rgb"]), waterline_alpha
+        ).save(waterline_path)
         Image.fromarray(
             np.uint8(np.clip(sand * land_alpha[..., None], 0, 255)),
             mode="RGB",
@@ -268,6 +346,35 @@ def compose_sequence(
         static_difference = np.abs(
             result_uint8.astype(np.int16) - anchor.astype(np.int16)
         )[static]
+        land_region = new_land_binary > 0.5
+        near_ring = (
+            cv2.dilate(
+                np.uint8(land_region), np.ones((25, 25), np.uint8)
+            )
+            > 0
+        ) & ~(
+            cv2.dilate(
+                np.uint8(land_region), np.ones((7, 7), np.uint8)
+            )
+            > 0
+        )
+        if land_region.any() and near_ring.any():
+            land_mean = result_uint8[land_region].mean(axis=0)
+            ring_mean = result_uint8[near_ring].mean(axis=0)
+            new_land_rgb_contrast = float(
+                np.linalg.norm(land_mean - ring_mean)
+            )
+        else:
+            new_land_rgb_contrast = 0.0
+        flow_region = flow_paths > 0.20
+        flow_difference = np.max(
+            np.abs(result_uint8.astype(np.float32) - anchor), axis=2
+        )
+        mean_flow_path_difference = (
+            float(flow_difference[flow_region].mean())
+            if flow_region.any() and flow_strength > 0
+            else 0.0
+        )
         manifest["keyframes"][keyframe_id] = {
             "display_frame": keyframe["display_frame"],
             "state_frame": keyframe["state_frame"],
@@ -289,6 +396,11 @@ def compose_sequence(
                     "anchor's existing sand statistics and composite only "
                     "inside the projected new_land region."
                 ),
+                "visible_flow_paths": (
+                    "Trace two lanes from mechanism flow samples around "
+                    "emergent land, then blend only water color and soft "
+                    "surface highlights without drawing arrows."
+                ),
             },
             "allowed_region": image_record(
                 allowed_path,
@@ -304,6 +416,8 @@ def compose_sequence(
                     sediment_color_path
                 ),
                 "new_land_texture": image_record(sand_path),
+                "visible_flow_paths": image_record(flow_path),
+                "waterline": image_record(waterline_path),
             },
             "result": image_record(
                 output_path,
@@ -314,6 +428,16 @@ def compose_sequence(
                 int(static_difference.max())
                 if static_difference.size
                 else 0
+            ),
+            "new_land_rgb_contrast": round(
+                new_land_rgb_contrast, 3
+            ),
+            "flow_path_strength": flow_strength,
+            "visible_flow_path_count": layers["flow_paths"][
+                "path_count"
+            ],
+            "mean_flow_path_difference_0_255": round(
+                mean_flow_path_difference, 3
             ),
         }
         final_panels.append((f"{index} | {keyframe_id}", final_path))

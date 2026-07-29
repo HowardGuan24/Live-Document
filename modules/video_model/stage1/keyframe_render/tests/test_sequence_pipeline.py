@@ -21,6 +21,7 @@ from modules.video_model.stage1.keyframe_render.sequence_pipeline.schema import 
 )
 from modules.video_model.stage1.keyframe_render.sequence_pipeline.semantic_builders.delta_causal import (
     new_land_layers,
+    visible_flow_paths,
 )
 
 
@@ -95,6 +96,33 @@ def test_projected_new_land_stays_in_sea_and_grows() -> None:
         assert int(ys.max()) < projection.height
         areas.append(int(binary.sum()))
     assert areas[1] > areas[0]
+
+
+def test_final_state_traces_two_water_paths_around_new_land() -> None:
+    spec = load_spec(SPEC_PATH)
+    records, _ = load_selected_states(spec)
+    projection = Projection(
+        spec["projection"],
+        (spec["canvas"]["width"], spec["canvas"]["height"]),
+    )
+    record = records["rerouted_flow"]
+    _, land_alpha = new_land_layers(record["new_land"], projection)
+    paths, count = visible_flow_paths(
+        record["flow_samples"],
+        record["new_land"],
+        land_alpha,
+        projection,
+        record["stats"]["raw_channel_count"],
+        spec["composite"]["flow_path_width_px"],
+        spec["composite"]["flow_path_blur_px"],
+    )
+    _, land_xs = np.where(land_alpha > 0.8)
+    probe_x = int(np.median(land_xs))
+    column = np.uint8(paths[:, probe_x] > 0.20)[:, None]
+    vertical_bands, _ = cv2.connectedComponents(column)
+    assert count == 2
+    assert vertical_bands - 1 == 2
+    assert float(paths[land_alpha > 0.8].max()) < 0.15
 
 
 def test_schema_does_not_hardcode_adapter_name(tmp_path: Path) -> None:

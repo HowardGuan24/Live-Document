@@ -2,11 +2,10 @@
   "status": "prepared",
   "sequence_id": "delta_formation_after_outlet",
   "spec_path": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/delta_sequence_spec.json",
-  "spec_sha256": "1c77e5cc5ec1594be3a3ec5070e5aa59616ebb04f0a159d8ab47255a306717a9",
-  "input_signature": "d57f269c087d1823e68b7887060824812a553a490fb1e73778139fd1805026a4",
+  "spec_sha256": "c4cd8ac4b3334f6664969cce460025b8aea740e06b64bc9ce96432467a498196",
+  "input_signature": "a125c5ef53c92bab20672ff7efea50a9618af5ff8671b04ea9b094c6e976de41",
   "cache": {
-    "reused": true,
-    "policy": "spec, source data, selected program frames, anchor, control source and prepare code hashes all match"
+    "reused": false
   },
   "output_root": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence",
   "sources": {
@@ -93,7 +92,13 @@
       "half_width_power": 1.8
     }
   },
-  "maximum_thickness_for_normalization": 0.484351,
+  "semantic_builder": "delta_causal",
+  "semantic_context": {
+    "maximum_thickness_for_normalization": 0.484351,
+    "baseline_state_id": "at_outlet",
+    "flow_path_width_px": 44,
+    "flow_path_blur_px": 11.0
+  },
   "anchor": {
     "id": "at_outlet",
     "display_frame": 13,
@@ -128,13 +133,13 @@
       "suspended_density": {
         "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/at_outlet.png",
         "relative_name": "at_outlet.png",
-        "sha256": "a8c01bae3adf6b33afdcd0020ca3e5985f269202b21c564ec6bd10ca189dc0c5",
+        "sha256": "4c2b6b6bdec0d5bc00ffb943b962399b6de425a6686d233d3497d1bec6db8b3a",
         "size": [
           1344,
           768
         ],
         "mode": "L",
-        "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+        "meaning": "白色越亮，表示相对视觉锚点新增的悬浮泥沙越集中；起点中已经存在的上游泥沙已扣除",
         "model_input": false
       },
       "underwater_deposit": {
@@ -185,6 +190,20 @@
         "mode": "RGB",
         "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
         "model_input": false
+      },
+      "flow_paths": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_paths/at_outlet.png",
+        "relative_name": "at_outlet.png",
+        "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "根据程序流向采样沿新生陆地两侧追踪的柔和水路；不画箭头，最终帧只用它增强水面流动感",
+        "model_input": false,
+        "affects_final": true,
+        "path_count": 0
       }
     },
     "final": {
@@ -234,13 +253,13 @@
         "suspended_density": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/decelerated_plume.png",
           "relative_name": "decelerated_plume.png",
-          "sha256": "97d761e5a77917b6db9aef1406a23017df56e260accbd8943f5ea2f103bbedb1",
+          "sha256": "55938814713c8a02017db90caaadc9675b3211d51599b5f472210d1043878db0",
           "size": [
             1344,
             768
           ],
           "mode": "L",
-          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "meaning": "白色越亮，表示相对视觉锚点新增的悬浮泥沙越集中；起点中已经存在的上游泥沙已扣除",
           "model_input": false
         },
         "underwater_deposit": {
@@ -291,6 +310,20 @@
           "mode": "RGB",
           "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
           "model_input": false
+        },
+        "flow_paths": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_paths/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "根据程序流向采样沿新生陆地两侧追踪的柔和水路；不画箭头，最终帧只用它增强水面流动感",
+          "model_input": false,
+          "affects_final": true,
+          "path_count": 0
         }
       },
       "control": {
@@ -416,13 +449,13 @@
         "suspended_density": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/underwater_accumulation.png",
           "relative_name": "underwater_accumulation.png",
-          "sha256": "3cdce1edcbd5bb01cefbcab72162eb3b728c2d846d27907074c69842b1fd189e",
+          "sha256": "5db0f813f244f9cd166f0ac170c0bac58a18cbe1c0dbe6019c4c509347717e74",
           "size": [
             1344,
             768
           ],
           "mode": "L",
-          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "meaning": "白色越亮，表示相对视觉锚点新增的悬浮泥沙越集中；起点中已经存在的上游泥沙已扣除",
           "model_input": false
         },
         "underwater_deposit": {
@@ -473,6 +506,20 @@
           "mode": "RGB",
           "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
           "model_input": false
+        },
+        "flow_paths": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_paths/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "根据程序流向采样沿新生陆地两侧追踪的柔和水路；不画箭头，最终帧只用它增强水面流动感",
+          "model_input": false,
+          "affects_final": true,
+          "path_count": 0
         }
       },
       "control": {
@@ -598,19 +645,19 @@
         "suspended_density": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/sandbar_emergence.png",
           "relative_name": "sandbar_emergence.png",
-          "sha256": "321a24e3a6a4fdf1c9ea8f0ce30b47c05c2754a7ecdbe7af2fcf803bb8456807",
+          "sha256": "eed1121040dcac9d18c06e12c334486b7648726a305735cda8e2ef0ff3a42752",
           "size": [
             1344,
             768
           ],
           "mode": "L",
-          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "meaning": "白色越亮，表示相对视觉锚点新增的悬浮泥沙越集中；起点中已经存在的上游泥沙已扣除",
           "model_input": false
         },
         "underwater_deposit": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/sandbar_emergence.png",
           "relative_name": "sandbar_emergence.png",
-          "sha256": "a53bc5899e5841d5b705b1f9b6cd3a05a6b87a49bc05477c4a337ada95301aac",
+          "sha256": "df74cd2b07934882f8063d846dfee99fd49253bcc017ed65f0b4f741ba3e2292",
           "size": [
             1344,
             768
@@ -635,7 +682,7 @@
         "new_land_alpha": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/sandbar_emergence_alpha.png",
           "relative_name": "sandbar_emergence_alpha.png",
-          "sha256": "a8edb3d966895acea5dc522aad2852def8e6090db3abc71dbab0c2d69be157e8",
+          "sha256": "4574fa90cceea9962047a79956e80e8ad151c1eea666c5e8934e0a4597f3d0d3",
           "size": [
             1344,
             768
@@ -655,6 +702,20 @@
           "mode": "RGB",
           "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
           "model_input": false
+        },
+        "flow_paths": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_paths/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "6109c86b834be7ceec2ee985db8141f53e15c003ec1dbedb6c5d10744161fd3a",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "根据程序流向采样沿新生陆地两侧追踪的柔和水路；不画箭头，最终帧只用它增强水面流动感",
+          "model_input": false,
+          "affects_final": true,
+          "path_count": 2
         }
       },
       "control": {
@@ -780,19 +841,19 @@
         "suspended_density": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/rerouted_flow.png",
           "relative_name": "rerouted_flow.png",
-          "sha256": "d5291a0f7f6262a67eef83abeb328fdc70a06e65f730295032f4a57bab90f2c4",
+          "sha256": "82743c696983de1d14e3dde8bc9afe5cdf7c64663e02fb33b774ece5e486c369",
           "size": [
             1344,
             768
           ],
           "mode": "L",
-          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "meaning": "白色越亮，表示相对视觉锚点新增的悬浮泥沙越集中；起点中已经存在的上游泥沙已扣除",
           "model_input": false
         },
         "underwater_deposit": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/rerouted_flow.png",
           "relative_name": "rerouted_flow.png",
-          "sha256": "118dd84e640001a09f1d7da880a6c3662b23d16ad8b3f9a133362dd848bf9a6d",
+          "sha256": "c998ffde28677f68140662e87ccfdd3cbb9364bfd3bbb3431ceed54647b5a325",
           "size": [
             1344,
             768
@@ -817,7 +878,7 @@
         "new_land_alpha": {
           "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/rerouted_flow_alpha.png",
           "relative_name": "rerouted_flow_alpha.png",
-          "sha256": "c0fedc27ad84a4cfc288c0765f7f414e909b501cb2731a66c1d85629a84baa13",
+          "sha256": "4b7a78ac77762385bae7d3cbaf65240bee0c2d716454165014fcd03fd5e00ecc",
           "size": [
             1344,
             768
@@ -837,6 +898,20 @@
           "mode": "RGB",
           "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
           "model_input": false
+        },
+        "flow_paths": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_paths/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "61cb0b22f36cf361dbedf22ee7376e9c1b1be5e05b92c1f72859bc158cf6afdb",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "根据程序流向采样沿新生陆地两侧追踪的柔和水路；不画箭头，最终帧只用它增强水面流动感",
+          "model_input": false,
+          "affects_final": true,
+          "path_count": 2
         }
       },
       "control": {

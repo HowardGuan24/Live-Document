@@ -30,6 +30,8 @@
       3103,
       3104
     ],
+    "report_seed": 3102,
+    "blind_shuffle_seed": 20260729,
     "dtype": "float16"
   },
   "cache": {
@@ -95,7 +97,7 @@
     }
   },
   "spec_path": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/delta_sequence_spec.json",
-  "spec_sha256": "1c77e5cc5ec1594be3a3ec5070e5aa59616ebb04f0a159d8ab47255a306717a9",
+  "spec_sha256": "c4cd8ac4b3334f6664969cce460025b8aea740e06b64bc9ce96432467a498196",
   "final_files": {
     "at_outlet": {
       "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png",
@@ -111,7 +113,7 @@
     "decelerated_plume": {
       "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
       "relative_name": "01_decelerated_plume.png",
-      "sha256": "170da9f5031c78c57c5b1a180d77affa6c7ce40ee47829fefb13177b56ca6014",
+      "sha256": "6acac8af0cab1065a18d25e2d6c06a32d92b1f03524b06dcd1d079f00c0f70c8",
       "size": [
         1344,
         768
@@ -121,7 +123,7 @@
     "underwater_accumulation": {
       "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
       "relative_name": "02_underwater_accumulation.png",
-      "sha256": "e69d673aea887fee7f5026955bc5114fd84e6f8a84f6720a17b6bcb3a3c0c01e",
+      "sha256": "84b84946bc09f4d7bf10c5c29cadb0efe83db23d16b361fcb5b9edc89a4d00f6",
       "size": [
         1344,
         768
@@ -131,7 +133,7 @@
     "sandbar_emergence": {
       "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
       "relative_name": "03_sandbar_emergence.png",
-      "sha256": "9ea0cb5ce34bcbcf97f3b100398193e496d7b7287edad38ff3a7492575d88535",
+      "sha256": "1830b19ef2339db19f63c0dab1fa87417914966ba223e23b7b7b3d10e3bed824",
       "size": [
         1344,
         768
@@ -141,7 +143,7 @@
     "rerouted_flow": {
       "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png",
       "relative_name": "04_rerouted_flow.png",
-      "sha256": "9e8a34dcc1612acecda5eea7950f78809c89522c552db0b5e6f9fc050fd0dc57",
+      "sha256": "e90fb592ea60c35cec6d116865c079b85968918146c82e1eb5844e3f22d9156d",
       "size": [
         1344,
         768
@@ -150,7 +152,7 @@
     }
   },
   "report_integrity": {
-    "reference_count": 76,
+    "reference_count": 90,
     "missing": []
   },
   "model_rerun_during_report": false

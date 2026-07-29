@@ -150,6 +150,7 @@ output/causal_delta/frames/
 
 把每个 state 的 `particles` 映射到现有自然化河口，再通过平滑扩散形成连续浓度：
 
+- 先减去视觉锚点 state 27 已经表现的悬沙基线，后续图只增加相对起点新增的部分；
 - 近河口浓度较高，向海水方向逐渐变淡；
 - 保留局部不均匀和柔和湍流感；
 - 不把程序粒子直接画成橙色圆点；
@@ -185,6 +186,8 @@ state 49 的羽流应紧凑、刚进入海水；state 100/107/119 可以更宽�
 - state 119 中两个斑块连接成一块沙洲并略有扩展，不能换位置；
 - 新生陆地面积必须单调增加，不能在后一张缩小或消失；
 - 表面使用湿沙、细颗粒和靠水边较深的自然纹理；
+- 湿沙不能靠黄色发光描边提升可见性；优先使用比水下沉积更深的湿润灰褐色，并计算
+  新生陆地与邻近水域的平均 RGB 距离作为最低可读性检查；
 - 沙洲边界比水下沉积清楚，但不要出现硬塑料描边；
 - 不生成许多离散岛屿，也不提前画成成熟三角洲。
 
@@ -200,6 +203,8 @@ state 119 的两条通道必须对应程序中的稳定绕流：
 - 水从沙洲两侧进入海水；
 - 两路都保持下游方向；
 - 可以用自然水面纹理暗示流向，但最终图不画箭头；
+- 从 `flow_samples` 的下游方向和 `new_land` 范围追踪上下两条宽水路，再进行羽化和
+  原图水色迁移；中间流线只用于生成区域，不把线本身画入成品；
 - 不生成树枝状分流网络；
 - 不把原始上游河道劈成很多支流；
 - 不增加第二块无依据的新陆地。
@@ -455,8 +460,12 @@ special tokens 且不超过 77。
 {
   "sequence_id": "delta_formation_after_outlet",
   "canvas": {"width": 1344, "height": 768},
+  "output_subdir": "delta_sequence",
   "visual_anchor": "output/keyframe_render/transport_pair/final/at_outlet.png",
   "state_adapter": "delta_causal",
+  "semantic_builder": "delta_causal",
+  "composer": "delta_hybrid",
+  "case_evaluator": "delta_causal",
   "projection": "delta_naturalized_1344x768",
   "common_prompt": "...",
   "common_negative": "...",
@@ -485,6 +494,12 @@ sequence_pipeline/
 ├── schema.py            # 读取和验证 sequence_spec.json
 ├── adapters/
 │   └── delta_causal.py  # 当前 states.jsonl 到通用语义状态
+├── semantic_builders/
+│   └── delta_causal.py  # 通用状态记录到本案例的可视语义层
+├── composers/
+│   └── delta_hybrid.py  # 本案例的固定锚点约束组合策略
+├── evaluators/
+│   └── delta_causal.py  # 只包含三角洲单调性、连通性和通道规则
 ├── projection.py        # 机制坐标到成品画布的可配置映射
 ├── controls.py          # 几何源图、Canny、叠加图和验证
 ├── prompts.py           # 提示词分段组合与双 tokenizer 检查
@@ -499,11 +514,19 @@ sequence_pipeline/
 模块职责要求：
 
 - `schema.py` 不理解三角洲，只验证通用字段；
-- `delta_causal.py` 是唯一知道 `particles/thick/new_land/flow_samples` 具体含义的模块；
+- `adapters/delta_causal.py` 是唯一读取原始
+  `particles/thick/new_land/flow_samples` 字段的模块；
+- 通用 CLI 通过规格名称装载 adapter、semantic builder、composer 和 case evaluator，
+  不直接读取三角洲字段或硬编码 state 编号；
+- `semantic_builders/delta_causal.py` 只消费 adapter 整理后的状态记录；换成没有粒子、
+  厚度或新生陆地的程序时，提供新的 builder，不修改通用 CLI；
 - `controls.py` 只处理硬几何，不读取提示词；
 - `prompts.py` 只组装语言，不决定像素位置；
 - `semantic_layers.py` 输出有名称、有单位或归一化说明的图层；
-- `composite.py` 必须记录每个输出像素可能来自哪些输入；
+- `composite.py` 调度规格指定的组合策略；具体 composer 必须记录每个输出像素可能来自
+  哪些输入；
+- `evaluate.py` 只做尺寸、哈希、Canny、token、固定像素和 raw/组合分离等通用检查，
+  案例规则由 `evaluators/` 插件读取 JSON 配置；
 - `report.py` 只消费前面保存的 manifest，重新生成报告时不得重新跑模型。
 
 ### 9.3 统一执行阶段
