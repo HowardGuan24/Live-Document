@@ -1,0 +1,618 @@
+{
+  "status": "composed",
+  "sequence_id": "delta_formation_after_outlet",
+  "classification": "hybrid: fixed selected SDXL visual anchor plus deterministic mechanism-derived suspended sediment, underwater deposit, and emergent wet-sand layers",
+  "raw_candidate_usage": "The current-stage raw SDXL candidates are retained for comparison but are not copied into final pixels because they change the full scene. The Stage 1.2 selected model image is the visual anchor for every final frame.",
+  "input_signature": "0e0719a2cdb75f121a3b5e1d5abdbc40c85e017697dd08293cbfdde2e3f7e10f",
+  "cache": {
+    "reused": true
+  },
+  "anchor": {
+    "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/final/at_outlet.png",
+    "relative_name": "at_outlet.png",
+    "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763",
+    "size": [
+      1344,
+      768
+    ],
+    "mode": "RGB"
+  },
+  "keyframes": {
+    "decelerated_plume": {
+      "display_frame": 32,
+      "state_frame": 49,
+      "meaning": "泥沙进入海水后减速并形成紧凑浑浊羽流",
+      "inputs": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "97d761e5a77917b6db9aef1406a23017df56e260accbd8943f5ea2f103bbedb1",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "8c5861e025545dddc359b072defab87e5f859fea2280b44bd694b029552ff7e7",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/decelerated_plume_binary.png",
+          "relative_name": "decelerated_plume_binary.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/decelerated_plume_alpha.png",
+          "relative_name": "decelerated_plume_alpha.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "bfd4332bc523b712251a8de7320350f480ee969e38f2e8a3d656ffa1fd435840",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "method": {
+        "underwater_deposit": "Blend toward RGB(187, 154, 91), modulated by anchor luminance, at maximum alpha 0.36.",
+        "suspended_sediment": "Blend toward RGB(145, 77, 38), modulated by anchor luminance, at maximum alpha 0.5.",
+        "new_land": "Generate deterministic wet-sand texture from the anchor's existing sand statistics and composite only inside the projected new_land region."
+      },
+      "allowed_region": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/decelerated_plume_allowed_region.png",
+        "relative_name": "decelerated_plume_allowed_region.png",
+        "sha256": "0ddc42b15f3221e25004775b72f93b2d404159033e055a3cc1ec3643e19179f5",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "只有白色区域允许相对视觉锚点发生变化"
+      },
+      "difference": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/decelerated_plume_difference.png",
+        "relative_name": "decelerated_plume_difference.png",
+        "sha256": "965108005b92a7a79c197a742292f064fe6bb038e6f5de6376b7a997740f7ae9",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "越亮表示最终关键帧相对视觉锚点变化越大"
+      },
+      "colored_layers": {
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/decelerated_plume_deposit.png",
+          "relative_name": "decelerated_plume_deposit.png",
+          "sha256": "7b83c16cdf65bd77760a4f662fd4df538d1fd80df051039334288acf877e25be",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "suspended_sediment": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/decelerated_plume_suspended.png",
+          "relative_name": "decelerated_plume_suspended.png",
+          "sha256": "5c3b717f0a00bb8d579748f5be44a7759894875aafd0cb42f10f1726ea70aadb",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "new_land_texture": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/decelerated_plume_new_land_texture.png",
+          "relative_name": "decelerated_plume_new_land_texture.png",
+          "sha256": "573bbf6c03aad53b7ea77d3f3fe36d9433009ef58a43f718f7f843835b7fffff",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        }
+      },
+      "result": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/mechanism_constrained/decelerated_plume.png",
+        "relative_name": "decelerated_plume.png",
+        "sha256": "170da9f5031c78c57c5b1a180d77affa6c7ce40ee47829fefb13177b56ca6014",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB",
+        "classification": "mechanism-constrained hybrid keyframe"
+      },
+      "final": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
+        "relative_name": "01_decelerated_plume.png",
+        "sha256": "170da9f5031c78c57c5b1a180d77affa6c7ce40ee47829fefb13177b56ca6014",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB"
+      },
+      "static_region_max_difference_0_255": 0
+    },
+    "underwater_accumulation": {
+      "display_frame": 64,
+      "state_frame": 100,
+      "meaning": "河口外水下沉积明显累积，但仍被连续水体覆盖",
+      "inputs": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "3cdce1edcbd5bb01cefbcab72162eb3b728c2d846d27907074c69842b1fd189e",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "2159ca5ea8a4a3c397af100e889585ef65d2e1df23fd1b27ffd1f4dd59a65707",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/underwater_accumulation_binary.png",
+          "relative_name": "underwater_accumulation_binary.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/underwater_accumulation_alpha.png",
+          "relative_name": "underwater_accumulation_alpha.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "bfd4332bc523b712251a8de7320350f480ee969e38f2e8a3d656ffa1fd435840",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "method": {
+        "underwater_deposit": "Blend toward RGB(187, 154, 91), modulated by anchor luminance, at maximum alpha 0.36.",
+        "suspended_sediment": "Blend toward RGB(145, 77, 38), modulated by anchor luminance, at maximum alpha 0.5.",
+        "new_land": "Generate deterministic wet-sand texture from the anchor's existing sand statistics and composite only inside the projected new_land region."
+      },
+      "allowed_region": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/underwater_accumulation_allowed_region.png",
+        "relative_name": "underwater_accumulation_allowed_region.png",
+        "sha256": "7b563bb1cd30d4308d7273c05ce2dbb40abba471c53a36d507266041e3d3489b",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "只有白色区域允许相对视觉锚点发生变化"
+      },
+      "difference": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/underwater_accumulation_difference.png",
+        "relative_name": "underwater_accumulation_difference.png",
+        "sha256": "da48da6ad7f02d85faf7d37b59003482103b1a9d197e71372c63d53b8b04d93a",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "越亮表示最终关键帧相对视觉锚点变化越大"
+      },
+      "colored_layers": {
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/underwater_accumulation_deposit.png",
+          "relative_name": "underwater_accumulation_deposit.png",
+          "sha256": "0a3d6ca5b3d4b0368f0493ebd222874e637251410a3de6c50fbee0ed59d9d907",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "suspended_sediment": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/underwater_accumulation_suspended.png",
+          "relative_name": "underwater_accumulation_suspended.png",
+          "sha256": "1ad26d9c575aef54c66e6a087b99a44539e09b07adeeb8913dee18a1342a01b1",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "new_land_texture": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/underwater_accumulation_new_land_texture.png",
+          "relative_name": "underwater_accumulation_new_land_texture.png",
+          "sha256": "573bbf6c03aad53b7ea77d3f3fe36d9433009ef58a43f718f7f843835b7fffff",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        }
+      },
+      "result": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/mechanism_constrained/underwater_accumulation.png",
+        "relative_name": "underwater_accumulation.png",
+        "sha256": "e69d673aea887fee7f5026955bc5114fd84e6f8a84f6720a17b6bcb3a3c0c01e",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB",
+        "classification": "mechanism-constrained hybrid keyframe"
+      },
+      "final": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
+        "relative_name": "02_underwater_accumulation.png",
+        "sha256": "e69d673aea887fee7f5026955bc5114fd84e6f8a84f6720a17b6bcb3a3c0c01e",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB"
+      },
+      "static_region_max_difference_0_255": 0
+    },
+    "sandbar_emergence": {
+      "display_frame": 78,
+      "state_frame": 107,
+      "meaning": "同一浅滩的两个相邻湿沙斑块刚刚露出水面",
+      "inputs": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "321a24e3a6a4fdf1c9ea8f0ce30b47c05c2754a7ecdbe7af2fcf803bb8456807",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "a53bc5899e5841d5b705b1f9b6cd3a05a6b87a49bc05477c4a337ada95301aac",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/sandbar_emergence_binary.png",
+          "relative_name": "sandbar_emergence_binary.png",
+          "sha256": "9b0b09b657d7f102d7f0d46079794e15ba13bd0c9374d3c0f92d73a5638de288",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/sandbar_emergence_alpha.png",
+          "relative_name": "sandbar_emergence_alpha.png",
+          "sha256": "a8edb3d966895acea5dc522aad2852def8e6090db3abc71dbab0c2d69be157e8",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "50ccaff77f6e525610ee4a2a37f0ec0fb3537e86f21b3cbd0091f0098b7bf7b4",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "method": {
+        "underwater_deposit": "Blend toward RGB(187, 154, 91), modulated by anchor luminance, at maximum alpha 0.36.",
+        "suspended_sediment": "Blend toward RGB(145, 77, 38), modulated by anchor luminance, at maximum alpha 0.5.",
+        "new_land": "Generate deterministic wet-sand texture from the anchor's existing sand statistics and composite only inside the projected new_land region."
+      },
+      "allowed_region": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/sandbar_emergence_allowed_region.png",
+        "relative_name": "sandbar_emergence_allowed_region.png",
+        "sha256": "40c0f535830f77f3f4fb822a236c922c45610098d5e28c947c8d8dd719ad4623",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "只有白色区域允许相对视觉锚点发生变化"
+      },
+      "difference": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/sandbar_emergence_difference.png",
+        "relative_name": "sandbar_emergence_difference.png",
+        "sha256": "869d65761db5543c2ac397e03dd7b02fc3e1f699187e114f47e337442d29137e",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "越亮表示最终关键帧相对视觉锚点变化越大"
+      },
+      "colored_layers": {
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/sandbar_emergence_deposit.png",
+          "relative_name": "sandbar_emergence_deposit.png",
+          "sha256": "e9fd139ad9ea87b702a1aa140104cce0dd43b727fa39e34c6ed8bc1d83a1d995",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "suspended_sediment": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/sandbar_emergence_suspended.png",
+          "relative_name": "sandbar_emergence_suspended.png",
+          "sha256": "d8346e0d281665100ab4d2e9eca590960ae3b14ddfe1e62fc86955d50bfc49de",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "new_land_texture": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/sandbar_emergence_new_land_texture.png",
+          "relative_name": "sandbar_emergence_new_land_texture.png",
+          "sha256": "8e015b9e7f75d6ca42c1caab8ca881955ebef3357c33ba6ba5fcbc17370e79f1",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        }
+      },
+      "result": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/mechanism_constrained/sandbar_emergence.png",
+        "relative_name": "sandbar_emergence.png",
+        "sha256": "9ea0cb5ce34bcbcf97f3b100398193e496d7b7287edad38ff3a7492575d88535",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB",
+        "classification": "mechanism-constrained hybrid keyframe"
+      },
+      "final": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
+        "relative_name": "03_sandbar_emergence.png",
+        "sha256": "9ea0cb5ce34bcbcf97f3b100398193e496d7b7287edad38ff3a7492575d88535",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB"
+      },
+      "static_region_max_difference_0_255": 0
+    },
+    "rerouted_flow": {
+      "display_frame": 97,
+      "state_frame": 119,
+      "meaning": "同一沙洲继续存在，水流稳定地从两侧绕行",
+      "inputs": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "d5291a0f7f6262a67eef83abeb328fdc70a06e65f730295032f4a57bab90f2c4",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "118dd84e640001a09f1d7da880a6c3662b23d16ad8b3f9a133362dd848bf9a6d",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/rerouted_flow_binary.png",
+          "relative_name": "rerouted_flow_binary.png",
+          "sha256": "dd0f31b1166a58661b7bb4fc4b6126fd79913b3fad86a72accbf1a0214722a8b",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/rerouted_flow_alpha.png",
+          "relative_name": "rerouted_flow_alpha.png",
+          "sha256": "c0fedc27ad84a4cfc288c0765f7f414e909b501cb2731a66c1d85629a84baa13",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "7677edc7c522a914fa9f8a1c1d7b0f16b4accce9939aa693d01021ef35ea6359",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "method": {
+        "underwater_deposit": "Blend toward RGB(187, 154, 91), modulated by anchor luminance, at maximum alpha 0.36.",
+        "suspended_sediment": "Blend toward RGB(145, 77, 38), modulated by anchor luminance, at maximum alpha 0.5.",
+        "new_land": "Generate deterministic wet-sand texture from the anchor's existing sand statistics and composite only inside the projected new_land region."
+      },
+      "allowed_region": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/rerouted_flow_allowed_region.png",
+        "relative_name": "rerouted_flow_allowed_region.png",
+        "sha256": "13d625bbb63a389e63c144f37db8b35d20068f0168235d80ea12614798212341",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "只有白色区域允许相对视觉锚点发生变化"
+      },
+      "difference": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/rerouted_flow_difference.png",
+        "relative_name": "rerouted_flow_difference.png",
+        "sha256": "04f4c5e5e3735b19d6802a1cb9f5ccd190d1062c9de3f1c59c954218990c1de4",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "越亮表示最终关键帧相对视觉锚点变化越大"
+      },
+      "colored_layers": {
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/rerouted_flow_deposit.png",
+          "relative_name": "rerouted_flow_deposit.png",
+          "sha256": "4432ac70e47ce6b3eae2aa0b1b9c1feada5f2bdd08ad17f638dc04ffa2531ce6",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "suspended_sediment": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/rerouted_flow_suspended.png",
+          "relative_name": "rerouted_flow_suspended.png",
+          "sha256": "6bc851448ccd93e6de87d0d460c4702e47e98ce2240d2f79e0f1dde774387f5d",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        },
+        "new_land_texture": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/composite/rerouted_flow_new_land_texture.png",
+          "relative_name": "rerouted_flow_new_land_texture.png",
+          "sha256": "d8f893136e3d3057eea01005d98c4cd185b827859d4549ac271fea15af6d5bb0",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB"
+        }
+      },
+      "result": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/mechanism_constrained/rerouted_flow.png",
+        "relative_name": "rerouted_flow.png",
+        "sha256": "9e8a34dcc1612acecda5eea7950f78809c89522c552db0b5e6f9fc050fd0dc57",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB",
+        "classification": "mechanism-constrained hybrid keyframe"
+      },
+      "final": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png",
+        "relative_name": "04_rerouted_flow.png",
+        "sha256": "9e8a34dcc1612acecda5eea7950f78809c89522c552db0b5e6f9fc050fd0dc57",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB"
+      },
+      "static_region_max_difference_0_255": 0
+    }
+  }
+}

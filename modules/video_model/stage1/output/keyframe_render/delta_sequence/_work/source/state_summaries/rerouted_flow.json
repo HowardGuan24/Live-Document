@@ -1,0 +1,31 @@
+{
+  "id": "rerouted_flow",
+  "display_frame": 97,
+  "state_frame": 119,
+  "beat_id": "reroute",
+  "caption": "新生陆地使水流绕行分流",
+  "meaning": "同一沙洲继续存在，水流稳定地从两侧绕行",
+  "stats": {
+    "injected_particles": 1680,
+    "suspended_particles": 1204,
+    "settled_particles": 476,
+    "settled_this_frame": 9,
+    "max_thickness": 0.484351,
+    "underwater_deposit_cells": 503,
+    "new_land_cells": 15,
+    "new_land_front_x": 52,
+    "deposit_front_x": 63,
+    "raw_channel_count": 2
+  },
+  "program_frame": {
+    "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/source/mechanism_frames/rerouted_flow.png",
+    "relative_name": "rerouted_flow.png",
+    "sha256": "43fadcde3d28b31062c990667e9a68044d5db6426fc95c3417c9808a6e262c9b",
+    "size": [
+      768,
+      512
+    ],
+    "mode": "RGB",
+    "model_input": false
+  }
+}

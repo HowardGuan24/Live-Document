@@ -124,7 +124,33 @@ prompt、参数和四个 seed，且都不使用 img2img、strength 或 mask。
 结果在 `output/keyframe_render/transport_pair/`。先看 `final/selected-pair.jpg` 和
 `report.md`；`pairs-labeled.jpg`、`pairs-revised.jpg` 保留两轮 raw 失败证据。
 
-## Stage 1.3：LTX-2.3 首尾帧过渡测试
+## Stage 1.3：机制状态生成后续关键帧
+
+`stage1.3.md` 把程序中的悬浮泥沙、水下沉积和新生陆地转成四张后续关键帧。
+这套实现不是写死四张图的脚本：通用流水线负责规格校验、坐标投影、Canny、提示词、
+候选管理、约束组合、验收和报告；`delta_causal` 适配器只负责解释当前三角洲程序状态。
+
+```bash
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.sequence_pipeline.cli \
+  --spec modules/video_model/stage1/keyframe_render/delta_sequence_spec.json --prepare
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.sequence_pipeline.cli \
+  --spec modules/video_model/stage1/keyframe_render/delta_sequence_spec.json --generate
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.sequence_pipeline.cli \
+  --spec modules/video_model/stage1/keyframe_render/delta_sequence_spec.json --compose
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.sequence_pipeline.cli \
+  --spec modules/video_model/stage1/keyframe_render/delta_sequence_spec.json --evaluate
+/opt/venv/bin/python -m modules.video_model.stage1.keyframe_render.sequence_pipeline.cli \
+  --spec modules/video_model/stage1/keyframe_render/delta_sequence_spec.json --report
+```
+
+结果在 `output/keyframe_render/delta_sequence/`。先看 `report.html` 和
+`sequence-contact-sheet.jpg`；报告逐帧展示程序状态、语义层、Canny 的四步来源、完整提示词、
+16 张 SDXL/ControlNet 原始候选、最终组合、验收以及后续视频交接。
+
+独立冒烟规格为 `keyframe_render/delta_sequence_smoke_spec.json`，它使用
+display 40 / state 50 验证新增状态或不同帧数不需要修改通用流水线。
+
+## Stage 1.2 补充：LTX-2.3 首尾帧过渡测试
 
 `video_transition.py` 把 Stage 1.2 选中的 `in_channel.png` 和 `at_outlet.png`
 分别接到 LTX-2.3 First-Last-Frame to Video 工作流的首帧与尾帧引导。当前首次测试为

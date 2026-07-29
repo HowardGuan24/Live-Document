@@ -1,0 +1,108 @@
+{
+  "sequence_id": "delta_formation_after_outlet",
+  "ordered_keyframes": [
+    {
+      "id": "at_outlet",
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png",
+      "meaning": "泥沙刚到河口，尚无离岸羽流、水下沉积或新生陆地"
+    },
+    {
+      "id": "decelerated_plume",
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
+      "meaning": "泥沙进入海水后减速并形成紧凑浑浊羽流"
+    },
+    {
+      "id": "underwater_accumulation",
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
+      "meaning": "河口外水下沉积明显累积，但仍被连续水体覆盖"
+    },
+    {
+      "id": "sandbar_emergence",
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
+      "meaning": "同一浅滩的两个相邻湿沙斑块刚刚露出水面"
+    },
+    {
+      "id": "rerouted_flow",
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png",
+      "meaning": "同一沙洲继续存在，水流稳定地从两侧绕行"
+    }
+  ],
+  "transitions": [
+    {
+      "index": 0,
+      "first": {
+        "id": "at_outlet",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png",
+        "meaning": "泥沙刚到河口，尚无离岸羽流、水下沉积或新生陆地"
+      },
+      "last": {
+        "id": "decelerated_plume",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
+        "meaning": "泥沙进入海水后减速并形成紧凑浑浊羽流"
+      },
+      "only_major_change": "A compact suspended-sediment plume exits the mouth and slows in the nearby sea; no land emerges.",
+      "must_remain_fixed": "orthographic camera, original coast, upstream river, sand texture, lighting and color palette",
+      "forbidden": "camera motion, shoreline drift, dry land, bifurcation, offshore wide plume",
+      "suggested_duration_seconds": 4,
+      "fps": 24,
+      "model_route": "LTX-2.3 First-Last-Frame to Video"
+    },
+    {
+      "index": 1,
+      "first": {
+        "id": "decelerated_plume",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
+        "meaning": "泥沙进入海水后减速并形成紧凑浑浊羽流"
+      },
+      "last": {
+        "id": "underwater_accumulation",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
+        "meaning": "河口外水下沉积明显累积，但仍被连续水体覆盖"
+      },
+      "only_major_change": "The submerged deposit thickens and expands beneath continuous water; no dry land emerges.",
+      "must_remain_fixed": "orthographic camera, original coast, upstream river, sand texture, lighting and color palette",
+      "forbidden": "camera motion, shoreline drift, exposed sand, island shadow",
+      "suggested_duration_seconds": 4,
+      "fps": 24,
+      "model_route": "LTX-2.3 First-Last-Frame to Video"
+    },
+    {
+      "index": 2,
+      "first": {
+        "id": "underwater_accumulation",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
+        "meaning": "河口外水下沉积明显累积，但仍被连续水体覆盖"
+      },
+      "last": {
+        "id": "sandbar_emergence",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
+        "meaning": "同一浅滩的两个相邻湿沙斑块刚刚露出水面"
+      },
+      "only_major_change": "Two adjacent wet sand patches belonging to one shoal break the water surface; no mature delta forms.",
+      "must_remain_fixed": "orthographic camera, original coast, upstream river, sand texture, lighting and color palette",
+      "forbidden": "camera motion, mature delta, many islands, complex channel network",
+      "suggested_duration_seconds": 4,
+      "fps": 24,
+      "model_route": "LTX-2.3 First-Last-Frame to Video"
+    },
+    {
+      "index": 3,
+      "first": {
+        "id": "sandbar_emergence",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
+        "meaning": "同一浅滩的两个相邻湿沙斑块刚刚露出水面"
+      },
+      "last": {
+        "id": "rerouted_flow",
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png",
+        "meaning": "同一沙洲继续存在，水流稳定地从两侧绕行"
+      },
+      "only_major_change": "The two wet patches connect into one sandbar and the flow separates into exactly two paths around it.",
+      "must_remain_fixed": "orthographic camera, original coast, upstream river, sand texture, lighting and color palette",
+      "forbidden": "camera motion, extra islands, three or more channels, mature distributary tree",
+      "suggested_duration_seconds": 4,
+      "fps": 24,
+      "model_route": "LTX-2.3 First-Last-Frame to Video"
+    }
+  ]
+}

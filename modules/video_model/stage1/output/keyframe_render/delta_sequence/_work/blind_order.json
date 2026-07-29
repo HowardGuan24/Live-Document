@@ -1,0 +1,118 @@
+{
+  "shuffle_seed": 20260729,
+  "purpose": "Inspect candidates without stage or diffusion-seed labels; the mapping is disclosed here after review.",
+  "order": [
+    {
+      "candidate": "C01",
+      "keyframe_id": "decelerated_plume",
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3101.png",
+      "sha256": "162bfef87a087f68c5f9ff96bae5c564166a2806968e882038394affa99e53cc"
+    },
+    {
+      "candidate": "C02",
+      "keyframe_id": "underwater_accumulation",
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3103.png",
+      "sha256": "dc31f1a472de8975913adcfb28d1f0d4053fc0cd785d3d4c9addab4424dd64d3"
+    },
+    {
+      "candidate": "C03",
+      "keyframe_id": "decelerated_plume",
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3103.png",
+      "sha256": "ef56b0ee0de82c35c0f0f7c423216f178013226bb29d0d8ed3d607efab89377a"
+    },
+    {
+      "candidate": "C04",
+      "keyframe_id": "underwater_accumulation",
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3102.png",
+      "sha256": "55a597500983192cb175455b5d8cd68f4edd9fda97c6ad50fa5acb242515f24f"
+    },
+    {
+      "candidate": "C05",
+      "keyframe_id": "rerouted_flow",
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3104.png",
+      "sha256": "37421f06a6330aebb8a62c7fd5e09603a02dbd5d9b742fa068e4e7f3d2606ed3"
+    },
+    {
+      "candidate": "C06",
+      "keyframe_id": "decelerated_plume",
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3104.png",
+      "sha256": "e5194e0b058ee73658e39a7125f84a2916a98f60e5ec5be0fb152da597b20144"
+    },
+    {
+      "candidate": "C07",
+      "keyframe_id": "underwater_accumulation",
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3101.png",
+      "sha256": "5a5168ca7d7970fe3866f195e181dc59506221aa5b999c3ea0922ec8233e6277"
+    },
+    {
+      "candidate": "C08",
+      "keyframe_id": "sandbar_emergence",
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3101.png",
+      "sha256": "777e505d1c4cfaf72f44bbbaeddd5c14bea7504ecf74550430f87b12f5a56686"
+    },
+    {
+      "candidate": "C09",
+      "keyframe_id": "sandbar_emergence",
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3104.png",
+      "sha256": "4ebb64b7b4ebc538b3c78ac6e2525eccd528542cbdf034b3f6ef47dc3fcc7ce3"
+    },
+    {
+      "candidate": "C10",
+      "keyframe_id": "decelerated_plume",
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3102.png",
+      "sha256": "cb8e4cbbf2ab7b87d6ee1c256378bf84f5859d6205a6d6a29b2d18a932689f4f"
+    },
+    {
+      "candidate": "C11",
+      "keyframe_id": "rerouted_flow",
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3101.png",
+      "sha256": "302e952af66abb29a8188097e042b55d9c07852f79eeb730976d95fce883767a"
+    },
+    {
+      "candidate": "C12",
+      "keyframe_id": "rerouted_flow",
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3103.png",
+      "sha256": "3c28f69807020b80506af5730f12d58e6a0b6d1008a15244800d45c69a17adca"
+    },
+    {
+      "candidate": "C13",
+      "keyframe_id": "sandbar_emergence",
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3102.png",
+      "sha256": "d7af50db5da5cb1447a29a3dcb76e00c3270091bbc78487828550059679a25ce"
+    },
+    {
+      "candidate": "C14",
+      "keyframe_id": "rerouted_flow",
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3102.png",
+      "sha256": "44854037faf79a5ead082d2f30f470af3c4df5facf1d5c4b02f2b2ae46776b5b"
+    },
+    {
+      "candidate": "C15",
+      "keyframe_id": "sandbar_emergence",
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3103.png",
+      "sha256": "0474cf1d94fa41ce91f1b21bd3a1aecdc3f543179b724b687155393f708360d3"
+    },
+    {
+      "candidate": "C16",
+      "keyframe_id": "underwater_accumulation",
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3104.png",
+      "sha256": "c2d2abf15adbfba33c2585405284c9fb8fed453bf33cdf28597bb5a6305da227"
+    }
+  ]
+}

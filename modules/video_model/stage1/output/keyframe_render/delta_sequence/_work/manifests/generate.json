@@ -1,0 +1,1000 @@
+{
+  "status": "generated",
+  "sequence_id": "delta_formation_after_outlet",
+  "settings": {
+    "width": 1344,
+    "height": 768,
+    "steps": 36,
+    "guidance_scale": 6.5,
+    "controlnet_conditioning_scale": 0.6,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "dtype": "float16"
+  },
+  "prepare_spec_sha256": "1c77e5cc5ec1594be3a3ec5070e5aa59616ebb04f0a159d8ab47255a306717a9",
+  "models": {
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    },
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    }
+  },
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run.",
+    "model_roots": {
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0"
+    },
+    "models": {
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      },
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      }
+    }
+  },
+  "candidates": [
+    {
+      "keyframe_id": "decelerated_plume",
+      "display_frame": 32,
+      "state_frame": 49,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3101.png",
+      "relative_name": "decelerated_plume_s3101.png",
+      "sha256": "162bfef87a087f68c5f9ff96bae5c564166a2806968e882038394affa99e53cc",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "decelerated_plume",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "stage_forbidden": "exposed sandbar, dry land shoreline, bifurcation",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sandbar, dry land shoreline, bifurcation",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/decelerated_plume.png",
+        "relative_name": "decelerated_plume.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.007,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "16865f13bba1ca8ddcd5521f674d9d007279e9deabb8e24ea1b970f7d74e3ab4",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "underwater_accumulation",
+      "display_frame": 64,
+      "state_frame": 100,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3101.png",
+      "relative_name": "underwater_accumulation_s3101.png",
+      "sha256": "5a5168ca7d7970fe3866f195e181dc59506221aa5b999c3ea0922ec8233e6277",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "underwater_accumulation",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "stage_forbidden": "exposed sand, island shadow, dry shoreline",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sand, island shadow, dry shoreline",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/underwater_accumulation.png",
+        "relative_name": "underwater_accumulation.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "b0d34ef588a4c5dba3aefc5229f28141ace1aca1a04943bb71ec818a6de691e0",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "sandbar_emergence",
+      "display_frame": 78,
+      "state_frame": 107,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3101.png",
+      "relative_name": "sandbar_emergence_s3101.png",
+      "sha256": "777e505d1c4cfaf72f44bbbaeddd5c14bea7504ecf74550430f87b12f5a56686",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "sandbar_emergence",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "stage_forbidden": "many islands, mature channels, large new land",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, many islands, mature channels, large new land",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/sandbar_emergence.png",
+        "relative_name": "sandbar_emergence.png",
+        "sha256": "e691c4b6b9a66dfd24d7c0acc44f7b85f180be8e1170a10ffe4925f1c60a5b46",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 7943,
+        "edge_fraction": 0.007695,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "2df0ebebe2b57f45f0473232134ffc399bf6094a88399f5afe88d2cc7f80ed31",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "rerouted_flow",
+      "display_frame": 97,
+      "state_frame": 119,
+      "seed": 3101,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3101.png",
+      "relative_name": "rerouted_flow_s3101.png",
+      "sha256": "302e952af66abb29a8188097e042b55d9c07852f79eeb730976d95fce883767a",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "rerouted_flow",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "stage_forbidden": "three or more main channels, extra islands",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, three or more main channels, extra islands",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/rerouted_flow.png",
+        "relative_name": "rerouted_flow.png",
+        "sha256": "edf1b2cf40235e154adb14037c4d9f31986145fa79925cb6cbc6e332be2904f5",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 8273,
+        "edge_fraction": 0.008015,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "fc09cc44817b172cb183e99af602922bbf1c31cdca5b71c6b68b99d6a20d187f",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "decelerated_plume",
+      "display_frame": 32,
+      "state_frame": 49,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3102.png",
+      "relative_name": "decelerated_plume_s3102.png",
+      "sha256": "cb8e4cbbf2ab7b87d6ee1c256378bf84f5859d6205a6d6a29b2d18a932689f4f",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "decelerated_plume",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "stage_forbidden": "exposed sandbar, dry land shoreline, bifurcation",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sandbar, dry land shoreline, bifurcation",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/decelerated_plume.png",
+        "relative_name": "decelerated_plume.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "84014f8f49bf3fe9ca5510c015cda420b4fa3f753458faff652531127f2aec72",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "underwater_accumulation",
+      "display_frame": 64,
+      "state_frame": 100,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3102.png",
+      "relative_name": "underwater_accumulation_s3102.png",
+      "sha256": "55a597500983192cb175455b5d8cd68f4edd9fda97c6ad50fa5acb242515f24f",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "underwater_accumulation",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "stage_forbidden": "exposed sand, island shadow, dry shoreline",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sand, island shadow, dry shoreline",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/underwater_accumulation.png",
+        "relative_name": "underwater_accumulation.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "5c3019de17ce98b0ecfc215807aa273b5a845b6295633e3e8ad80e7dfa12eb42",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "sandbar_emergence",
+      "display_frame": 78,
+      "state_frame": 107,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3102.png",
+      "relative_name": "sandbar_emergence_s3102.png",
+      "sha256": "d7af50db5da5cb1447a29a3dcb76e00c3270091bbc78487828550059679a25ce",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "sandbar_emergence",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "stage_forbidden": "many islands, mature channels, large new land",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, many islands, mature channels, large new land",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/sandbar_emergence.png",
+        "relative_name": "sandbar_emergence.png",
+        "sha256": "e691c4b6b9a66dfd24d7c0acc44f7b85f180be8e1170a10ffe4925f1c60a5b46",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 7943,
+        "edge_fraction": 0.007695,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "e6e5f146c06e0cdd93b978ab7ee6744f96edfdb962cb55034cee77f488adae18",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "rerouted_flow",
+      "display_frame": 97,
+      "state_frame": 119,
+      "seed": 3102,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3102.png",
+      "relative_name": "rerouted_flow_s3102.png",
+      "sha256": "44854037faf79a5ead082d2f30f470af3c4df5facf1d5c4b02f2b2ae46776b5b",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "rerouted_flow",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "stage_forbidden": "three or more main channels, extra islands",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, three or more main channels, extra islands",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/rerouted_flow.png",
+        "relative_name": "rerouted_flow.png",
+        "sha256": "edf1b2cf40235e154adb14037c4d9f31986145fa79925cb6cbc6e332be2904f5",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 8273,
+        "edge_fraction": 0.008015,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "c6af1fefd2d46081490ffd797daa9c3a43b01d024f9e0926c073143f58e3378b",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "decelerated_plume",
+      "display_frame": 32,
+      "state_frame": 49,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3103.png",
+      "relative_name": "decelerated_plume_s3103.png",
+      "sha256": "ef56b0ee0de82c35c0f0f7c423216f178013226bb29d0d8ed3d607efab89377a",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "decelerated_plume",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "stage_forbidden": "exposed sandbar, dry land shoreline, bifurcation",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sandbar, dry land shoreline, bifurcation",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/decelerated_plume.png",
+        "relative_name": "decelerated_plume.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "4167f9ff4399a84b8e3269a06cc560dedd282ec723b8184aeaf02244fb20243b",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "underwater_accumulation",
+      "display_frame": 64,
+      "state_frame": 100,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3103.png",
+      "relative_name": "underwater_accumulation_s3103.png",
+      "sha256": "dc31f1a472de8975913adcfb28d1f0d4053fc0cd785d3d4c9addab4424dd64d3",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "underwater_accumulation",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "stage_forbidden": "exposed sand, island shadow, dry shoreline",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sand, island shadow, dry shoreline",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/underwater_accumulation.png",
+        "relative_name": "underwater_accumulation.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "9d3a190a9e0dacb1ee62cb4e063ba4af56a42ea8d7cc94cbc46bd47d25512b5d",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "sandbar_emergence",
+      "display_frame": 78,
+      "state_frame": 107,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3103.png",
+      "relative_name": "sandbar_emergence_s3103.png",
+      "sha256": "0474cf1d94fa41ce91f1b21bd3a1aecdc3f543179b724b687155393f708360d3",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "sandbar_emergence",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "stage_forbidden": "many islands, mature channels, large new land",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, many islands, mature channels, large new land",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/sandbar_emergence.png",
+        "relative_name": "sandbar_emergence.png",
+        "sha256": "e691c4b6b9a66dfd24d7c0acc44f7b85f180be8e1170a10ffe4925f1c60a5b46",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 7943,
+        "edge_fraction": 0.007695,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "b55ee679d3dd86c9e2b1bcbbeb1fd3c11f060d9fe37865a92f06d0267b0cda90",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "rerouted_flow",
+      "display_frame": 97,
+      "state_frame": 119,
+      "seed": 3103,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3103.png",
+      "relative_name": "rerouted_flow_s3103.png",
+      "sha256": "3c28f69807020b80506af5730f12d58e6a0b6d1008a15244800d45c69a17adca",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "rerouted_flow",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "stage_forbidden": "three or more main channels, extra islands",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, three or more main channels, extra islands",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/rerouted_flow.png",
+        "relative_name": "rerouted_flow.png",
+        "sha256": "edf1b2cf40235e154adb14037c4d9f31986145fa79925cb6cbc6e332be2904f5",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 8273,
+        "edge_fraction": 0.008015,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "7f0b1f674d4fa473889c7b28fd1f60bd8a6c904c66db940a5f83df9120b6abc5",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "decelerated_plume",
+      "display_frame": 32,
+      "state_frame": 49,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/decelerated_plume/decelerated_plume_s3104.png",
+      "relative_name": "decelerated_plume_s3104.png",
+      "sha256": "e5194e0b058ee73658e39a7125f84a2916a98f60e5ec5be0fb152da597b20144",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "decelerated_plume",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "stage_forbidden": "exposed sandbar, dry land shoreline, bifurcation",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sandbar, dry land shoreline, bifurcation",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/decelerated_plume.png",
+        "relative_name": "decelerated_plume.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "b13db4a9d07da5a690602de0784b357790a2c9c1276ccd0b92b1ae592a995379",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "underwater_accumulation",
+      "display_frame": 64,
+      "state_frame": 100,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/underwater_accumulation/underwater_accumulation_s3104.png",
+      "relative_name": "underwater_accumulation_s3104.png",
+      "sha256": "c2d2abf15adbfba33c2585405284c9fb8fed453bf33cdf28597bb5a6305da227",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "underwater_accumulation",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "stage_forbidden": "exposed sand, island shadow, dry shoreline",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sand, island shadow, dry shoreline",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/underwater_accumulation.png",
+        "relative_name": "underwater_accumulation.png",
+        "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 6227,
+        "edge_fraction": 0.006033,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "641806088c672db158ed4a773c59a2ec02b094aba854497261ff32c1c2b7deee",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "sandbar_emergence",
+      "display_frame": 78,
+      "state_frame": 107,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/sandbar_emergence/sandbar_emergence_s3104.png",
+      "relative_name": "sandbar_emergence_s3104.png",
+      "sha256": "4ebb64b7b4ebc538b3c78ac6e2525eccd528542cbdf034b3f6ef47dc3fcc7ce3",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "sandbar_emergence",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "stage_forbidden": "many islands, mature channels, large new land",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, many islands, mature channels, large new land",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/sandbar_emergence.png",
+        "relative_name": "sandbar_emergence.png",
+        "sha256": "e691c4b6b9a66dfd24d7c0acc44f7b85f180be8e1170a10ffe4925f1c60a5b46",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 7943,
+        "edge_fraction": 0.007695,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "3e2680da720493b1070872716a5382ac1d37fb955fafea7d62d5611cc63f72fe",
+      "classification": "raw SDXL ControlNet output"
+    },
+    {
+      "keyframe_id": "rerouted_flow",
+      "display_frame": 97,
+      "state_frame": 119,
+      "seed": 3104,
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/review/raw/rerouted_flow/rerouted_flow_s3104.png",
+      "relative_name": "rerouted_flow_s3104.png",
+      "sha256": "37421f06a6330aebb8a62c7fd5e09603a02dbd5d9b742fa068e4e7f3d2606ed3",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "prompt_parts": {
+        "keyframe_id": "rerouted_flow",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "stage_forbidden": "three or more main channels, extra islands",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, three or more main channels, extra islands",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "control": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/rerouted_flow.png",
+        "relative_name": "rerouted_flow.png",
+        "sha256": "edf1b2cf40235e154adb14037c4d9f31986145fa79925cb6cbc6e332be2904f5",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+        "model_input": true,
+        "edge_pixels": 8273,
+        "edge_fraction": 0.008015,
+        "unique_values": [
+          0,
+          255
+        ]
+      },
+      "inference_seconds": 0.001,
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "input_signature": "a9bc7dd030496c583779f4ea515a88ad6b7b941034e03ebb327356eb78c70b72",
+      "classification": "raw SDXL ControlNet output"
+    }
+  ],
+  "runtime": {
+    "torch": "2.9.1+gitff65f5b",
+    "hip": "7.2.53211-e1a6bc5663",
+    "gpu": "AMD Radeon Graphics"
+  },
+  "model_load_seconds": 5.234,
+  "scheduler": "EulerDiscreteScheduler",
+  "model_loaded_this_invocation": false,
+  "cache": {
+    "policy": "reuse only when prompt, Canny hash, render settings, model fingerprints, state specification and seed all match",
+    "reused": 16,
+    "generated": 0
+  },
+  "invocation": {
+    "started_at_unix": 1785287701.416735,
+    "completed_at_unix": 1785287701.4498427,
+    "wall_seconds": 0.033,
+    "force": false
+  },
+  "total_generation_seconds": 274.43
+}

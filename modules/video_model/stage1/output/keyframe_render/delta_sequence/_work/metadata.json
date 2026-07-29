@@ -1,0 +1,157 @@
+{
+  "sequence_id": "delta_formation_after_outlet",
+  "classification": "hybrid: fixed selected SDXL visual anchor plus deterministic mechanism-derived suspended sediment, underwater deposit, and emergent wet-sand layers",
+  "models": {
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    },
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    }
+  },
+  "runtime": {
+    "torch": "2.9.1+gitff65f5b",
+    "hip": "7.2.53211-e1a6bc5663",
+    "gpu": "AMD Radeon Graphics"
+  },
+  "render_settings": {
+    "width": 1344,
+    "height": 768,
+    "steps": 36,
+    "guidance_scale": 6.5,
+    "controlnet_conditioning_scale": 0.6,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "dtype": "float16"
+  },
+  "cache": {
+    "policy": "reuse only when prompt, Canny hash, render settings, model fingerprints, state specification and seed all match",
+    "reused": 16,
+    "generated": 0
+  },
+  "sources": {
+    "states": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/mechanism/states.jsonl",
+    "timeline": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/timeline.json",
+    "simulation_config": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/mechanism/simulation_config.json",
+    "config": {
+      "grid_width": 96,
+      "grid_height": 64,
+      "coastline_x": 38,
+      "state_count": 120,
+      "fps": 12,
+      "random_seed": 1909,
+      "sediment_per_frame": 14,
+      "river_speed": 1.34,
+      "expansion_rate": 0.35,
+      "sea_min_speed": 0.16,
+      "base_settling_rate": 0.02,
+      "deposit_mass": 0.12,
+      "dispersion_radius": 2,
+      "lateral_perturbation": 0.055,
+      "mouth_protection_columns": 2,
+      "stable_channel_frames": 5,
+      "flow_sample_spacing": 4,
+      "river_center_y": 31.5,
+      "river_half_width": 4,
+      "canvas_width": 768,
+      "canvas_height": 512,
+      "bathymetry_version": "mouth-platform-v2",
+      "base_depth": 0.62,
+      "offshore_depth_slope": 0.02,
+      "mouth_bar_center_x": 47.0,
+      "mouth_bar_sigma_x": 8.5,
+      "mouth_bar_sigma_y": 5.2,
+      "mouth_bar_amplitude": 0.46,
+      "depth_scale": 0.78,
+      "north_shoal_center_x": 46.0,
+      "north_shoal_center_y": 26.0,
+      "north_shoal_sigma_x": 3.2,
+      "north_shoal_sigma_y": 2.8,
+      "north_shoal_amplitude": 0.1,
+      "offshore_shoal_center_x": 52.0,
+      "offshore_shoal_center_y": 25.5,
+      "offshore_shoal_sigma_x": 2.0,
+      "offshore_shoal_sigma_y": 1.0,
+      "offshore_shoal_amplitude": 0.33,
+      "connector_shoal_center_x": 48.5,
+      "connector_shoal_center_y": 26.0,
+      "connector_shoal_sigma_x": 0.8,
+      "connector_shoal_sigma_y": 0.65,
+      "connector_shoal_amplitude": 0.025,
+      "south_scour_center_x": 46.0,
+      "south_scour_center_y": 36.0,
+      "south_scour_sigma_x": 4.0,
+      "south_scour_sigma_y": 3.2,
+      "south_scour_amplitude": 0.14,
+      "minimum_water_depth": 0.11
+    }
+  },
+  "spec_path": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/delta_sequence_spec.json",
+  "spec_sha256": "1c77e5cc5ec1594be3a3ec5070e5aa59616ebb04f0a159d8ab47255a306717a9",
+  "final_files": {
+    "at_outlet": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png",
+      "relative_name": "00_at_outlet.png",
+      "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "classification": "existing selected Stage 1.2 visual anchor"
+    },
+    "decelerated_plume": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
+      "relative_name": "01_decelerated_plume.png",
+      "sha256": "170da9f5031c78c57c5b1a180d77affa6c7ce40ee47829fefb13177b56ca6014",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB"
+    },
+    "underwater_accumulation": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
+      "relative_name": "02_underwater_accumulation.png",
+      "sha256": "e69d673aea887fee7f5026955bc5114fd84e6f8a84f6720a17b6bcb3a3c0c01e",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB"
+    },
+    "sandbar_emergence": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
+      "relative_name": "03_sandbar_emergence.png",
+      "sha256": "9ea0cb5ce34bcbcf97f3b100398193e496d7b7287edad38ff3a7492575d88535",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB"
+    },
+    "rerouted_flow": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png",
+      "relative_name": "04_rerouted_flow.png",
+      "sha256": "9e8a34dcc1612acecda5eea7950f78809c89522c552db0b5e6f9fc050fd0dc57",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB"
+    }
+  },
+  "report_integrity": {
+    "reference_count": 76,
+    "missing": []
+  },
+  "model_rerun_during_report": false
+}

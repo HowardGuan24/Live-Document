@@ -1,0 +1,155 @@
+{
+  "sequence_id": "delta_formation_after_outlet",
+  "title": "三角洲形成：入海减速到稳定分流",
+  "output_subdir": "delta_sequence",
+  "canvas": {
+    "width": 1344,
+    "height": 768
+  },
+  "paths": {
+    "visual_anchor": "output/keyframe_render/transport_pair/final/at_outlet.png",
+    "states": "output/causal_delta/mechanism/states.jsonl",
+    "timeline": "output/causal_delta/timeline.json",
+    "simulation_config": "output/causal_delta/mechanism/simulation_config.json",
+    "program_frames": "output/causal_delta/frames",
+    "base_control": "output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png"
+  },
+  "state_adapter": "delta_causal",
+  "semantic_builder": "delta_causal",
+  "composer": "delta_hybrid",
+  "case_evaluator": "delta_causal",
+  "case_evaluation": {
+    "new_land_cells": [0, 0, 9, 15],
+    "new_land_components": {
+      "decelerated_plume": 0,
+      "underwater_accumulation": 0,
+      "sandbar_emergence": 2,
+      "rerouted_flow": 1
+    },
+    "final_channel_count": 2
+  },
+  "projection": {
+    "type": "piecewise_river_to_sea",
+    "mechanism_width": 96,
+    "mechanism_height": 64,
+    "coastline_x": 38,
+    "river_center_y": 31.5,
+    "river_half_width": 4.0,
+    "mouth_x_ratio": 0.43,
+    "river_curve": {
+      "center_y_ratio": 0.5,
+      "sinusoids": [
+        {"amplitude": 5.0, "period": 115.0, "phase": 0.3},
+        {"amplitude": 2.0, "period": 39.0, "phase": 0.0}
+      ],
+      "half_width_start": 52.0,
+      "half_width_end": 72.0,
+      "half_width_power": 1.8
+    }
+  },
+  "render": {
+    "width": 1344,
+    "height": 768,
+    "steps": 36,
+    "guidance_scale": 6.5,
+    "controlnet_conditioning_scale": 0.6,
+    "seeds": [3101, 3102, 3103, 3104],
+    "report_seed": 3102,
+    "blind_shuffle_seed": 20260729,
+    "dtype": "float16"
+  },
+  "composite": {
+    "sand_reference_box": [0, 0, 440, 280],
+    "deposit_color_rgb": [187, 154, 91],
+    "deposit_max_alpha": 0.36,
+    "sediment_color_rgb": [145, 77, 38],
+    "sediment_max_alpha": 0.50,
+    "wet_sand_color_rgb": [154, 126, 78],
+    "wet_sand_color_mix": 0.32,
+    "new_land_max_alpha": 0.96,
+    "wet_rim_color_rgb": [91, 94, 70],
+    "wet_rim_max_alpha": 0.22
+  },
+  "video_handoff": {
+    "must_remain_fixed": "orthographic camera, original coast, upstream river, sand texture, lighting and color palette",
+    "suggested_duration_seconds": 4,
+    "fps": 24,
+    "model_route": "LTX-2.3 First-Last-Frame to Video"
+  },
+  "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+  "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+  "anchor": {
+    "id": "at_outlet",
+    "display_frame": 13,
+    "state_frame": 27,
+    "output_filename": "00_at_outlet.png",
+    "meaning": "泥沙刚到河口，尚无离岸羽流、水下沉积或新生陆地",
+    "selection_reason": "沿用 Stage 1.2 已选视觉起点，不重新生成"
+  },
+  "keyframes": [
+    {
+      "id": "decelerated_plume",
+      "display_frame": 32,
+      "state_frame": 49,
+      "output_filename": "01_decelerated_plume.png",
+      "meaning": "泥沙进入海水后减速并形成紧凑浑浊羽流",
+      "selection_reason": "入海减速节拍末端：羽流已进入海水，但新生陆地仍为 0",
+      "video_transition": {
+        "only_major_change": "A compact suspended-sediment plume exits the mouth and slows in the nearby sea; no land emerges.",
+        "forbidden": "camera motion, shoreline drift, dry land, bifurcation, offshore wide plume"
+      },
+      "mechanism_delta": "compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+      "stage_forbidden": "exposed sandbar, dry land shoreline, bifurcation",
+      "semantic_layers": ["suspended_density", "underwater_deposit"],
+      "geometry_layers": ["fixed_coast", "fixed_riverbanks"]
+    },
+    {
+      "id": "underwater_accumulation",
+      "display_frame": 64,
+      "state_frame": 100,
+      "output_filename": "02_underwater_accumulation.png",
+      "meaning": "河口外水下沉积明显累积，但仍被连续水体覆盖",
+      "selection_reason": "出水前最后状态：便于单独看清水下累积，不与出水混为一步",
+      "video_transition": {
+        "only_major_change": "The submerged deposit thickens and expands beneath continuous water; no dry land emerges.",
+        "forbidden": "camera motion, shoreline drift, exposed sand, island shadow"
+      },
+      "mechanism_delta": "pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+      "stage_forbidden": "exposed sand, island shadow, dry shoreline",
+      "semantic_layers": ["suspended_density", "underwater_deposit"],
+      "geometry_layers": ["fixed_coast", "fixed_riverbanks"]
+    },
+    {
+      "id": "sandbar_emergence",
+      "display_frame": 78,
+      "state_frame": 107,
+      "output_filename": "03_sandbar_emergence.png",
+      "meaning": "同一浅滩的两个相邻湿沙斑块刚刚露出水面",
+      "selection_reason": "首次形成可见新陆地：9 个网格组成两个相邻斑块",
+      "video_transition": {
+        "only_major_change": "Two adjacent wet sand patches belonging to one shoal break the water surface; no mature delta forms.",
+        "forbidden": "camera motion, mature delta, many islands, complex channel network"
+      },
+      "mechanism_delta": "two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+      "stage_forbidden": "many islands, mature channels, large new land",
+      "semantic_layers": ["suspended_density", "underwater_deposit", "new_land"],
+      "geometry_layers": ["fixed_coast", "fixed_riverbanks", "new_land_boundary"]
+    },
+    {
+      "id": "rerouted_flow",
+      "display_frame": 97,
+      "state_frame": 119,
+      "output_filename": "04_rerouted_flow.png",
+      "meaning": "同一沙洲继续存在，水流稳定地从两侧绕行",
+      "selection_reason": "15 个新陆地网格已经连接，程序统计显示两条稳定通道",
+      "video_transition": {
+        "only_major_change": "The two wet patches connect into one sandbar and the flow separates into exactly two paths around it.",
+        "forbidden": "camera motion, extra islands, three or more channels, mature distributary tree"
+      },
+      "mechanism_delta": "the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+      "stage_forbidden": "three or more main channels, extra islands",
+      "semantic_layers": ["suspended_density", "underwater_deposit", "new_land", "flow_audit"],
+      "geometry_layers": ["fixed_coast", "fixed_riverbanks", "new_land_boundary"]
+    }
+  ]
+}

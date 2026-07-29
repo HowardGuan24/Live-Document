@@ -1,0 +1,932 @@
+{
+  "status": "prepared",
+  "sequence_id": "delta_formation_after_outlet",
+  "spec_path": "/workspace/Live-Document/modules/video_model/stage1/keyframe_render/delta_sequence_spec.json",
+  "spec_sha256": "1c77e5cc5ec1594be3a3ec5070e5aa59616ebb04f0a159d8ab47255a306717a9",
+  "input_signature": "d57f269c087d1823e68b7887060824812a553a490fb1e73778139fd1805026a4",
+  "cache": {
+    "reused": true,
+    "policy": "spec, source data, selected program frames, anchor, control source and prepare code hashes all match"
+  },
+  "output_root": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence",
+  "sources": {
+    "states": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/mechanism/states.jsonl",
+    "timeline": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/timeline.json",
+    "simulation_config": "/workspace/Live-Document/modules/video_model/stage1/output/causal_delta/mechanism/simulation_config.json",
+    "config": {
+      "grid_width": 96,
+      "grid_height": 64,
+      "coastline_x": 38,
+      "state_count": 120,
+      "fps": 12,
+      "random_seed": 1909,
+      "sediment_per_frame": 14,
+      "river_speed": 1.34,
+      "expansion_rate": 0.35,
+      "sea_min_speed": 0.16,
+      "base_settling_rate": 0.02,
+      "deposit_mass": 0.12,
+      "dispersion_radius": 2,
+      "lateral_perturbation": 0.055,
+      "mouth_protection_columns": 2,
+      "stable_channel_frames": 5,
+      "flow_sample_spacing": 4,
+      "river_center_y": 31.5,
+      "river_half_width": 4,
+      "canvas_width": 768,
+      "canvas_height": 512,
+      "bathymetry_version": "mouth-platform-v2",
+      "base_depth": 0.62,
+      "offshore_depth_slope": 0.02,
+      "mouth_bar_center_x": 47.0,
+      "mouth_bar_sigma_x": 8.5,
+      "mouth_bar_sigma_y": 5.2,
+      "mouth_bar_amplitude": 0.46,
+      "depth_scale": 0.78,
+      "north_shoal_center_x": 46.0,
+      "north_shoal_center_y": 26.0,
+      "north_shoal_sigma_x": 3.2,
+      "north_shoal_sigma_y": 2.8,
+      "north_shoal_amplitude": 0.1,
+      "offshore_shoal_center_x": 52.0,
+      "offshore_shoal_center_y": 25.5,
+      "offshore_shoal_sigma_x": 2.0,
+      "offshore_shoal_sigma_y": 1.0,
+      "offshore_shoal_amplitude": 0.33,
+      "connector_shoal_center_x": 48.5,
+      "connector_shoal_center_y": 26.0,
+      "connector_shoal_sigma_x": 0.8,
+      "connector_shoal_sigma_y": 0.65,
+      "connector_shoal_amplitude": 0.025,
+      "south_scour_center_x": 46.0,
+      "south_scour_center_y": 36.0,
+      "south_scour_sigma_x": 4.0,
+      "south_scour_sigma_y": 3.2,
+      "south_scour_amplitude": 0.14,
+      "minimum_water_depth": 0.11
+    }
+  },
+  "projection": {
+    "type": "piecewise_river_to_sea",
+    "mechanism_width": 96,
+    "mechanism_height": 64,
+    "coastline_x": 38,
+    "river_center_y": 31.5,
+    "river_half_width": 4.0,
+    "mouth_x_ratio": 0.43,
+    "river_curve": {
+      "center_y_ratio": 0.5,
+      "sinusoids": [
+        {
+          "amplitude": 5.0,
+          "period": 115.0,
+          "phase": 0.3
+        },
+        {
+          "amplitude": 2.0,
+          "period": 39.0,
+          "phase": 0.0
+        }
+      ],
+      "half_width_start": 52.0,
+      "half_width_end": 72.0,
+      "half_width_power": 1.8
+    }
+  },
+  "maximum_thickness_for_normalization": 0.484351,
+  "anchor": {
+    "id": "at_outlet",
+    "display_frame": 13,
+    "state_frame": 27,
+    "beat_id": "transport",
+    "caption": "河流输送悬浮泥沙",
+    "meaning": "泥沙刚到河口，尚无离岸羽流、水下沉积或新生陆地",
+    "stats": {
+      "injected_particles": 392,
+      "suspended_particles": 392,
+      "settled_particles": 0,
+      "settled_this_frame": 0,
+      "max_thickness": 0.0,
+      "underwater_deposit_cells": 0,
+      "new_land_cells": 0,
+      "new_land_front_x": null,
+      "deposit_front_x": null,
+      "raw_channel_count": 1
+    },
+    "program_frame": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/source/mechanism_frames/at_outlet.png",
+      "relative_name": "at_outlet.png",
+      "sha256": "7988316e366a04e53e97fda221588fc52b19e210690e324ba56832a8ceb21f80",
+      "size": [
+        768,
+        512
+      ],
+      "mode": "RGB",
+      "model_input": false
+    },
+    "semantic_layers": {
+      "suspended_density": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/at_outlet.png",
+        "relative_name": "at_outlet.png",
+        "sha256": "a8c01bae3adf6b33afdcd0020ca3e5985f269202b21c564ec6bd10ca189dc0c5",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+        "model_input": false
+      },
+      "underwater_deposit": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/at_outlet.png",
+        "relative_name": "at_outlet.png",
+        "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "白色越亮，表示水底累积厚度相对越大",
+        "normalization_maximum": 0.484351,
+        "model_input": false
+      },
+      "new_land_binary": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/at_outlet_binary.png",
+        "relative_name": "at_outlet_binary.png",
+        "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+        "model_input": false
+      },
+      "new_land_alpha": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/at_outlet_alpha.png",
+        "relative_name": "at_outlet_alpha.png",
+        "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "L",
+        "meaning": "新生陆地合成时使用的柔和边界",
+        "model_input": false
+      },
+      "flow_audit": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/at_outlet.png",
+        "relative_name": "at_outlet.png",
+        "sha256": "bfd4332bc523b712251a8de7320350f480ee969e38f2e8a3d656ffa1fd435840",
+        "size": [
+          1344,
+          768
+        ],
+        "mode": "RGB",
+        "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+        "model_input": false
+      }
+    },
+    "final": {
+      "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png",
+      "relative_name": "00_at_outlet.png",
+      "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763",
+      "size": [
+        1344,
+        768
+      ],
+      "mode": "RGB",
+      "classification": "existing selected Stage 1.2 visual anchor"
+    }
+  },
+  "keyframes": {
+    "decelerated_plume": {
+      "id": "decelerated_plume",
+      "display_frame": 32,
+      "state_frame": 49,
+      "beat_id": "decelerate",
+      "caption": "河水入海后减速",
+      "meaning": "泥沙进入海水后减速并形成紧凑浑浊羽流",
+      "stats": {
+        "injected_particles": 700,
+        "suspended_particles": 678,
+        "settled_particles": 22,
+        "settled_this_frame": 2,
+        "max_thickness": 0.056444,
+        "underwater_deposit_cells": 145,
+        "new_land_cells": 0,
+        "new_land_front_x": null,
+        "deposit_front_x": 50,
+        "raw_channel_count": 1
+      },
+      "program_frame": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/source/mechanism_frames/decelerated_plume.png",
+        "relative_name": "decelerated_plume.png",
+        "sha256": "77407a4fda65e1cdd79f9a978a753ae555904f11df8271615b022c295e85c855",
+        "size": [
+          768,
+          512
+        ],
+        "mode": "RGB",
+        "model_input": false
+      },
+      "semantic_layers": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "97d761e5a77917b6db9aef1406a23017df56e260accbd8943f5ea2f103bbedb1",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "8c5861e025545dddc359b072defab87e5f859fea2280b44bd694b029552ff7e7",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/decelerated_plume_binary.png",
+          "relative_name": "decelerated_plume_binary.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/decelerated_plume_alpha.png",
+          "relative_name": "decelerated_plume_alpha.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "bfd4332bc523b712251a8de7320350f480ee969e38f2e8a3d656ffa1fd435840",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "control": {
+        "geometry_source": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/geometry_source/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+          "size": [
+            768,
+            512
+          ],
+          "mode": "L",
+          "meaning": "机制网格中的总陆地；用于理解数据来源，不输入模型",
+          "model_input": false
+        },
+        "projected_boundaries": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/projected_boundaries/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "机制新陆地边界投影后与固定河岸海岸合并的中间图",
+          "model_input": false
+        },
+        "canny": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+          "model_input": true,
+          "edge_pixels": 6227,
+          "edge_fraction": 0.006033,
+          "unique_values": [
+            0,
+            255
+          ]
+        },
+        "anchor_overlay": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/anchor_overlay/decelerated_plume.png",
+          "relative_name": "decelerated_plume.png",
+          "sha256": "eac69bd29624f77765856525a1f05490a6236a1836daa11a3eeafd6fa42fc2f7",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "红线显示 Canny 在视觉锚点上的实际位置",
+          "model_input": false
+        },
+        "base_control": {
+          "source": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+          "copied_from_stage_1_2": true
+        },
+        "derivation": [
+          "load the fixed Stage 1.2 coast and river-bank control",
+          "project the current state's new_land region",
+          "extract only its outer boundary",
+          "merge and binarize at threshold 42"
+        ]
+      },
+      "prompt": {
+        "keyframe_id": "decelerated_plume",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "stage_forbidden": "exposed sandbar, dry land shoreline, bifurcation",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, compact ochre turbidity plume just outside the river mouth, concentrated near the outlet, softly fading into nearby sea, subtle lateral spreading, no exposed sandbar or new land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sandbar, dry land shoreline, bifurcation",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 73,
+            "negative": 67,
+            "limit": 77
+          }
+        }
+      },
+      "output_filename": "01_decelerated_plume.png"
+    },
+    "underwater_accumulation": {
+      "id": "underwater_accumulation",
+      "display_frame": 64,
+      "state_frame": 100,
+      "beat_id": "accumulate",
+      "caption": "泥沙在水下逐层累积",
+      "meaning": "河口外水下沉积明显累积，但仍被连续水体覆盖",
+      "stats": {
+        "injected_particles": 1414,
+        "suspended_particles": 1117,
+        "settled_particles": 297,
+        "settled_this_frame": 10,
+        "max_thickness": 0.382138,
+        "underwater_deposit_cells": 395,
+        "new_land_cells": 0,
+        "new_land_front_x": null,
+        "deposit_front_x": 60,
+        "raw_channel_count": 1
+      },
+      "program_frame": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/source/mechanism_frames/underwater_accumulation.png",
+        "relative_name": "underwater_accumulation.png",
+        "sha256": "f62e372fbf07a464218f3c4c1384b4658ea9430b246def465d6889b3950f740b",
+        "size": [
+          768,
+          512
+        ],
+        "mode": "RGB",
+        "model_input": false
+      },
+      "semantic_layers": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "3cdce1edcbd5bb01cefbcab72162eb3b728c2d846d27907074c69842b1fd189e",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "2159ca5ea8a4a3c397af100e889585ef65d2e1df23fd1b27ffd1f4dd59a65707",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/underwater_accumulation_binary.png",
+          "relative_name": "underwater_accumulation_binary.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/underwater_accumulation_alpha.png",
+          "relative_name": "underwater_accumulation_alpha.png",
+          "sha256": "5338a21a193e8b77b90d443cc9f0c071b8755e4ac171eb3b08969a8f07d5968f",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "bfd4332bc523b712251a8de7320350f480ee969e38f2e8a3d656ffa1fd435840",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "control": {
+        "geometry_source": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/geometry_source/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "512fd741eb6f733710a97242b79459950963bed9fe018711af16fbc9c5597c59",
+          "size": [
+            768,
+            512
+          ],
+          "mode": "L",
+          "meaning": "机制网格中的总陆地；用于理解数据来源，不输入模型",
+          "model_input": false
+        },
+        "projected_boundaries": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/projected_boundaries/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "机制新陆地边界投影后与固定河岸海岸合并的中间图",
+          "model_input": false
+        },
+        "canny": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "f83271f98696bde63ef6546ae8493b8b4d289f27fb8240f9db89b94a7dbc6e4c",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+          "model_input": true,
+          "edge_pixels": 6227,
+          "edge_fraction": 0.006033,
+          "unique_values": [
+            0,
+            255
+          ]
+        },
+        "anchor_overlay": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/anchor_overlay/underwater_accumulation.png",
+          "relative_name": "underwater_accumulation.png",
+          "sha256": "eac69bd29624f77765856525a1f05490a6236a1836daa11a3eeafd6fa42fc2f7",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "红线显示 Canny 在视觉锚点上的实际位置",
+          "model_input": false
+        },
+        "base_control": {
+          "source": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+          "copied_from_stage_1_2": true
+        },
+        "derivation": [
+          "load the fixed Stage 1.2 coast and river-bank control",
+          "project the current state's new_land region",
+          "extract only its outer boundary",
+          "merge and binarize at threshold 42"
+        ]
+      },
+      "prompt": {
+        "keyframe_id": "underwater_accumulation",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "stage_forbidden": "exposed sand, island shadow, dry shoreline",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, pale tan submerged deposit beneath continuous blue-green water at the mouth, broader sediment plume, soft underwater edges, visible water surface, no dry sand or exposed land",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, exposed sand, island shadow, dry shoreline",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 71,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "output_filename": "02_underwater_accumulation.png"
+    },
+    "sandbar_emergence": {
+      "id": "sandbar_emergence",
+      "display_frame": 78,
+      "state_frame": 107,
+      "beat_id": "threshold_change",
+      "caption": "沉积超过水深，沙洲出水",
+      "meaning": "同一浅滩的两个相邻湿沙斑块刚刚露出水面",
+      "stats": {
+        "injected_particles": 1512,
+        "suspended_particles": 1155,
+        "settled_particles": 357,
+        "settled_this_frame": 4,
+        "max_thickness": 0.447782,
+        "underwater_deposit_cells": 434,
+        "new_land_cells": 9,
+        "new_land_front_x": 52,
+        "deposit_front_x": 61,
+        "raw_channel_count": 2
+      },
+      "program_frame": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/source/mechanism_frames/sandbar_emergence.png",
+        "relative_name": "sandbar_emergence.png",
+        "sha256": "c122004aaee7da1f9b0d2b4d37b10d9a8b4d73a7a5ef127b2837f5e79ec48061",
+        "size": [
+          768,
+          512
+        ],
+        "mode": "RGB",
+        "model_input": false
+      },
+      "semantic_layers": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "321a24e3a6a4fdf1c9ea8f0ce30b47c05c2754a7ecdbe7af2fcf803bb8456807",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "a53bc5899e5841d5b705b1f9b6cd3a05a6b87a49bc05477c4a337ada95301aac",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/sandbar_emergence_binary.png",
+          "relative_name": "sandbar_emergence_binary.png",
+          "sha256": "9b0b09b657d7f102d7f0d46079794e15ba13bd0c9374d3c0f92d73a5638de288",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/sandbar_emergence_alpha.png",
+          "relative_name": "sandbar_emergence_alpha.png",
+          "sha256": "a8edb3d966895acea5dc522aad2852def8e6090db3abc71dbab0c2d69be157e8",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "50ccaff77f6e525610ee4a2a37f0ec0fb3537e86f21b3cbd0091f0098b7bf7b4",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "control": {
+        "geometry_source": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/geometry_source/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "c872699ab9d315bfa8df55904511f0b9d7eb12cc5bc049f09158db82c2ceadd5",
+          "size": [
+            768,
+            512
+          ],
+          "mode": "L",
+          "meaning": "机制网格中的总陆地；用于理解数据来源，不输入模型",
+          "model_input": false
+        },
+        "projected_boundaries": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/projected_boundaries/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "beb291b4ec94f7fb8f177fd8c02757884849d0170caa50140d659de31342e002",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "机制新陆地边界投影后与固定河岸海岸合并的中间图",
+          "model_input": false
+        },
+        "canny": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "e691c4b6b9a66dfd24d7c0acc44f7b85f180be8e1170a10ffe4925f1c60a5b46",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+          "model_input": true,
+          "edge_pixels": 7943,
+          "edge_fraction": 0.007695,
+          "unique_values": [
+            0,
+            255
+          ]
+        },
+        "anchor_overlay": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/anchor_overlay/sandbar_emergence.png",
+          "relative_name": "sandbar_emergence.png",
+          "sha256": "cee8d7ee7b6215ba98397326c25ce13b2f525ee9454e4de6f9be24cbcf3bd329",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "红线显示 Canny 在视觉锚点上的实际位置",
+          "model_input": false
+        },
+        "base_control": {
+          "source": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+          "copied_from_stage_1_2": true
+        },
+        "derivation": [
+          "load the fixed Stage 1.2 coast and river-bank control",
+          "project the current state's new_land region",
+          "extract only its outer boundary",
+          "merge and binarize at threshold 42"
+        ]
+      },
+      "prompt": {
+        "keyframe_id": "sandbar_emergence",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "stage_forbidden": "many islands, mature channels, large new land",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, two adjacent wet sand patches just emerged at the river mouth, parts of one shallow shoal, submerged deposit visible around them, early emergence, not a completed delta",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, many islands, mature channels, large new land",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 70,
+            "negative": 65,
+            "limit": 77
+          }
+        }
+      },
+      "output_filename": "03_sandbar_emergence.png"
+    },
+    "rerouted_flow": {
+      "id": "rerouted_flow",
+      "display_frame": 97,
+      "state_frame": 119,
+      "beat_id": "reroute",
+      "caption": "新生陆地使水流绕行分流",
+      "meaning": "同一沙洲继续存在，水流稳定地从两侧绕行",
+      "stats": {
+        "injected_particles": 1680,
+        "suspended_particles": 1204,
+        "settled_particles": 476,
+        "settled_this_frame": 9,
+        "max_thickness": 0.484351,
+        "underwater_deposit_cells": 503,
+        "new_land_cells": 15,
+        "new_land_front_x": 52,
+        "deposit_front_x": 63,
+        "raw_channel_count": 2
+      },
+      "program_frame": {
+        "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/source/mechanism_frames/rerouted_flow.png",
+        "relative_name": "rerouted_flow.png",
+        "sha256": "43fadcde3d28b31062c990667e9a68044d5db6426fc95c3417c9808a6e262c9b",
+        "size": [
+          768,
+          512
+        ],
+        "mode": "RGB",
+        "model_input": false
+      },
+      "semantic_layers": {
+        "suspended_density": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/suspended_density/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "d5291a0f7f6262a67eef83abeb328fdc70a06e65f730295032f4a57bab90f2c4",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示该处悬浮泥沙越集中",
+          "model_input": false
+        },
+        "underwater_deposit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/underwater_deposit/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "118dd84e640001a09f1d7da880a6c3662b23d16ad8b3f9a133362dd848bf9a6d",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色越亮，表示水底累积厚度相对越大",
+          "normalization_maximum": 0.484351,
+          "model_input": false
+        },
+        "new_land_binary": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/rerouted_flow_binary.png",
+          "relative_name": "rerouted_flow_binary.png",
+          "sha256": "dd0f31b1166a58661b7bb4fc4b6126fd79913b3fad86a72accbf1a0214722a8b",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "白色表示机制状态中已经露出水面的新生陆地",
+          "model_input": false
+        },
+        "new_land_alpha": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/new_land/rerouted_flow_alpha.png",
+          "relative_name": "rerouted_flow_alpha.png",
+          "sha256": "c0fedc27ad84a4cfc288c0765f7f414e909b501cb2731a66c1d85629a84baa13",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "新生陆地合成时使用的柔和边界",
+          "model_input": false
+        },
+        "flow_audit": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/semantic_layers/flow_audit/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "7677edc7c522a914fa9f8a1c1d7b0f16b4accce9939aa693d01021ef35ea6359",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "只用于核对水流是否绕行，不输入模型也不进入成品",
+          "model_input": false
+        }
+      },
+      "control": {
+        "geometry_source": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/geometry_source/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "47428643328887fb80b66e52cb6e4b6e1cc13e31134e35c670c415a1e6081844",
+          "size": [
+            768,
+            512
+          ],
+          "mode": "L",
+          "meaning": "机制网格中的总陆地；用于理解数据来源，不输入模型",
+          "model_input": false
+        },
+        "projected_boundaries": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/projected_boundaries/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "e03462b0239f41bda07b64bb189067656052d5fd9d62953a586a3ed150ae460e",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "机制新陆地边界投影后与固定河岸海岸合并的中间图",
+          "model_input": false
+        },
+        "canny": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/canny/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "edf1b2cf40235e154adb14037c4d9f31986145fa79925cb6cbc6e332be2904f5",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "L",
+          "meaning": "实际输入 SDXL Canny ControlNet 的黑底白线图",
+          "model_input": true,
+          "edge_pixels": 8273,
+          "edge_fraction": 0.008015,
+          "unique_values": [
+            0,
+            255
+          ]
+        },
+        "anchor_overlay": {
+          "path": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/delta_sequence/_work/controls/anchor_overlay/rerouted_flow.png",
+          "relative_name": "rerouted_flow.png",
+          "sha256": "82069b2c4d56eeadd34df54d4c98d9825f86bd14b2278eb88c3d14e7561a8d7b",
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "meaning": "红线显示 Canny 在视觉锚点上的实际位置",
+          "model_input": false
+        },
+        "base_control": {
+          "source": "/workspace/Live-Document/modules/video_model/stage1/output/keyframe_render/transport_pair/_work/source/natural_sparse_canny.png",
+          "copied_from_stage_1_2": true
+        },
+        "derivation": [
+          "load the fixed Stage 1.2 coast and river-bank control",
+          "project the current state's new_land region",
+          "extract only its outer boundary",
+          "merge and binarize at threshold 42"
+        ]
+      },
+      "prompt": {
+        "keyframe_id": "rerouted_flow",
+        "common_visual": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram",
+        "mechanism_delta": "the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "stage_forbidden": "three or more main channels, extra islands",
+        "common_negative": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry",
+        "positive_combined": "photorealistic orthographic top-down satellite view, same river mouth and sandy coast, locked camera and shoreline, natural sand, blue-green shallow water, no text or diagram, the same mouth sandbar persists and extends slightly, river separates into two clear water paths around it, sediment follows both downstream paths, stable local bifurcation, no complex river network",
+        "negative_combined": "oblique view, horizon, camera change, shifted coastline, terrain morphing, interface, legend, arrows, labels, point markers, plastic CGI, vector edges, many islands, mature delta, complex river tree, buildings, boats, people, watermark, blurry, three or more main channels, extra islands",
+        "token_counts": {
+          "tokenizer": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          },
+          "tokenizer_2": {
+            "positive": 76,
+            "negative": 64,
+            "limit": 77
+          }
+        }
+      },
+      "output_filename": "04_rerouted_flow.png"
+    }
+  }
+}

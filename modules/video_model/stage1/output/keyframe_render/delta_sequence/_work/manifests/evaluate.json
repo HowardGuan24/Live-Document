@@ -1,0 +1,218 @@
+{
+  "status": "passed",
+  "passed": true,
+  "input_signature": "8ee94abf1ac9749f5e270f5332b997f872e2bc21e5ac2db7b9eef9aa8675f6d4",
+  "cache": {
+    "reused": true
+  },
+  "sequence_id": "delta_formation_after_outlet",
+  "checks": [
+    {
+      "name": "final_dimensions",
+      "scope": "generic",
+      "passed": true,
+      "evidence": {
+        "00_at_outlet.png": {
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763"
+        },
+        "01_decelerated_plume.png": {
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "170da9f5031c78c57c5b1a180d77affa6c7ce40ee47829fefb13177b56ca6014"
+        },
+        "02_underwater_accumulation.png": {
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "e69d673aea887fee7f5026955bc5114fd84e6f8a84f6720a17b6bcb3a3c0c01e"
+        },
+        "03_sandbar_emergence.png": {
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "9ea0cb5ce34bcbcf97f3b100398193e496d7b7287edad38ff3a7492575d88535"
+        },
+        "04_rerouted_flow.png": {
+          "size": [
+            1344,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "9e8a34dcc1612acecda5eea7950f78809c89522c552db0b5e6f9fc050fd0dc57"
+        }
+      }
+    },
+    {
+      "name": "final_rgb_and_hashes",
+      "scope": "generic",
+      "passed": true,
+      "evidence": {
+        "all_rgb": true,
+        "manifest_hashes_match": true
+      }
+    },
+    {
+      "name": "binary_canny",
+      "scope": "generic",
+      "passed": true,
+      "evidence": {
+        "decelerated_plume": {
+          "unique_values": [
+            0,
+            255
+          ],
+          "size": [
+            1344,
+            768
+          ],
+          "edge_fraction": 0.006033
+        },
+        "underwater_accumulation": {
+          "unique_values": [
+            0,
+            255
+          ],
+          "size": [
+            1344,
+            768
+          ],
+          "edge_fraction": 0.006033
+        },
+        "sandbar_emergence": {
+          "unique_values": [
+            0,
+            255
+          ],
+          "size": [
+            1344,
+            768
+          ],
+          "edge_fraction": 0.007695
+        },
+        "rerouted_flow": {
+          "unique_values": [
+            0,
+            255
+          ],
+          "size": [
+            1344,
+            768
+          ],
+          "edge_fraction": 0.008015
+        }
+      }
+    },
+    {
+      "name": "sparse_canny",
+      "scope": "generic",
+      "passed": true,
+      "evidence": "every control uses 0.1%–5% edge pixels"
+    },
+    {
+      "name": "prompt_token_limits",
+      "scope": "generic",
+      "passed": true,
+      "evidence": "both SDXL tokenizers stay at or below 77"
+    },
+    {
+      "name": "fixed_pixels_outside_allowed_region",
+      "scope": "generic",
+      "passed": true,
+      "evidence": "maximum difference is 0 outside every allowed region"
+    },
+    {
+      "name": "raw_and_composite_are_separate",
+      "scope": "generic",
+      "passed": true,
+      "evidence": "16 raw files kept under review/raw"
+    },
+    {
+      "name": "delta_new_land_state_counts",
+      "scope": "delta_causal case",
+      "passed": true,
+      "evidence": {
+        "actual": [
+          0,
+          0,
+          9,
+          15
+        ],
+        "expected": [
+          0,
+          0,
+          9,
+          15
+        ]
+      }
+    },
+    {
+      "name": "underwater_deposit_monotonic",
+      "scope": "delta_causal case",
+      "passed": true,
+      "evidence": [
+        145,
+        395,
+        434,
+        503
+      ]
+    },
+    {
+      "name": "new_land_connectivity",
+      "scope": "delta_causal case",
+      "passed": true,
+      "evidence": {
+        "decelerated_plume": {
+          "actual": 0,
+          "expected": 0
+        },
+        "underwater_accumulation": {
+          "actual": 0,
+          "expected": 0
+        },
+        "sandbar_emergence": {
+          "actual": 2,
+          "expected": 2
+        },
+        "rerouted_flow": {
+          "actual": 1,
+          "expected": 1
+        }
+      }
+    },
+    {
+      "name": "final_channel_count",
+      "scope": "delta_causal case",
+      "passed": true,
+      "evidence": {
+        "sequence": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "expected_final": 2
+      }
+    }
+  ],
+  "review": {
+    "verdict": "Mechanism constraints and static-scene invariants pass. Final acceptance still requires visual review of texture quality and stage readability.",
+    "classification": "hybrid: fixed selected SDXL visual anchor plus deterministic mechanism-derived suspended sediment, underwater deposit, and emergent wet-sand layers",
+    "known_limitations": [
+      "Suspended sediment and underwater deposits are deterministic color layers, not raw SDXL outputs.",
+      "Wet-sand texture is synthesized from the anchor and may still look smoother than natural sediment.",
+      "Raw full-frame SDXL candidates are evidence and texture references only; using them directly would move the fixed scene."
+    ]
+  }
+}

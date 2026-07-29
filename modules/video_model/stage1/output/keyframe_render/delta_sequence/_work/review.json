@@ -1,0 +1,9 @@
+{
+  "verdict": "Mechanism constraints and static-scene invariants pass. Final acceptance still requires visual review of texture quality and stage readability.",
+  "classification": "hybrid: fixed selected SDXL visual anchor plus deterministic mechanism-derived suspended sediment, underwater deposit, and emergent wet-sand layers",
+  "known_limitations": [
+    "Suspended sediment and underwater deposits are deterministic color layers, not raw SDXL outputs.",
+    "Wet-sand texture is synthesized from the anchor and may still look smoother than natural sediment.",
+    "Raw full-frame SDXL candidates are evidence and texture references only; using them directly would move the fixed scene."
+  ]
+}
