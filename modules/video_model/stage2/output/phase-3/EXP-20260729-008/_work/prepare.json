@@ -1,0 +1,109 @@
+{
+  "case_id": "CHEM-01",
+  "configurations": [
+    {
+      "configuration_id": "img2img_sparse_baseline",
+      "control_route": "sparse_hard_boundary",
+      "controlnet_conditioning_scale": 0.75,
+      "img2img_strength": 0.65,
+      "pipeline_mode": "controlnet_img2img",
+      "reuse_from": {
+        "configuration_id": "sparse_hard_boundary",
+        "control_route": "sparse_hard_boundary",
+        "experiment_root": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-007"
+      }
+    },
+    {
+      "configuration_id": "t2i_sparse_hard_boundary",
+      "control_route": "sparse_hard_boundary",
+      "controlnet_conditioning_scale": 0.75,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "t2i_control_off",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "07caef14a4956c4484ccc04d8a79bbc78c19c670cad026986bee8804a7f622d5",
+    "size_bytes": 753
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.02523126,
+      "path": "controls/dense_canny.png",
+      "sha256": "bacee6ef4eee0353411aa8d2a01aa753be940905b01047d6929ce704e9c638ea",
+      "size_bytes": 3297
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.01679315,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "2f607cabfc4e320744b77b8b09c78b23dd44f072b46825e588a2d0749d88be33",
+      "size_bytes": 2863
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.02413262,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "848a23cefff27f79d1a64b04d517ef6411ddedf791071d2736c5f030d233397c",
+      "size_bytes": 3084
+    }
+  },
+  "experiment_id": "EXP-20260729-008",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "432f7d58db96022d583a8b26d37bdb4fe5894350de37d9c869f2dda711a8ea1f",
+    "size_bytes": 269,
+    "text": "extra beakers, extra tubes, missing vessel, moved liquid level, pouring stream, mixing plume, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, hard diagram lines, perspective view, cropped apparatus, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "c85090d31a86b0c4ab4233beefdcfd04244682bba8a7dcba12084909de06c421",
+    "size_bytes": 375,
+    "text": "Front-facing documentary photograph of one transparent laboratory beaker beneath one glass burette, locked camera, centered apparatus, realistic clear glass, pale pink aqueous solution, soft reflections, neutral laboratory background, phenolphthalein endpoint with uniform faint persistent pink solution, one beaker, one burette, same liquid level, straight-on view, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "realistic clear glass, pale pink aqueous solution, soft reflections, neutral laboratory background",
+    "must_preserve": "one beaker, one burette, same liquid level, straight-on view, no text",
+    "scene_identity": "Front-facing documentary photograph of one transparent laboratory beaker beneath one glass burette, locked camera, centered apparatus",
+    "state_delta": "phenolphthalein endpoint with uniform faint persistent pink solution"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.65,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "c338fcccd28480d49dd9df59ad4c2be2b7b7e6971fcb990e102a61bafa4adb70",
+      "size_bytes": 6356
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/03_end/clean.png",
+      "sha256": "74c6bcf863835bdd31e677bdc8c3a91af74ce5839614dab2417f1ae78df9550a"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/03_end/semantic_layers.json",
+      "sha256": "a9c38abda5cb9aeb3034d822ef031d1467f9cd83dcdcaee10682cf506775d02a"
+    }
+  }
+}

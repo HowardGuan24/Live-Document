@@ -1,0 +1,58 @@
+{
+  "case_id": "CHEM-01",
+  "classification": "prepared LTX-2.3 FLF2V experiment; no video call yet",
+  "experiment_id": "EXP-P5-20260729-005",
+  "experiment_spec": {
+    "path": "/workspace/Live-Document/modules/video_model/stage2/phase5_experiments/EXP-P5-20260729-005/spec.json",
+    "sha256": "0804b75503b7db66f1b7d99015a8e29ce6bf5557cbb0a7ae760a118051e1070d",
+    "size_bytes": 3218
+  },
+  "inputs": {
+    "first": {
+      "path": "inputs/first.png",
+      "sha256": "009553fca975b89f00fb0037b3b9d2f482b19d0d63463a9871d2595a8e8a19f1",
+      "size_bytes": 4082
+    },
+    "last": {
+      "path": "inputs/last.png",
+      "sha256": "c195b5704b397e8e2782d31d9390352aebc6e199c372b59c16815d84cb76a7a0",
+      "size_bytes": 1669
+    }
+  },
+  "model_fingerprints": {
+    "path": "_work/model_fingerprints.json",
+    "sha256": "312cc5791a8575c1141ab1a8f5209268dc8358975a3dc94474e94f5d34610111",
+    "size_bytes": 930
+  },
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "motion_class": "liquid_mixing",
+  "prompt": {
+    "path": "inputs/prompt.txt",
+    "sha256": "769d7a56a663921419c493ecdb8c97d613cfada38008079dbfbbe29c86a3a07a",
+    "size_bytes": 1104
+  },
+  "prompt_preflight": {
+    "negative_characters": 399,
+    "note": "ComfyUI's LTXAVTextEncoderLoader does not expose tokenizer counts through the API. Prompts are deliberately short; this smoke does not yet claim the token-integrity release gate.",
+    "positive_characters": 666
+  },
+  "schema_version": "1.0",
+  "source": {
+    "first": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/clean.png",
+      "sha256": "009553fca975b89f00fb0037b3b9d2f482b19d0d63463a9871d2595a8e8a19f1"
+    },
+    "last": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/02_result/clean.png",
+      "sha256": "c195b5704b397e8e2782d31d9390352aebc6e199c372b59c16815d84cb76a7a0"
+    }
+  },
+  "workflow": {
+    "path": "_work/workflow_api.json",
+    "sha256": "8cd6a4e5c2fed049770718d6a6a8534d7f7c9982c01289ee50bf4bcd7d7d6976",
+    "size_bytes": 6748
+  }
+}

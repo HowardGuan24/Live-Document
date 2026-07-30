@@ -1,0 +1,295 @@
+{
+  "allowed_region_layer_id": "chem01_liquid_region",
+  "case_id": "CHEM-01",
+  "classification": "deterministic program sequence plus robust reused model-material residual",
+  "comparison": {
+    "path": "sequence-comparison.jpg",
+    "sha256": "ad9e1eb3ae90dc2204a315eb8d98516912b04cef8b93eb8c2724794011d3fc4b",
+    "size_bytes": 58776
+  },
+  "cross_frame_applied_residual_max_difference_0_255": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "discipline": "chemistry",
+  "donor_evidence": {
+    "path": "output/phase-3/EXP-20260729-009/_work/generate.json",
+    "sha256": "a1b2dd3dd83dea8b55509dac52ae580a7b8363f03b2bf5ca6e51722bc105d681",
+    "size_bytes": 13471
+  },
+  "donors": [
+    {
+      "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3101.png",
+      "sha256": "a4f16fbe04cccc0c0ce892987d0951d3b10b1baae1cc94aa21861ea3a54730ec",
+      "size_bytes": 507804
+    },
+    {
+      "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3102.png",
+      "sha256": "1e218b9253340eb8c8c43519dc412e31d4047a875a1d2559677303dc03884f72",
+      "size_bytes": 655018
+    },
+    {
+      "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3103.png",
+      "sha256": "9412f61b5e183f2235a65aabccf4a35c28ad188b22e55514266d7290fa5a21f2",
+      "size_bytes": 541056
+    },
+    {
+      "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3104.png",
+      "sha256": "a21da3de748a5954d47eb723f1e43834b360dafd8148e7444f9dddb0684bfeb7",
+      "size_bytes": 628389
+    }
+  ],
+  "hard_checks": [
+    {
+      "evidence": 0.0,
+      "name": "all_non_allowed_and_protected_pixels_are_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.068358,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": 0.113225,
+      "name": "leave_one_out_material_projection_is_stable",
+      "passed": true
+    },
+    {
+      "evidence": 1.0,
+      "name": "same_material_residual_is_stable_across_keyframes",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "mean_mutable_detail_change_0_255": 1.898442,
+        "minimum": 0.2
+      },
+      "name": "material_enhancement_is_not_an_unchanged_no_op",
+      "passed": true
+    }
+  ],
+  "keyframes": [
+    {
+      "allowed_pixel_fraction": 0.06901042,
+      "final": {
+        "path": "final/00_start.png",
+        "sha256": "691b3c03988b3e00f9c83e08c2dbea8ad2e7d9689c52bcb673a04dd6c2382f81",
+        "size_bytes": 12781
+      },
+      "keyframe_id": "00_start",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.061998,
+        "mutable_mean_abs_detail_change_0_255": 1.909269,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.06519965,
+      "program": {
+        "path": "output/phase-2/CHEM-01/keyframes/00_start/clean.png",
+        "sha256": "622ce73e40355f52764cd030dd4f2b2d651ecae6e3075d5948858e60b538f64e",
+        "size_bytes": 1669
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json",
+        "sha256": "fb522d77fd58c4275b9632200ef731f716b602eb649a718bb16d3841ac852e6c",
+        "size_bytes": 6367
+      }
+    },
+    {
+      "allowed_pixel_fraction": 0.07016059,
+      "final": {
+        "path": "final/01_mechanism.png",
+        "sha256": "24bf9507e91c83b0682aca06bbf972c6fab98dc9cb3737a67acf8786ca75b4b0",
+        "size_bytes": 14439
+      },
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.064735,
+        "mutable_mean_abs_detail_change_0_255": 1.910654,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.06632378,
+      "program": {
+        "path": "output/phase-2/CHEM-01/keyframes/01_mechanism/clean.png",
+        "sha256": "009553fca975b89f00fb0037b3b9d2f482b19d0d63463a9871d2595a8e8a19f1",
+        "size_bytes": 4082
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/CHEM-01/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "00d6e39cf18ad98184868106490ad5dc43e2beed92a88448159bc7890a0388ac",
+        "size_bytes": 6412
+      }
+    },
+    {
+      "allowed_pixel_fraction": 0.07361111,
+      "final": {
+        "path": "final/02_result.png",
+        "sha256": "eb8735ff8ebf45e338cc45f8d25d336f79c0aaf7f96ed4ef775a735d69f15193",
+        "size_bytes": 13553
+      },
+      "keyframe_id": "02_result",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.067329,
+        "mutable_mean_abs_detail_change_0_255": 1.891859,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.06969618,
+      "program": {
+        "path": "output/phase-2/CHEM-01/keyframes/02_result/clean.png",
+        "sha256": "c195b5704b397e8e2782d31d9390352aebc6e199c372b59c16815d84cb76a7a0",
+        "size_bytes": 1669
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/CHEM-01/keyframes/02_result/semantic_layers.json",
+        "sha256": "13ba6e85ed07e786949710dc9320a6b5277baacecbb635e5a6cdf2e3204b8ce3",
+        "size_bytes": 6378
+      }
+    },
+    {
+      "allowed_pixel_fraction": 0.07476128,
+      "final": {
+        "path": "final/03_end.png",
+        "sha256": "3a13304eb15d90a56965999ef08cc1f6ad437dbd7bd7bc801123a6461fa8f360",
+        "size_bytes": 12973
+      },
+      "keyframe_id": "03_end",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.068358,
+        "mutable_mean_abs_detail_change_0_255": 1.881986,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.07082031,
+      "program": {
+        "path": "output/phase-2/CHEM-01/keyframes/03_end/clean.png",
+        "sha256": "74c6bcf863835bdd31e677bdc8c3a91af74ce5839614dab2417f1ae78df9550a",
+        "size_bytes": 1671
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/CHEM-01/keyframes/03_end/semantic_layers.json",
+        "sha256": "a9c38abda5cb9aeb3034d822ef031d1467f9cd83dcdcaee10682cf506775d02a",
+        "size_bytes": 6344
+      }
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_1.png",
+        "sha256": "abcefd7f1207730192c33c9726905ef534358a9f9426929f4599b542ba840212",
+        "size_bytes": 12825
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3101.png",
+        "sha256": "a4f16fbe04cccc0c0ce892987d0951d3b10b1baae1cc94aa21861ea3a54730ec",
+        "size_bytes": 507804
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.140693,
+        "mutable_mean_abs_detail_change_0_255": 2.675089,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_2.png",
+        "sha256": "56ddc17d907a15bedd215ee26acf944283290b4943e3df0cdea814d43a4011a9",
+        "size_bytes": 12659
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3102.png",
+        "sha256": "1e218b9253340eb8c8c43519dc412e31d4047a875a1d2559677303dc03884f72",
+        "size_bytes": 655018
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.066141,
+        "mutable_mean_abs_detail_change_0_255": 2.655584,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_3.png",
+        "sha256": "dc1d150a0c403107c821becf85338e06bfdb2b92e9184253685f20978fe399c3",
+        "size_bytes": 12863
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3103.png",
+        "sha256": "9412f61b5e183f2235a65aabccf4a35c28ad188b22e55514266d7290fa5a21f2",
+        "size_bytes": 541056
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.08872,
+        "mutable_mean_abs_detail_change_0_255": 2.46307,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_4.png",
+        "sha256": "6e5232f8cd5f32e1bd7eb374a0ff0e49f6ab94ce5b71abc88b7b549dc87a2af3",
+        "size_bytes": 13627
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-009/raw/semantic_line_art/seed_3104.png",
+        "sha256": "a21da3de748a5954d47eb723f1e43834b360dafd8148e7444f9dddb0684bfeb7",
+        "size_bytes": 628389
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.058592,
+        "mutable_mean_abs_detail_change_0_255": 2.324961,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 0.113225,
+    "values": [
+      0.111448,
+      0.108828,
+      0.113225,
+      0.113225,
+      0.108828,
+      0.111448
+    ]
+  },
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "protected_layers": [
+    {
+      "dilation_px": 8,
+      "kind": "binary",
+      "layer_id": "chem01_apparatus_boundary"
+    },
+    {
+      "dilation_px": 5,
+      "include_class_ids": [
+        "base_solution_drop"
+      ],
+      "kind": "object_identity",
+      "layer_id": "chem01_object_identity"
+    }
+  ],
+  "reused_model_donors": 4,
+  "schema_version": "1.0",
+  "settings": {
+    "blur_radius": 12.0,
+    "minimum_visible_detail_change_0_255": 0.2,
+    "residual_clip": 10.0,
+    "residual_gain": 0.35
+  },
+  "source_hashes": {
+    "config_sha256": "f0a9d615a7892e720da446ced19b8792a8e8ffe5e38a97fe2c4709600794148d",
+    "runner_sha256": "6be66b57848bc13c4d9f72a3585d946fa8595412214d02e843f96f4b569f5767"
+  },
+  "status": "passed",
+  "visual_review": {
+    "artifact_control_5": 4,
+    "finding_zh": "液体内部出现可见但克制的透明明暗纹理；烧杯、滴液、液面高度和四阶段显色仍由程序图决定。首轮因保护整只烧杯而产生零变化，新增“结果不得原样复制”门禁后才通过。",
+    "material_improvement_5": 3,
+    "mechanism_fidelity_5": 5,
+    "status": "accepted"
+  }
+}

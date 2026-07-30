@@ -1,0 +1,210 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 360,
+    "width": 640
+  },
+  "case_id": "GEO-01",
+  "layers": [
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/03_end/layers/geo01_water_boundary.npy",
+        "sha256": "d4e3bbba32e9f74991c7854c8426e3685e54221b8f757bb997ce5b442a86c7b8",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "锁定主河道连通与旧河湾隔离关系。",
+      "layer_id": "geo01_water_boundary",
+      "layer_type": "hard_boundary",
+      "meaning_zh": "直接从程序水体拓扑取边，不从成图反推。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/geo01_water_boundary_preview.png",
+        "sha256": "192db42ff7961f2a33223da2bf5c81a300a2b0cff687362f8544bcf014223b9b",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3204,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "河道与牛轭湖水体边界",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/03_end/layers/geo01_water_region.npy",
+        "sha256": "d3cf51fb29a84fbb335b0c10379dec46af76f3e8321332009ea90b18afcf519c",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "限定水面材质和连通性。",
+      "layer_id": "geo01_water_region",
+      "layer_type": "region",
+      "meaning_zh": "主河道与可能形成的牛轭湖占用区。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/geo01_water_region_preview.png",
+        "sha256": "dc3fe61b4b941d26054fbd92449357229ae57315db63b5d2f4368166aa8c100d",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3103,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "当前水体区域",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "npy",
+        "path": "keyframes/03_end/layers/geo01_flow.npy",
+        "sha256": "c674fcf285438d40b294871f60076e43e0c591f5be336c84c5a725d77d37febc",
+        "shape": [
+          360,
+          640,
+          2
+        ],
+        "size_bytes": 1843328,
+        "value_range": [
+          0.0,
+          1.0
+        ]
+      },
+      "final_role_zh": "用于动画方向与视频审计。",
+      "layer_id": "geo01_flow",
+      "layer_type": "vector_field",
+      "meaning_zh": "切弯前沿曲流、切弯后沿捷径向右流动。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/geo01_flow_preview.png",
+        "sha256": "8321b070e1b04346dab0d1cd04a21e733229d5ab93dc8cd6c2175fc973bddbb0",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2417,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "主河道流向",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/03_end/layers/geo01_waterbody_identity.json",
+        "sha256": "5aa4cee28a5c86398084f0b4b0e84e76540293e79acee55ae9a310b1d9d3f26c",
+        "shape": [
+          2
+        ],
+        "size_bytes": 15765,
+        "value_range": null
+      },
+      "final_role_zh": "防止视频把牛轭湖重新接回主河。",
+      "layer_id": "geo01_waterbody_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "旧河湾隔离后获得独立稳定 ID。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/geo01_waterbody_identity_preview.png",
+        "sha256": "33e379edf68d0c6bd39ebbf9f9ee20af445f635d69d65046ea4a3c96ec3f7def",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3031,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "主河道与牛轭湖身份",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/03_end/layers/geo-01_annotation.json",
+        "sha256": "99ab10c81226a6a4d885a591e6d0babad7b53d2ae31e130ad85b4934c966937d",
+        "shape": [
+          3
+        ],
+        "size_bytes": 796,
+        "value_range": null
+      },
+      "final_role_zh": "帮助解释机制，不输入图像模型。",
+      "layer_id": "geo-01_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/geo-01_annotation_preview.png",
+        "sha256": "6042b8399687cb190fd222a0933ca79ad48a5d8af51789911ace7fd53e6537ef",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2469,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "教学箭头",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "03_end"
+}

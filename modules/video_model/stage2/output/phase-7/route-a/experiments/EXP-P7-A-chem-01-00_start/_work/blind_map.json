@@ -1,0 +1,32 @@
+{
+  "A": {
+    "configuration_id": "semantic_control_065",
+    "seed": 7102,
+    "sha256": "332eee3f85e32636946de2a1cfdbefb4bf9b3a519861645260c4522c24443c0c"
+  },
+  "B": {
+    "configuration_id": "semantic_control_065",
+    "seed": 7103,
+    "sha256": "5cf11b61d177f5e3e4d5a73b2cb828d6c0804ea1a27860dac1c158fde8337354"
+  },
+  "C": {
+    "configuration_id": "semantic_control_080",
+    "seed": 7103,
+    "sha256": "37bb1c0121cb75fab9b274536981c5cfcb0c2fd6e1e6fbe09353499403840baf"
+  },
+  "D": {
+    "configuration_id": "semantic_control_080",
+    "seed": 7101,
+    "sha256": "8fd426278d42a39d16299d7a91c1b847de383d348b5eda9108a5866b9696cc39"
+  },
+  "E": {
+    "configuration_id": "semantic_control_080",
+    "seed": 7102,
+    "sha256": "b79e01d2f7cc2555956c254a6d217b0fac9f89066a09a1017ca53f2bfa906ff6"
+  },
+  "F": {
+    "configuration_id": "semantic_control_065",
+    "seed": 7101,
+    "sha256": "42f00932056e2614b70b706bbd5e836135689d1f7de1a36e8dbdfd8549674e35"
+  }
+}

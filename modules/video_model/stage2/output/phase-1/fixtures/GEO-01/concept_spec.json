@@ -1,0 +1,46 @@
+{
+  "assumptions_zh": [
+    "地形边界与水体连通性由程序网格决定。",
+    "每对关键帧只跨越一个主要地貌变化。"
+  ],
+  "case_id": "GEO-01",
+  "discipline": "geography",
+  "forbidden_shortcuts_zh": [
+    "用漂亮画面掩盖机制条件缺失",
+    "让图像模型重新决定程序事实",
+    "让一个视频过渡跨越多个主要变化"
+  ],
+  "learning_goal_zh": "理解外侧侵蚀、内侧沉积、狭颈切穿和牛轭湖隔离的顺序。",
+  "schema_version": "1.0",
+  "segments": [
+    {
+      "meaning_zh": "弯曲河道出现外侧侵蚀与内侧沉积",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "弯曲河道出现外侧侵蚀与内侧沉积",
+      "order": 0,
+      "segment_id": "segment_00"
+    },
+    {
+      "meaning_zh": "弯道迁移且曲流颈变窄",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.333333；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "弯道迁移且曲流颈变窄",
+      "order": 1,
+      "segment_id": "segment_01"
+    },
+    {
+      "meaning_zh": "主流首次切穿狭颈但旧弯仍相连",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.666667；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "主流首次切穿狭颈但旧弯仍相连",
+      "order": 2,
+      "segment_id": "segment_02"
+    },
+    {
+      "meaning_zh": "旧弯两端封闭并形成牛轭湖",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 1.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "旧弯两端封闭并形成牛轭湖",
+      "order": 3,
+      "segment_id": "segment_03"
+    }
+  ],
+  "title_zh": "曲流发展、裁弯取直与牛轭湖形成"
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "benchmark_id": "stage1_frozen_baseline_v1",
+  "purpose_zh": "作为材质、机制一致性、固定场景和视频连续性的历史比较基线，不作为不同概念之间的像素相似目标。",
+  "assets": [
+    {
+      "role": "selected_pair_report",
+      "path": "modules/video_model/stage1/output/keyframe_render/report.html",
+      "sha256": "7eb0722d365e04bdcec64099c15c4d03b95210883a95ff516b3f08220efcadc0"
+    },
+    {
+      "role": "selected_pair_first",
+      "path": "modules/video_model/stage1/output/keyframe_render/final/first.png",
+      "sha256": "6d4d54e0fddc8ac3bdb89333455085958e40213588ada78a422f884df8eafdf7"
+    },
+    {
+      "role": "selected_pair_last",
+      "path": "modules/video_model/stage1/output/keyframe_render/final/last.png",
+      "sha256": "e1254edac11e9402480cf23fd087c944bafb309a11c3a8fa48e1bb74aa6535b9"
+    },
+    {
+      "role": "selected_pair_comparison",
+      "path": "modules/video_model/stage1/output/keyframe_render/final/comparison.jpg",
+      "sha256": "57bd69feb7e8daab8a2145da0b55e65bf7bfc7f72008f184c2d8ea8b7fb5f57c"
+    },
+    {
+      "role": "delta_sequence_report",
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/report.html",
+      "sha256": "ec5fc74407a232aa4010f4da34592649841822f86fc64d8d1a484a1fe800c752"
+    },
+    {
+      "role": "delta_sequence_contact_sheet",
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/sequence-contact-sheet.jpg",
+      "sha256": "b094c3d54074aa098715dfa171fd60a2218c6498c2265443a8c667cabdf76669"
+    },
+    {
+      "role": "delta_frame_00",
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png",
+      "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763"
+    },
+    {
+      "role": "delta_frame_01",
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
+      "sha256": "6acac8af0cab1065a18d25e2d6c06a32d92b1f03524b06dcd1d079f00c0f70c8"
+    },
+    {
+      "role": "delta_frame_02",
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
+      "sha256": "84b84946bc09f4d7bf10c5c29cadb0efe83db23d16b361fcb5b9edc89a4d00f6"
+    },
+    {
+      "role": "delta_frame_03",
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
+      "sha256": "1830b19ef2339db19f63c0dab1fa87417914966ba223e23b7b7b3d10e3bed824"
+    },
+    {
+      "role": "delta_frame_04",
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png",
+      "sha256": "e90fb592ea60c35cec6d116865c079b85968918146c82e1eb5844e3f22d9156d"
+    },
+    {
+      "role": "video_transition",
+      "path": "modules/video_model/stage1/output/video_transition/ltx23_flf/transition.mp4",
+      "sha256": "7db2a431b6b7eb68953efbf213d7a283ba62ddab6b9f4057369b46b7d77b3be0"
+    },
+    {
+      "role": "video_transition_metadata",
+      "path": "modules/video_model/stage1/output/video_transition/ltx23_flf/metadata.json",
+      "sha256": "38a74d0628d0e6729c836b1342ee924c8ea01e258ff67a5dbbabcd04058a194b"
+    },
+    {
+      "role": "video_transition_samples",
+      "path": "modules/video_model/stage1/output/video_transition/ltx23_flf/generated_frames.jpg",
+      "sha256": "d70f93a53654f8b135d5e5b64c5892cb2ba13bef5b90036553ce62a93472ab13"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-012",
+  "review_mode": "blind_donors_then_machine_gates_and_visual_review",
+  "configuration_summary": [
+    {
+      "configuration_id": "t2i_wood_material_donor_plus_gain_070_projection",
+      "mean_mechanism_fidelity_5": 5.0,
+      "mean_material_naturalness_5": 3.5,
+      "usable_seed_fraction": 1.0,
+      "finding_zh": "四个 raw 供体都是无对象木纹；gain 0.7 合成图只在四个程序拼片内出现细木纹，四块身份、共享边、两个方形空区和背景逐像素保持。"
+    }
+  ],
+  "machine_evidence": {
+    "selected_variant": "gain_070",
+    "non_allowed_max_abs_difference_0_255": 0.0,
+    "low_frequency_mse_vs_program": 0.023946,
+    "leave_one_out_maximum_mae_0_255": 0.163041,
+    "hard_checks_passed": "3/3"
+  },
+  "verdict": "accepted_topology_safe_route",
+  "verdict_zh": "接受受限材质投影作为精确数学图的通用候选；它不追求把整张程序图伪装成照片，而是在可验证不改结构的前提下减弱纯色塑料感。",
+  "generalization_boundary_zh": "该路线适合 exact_count、rigid_geometry 或 proof_topology 为硬约束的案例。它只能增加中高频表面细节，不能产生真实厚度、阴影或透视；这些效果若会改变证明结构就应主动放弃。",
+  "accepted_general_candidate_zh": "路由器遇到离散计数或刚体几何零容忍时，关闭整图重绘，要求案例提供 allowed material region 与 hard boundary，再执行多供体限幅中位数残差和三项机器门。",
+  "case_specific_configuration_zh": "math02_piece_region 的具体形状与木材提示词属于 MATH-02；region/boundary 合同、残差算法和机器门进入通用核心。",
+  "next_action_zh": "转向 BIO-01，测试多对象计数案例是否同样需要模型关闭或受限材质路线。"
+}

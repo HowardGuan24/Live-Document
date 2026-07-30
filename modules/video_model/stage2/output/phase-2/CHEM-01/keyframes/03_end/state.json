@@ -1,0 +1,15 @@
+{
+  "acid_moles_initial": 0.0005,
+  "base_moles": 0.000501,
+  "base_volume_ml": 5.01,
+  "bulk_ph": 8.978769,
+  "case_id": "CHEM-01",
+  "diffusion_halo_strength": 0.0,
+  "indicator_mean_inside_liquid": 0.971801,
+  "liquid_level_y": 233,
+  "plume_integrated_proxy": 0.0,
+  "plume_peak_amplitude": 0.0,
+  "plume_spread_factor": 1.9,
+  "plume_strength": 0.0,
+  "progress": 1.0
+}

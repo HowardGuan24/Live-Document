@@ -1,0 +1,8 @@
+{
+  "control_off": "全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。",
+  "dense_canny": "从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。",
+  "schema_version": "1.0",
+  "source_semantic_layers": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/semantic_layers.json",
+  "sparse_hard_boundary": "只合并程序明确声明为 hard_boundary 的数值层；不从成图猜边，也不加入区域、连续场、箭头或文字。",
+  "sparse_identity_boundary": "由 build_control.py 直接复制程序 geo01_water_boundary；它包含主河、牛轭湖、捷径与封堵的全部水陆边界，不从图片反推。"
+}

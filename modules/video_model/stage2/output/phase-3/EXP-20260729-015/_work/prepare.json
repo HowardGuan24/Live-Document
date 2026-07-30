@@ -1,0 +1,108 @@
+{
+  "case_id": "GEO-02",
+  "configurations": [
+    {
+      "configuration_id": "dense_scale_035",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.35,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "dense_scale_055",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.55,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "dense_scale_075",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.75,
+      "pipeline_mode": "controlnet_t2i",
+      "reuse_from": {
+        "configuration_id": "t2i_dense_terrain_and_rain",
+        "control_route": "dense_canny",
+        "experiment_root": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-014"
+      }
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "2a43e0446e81d485bc3091a944b90d757f26c05860e416257888f1a491d2ccb7",
+    "size_bytes": 755
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.03425429,
+      "path": "controls/dense_canny.png",
+      "sha256": "d157f96c7f1ba0a1c61f06fbf3b9a9f036aa42a79829daa6b0f5a2fcac12e1eb",
+      "size_bytes": 12299
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.0,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.01578776,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "6c41903b68e6cc64b7f6997f5bdc623b7fd4aa9bbf594d02032b0183ebeb0148",
+      "size_bytes": 3029
+    }
+  },
+  "experiment_id": "EXP-20260729-015",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "c92e0db996c94fbcc24f6c54bb7d5a2505ee493309ed91a20b1a1d77475f1db4",
+    "size_bytes": 241,
+    "text": "second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "fd05c83321691f367c35eab8f1fc92c19c6dbde3f74ddb3626d05eda5304bd52",
+    "size_bytes": 284,
+    "text": "Side-view landscape photograph of one mountain ridge beneath open sky, natural green rock, atmospheric sky, localized rain curtain, daylight, heavy rain only on the left windward slope; right leeward slope stays dry, one peak, same silhouette, rain left of summit, dry right, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "natural green rock, atmospheric sky, localized rain curtain, daylight",
+    "must_preserve": "one peak, same silhouette, rain left of summit, dry right, no text",
+    "scene_identity": "Side-view landscape photograph of one mountain ridge beneath open sky",
+    "state_delta": "heavy rain only on the left windward slope; right leeward slope stays dry"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "e19ea152dc18cfbab7eff57c79ea1fd46bafe6b8f8e6bb37bfaa22453fad896a",
+      "size_bytes": 86057
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/GEO-02/keyframes/02_result/clean.png",
+      "sha256": "dabddc902f33c20af5c8d922e37a0a4f2763716b00aa6c6562ccc313c281ff25"
+    },
+    "semantic_layers": {
+      "path": "../_frozen_inputs/GEO-02-02_result-semantic_layers-pre-v0.1.0.json",
+      "sha256": "2f813a29e1f47bf81a0f1c0971ea9c09eded39d78170bb37e2ea1b327fac3a73"
+    }
+  }
+}

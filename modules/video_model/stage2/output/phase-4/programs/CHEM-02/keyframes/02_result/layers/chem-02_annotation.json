@@ -1,0 +1,45 @@
+{
+  "composite_after_generation": true,
+  "items": [
+    {
+      "annotation_id": "CHEM-02-annotation-01",
+      "end_xy": [
+        190,
+        159
+      ],
+      "kind": "arrow",
+      "meaning_zh": "液面随蒸发下降",
+      "start_xy": [
+        92,
+        62
+      ]
+    },
+    {
+      "annotation_id": "CHEM-02-annotation-02",
+      "end_xy": [
+        382,
+        238
+      ],
+      "kind": "arrow",
+      "meaning_zh": "达到阈值后先成核",
+      "start_xy": [
+        530,
+        250
+      ]
+    },
+    {
+      "annotation_id": "CHEM-02-annotation-03",
+      "end_xy": [
+        320,
+        262
+      ],
+      "kind": "arrow",
+      "meaning_zh": "已有晶体继续生长",
+      "start_xy": [
+        520,
+        300
+      ]
+    }
+  ],
+  "schema_version": "1.0"
+}

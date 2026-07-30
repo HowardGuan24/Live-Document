@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-013",
+  "case_id": "BIO-01",
+  "hypothesis_zh": "包含细胞轮廓和十二条染色单体线的 dense Canny，可让 T2I 生成显微材质并保持两个子细胞、每个六条染色单体。",
+  "single_variable_zh": "相对程序关键帧只增加固定的 SDXL T2I ControlNet 重绘；控制图、提示词、模型、参数和四个种子冻结。",
+  "source": {
+    "keyframe_id": "03_end",
+    "clean_frame": "output/phase-2/BIO-01/keyframes/03_end/clean.png",
+    "semantic_layers": "output/phase-2/BIO-01/keyframes/03_end/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Top-down fluorescence micrograph of exactly two daughter cells after mitosis",
+    "material_goal": "translucent membranes, subtle cytoplasm, magenta chromosomes, dark background",
+    "state_delta": "exactly six separated straight chromatids inside each cell",
+    "must_preserve": "two cells, six chromatids each, symmetric layout, no text"
+  },
+  "negative_artifacts": "third cell, extra cells, one cell, extra chromatids, missing chromatids, chromosome clumps, duplicated nuclei, oversized nucleus, anatomy, tissue, embryos, bacteria, labels, arrows, numbers, letters, text, user interface, watermark, plastic icon, cartoon, blur",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "t2i_dense_cell_and_chromatids",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.85
+    }
+  ],
+  "blind_shuffle_seed": 2026072913,
+  "budget": {
+    "maximum_new_image_candidates": 12,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  }
+}

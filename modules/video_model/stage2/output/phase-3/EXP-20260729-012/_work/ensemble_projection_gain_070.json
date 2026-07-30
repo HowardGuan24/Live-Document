@@ -1,0 +1,174 @@
+{
+  "allowed_pixel_fraction": 0.05595567,
+  "allowed_region_source": {
+    "layer_id": "math02_piece_region",
+    "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/MATH-02/keyframes/03_end/layers/math02_piece_region.npy",
+    "source_sha256": "7a6c5148b4a753d2d09a5f8996cbf32e6f1e3524c2d40414220c4970a65e14ba"
+  },
+  "case_id": "MATH-02",
+  "comparison_sheet": {
+    "path": "ensemble-material-comparison-gain_070.jpg",
+    "sha256": "48e65e33db1f8b03734a0224ed81bde0ddea0571467596fd15bb6a03c637544b",
+    "size_bytes": 209115
+  },
+  "experiment_id": "EXP-20260729-012",
+  "full_ensemble": {
+    "composite": {
+      "path": "composite/ensemble_material/gain_070/all_seed_median.png",
+      "sha256": "ff0bbbf3371de10f965185dc490b46aef6910143fc4911dd9f26ae01f92fffc2",
+      "size_bytes": 68469
+    },
+    "metrics": {
+      "allowed_mean_abs_detail_change_0_255": 3.033934,
+      "low_frequency_mse_vs_program": 0.023946,
+      "protected_max_abs_difference_0_255": 0.0
+    }
+  },
+  "hard_checks": [
+    {
+      "evidence": {
+        "full": 0.0,
+        "leave_one_out": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "all_non_allowed_pixels_are_bit_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.023946,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 0.163041,
+        "mean": 0.144543,
+        "values": [
+          0.107755,
+          0.163041,
+          0.162832,
+          0.162832,
+          0.163041,
+          0.107755
+        ]
+      },
+      "name": "leave_one_out_composites_are_stable",
+      "passed": true
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_070/exclude_seed_3101.png",
+        "sha256": "33c577b88a783bbf87c30ff1546617ed87af13822e307dead9e004d20b0b132a",
+        "size_bytes": 69783
+      },
+      "excluded_seed": 3101,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.9687,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_070/exclude_seed_3102.png",
+        "sha256": "701b7906146924eb9d148b58ea5cadf0c890e894f41f2d90fa7fcad00713f635",
+        "size_bytes": 70323
+      },
+      "excluded_seed": 3102,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.825656,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_070/exclude_seed_3103.png",
+        "sha256": "89a25a9d9f6fae43518e54d0a65ddec47e390f1183f2a971be768c3c632829fc",
+        "size_bytes": 71125
+      },
+      "excluded_seed": 3103,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 4.293548,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_070/exclude_seed_3104.png",
+        "sha256": "a333954d9d188a091ff34581484ee53367f01485ae19872f8dbda423925bb460",
+        "size_bytes": 70902
+      },
+      "excluded_seed": 3104,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 4.23776,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 0.163041,
+    "mean": 0.144543,
+    "values": [
+      0.107755,
+      0.163041,
+      0.162832,
+      0.162832,
+      0.163041,
+      0.107755
+    ]
+  },
+  "method_zh": "每张 raw 供体先减去高斯低通并限幅，再对四个复现编号的残差逐像素取中位数。只在程序未保护区域加入该稳健残差；另做四张留一法结果，检查结论是否依赖某一个供体。",
+  "raw_donors": [
+    {
+      "artifact": {
+        "path": "raw/t2i_wood_material_donor/seed_3101.png",
+        "sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "size_bytes": 770794
+      },
+      "seed": 3101
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_wood_material_donor/seed_3102.png",
+        "sha256": "3f64762bb79ee215c51abccfd334d17662d2539a0d71c8be0dbab13ba5c0d0dd",
+        "size_bytes": 733429
+      },
+      "seed": 3102
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_wood_material_donor/seed_3103.png",
+        "sha256": "5df1dcd71659b2d31c0a26acbb4f0a363ea5210d45b38813a21e712e69a94818",
+        "size_bytes": 607280
+      },
+      "seed": 3103
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_wood_material_donor/seed_3104.png",
+        "sha256": "0c0f172b4a98d31481ece8fd69dcf48a6d195a818aaf1ca2e524fb008307a1b4",
+        "size_bytes": 614250
+      },
+      "seed": 3104
+    }
+  ],
+  "schema_version": "1.0",
+  "settings": {
+    "aggregation": "pixelwise_median",
+    "allowed_region_layer_id": "math02_piece_region",
+    "blur_radius": 12.0,
+    "protect_dilation_px": 8,
+    "residual_clip": 12.0,
+    "residual_gain": 0.7,
+    "variant_id": "gain_070"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "A": {
+    "configuration_id": "dense_scale_090",
+    "seed": 3103,
+    "sha256": "96a4d84f989fc27bb8cc8c900b4efc7569a99fd1d8f3abec160b390c008297aa"
+  },
+  "B": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3101,
+    "sha256": "f274c5077ab8b712da6223c5550988952010e921c3bd242085bf2994648d6cb8"
+  },
+  "C": {
+    "configuration_id": "dense_scale_090",
+    "seed": 3104,
+    "sha256": "5ad6959d4a48a8bdcb8f6d561dec7f8496ce84f1f4e5f5d0b3ce770c27daeb95"
+  },
+  "D": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3103,
+    "sha256": "70ca86f9f27d3b7a432f090fb54b0f7a9cdffb0ec84ad8e9082ad8126de784dc"
+  },
+  "E": {
+    "configuration_id": "dense_scale_025",
+    "seed": 3101,
+    "sha256": "c7ae3afb982755a1cb30b6ad7ea2a2705e47d6fadf320e7af69e6b6d5ac7fd29"
+  },
+  "F": {
+    "configuration_id": "dense_scale_025",
+    "seed": 3104,
+    "sha256": "5c052e6b553fc35bb90545cebbb94cf8831e06e1c09a12382860b9d945e63441"
+  },
+  "G": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3104,
+    "sha256": "6492dd60b4cb316242d9efc49a9d66664e7cc48f7e9275489e2959a73cd10aa4"
+  },
+  "H": {
+    "configuration_id": "dense_scale_025",
+    "seed": 3103,
+    "sha256": "04fcc343a806947cb6e8a6de95b2826f7be0da8f960dd68388d6e0e58ce440e2"
+  },
+  "I": {
+    "configuration_id": "dense_scale_090",
+    "seed": 3101,
+    "sha256": "d1819fe7ef55cb4ca309d7fbe5c337c75fb1a2d3db9c340bc332a8b102e58285"
+  },
+  "J": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3102,
+    "sha256": "7e9e56e12335193793c3b2143add03911da5a54d8426d60e559e680429702e5c"
+  },
+  "K": {
+    "configuration_id": "dense_scale_090",
+    "seed": 3102,
+    "sha256": "06689a86eb318595c1d4184607250f65c1f3ac0e57ce29ae489d79a82dec6eff"
+  },
+  "L": {
+    "configuration_id": "dense_scale_025",
+    "seed": 3102,
+    "sha256": "a6d506e3c91d6b31e4a12e152aeb56e8d6e21bb28e0b385ad796724917b30d98"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-011",
+  "review_mode": "blind_first_then_unblind",
+  "configuration_summary": [
+    {
+      "configuration_id": "t2i_centered_hard_boundary",
+      "mean_mechanism_fidelity_5": 2.0,
+      "mean_material_naturalness_5": 4.5,
+      "usable_seed_fraction": 0.0,
+      "finding_zh": "4/4 都只生成一个居中框，额外面板问题消失；但 4/4 仍把四个三角形解释成空隔间、任意木块或错误数量的拼片。"
+    }
+  ],
+  "verdict": "rejected_for_exact_count_geometry",
+  "verdict_zh": "占用率归一化子假设成立，但数学整图重绘总路线仍拒绝：物体数量和全等关系没有一个种子同时通过。",
+  "generalization_boundary_zh": "控制图裁切、放大、居中应成为 T2I 通用预处理；它能减少空白区臆造，却不能让扩散模型承担严格离散计数、全等关系或证明拓扑。",
+  "accepted_general_candidate_zh": "对几何与计数零容忍的案例，模型不得重绘整图；应保留程序像素，只从模型供体提取受限材质信号。",
+  "case_specific_configuration_zh": "四三角形拼法属于 MATH-02 案例数据；通用路由器只读取 exact_count 与 rigid_geometry 两类约束。",
+  "next_action_zh": "生成不含对象的木纹材质供体，以多种子稳健高频残差只增强 math02_piece_region，并把全部边界、空区和背景设为不可变。"
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-003",
+  "case_id": "PHYS-01",
+  "hypothesis_zh": "提高 Img2Img strength 会增加水面材质重绘，但也会降低双源干涉机制；0.50 应是当前折中。",
+  "single_variable_zh": "只改变 Img2Img strength；程序底图、详细 Canny、ControlNet 0.90、提示词、模型、采样器和种子完全一致。",
+  "source": {
+    "keyframe_id": "03_end",
+    "clean_frame": "output/phase-2/PHYS-01/keyframes/03_end/clean.png",
+    "semantic_layers": "output/phase-2/PHYS-01/keyframes/03_end/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Top-down photograph of a shallow ripple tank, locked camera, two synchronized point exciters fixed left and right",
+    "material_goal": "translucent blue water, realistic small ripples, subtle reflections, soft laboratory light",
+    "state_delta": "two circular wave trains overlap into clear nodal and antinodal bands",
+    "must_preserve": "exactly two symmetric sources, concentric outward waves, unchanged rectangular tank"
+  },
+  "negative_artifacts": "text, labels, arrows, user interface, watermark, third wave source, moved sources, ocean shore, boats, giant breaking waves, frozen plastic, metallic rings, engraved grooves, hard neon outlines, duplicated emitters, perspective view, cropped tank, blur",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "img2img_strength_035",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.35
+    },
+    {
+      "configuration_id": "img2img_strength_050",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.5,
+      "reuse_from": {
+        "experiment_root": "output/phase-3/EXP-20260729-002",
+        "configuration_id": "dense_scale_090",
+        "control_route": "dense_canny"
+      }
+    },
+    {
+      "configuration_id": "img2img_strength_070",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.7
+    }
+  ],
+  "blind_shuffle_seed": 2026072903,
+  "budget": {
+    "maximum_new_image_candidates": 12,
+    "actual_planned_image_candidates": 12,
+    "planned_external_reuse": 4,
+    "maximum_new_generation": 8,
+    "maximum_video_trials": 0
+  }
+}

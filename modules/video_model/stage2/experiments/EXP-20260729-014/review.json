@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-014",
+  "review_mode": "blind_first_then_unblind",
+  "configuration_summary": [
+    {
+      "configuration_id": "t2i_dense_terrain_and_rain",
+      "mean_mechanism_fidelity_5": 4.5,
+      "mean_material_naturalness_5": 1.75,
+      "usable_seed_fraction": 0.0,
+      "finding_zh": "4/4 保留单峰和左侧迎风坡降雨，机制空间分区稳定；但强控制把山线与雨线直接描成墨线，整体仍像插图或网格纸而非自然景观。"
+    }
+  ],
+  "verdict": "rejected_material_quality_control_too_strong",
+  "verdict_zh": "机制门通过但材质门失败；当前结果不能作为写实关键帧。",
+  "generalization_boundary_zh": "连续轮廓案例比精确计数更适合整图重绘，但强 dense Canny 会把程序线条本身变成最终纹理。控制强度需要在机制与材质之间标定。",
+  "accepted_general_candidate_zh": "保留该路线进入控制强度扫描；评分必须分别记录机制与材质，不能因轮廓正确就宣称写实化成功。",
+  "case_specific_configuration_zh": "左雨右干与单峰属于 GEO-02；控制强度扫描规则可进入通用核心。",
+  "next_action_zh": "冻结其他变量，比较 0.35、0.55 与当前 0.75，寻找仍保留左侧雨区但不留下墨线的最低充分控制。"
+}

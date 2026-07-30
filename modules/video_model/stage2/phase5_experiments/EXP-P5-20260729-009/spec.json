@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P5-20260729-009",
+  "case_id": "BIO-01",
+  "motion_class": "object_division",
+  "hypothesis_zh": "相对被拒绝的 2 秒版本，只把时长加倍到约 4 秒，可能给六对姐妹染色单体足够的逐对分离时间。",
+  "source": {
+    "first_keyframe_id": "01_mechanism",
+    "last_keyframe_id": "02_result",
+    "first_frame": "output/phase-2/BIO-01/keyframes/01_mechanism/clean.png",
+    "last_frame": "output/phase-2/BIO-01/keyframes/02_result/clean.png"
+  },
+  "prompt": {
+    "positive": "Locked orthographic flat scientific cell-division diagram, exactly matching the supplied first and last frames. Preserve one fixed pale green oval animal cell, the dark green membrane, the two fixed blue spindle poles, background, framing, scale and camera. The six purple replicated chromosome units stacked on the center equator each separate into exactly two sister chromatids: one sister from every pair moves smoothly toward the left pole and the other moves smoothly toward the right pole. End with exactly six separate purple chromatids on the left and exactly six on the right as shown in the supplied last frame. Pairwise synchronous anaphase separation, stable count and one continuous biologically understandable motion. No camera movement.",
+    "negative": "random purple lines, extra chromosome, missing chromosome, unequal allocation, chromosome merging, chromosome melting, chromosome fading, arbitrary duplication, tangled chromosomes, all chromatids moving to one side, changed cell, dividing cell membrane, extra cell, missing spindle pole, moving spindle pole, camera movement, pan, zoom, tilt, perspective change, scene change, text, labels, arrows, flicker, jitter, abrupt cut, cross dissolve, plastic CGI, blur, watermark"
+  },
+  "model": {
+    "checkpoint": "ltx-2.3-22b-dev-fp8.safetensors",
+    "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+    "distilled_lora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+    "lora_strength": 0.5
+  },
+  "settings": {
+    "width": 576,
+    "height": 320,
+    "fps": 24,
+    "frame_count": 97,
+    "noise_seed": 2026072908,
+    "guide_strength": 0.7,
+    "image_compression": 25,
+    "cfg": 1.0,
+    "sigmas": [
+      1.0,
+      0.99375,
+      0.9875,
+      0.98125,
+      0.975,
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ]
+  },
+  "audit": {
+    "reference_color_mask_stability": {
+      "target_rgb": [
+        67,
+        105,
+        132
+      ],
+      "reference_tolerance": 26,
+      "current_tolerance": 48,
+      "minimum_coverage_fraction": 0.6,
+      "maximum_mean_abs_color_difference_0_255": 45
+    },
+    "color_component_division": {
+      "target_rgb": [
+        137,
+        60,
+        145
+      ],
+      "color_distance_tolerance": 65,
+      "minimum_component_pixels": 5,
+      "initial_component_count_range": [
+        1,
+        3
+      ],
+      "final_component_count_range": [
+        10,
+        14
+      ],
+      "minimum_component_count_growth": 8,
+      "split_x_normalized": 0.5,
+      "minimum_final_components_per_side": 5
+    },
+    "thresholds": {
+      "maximum_endpoint_mae_0_255": 15,
+      "maximum_consecutive_frame_mae_0_255": 12
+    }
+  },
+  "budget": {
+    "maximum_video_trials": 2,
+    "actual_planned_video_trials": 2,
+    "image_model_runs": 0
+  },
+  "output_prefix": "stage2_phase5_bio01_object_division_long"
+}

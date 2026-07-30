@@ -1,0 +1,65 @@
+{
+  "experiments": [
+    {
+      "candidate_count": 6,
+      "case_id": "CHEM-01",
+      "experiment_id": "EXP-P7-A-chem-01-00_start",
+      "generated": 0,
+      "keyframe_id": "00_start",
+      "reused": 6,
+      "root": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start"
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "CHEM-01",
+      "experiment_id": "EXP-P7-A-chem-01-01_mechanism",
+      "generated": 0,
+      "keyframe_id": "01_mechanism",
+      "reused": 6,
+      "root": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-01_mechanism"
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "CHEM-01",
+      "experiment_id": "EXP-P7-A-chem-01-02_result",
+      "generated": 0,
+      "keyframe_id": "02_result",
+      "reused": 6,
+      "root": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-02_result"
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "CHEM-01",
+      "experiment_id": "EXP-P7-A-chem-01-03_end",
+      "generated": 0,
+      "keyframe_id": "03_end",
+      "reused": 6,
+      "root": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-03_end"
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "GEO-02",
+      "experiment_id": "EXP-P7-A-geo-02-02_result",
+      "generated": 0,
+      "keyframe_id": "02_result",
+      "reused": 6,
+      "root": "output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result"
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "GEO-02",
+      "experiment_id": "EXP-P7-A-geo-02-02_result-terrain_only",
+      "generated": 6,
+      "keyframe_id": "02_result",
+      "reused": 0,
+      "root": "output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result-terrain_only"
+    }
+  ],
+  "model_runs": {
+    "image": 6,
+    "video": 0
+  },
+  "route_id": "A_semifree_scene_generation",
+  "schema_version": "1.0",
+  "status": "generated"
+}

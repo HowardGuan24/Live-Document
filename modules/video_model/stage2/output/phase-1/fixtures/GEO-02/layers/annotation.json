@@ -1,0 +1,32 @@
+{
+  "composite_after_generation": true,
+  "items": [
+    {
+      "annotation_id": "GEO-02-annotation-01",
+      "end_xy": [
+        126,
+        94
+      ],
+      "kind": "arrow",
+      "meaning_zh": "指出代表状态中的主要变化区域",
+      "start_xy": [
+        54,
+        132
+      ]
+    },
+    {
+      "annotation_id": "GEO-02-annotation-02",
+      "end_xy": [
+        201,
+        79
+      ],
+      "kind": "arrow",
+      "meaning_zh": "指出需要在报告中解释的数据来源",
+      "start_xy": [
+        268,
+        46
+      ]
+    }
+  ],
+  "schema_version": "1.0"
+}

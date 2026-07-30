@@ -1,0 +1,174 @@
+{
+  "allowed_pixel_fraction": 0.02929688,
+  "allowed_region_source": {
+    "layer_id": "phys02_magnet_region",
+    "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/01_mechanism/layers/phys02_magnet_region.npy",
+    "source_sha256": "4dfaeac65355cd0ad3d57cea295a5262a83af7b2c51db607b69f0d9d1b369ad9"
+  },
+  "case_id": "PHYS-02",
+  "comparison_sheet": {
+    "path": "ensemble-material-comparison-gain_020.jpg",
+    "sha256": "a25d96ad4015d29a5d0ebf1294f8fddd94366d6effd4ac6b18573b58b5f7843d",
+    "size_bytes": 245434
+  },
+  "experiment_id": "EXP-P4-20260729-006",
+  "full_ensemble": {
+    "composite": {
+      "path": "composite/ensemble_material/gain_020/all_seed_median.png",
+      "sha256": "a0239329e3ac616fa2386adb97cd02c2452c768be196fe084a99c1c23e118dbb",
+      "size_bytes": 77599
+    },
+    "metrics": {
+      "allowed_mean_abs_detail_change_0_255": 0.308839,
+      "low_frequency_mse_vs_program": 0.00025,
+      "protected_max_abs_difference_0_255": 0.0
+    }
+  },
+  "hard_checks": [
+    {
+      "evidence": {
+        "full": 0.0,
+        "leave_one_out": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "all_non_allowed_pixels_are_bit_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.00025,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 0.010191,
+        "mean": 0.008147,
+        "values": [
+          0.010191,
+          0.007707,
+          0.006545,
+          0.006545,
+          0.007707,
+          0.010191
+        ]
+      },
+      "name": "leave_one_out_composites_are_stable",
+      "passed": true
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_020/exclude_seed_3101.png",
+        "sha256": "a69e01c4ee02a00bea9d3f82351cdc6ad284b1f5c0adc13b04693e27ce2dced4",
+        "size_bytes": 82124
+      },
+      "excluded_seed": 3101,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.503765,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_020/exclude_seed_3102.png",
+        "sha256": "8a5547ba0582d76b19533153b7ec6281911d756e94aac5cc5e092ee0273dae80",
+        "size_bytes": 75066
+      },
+      "excluded_seed": 3102,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.199598,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_020/exclude_seed_3103.png",
+        "sha256": "061d14eff32f1ffd89e1a74f5153b8f1d139d1d1a6ee0006cec9d39179b33cbc",
+        "size_bytes": 78460
+      },
+      "excluded_seed": 3103,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.29939,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_020/exclude_seed_3104.png",
+        "sha256": "f98a4b6b739d64b8750df205d81367b25b3e0d1176a0e68a26c7a603d2ad68bf",
+        "size_bytes": 77535
+      },
+      "excluded_seed": 3104,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.332615,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 0.010191,
+    "mean": 0.008147,
+    "values": [
+      0.010191,
+      0.007707,
+      0.006545,
+      0.006545,
+      0.007707,
+      0.010191
+    ]
+  },
+  "method_zh": "每张 raw 供体先减去高斯低通并限幅，再对四个复现编号的残差逐像素取中位数。只在程序未保护区域加入该稳健残差；另做四张留一法结果，检查结论是否依赖某一个供体。",
+  "raw_donors": [
+    {
+      "artifact": {
+        "path": "raw/t2i_matte_enamel_metal_donor/seed_3101.png",
+        "sha256": "7dc7ed585933ea64cd4aa901715909d2d93577ffa40978955d0ee3c2b9d99851",
+        "size_bytes": 872851
+      },
+      "seed": 3101
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_matte_enamel_metal_donor/seed_3102.png",
+        "sha256": "2f4dfc0dc8de1bfe497d63009afbdb642fe30cd41f3253ce2d63a228bece6dee",
+        "size_bytes": 884810
+      },
+      "seed": 3102
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_matte_enamel_metal_donor/seed_3103.png",
+        "sha256": "6df73f36d71719c50e3179a22a5462523e6c94fd577dd188b741c7dd61b817ee",
+        "size_bytes": 790419
+      },
+      "seed": 3103
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_matte_enamel_metal_donor/seed_3104.png",
+        "sha256": "6b98bc4792c334cf99de3d20707c4e6ed4ab9b8d1e1f567dbac853d1d3624b01",
+        "size_bytes": 825269
+      },
+      "seed": 3104
+    }
+  ],
+  "schema_version": "1.0",
+  "settings": {
+    "aggregation": "pixelwise_median",
+    "allowed_region_layer_id": "phys02_magnet_region",
+    "blur_radius": 8.0,
+    "protect_dilation_px": 5,
+    "residual_clip": 12.0,
+    "residual_gain": 0.2,
+    "variant_id": "gain_020"
+  }
+}

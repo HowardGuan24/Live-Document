@@ -1,0 +1,62 @@
+{
+  "A": {
+    "configuration_id": "dense_scale_075",
+    "seed": 3102,
+    "sha256": "2c96c86b2e709263c42f3c6cf8c3e4f0cd5042b5bf8c4e8b79bdff9c522b7bc3"
+  },
+  "B": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3103,
+    "sha256": "94296350967a322a16b63f9bbc33a190556c7d6632273e8257e575e61616fb9c"
+  },
+  "C": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3101,
+    "sha256": "eef2f1621f34c77990fbc307167b8d83c4536763b420ea89219d905587507db5"
+  },
+  "D": {
+    "configuration_id": "dense_scale_035",
+    "seed": 3102,
+    "sha256": "6a88de6d3158802d09ccc8daca75a41e17b32fb025c12b4d04eeb020fb339a3a"
+  },
+  "E": {
+    "configuration_id": "dense_scale_075",
+    "seed": 3103,
+    "sha256": "f1c1ca2ac1cb5045192f50c09fbe98b3a0a9f6f1bb8d6785d201cdc31321a830"
+  },
+  "F": {
+    "configuration_id": "dense_scale_035",
+    "seed": 3103,
+    "sha256": "2c01ec077f2534f75720d779e79c2582088c3f3c1a8f15cc2235a39063e9a27a"
+  },
+  "G": {
+    "configuration_id": "dense_scale_075",
+    "seed": 3104,
+    "sha256": "abdf3dd446df64a757e35f7d6ef0463fff1c44b8633d0a2a9fb4c04f9e67a5bd"
+  },
+  "H": {
+    "configuration_id": "dense_scale_035",
+    "seed": 3104,
+    "sha256": "857a944295d58269ae39099aac38365e722673520787be9951f26011add092af"
+  },
+  "I": {
+    "configuration_id": "dense_scale_075",
+    "seed": 3101,
+    "sha256": "98bd4202fb9b1cff0a52e9ec99903315218cc66a940e1831114bcb9713c531c2"
+  },
+  "J": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3104,
+    "sha256": "1f0de88b9542a9ada05e4cdfd9331762ef462541fcfbad432ff48425df207c5e"
+  },
+  "K": {
+    "configuration_id": "dense_scale_055",
+    "seed": 3102,
+    "sha256": "076ac48fa106d397f0a1b0ae23b348ffc3cbe3811f88e7fc40934551401365dd"
+  },
+  "L": {
+    "configuration_id": "dense_scale_035",
+    "seed": 3101,
+    "sha256": "f689cc1dd6a589f678f4f0abbd26be43c0c3450546c87a4693632658b95259a7"
+  }
+}

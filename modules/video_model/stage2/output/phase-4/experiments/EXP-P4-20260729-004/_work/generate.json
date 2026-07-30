@@ -1,0 +1,221 @@
+{
+  "blind_shuffle_seed": 2026072919,
+  "cache": {
+    "generated": 4,
+    "policy": "reuse only if clean input, prompts, control, configuration, seed, render settings and model fingerprints all match",
+    "reused": 0
+  },
+  "candidates": [
+    {
+      "blind_id": "D",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_salt_facet_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 8.959,
+      "input_signature": "b9cf9a2f3cb302a4f42ae6581fefdea60355770973b9961454e54ccb9ed970ff",
+      "metrics": {
+        "candidate_edge_fraction": 0.05126105,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 45.90408,
+        "mean_saturation_0_255": 64.47257
+      },
+      "path": "raw/t2i_salt_facet_material_donor/seed_3101.png",
+      "peak_gpu_memory_bytes": 11760833024,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3101,
+      "sha256": "9ff451e4cf726769dbb776e84331d89893a42585028743d4aa3bbbcdf2f80445",
+      "size_bytes": 898802
+    },
+    {
+      "blind_id": "C",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_salt_facet_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.805,
+      "input_signature": "682b092916d22bb35bf6703346e7eb24230ed9ff779bb4c52811f2838597a173",
+      "metrics": {
+        "candidate_edge_fraction": 0.13941277,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 43.25694,
+        "mean_saturation_0_255": 67.97771
+      },
+      "path": "raw/t2i_salt_facet_material_donor/seed_3102.png",
+      "peak_gpu_memory_bytes": 11759849984,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3102,
+      "sha256": "566bbd84ac526c7e15582e6d9e19d9e55b3cbfcd705a5d1ba6ae9e2bd96974ae",
+      "size_bytes": 854448
+    },
+    {
+      "blind_id": "B",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_salt_facet_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.756,
+      "input_signature": "c937e59c5fbe28c1faa646b0be5ab11ea570c9b251bec01e54a85514422f2299",
+      "metrics": {
+        "candidate_edge_fraction": 0.01805623,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 34.92044,
+        "mean_saturation_0_255": 33.34952
+      },
+      "path": "raw/t2i_salt_facet_material_donor/seed_3103.png",
+      "peak_gpu_memory_bytes": 11760570880,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3103,
+      "sha256": "11e4ec50f5ef590346db0c0979b2c0546cbe7ee82596097eee0664f074e23ddd",
+      "size_bytes": 978868
+    },
+    {
+      "blind_id": "A",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_salt_facet_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.716,
+      "input_signature": "1ea35e6242d8f22499a9e745e2182860c8163535a919478c121911b3327c15bf",
+      "metrics": {
+        "candidate_edge_fraction": 0.108117,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 29.98712,
+        "mean_saturation_0_255": 64.45076
+      },
+      "path": "raw/t2i_salt_facet_material_donor/seed_3104.png",
+      "peak_gpu_memory_bytes": 11762274816,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3104,
+      "sha256": "b134aad5fe271f8d5dc6fff2ae053b620dfe08cf61119d24a9127e1cf428692e",
+      "size_bytes": 1133103
+    }
+  ],
+  "case_id": "CHEM-02",
+  "experiment_id": "EXP-P4-20260729-004",
+  "hypothesis_zh": "盐晶面材质供体经多种子稳健残差，只进入四颗程序晶体 region 后，可增加晶面层次且不改变数量、轮廓、液体或质量关系。",
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "model_roots": {
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0"
+    },
+    "models": {
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      },
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      }
+    },
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run."
+  },
+  "model_load_seconds": 5.075,
+  "model_runs": {
+    "image_candidates": 4,
+    "video_candidates": 0
+  },
+  "models": {
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    },
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "Pillow": "11.0.0",
+    "accelerate": "1.13.0",
+    "diffusers": "0.35.2",
+    "numpy": "2.1.2",
+    "opencv-python-headless": "4.13.0.92",
+    "safetensors": "0.7.0",
+    "torch": "2.9.1+gitff65f5b",
+    "transformers": "4.57.6"
+  },
+  "pipeline_mode": "controlnet_t2i",
+  "prompt_token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 53,
+        "tokenizer_2": 53
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 61,
+        "tokenizer_2": 61
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "runtime": {
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336,
+    "hip": "7.2.53211-e1a6bc5663",
+    "torch": "2.9.1+gitff65f5b"
+  },
+  "scheduler": "EulerDiscreteScheduler",
+  "schema_version": "1.0",
+  "sheets": {
+    "blind": {
+      "path": "candidates-blind.jpg",
+      "sha256": "24e8efab6a65565a33edefddd6da5a6d3c48dc122797464420b4ac44fdb87dc1",
+      "size_bytes": 221951
+    },
+    "blind_map": {
+      "path": "_work/blind_map.json",
+      "sha256": "873a45f1c7a4bbb489a17351d7e52a597cf6c6dbd331100982c20b5e7bd4a962",
+      "size_bytes": 683
+    },
+    "labeled": {
+      "path": "candidates-labeled.jpg",
+      "sha256": "edb967e43e66b5fb6e6abd1b188e7557447a19fb24bc079b5a86257fb9a5dfef",
+      "size_bytes": 230222
+    }
+  },
+  "single_variable_zh": "相对程序底图只增加模型派生的受限中高频晶面材质；四颗晶体身份、边界、液体和背景不变。",
+  "status": "generated"
+}

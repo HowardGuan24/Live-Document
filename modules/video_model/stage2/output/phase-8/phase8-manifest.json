@@ -1,0 +1,144 @@
+{
+  "artifacts": {
+    "math_b_vs_c": {
+      "path": "output/phase-8/report-assets/math-02-b-vs-c.jpg",
+      "sha256": "bdfcd6b37f5c25bd83aa26443952401242baaee45dadae29d9174b3306d01abf",
+      "size_bytes": 232284
+    },
+    "math_process": {
+      "path": "output/phase-8/report-assets/math-b-process.jpg",
+      "sha256": "5718abe8fc4e0a9245a08d6c07b4e381d1717ec6e372857550ef5114660cf48b",
+      "size_bytes": 111219
+    },
+    "math_variants": {
+      "path": "output/phase-8/route-b-only/MATH-02/all-variants-sequence.jpg",
+      "sha256": "f25e79e3056cf5f4bd1757f3a710d24dda6292b30250a1e1bed1d013d33d942d",
+      "size_bytes": 222759
+    },
+    "phys_b_vs_c": {
+      "path": "output/phase-8/report-assets/phys-01-b-vs-c.jpg",
+      "sha256": "c0cf4a06416d85d7fa244610feb7a4195b80b69a5e5e9d79dff8bb4c0d13aeff",
+      "size_bytes": 277704
+    },
+    "phys_process": {
+      "path": "output/phase-8/report-assets/phys-b-process.jpg",
+      "sha256": "280120c8cf4ef45ec2360ca5937c5a0b0f7a9c20db82304a67119c896486bf65",
+      "size_bytes": 194171
+    },
+    "phys_variants": {
+      "path": "output/phase-8/route-b-only/PHYS-01/all-variants-sequence.jpg",
+      "sha256": "399c21a4fe065708024d8af260aaa4b3d24060e0f0ba11d0590c075730ab3626",
+      "size_bytes": 809866
+    }
+  },
+  "checks": [
+    {
+      "name": "forty_eight_b_only_outputs_exist",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "current_output_count": 48,
+        "passed": true,
+        "previous_output_count": 48,
+        "unchanged_sha256_count": 48
+      },
+      "name": "forty_eight_outputs_repeat_byte_for_byte",
+      "passed": true
+    },
+    {
+      "name": "math_object_count_and_area_exact",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "B": {
+          "mean_adjacent_object_texture_correlation": 0.009121,
+          "minimum_adjacent_object_texture_correlation": -0.224326,
+          "pair_count": 12
+        },
+        "C": {
+          "mean_adjacent_object_texture_correlation": 1.0,
+          "minimum_adjacent_object_texture_correlation": 1.0,
+          "pair_count": 12
+        }
+      },
+      "name": "math_b_exposes_texture_sliding",
+      "passed": true
+    },
+    {
+      "evidence": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "name": "physics_overlay_is_height_gradient_driven",
+      "passed": true
+    },
+    {
+      "name": "frozen_donor_hash_is_constant",
+      "passed": true
+    },
+    {
+      "name": "report_links_resolve",
+      "passed": true
+    }
+  ],
+  "decision": {
+    "absorb_into_B": [
+      "B2_object_attached_projection",
+      "B3_field_conditioned_optics"
+    ],
+    "reason_zh": "B-only 静态结果在两个案例都可用；水波可完全并入B。数学仍需要对象附着纹理，但这是 B 的投影坐标模式，不必成为独立路线。",
+    "retire_top_level_route": "C",
+    "top_level_routes": [
+      "A",
+      "B"
+    ]
+  },
+  "determinism_replay": {
+    "current_output_count": 48,
+    "passed": true,
+    "previous_output_count": 48,
+    "unchanged_sha256_count": 48
+  },
+  "evaluation": {
+    "MATH-02": {
+      "b_texture_coherence": {
+        "mean_adjacent_object_texture_correlation": 0.009121,
+        "minimum_adjacent_object_texture_correlation": -0.224326,
+        "pair_count": 12
+      },
+      "boundary_zh": "纯屏幕坐标 B 会让纹理在移动对象内部滑动。",
+      "c_texture_coherence": {
+        "mean_adjacent_object_texture_correlation": 1.0,
+        "minimum_adjacent_object_texture_correlation": 1.0,
+        "pair_count": 12
+      },
+      "old_c_variant": "studio_pbr",
+      "selected_b_variant": "frozen_scene_depth",
+      "still_frame_verdict": "B comparable"
+    },
+    "PHYS-01": {
+      "old_c_variant": "specular_water",
+      "program_overlay_realization_correlations": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "selected_b_variant": "calm_frozen_water_relief",
+      "still_frame_verdict": "B preferred"
+    }
+  },
+  "hypothesis_zh": "旧路线 C 可以退出顶层架构；其对象局部坐标和场驱动光照可成为统一路线 B 的内部投影模式。",
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "output_count": 48,
+  "phase": 8,
+  "schema_version": "1.0",
+  "status": "passed"
+}

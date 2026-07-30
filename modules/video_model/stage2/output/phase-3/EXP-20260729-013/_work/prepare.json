@@ -1,0 +1,91 @@
+{
+  "case_id": "BIO-01",
+  "configurations": [
+    {
+      "configuration_id": "t2i_dense_cell_and_chromatids",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.85,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "a913fd0a956ac5e2661c3b9a57fffbce3f4907bc03e3d3e4b795d3ab7bd5df4b",
+    "size_bytes": 752
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.02920363,
+      "path": "controls/dense_canny.png",
+      "sha256": "870b04136e91469a4ff746de5fde1c6cbf61b3a4d5dc352fc156bb4f60ce35a9",
+      "size_bytes": 9996
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.0,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.01818848,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "af96f4ee7ceb63ed7021a261c39beb024b9cec9e8f1334a8fdf880725d8eaf06",
+      "size_bytes": 3515
+    }
+  },
+  "experiment_id": "EXP-20260729-013",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "624eb2500299072b078168d952f0b3bd9aabb3efc5940e8449834583e3c766ae",
+    "size_bytes": 261,
+    "text": "third cell, extra cells, one cell, extra chromatids, missing chromatids, chromosome clumps, duplicated nuclei, oversized nucleus, anatomy, tissue, embryos, bacteria, labels, arrows, numbers, letters, text, user interface, watermark, plastic icon, cartoon, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "e56545a6071ffcd8e529bc27368ba36038f142871351d708603b8b4a15be942d",
+    "size_bytes": 275,
+    "text": "Top-down fluorescence micrograph of exactly two daughter cells after mitosis, translucent membranes, subtle cytoplasm, magenta chromosomes, dark background, exactly six separated straight chromatids inside each cell, two cells, six chromatids each, symmetric layout, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "translucent membranes, subtle cytoplasm, magenta chromosomes, dark background",
+    "must_preserve": "two cells, six chromatids each, symmetric layout, no text",
+    "scene_identity": "Top-down fluorescence micrograph of exactly two daughter cells after mitosis",
+    "state_delta": "exactly six separated straight chromatids inside each cell"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "092016ab550954f1636297b08cf67acc05b5807c7fb2d3e1e62fce34c0fb30d3",
+      "size_bytes": 42193
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/clean.png",
+      "sha256": "21d9f27e898fae58ce74de6e23a43757c4b52cd5b3d41d29367ad86ea9bd6cc0"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/semantic_layers.json",
+      "sha256": "7b60421e077034e23566b91e49c81f93c706a828a355bc83130cb1896d272c89"
+    }
+  }
+}

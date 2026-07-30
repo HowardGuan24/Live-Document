@@ -1,0 +1,242 @@
+{
+  "automatic_next_action": "advance_to_phase_3",
+  "checks": [
+    {
+      "evidence": {
+        "BIO-01": "passed",
+        "CHEM-01": "passed",
+        "GEO-02": "passed",
+        "MATH-02": "passed",
+        "PHYS-01": "passed"
+      },
+      "name": "five_sentinel_programs_pass",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "passed": 18,
+        "total": 18
+      },
+      "name": "all_case_mechanism_assertions_pass",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "passed": 35,
+        "total": 35
+      },
+      "name": "all_common_runner_assertions_pass",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "BIO-01": 49,
+        "CHEM-01": 49,
+        "GEO-02": 49,
+        "MATH-02": 49,
+        "PHYS-01": 49
+      },
+      "name": "exactly_245_program_frames",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "image": 0,
+        "video": 0
+      },
+      "name": "zero_stage2_generative_model_runs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "BIO-01": {
+          "mechanism_visibility_score_5": 4,
+          "notes_zh": "六个复制染色体、十二条姐妹染色单体和两个各含六条的子细胞可追踪；第二轮增大终帧间距避免视觉重叠。",
+          "readability_score_5": 4,
+          "status": "passed"
+        },
+        "CHEM-01": {
+          "mechanism_visibility_score_5": 4,
+          "notes_zh": "局部粉红羽流、搅拌后褪色、接近终点及终点持续粉红依次可见。",
+          "readability_score_5": 4,
+          "status": "passed"
+        },
+        "GEO-02": {
+          "mechanism_visibility_score_5": 4,
+          "notes_zh": "空气团越山、迎风坡雨带、背风侧云雨消散，以及温湿度变化顺序清楚。",
+          "readability_score_5": 4,
+          "status": "passed"
+        },
+        "MATH-02": {
+          "mechanism_visibility_score_5": 4,
+          "notes_zh": "第二轮改为一次移动一块；K1 清楚显示 c²，K2 回到互不重叠的暂存位置，K3 显示 a² 与 b²。",
+          "readability_score_5": 4,
+          "status": "passed"
+        },
+        "PHYS-01": {
+          "mechanism_visibility_score_5": 5,
+          "notes_zh": "两个固定振源、扩张波前、重叠区及节点/腹线从动画中均可直接辨认。",
+          "readability_score_5": 5,
+          "status": "passed"
+        }
+      },
+      "name": "agent_visual_review_gate",
+      "passed": true
+    }
+  ],
+  "classification": "five deterministic sentinel program animations; no generative-model renders",
+  "frame_count": 245,
+  "keyframe_count": 20,
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "overview": {
+    "path": "sentinel-keyframes.jpg",
+    "sha256": "c68a69483c0fdf07efa240667c94ca2f1a13f3949b0786a7d77db8b1844e949e",
+    "size_bytes": 280450
+  },
+  "phase": 2,
+  "program_count": 5,
+  "programs": [
+    {
+      "animation": {
+        "path": "MATH-02/program-animation.mp4",
+        "sha256": "f0f734873c8a9d9100ed322a922f228aed7831ccd5c9bbce9ab52db113663609"
+      },
+      "case_id": "MATH-02",
+      "manifest": {
+        "path": "MATH-02/program_manifest.json",
+        "sha256": "2a2b3f6d27a10633f2a839523f2951cf83cee8b69959fe29a885592800ae8770"
+      },
+      "status": "passed",
+      "title_zh": "勾股定理的拼图重排证明"
+    },
+    {
+      "animation": {
+        "path": "PHYS-01/program-animation.mp4",
+        "sha256": "456ac5e3328b310b4053e59e996cfab1d18002e3d698b45fbb24d93272b41402"
+      },
+      "case_id": "PHYS-01",
+      "manifest": {
+        "path": "PHYS-01/program_manifest.json",
+        "sha256": "0cb229d8ba8b894968867482d8a131e15d4c081fd4e9a91e7ef34c55985c53a4"
+      },
+      "status": "passed",
+      "title_zh": "两个同步振源产生的水面波干涉"
+    },
+    {
+      "animation": {
+        "path": "CHEM-01/program-animation.mp4",
+        "sha256": "853ae7e21c1c113b97544c35d3d4c393b5dabb9ab46f87c86b07ba80d0f0d59b"
+      },
+      "case_id": "CHEM-01",
+      "manifest": {
+        "path": "CHEM-01/program_manifest.json",
+        "sha256": "c141bc568e5208e3fae09ac1b827e2cdfa7da0474473d2516b37331add6b8677"
+      },
+      "status": "passed",
+      "title_zh": "酸碱滴定从局部变色到到达终点"
+    },
+    {
+      "animation": {
+        "path": "BIO-01/program-animation.mp4",
+        "sha256": "79c7883e4d402a7135e62e27231ad38089c63a8fb4405f7710f22b9030a87c19"
+      },
+      "case_id": "BIO-01",
+      "manifest": {
+        "path": "BIO-01/program_manifest.json",
+        "sha256": "cd157e7985f94f969db049d0895e91b705e2a73f974e150994270c5b60d27c13"
+      },
+      "status": "passed",
+      "title_zh": "一个动物细胞的有丝分裂"
+    },
+    {
+      "animation": {
+        "path": "GEO-02/program-animation.mp4",
+        "sha256": "c4de0fa88e23ee00efb515633d7679b223343c0d7bfcaf61324d9c7f36a3ccaa"
+      },
+      "case_id": "GEO-02",
+      "manifest": {
+        "path": "GEO-02/program_manifest.json",
+        "sha256": "862253901c0d4248b022c3b77c5f8a9055035e2d750a3840bf398539143a7f4e"
+      },
+      "status": "passed",
+      "title_zh": "地形雨与背风坡雨影"
+    }
+  ],
+  "report": {
+    "path": "report.html",
+    "sha256": "83b2ba297e4cb98e12426d0a4f0530eff212c5c58444a721acc5eef8d5fc4f05",
+    "size_bytes": 61146
+  },
+  "schema_version": "1.0",
+  "score": {
+    "decision": "advance_to_phase_3",
+    "hard_gate": "passed",
+    "passed": true,
+    "threshold": 90,
+    "total": 100,
+    "visual_gate": "passed"
+  },
+  "sources": {
+    "case_registry": {
+      "path": "case_registry.json",
+      "sha256": "79b9f19bc7e1804cce25a51c830a2fe3f22970cda86bd2fa323a63b48c72142e",
+      "size_bytes": 7973
+    },
+    "generic_program_runner": {
+      "path": "framework/program_runner.py",
+      "sha256": "41192139eb3a79248ff9dfd79a9507d848632eacbeba5b3fdd9822261c448db4",
+      "size_bytes": 16290
+    },
+    "loop": {
+      "path": "loop.md",
+      "sha256": "e78674e246dcb6ced09a3284f40d988c223b453c479396cf3677a40d1b0a3a84",
+      "size_bytes": 29035
+    },
+    "phase2_runner": {
+      "path": "phase2.py",
+      "sha256": "3100fc550e6ede6283de589256018a3ef1b1c776827e2fe867ecf9adbe5db83b",
+      "size_bytes": 23671
+    },
+    "sentinel_plugins": {
+      "path": "cases/sentinel_programs.py",
+      "sha256": "aec47e1947d58ca7e1576caeb8f423563501cec6b785a4b2eb3506cc7e1cbd36",
+      "size_bytes": 56457
+    }
+  },
+  "status": "passed",
+  "visual_review": {
+    "BIO-01": {
+      "mechanism_visibility_score_5": 4,
+      "notes_zh": "六个复制染色体、十二条姐妹染色单体和两个各含六条的子细胞可追踪；第二轮增大终帧间距避免视觉重叠。",
+      "readability_score_5": 4,
+      "status": "passed"
+    },
+    "CHEM-01": {
+      "mechanism_visibility_score_5": 4,
+      "notes_zh": "局部粉红羽流、搅拌后褪色、接近终点及终点持续粉红依次可见。",
+      "readability_score_5": 4,
+      "status": "passed"
+    },
+    "GEO-02": {
+      "mechanism_visibility_score_5": 4,
+      "notes_zh": "空气团越山、迎风坡雨带、背风侧云雨消散，以及温湿度变化顺序清楚。",
+      "readability_score_5": 4,
+      "status": "passed"
+    },
+    "MATH-02": {
+      "mechanism_visibility_score_5": 4,
+      "notes_zh": "第二轮改为一次移动一块；K1 清楚显示 c²，K2 回到互不重叠的暂存位置，K3 显示 a² 与 b²。",
+      "readability_score_5": 4,
+      "status": "passed"
+    },
+    "PHYS-01": {
+      "mechanism_visibility_score_5": 5,
+      "notes_zh": "两个固定振源、扩张波前、重叠区及节点/腹线从动画中均可直接辨认。",
+      "readability_score_5": 5,
+      "status": "passed"
+    }
+  }
+}

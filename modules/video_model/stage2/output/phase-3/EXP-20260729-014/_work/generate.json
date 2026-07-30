@@ -1,0 +1,221 @@
+{
+  "blind_shuffle_seed": 2026072914,
+  "cache": {
+    "generated": 4,
+    "policy": "reuse only if clean input, prompts, control, configuration, seed, render settings and model fingerprints all match",
+    "reused": 0
+  },
+  "candidates": [
+    {
+      "blind_id": "A",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_terrain_and_rain",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.75,
+      "img2img_strength": 0.5,
+      "inference_seconds": 8.98,
+      "input_signature": "997a80e6973f2e7ee8d72b216bb6e88b636ed401400dbafe4a82951655fda5b9",
+      "metrics": {
+        "candidate_edge_fraction": 0.01553853,
+        "control_edge_coverage_within_4px": 0.91417541,
+        "luminance_std_0_255": 29.61008,
+        "mean_saturation_0_255": 25.48186
+      },
+      "path": "raw/t2i_dense_terrain_and_rain/seed_3101.png",
+      "peak_gpu_memory_bytes": 11762799104,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3101,
+      "sha256": "98bd4202fb9b1cff0a52e9ec99903315218cc66a940e1831114bcb9713c531c2",
+      "size_bytes": 665668
+    },
+    {
+      "blind_id": "C",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_terrain_and_rain",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.75,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.802,
+      "input_signature": "3c353f0e30d675090559881bdeeb155b90c4b41ec321c2bb8c81de945278ec4c",
+      "metrics": {
+        "candidate_edge_fraction": 0.09520637,
+        "control_edge_coverage_within_4px": 0.9999505,
+        "luminance_std_0_255": 24.85401,
+        "mean_saturation_0_255": 50.10315
+      },
+      "path": "raw/t2i_dense_terrain_and_rain/seed_3102.png",
+      "peak_gpu_memory_bytes": 11760898560,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3102,
+      "sha256": "2c96c86b2e709263c42f3c6cf8c3e4f0cd5042b5bf8c4e8b79bdff9c522b7bc3",
+      "size_bytes": 866075
+    },
+    {
+      "blind_id": "D",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_terrain_and_rain",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.75,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.726,
+      "input_signature": "e319d65e867cdf26115aa64f63da0719e8529abdc44923dddf3c59c0ab156c00",
+      "metrics": {
+        "candidate_edge_fraction": 0.02113342,
+        "control_edge_coverage_within_4px": 0.99064542,
+        "luminance_std_0_255": 26.6019,
+        "mean_saturation_0_255": 42.83857
+      },
+      "path": "raw/t2i_dense_terrain_and_rain/seed_3103.png",
+      "peak_gpu_memory_bytes": 11759522304,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3103,
+      "sha256": "f1c1ca2ac1cb5045192f50c09fbe98b3a0a9f6f1bb8d6785d201cdc31321a830",
+      "size_bytes": 656924
+    },
+    {
+      "blind_id": "B",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_terrain_and_rain",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.75,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.813,
+      "input_signature": "657eb4b8e62e9392b69035d1173c4c0b5d43efa68c3a1de030afd1810a20ea34",
+      "metrics": {
+        "candidate_edge_fraction": 0.01882765,
+        "control_edge_coverage_within_4px": 1.0,
+        "luminance_std_0_255": 14.36379,
+        "mean_saturation_0_255": 39.09887
+      },
+      "path": "raw/t2i_dense_terrain_and_rain/seed_3104.png",
+      "peak_gpu_memory_bytes": 11759456768,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3104,
+      "sha256": "abdf3dd446df64a757e35f7d6ef0463fff1c44b8633d0a2a9fb4c04f9e67a5bd",
+      "size_bytes": 748146
+    }
+  ],
+  "case_id": "GEO-02",
+  "experiment_id": "EXP-20260729-014",
+  "hypothesis_zh": "对连续地形与降水分区案例，dense Canny T2I 可保留单峰和迎风坡雨区，同时生成自然山体、天空与雨幕。",
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "model_roots": {
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0"
+    },
+    "models": {
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      },
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      }
+    },
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run."
+  },
+  "model_load_seconds": 5.126,
+  "model_runs": {
+    "image_candidates": 4,
+    "video_candidates": 0
+  },
+  "models": {
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    },
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "Pillow": "11.0.0",
+    "accelerate": "1.13.0",
+    "diffusers": "0.35.2",
+    "numpy": "2.1.2",
+    "opencv-python-headless": "4.13.0.92",
+    "safetensors": "0.7.0",
+    "torch": "2.9.1+gitff65f5b",
+    "transformers": "4.57.6"
+  },
+  "pipeline_mode": "controlnet_t2i",
+  "prompt_token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 54,
+        "tokenizer_2": 54
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 61,
+        "tokenizer_2": 61
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "runtime": {
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336,
+    "hip": "7.2.53211-e1a6bc5663",
+    "torch": "2.9.1+gitff65f5b"
+  },
+  "scheduler": "EulerDiscreteScheduler",
+  "schema_version": "1.0",
+  "sheets": {
+    "blind": {
+      "path": "candidates-blind.jpg",
+      "sha256": "06f7c008859f59aed879877bb06ce2299648e43d82c5d5e2f86c04029fc0c74d",
+      "size_bytes": 136364
+    },
+    "blind_map": {
+      "path": "_work/blind_map.json",
+      "sha256": "3831a4997a9da96f4bc93f0fbce566df4620eed3a688aab918866c23e3a0ffb0",
+      "size_bytes": 671
+    },
+    "labeled": {
+      "path": "candidates-labeled.jpg",
+      "sha256": "a717159be379c7802acaafe5146966d4619d50819ead3ac06529719f8e57e1a1",
+      "size_bytes": 143520
+    }
+  },
+  "single_variable_zh": "相对程序关键帧只增加固定的 SDXL T2I ControlNet 重绘；控制图、提示词、模型、参数和四个种子冻结。",
+  "status": "generated"
+}

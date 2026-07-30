@@ -1,0 +1,268 @@
+{
+  "blind_shuffle_seed": 2026075313,
+  "cache": {
+    "generated": 0,
+    "policy": "reuse only if clean input, prompts, control, configuration, seed, render settings and model fingerprints all match",
+    "reused": 6
+  },
+  "candidates": [
+    {
+      "blind_id": "D",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "semantic_control_065",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.65,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.019,
+      "input_signature": "6c15dce00814b478ad3fae298a25bd479838e6a45c60de950eb5c9a6f5b9194b",
+      "metrics": {
+        "candidate_edge_fraction": 0.01394484,
+        "control_edge_coverage_within_4px": 0.98990158,
+        "luminance_std_0_255": 30.25935,
+        "mean_saturation_0_255": 26.10459
+      },
+      "path": "raw/semantic_control_065/seed_7101.png",
+      "peak_gpu_memory_bytes": null,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": true,
+      "reused_from": null,
+      "seed": 7101,
+      "sha256": "29fe71dc38687c04c98f23efd3d999203308cba961c34420120761cc82852400",
+      "size_bytes": 576495
+    },
+    {
+      "blind_id": "A",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "semantic_control_065",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.65,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.018,
+      "input_signature": "841cf6b305456d1bd03569ac560d1cdf2b163e7c3dd692e8236533d344ea5ffa",
+      "metrics": {
+        "candidate_edge_fraction": 0.0151435,
+        "control_edge_coverage_within_4px": 0.88506632,
+        "luminance_std_0_255": 28.54121,
+        "mean_saturation_0_255": 13.85089
+      },
+      "path": "raw/semantic_control_065/seed_7102.png",
+      "peak_gpu_memory_bytes": null,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": true,
+      "reused_from": null,
+      "seed": 7102,
+      "sha256": "d65ba2f323a52bed28efda35320f9318986b5b198c4f58cc0211ede75ac0a5b7",
+      "size_bytes": 498705
+    },
+    {
+      "blind_id": "C",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "semantic_control_065",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.65,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.021,
+      "input_signature": "f245a66d8aa449b220d54673995eee3865783efa3584538dbccec4493d15881e",
+      "metrics": {
+        "candidate_edge_fraction": 0.0161421,
+        "control_edge_coverage_within_4px": 0.9457424,
+        "luminance_std_0_255": 24.06721,
+        "mean_saturation_0_255": 28.5835
+      },
+      "path": "raw/semantic_control_065/seed_7103.png",
+      "peak_gpu_memory_bytes": null,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": true,
+      "reused_from": null,
+      "seed": 7103,
+      "sha256": "87d24625135941025743b98737decefb4ad83adf38d3f0853713eed6e3efcc49",
+      "size_bytes": 522158
+    },
+    {
+      "blind_id": "E",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "semantic_control_080",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.8,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.02,
+      "input_signature": "0644802a6c9269639e51e6b65c7d3ca21d50a4af725a58282934ca4cd833ee4d",
+      "metrics": {
+        "candidate_edge_fraction": 0.01166789,
+        "control_edge_coverage_within_4px": 0.98142918,
+        "luminance_std_0_255": 29.06514,
+        "mean_saturation_0_255": 29.05871
+      },
+      "path": "raw/semantic_control_080/seed_7101.png",
+      "peak_gpu_memory_bytes": null,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": true,
+      "reused_from": null,
+      "seed": 7101,
+      "sha256": "e1739662f2469a7a687235e3524c9298917c165d48b3dfb21a007fdd54e8d355",
+      "size_bytes": 617264
+    },
+    {
+      "blind_id": "B",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "semantic_control_080",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.8,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.018,
+      "input_signature": "e40441f703876b59ab8bcd4d0228d39734dee28199d5f8206af6a413c7127343",
+      "metrics": {
+        "candidate_edge_fraction": 0.01294793,
+        "control_edge_coverage_within_4px": 0.83149337,
+        "luminance_std_0_255": 30.2091,
+        "mean_saturation_0_255": 16.146
+      },
+      "path": "raw/semantic_control_080/seed_7102.png",
+      "peak_gpu_memory_bytes": null,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": true,
+      "reused_from": null,
+      "seed": 7102,
+      "sha256": "f5a63c653bc126cbb788c69487861a8f3fb30672527ede0f098de76a81b11023",
+      "size_bytes": 482351
+    },
+    {
+      "blind_id": "F",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "semantic_control_080",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.8,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.021,
+      "input_signature": "1f1df2b325a2371f83c2868a97469ce5f6e2bec02e5ad307af575be00874bf7f",
+      "metrics": {
+        "candidate_edge_fraction": 0.01557583,
+        "control_edge_coverage_within_4px": 0.99178434,
+        "luminance_std_0_255": 25.87551,
+        "mean_saturation_0_255": 28.6067
+      },
+      "path": "raw/semantic_control_080/seed_7103.png",
+      "peak_gpu_memory_bytes": null,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": true,
+      "reused_from": null,
+      "seed": 7103,
+      "sha256": "1cdd51bec37bab27355b192fc891ed52ec60b60035dafd6f0121487af1ffb689",
+      "size_bytes": 532906
+    }
+  ],
+  "case_id": "CHEM-01",
+  "experiment_id": "EXP-P7-A-chem-01-01_mechanism",
+  "hypothesis_zh": "语义完整的场景线稿允许 SDXL 从噪声半自由生成真实体积、光照和材质，同时保留本状态的主要结构。",
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "model_roots": {
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0"
+    },
+    "models": {
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      },
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      }
+    },
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run."
+  },
+  "model_load_seconds": 4.842,
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "models": {
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    },
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "Pillow": "11.0.0",
+    "accelerate": "1.13.0",
+    "diffusers": "0.35.2",
+    "numpy": "2.1.2",
+    "opencv-python-headless": "4.13.0.92",
+    "safetensors": "0.7.0",
+    "torch": "2.9.1+gitff65f5b",
+    "transformers": "4.57.6"
+  },
+  "pipeline_mode": "controlnet_t2i",
+  "prompt_token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 59,
+        "tokenizer_2": 59
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 68,
+        "tokenizer_2": 68
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      7101,
+      7102,
+      7103
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "runtime": {
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336,
+    "hip": "7.2.53211-e1a6bc5663",
+    "torch": "2.9.1+gitff65f5b"
+  },
+  "scheduler": "EulerDiscreteScheduler",
+  "schema_version": "1.0",
+  "sheets": {
+    "blind": {
+      "path": "candidates-blind.jpg",
+      "sha256": "742caf4e2d8df53b9f6a8f08c7d7e62a8346fd5b72a18e905cc1883792d477b1",
+      "size_bytes": 145896
+    },
+    "blind_map": {
+      "path": "_work/blind_map.json",
+      "sha256": "ca9a7129e9996aa33c4f1bb519db8de58132f03ca15b72477990d0ba5fd7b188",
+      "size_bytes": 969
+    },
+    "labeled": {
+      "path": "candidates-labeled.jpg",
+      "sha256": "d5a723faa94eb37cfdbb39f237f61c6f9a93954dd27a9a540ea6454e9fb63f62",
+      "size_bytes": 155511
+    }
+  },
+  "single_variable_zh": "同一状态只改变 ControlNet 强度；提示词、控制图、模型、采样参数和三个复现编号保持一致。",
+  "status": "generated"
+}

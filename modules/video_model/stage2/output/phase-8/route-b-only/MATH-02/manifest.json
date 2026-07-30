@@ -1,0 +1,232 @@
+{
+  "case_id": "MATH-02",
+  "comparison": {
+    "path": "all-variants-sequence.jpg",
+    "sha256": "f25e79e3056cf5f4bd1757f3a710d24dda6292b30250a1e1bed1d013d33d942d",
+    "size_bytes": 222759
+  },
+  "donors": [
+    {
+      "path": "output/phase-3/EXP-20260729-012/raw/t2i_wood_material_donor/seed_3101.png",
+      "sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+      "size_bytes": 770794
+    }
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "records": [
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 0,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_tint/00_start.png",
+        "sha256": "7b3e8a951db20e951f64c3b34fea15ad5bbf01d5e01cfdcc94fc7724312ed805",
+        "size_bytes": 279041
+      },
+      "variant": "frozen_texture_tint"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 4,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_tint/01_mechanism.png",
+        "sha256": "4761a88a384d9d42f3e6d5e0af588d886e082b835a5a53b009b943d726da73a9",
+        "size_bytes": 289370
+      },
+      "variant": "frozen_texture_tint"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 0,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_tint/02_result.png",
+        "sha256": "7b3e8a951db20e951f64c3b34fea15ad5bbf01d5e01cfdcc94fc7724312ed805",
+        "size_bytes": 279041
+      },
+      "variant": "frozen_texture_tint"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 183,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_tint/03_end.png",
+        "sha256": "941794ac6df4bb014a1e7be1a78be10afa53730cece8d307af23778374123d4a",
+        "size_bytes": 287874
+      },
+      "variant": "frozen_texture_tint"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 0,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_edges/00_start.png",
+        "sha256": "499363c3c981522a8f3992d12976ac05e3c46b7eaf30e308f8cfa6382936bd14",
+        "size_bytes": 283539
+      },
+      "variant": "frozen_texture_edges"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 4,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_edges/01_mechanism.png",
+        "sha256": "74d3d097ac847c9eb6ca28e612aba1bd9fd3d415dbc581803f837a76b0fb4323",
+        "size_bytes": 295385
+      },
+      "variant": "frozen_texture_edges"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 0,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_edges/02_result.png",
+        "sha256": "499363c3c981522a8f3992d12976ac05e3c46b7eaf30e308f8cfa6382936bd14",
+        "size_bytes": 283539
+      },
+      "variant": "frozen_texture_edges"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 183,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_texture_edges/03_end.png",
+        "sha256": "1318c534a77197f2de38abd96282276e30b6ad5e32818441cf668d5202edded3",
+        "size_bytes": 293327
+      },
+      "variant": "frozen_texture_edges"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 0,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_scene_depth/00_start.png",
+        "sha256": "b1767f5f3f3d16ee3ec43ed3a54644acb676e4abfff3e63dcb6f62645e4ae54b",
+        "size_bytes": 279737
+      },
+      "variant": "frozen_scene_depth"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 4,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_scene_depth/01_mechanism.png",
+        "sha256": "520414d6b3ded321d287979781984802818110e6d87197a87f331328dd0b2350",
+        "size_bytes": 294032
+      },
+      "variant": "frozen_scene_depth"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 0,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_scene_depth/02_result.png",
+        "sha256": "b1767f5f3f3d16ee3ec43ed3a54644acb676e4abfff3e63dcb6f62645e4ae54b",
+        "size_bytes": 279737
+      },
+      "variant": "frozen_scene_depth"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+        "material_coordinate_system": "frozen_screen_xy",
+        "object_count": 4,
+        "overlap_area_px": 183,
+        "program_piece_area_px": 22204,
+        "rendered_piece_area_px": 22204
+      },
+      "output": {
+        "path": "variants/frozen_scene_depth/03_end.png",
+        "sha256": "7f570d6f9351d977b3712f42e29b7226d4223899d25d922e269c8ca4878f3c6d",
+        "size_bytes": 292341
+      },
+      "variant": "frozen_scene_depth"
+    }
+  ],
+  "route_contract": "B_frozen_base_plus_program_state",
+  "schema_version": "1.0",
+  "variants": [
+    "frozen_texture_tint",
+    "frozen_texture_edges",
+    "frozen_scene_depth"
+  ]
+}

@@ -1,0 +1,7 @@
+Positive prompt:
+
+Locked orthographic top-down flat geographic teaching diagram, exactly matching the supplied first and last frames. Preserve the pale green land, blue river material, framing, scale and camera. The left-to-right main river remains continuously connected through the short horizontal blue cutoff channel at the meander neck during every frame. Two tan sediment plugs gradually build on the two upward abandoned-channel branches, closing both ends of the old loop. The upper blue meander loop remains visible as one separate oxbow water body after both plugs complete. One continuous readable neck-cutoff transition: keep one connected main channel from left edge to right edge and finish with one additional isolated blue oxbow lake exactly as in the supplied last frame. No camera movement.
+
+Negative prompt:
+
+broken main river, blocked horizontal shortcut, disconnected left and right river, missing oxbow lake, fading old loop, shrinking loop, reconnecting oxbow, extra lake, extra river branch, moving landscape, changing river width everywhere, flood, dry river, island, boat, vegetation, text, labels, arrows, camera movement, pan, zoom, tilt, perspective change, scene change, flicker, jitter, abrupt cut, cross dissolve, plastic CGI, blur, watermark

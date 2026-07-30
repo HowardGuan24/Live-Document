@@ -1,0 +1,221 @@
+{
+  "blind_shuffle_seed": 2026072906,
+  "cache": {
+    "generated": 4,
+    "policy": "reuse only if clean input, prompts, control, configuration, seed, render settings and model fingerprints all match",
+    "reused": 0
+  },
+  "candidates": [
+    {
+      "blind_id": "C",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_pink_solution_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 8.993,
+      "input_signature": "7a39f1f37f17a546e8325f8a5011c502e1b295c8db79eadf752039cb440ea7c0",
+      "metrics": {
+        "candidate_edge_fraction": 0.0,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 16.16974,
+        "mean_saturation_0_255": 96.02407
+      },
+      "path": "raw/t2i_pink_solution_donor/seed_3101.png",
+      "peak_gpu_memory_bytes": 11763126784,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3101,
+      "sha256": "a6c78cf9299eda2240bbfa4826332452bc60a1ff879e048b54dcdcdaae36ba77",
+      "size_bytes": 630859
+    },
+    {
+      "blind_id": "D",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_pink_solution_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.803,
+      "input_signature": "bf8d3fe5c4e9a80d453e7a3c8c45a286d60977d01feec2ac0588b20cac2e2d72",
+      "metrics": {
+        "candidate_edge_fraction": 0.00054593,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 10.39789,
+        "mean_saturation_0_255": 80.65898
+      },
+      "path": "raw/t2i_pink_solution_donor/seed_3102.png",
+      "peak_gpu_memory_bytes": 11762143744,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3102,
+      "sha256": "39775fb513c48f523180ddf471c2f272489d5dd72cc1d7cb9b7afb57bd484ede",
+      "size_bytes": 565335
+    },
+    {
+      "blind_id": "B",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_pink_solution_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.791,
+      "input_signature": "1c6315e5f13ddf9eef8377d476ba8dfe433c1ff477846622c5b766e2d8d37460",
+      "metrics": {
+        "candidate_edge_fraction": 0.0,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 14.69366,
+        "mean_saturation_0_255": 78.22061
+      },
+      "path": "raw/t2i_pink_solution_donor/seed_3103.png",
+      "peak_gpu_memory_bytes": 11761553920,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3103,
+      "sha256": "895f3b20cabb23d86da1ede240a2cada45243f967b9b738aed9eb8ce57614955",
+      "size_bytes": 534443
+    },
+    {
+      "blind_id": "A",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_pink_solution_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.766,
+      "input_signature": "edf438990c3ea8f417b173f910d0bfb5cda1e3c382c45d206f9a486edefc496e",
+      "metrics": {
+        "candidate_edge_fraction": 0.0,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 6.9405,
+        "mean_saturation_0_255": 81.67451
+      },
+      "path": "raw/t2i_pink_solution_donor/seed_3104.png",
+      "peak_gpu_memory_bytes": 11760767488,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3104,
+      "sha256": "400c54ed288cc0496c0455b48611d4c65360811426c8bc920c87bd212632a8cb",
+      "size_bytes": 509070
+    }
+  ],
+  "case_id": "CHEM-01",
+  "experiment_id": "EXP-20260729-006",
+  "hypothesis_zh": "PHYS-01 接受的四种子中位数材质残差可以不改参数地迁移到 CHEM-01，只在程序液体 region 内增加透明溶液微纹理。",
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "model_roots": {
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0"
+    },
+    "models": {
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      },
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      }
+    },
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run."
+  },
+  "model_load_seconds": 5.142,
+  "model_runs": {
+    "image_candidates": 4,
+    "video_candidates": 0
+  },
+  "models": {
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    },
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "Pillow": "11.0.0",
+    "accelerate": "1.13.0",
+    "diffusers": "0.35.2",
+    "numpy": "2.1.2",
+    "opencv-python-headless": "4.13.0.92",
+    "safetensors": "0.7.0",
+    "torch": "2.9.1+gitff65f5b",
+    "transformers": "4.57.6"
+  },
+  "pipeline_mode": "controlnet_t2i",
+  "prompt_token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 58,
+        "tokenizer_2": 58
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 73,
+        "tokenizer_2": 73
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "runtime": {
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336,
+    "hip": "7.2.53211-e1a6bc5663",
+    "torch": "2.9.1+gitff65f5b"
+  },
+  "scheduler": "EulerDiscreteScheduler",
+  "schema_version": "1.0",
+  "sheets": {
+    "blind": {
+      "path": "candidates-blind.jpg",
+      "sha256": "082568e406ffbac1325e60ca93d71aa6db1f965a840151cf0f7436702d0ca96a",
+      "size_bytes": 95621
+    },
+    "blind_map": {
+      "path": "_work/blind_map.json",
+      "sha256": "d3f24179c5f63638b14dfaa1afb75ed1bd4bb2b180108bd72595969828002da0",
+      "size_bytes": 659
+    },
+    "labeled": {
+      "path": "candidates-labeled.jpg",
+      "sha256": "97f0bc276f36f3eb96cf98b3a512b47cea1ec4fb4ed793da409fb3915adb361f",
+      "size_bytes": 102168
+    }
+  },
+  "single_variable_zh": "算法、频带、限幅和 gain 完全复用 EXP-005；只把案例输入、材料语言和程序允许区域替换为 CHEM-01。",
+  "status": "generated"
+}

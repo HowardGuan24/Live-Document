@@ -1,0 +1,219 @@
+{
+  "case_id": "PHYS-01",
+  "comparison": {
+    "path": "all-variants-sequence.jpg",
+    "sha256": "bd92f2466095ba476217ff3a92e697be85182a1c3661c049a1e84dd393f75f39",
+    "size_bytes": 194232
+  },
+  "donor": {
+    "path": "output/phase-3/EXP-20260729-005/raw/t2i_material_donor/seed_3101.png",
+    "sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+    "size_bytes": 1147324
+  },
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "records": [
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "envelope_peak": 1.0,
+        "height_gradient_to_luminance_correlation": -0.499162,
+        "render_luminance_std_0_255": 8.495158,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/normal_diffuse/00_start.png",
+        "sha256": "99e7f855e184c5d34b1d11444d633371d227bafd1b2a7933f1f3d5f1c2414698",
+        "size_bytes": 19613
+      },
+      "variant": "normal_diffuse"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "envelope_peak": 1.338867,
+        "height_gradient_to_luminance_correlation": -0.560088,
+        "render_luminance_std_0_255": 11.702401,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/normal_diffuse/01_mechanism.png",
+        "sha256": "99c9efcc6b66863f5b06584bf0ad377be72cadd7e44484e17abf23975011adcd",
+        "size_bytes": 40717
+      },
+      "variant": "normal_diffuse"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "envelope_peak": 1.363308,
+        "height_gradient_to_luminance_correlation": -0.520544,
+        "render_luminance_std_0_255": 14.452487,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/normal_diffuse/02_result.png",
+        "sha256": "02d7791a85c4e5d1dbcda3765e85b613350bdd2514194dfa808e0908a4e259c7",
+        "size_bytes": 75299
+      },
+      "variant": "normal_diffuse"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "envelope_peak": 1.454798,
+        "height_gradient_to_luminance_correlation": -0.492732,
+        "render_luminance_std_0_255": 16.435369,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/normal_diffuse/03_end.png",
+        "sha256": "ffae1bc4ca7063f1c0af5db673e11190ee681341d1a8237bcd9158494af58c14",
+        "size_bytes": 119364
+      },
+      "variant": "normal_diffuse"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "envelope_peak": 1.0,
+        "height_gradient_to_luminance_correlation": -0.695949,
+        "render_luminance_std_0_255": 14.339767,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/specular_water/00_start.png",
+        "sha256": "ccb272d444d250ef51ca1c7fa1b1d6344a63f2af47961e78d6c27b991c0ce9cd",
+        "size_bytes": 24911
+      },
+      "variant": "specular_water"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "envelope_peak": 1.338867,
+        "height_gradient_to_luminance_correlation": -0.716215,
+        "render_luminance_std_0_255": 20.449024,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/specular_water/01_mechanism.png",
+        "sha256": "dd655c0ea936a82bf1b1b44372faa067dc5245779ef29a102af4db7ba97c0f01",
+        "size_bytes": 53786
+      },
+      "variant": "specular_water"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "envelope_peak": 1.363308,
+        "height_gradient_to_luminance_correlation": -0.66761,
+        "render_luminance_std_0_255": 25.122782,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/specular_water/02_result.png",
+        "sha256": "8964cb912312a6627ffd472f3ef9226f69244dc6f92ea6c817bffda16c445caf",
+        "size_bytes": 100275
+      },
+      "variant": "specular_water"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "envelope_peak": 1.454798,
+        "height_gradient_to_luminance_correlation": -0.638861,
+        "render_luminance_std_0_255": 28.432245,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/specular_water/03_end.png",
+        "sha256": "931633d78de7862b600237b34ff6b2875368666e932a64b0a4d1502ac05968b7",
+        "size_bytes": 162777
+      },
+      "variant": "specular_water"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "envelope_peak": 1.0,
+        "height_gradient_to_luminance_correlation": -0.164924,
+        "render_luminance_std_0_255": 11.024556,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/refractive_water/00_start.png",
+        "sha256": "091c2df7225b60ac0b4e7b4cf4ed3d8fee4c7d34e52834fe2007aa563a521751",
+        "size_bytes": 240790
+      },
+      "variant": "refractive_water"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "envelope_peak": 1.338867,
+        "height_gradient_to_luminance_correlation": -0.218316,
+        "render_luminance_std_0_255": 15.502689,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/refractive_water/01_mechanism.png",
+        "sha256": "f23e6333a6f13a80812f01c9cf5ff303d539d2448a5ce89dd70b04dd9fb1bd8f",
+        "size_bytes": 245501
+      },
+      "variant": "refractive_water"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "envelope_peak": 1.363308,
+        "height_gradient_to_luminance_correlation": -0.244613,
+        "render_luminance_std_0_255": 19.406586,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/refractive_water/02_result.png",
+        "sha256": "27358bf0efa4137310abf47a07d16b6cecfeb8d4b3fa78cd4fe58f5ab609eaae",
+        "size_bytes": 261019
+      },
+      "variant": "refractive_water"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "envelope_peak": 1.454798,
+        "height_gradient_to_luminance_correlation": -0.206589,
+        "render_luminance_std_0_255": 22.890697,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/refractive_water/03_end.png",
+        "sha256": "bc12a273bce4ae3ef2017ea2adf6ea55d4c333a1e3f0ce2d879ad447f4c02aad",
+        "size_bytes": 282688
+      },
+      "variant": "refractive_water"
+    }
+  ],
+  "route_id": "route-c",
+  "schema_version": "1.0",
+  "status": "generated_for_review",
+  "variants": [
+    "normal_diffuse",
+    "specular_water",
+    "refractive_water"
+  ]
+}

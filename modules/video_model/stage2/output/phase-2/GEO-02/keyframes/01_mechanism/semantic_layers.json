@@ -1,0 +1,251 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 360,
+    "width": 640
+  },
+  "case_id": "GEO-02",
+  "layers": [
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "npy",
+        "path": "keyframes/01_mechanism/layers/geo02_terrain_height.npy",
+        "sha256": "97177aa27809b60e15c03758cf1b1d08dbe9dbe41158a17a3b8272a00fcbb97f",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 921728,
+        "value_range": [
+          0.06000062,
+          0.84001297
+        ]
+      },
+      "final_role_zh": "锁定迎风坡、山顶和背风坡位置。",
+      "layer_id": "geo02_terrain_height",
+      "layer_type": "height_or_normal",
+      "meaning_zh": "所有帧共享的地形剖面，不能随云雨变化。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/geo02_terrain_height_preview.png",
+        "sha256": "1e4ea133c10e658242ea305eb92205f3ce5a3840c8554c7adcca0ad20728db66",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1515,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "固定山地高度",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/01_mechanism/layers/geo02_terrain_region.npy",
+        "sha256": "ed6fe2d7338b41d6eebeaac592515788f3123a230d485e7ce593c255df7cc62a",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "把模型材质残差限制在山地内部，不覆盖天空、云雨或空气团。",
+      "layer_id": "geo02_terrain_region",
+      "layer_type": "region",
+      "meaning_zh": "由同一高度剖面直接填充的地表以下区域。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/geo02_terrain_region_preview.png",
+        "sha256": "5ce1eb492ba3d5a0bdc692e7174f51a0f0bf5d6070392abdc4c3b688f8e08fad",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2008,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "固定山地区域",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "npy",
+        "path": "keyframes/01_mechanism/layers/geo02_airflow.npy",
+        "sha256": "073a51cd94deb62e23868aa661aa4b5bcd65258adb9ff03255fd5cf10ae7d46f",
+        "shape": [
+          360,
+          640,
+          2
+        ],
+        "size_bytes": 1843328,
+        "value_range": [
+          -1.54906535,
+          1.58144069
+        ]
+      },
+      "final_role_zh": "验证云和空气不能逆主风运动。",
+      "layer_id": "geo02_airflow",
+      "layer_type": "vector_field",
+      "meaning_zh": "主风从左向右，并随地形先抬升后下沉。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/geo02_airflow_preview.png",
+        "sha256": "145a1d5e5e5470dd5ec3b0bdcf454fc2e29738888f542d0fc2f8fd0935f4ab40",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 8290,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "地形约束气流",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "npy",
+        "path": "keyframes/01_mechanism/layers/geo02_humidity_cloud_rain.npy",
+        "sha256": "b811655a30646a62c80eb3ba684d2062292f22cc63c9f16d93cd64896d5e1c0f",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 921728,
+        "value_range": [
+          0.0,
+          0.98574841
+        ]
+      },
+      "final_role_zh": "限制云雨区域并验证背风坡变干。",
+      "layer_id": "geo02_humidity_cloud_rain",
+      "layer_type": "scalar_field",
+      "meaning_zh": "连续场表示空气团附近湿度以及迎风坡降水。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/geo02_humidity_cloud_rain_preview.png",
+        "sha256": "ac2907d1d6be03ab8b51e4d47ca22660cfcb2a7076024d3e409ed35e7295eacc",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 18288,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "湿度、云和降水强度",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/01_mechanism/layers/geo02_parcel_identity.json",
+        "sha256": "5eec83ac74018632a363cc68054ffa96df765f00eba6d9312e2009b7eeb0b575",
+        "shape": [
+          1
+        ],
+        "size_bytes": 366,
+        "value_range": null
+      },
+      "final_role_zh": "保护空气团不被静态山地材质覆盖。",
+      "layer_id": "geo02_parcel_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "保存同一个空气团的稳定 ID 和当前椭圆位置。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/geo02_parcel_identity_preview.png",
+        "sha256": "dc2416c737c529b7abad17d1dc6594d409399cea0859a32e87b1cb9f730e9dde",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1614,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "移动空气团身份",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/01_mechanism/layers/geo-02_annotation.json",
+        "sha256": "6992d47b6d90413f6db87868f1c80ecbd1354749c4927dd6149f44dfe1ff8e88",
+        "shape": [
+          3
+        ],
+        "size_bytes": 786,
+        "value_range": null
+      },
+      "final_role_zh": "帮助解释机制，不输入图像模型。",
+      "layer_id": "geo-02_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/geo-02_annotation_preview.png",
+        "sha256": "f8b9fdad9e314484307a3cc09b3c62f79397d15bf7d9c2bc54a3699b7a006870",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1706,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "教学箭头",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "01_mechanism"
+}

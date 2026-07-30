@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-006",
+  "case_id": "CHEM-01",
+  "hypothesis_zh": "PHYS-01 接受的四种子中位数材质残差可以不改参数地迁移到 CHEM-01，只在程序液体 region 内增加透明溶液微纹理。",
+  "single_variable_zh": "算法、频带、限幅和 gain 完全复用 EXP-005；只把案例输入、材料语言和程序允许区域替换为 CHEM-01。",
+  "source": {
+    "keyframe_id": "03_end",
+    "clean_frame": "output/phase-2/CHEM-01/keyframes/03_end/clean.png",
+    "semantic_layers": "output/phase-2/CHEM-01/keyframes/03_end/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Top-down macro material photograph of translucent pale pink aqueous solution, edge-to-edge sample",
+    "material_goal": "fine liquid microtexture, soft optical caustics, subtle natural color variation, clean laboratory lighting",
+    "state_delta": "uniform weak phenolphthalein endpoint pink without mixing plume",
+    "must_preserve": "even texture scale, no container edge, no objects, no text, no bubbles"
+  },
+  "negative_artifacts": "beaker, flask, tube, container rim, dividing lines, panels, solid objects, crystals, cells, foam, large bubbles, mixing plume, text, labels, arrows, user interface, watermark, shoreline, metallic grooves, hard outlines, perspective view, horizon, blur",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "t2i_pink_solution_donor",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0
+    }
+  ],
+  "blind_shuffle_seed": 2026072906,
+  "budget": {
+    "maximum_new_image_candidates": 12,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  },
+  "projection": {
+    "blur_radius": 12.0,
+    "residual_gain": 0.3,
+    "residual_clip": 12.0,
+    "protect_dilation_px": 10,
+    "aggregation": "pixelwise_median_with_leave_one_out",
+    "allowed_region_layer_id": "chem01_liquid_region",
+    "variant_id": "frozen_gain_030"
+  }
+}

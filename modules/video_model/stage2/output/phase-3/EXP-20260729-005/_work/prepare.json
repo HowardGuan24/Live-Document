@@ -1,0 +1,85 @@
+{
+  "case_id": "PHYS-01",
+  "configurations": [
+    {
+      "configuration_id": "t2i_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "beac0a2dc4072eaa4cdfba31da1e7d0ad6ade56e95605d26c18bf8974d016878",
+    "size_bytes": 591
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.23168776,
+      "path": "controls/dense_canny.png",
+      "sha256": "fd383780cf203317a162d315d8d0e9243ebcc99bffe6c76522bf5751b88a817a",
+      "size_bytes": 53679
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.0164388,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "c91d3eb6dc061fcaa1d9df4154fc7224b816323d24639016183b15cae12be23b",
+      "size_bytes": 3255
+    }
+  },
+  "experiment_id": "EXP-20260729-005",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "13161a34efbea33df1262564ab19e9ca7ef771273fda410395ec53d74a2590b3",
+    "size_bytes": 271,
+    "text": "concentric rings, point sources, emitters, interference diagram, pool tiles, panels, seams, dividing lines, spheres, droplets, text, labels, arrows, user interface, watermark, shoreline, boats, animals, giant waves, frozen plastic, metal, perspective view, horizon, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "2f1a99f1ce35ec37cf5bfb424acbcb5c56fca208ad5611ba05069ae65d5d2e03",
+    "size_bytes": 333,
+    "text": "Top-down macro photograph of calm shallow clear blue water, no horizon, no container, fine irregular surface micro-ripples, subtle caustics, small specular highlights, natural water texture, uniform edge-to-edge material sample without organized large waves, even texture scale, diffuse light, no focal object, no shoreline, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "fine irregular surface micro-ripples, subtle caustics, small specular highlights, natural water texture",
+    "must_preserve": "even texture scale, diffuse light, no focal object, no shoreline, no text",
+    "scene_identity": "Top-down macro photograph of calm shallow clear blue water, no horizon, no container",
+    "state_delta": "uniform edge-to-edge material sample without organized large waves"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "a6c068dbfe6a8a04279dc4052110193c72cadfe601e640aaa3ad4b50c578466d",
+      "size_bytes": 194812
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/clean.png",
+      "sha256": "9036ffee19f1c617be55b48b3585c7151932090679fa64406b8186d9fec248ab"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/semantic_layers.json",
+      "sha256": "86d7f3d410474dcf3d72a24326ff2b7ea4093cd1e5bb4709357697991ab5b209"
+    }
+  }
+}

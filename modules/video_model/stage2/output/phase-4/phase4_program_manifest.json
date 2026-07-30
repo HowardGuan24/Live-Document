@@ -1,0 +1,209 @@
+{
+  "automatic_next_action": "run_phase5_motion_class_video_smokes",
+  "case_ids": [
+    "MATH-01",
+    "PHYS-02",
+    "CHEM-02",
+    "BIO-02",
+    "GEO-01"
+  ],
+  "frame_count": 245,
+  "keyframe_count": 20,
+  "model_runs": {
+    "image": 24,
+    "video": 0
+  },
+  "overview": {
+    "path": "remaining-keyframes.jpg",
+    "sha256": "1bc64ee5fd7ff06264108de3484709cfd1ac4a3c0b0d1e92aca2d849e4942f56",
+    "size_bytes": 292020
+  },
+  "phase": 4,
+  "phase_complete": true,
+  "program_count": 5,
+  "program_model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "programs": [
+    {
+      "case_id": "MATH-01",
+      "manifest": {
+        "path": "programs/MATH-01/program_manifest.json",
+        "sha256": "2cd55a2c081cb1f189b2f5fcb315ee5787571f68aee02b4aa66f69b4a31500d0",
+        "size_bytes": 38838
+      },
+      "status": "passed"
+    },
+    {
+      "case_id": "PHYS-02",
+      "manifest": {
+        "path": "programs/PHYS-02/program_manifest.json",
+        "sha256": "eedab16059e42829fa84d06e1f5d6c0edbad7a82b92f3279a9785238c4e47d3b",
+        "size_bytes": 44824
+      },
+      "status": "passed"
+    },
+    {
+      "case_id": "CHEM-02",
+      "manifest": {
+        "path": "programs/CHEM-02/program_manifest.json",
+        "sha256": "2813c33b8979922c120f5b1b4ed0b2f92fedc8862644896c94e35f3f1e19b47b",
+        "size_bytes": 50187
+      },
+      "status": "passed"
+    },
+    {
+      "case_id": "BIO-02",
+      "manifest": {
+        "path": "programs/BIO-02/program_manifest.json",
+        "sha256": "b116499e9bdb56dfb1132ae78d934f916ee5261e01be7d78598ae68eb208207f",
+        "size_bytes": 49753
+      },
+      "status": "passed"
+    },
+    {
+      "case_id": "GEO-01",
+      "manifest": {
+        "path": "programs/GEO-01/program_manifest.json",
+        "sha256": "6d3407020ba264d82e4b59bd822d045f20f2171cf5c0e2f76c67e8ab56f4c05a",
+        "size_bytes": 44177
+      },
+      "status": "passed"
+    }
+  ],
+  "report": {
+    "path": "program-report.html",
+    "sha256": "8e59e796a22ec3237ef715a65fe7afbbb2df68a3e424090602cd0a5197f30dd8",
+    "size_bytes": 28147
+  },
+  "route_plan": {
+    "path": "route-plan.json",
+    "sha256": "267ac01049c672e0269edbb6c2dbb7a69aecc326fd86bb247e041a8524295ea7",
+    "size_bytes": 7524
+  },
+  "route_smoke_experiments": [
+    {
+      "candidate_count": 4,
+      "case_id": "GEO-01",
+      "experiment_id": "EXP-P4-20260729-001",
+      "metadata": {
+        "path": "experiments/EXP-P4-20260729-001/_work/generate.json",
+        "sha256": "806e76e409a7ed2ae3ed845e0368555771e7d5a3739a3661f13b4345cc1798c5",
+        "size_bytes": 7797
+      },
+      "new_image_model_runs": 4,
+      "review": {
+        "path": "phase4_experiments/EXP-P4-20260729-001/review.json",
+        "sha256": "0d98bb771bd25070efcf3e936d7f16437fdd133ad81b4ed28df17b9f87e0a14c",
+        "size_bytes": 800
+      },
+      "verdict": "invalidated_by_program_raster_artifact"
+    },
+    {
+      "candidate_count": 4,
+      "case_id": "GEO-01",
+      "experiment_id": "EXP-P4-20260729-002",
+      "metadata": {
+        "path": "experiments/EXP-P4-20260729-002/_work/generate.json",
+        "sha256": "a88f33bd963d36a7f031f5a4d66d5094bdf4e9cab19b31fed14adecd125fcd87",
+        "size_bytes": 7817
+      },
+      "new_image_model_runs": 4,
+      "review": {
+        "path": "phase4_experiments/EXP-P4-20260729-002/review.json",
+        "sha256": "204865e2f17626a8e28651b8561c1b185b101c90844057e9b1ad9a303fade7ab",
+        "size_bytes": 1065
+      },
+      "verdict": "accepted_cross_discipline_route_smoke"
+    },
+    {
+      "candidate_count": 4,
+      "case_id": "BIO-02",
+      "experiment_id": "EXP-P4-20260729-003",
+      "metadata": {
+        "path": "experiments/EXP-P4-20260729-003/_work/generate.json",
+        "sha256": "2a42850578849c0dbb04add4eae993710a67eb54ec9d1b30840cb21896b8f6ac",
+        "size_bytes": 7906
+      },
+      "new_image_model_runs": 4,
+      "review": {
+        "path": "phase4_experiments/EXP-P4-20260729-003/review.json",
+        "sha256": "97b676f3d22405724a222c1b26db2c4388e1e556545b431910696b7fe53456f4",
+        "size_bytes": 1299
+      },
+      "verdict": "accepted_case_candidate_non_water_regression"
+    },
+    {
+      "candidate_count": 4,
+      "case_id": "CHEM-02",
+      "experiment_id": "EXP-P4-20260729-004",
+      "metadata": {
+        "path": "experiments/EXP-P4-20260729-004/_work/generate.json",
+        "sha256": "24433893b2cde654190de921732be812a40043118adbfda0a3f90625ebc04d46",
+        "size_bytes": 7856
+      },
+      "new_image_model_runs": 4,
+      "review": {
+        "path": "phase4_experiments/EXP-P4-20260729-004/review.json",
+        "sha256": "fb45052d868acbe83d9afc671a18aed4e52f35665fdf211d55d41250b288e443",
+        "size_bytes": 1497
+      },
+      "verdict": "rejected_safe_but_no_visible_material_gain"
+    },
+    {
+      "candidate_count": 4,
+      "case_id": "MATH-01",
+      "experiment_id": "EXP-P4-20260729-005",
+      "metadata": {
+        "path": "experiments/EXP-P4-20260729-005/_work/generate.json",
+        "sha256": "ceac54df6d6dbd13ff062fe58f28695d7d01bd6028c3a92acf33764e4c08b721",
+        "size_bytes": 7853
+      },
+      "new_image_model_runs": 4,
+      "review": {
+        "path": "phase4_experiments/EXP-P4-20260729-005/review.json",
+        "sha256": "fd59cfc2759dfc1ffb961c5bfa7a2c47e6a4ec47e7c20e9c232e7712ef1cb10a",
+        "size_bytes": 1463
+      },
+      "verdict": "accepted_optional_diagram_material_style"
+    },
+    {
+      "candidate_count": 4,
+      "case_id": "PHYS-02",
+      "experiment_id": "EXP-P4-20260729-006",
+      "metadata": {
+        "path": "experiments/EXP-P4-20260729-006/_work/generate.json",
+        "sha256": "12424df2bf3ad7e74a71e055c0e3d26442186205635f92e61dd1a4eca7f60f5a",
+        "size_bytes": 7849
+      },
+      "new_image_model_runs": 4,
+      "review": {
+        "path": "phase4_experiments/EXP-P4-20260729-006/review.json",
+        "sha256": "8c7172fb63397de974f0fd4a22696bdf7026955171570c19fb7cc15f00654254",
+        "size_bytes": 1425
+      },
+      "verdict": "accepted_case_candidate_exact_apparatus_surface"
+    }
+  ],
+  "schema_version": "1.0",
+  "sources": {
+    "case_registry": {
+      "path": "case_registry.json",
+      "sha256": "79b9f19bc7e1804cce25a51c830a2fe3f22970cda86bd2fa323a63b48c72142e"
+    },
+    "generic_program_runner": {
+      "path": "framework/program_runner.py",
+      "sha256": "41192139eb3a79248ff9dfd79a9507d848632eacbeba5b3fdd9822261c448db4"
+    },
+    "remaining_case_plugins": {
+      "path": "cases/remaining_programs.py",
+      "sha256": "79804a88ed18f2ec23703a7c2691fba38ff0b33d751b039bd6e6b07ba0f08a8a"
+    },
+    "runner": {
+      "path": "phase4.py",
+      "sha256": "34dd0815b0380ff73ea160f81c1dd6a78e42c953333f13766ccd0248efeea2a3"
+    }
+  },
+  "status": "passed"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-006",
+  "review_mode": "cross_discipline_route_regression",
+  "hard_checks": {
+    "non_liquid_pixels_bit_exact": true,
+    "low_frequency_program_structure_preserved": true,
+    "leave_one_out_stable": true
+  },
+  "selected_variant_metrics": {
+    "protected_max_abs_difference_0_255": 0.0,
+    "mechanism_fidelity_5": 5,
+    "material_improvement_5": 1,
+    "artifact_control_5": 5,
+    "seed_robustness_5": 5
+  },
+  "verdict": "route_regression_failed",
+  "verdict_zh": "跨学科回归失败：同一稳健残差算法在 CHEM-01 结构安全且稳定，但四张供体都过于平滑，液体材质没有可见提升。",
+  "generalization_boundary_zh": "高频材质残差适合水面等本身有连续表面起伏的区域；透明滴定场景的关键真实感来自玻璃界面、弯月面、折射和整套器材光照，不能只改液体内部。",
+  "next_action_zh": "残差投影不进入通用核心；为 CHEM-01 改测 hard_boundary 路线，用烧杯和滴定管硬边界约束整图材质增强。"
+}

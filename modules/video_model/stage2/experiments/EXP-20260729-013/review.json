@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-013",
+  "review_mode": "blind_first_then_unblind",
+  "configuration_summary": [
+    {
+      "configuration_id": "t2i_dense_cell_and_chromatids",
+      "mean_mechanism_fidelity_5": 2.5,
+      "mean_material_naturalness_5": 3.0,
+      "usable_seed_fraction": 0.0,
+      "finding_zh": "4/4 保留左右两个细胞的大轮廓，但 0/4 能在每个细胞内明确数出六条染色单体；模型把短线融合成中轴、团块或器官状结构。"
+    }
+  ],
+  "verdict": "rejected_exact_count_confirms_model_off_boundary",
+  "verdict_zh": "拒绝生物整图重绘；它改善了显微纹理，却破坏了必须可数的遗传物质，因此不具备教学可用性。",
+  "generalization_boundary_zh": "MATH-02 与 BIO-01 的一致失败表明，Canny 能约束大轮廓，却不能可靠保证离散对象数量、身份和亲缘关系。提示词写出 exact six 也不能替代程序数据。",
+  "accepted_general_candidate_zh": "case contract 只要声明 exact_count 或 object_identity 为硬约束，默认关闭整图扩散重绘；仅允许逐像素受限材质增强，并由程序在最终层绘回可数对象。",
+  "case_specific_configuration_zh": "每细胞六条染色单体是 BIO-01 数据，不进入通用路由规则。",
+  "next_action_zh": "保留两细胞、十二对象及其 ID 的程序图，后续以 cell_region 为允许区做受限显微材质回归。"
+}

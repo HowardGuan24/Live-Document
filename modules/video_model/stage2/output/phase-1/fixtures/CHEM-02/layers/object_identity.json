@@ -1,0 +1,51 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "bbox_xyxy": [
+        193,
+        85,
+        209,
+        101
+      ],
+      "center_xy": [
+        201,
+        93
+      ],
+      "class_id": "evaporation_crystallization_fixture_object",
+      "object_id": "CHEM-02-object-01",
+      "visible": true
+    },
+    {
+      "bbox_xyxy": [
+        124,
+        112,
+        142,
+        130
+      ],
+      "center_xy": [
+        133,
+        121
+      ],
+      "class_id": "evaporation_crystallization_fixture_object",
+      "object_id": "CHEM-02-object-02",
+      "visible": true
+    },
+    {
+      "bbox_xyxy": [
+        131,
+        45,
+        151,
+        65
+      ],
+      "center_xy": [
+        141,
+        55
+      ],
+      "class_id": "evaporation_crystallization_fixture_object",
+      "object_id": "CHEM-02-object-03",
+      "visible": true
+    }
+  ],
+  "schema_version": "1.0"
+}

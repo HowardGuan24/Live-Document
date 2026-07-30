@@ -1,0 +1,15 @@
+{
+  "case_id": "GEO-02",
+  "parcel_x_ratio": 0.51,
+  "parcel_xy": [
+    325.89,
+    66.4126
+  ],
+  "progress": 0.666667,
+  "rain_centroid_x": 270.8979,
+  "rain_strength": 1.0,
+  "relative_humidity": 1.0,
+  "temperature_c": 10.5,
+  "terrain_peak_x": 332,
+  "terrain_sha256_surrogate": 164.05795288
+}

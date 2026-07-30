@@ -1,0 +1,45 @@
+{
+  "composite_after_generation": true,
+  "items": [
+    {
+      "annotation_id": "BIO-01-annotation-01",
+      "end_xy": [
+        205,
+        176
+      ],
+      "kind": "arrow",
+      "meaning_zh": "左侧纺锤极",
+      "start_xy": [
+        72,
+        72
+      ]
+    },
+    {
+      "annotation_id": "BIO-01-annotation-02",
+      "end_xy": [
+        435,
+        176
+      ],
+      "kind": "arrow",
+      "meaning_zh": "右侧纺锤极",
+      "start_xy": [
+        565,
+        72
+      ]
+    },
+    {
+      "annotation_id": "BIO-01-annotation-03",
+      "end_xy": [
+        320,
+        225
+      ],
+      "kind": "arrow",
+      "meaning_zh": "染色体身份与分离",
+      "start_xy": [
+        320,
+        332
+      ]
+    }
+  ],
+  "schema_version": "1.0"
+}

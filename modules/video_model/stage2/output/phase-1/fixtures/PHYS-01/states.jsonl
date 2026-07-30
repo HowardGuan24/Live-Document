@@ -1,0 +1,4 @@
+{"fixture_only": true, "meaning_zh": "两个固定振源开始发波，波前尚未相遇", "order": 0, "progress": 0.0, "state_id": "state_00"}
+{"fixture_only": true, "meaning_zh": "第一批圆形波前进入重叠区", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
+{"fixture_only": true, "meaning_zh": "增强位置与近静止位置开始可见", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
+{"fixture_only": true, "meaning_zh": "稳定干涉图样形成但波前继续传播", "order": 3, "progress": 1.0, "state_id": "state_03"}

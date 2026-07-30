@@ -1,0 +1,4 @@
+{"fixture_only": true, "meaning_zh": "弯曲河道出现外侧侵蚀与内侧沉积", "order": 0, "progress": 0.0, "state_id": "state_00"}
+{"fixture_only": true, "meaning_zh": "弯道迁移且曲流颈变窄", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
+{"fixture_only": true, "meaning_zh": "主流首次切穿狭颈但旧弯仍相连", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
+{"fixture_only": true, "meaning_zh": "旧弯两端封闭并形成牛轭湖", "order": 3, "progress": 1.0, "state_id": "state_03"}

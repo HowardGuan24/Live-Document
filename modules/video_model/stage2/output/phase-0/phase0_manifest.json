@@ -1,0 +1,349 @@
+{
+  "baseline_assets": [
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/report.html",
+      "role": "selected_pair_report",
+      "sha256": "7eb0722d365e04bdcec64099c15c4d03b95210883a95ff516b3f08220efcadc0",
+      "size_bytes": 6464,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/final/first.png",
+      "role": "selected_pair_first",
+      "sha256": "6d4d54e0fddc8ac3bdb89333455085958e40213588ada78a422f884df8eafdf7",
+      "size_bytes": 190417,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/final/last.png",
+      "role": "selected_pair_last",
+      "sha256": "e1254edac11e9402480cf23fd087c944bafb309a11c3a8fa48e1bb74aa6535b9",
+      "size_bytes": 191181,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/final/comparison.jpg",
+      "role": "selected_pair_comparison",
+      "sha256": "57bd69feb7e8daab8a2145da0b55e65bf7bfc7f72008f184c2d8ea8b7fb5f57c",
+      "size_bytes": 36674,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/report.html",
+      "role": "delta_sequence_report",
+      "sha256": "ec5fc74407a232aa4010f4da34592649841822f86fc64d8d1a484a1fe800c752",
+      "size_bytes": 61830,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/sequence-contact-sheet.jpg",
+      "role": "delta_sequence_contact_sheet",
+      "sha256": "b094c3d54074aa098715dfa171fd60a2218c6498c2265443a8c667cabdf76669",
+      "size_bytes": 109071,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png",
+      "role": "delta_frame_00",
+      "sha256": "ac2864e5b5edd2d0b804c1b9c1cbcdad471ebf216ed7cca04d3589a12f8f5763",
+      "size_bytes": 1552210,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png",
+      "role": "delta_frame_01",
+      "sha256": "6acac8af0cab1065a18d25e2d6c06a32d92b1f03524b06dcd1d079f00c0f70c8",
+      "size_bytes": 1552667,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png",
+      "role": "delta_frame_02",
+      "sha256": "84b84946bc09f4d7bf10c5c29cadb0efe83db23d16b361fcb5b9edc89a4d00f6",
+      "size_bytes": 1551231,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png",
+      "role": "delta_frame_03",
+      "sha256": "1830b19ef2339db19f63c0dab1fa87417914966ba223e23b7b7b3d10e3bed824",
+      "size_bytes": 1550989,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png",
+      "role": "delta_frame_04",
+      "sha256": "e90fb592ea60c35cec6d116865c079b85968918146c82e1eb5844e3f22d9156d",
+      "size_bytes": 1547090,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/video_transition/ltx23_flf/transition.mp4",
+      "role": "video_transition",
+      "sha256": "7db2a431b6b7eb68953efbf213d7a283ba62ddab6b9f4057369b46b7d77b3be0",
+      "size_bytes": 166607,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/video_transition/ltx23_flf/metadata.json",
+      "role": "video_transition_metadata",
+      "sha256": "38a74d0628d0e6729c836b1342ee924c8ea01e258ff67a5dbbabcd04058a194b",
+      "size_bytes": 3775,
+      "verified": true
+    },
+    {
+      "path": "modules/video_model/stage1/output/video_transition/ltx23_flf/generated_frames.jpg",
+      "role": "video_transition_samples",
+      "sha256": "d70f93a53654f8b135d5e5b64c5892cb2ba13bef5b90036553ce62a93472ab13",
+      "size_bytes": 234846,
+      "verified": true
+    }
+  ],
+  "case_summary": {
+    "discipline_count": 5,
+    "historical_regression_count": 1,
+    "new_case_count": 10,
+    "sentinel_count": 5
+  },
+  "checks": [
+    {
+      "evidence": {
+        "case_ids": [
+          "MATH-01",
+          "MATH-02",
+          "PHYS-01",
+          "PHYS-02",
+          "CHEM-01",
+          "CHEM-02",
+          "BIO-01",
+          "BIO-02",
+          "GEO-01",
+          "GEO-02"
+        ],
+        "count": 10
+      },
+      "name": "ten_unique_cases",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "biology": 2,
+        "chemistry": 2,
+        "geography": 2,
+        "mathematics": 2,
+        "physics": 2
+      },
+      "name": "two_cases_per_discipline",
+      "passed": true
+    },
+    {
+      "evidence": [
+        "MATH-02",
+        "PHYS-01",
+        "CHEM-01",
+        "BIO-01",
+        "GEO-02"
+      ],
+      "name": "one_sentinel_per_discipline",
+      "passed": true
+    },
+    {
+      "evidence": "modules/video_model/stage2/case.txt",
+      "name": "case_text_matches_registry",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "total": 100
+      },
+      "name": "image_score_weights",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "total": 100
+      },
+      "name": "video_score_weights",
+      "passed": true
+    },
+    {
+      "evidence": [
+        "file_manifest_integrity",
+        "case_mechanism_facts",
+        "fixed_scene_drift",
+        "annotation_leakage",
+        "raw_composite_final_separation",
+        "prompt_token_integrity",
+        "model_runtime_identity",
+        "video_endpoint_identity"
+      ],
+      "name": "hard_gates_defined",
+      "passed": true
+    },
+    {
+      "evidence": [
+        "dimensions",
+        "hard_gates",
+        "protocol_id",
+        "subject_id",
+        "total_points",
+        "verdict"
+      ],
+      "name": "score_record_schema",
+      "passed": true
+    },
+    {
+      "evidence": [
+        "MATH-01",
+        "MATH-02",
+        "PHYS-01",
+        "PHYS-02",
+        "CHEM-01",
+        "CHEM-02",
+        "BIO-01",
+        "BIO-02",
+        "GEO-01",
+        "GEO-02"
+      ],
+      "name": "all_case_contract_smoke",
+      "passed": true
+    },
+    {
+      "evidence": [
+        "MATH-02",
+        "PHYS-01",
+        "CHEM-01",
+        "BIO-01",
+        "GEO-02"
+      ],
+      "name": "five_discipline_representatives",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "boundary_topology_change": "GEO-01",
+        "continuous_field_propagation": "PHYS-01",
+        "liquid_mixing": "CHEM-01",
+        "object_division": "BIO-01",
+        "rigid_motion": "MATH-02"
+      },
+      "name": "five_video_motion_representatives",
+      "passed": true
+    },
+    {
+      "evidence": [
+        3101,
+        3102,
+        3103,
+        3104
+      ],
+      "name": "fixed_seed_budget",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum_candidate_configurations_including_baseline": 3,
+        "maximum_full_keyframe_sequences": 1,
+        "maximum_new_image_candidates": 12,
+        "maximum_primary_hypotheses": 1,
+        "maximum_video_trials_after_image_gates": 2,
+        "minimum_cross_discipline_route_cases": 2,
+        "representative_frames_before_full_sequence": 1
+      },
+      "name": "single_hypothesis_budget",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "image_model_runs": 0,
+        "video_model_runs": 0
+      },
+      "name": "phase_0_zero_model_runs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "asset_count": 14,
+        "roles": [
+          "delta_frame_00",
+          "delta_frame_01",
+          "delta_frame_02",
+          "delta_frame_03",
+          "delta_frame_04",
+          "delta_sequence_contact_sheet",
+          "delta_sequence_report",
+          "selected_pair_comparison",
+          "selected_pair_first",
+          "selected_pair_last",
+          "selected_pair_report",
+          "video_transition",
+          "video_transition_metadata",
+          "video_transition_samples"
+        ]
+      },
+      "name": "stage1_baseline_hashes",
+      "passed": true
+    }
+  ],
+  "classification": "deterministic protocol and baseline audit",
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "next_phase": "phase-1 generic contracts and model-free fixtures",
+  "phase": "phase-0",
+  "report": {
+    "path": "modules/video_model/stage2/output/phase-0/report.html",
+    "sha256": "b7669a7258df8b4d394ddc581b7f6571d48acd3fa07ae65329d539b8bcd5adbd",
+    "size_bytes": 26329
+  },
+  "schema_version": "1.0",
+  "source_files": [
+    {
+      "path": "modules/video_model/stage2/case.txt",
+      "sha256": "0110dff3f32224389a5e0ac76822af9e2d34c18eaf1a713564c329839f21758a",
+      "size_bytes": 20347
+    },
+    {
+      "path": "modules/video_model/stage2/loop.md",
+      "sha256": "e78674e246dcb6ced09a3284f40d988c223b453c479396cf3677a40d1b0a3a84",
+      "size_bytes": 29035
+    },
+    {
+      "path": "modules/video_model/stage2/case_registry.json",
+      "sha256": "79b9f19bc7e1804cce25a51c830a2fe3f22970cda86bd2fa323a63b48c72142e",
+      "size_bytes": 7973
+    },
+    {
+      "path": "modules/video_model/stage2/protocols/scoring_protocol.json",
+      "sha256": "9156b83caab7008f092fa43c1b880ec9f4cc3c4245e7c09525d39d35f92789b1",
+      "size_bytes": 4895
+    },
+    {
+      "path": "modules/video_model/stage2/protocols/regression_policy.json",
+      "sha256": "e2f91acf4f9089993fb8f91c6d8b7e3d76b3250b7aa05cc5c0712e683fa6459f",
+      "size_bytes": 1495
+    },
+    {
+      "path": "modules/video_model/stage2/protocols/compute_budget.json",
+      "sha256": "52d1ab60c5b91633145a9c8614a8e1a78c086d5af714c5d874bb902413e055bc",
+      "size_bytes": 1099
+    },
+    {
+      "path": "modules/video_model/stage2/benchmarks/stage1_baseline.json",
+      "sha256": "9aafe6a36640192cf7fbbf0410b53c124dcae7082ad109fc8d67804cf2f8384d",
+      "size_bytes": 3492
+    },
+    {
+      "path": "modules/video_model/stage2/framework/schemas/score_record.schema.json",
+      "sha256": "54bb25a83a6db3d73e6994c49c989ca2d587b74611ed9037c86bd072fe5f4b57",
+      "size_bytes": 1910
+    },
+    {
+      "path": "modules/video_model/stage2/phase0.py",
+      "sha256": "ba985d777bc9f8b221ce9450138a335f105316eed6363fda6f609024eaf61b9f",
+      "size_bytes": 32161
+    }
+  ],
+  "status": "passed"
+}

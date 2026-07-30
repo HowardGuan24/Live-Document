@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P5-20260729-007",
+  "case_id": "CHEM-01",
+  "program_case_id": "CHEM-01",
+  "motion_class": "liquid_mixing",
+  "hypothesis_zh": "两次 FLF2V 不能表现浓度扩散后，重采样同一程序的局部 pH 标量场，可让显色强度按机制消散并保持器材、液面和端点可审计。",
+  "source": {
+    "first_keyframe_id": "01_mechanism",
+    "last_keyframe_id": "02_result",
+    "first_frame": "output/phase-2/CHEM-01/keyframes/01_mechanism/clean.png",
+    "last_frame": "output/phase-2/CHEM-01/keyframes/02_result/clean.png"
+  },
+  "settings": {
+    "width": 640,
+    "height": 360,
+    "fps": 24,
+    "frame_count": 49,
+    "progress_start": 0.3333333333333333,
+    "progress_end": 0.6666666666666666
+  },
+  "budget": {
+    "image_model_runs": 0,
+    "video_model_runs": 0,
+    "reason": "two declared LTX-2.3 trials exhausted without passing liquid diffusion semantic gate"
+  }
+}

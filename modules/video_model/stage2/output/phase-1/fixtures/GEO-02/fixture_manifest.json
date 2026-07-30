@@ -1,0 +1,47 @@
+{
+  "case_id": "GEO-02",
+  "classification": "model-free contract fixture, not a finished scientific animation",
+  "clean_frame": {
+    "path": "clean_frame.png",
+    "sha256": "70ec886404a1a5c2c7e06677d4ce9d76fe738edb230631e2bc982efcd064c637",
+    "size_bytes": 19631
+  },
+  "concept_spec": {
+    "path": "concept_spec.json",
+    "sha256": "b617ce9863e269572d907504c7948fa1c3bdb0491860a6ebf6a82c74cc369735",
+    "size_bytes": 1899
+  },
+  "control": {
+    "control_preview": null,
+    "input_layer_ids": [],
+    "reason_zh": "本 fixture 没有声明硬边界；连续场或对象身份不能为了使用 ControlNet 被强行转成 Canny。",
+    "route": "off",
+    "used_as_model_input": false
+  },
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "program_frame": {
+    "path": "program_frame.png",
+    "sha256": "cea731b224b89a6acb1a0ecdf3a73f6ba5d0fee57b971846f179e473afdea998",
+    "size_bytes": 20338
+  },
+  "representative_state_id": "state_02",
+  "schema_version": "1.0",
+  "semantic_layers": {
+    "path": "semantic_layers.json",
+    "sha256": "633395f6a5dd0f54c5c3e6ca339cd214670c1561e266ac506f145e644279aa1c",
+    "size_bytes": 5488
+  },
+  "sequence_spec": {
+    "path": "sequence_spec.json",
+    "sha256": "dfd2e9c83859b2790f67ff86acd486d4345530d46f0e1f74eebc2982b09a1d90",
+    "size_bytes": 2803
+  },
+  "states": {
+    "path": "states.jsonl",
+    "sha256": "2a08bcb67e1f356a77ce16bb55e2609f92aaa3280a5013bed08b02c42163cdbb",
+    "size_bytes": 553
+  }
+}

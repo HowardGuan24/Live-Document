@@ -1,0 +1,53 @@
+{
+  "case_id": "GEO-01",
+  "classification": "model-free contract fixture, not a finished scientific animation",
+  "clean_frame": {
+    "path": "clean_frame.png",
+    "sha256": "943dbb6795edbd01ae1a6a6d4e8a603b1c25b39e622089e0d1dc6e38fefb0124",
+    "size_bytes": 20820
+  },
+  "concept_spec": {
+    "path": "concept_spec.json",
+    "sha256": "d590751b904e03fba7d64d3e92303f5e1524122a0afa2283ace5540d8f72a29f",
+    "size_bytes": 1911
+  },
+  "control": {
+    "control_preview": {
+      "path": "control/hard_boundary_candidate.png",
+      "sha256": "eb9ca5d5d90214778f4ecf35aa79599527ed2dba113d19ea45628a56032130ee",
+      "size_bytes": 1012
+    },
+    "input_layer_ids": [
+      "geo-01_hard_boundary"
+    ],
+    "reason_zh": "本案例声明了硬边界，因此保存一张稀疏控制候选；Phase 1 没有把它输入任何模型。",
+    "route": "sparse_hard_boundary_candidate",
+    "used_as_model_input": false
+  },
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "program_frame": {
+    "path": "program_frame.png",
+    "sha256": "ced9103951805f066c3a44c099a60a01557f459b9e5a31e6a4f517a7650fa544",
+    "size_bytes": 21356
+  },
+  "representative_state_id": "state_02",
+  "schema_version": "1.0",
+  "semantic_layers": {
+    "path": "semantic_layers.json",
+    "sha256": "bbf9097c4ae4110aac092c22c2abebbc4fdbc23fb3e894f56aae1dbe5a147c0d",
+    "size_bytes": 8066
+  },
+  "sequence_spec": {
+    "path": "sequence_spec.json",
+    "sha256": "0e5372d2cebbaa547b1adcd7d9a60e6574b6f392def83c0629038d850227264d",
+    "size_bytes": 2874
+  },
+  "states": {
+    "path": "states.jsonl",
+    "sha256": "36418669e80587e4cf782eb875c23e700faa5bcea53a892be5dd2a949c591c26",
+    "size_bytes": 559
+  }
+}

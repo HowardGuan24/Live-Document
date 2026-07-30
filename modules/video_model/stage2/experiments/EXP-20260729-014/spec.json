@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-014",
+  "case_id": "GEO-02",
+  "hypothesis_zh": "对连续地形与降水分区案例，dense Canny T2I 可保留单峰和迎风坡雨区，同时生成自然山体、天空与雨幕。",
+  "single_variable_zh": "相对程序关键帧只增加固定的 SDXL T2I ControlNet 重绘；控制图、提示词、模型、参数和四个种子冻结。",
+  "source": {
+    "keyframe_id": "02_result",
+    "clean_frame": "output/phase-2/GEO-02/keyframes/02_result/clean.png",
+    "semantic_layers": "output/phase-2/GEO-02/keyframes/02_result/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Side-view landscape photograph of one mountain ridge beneath open sky",
+    "material_goal": "natural green rock, atmospheric sky, localized rain curtain, daylight",
+    "state_delta": "heavy rain only on the left windward slope; right leeward slope stays dry",
+    "must_preserve": "one peak, same silhouette, rain left of summit, dry right, no text"
+  },
+  "negative_artifacts": "second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "t2i_dense_terrain_and_rain",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.75
+    }
+  ],
+  "blind_shuffle_seed": 2026072914,
+  "budget": {
+    "maximum_new_image_candidates": 12,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  }
+}

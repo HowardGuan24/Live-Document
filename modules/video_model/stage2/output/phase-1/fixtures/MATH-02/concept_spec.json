@@ -1,0 +1,46 @@
+{
+  "assumptions_zh": [
+    "四个三角形全等且不可拉伸。",
+    "两种排列使用同一个边长为 a+b 的外框。"
+  ],
+  "case_id": "MATH-02",
+  "discipline": "mathematics",
+  "forbidden_shortcuts_zh": [
+    "用漂亮画面掩盖机制条件缺失",
+    "让图像模型重新决定程序事实",
+    "让一个视频过渡跨越多个主要变化"
+  ],
+  "learning_goal_zh": "通过四个全等直角三角形的刚体重排理解 c² 与 a²+b² 面积相等。",
+  "schema_version": "1.0",
+  "segments": [
+    {
+      "meaning_zh": "四个带稳定身份的三角形进入同一外框",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "四个带稳定身份的三角形进入同一外框",
+      "order": 0,
+      "segment_id": "segment_00"
+    },
+    {
+      "meaning_zh": "第一种排列留下中央 c² 正方形",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.333333；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "第一种排列留下中央 c² 正方形",
+      "order": 1,
+      "segment_id": "segment_01"
+    },
+    {
+      "meaning_zh": "四块拼图只做平移和旋转",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.666667；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "四块拼图只做平移和旋转",
+      "order": 2,
+      "segment_id": "segment_02"
+    },
+    {
+      "meaning_zh": "第二种排列留下 a² 与 b² 两个正方形",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 1.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "第二种排列留下 a² 与 b² 两个正方形",
+      "order": 3,
+      "segment_id": "segment_03"
+    }
+  ],
+  "title_zh": "勾股定理的拼图重排证明"
+}

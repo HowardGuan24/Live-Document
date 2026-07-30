@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "route_id": "A_semifree_scene_generation",
+  "model": "stabilityai/stable-diffusion-xl-base-1.0 + diffusers/controlnet-canny-sdxl-1.0",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      7101,
+      7102,
+      7103
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "CHEM-01",
+      "control_builder": "chemistry_semantic_apparatus",
+      "control_scales": [
+        0.65,
+        0.8
+      ],
+      "negative_artifacts": "extra beakers, extra burettes, extra tubes, missing vessel, moved liquid level, pouring stream, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, cropped apparatus, tilted camera, perspective view, blur",
+      "states": [
+        {
+          "keyframe_id": "00_start",
+          "prompt_parts": {
+            "scene_identity": "Straight-on photo of one glass beaker under one glass burette, locked centered camera",
+            "material_goal": "clear glass, colorless liquid, realistic refraction and reflections, neutral laboratory",
+            "state_delta": "initial acidic solution is colorless with no pink region",
+            "must_preserve": "one beaker, one burette, fixed liquid level and layout, no text"
+          }
+        },
+        {
+          "keyframe_id": "01_mechanism",
+          "prompt_parts": {
+            "scene_identity": "Straight-on photo of one glass beaker under one glass burette, locked centered camera",
+            "material_goal": "clear glass, colorless liquid, realistic refraction and reflections, neutral laboratory",
+            "state_delta": "one small pale pink plume below the tip, all other liquid colorless",
+            "must_preserve": "one beaker, one burette, fixed liquid level and layout, no text"
+          }
+        },
+        {
+          "keyframe_id": "02_result",
+          "prompt_parts": {
+            "scene_identity": "Straight-on photo of one glass beaker under one glass burette, locked centered camera",
+            "material_goal": "clear glass, almost colorless liquid, realistic refraction and reflections, neutral laboratory",
+            "state_delta": "the temporary pink plume has dispersed and nearly vanished",
+            "must_preserve": "one beaker, one burette, fixed liquid level and layout, no text"
+          }
+        },
+        {
+          "keyframe_id": "03_end",
+          "prompt_parts": {
+            "scene_identity": "Straight-on photo of one glass beaker under one glass burette, locked centered camera",
+            "material_goal": "clear glass, very pale pink liquid, realistic refraction and reflections, neutral laboratory",
+            "state_delta": "the whole solution has a uniform persistent endpoint tint",
+            "must_preserve": "one beaker, one burette, fixed liquid level and layout, no text"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "GEO-02",
+      "control_builder": "geography_semantic_landscape",
+      "control_scales": [
+        0.45,
+        0.65
+      ],
+      "negative_artifacts": "second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur",
+      "states": [
+        {
+          "keyframe_id": "02_result",
+          "prompt_parts": {
+            "scene_identity": "Wide side-view documentary landscape photograph of one mountain ridge beneath open sky",
+            "material_goal": "natural green rock and vegetation, deep atmospheric sky, volumetric cloud, realistic localized rain curtain, daylight",
+            "state_delta": "heavy rain only on the left windward slope while the right leeward slope remains dry",
+            "must_preserve": "one peak, same silhouette, cloud and rain left of summit, dry right side, no text"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "GEO-02",
+      "experiment_suffix": "terrain_only",
+      "control_builder": "geography_terrain_only",
+      "control_scales": [
+        0.45,
+        0.65
+      ],
+      "negative_artifacts": "second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur",
+      "states": [
+        {
+          "keyframe_id": "02_result",
+          "prompt_parts": {
+            "scene_identity": "Wide side-view documentary landscape photograph of one mountain ridge beneath open sky",
+            "material_goal": "natural green rock and vegetation, deep atmospheric sky, volumetric cloud, realistic localized rain curtain, daylight",
+            "state_delta": "heavy rain only on the left windward slope while the right leeward slope remains dry",
+            "must_preserve": "one peak, same silhouette, cloud and rain left of summit, dry right side, no text"
+          }
+        }
+      ]
+    }
+  ]
+}

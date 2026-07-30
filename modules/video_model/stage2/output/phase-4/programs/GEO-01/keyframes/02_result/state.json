@@ -1,0 +1,12 @@
+{
+  "case_id": "GEO-01",
+  "cutoff_complete": false,
+  "cutoff_fraction": 0.74074074,
+  "isolated_oxbow_count": 0,
+  "main_channel_components": 1,
+  "neck_width_px": 20.18518519,
+  "progress": 0.666667,
+  "stage": "neck_narrowing",
+  "water_area_px": 41102,
+  "water_component_count": 1
+}

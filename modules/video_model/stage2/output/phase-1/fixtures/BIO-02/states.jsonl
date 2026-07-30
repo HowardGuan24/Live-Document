@@ -1,0 +1,4 @@
+{"fixture_only": true, "meaning_zh": "两个保卫细胞膨压低且气孔接近关闭", "order": 0, "progress": 0.0, "state_id": "state_00"}
+{"fixture_only": true, "meaning_zh": "离子进入并改变保卫细胞水势", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
+{"fixture_only": true, "meaning_zh": "水进入、膨压上升且细胞开始弯曲", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
+{"fixture_only": true, "meaning_zh": "气孔达到稳定开放状态", "order": 3, "progress": 1.0, "state_id": "state_03"}

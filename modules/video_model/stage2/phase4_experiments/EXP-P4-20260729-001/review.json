@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P4-20260729-001",
+  "verdict": "invalidated_by_program_raster_artifact",
+  "verdict_zh": "拒绝并冻结：三项材质投影机器门都通过，但程序水体沿宽折线接头出现规则针孔，composite 继承了错误输入，因此不能用于判断模型路线。",
+  "root_cause_zh": "PIL 宽折线的离散采样接头没有完全封口；这不是模型或残差算法造成。",
+  "fix_zh": "程序河道改为逐线段绘制并在每个采样点补圆形接头。输入基准改变后创建 EXP-P4-20260729-002，不覆盖本实验。",
+  "generalization_zh": "机器门只能证明未越过已声明边界，不能证明程序输入本身没有视觉缺陷；模型实验前必须对 clean 与语义边界做原尺寸审图。"
+}

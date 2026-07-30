@@ -1,0 +1,215 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 180,
+    "width": 320
+  },
+  "case_id": "CHEM-01",
+  "layers": [
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "numpy_npy",
+        "path": "layers/hard_boundary.npy",
+        "sha256": "e1d725db58f2ebc02efeeca4a49a99470ec76f22e6292676d61f95f07840efa6",
+        "shape": [
+          180,
+          320
+        ],
+        "size_bytes": 57728,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "约束大尺度轮廓和拓扑。",
+      "layer_id": "chem-01_hard_boundary",
+      "layer_type": "hard_boundary",
+      "meaning_zh": "表示可以形成清楚轮廓的几何；不包含软浓度或教学文字。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png_rgb_preview",
+        "path": "layers/hard_boundary_preview.png",
+        "sha256": "7ae9647e4bfca1623bc40f915c0d81753a7c3a7feee7364a3c451c138be993cb",
+        "shape": [
+          180,
+          320,
+          3
+        ],
+        "size_bytes": 1039,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "Phase 1 根据 CHEM-01 的固定 fixture 参数直接计算；它验证数据契约，不代表完成的案例机制模拟。",
+      "title_zh": "需要严格保留的硬边界",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "numpy_npy",
+        "path": "layers/region.npy",
+        "sha256": "d18a93d463e846851cc00ffee4441765f1ef259ee40adbfab821301ff1011b60",
+        "shape": [
+          180,
+          320
+        ],
+        "size_bytes": 57728,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "限制局部材质增强，保护区域外像素。",
+      "layer_id": "chem-01_region",
+      "layer_type": "region",
+      "meaning_zh": "白色区域表示本状态中的对象范围或允许改变的像素范围。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png_rgb_preview",
+        "path": "layers/region_preview.png",
+        "sha256": "622fad180e2e44f7c82abfe39efd0ff356c54141d8eaf2db4150129e77720e2d",
+        "shape": [
+          180,
+          320,
+          3
+        ],
+        "size_bytes": 879,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "Phase 1 根据 CHEM-01 的固定 fixture 参数直接计算；它验证数据契约，不代表完成的案例机制模拟。",
+      "title_zh": "对象或允许修改区域",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "numpy_npy",
+        "path": "layers/scalar_field.npy",
+        "sha256": "638390b576910d76d08dc7f2249e63375b65c162a0db80d42dffb341202d5be6",
+        "shape": [
+          180,
+          320
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          1.0
+        ]
+      },
+      "final_role_zh": "决定软变化的空间强弱，默认不转成密集 Canny。",
+      "layer_id": "chem-01_scalar_field",
+      "layer_type": "scalar_field",
+      "meaning_zh": "每个像素保存一个连续数值，例如浓度、温度、振幅或压力。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png_rgb_preview",
+        "path": "layers/scalar_field_preview.png",
+        "sha256": "b454bb2c7b83ae7ca6a1943a5bd8f6588806661564f0a8a5a4627a86718de529",
+        "shape": [
+          180,
+          320,
+          3
+        ],
+        "size_bytes": 16404,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "Phase 1 根据 CHEM-01 的固定 fixture 参数直接计算；它验证数据契约，不代表完成的案例机制模拟。",
+      "title_zh": "连续标量场",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "json_object_records",
+        "encoding": "json",
+        "path": "layers/object_identity.json",
+        "sha256": "f4e42cb022844d2e992bcd1d63b3306dfaae21ff774a3545621e7c991c65fe88",
+        "shape": [
+          2
+        ],
+        "size_bytes": 619,
+        "value_range": [
+          0,
+          2
+        ]
+      },
+      "final_role_zh": "防止模型复制、吞掉或交换需要追踪的对象。",
+      "layer_id": "chem-01_object_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "每个对象有跨帧不变的 ID、类别、中心和边界框。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png_rgb_preview",
+        "path": "layers/object_identity_preview.png",
+        "sha256": "42a0f72b7fb59a8a3f88e67b76fec779f8f0d4c364821a446039760a14195d28",
+        "shape": [
+          180,
+          320,
+          3
+        ],
+        "size_bytes": 908,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "Phase 1 根据 CHEM-01 的固定 fixture 参数直接计算；它验证数据契约，不代表完成的案例机制模拟。",
+      "title_zh": "带稳定身份的对象",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "json_annotation_records",
+        "encoding": "json",
+        "path": "layers/annotation.json",
+        "sha256": "621587fd20fc82e6c970803731f4aceea28d02bcdbb5372fbf4dccac30a1fe1f",
+        "shape": [
+          2
+        ],
+        "size_bytes": 594,
+        "value_range": [
+          0,
+          2
+        ]
+      },
+      "final_role_zh": "只用于最终教学解释，不让生成模型写文字。",
+      "layer_id": "chem-01_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "保存箭头和重点提示的程序指令，写实底图完成后再叠加。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png_rgb_preview",
+        "path": "layers/annotation_preview.png",
+        "sha256": "132d8b4495e7eee2e69b2930d619283f1e59666ae2860150de774116c7da8734",
+        "shape": [
+          180,
+          320,
+          3
+        ],
+        "size_bytes": 717,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "Phase 1 根据 CHEM-01 的固定 fixture 参数直接计算；它验证数据契约，不代表完成的案例机制模拟。",
+      "title_zh": "教学叠加层",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "state_02"
+}

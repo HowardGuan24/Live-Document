@@ -1,0 +1,91 @@
+{
+  "case_id": "GEO-01",
+  "configurations": [
+    {
+      "configuration_id": "t2i_water_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "d8578c48fdbfe6364832dc265348ffaa13ebffbb922a8eac48127b304b28587d",
+    "size_bytes": 735
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.02392748,
+      "path": "controls/dense_canny.png",
+      "sha256": "3826811ac680306b61958cf7e182e7b623be38028fcaf89978d3c9784e054b5e",
+      "size_bytes": 9383
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.00857544,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "f225b72502881846016466d50de400ba6e2d104fa9ac3fae5af3601799e4c836",
+      "size_bytes": 5076
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.03485786,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "921c145f3a3f3a3419bef96664aec0f07c3f788a7c6ac764d9c3ebd98e8cdbee",
+      "size_bytes": 40687
+    }
+  },
+  "experiment_id": "EXP-P4-20260729-002",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "d96183ed951921c2ad3d911c70449a8f68e1e099467f5fa29e7211e5f683e5c4",
+    "size_bytes": 238,
+    "text": "shoreline, river bank, island, sandbar, boats, plants, fish, stones, concentric rings, point sources, panels, seams, dividing lines, text, labels, arrows, user interface, watermark, giant waves, plastic, metal, perspective, horizon, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "84d8dc872e5d804fe42a600d11e697bf3fc5f29f8ec27e2aa0b8f8e9f28c0a50",
+    "size_bytes": 276,
+    "text": "Top-down macro photograph of calm natural blue river water, edge-to-edge material sample, fine irregular surface ripples, subtle reflections, low-contrast natural water texture, uniform material swatch without banks or focal objects, even texture scale, no shoreline, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "fine irregular surface ripples, subtle reflections, low-contrast natural water texture",
+    "must_preserve": "even texture scale, no shoreline, no text",
+    "scene_identity": "Top-down macro photograph of calm natural blue river water, edge-to-edge material sample",
+    "state_delta": "uniform material swatch without banks or focal objects"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "1bd72b3f84db2740796e2a316aeae09e0b1318d33e1a7980be80b4fedad0adf7",
+      "size_bytes": 43406
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/clean.png",
+      "sha256": "89a85fcc9f7ca7faa0bb9f234c2e64eb153be6d8f020955febad6bb37eef0b1a"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/semantic_layers.json",
+      "sha256": "f73e9d2f686eea5f9991d94e9d74a98848495a742a9118f1dc9c324b8d0feefe"
+    }
+  }
+}

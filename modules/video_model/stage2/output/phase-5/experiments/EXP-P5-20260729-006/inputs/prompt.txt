@@ -1,0 +1,7 @@
+Positive prompt:
+
+Locked orthographic front-view scientific visualization of the exact same glass titration apparatus shown in the supplied first and last frames. Preserve the burette, rectangular beaker, dark gray glass outlines, pale blue liquid level, background, framing, scale and camera exactly. One pale blue droplet continues downward into the liquid and disappears. The single localized magenta phenolphthalein plume gently disperses and dilutes through the nearby clear liquid, becoming progressively fainter until the solution is colorless as shown in the supplied last frame. Smooth fluid diffusion, one continuous physically understandable transition. No camera movement.
+
+Negative prompt:
+
+moving apparatus, bent burette, changing beaker, changing liquid level, broken glass, extra droplet, multiple plumes, permanent pink solution, pink color growing, solid pink object, blob shrinking without diffusion, boiling, splashing, bubbles, smoke, camera movement, pan, zoom, tilt, perspective change, scene change, text, labels, arrows, flicker, jitter, abrupt cut, plastic CGI, blur, watermark

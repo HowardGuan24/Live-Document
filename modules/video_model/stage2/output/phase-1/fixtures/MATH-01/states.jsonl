@@ -1,0 +1,4 @@
+{"fixture_only": true, "meaning_zh": "圆上点从角度零开始，曲线从原点开始记录", "order": 0, "progress": 0.0, "state_id": "state_00"}
+{"fixture_only": true, "meaning_zh": "点到四分之一圈，纵坐标和曲线同时到达波峰", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
+{"fixture_only": true, "meaning_zh": "点继续经过零点并到达波谷", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
+{"fixture_only": true, "meaning_zh": "点完成一圈，曲线恰好完成一个周期", "order": 3, "progress": 1.0, "state_id": "state_03"}

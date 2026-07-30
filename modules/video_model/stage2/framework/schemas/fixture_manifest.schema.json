@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage2.fixture_manifest.schema.json",
+  "title": "Stage 2 model-free fixture manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "case_id",
+    "classification",
+    "representative_state_id",
+    "concept_spec",
+    "sequence_spec",
+    "states",
+    "clean_frame",
+    "program_frame",
+    "semantic_layers",
+    "control",
+    "model_runs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "case_id": {
+      "type": "string"
+    },
+    "classification": {
+      "const": "model-free contract fixture, not a finished scientific animation"
+    },
+    "representative_state_id": {
+      "type": "string"
+    },
+    "concept_spec": {
+      "type": "object"
+    },
+    "sequence_spec": {
+      "type": "object"
+    },
+    "states": {
+      "type": "object"
+    },
+    "clean_frame": {
+      "type": "object"
+    },
+    "program_frame": {
+      "type": "object"
+    },
+    "semantic_layers": {
+      "type": "object"
+    },
+    "control": {
+      "type": "object",
+      "required": [
+        "route",
+        "reason_zh",
+        "input_layer_ids",
+        "used_as_model_input"
+      ],
+      "properties": {
+        "route": {
+          "enum": [
+            "sparse_hard_boundary_candidate",
+            "off"
+          ]
+        },
+        "reason_zh": {
+          "type": "string"
+        },
+        "input_layer_ids": {
+          "type": "array"
+        },
+        "used_as_model_input": {
+          "const": false
+        },
+        "control_preview": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "model_runs": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "const": 0
+        },
+        "video": {
+          "const": 0
+        }
+      },
+      "required": [
+        "image",
+        "video"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
+

@@ -1,0 +1,91 @@
+{
+  "case_id": "MATH-01",
+  "configurations": [
+    {
+      "configuration_id": "t2i_archival_paper_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "11f17e365157e2a7e94d5247c5bf3b469415479907d78f11b4e1f8bc51ec7e83",
+    "size_bytes": 765
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.0396559,
+      "path": "controls/dense_canny.png",
+      "sha256": "bafd87c87671f4a2632a727a90a53213fc26a0f74bd217958ccd9ce7aca9639d",
+      "size_bytes": 10464
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.00945197,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "8c0bcdbfd562fc6ed5f8775c15375e82ab0490863efd81c054acdc7a2cdc7a3e",
+      "size_bytes": 4262
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.01631334,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "fe3de91425460beb4db72e95914e24759d2680d875bea1be53d726bca7e51760",
+      "size_bytes": 3307
+    }
+  },
+  "experiment_id": "EXP-P4-20260729-005",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "19b3f843724f15b417c6aad9970becbb02f339ceef0d89dff3d169a4ad432414",
+    "size_bytes": 226,
+    "text": "drawing, lines, circles, axes, graph, grid, handwriting, printed text, numbers, symbols, folds, creases, torn edges, borders, stains, holes, shadows, objects, hands, panels, seams, watermark, plastic, metal, perspective, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "a31b6f1b7aa97526e6a88fd2cd2c5962cb09b9a3e31e9ded01ae676d97c74999",
+    "size_bytes": 327,
+    "text": "Top-down macro photograph of uniform warm ivory archival drawing paper, edge-to-edge material swatch, very fine natural paper fibers, restrained low-contrast grain, matte surface, diffuse even light, uniform seamless paper material without any drawing or object, even texture scale, quiet background, no focal feature, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "very fine natural paper fibers, restrained low-contrast grain, matte surface, diffuse even light",
+    "must_preserve": "even texture scale, quiet background, no focal feature, no text",
+    "scene_identity": "Top-down macro photograph of uniform warm ivory archival drawing paper, edge-to-edge material swatch",
+    "state_delta": "uniform seamless paper material without any drawing or object"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "4c403612647fb6c4b051900037c4366af68606fbe23128f675354a36a50b997a",
+      "size_bytes": 62412
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/clean.png",
+      "sha256": "a58253d5172a54228e5b93e412ab26ba2cc49503f665851d6c403243b433447a"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/semantic_layers.json",
+      "sha256": "abeaf008cf3e97a66385bdf48cecbcee464faddeeeb2b31dd860bcce3165f6f7"
+    }
+  }
+}

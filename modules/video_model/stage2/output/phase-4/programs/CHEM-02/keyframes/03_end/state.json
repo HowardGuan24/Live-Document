@@ -1,0 +1,12 @@
+{
+  "case_id": "CHEM-02",
+  "concentration": 1.26315789,
+  "crystal_count": 4,
+  "crystal_solute_mass": 0.16,
+  "liquid_solute_mass": 0.32,
+  "progress": 1.0,
+  "saturation_ratio": 1.54043646,
+  "solvent_volume": 0.38,
+  "stage": "crystal_growth",
+  "total_solute_mass": 0.48
+}

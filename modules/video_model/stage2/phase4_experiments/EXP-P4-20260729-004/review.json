@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P4-20260729-004",
+  "review_mode": "blind_donors_then_machine_gates_and_full_resolution_composite",
+  "raw_donor_finding_zh": "4/4 供体都没有生成均匀氯化钠晶面：分别更像纤维板、羽毛或霜、竖直玻璃管和玻璃格架，不能直接作为成品。",
+  "selected_variant": {
+    "variant_id": "gain_060",
+    "mechanism_fidelity_5": 5,
+    "material_improvement_5": 1.5,
+    "artifact_control_5": 5,
+    "seed_robustness_5": 5,
+    "allowed_pixel_fraction": 0.0075175,
+    "non_allowed_max_abs_difference_0_255": 0.0,
+    "allowed_mean_abs_detail_change_0_255": 2.672801,
+    "low_frequency_mse_vs_program": 0.006469,
+    "leave_one_out_maximum_mae_0_255": 0.023331
+  },
+  "verdict": "rejected_safe_but_no_visible_material_gain",
+  "verdict_zh": "拒绝 gain=0.6：三项机器门都通过，只能说明投影安全；四颗晶体仍近似平涂，肉眼材质提升仅 1.5/5，未达到晋级线。",
+  "generalization_zh": "当受限区域很小、对象数量和轮廓又必须精确时，全画幅扩散供体的高频残差可能安全却无效。此时不应靠放大增益伪造进步，而应由程序提供可读的粗尺度晶面，或把对象放大后单独渲染。",
+  "next_action_zh": "保留全部失败供体和 composite；CHEM-02 改用确定性四晶面着色，模型关闭。后续如果要验证局部模型路线，应另立实验使用放大的对象空间渲染，不能覆盖本轮。"
+}

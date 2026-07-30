@@ -1,0 +1,31 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "class_id": "glass_beaker",
+      "geometry": {
+        "kind": "polygon",
+        "points": [
+          [
+            180,
+            72
+          ],
+          [
+            460,
+            72
+          ],
+          [
+            460,
+            305
+          ],
+          [
+            180,
+            305
+          ]
+        ]
+      },
+      "object_id": "CHEM-01-vessel-01"
+    }
+  ],
+  "schema_version": "1.0"
+}

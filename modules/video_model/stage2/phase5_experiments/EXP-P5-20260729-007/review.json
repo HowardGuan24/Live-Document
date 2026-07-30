@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P5-20260729-007",
+  "review_mode": "deterministic_program_frames_plus_scalar_field_and_encoded_video_audit",
+  "selected_trial": "program_fallback_after_two_model_failures_and_one_program_field_revision",
+  "motion_class_passed": true,
+  "scores_5": {
+    "endpoint_adherence": 5,
+    "intermediate_mechanism": 5,
+    "temporal_continuity": 5,
+    "scene_stability": 5,
+    "motion_naturalness": 4,
+    "video_teaching_readability": 5
+  },
+  "weighted_score_100": 98,
+  "verdict": "accepted_liquid_mixing_program_scalar_field_model_off",
+  "verdict_zh": "接受 CHEM-01 程序标量场回退：粉色核心降低的同时，低浓度软边区域先向周围扩展再消失；视频模型调用为 0。",
+  "visual_finding_zh": "九个时间点先显示局部高浓度粉色核心，随后边缘软化并形成覆盖更宽的浅粉浓度云，最后整体变为无色。滴定管、烧杯、液面和镜头完全固定；这次能区分于前一轮的实心球缩小。",
+  "machine_evidence_zh": "4/4 硬门通过；首尾源图逐像素一致，plume strength 从 1.0 降为 0，spread factor 从 1.0 升到 1.9，积分量代理从 1.0 单调降为 0；49 帧、24 fps、无音轨，图片和视频模型调用均为 0。",
+  "generalization_zh": "软标量场的程序回退不能只改透明度。通用做法是同时约束峰值降低、空间方差增大和积分量不增长，并把低浓度软边可视化；端点保持不变，新增可视提示只存在于中间帧。",
+  "known_limitations_zh": "这是面向教学的浓度场可视化，不是流体力学求解；浅粉晕表示局部低浓度区域，不应被解释为逐分子模拟。",
+  "next_action_zh": "liquid_mixing 标为通过。继续 BIO-01 object_division；模型若不能保留六个父染色体到十二条姐妹染色单体的一一映射，则按同样的两次预算规则回退程序身份轨迹。"
+}

@@ -1,0 +1,219 @@
+{
+  "case_id": "BIO-01",
+  "comparison": {
+    "path": "all-variants-sequence.jpg",
+    "sha256": "e84fdff455a5a1ad6b8efc52d4926de6e6cd267abffefbcf0f6ad5fc8f0f4e03",
+    "size_bytes": 217031
+  },
+  "donor": {
+    "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+    "sha256": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c",
+    "size_bytes": 919365
+  },
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "records": [
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1674,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/raw_underlay/00_start.png",
+        "sha256": "a25735e6688d9bba5729f3656f26ce8e850a37cc2b06b31b55c16541a89cb714",
+        "size_bytes": 156807
+      },
+      "variant": "raw_underlay"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1664,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/raw_underlay/01_mechanism.png",
+        "sha256": "83bb7ab0bbceed5bdfe8114ffcafabd838b6e7bdef323d42595e6badf8009316",
+        "size_bytes": 157451
+      },
+      "variant": "raw_underlay"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1428,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/raw_underlay/02_result.png",
+        "sha256": "790a3440a8edd0c83e9e6f6d6d1e7cf425a7fdbf827876df94680261f316e2a4",
+        "size_bytes": 156767
+      },
+      "variant": "raw_underlay"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1421,
+        "outside_cell_background_hash_scope_px": 147958,
+        "pole_overlay_pixel_count": 596,
+        "program_cell_area_px": 82442,
+        "rendered_cell_area_px": 82442
+      },
+      "output": {
+        "path": "variants/raw_underlay/03_end.png",
+        "sha256": "615c41a82b9a59d236c0c6469bec97e0b09e38d0088c9c9964e8fbe5eaae9ac8",
+        "size_bytes": 184354
+      },
+      "variant": "raw_underlay"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1674,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/normalized_cytoplasm/00_start.png",
+        "sha256": "42b83b547ee5c1ba69b3e22206e5b09818909fbc11ed488cb62a53a7ef566d00",
+        "size_bytes": 166435
+      },
+      "variant": "normalized_cytoplasm"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1664,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/normalized_cytoplasm/01_mechanism.png",
+        "sha256": "3bd0e04f1bf14ceafb2a22c874a2277a7b3509b0cf4080a63e31572de5b7ad90",
+        "size_bytes": 167223
+      },
+      "variant": "normalized_cytoplasm"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1428,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/normalized_cytoplasm/02_result.png",
+        "sha256": "75420cfbd3ff6d52086a786da783bd296996ff269afc5f4918a853adf918a106",
+        "size_bytes": 166311
+      },
+      "variant": "normalized_cytoplasm"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1421,
+        "outside_cell_background_hash_scope_px": 147958,
+        "pole_overlay_pixel_count": 596,
+        "program_cell_area_px": 82442,
+        "rendered_cell_area_px": 82442
+      },
+      "output": {
+        "path": "variants/normalized_cytoplasm/03_end.png",
+        "sha256": "63f77cbf1578528e21cae796769056902b58a7046088c3baea08b4fcf44dc0d2",
+        "size_bytes": 194898
+      },
+      "variant": "normalized_cytoplasm"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1674,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/stable_material_plus_depth/00_start.png",
+        "sha256": "81657497d7e02ba8926a1041eae5f77c118afde9c9e9088808a5190cfdb48721",
+        "size_bytes": 169738
+      },
+      "variant": "stable_material_plus_depth"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1664,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/stable_material_plus_depth/01_mechanism.png",
+        "sha256": "0ef9f05d0a64901338b191e8604408a60255cace30835cf3cb88d1a4ef45b4ce",
+        "size_bytes": 170615
+      },
+      "variant": "stable_material_plus_depth"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1428,
+        "outside_cell_background_hash_scope_px": 156405,
+        "pole_overlay_pixel_count": 698,
+        "program_cell_area_px": 73995,
+        "rendered_cell_area_px": 73995
+      },
+      "output": {
+        "path": "variants/stable_material_plus_depth/02_result.png",
+        "sha256": "55c29429c5908129bc619336c3223633b50bcaf4eae3701687050113d61564de",
+        "size_bytes": 169706
+      },
+      "variant": "stable_material_plus_depth"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "chromosome_overlay_pixel_count": 1421,
+        "outside_cell_background_hash_scope_px": 147958,
+        "pole_overlay_pixel_count": 596,
+        "program_cell_area_px": 82442,
+        "rendered_cell_area_px": 82442
+      },
+      "output": {
+        "path": "variants/stable_material_plus_depth/03_end.png",
+        "sha256": "ba316daab9ae08552c0676674b03cbd40631de6299340b76a716df6e528e1714",
+        "size_bytes": 198681
+      },
+      "variant": "stable_material_plus_depth"
+    }
+  ],
+  "route_id": "route-b",
+  "schema_version": "1.0",
+  "status": "generated_for_review",
+  "variants": [
+    "raw_underlay",
+    "normalized_cytoplasm",
+    "stable_material_plus_depth"
+  ]
+}

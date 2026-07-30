@@ -1,0 +1,174 @@
+{
+  "allowed_pixel_fraction": 0.09836833,
+  "allowed_region_source": {
+    "layer_id": "bio02_guard_region",
+    "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/layers/bio02_guard_region.npy",
+    "source_sha256": "a8c9491a2c114442fb14989280c49bcb0dbb56022c1de64b7269804ac9010d81"
+  },
+  "case_id": "BIO-02",
+  "comparison_sheet": {
+    "path": "ensemble-material-comparison-gain_030.jpg",
+    "sha256": "2c5f9ab571f8f110e1f3bab4317fe4a85193e3ca74aa9a64f01ae333ca1e6a91",
+    "size_bytes": 336706
+  },
+  "experiment_id": "EXP-P4-20260729-003",
+  "full_ensemble": {
+    "composite": {
+      "path": "composite/ensemble_material/gain_030/all_seed_median.png",
+      "sha256": "0d2bf38c203980474b47dfee137587dabd6c26b1f438346cd82c292a293d71f9",
+      "size_bytes": 118855
+    },
+    "metrics": {
+      "allowed_mean_abs_detail_change_0_255": 2.211884,
+      "low_frequency_mse_vs_program": 0.216275,
+      "protected_max_abs_difference_0_255": 0.0
+    }
+  },
+  "hard_checks": [
+    {
+      "evidence": {
+        "full": 0.0,
+        "leave_one_out": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "all_non_allowed_pixels_are_bit_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.216275,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 0.160048,
+        "mean": 0.157919,
+        "values": [
+          0.160048,
+          0.158192,
+          0.155519,
+          0.155519,
+          0.158192,
+          0.160048
+        ]
+      },
+      "name": "leave_one_out_composites_are_stable",
+      "passed": true
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_030/exclude_seed_3101.png",
+        "sha256": "b77072d33374843f0696c77767a9c8e7538d6d9d3d0e5401d36430ded5372158",
+        "size_bytes": 121463
+      },
+      "excluded_seed": 3101,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.6997,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_030/exclude_seed_3102.png",
+        "sha256": "77a77a5c7f4977993eb495b875bb2faf53f23918be7f52dcc0f0959b4f86859c",
+        "size_bytes": 117320
+      },
+      "excluded_seed": 3102,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.824025,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_030/exclude_seed_3103.png",
+        "sha256": "96ab9c77e79b537a747dd80331dd2feec0a56ffeb0a8dbaccf376d61b71ffb16",
+        "size_bytes": 114229
+      },
+      "excluded_seed": 3103,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.893453,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_030/exclude_seed_3104.png",
+        "sha256": "f1fe83122618b87e2b0a17f405588c09a537ddd8ebbb50043507cff8011b9384",
+        "size_bytes": 120531
+      },
+      "excluded_seed": 3104,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.702049,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 0.160048,
+    "mean": 0.157919,
+    "values": [
+      0.160048,
+      0.158192,
+      0.155519,
+      0.155519,
+      0.158192,
+      0.160048
+    ]
+  },
+  "method_zh": "每张 raw 供体先减去高斯低通并限幅，再对四个复现编号的残差逐像素取中位数。只在程序未保护区域加入该稳健残差；另做四张留一法结果，检查结论是否依赖某一个供体。",
+  "raw_donors": [
+    {
+      "artifact": {
+        "path": "raw/t2i_leaf_epidermis_material_donor/seed_3101.png",
+        "sha256": "a0c65af1cc18dd8c128f03b100f76759f5db5049a8cc3733a37374cf3381d639",
+        "size_bytes": 1281000
+      },
+      "seed": 3101
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_leaf_epidermis_material_donor/seed_3102.png",
+        "sha256": "f345bc1e5a6831ba8d404682027434b8d972efc2ecd83f13869295f8a480175b",
+        "size_bytes": 1281446
+      },
+      "seed": 3102
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_leaf_epidermis_material_donor/seed_3103.png",
+        "sha256": "87bc7fb49e0913c5241124a2ec52acd9eead9826c0359b2824960280aafa098c",
+        "size_bytes": 1380104
+      },
+      "seed": 3103
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_leaf_epidermis_material_donor/seed_3104.png",
+        "sha256": "ee656b8f1b2f502f0570e77101739ac3e46d4b962160613ebdf3c3bd0f21b257",
+        "size_bytes": 1307762
+      },
+      "seed": 3104
+    }
+  ],
+  "schema_version": "1.0",
+  "settings": {
+    "aggregation": "pixelwise_median",
+    "allowed_region_layer_id": "bio02_guard_region",
+    "blur_radius": 12.0,
+    "protect_dilation_px": 8,
+    "residual_clip": 12.0,
+    "residual_gain": 0.3,
+    "variant_id": "gain_030"
+  }
+}

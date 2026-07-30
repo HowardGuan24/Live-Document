@@ -1,0 +1,123 @@
+{
+  "case_id": "CHEM-01",
+  "common_checks": [
+    {
+      "evidence": {
+        "first": 0.0,
+        "frame_count": 49,
+        "last": 1.0
+      },
+      "name": "normalized_progress_is_monotonic",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "height": 360,
+        "mode": "RGB",
+        "width": 640
+      },
+      "name": "fixed_rgb_canvas",
+      "passed": true
+    },
+    {
+      "evidence": [
+        [
+          "chem01_apparatus_boundary",
+          "hard_boundary"
+        ],
+        [
+          "chem01_liquid_region",
+          "region"
+        ],
+        [
+          "chem01_ph_field",
+          "scalar_field"
+        ],
+        [
+          "chem01_object_identity",
+          "object_identity"
+        ],
+        [
+          "chem-01_annotation",
+          "annotation"
+        ]
+      ],
+      "name": "semantic_layer_contract_is_stable",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "annotation_count": 4,
+        "used_as_model_input": false
+      },
+      "name": "annotations_are_post_generation_only",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "duration_seconds": 4.0833,
+        "fps": 12,
+        "frame_count": 49
+      },
+      "name": "video_was_encoded_from_program_frames",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "image": 0,
+        "video": 0
+      },
+      "name": "zero_generative_model_runs",
+      "passed": true
+    },
+    {
+      "evidence": "CHEM-01",
+      "name": "case_id_matches_plugin",
+      "passed": true
+    }
+  ],
+  "mechanism_checks": [
+    {
+      "evidence": [
+        0.0,
+        0.05,
+        4.8,
+        5.01
+      ],
+      "name": "added_base_volume_is_monotonic",
+      "passed": true
+    },
+    {
+      "evidence": [
+        238,
+        237,
+        234,
+        233
+      ],
+      "name": "liquid_level_tracks_added_volume",
+      "passed": true
+    },
+    {
+      "evidence": [
+        0.0,
+        0.134573,
+        0.0,
+        0.971801
+      ],
+      "name": "local_color_then_clear_then_endpoint",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "acid_moles": 0.0005,
+        "base_moles": 0.000501,
+        "bulk_ph": 8.978769
+      },
+      "name": "endpoint_is_slight_base_excess",
+      "passed": true
+    }
+  ],
+  "primary_mechanism_zh": "加入体积、化学计量、局部 pH 与指示剂颜色保持一致。",
+  "schema_version": "1.0",
+  "status": "passed"
+}

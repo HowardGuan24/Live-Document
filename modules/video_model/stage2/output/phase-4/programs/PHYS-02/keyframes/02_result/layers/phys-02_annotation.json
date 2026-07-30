@@ -1,0 +1,45 @@
+{
+  "composite_after_generation": true,
+  "items": [
+    {
+      "annotation_id": "PHYS-02-annotation-01",
+      "end_xy": [
+        270.0,
+        225
+      ],
+      "kind": "arrow",
+      "meaning_zh": "磁铁只沿线圈轴线运动",
+      "start_xy": [
+        76,
+        292
+      ]
+    },
+    {
+      "annotation_id": "PHYS-02-annotation-02",
+      "end_xy": [
+        541.0,
+        48.0
+      ],
+      "kind": "arrow",
+      "meaning_zh": "电流表方向",
+      "start_xy": [
+        548,
+        168
+      ]
+    },
+    {
+      "annotation_id": "PHYS-02-annotation-03",
+      "end_xy": [
+        390,
+        120
+      ],
+      "kind": "arrow",
+      "meaning_zh": "磁通变化而非磁通本身",
+      "start_xy": [
+        335,
+        42
+      ]
+    }
+  ],
+  "schema_version": "1.0"
+}

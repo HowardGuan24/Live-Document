@@ -1,0 +1,4 @@
+{"fixture_only": true, "meaning_zh": "四个带稳定身份的三角形进入同一外框", "order": 0, "progress": 0.0, "state_id": "state_00"}
+{"fixture_only": true, "meaning_zh": "第一种排列留下中央 c² 正方形", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
+{"fixture_only": true, "meaning_zh": "四块拼图只做平移和旋转", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
+{"fixture_only": true, "meaning_zh": "第二种排列留下 a² 与 b² 两个正方形", "order": 3, "progress": 1.0, "state_id": "state_03"}

@@ -1,0 +1,174 @@
+{
+  "allowed_pixel_fraction": 0.78712802,
+  "allowed_region_source": {
+    "layer_id": "math01_paper_region",
+    "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/layers/math01_paper_region.npy",
+    "source_sha256": "49ca50b8540230a6fd59cf8e6af7a85b3acc983bc8f77bd1c2184e3a2cff1a4b"
+  },
+  "case_id": "MATH-01",
+  "comparison_sheet": {
+    "path": "ensemble-material-comparison-gain_035.jpg",
+    "sha256": "ae05b97317dac2b816e7e45540da4dfa211a26491c0cfc6e4fe332d695ff59cc",
+    "size_bytes": 201713
+  },
+  "experiment_id": "EXP-P4-20260729-005",
+  "full_ensemble": {
+    "composite": {
+      "path": "composite/ensemble_material/gain_035/all_seed_median.png",
+      "sha256": "c6cd644bf66ce69d2e66c8036a43afa0cd741ab145c3c07e76d92022ae44708b",
+      "size_bytes": 353422
+    },
+    "metrics": {
+      "allowed_mean_abs_detail_change_0_255": 0.354121,
+      "low_frequency_mse_vs_program": 0.011682,
+      "protected_max_abs_difference_0_255": 0.0
+    }
+  },
+  "hard_checks": [
+    {
+      "evidence": {
+        "full": 0.0,
+        "leave_one_out": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "all_non_allowed_pixels_are_bit_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.011682,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 0.235318,
+        "mean": 0.231682,
+        "values": [
+          0.235318,
+          0.229779,
+          0.229951,
+          0.229951,
+          0.229779,
+          0.235318
+        ]
+      },
+      "name": "leave_one_out_composites_are_stable",
+      "passed": true
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_035/exclude_seed_3101.png",
+        "sha256": "387e9873217d231c285700cbc02f303f95f5efbf60b0d4319af54352aa81637c",
+        "size_bytes": 359911
+      },
+      "excluded_seed": 3101,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.423113,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_035/exclude_seed_3102.png",
+        "sha256": "3023e19d46b7ddd4a7bc7d379b7c60fac9146fb3299502d997a5144d739e98bc",
+        "size_bytes": 356211
+      },
+      "excluded_seed": 3102,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.403555,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_035/exclude_seed_3103.png",
+        "sha256": "110a1f4ff6bf16275e0c2789da6b47f434ba645e5ec52181b8f5506ecb5552f7",
+        "size_bytes": 374263
+      },
+      "excluded_seed": 3103,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.462678,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_035/exclude_seed_3104.png",
+        "sha256": "3fdc89874df132f017618f964dbf52f2f0e62ac267a3d16613c35d3e71f1baaa",
+        "size_bytes": 356941
+      },
+      "excluded_seed": 3104,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.403663,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 0.235318,
+    "mean": 0.231682,
+    "values": [
+      0.235318,
+      0.229779,
+      0.229951,
+      0.229951,
+      0.229779,
+      0.235318
+    ]
+  },
+  "method_zh": "每张 raw 供体先减去高斯低通并限幅，再对四个复现编号的残差逐像素取中位数。只在程序未保护区域加入该稳健残差；另做四张留一法结果，检查结论是否依赖某一个供体。",
+  "raw_donors": [
+    {
+      "artifact": {
+        "path": "raw/t2i_archival_paper_material_donor/seed_3101.png",
+        "sha256": "85aff000486d1ca8e995577efa498243b5352f2fefa0e5d06956bda79cf8a25d",
+        "size_bytes": 596529
+      },
+      "seed": 3101
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_archival_paper_material_donor/seed_3102.png",
+        "sha256": "eda80a78aa27a8cac00eed73f0c2947159d245901c367cdd698d5f3807f4eb77",
+        "size_bytes": 632517
+      },
+      "seed": 3102
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_archival_paper_material_donor/seed_3103.png",
+        "sha256": "c0cf0bb1208b2c0916e0fd5025232ea270b4859cfcc9951342bc5288e1edc222",
+        "size_bytes": 525275
+      },
+      "seed": 3103
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_archival_paper_material_donor/seed_3104.png",
+        "sha256": "4a3613fb9aacc27a383a950ce0232a51aef328c109beaa9eefe8ef8aeb336596",
+        "size_bytes": 614932
+      },
+      "seed": 3104
+    }
+  ],
+  "schema_version": "1.0",
+  "settings": {
+    "aggregation": "pixelwise_median",
+    "allowed_region_layer_id": "math01_paper_region",
+    "blur_radius": 8.0,
+    "protect_dilation_px": 3,
+    "residual_clip": 10.0,
+    "residual_gain": 0.35,
+    "variant_id": "gain_035"
+  }
+}

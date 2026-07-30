@@ -1,0 +1,46 @@
+{
+  "assumptions_zh": [
+    "圆的半径固定为程序配置值。",
+    "圆上点做匀速运动，坐标纸与圆盘镜头固定。"
+  ],
+  "case_id": "MATH-01",
+  "discipline": "mathematics",
+  "forbidden_shortcuts_zh": [
+    "用漂亮画面掩盖机制条件缺失",
+    "让图像模型重新决定程序事实",
+    "让一个视频过渡跨越多个主要变化"
+  ],
+  "learning_goal_zh": "看懂单位圆上点的纵坐标如何随时间形成一个正弦周期。",
+  "schema_version": "1.0",
+  "segments": [
+    {
+      "meaning_zh": "圆上点从角度零开始，曲线从原点开始记录",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "圆上点从角度零开始，曲线从原点开始记录",
+      "order": 0,
+      "segment_id": "segment_00"
+    },
+    {
+      "meaning_zh": "点到四分之一圈，纵坐标和曲线同时到达波峰",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.333333；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "点到四分之一圈，纵坐标和曲线同时到达波峰",
+      "order": 1,
+      "segment_id": "segment_01"
+    },
+    {
+      "meaning_zh": "点继续经过零点并到达波谷",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.666667；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "点继续经过零点并到达波谷",
+      "order": 2,
+      "segment_id": "segment_02"
+    },
+    {
+      "meaning_zh": "点完成一圈，曲线恰好完成一个周期",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 1.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "点完成一圈，曲线恰好完成一个周期",
+      "order": 3,
+      "segment_id": "segment_03"
+    }
+  ],
+  "title_zh": "单位圆怎样生成正弦曲线"
+}

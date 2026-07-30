@@ -1,0 +1,22 @@
+{
+  "A": {
+    "configuration_id": "t2i_centered_hard_boundary",
+    "seed": 3102,
+    "sha256": "0cdea279453ad23fe9a302185321165da4a4fc4d7fc241c27ff3000ee26f513b"
+  },
+  "B": {
+    "configuration_id": "t2i_centered_hard_boundary",
+    "seed": 3101,
+    "sha256": "89793180ca93e0a360a2b425ad93b8b15a0ac5a5b069fb5b1e4144443c9ce41c"
+  },
+  "C": {
+    "configuration_id": "t2i_centered_hard_boundary",
+    "seed": 3104,
+    "sha256": "d175213ed51339543b86a4dda0fc588df34f9e4ce0c6711609955900a8d6f515"
+  },
+  "D": {
+    "configuration_id": "t2i_centered_hard_boundary",
+    "seed": 3103,
+    "sha256": "726d20760ae921848c09c9dd36822decb6f32b173aaad4f25738959352e008de"
+  }
+}

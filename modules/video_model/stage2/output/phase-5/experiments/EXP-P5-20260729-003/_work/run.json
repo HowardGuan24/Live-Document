@@ -1,0 +1,4609 @@
+{
+  "anchor_audit": null,
+  "case_id": "MATH-02",
+  "classification": "LTX-2.3 first-last-frame conditioned video",
+  "color_identity_reference_audit": {
+    "all_identities_present": true,
+    "maximum_area_ratio": 1.7839,
+    "maximum_centroid_error_px": 337.1092,
+    "maximum_shape_eigenvalue_ratio": 4.1383,
+    "measurement_zh": "按每种程序颜色追踪稳定对象，将生成帧与同一时刻的程序参考帧比较面积、质心和协方差特征值；用于区分刚体搬运与形变、消失或复制。",
+    "minimum_area_ratio": 0.7369,
+    "minimum_shape_eigenvalue_ratio": 0.1522,
+    "passed": false,
+    "records": [
+      {
+        "frame": 0,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6084,
+            "centroid_error_px": 29.7781,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6172,
+              0.4466
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.3537,
+            "centroid_error_px": 34.9007,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7335,
+              3.8404
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0336,
+            "centroid_error_px": 5.5921,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9202,
+              0.8719
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0529,
+            "centroid_error_px": 2.2949,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.987,
+              0.9891
+            ]
+          }
+        ],
+        "program_reference_frame": 0
+      },
+      {
+        "frame": 1,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7494,
+            "centroid_error_px": 40.4446,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6345,
+              0.4494
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.2218,
+            "centroid_error_px": 19.4173,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6917,
+              3.1927
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0288,
+            "centroid_error_px": 0.8335,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8499,
+              0.8851
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1244,
+            "centroid_error_px": 6.8939,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0141,
+              1.0148
+            ]
+          }
+        ],
+        "program_reference_frame": 0
+      },
+      {
+        "frame": 2,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.5639,
+            "centroid_error_px": 37.2478,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6734,
+              0.4178
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4196,
+            "centroid_error_px": 25.9526,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6662,
+              4.1383
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0095,
+            "centroid_error_px": 6.4423,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8343,
+              0.9063
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1234,
+            "centroid_error_px": 14.0241,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3201,
+              1.039
+            ]
+          }
+        ],
+        "program_reference_frame": 0
+      },
+      {
+        "frame": 3,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3928,
+            "centroid_error_px": 34.2117,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6921,
+              0.3654
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.3277,
+            "centroid_error_px": 12.6197,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6998,
+              3.9293
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9951,
+            "centroid_error_px": 13.3049,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7949,
+              0.9278
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1148,
+            "centroid_error_px": 21.0451,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0088,
+              1.0431
+            ]
+          }
+        ],
+        "program_reference_frame": 0
+      },
+      {
+        "frame": 4,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2637,
+            "centroid_error_px": 32.213,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6347,
+              0.3138
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.2532,
+            "centroid_error_px": 48.7764,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8957,
+              2.3565
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0059,
+            "centroid_error_px": 21.0493,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8286,
+              0.9369
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1377,
+            "centroid_error_px": 28.4509,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2606,
+              1.0515
+            ]
+          }
+        ],
+        "program_reference_frame": 1
+      },
+      {
+        "frame": 5,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2232,
+            "centroid_error_px": 35.2652,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6284,
+              0.2937
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.2237,
+            "centroid_error_px": 38.9088,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8844,
+              2.2176
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0393,
+            "centroid_error_px": 29.9246,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8789,
+              0.9294
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1323,
+            "centroid_error_px": 36.1849,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0314,
+              1.063
+            ]
+          }
+        ],
+        "program_reference_frame": 1
+      },
+      {
+        "frame": 6,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2344,
+            "centroid_error_px": 47.321,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6373,
+              0.3285
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.2307,
+            "centroid_error_px": 31.1465,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8695,
+              2.2496
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0309,
+            "centroid_error_px": 38.4891,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8626,
+              0.9427
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1192,
+            "centroid_error_px": 44.1944,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2758,
+              1.0674
+            ]
+          }
+        ],
+        "program_reference_frame": 1
+      },
+      {
+        "frame": 7,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2339,
+            "centroid_error_px": 53.9324,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6538,
+              0.3403
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.3359,
+            "centroid_error_px": 31.6433,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8648,
+              2.7146
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0428,
+            "centroid_error_px": 45.7476,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8912,
+              0.9515
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1282,
+            "centroid_error_px": 52.3813,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.016,
+              1.0886
+            ]
+          }
+        ],
+        "program_reference_frame": 1
+      },
+      {
+        "frame": 8,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2175,
+            "centroid_error_px": 57.9706,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6695,
+              0.33
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4847,
+            "centroid_error_px": 33.6252,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8375,
+              3.0454
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0522,
+            "centroid_error_px": 55.2007,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9059,
+              0.9561
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1179,
+            "centroid_error_px": 59.7561,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2947,
+              1.0994
+            ]
+          }
+        ],
+        "program_reference_frame": 1
+      },
+      {
+        "frame": 9,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2162,
+            "centroid_error_px": 59.8328,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4031,
+              0.295
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5951,
+            "centroid_error_px": 136.3349,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3337,
+              1.5361
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.046,
+            "centroid_error_px": 61.2876,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9167,
+              0.951
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1157,
+            "centroid_error_px": 67.1838,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0385,
+              1.1098
+            ]
+          }
+        ],
+        "program_reference_frame": 2
+      },
+      {
+        "frame": 10,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3612,
+            "centroid_error_px": 77.6463,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.399,
+              0.3544
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5453,
+            "centroid_error_px": 124.4724,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2898,
+              1.4748
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0446,
+            "centroid_error_px": 68.9977,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8834,
+              0.9645
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1221,
+            "centroid_error_px": 75.0211,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0155,
+              1.1159
+            ]
+          }
+        ],
+        "program_reference_frame": 2
+      },
+      {
+        "frame": 11,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4595,
+            "centroid_error_px": 92.298,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3781,
+              0.3776
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5901,
+            "centroid_error_px": 119.3397,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3295,
+              1.535
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0465,
+            "centroid_error_px": 77.6088,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8656,
+              0.9692
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1231,
+            "centroid_error_px": 83.3387,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0004,
+              1.1222
+            ]
+          }
+        ],
+        "program_reference_frame": 2
+      },
+      {
+        "frame": 12,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4786,
+            "centroid_error_px": 102.8736,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3639,
+              0.3937
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.6132,
+            "centroid_error_px": 113.2303,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2851,
+              1.5872
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0745,
+            "centroid_error_px": 84.6546,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9049,
+              0.9766
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1618,
+            "centroid_error_px": 91.7497,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.027,
+              1.1355
+            ]
+          }
+        ],
+        "program_reference_frame": 2
+      },
+      {
+        "frame": 13,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4647,
+            "centroid_error_px": 110.6715,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3557,
+              0.393
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.6121,
+            "centroid_error_px": 105.0767,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3168,
+              1.5841
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0743,
+            "centroid_error_px": 94.4406,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9355,
+              0.9662
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1475,
+            "centroid_error_px": 100.4349,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0605,
+              1.1311
+            ]
+          }
+        ],
+        "program_reference_frame": 2
+      },
+      {
+        "frame": 14,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4633,
+            "centroid_error_px": 117.5997,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3577,
+              0.3865
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.6019,
+            "centroid_error_px": 96.7805,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3506,
+              1.607
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0631,
+            "centroid_error_px": 103.5605,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9327,
+              0.9563
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1106,
+            "centroid_error_px": 108.5743,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1311,
+              1.1227
+            ]
+          }
+        ],
+        "program_reference_frame": 2
+      },
+      {
+        "frame": 15,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.5802,
+            "centroid_error_px": 131.0975,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3682,
+              0.4002
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.6382,
+            "centroid_error_px": 90.4841,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3546,
+              1.6106
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0591,
+            "centroid_error_px": 112.606,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9236,
+              0.9525
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0996,
+            "centroid_error_px": 117.3406,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0063,
+              1.1202
+            ]
+          }
+        ],
+        "program_reference_frame": 2
+      },
+      {
+        "frame": 16,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.61,
+            "centroid_error_px": 142.1692,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3653,
+              0.3836
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5626,
+            "centroid_error_px": 194.0624,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.4745,
+              1.0101
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0591,
+            "centroid_error_px": 119.3607,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.922,
+              0.9362
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1238,
+            "centroid_error_px": 125.5385,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0436,
+              1.1313
+            ]
+          }
+        ],
+        "program_reference_frame": 3
+      },
+      {
+        "frame": 17,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6194,
+            "centroid_error_px": 149.9354,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3619,
+              0.3779
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5078,
+            "centroid_error_px": 183.5752,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.4059,
+              0.9886
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0191,
+            "centroid_error_px": 123.3568,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9249,
+              0.9405
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1488,
+            "centroid_error_px": 133.765,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0208,
+              1.1493
+            ]
+          }
+        ],
+        "program_reference_frame": 3
+      },
+      {
+        "frame": 18,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6813,
+            "centroid_error_px": 160.9774,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.364,
+              0.3945
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4831,
+            "centroid_error_px": 172.449,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3874,
+              0.9611
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9761,
+            "centroid_error_px": 129.3367,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8265,
+              0.9666
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1347,
+            "centroid_error_px": 140.7978,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0509,
+              1.1599
+            ]
+          }
+        ],
+        "program_reference_frame": 3
+      },
+      {
+        "frame": 19,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6557,
+            "centroid_error_px": 166.9377,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3605,
+              0.3903
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4403,
+            "centroid_error_px": 163.1138,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3696,
+              0.9486
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9776,
+            "centroid_error_px": 139.0452,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8211,
+              0.9795
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.115,
+            "centroid_error_px": 149.3793,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0298,
+              1.1537
+            ]
+          }
+        ],
+        "program_reference_frame": 3
+      },
+      {
+        "frame": 20,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6468,
+            "centroid_error_px": 176.3705,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.357,
+              0.394
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5348,
+            "centroid_error_px": 158.5941,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3816,
+              0.9534
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9911,
+            "centroid_error_px": 147.9565,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8232,
+              0.9848
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1251,
+            "centroid_error_px": 157.4953,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.995,
+              1.1496
+            ]
+          }
+        ],
+        "program_reference_frame": 3
+      },
+      {
+        "frame": 21,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7016,
+            "centroid_error_px": 190.0072,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4111,
+              0.4296
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5711,
+            "centroid_error_px": 203.5519,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1111,
+              0.7695
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0087,
+            "centroid_error_px": 155.7997,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8707,
+              0.9952
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1526,
+            "centroid_error_px": 164.987,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3478,
+              1.1396
+            ]
+          }
+        ],
+        "program_reference_frame": 4
+      },
+      {
+        "frame": 22,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7235,
+            "centroid_error_px": 200.2745,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4118,
+              0.4274
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5891,
+            "centroid_error_px": 197.9752,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0748,
+              0.794
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9712,
+            "centroid_error_px": 164.2136,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8287,
+              0.9863
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.131,
+            "centroid_error_px": 174.9423,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0213,
+              1.1328
+            ]
+          }
+        ],
+        "program_reference_frame": 4
+      },
+      {
+        "frame": 23,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7513,
+            "centroid_error_px": 209.1879,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4128,
+              0.4274
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5606,
+            "centroid_error_px": 189.2384,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0487,
+              0.7768
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9848,
+            "centroid_error_px": 171.0101,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8685,
+              0.9777
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.135,
+            "centroid_error_px": 182.4081,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0208,
+              1.1356
+            ]
+          }
+        ],
+        "program_reference_frame": 4
+      },
+      {
+        "frame": 24,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7541,
+            "centroid_error_px": 216.0006,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4162,
+              0.4194
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5881,
+            "centroid_error_px": 182.1648,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1339,
+              0.7735
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9909,
+            "centroid_error_px": 181.817,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8725,
+              0.9648
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1492,
+            "centroid_error_px": 191.7209,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.301,
+              1.1246
+            ]
+          }
+        ],
+        "program_reference_frame": 4
+      },
+      {
+        "frame": 25,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7654,
+            "centroid_error_px": 224.7289,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4158,
+              0.4138
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5379,
+            "centroid_error_px": 172.3874,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1071,
+              0.7457
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9581,
+            "centroid_error_px": 185.8507,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8652,
+              0.9651
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1434,
+            "centroid_error_px": 199.0116,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.036,
+              1.1256
+            ]
+          }
+        ],
+        "program_reference_frame": 4
+      },
+      {
+        "frame": 26,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7685,
+            "centroid_error_px": 231.7705,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4187,
+              0.4048
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.489,
+            "centroid_error_px": 162.1469,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0807,
+              0.7151
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9678,
+            "centroid_error_px": 193.9321,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8685,
+              0.9589
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.145,
+            "centroid_error_px": 207.4077,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1942,
+              1.1234
+            ]
+          }
+        ],
+        "program_reference_frame": 4
+      },
+      {
+        "frame": 27,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7819,
+            "centroid_error_px": 241.9159,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.422,
+              0.403
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4827,
+            "centroid_error_px": 152.4872,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0732,
+              0.6897
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9715,
+            "centroid_error_px": 205.9692,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8488,
+              0.9805
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1147,
+            "centroid_error_px": 216.0402,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9994,
+              1.1055
+            ]
+          }
+        ],
+        "program_reference_frame": 4
+      },
+      {
+        "frame": 28,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7568,
+            "centroid_error_px": 202.3186,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4177,
+              0.5216
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5098,
+            "centroid_error_px": 146.4054,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0757,
+              0.8776
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9837,
+            "centroid_error_px": 214.051,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8306,
+              0.9797
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1261,
+            "centroid_error_px": 223.4594,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0463,
+              1.1051
+            ]
+          }
+        ],
+        "program_reference_frame": 5
+      },
+      {
+        "frame": 29,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7752,
+            "centroid_error_px": 210.2245,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4209,
+              0.5118
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5574,
+            "centroid_error_px": 141.3953,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0859,
+              0.8896
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9848,
+            "centroid_error_px": 222.7134,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8631,
+              0.9539
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1111,
+            "centroid_error_px": 232.2001,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0183,
+              1.0865
+            ]
+          }
+        ],
+        "program_reference_frame": 5
+      },
+      {
+        "frame": 30,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.757,
+            "centroid_error_px": 218.1595,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.409,
+              0.5033
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5551,
+            "centroid_error_px": 132.2259,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.14,
+              0.8526
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0249,
+            "centroid_error_px": 233.9925,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8525,
+              0.9408
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1248,
+            "centroid_error_px": 241.1056,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0585,
+              1.0731
+            ]
+          }
+        ],
+        "program_reference_frame": 5
+      },
+      {
+        "frame": 31,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.759,
+            "centroid_error_px": 224.8557,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4097,
+              0.4933
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.554,
+            "centroid_error_px": 126.0877,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1653,
+              0.8495
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0172,
+            "centroid_error_px": 241.9593,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.85,
+              0.921
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.126,
+            "centroid_error_px": 249.7084,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0218,
+              1.0609
+            ]
+          }
+        ],
+        "program_reference_frame": 5
+      },
+      {
+        "frame": 32,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7839,
+            "centroid_error_px": 233.3957,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4068,
+              0.4896
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.587,
+            "centroid_error_px": 119.2177,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1628,
+              0.8433
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0015,
+            "centroid_error_px": 250.2655,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8712,
+              0.9122
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1251,
+            "centroid_error_px": 258.579,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0406,
+              1.0391
+            ]
+          }
+        ],
+        "program_reference_frame": 5
+      },
+      {
+        "frame": 33,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7335,
+            "centroid_error_px": 137.2012,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3996,
+              0.9432
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5186,
+            "centroid_error_px": 105.8016,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0355,
+              0.738
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.018,
+            "centroid_error_px": 258.0339,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.929,
+              0.8985
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.12,
+            "centroid_error_px": 265.7479,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0382,
+              1.0319
+            ]
+          }
+        ],
+        "program_reference_frame": 6
+      },
+      {
+        "frame": 34,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7077,
+            "centroid_error_px": 143.7822,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3829,
+              0.9216
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5125,
+            "centroid_error_px": 99.2389,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9956,
+              0.7248
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9856,
+            "centroid_error_px": 265.2588,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9074,
+              0.883
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1196,
+            "centroid_error_px": 274.4023,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1248,
+              1.0027
+            ]
+          }
+        ],
+        "program_reference_frame": 6
+      },
+      {
+        "frame": 35,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6221,
+            "centroid_error_px": 147.6405,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3724,
+              0.8855
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4417,
+            "centroid_error_px": 87.5088,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0465,
+              0.6616
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9711,
+            "centroid_error_px": 274.4688,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9375,
+              0.8581
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1044,
+            "centroid_error_px": 282.9838,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2588,
+              0.9692
+            ]
+          }
+        ],
+        "program_reference_frame": 6
+      },
+      {
+        "frame": 36,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4883,
+            "centroid_error_px": 148.7319,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.3502,
+              0.8532
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5313,
+            "centroid_error_px": 83.1843,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0433,
+              0.6759
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9273,
+            "centroid_error_px": 286.688,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9562,
+              0.8232
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0693,
+            "centroid_error_px": 295.7546,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1371,
+              0.9156
+            ]
+          }
+        ],
+        "program_reference_frame": 6
+      },
+      {
+        "frame": 37,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.5189,
+            "centroid_error_px": 155.2741,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4051,
+              0.8431
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5652,
+            "centroid_error_px": 75.3291,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9943,
+              0.6996
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.8564,
+            "centroid_error_px": 305.9549,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1371,
+              0.7574
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9406,
+            "centroid_error_px": 312.7527,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3793,
+              0.8759
+            ]
+          }
+        ],
+        "program_reference_frame": 6
+      },
+      {
+        "frame": 38,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4984,
+            "centroid_error_px": 162.7027,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4197,
+              0.8677
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5468,
+            "centroid_error_px": 62.7715,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.039,
+              0.716
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.7369,
+            "centroid_error_px": 325.3263,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2035,
+              0.7
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.8039,
+            "centroid_error_px": 331.03,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.546,
+              0.8308
+            ]
+          }
+        ],
+        "program_reference_frame": 6
+      },
+      {
+        "frame": 39,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4261,
+            "centroid_error_px": 167.1126,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4035,
+              0.8414
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.596,
+            "centroid_error_px": 55.2977,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9822,
+              0.7688
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.7492,
+            "centroid_error_px": 328.5157,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1267,
+              0.7583
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.8096,
+            "centroid_error_px": 332.8763,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3429,
+              0.9104
+            ]
+          }
+        ],
+        "program_reference_frame": 6
+      },
+      {
+        "frame": 40,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.4805,
+            "centroid_error_px": 70.4808,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.5044,
+              1.4645
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5399,
+            "centroid_error_px": 55.2335,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0299,
+              1.8787
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.8347,
+            "centroid_error_px": 327.6884,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9485,
+              0.8385
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.8961,
+            "centroid_error_px": 329.5559,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.3785,
+              1.0073
+            ]
+          }
+        ],
+        "program_reference_frame": 7
+      },
+      {
+        "frame": 41,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6141,
+            "centroid_error_px": 82.8566,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.5188,
+              1.6115
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4914,
+            "centroid_error_px": 48.6109,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.885,
+              1.8464
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.8872,
+            "centroid_error_px": 330.9462,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9373,
+              0.8806
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.977,
+            "centroid_error_px": 331.9522,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.4583,
+              1.0626
+            ]
+          }
+        ],
+        "program_reference_frame": 7
+      },
+      {
+        "frame": 42,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6641,
+            "centroid_error_px": 92.822,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4559,
+              1.7062
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.3797,
+            "centroid_error_px": 39.553,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7135,
+              1.7366
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9392,
+            "centroid_error_px": 330.1969,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8332,
+              0.904
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0164,
+            "centroid_error_px": 330.8535,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.6015,
+              1.0781
+            ]
+          }
+        ],
+        "program_reference_frame": 7
+      },
+      {
+        "frame": 43,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.688,
+            "centroid_error_px": 98.6835,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.4488,
+              1.7307
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.2256,
+            "centroid_error_px": 28.2403,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6052,
+              1.5314
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9669,
+            "centroid_error_px": 331.2379,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7762,
+              0.9002
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0205,
+            "centroid_error_px": 331.2373,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.601,
+              1.0707
+            ]
+          }
+        ],
+        "program_reference_frame": 7
+      },
+      {
+        "frame": 44,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6482,
+            "centroid_error_px": 98.7974,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.446,
+              1.6628
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.2406,
+            "centroid_error_px": 26.5933,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.5909,
+              1.595
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9961,
+            "centroid_error_px": 331.0178,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7514,
+              0.9062
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0392,
+            "centroid_error_px": 329.9944,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.4306,
+              1.0726
+            ]
+          }
+        ],
+        "program_reference_frame": 7
+      },
+      {
+        "frame": 45,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.691,
+            "centroid_error_px": 56.8986,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7359,
+              1.757
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.2449,
+            "centroid_error_px": 29.3219,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.5482,
+              2.6156
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9948,
+            "centroid_error_px": 333.8705,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7685,
+              0.8936
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0117,
+            "centroid_error_px": 330.7866,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2923,
+              1.0293
+            ]
+          }
+        ],
+        "program_reference_frame": 8
+      },
+      {
+        "frame": 46,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6521,
+            "centroid_error_px": 52.7754,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7252,
+              1.6436
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.1317,
+            "centroid_error_px": 17.5333,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.5767,
+              2.0461
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0298,
+            "centroid_error_px": 333.2765,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7739,
+              0.891
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0501,
+            "centroid_error_px": 332.2204,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.0379,
+              1.0476
+            ]
+          }
+        ],
+        "program_reference_frame": 8
+      },
+      {
+        "frame": 47,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7286,
+            "centroid_error_px": 56.8766,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7527,
+              1.7411
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0767,
+            "centroid_error_px": 8.8289,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.5896,
+              1.6457
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0446,
+            "centroid_error_px": 337.1092,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7723,
+              0.8839
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0426,
+            "centroid_error_px": 335.0515,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7521,
+              1.0356
+            ]
+          }
+        ],
+        "program_reference_frame": 8
+      },
+      {
+        "frame": 48,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.702,
+            "centroid_error_px": 57.4547,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7491,
+              1.7193
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0222,
+            "centroid_error_px": 3.6754,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7136,
+              1.229
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0629,
+            "centroid_error_px": 335.919,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7788,
+              0.8802
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0535,
+            "centroid_error_px": 334.3043,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7595,
+              1.0243
+            ]
+          }
+        ],
+        "program_reference_frame": 8
+      },
+      {
+        "frame": 49,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6431,
+            "centroid_error_px": 54.7066,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7553,
+              1.6537
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0134,
+            "centroid_error_px": 2.7449,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7056,
+              1.1527
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0699,
+            "centroid_error_px": 336.167,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7755,
+              0.8808
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0546,
+            "centroid_error_px": 335.1633,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7622,
+              1.0218
+            ]
+          }
+        ],
+        "program_reference_frame": 8
+      },
+      {
+        "frame": 50,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6371,
+            "centroid_error_px": 54.2307,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7598,
+              1.6536
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9827,
+            "centroid_error_px": 1.1533,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6418,
+              0.8789
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0673,
+            "centroid_error_px": 336.4253,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7697,
+              0.8781
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0571,
+            "centroid_error_px": 335.1232,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7632,
+              1.021
+            ]
+          }
+        ],
+        "program_reference_frame": 8
+      },
+      {
+        "frame": 51,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6361,
+            "centroid_error_px": 54.2467,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7594,
+              1.6542
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9809,
+            "centroid_error_px": 1.2983,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6276,
+              0.8673
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.06,
+            "centroid_error_px": 337.0509,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7705,
+              0.8724
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0566,
+            "centroid_error_px": 335.0881,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7624,
+              1.0207
+            ]
+          }
+        ],
+        "program_reference_frame": 8
+      },
+      {
+        "frame": 52,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6366,
+            "centroid_error_px": 54.128,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.757,
+              1.6547
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9796,
+            "centroid_error_px": 1.4194,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6204,
+              0.858
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.046,
+            "centroid_error_px": 316.7873,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.676,
+              0.572
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0361,
+            "centroid_error_px": 313.8496,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6786,
+              0.62
+            ]
+          }
+        ],
+        "program_reference_frame": 9
+      },
+      {
+        "frame": 53,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6395,
+            "centroid_error_px": 54.1831,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7579,
+              1.653
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9809,
+            "centroid_error_px": 1.326,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.617,
+              0.8661
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0457,
+            "centroid_error_px": 316.8322,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.676,
+              0.5717
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0356,
+            "centroid_error_px": 313.88,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6783,
+              0.6198
+            ]
+          }
+        ],
+        "program_reference_frame": 9
+      },
+      {
+        "frame": 54,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6454,
+            "centroid_error_px": 54.1318,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.756,
+              1.6606
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.977,
+            "centroid_error_px": 1.2055,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6113,
+              0.869
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0457,
+            "centroid_error_px": 316.8319,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.676,
+              0.5717
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0374,
+            "centroid_error_px": 314.036,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6774,
+              0.6207
+            ]
+          }
+        ],
+        "program_reference_frame": 9
+      },
+      {
+        "frame": 55,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6456,
+            "centroid_error_px": 54.128,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7562,
+              1.6597
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.977,
+            "centroid_error_px": 1.2055,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6113,
+              0.869
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0457,
+            "centroid_error_px": 316.8319,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.676,
+              0.5717
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0374,
+            "centroid_error_px": 314.036,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6774,
+              0.6207
+            ]
+          }
+        ],
+        "program_reference_frame": 9
+      },
+      {
+        "frame": 56,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3639,
+            "centroid_error_px": 35.8822,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8594,
+              1.2748
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.4764,
+            "centroid_error_px": 39.0831,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8214,
+              3.1383
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0442,
+            "centroid_error_px": 316.9335,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6739,
+              0.5707
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0448,
+            "centroid_error_px": 314.8054,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6916,
+              0.6228
+            ]
+          }
+        ],
+        "program_reference_frame": 9
+      },
+      {
+        "frame": 57,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.0942,
+            "centroid_error_px": 16.318,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8068,
+              0.6091
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.699,
+            "centroid_error_px": 50.9667,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9083,
+              3.4595
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0513,
+            "centroid_error_px": 277.7985,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6866,
+              0.2845
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0496,
+            "centroid_error_px": 275.5951,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7047,
+              0.292
+            ]
+          }
+        ],
+        "program_reference_frame": 10
+      },
+      {
+        "frame": 58,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2073,
+            "centroid_error_px": 25.7351,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7694,
+              0.9248
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.5435,
+            "centroid_error_px": 43.5242,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8335,
+              3.3099
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0484,
+            "centroid_error_px": 278.1825,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6856,
+              0.2833
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0489,
+            "centroid_error_px": 275.19,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7087,
+              0.2926
+            ]
+          }
+        ],
+        "program_reference_frame": 10
+      },
+      {
+        "frame": 59,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2943,
+            "centroid_error_px": 32.0742,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7086,
+              1.1186
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.3353,
+            "centroid_error_px": 30.0833,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8004,
+              2.7372
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0499,
+            "centroid_error_px": 278.1287,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6869,
+              0.2838
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.045,
+            "centroid_error_px": 274.7995,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.692,
+              0.2914
+            ]
+          }
+        ],
+        "program_reference_frame": 10
+      },
+      {
+        "frame": 60,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.2961,
+            "centroid_error_px": 32.2186,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7422,
+              1.1421
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9954,
+            "centroid_error_px": 1.2587,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6799,
+              0.9962
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0468,
+            "centroid_error_px": 278.3616,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6838,
+              0.283
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0357,
+            "centroid_error_px": 274.2832,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6858,
+              0.2915
+            ]
+          }
+        ],
+        "program_reference_frame": 10
+      },
+      {
+        "frame": 61,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3465,
+            "centroid_error_px": 36.5238,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6787,
+              1.2899
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9923,
+            "centroid_error_px": 0.9688,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6418,
+              0.9709
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0463,
+            "centroid_error_px": 278.5116,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6845,
+              0.282
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.025,
+            "centroid_error_px": 273.6762,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6828,
+              0.2898
+            ]
+          }
+        ],
+        "program_reference_frame": 10
+      },
+      {
+        "frame": 62,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3481,
+            "centroid_error_px": 36.1274,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6861,
+              1.2687
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9675,
+            "centroid_error_px": 1.4464,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6407,
+              0.8294
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0357,
+            "centroid_error_px": 279.2277,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6764,
+              0.281
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0246,
+            "centroid_error_px": 273.5688,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6977,
+              0.2896
+            ]
+          }
+        ],
+        "program_reference_frame": 10
+      },
+      {
+        "frame": 63,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3499,
+            "centroid_error_px": 36.2815,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6828,
+              1.2666
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.976,
+            "centroid_error_px": 0.2597,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7367,
+              0.9492
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0339,
+            "centroid_error_px": 279.3269,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6786,
+              0.2812
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0184,
+            "centroid_error_px": 273.1231,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6932,
+              0.289
+            ]
+          }
+        ],
+        "program_reference_frame": 10
+      },
+      {
+        "frame": 64,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3783,
+            "centroid_error_px": 37.7421,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.692,
+              1.2915
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9739,
+            "centroid_error_px": 0.4123,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7468,
+              0.9446
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0287,
+            "centroid_error_px": 246.1834,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8191,
+              0.1785
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0084,
+            "centroid_error_px": 238.7397,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8409,
+              0.1804
+            ]
+          }
+        ],
+        "program_reference_frame": 11
+      },
+      {
+        "frame": 65,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.3711,
+            "centroid_error_px": 37.2428,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.6953,
+              1.273
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9729,
+            "centroid_error_px": 0.4572,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7468,
+              0.9414
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0306,
+            "centroid_error_px": 246.0769,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8196,
+              0.1784
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0127,
+            "centroid_error_px": 239.1896,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8399,
+              0.1813
+            ]
+          }
+        ],
+        "program_reference_frame": 11
+      },
+      {
+        "frame": 66,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.5412,
+            "centroid_error_px": 47.8475,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7756,
+              1.5671
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9659,
+            "centroid_error_px": 1.1256,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7715,
+              0.8798
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0233,
+            "centroid_error_px": 246.4886,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.817,
+              0.1783
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0131,
+            "centroid_error_px": 239.092,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.83,
+              0.1807
+            ]
+          }
+        ],
+        "program_reference_frame": 11
+      },
+      {
+        "frame": 67,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6518,
+            "centroid_error_px": 53.6788,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7529,
+              1.6759
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9656,
+            "centroid_error_px": 1.1751,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7731,
+              0.8737
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0206,
+            "centroid_error_px": 246.5518,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8172,
+              0.1785
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0117,
+            "centroid_error_px": 238.991,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8366,
+              0.1804
+            ]
+          }
+        ],
+        "program_reference_frame": 11
+      },
+      {
+        "frame": 68,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6428,
+            "centroid_error_px": 53.4013,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.76,
+              1.6811
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9662,
+            "centroid_error_px": 1.131,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7727,
+              0.8761
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.022,
+            "centroid_error_px": 246.4872,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8167,
+              0.1784
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0107,
+            "centroid_error_px": 238.9803,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8372,
+              0.1806
+            ]
+          }
+        ],
+        "program_reference_frame": 11
+      },
+      {
+        "frame": 69,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6382,
+            "centroid_error_px": 52.7854,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7545,
+              1.6668
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9681,
+            "centroid_error_px": 1.2707,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9705,
+              0.8731
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0288,
+            "centroid_error_px": 234.1583,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8993,
+              0.1522
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0162,
+            "centroid_error_px": 226.8446,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9406,
+              0.1528
+            ]
+          }
+        ],
+        "program_reference_frame": 12
+      },
+      {
+        "frame": 70,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6836,
+            "centroid_error_px": 55.2813,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7533,
+              1.7276
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9681,
+            "centroid_error_px": 1.2958,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9676,
+              0.8689
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0286,
+            "centroid_error_px": 234.2024,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8993,
+              0.1522
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0191,
+            "centroid_error_px": 226.9613,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9491,
+              0.1528
+            ]
+          }
+        ],
+        "program_reference_frame": 12
+      },
+      {
+        "frame": 71,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6838,
+            "centroid_error_px": 55.2684,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7537,
+              1.7279
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9687,
+            "centroid_error_px": 1.2676,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9789,
+              0.8753
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0273,
+            "centroid_error_px": 234.2432,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9,
+              0.1522
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0183,
+            "centroid_error_px": 226.9135,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9461,
+              0.1527
+            ]
+          }
+        ],
+        "program_reference_frame": 12
+      },
+      {
+        "frame": 72,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6838,
+            "centroid_error_px": 55.2595,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7536,
+              1.7278
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9694,
+            "centroid_error_px": 1.2104,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9782,
+              0.8799
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0291,
+            "centroid_error_px": 234.1496,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9006,
+              0.1522
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0186,
+            "centroid_error_px": 226.9399,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9548,
+              0.1527
+            ]
+          }
+        ],
+        "program_reference_frame": 12
+      },
+      {
+        "frame": 73,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6619,
+            "centroid_error_px": 54.0671,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7499,
+              1.6999
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9694,
+            "centroid_error_px": 1.2104,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9782,
+              0.8799
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0305,
+            "centroid_error_px": 234.0733,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9078,
+              0.1522
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0189,
+            "centroid_error_px": 226.9517,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9558,
+              0.1527
+            ]
+          }
+        ],
+        "program_reference_frame": 12
+      },
+      {
+        "frame": 74,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6872,
+            "centroid_error_px": 55.5325,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7508,
+              1.7352
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9689,
+            "centroid_error_px": 1.2169,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9761,
+              0.8778
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.029,
+            "centroid_error_px": 234.1671,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9087,
+              0.1523
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0189,
+            "centroid_error_px": 226.9701,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.956,
+              0.1527
+            ]
+          }
+        ],
+        "program_reference_frame": 12
+      },
+      {
+        "frame": 75,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6875,
+            "centroid_error_px": 55.5556,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7508,
+              1.7353
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9684,
+            "centroid_error_px": 1.249,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9728,
+              0.8729
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.029,
+            "centroid_error_px": 234.2118,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9083,
+              0.1522
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0186,
+            "centroid_error_px": 226.9595,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9556,
+              0.1528
+            ]
+          }
+        ],
+        "program_reference_frame": 12
+      },
+      {
+        "frame": 76,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6524,
+            "centroid_error_px": 53.7518,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7612,
+              1.7094
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9671,
+            "centroid_error_px": 1.3475,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.974,
+              0.8655
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0014,
+            "centroid_error_px": 190.98,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7963,
+              0.2882
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0011,
+            "centroid_error_px": 182.5615,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8381,
+              0.2896
+            ]
+          }
+        ],
+        "program_reference_frame": 13
+      },
+      {
+        "frame": 77,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6135,
+            "centroid_error_px": 52.5815,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7701,
+              1.7243
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9668,
+            "centroid_error_px": 1.3662,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9729,
+              0.8632
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0066,
+            "centroid_error_px": 190.6529,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8004,
+              0.2884
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0008,
+            "centroid_error_px": 182.5473,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8378,
+              0.2897
+            ]
+          }
+        ],
+        "program_reference_frame": 13
+      },
+      {
+        "frame": 78,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7106,
+            "centroid_error_px": 57.0865,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7409,
+              1.7769
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9671,
+            "centroid_error_px": 1.3475,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.974,
+              0.8655
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0056,
+            "centroid_error_px": 190.7224,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8007,
+              0.2885
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0036,
+            "centroid_error_px": 182.6429,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8363,
+              0.289
+            ]
+          }
+        ],
+        "program_reference_frame": 13
+      },
+      {
+        "frame": 79,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7094,
+            "centroid_error_px": 57.0442,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7415,
+              1.7772
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9658,
+            "centroid_error_px": 1.495,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9751,
+              0.8447
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0037,
+            "centroid_error_px": 190.8079,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8006,
+              0.2885
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0037,
+            "centroid_error_px": 182.6121,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8343,
+              0.2889
+            ]
+          }
+        ],
+        "program_reference_frame": 13
+      },
+      {
+        "frame": 80,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7094,
+            "centroid_error_px": 57.0444,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7413,
+              1.7772
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9658,
+            "centroid_error_px": 1.495,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9751,
+              0.8447
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0043,
+            "centroid_error_px": 190.7527,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8008,
+              0.2886
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.004,
+            "centroid_error_px": 182.6245,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.8344,
+              0.2889
+            ]
+          }
+        ],
+        "program_reference_frame": 13
+      },
+      {
+        "frame": 81,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6864,
+            "centroid_error_px": 56.0549,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7406,
+              1.767
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9655,
+            "centroid_error_px": 1.5154,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9739,
+              0.8424
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0883,
+            "centroid_error_px": 103.3751,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.625,
+              1.8501
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.088,
+            "centroid_error_px": 95.8496,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              2.0308,
+              1.8737
+            ]
+          }
+        ],
+        "program_reference_frame": 14
+      },
+      {
+        "frame": 82,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6846,
+            "centroid_error_px": 55.9824,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.741,
+              1.766
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9632,
+            "centroid_error_px": 1.7223,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9681,
+              0.819
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0877,
+            "centroid_error_px": 103.3944,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.6243,
+              1.8507
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0887,
+            "centroid_error_px": 95.8779,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              2.0317,
+              1.8733
+            ]
+          }
+        ],
+        "program_reference_frame": 14
+      },
+      {
+        "frame": 83,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6844,
+            "centroid_error_px": 55.971,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7408,
+              1.7659
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9637,
+            "centroid_error_px": 1.6665,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9716,
+              0.8266
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0875,
+            "centroid_error_px": 103.3905,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.6245,
+              1.8509
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0868,
+            "centroid_error_px": 95.8077,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              2.0316,
+              1.8754
+            ]
+          }
+        ],
+        "program_reference_frame": 14
+      },
+      {
+        "frame": 84,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6833,
+            "centroid_error_px": 55.9136,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7407,
+              1.7648
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9635,
+            "centroid_error_px": 1.6635,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9711,
+              0.8267
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0875,
+            "centroid_error_px": 103.3905,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.6245,
+              1.8509
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0866,
+            "centroid_error_px": 95.7982,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              2.0305,
+              1.8753
+            ]
+          }
+        ],
+        "program_reference_frame": 14
+      },
+      {
+        "frame": 85,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.6854,
+            "centroid_error_px": 56.0088,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7401,
+              1.7659
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9635,
+            "centroid_error_px": 1.6635,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9711,
+              0.8267
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0884,
+            "centroid_error_px": 103.3785,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.6255,
+              1.85
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0865,
+            "centroid_error_px": 95.7851,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              2.0302,
+              1.8751
+            ]
+          }
+        ],
+        "program_reference_frame": 14
+      },
+      {
+        "frame": 86,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7073,
+            "centroid_error_px": 56.9742,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7408,
+              1.7766
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9632,
+            "centroid_error_px": 1.6842,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9714,
+              0.8253
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0875,
+            "centroid_error_px": 103.4051,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.6236,
+              1.8506
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0862,
+            "centroid_error_px": 95.7787,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              2.0288,
+              1.8751
+            ]
+          }
+        ],
+        "program_reference_frame": 14
+      },
+      {
+        "frame": 87,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7073,
+            "centroid_error_px": 56.9742,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7407,
+              1.7766
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9632,
+            "centroid_error_px": 1.6842,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9714,
+              0.8253
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.088,
+            "centroid_error_px": 103.3839,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.6236,
+              1.8503
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0859,
+            "centroid_error_px": 95.794,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              2.0289,
+              1.8753
+            ]
+          }
+        ],
+        "program_reference_frame": 14
+      },
+      {
+        "frame": 88,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.707,
+            "centroid_error_px": 56.9714,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7407,
+              1.7768
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9632,
+            "centroid_error_px": 1.6842,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9714,
+              0.8253
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0095,
+            "centroid_error_px": 35.0658,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2164,
+              2.3603
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9996,
+            "centroid_error_px": 28.8212,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1754,
+              2.3704
+            ]
+          }
+        ],
+        "program_reference_frame": 15
+      },
+      {
+        "frame": 89,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.707,
+            "centroid_error_px": 56.9675,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7409,
+              1.7766
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.963,
+            "centroid_error_px": 1.692,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9716,
+              0.8253
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0095,
+            "centroid_error_px": 35.0658,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2164,
+              2.3603
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9999,
+            "centroid_error_px": 28.8303,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1746,
+              2.3694
+            ]
+          }
+        ],
+        "program_reference_frame": 15
+      },
+      {
+        "frame": 90,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7073,
+            "centroid_error_px": 56.9633,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7408,
+              1.7764
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9632,
+            "centroid_error_px": 1.6708,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9714,
+              0.8267
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0073,
+            "centroid_error_px": 35.1789,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2167,
+              2.3592
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0,
+            "centroid_error_px": 28.8,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1747,
+              2.3701
+            ]
+          }
+        ],
+        "program_reference_frame": 15
+      },
+      {
+        "frame": 91,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7075,
+            "centroid_error_px": 56.9801,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7407,
+              1.7767
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9632,
+            "centroid_error_px": 1.684,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9714,
+              0.8253
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0063,
+            "centroid_error_px": 35.277,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.218,
+              2.3563
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0012,
+            "centroid_error_px": 28.7277,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1734,
+              2.3719
+            ]
+          }
+        ],
+        "program_reference_frame": 15
+      },
+      {
+        "frame": 92,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7063,
+            "centroid_error_px": 56.9937,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.74,
+              1.7767
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9637,
+            "centroid_error_px": 1.6409,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9709,
+              0.8283
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0058,
+            "centroid_error_px": 35.2886,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.2183,
+              2.3565
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0015,
+            "centroid_error_px": 28.7208,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              1.1643,
+              2.3726
+            ]
+          }
+        ],
+        "program_reference_frame": 15
+      },
+      {
+        "frame": 93,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7073,
+            "centroid_error_px": 56.965,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7409,
+              1.7763
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9632,
+            "centroid_error_px": 1.684,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9714,
+              0.8253
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0284,
+            "centroid_error_px": 2.9008,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9451,
+              0.97
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0082,
+            "centroid_error_px": 4.0776,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9294,
+              0.965
+            ]
+          }
+        ],
+        "program_reference_frame": 16
+      },
+      {
+        "frame": 94,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7065,
+            "centroid_error_px": 56.9418,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.741,
+              1.7757
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9622,
+            "centroid_error_px": 1.7756,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9607,
+              0.8154
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0281,
+            "centroid_error_px": 2.8946,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9378,
+              0.9704
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0076,
+            "centroid_error_px": 4.0903,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9154,
+              0.9655
+            ]
+          }
+        ],
+        "program_reference_frame": 16
+      },
+      {
+        "frame": 95,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.7037,
+            "centroid_error_px": 56.9638,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7395,
+              1.7763
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.9619,
+            "centroid_error_px": 1.8076,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9563,
+              0.8099
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0281,
+            "centroid_error_px": 2.8946,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9378,
+              0.9704
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0079,
+            "centroid_error_px": 4.0799,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9152,
+              0.9653
+            ]
+          }
+        ],
+        "program_reference_frame": 16
+      },
+      {
+        "frame": 96,
+        "identities": [
+          {
+            "area_ratio_vs_program": 1.705,
+            "centroid_error_px": 56.9585,
+            "identity_id": "red_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.7403,
+              1.776
+            ]
+          },
+          {
+            "area_ratio_vs_program": 0.963,
+            "centroid_error_px": 1.705,
+            "identity_id": "orange_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9655,
+              0.8211
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0289,
+            "centroid_error_px": 2.8694,
+            "identity_id": "teal_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.945,
+              0.9698
+            ]
+          },
+          {
+            "area_ratio_vs_program": 1.0058,
+            "centroid_error_px": 4.1498,
+            "identity_id": "blue_triangle",
+            "present": true,
+            "shape_eigenvalue_ratios_vs_program": [
+              0.9157,
+              0.9667
+            ]
+          }
+        ],
+        "program_reference_frame": 16
+      }
+    ],
+    "thresholds": {
+      "area_ratio": [
+        0.65,
+        1.35
+      ],
+      "maximum_centroid_error_px": 28.0,
+      "shape_eigenvalue_ratio": [
+        0.55,
+        1.8
+      ]
+    }
+  },
+  "endpoint_comparison": {
+    "first": {
+      "mean_absolute_pixel_error_0_255": 4.0863,
+      "psnr_db": 25.1122
+    },
+    "last": {
+      "mean_absolute_pixel_error_0_255": 4.0056,
+      "psnr_db": 26.2545
+    }
+  },
+  "experiment_id": "EXP-P5-20260729-003",
+  "experiment_spec_sha256": "8f4fa1c21b23ced19ceb706118af52a5ae350290a01e97ab19640ac3cace7c27",
+  "generation_seconds": 30.078,
+  "hard_checks": [
+    {
+      "evidence": {
+        "codec": "h264",
+        "duration_seconds": 4.041666666666667,
+        "fps": 24.0,
+        "frame_count": 97,
+        "has_audio": true,
+        "height": 320,
+        "width": 576
+      },
+      "name": "video_contract_matches_requested_dimensions",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "first": {
+          "mean_absolute_pixel_error_0_255": 4.0863,
+          "psnr_db": 25.1122
+        },
+        "last": {
+          "mean_absolute_pixel_error_0_255": 4.0056,
+          "psnr_db": 26.2545
+        },
+        "threshold": 15
+      },
+      "name": "first_and_last_frames_follow_inputs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 4.642,
+        "mean": 2.0171,
+        "p95": 4.5739,
+        "threshold": 12
+      },
+      "name": "no_single_frame_jump_exceeds_smoke_threshold",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "all_identities_present": true,
+        "maximum_area_ratio": 1.7839,
+        "maximum_centroid_error_px": 337.1092,
+        "maximum_shape_eigenvalue_ratio": 4.1383,
+        "minimum_area_ratio": 0.7369,
+        "minimum_shape_eigenvalue_ratio": 0.1522,
+        "passed": false,
+        "thresholds": {
+          "area_ratio": [
+            0.65,
+            1.35
+          ],
+          "maximum_centroid_error_px": 28.0,
+          "shape_eigenvalue_ratio": [
+            0.55,
+            1.8
+          ]
+        }
+      },
+      "name": "colored_object_identities_follow_program_rigid_motion",
+      "passed": false
+    }
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 1
+  },
+  "motion_class": "rigid_motion",
+  "preview": {
+    "path": "generated-frames.jpg",
+    "sha256": "903e10c5acfbd0834eab81d273848e4748ca20591e9102d26f1853ea2dc54266",
+    "size_bytes": 181869
+  },
+  "prompt_id": "99f0c1c0-8bfc-4ecf-9d67-9d2d351de02a",
+  "radial_propagation_audit": null,
+  "sample_indices": [
+    0,
+    12,
+    24,
+    36,
+    48,
+    60,
+    72,
+    84,
+    96
+  ],
+  "schema_version": "1.0",
+  "status": "generated_pending_visual_review",
+  "temporal_metrics": {
+    "maximum_consecutive_frame_mae_0_255": 4.642,
+    "mean_consecutive_frame_mae_0_255": 2.0171,
+    "p95_consecutive_frame_mae_0_255": 4.5739
+  },
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 4.041666666666667,
+    "fps": 24.0,
+    "frame_count": 97,
+    "has_audio": true,
+    "height": 320,
+    "path": "transition.mp4",
+    "sha256": "6e8c7ce5b4c4633df8c3f7cdbfb0524ae98a399125a552a44b1bdca00ffd3633",
+    "size_bytes": 161542,
+    "width": 576
+  }
+}

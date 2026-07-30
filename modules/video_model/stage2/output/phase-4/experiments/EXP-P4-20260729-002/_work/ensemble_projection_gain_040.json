@@ -1,0 +1,174 @@
+{
+  "allowed_pixel_fraction": 0.08277045,
+  "allowed_region_source": {
+    "layer_id": "geo01_water_region",
+    "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/layers/geo01_water_region.npy",
+    "source_sha256": "d3cf51fb29a84fbb335b0c10379dec46af76f3e8321332009ea90b18afcf519c"
+  },
+  "case_id": "GEO-01",
+  "comparison_sheet": {
+    "path": "ensemble-material-comparison-gain_040.jpg",
+    "sha256": "7d4a82072106b80107a92fd8b77e255ebaa5267b8686511a007bbe358d7c5b63",
+    "size_bytes": 346998
+  },
+  "experiment_id": "EXP-P4-20260729-002",
+  "full_ensemble": {
+    "composite": {
+      "path": "composite/ensemble_material/gain_040/all_seed_median.png",
+      "sha256": "cd3dd1b700947c21793b574acc08770d56654bf7b9e75f3555af48eedd70aec7",
+      "size_bytes": 112367
+    },
+    "metrics": {
+      "allowed_mean_abs_detail_change_0_255": 2.661876,
+      "low_frequency_mse_vs_program": 0.05015,
+      "protected_max_abs_difference_0_255": 0.0
+    }
+  },
+  "hard_checks": [
+    {
+      "evidence": {
+        "full": 0.0,
+        "leave_one_out": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "all_non_allowed_pixels_are_bit_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.05015,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 0.189446,
+        "mean": 0.184389,
+        "values": [
+          0.180259,
+          0.183463,
+          0.189446,
+          0.189446,
+          0.183463,
+          0.180259
+        ]
+      },
+      "name": "leave_one_out_composites_are_stable",
+      "passed": true
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3101.png",
+        "sha256": "4bacbc712387114484064e70d3b2f2acd1d66dbfba71e3be6f5a0007d02725fd",
+        "size_bytes": 108528
+      },
+      "excluded_seed": 3101,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 3.817423,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3102.png",
+        "sha256": "1f20577dba6a9c5c47aa45dba86e99fca7f62c1c00906ffe81ae09fd7c64abfa",
+        "size_bytes": 97630
+      },
+      "excluded_seed": 3102,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 3.494708,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3103.png",
+        "sha256": "70d88407ce48a8b2d3bb3d9a6585ef345871e8bdfd0dc3045568bc68e19bd7d5",
+        "size_bytes": 114940
+      },
+      "excluded_seed": 3103,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 3.342667,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3104.png",
+        "sha256": "c898111c77f58c0ce7c1954acbe0e23a962b47d4ea1aadc6638ede8d4f01f134",
+        "size_bytes": 117074
+      },
+      "excluded_seed": 3104,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 3.232378,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 0.189446,
+    "mean": 0.184389,
+    "values": [
+      0.180259,
+      0.183463,
+      0.189446,
+      0.189446,
+      0.183463,
+      0.180259
+    ]
+  },
+  "method_zh": "每张 raw 供体先减去高斯低通并限幅，再对四个复现编号的残差逐像素取中位数。只在程序未保护区域加入该稳健残差；另做四张留一法结果，检查结论是否依赖某一个供体。",
+  "raw_donors": [
+    {
+      "artifact": {
+        "path": "raw/t2i_water_material_donor/seed_3101.png",
+        "sha256": "6747ca87f34e756c688cf851730387c39f9db785f9a486f5bc98a7ced8139d9f",
+        "size_bytes": 1041666
+      },
+      "seed": 3101
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_water_material_donor/seed_3102.png",
+        "sha256": "bfd8e88d7af7ba204646a2771ba352eb51d223d86857a0d0dec090b23123c4cc",
+        "size_bytes": 1480843
+      },
+      "seed": 3102
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_water_material_donor/seed_3103.png",
+        "sha256": "55dc918c05d51361b71dc3c26ab29f69d81b3b523354b30a2b3cbcf2282ed91c",
+        "size_bytes": 1131018
+      },
+      "seed": 3103
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_water_material_donor/seed_3104.png",
+        "sha256": "b79bb5f2ebe482b9e13a0ad1f30d216a57df6af31961d1601689c282f4fb4b26",
+        "size_bytes": 1098093
+      },
+      "seed": 3104
+    }
+  ],
+  "schema_version": "1.0",
+  "settings": {
+    "aggregation": "pixelwise_median",
+    "allowed_region_layer_id": "geo01_water_region",
+    "blur_radius": 12.0,
+    "protect_dilation_px": 8,
+    "residual_clip": 12.0,
+    "residual_gain": 0.4,
+    "variant_id": "gain_040"
+  }
+}

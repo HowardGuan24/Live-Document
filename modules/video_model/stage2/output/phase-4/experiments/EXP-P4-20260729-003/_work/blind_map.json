@@ -1,0 +1,22 @@
+{
+  "A": {
+    "configuration_id": "t2i_leaf_epidermis_material_donor",
+    "seed": 3104,
+    "sha256": "ee656b8f1b2f502f0570e77101739ac3e46d4b962160613ebdf3c3bd0f21b257"
+  },
+  "B": {
+    "configuration_id": "t2i_leaf_epidermis_material_donor",
+    "seed": 3103,
+    "sha256": "87bc7fb49e0913c5241124a2ec52acd9eead9826c0359b2824960280aafa098c"
+  },
+  "C": {
+    "configuration_id": "t2i_leaf_epidermis_material_donor",
+    "seed": 3102,
+    "sha256": "f345bc1e5a6831ba8d404682027434b8d972efc2ecd83f13869295f8a480175b"
+  },
+  "D": {
+    "configuration_id": "t2i_leaf_epidermis_material_donor",
+    "seed": 3101,
+    "sha256": "a0c65af1cc18dd8c128f03b100f76759f5db5049a8cc3733a37374cf3381d639"
+  }
+}

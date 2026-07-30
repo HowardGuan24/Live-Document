@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P4-20260729-003",
+  "review_mode": "blind_donors_then_machine_gates_and_full_resolution_composite",
+  "raw_donor_finding_zh": "4/4 供体都违反了 no veins，出现明显叶脉或细胞壁网络；不能直接作为成品，也不能用单供体残差。",
+  "selected_variant": {
+    "variant_id": "gain_030",
+    "mechanism_fidelity_5": 5,
+    "material_improvement_5": 3,
+    "artifact_control_5": 4,
+    "seed_robustness_5": 5,
+    "non_allowed_max_abs_difference_0_255": 0.0,
+    "low_frequency_mse_vs_program": 0.216275,
+    "leave_one_out_maximum_mae_0_255": 0.160048
+  },
+  "verdict": "accepted_case_candidate_non_water_regression",
+  "verdict_zh": "接受 gain=0.3 作为 BIO-02 当前案例候选：中位数与限幅把供体大叶脉压成轻微有机微纹理，只进入两个保卫细胞；中央气孔、边界和背景不改。",
+  "generalization_zh": "受限残差路线已从水材质扩到植物细胞表面，但材质提升仍只有 3/5，不能声称照片级。供体提示词失败也说明 raw 必须保留并盲审，不能因为 composite 安全就称供体合格。",
+  "next_action_zh": "路线保留；后续可试无方向性的显微噪声供体，但若三轮提升不足 2 分则停止该材料优化。"
+}

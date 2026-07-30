@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-004",
+  "review_mode": "labeled_raw_composite_comparison",
+  "hard_checks": {
+    "protected_pixels_bit_exact": true,
+    "composite_low_frequency_closer_to_program_than_raw": true
+  },
+  "candidate_reviews": [
+    {
+      "seed": 3101,
+      "raw_finding_zh": "供体几乎是均匀蓝色，没有可用微纹理。",
+      "composite_material_gain_5": 1,
+      "artifact_control_5": 5,
+      "notes_zh": "结构安全，但几乎看不出材质提升。"
+    },
+    {
+      "seed": 3102,
+      "raw_finding_zh": "供体出现三块面板和贯穿画面的竖直接缝。",
+      "composite_material_gain_5": 1,
+      "artifact_control_5": 1,
+      "notes_zh": "高通把接缝当成纹理投进 composite，视觉失败。"
+    },
+    {
+      "seed": 3103,
+      "raw_finding_zh": "供体出现大圆形阴影和小球状物体。",
+      "composite_material_gain_5": 1,
+      "artifact_control_5": 2,
+      "notes_zh": "小圆边缘进入 composite；保护身份边界不足以识别新物体。"
+    },
+    {
+      "seed": 3104,
+      "raw_finding_zh": "供体较平滑，只有轻微低频颜色变化。",
+      "composite_material_gain_5": 1,
+      "artifact_control_5": 5,
+      "notes_zh": "没有明显伪影，也没有可感知材质增益。"
+    }
+  ],
+  "verdict": "rejected",
+  "verdict_zh": "朴素单图高频残差投影被拒绝：机器结构门禁通过，但 2/4 composite 引入供体物体边缘，另外 2/4 没有材质提升。",
+  "generalization_boundary_zh": "程序保护区只能阻止已知身份被改动，不能自动识别模型在允许区域中新造的接缝或物体；高通也不会把“物体边缘”自动变成安全材质。",
+  "next_action_zh": "改用纯文生图生成材质供体，并对四个供体的限幅高频残差做逐像素中位数；单一种子才有的物体或接缝不得进入 composite。"
+}

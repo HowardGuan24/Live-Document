@@ -1,0 +1,264 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "center_xy": [
+        320.0,
+        115.0
+      ],
+      "destination": "unassigned",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            312.0,
+            103.0
+          ],
+          [
+            320.0,
+            115.0
+          ],
+          [
+            328.0,
+            103.0
+          ],
+          [
+            320.0,
+            115.0
+          ],
+          [
+            312.0,
+            127.0
+          ],
+          [
+            320.0,
+            115.0
+          ],
+          [
+            328.0,
+            127.0
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-01",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        320.0,
+        141.0
+      ],
+      "destination": "unassigned",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            312.0,
+            129.0
+          ],
+          [
+            320.0,
+            141.0
+          ],
+          [
+            328.0,
+            129.0
+          ],
+          [
+            320.0,
+            141.0
+          ],
+          [
+            312.0,
+            153.0
+          ],
+          [
+            320.0,
+            141.0
+          ],
+          [
+            328.0,
+            153.0
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-02",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        320.0,
+        167.0
+      ],
+      "destination": "unassigned",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            312.0,
+            155.0
+          ],
+          [
+            320.0,
+            167.0
+          ],
+          [
+            328.0,
+            155.0
+          ],
+          [
+            320.0,
+            167.0
+          ],
+          [
+            312.0,
+            179.0
+          ],
+          [
+            320.0,
+            167.0
+          ],
+          [
+            328.0,
+            179.0
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-03",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        320.0,
+        193.0
+      ],
+      "destination": "unassigned",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            312.0,
+            181.0
+          ],
+          [
+            320.0,
+            193.0
+          ],
+          [
+            328.0,
+            181.0
+          ],
+          [
+            320.0,
+            193.0
+          ],
+          [
+            312.0,
+            205.0
+          ],
+          [
+            320.0,
+            193.0
+          ],
+          [
+            328.0,
+            205.0
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-04",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        320.0,
+        219.0
+      ],
+      "destination": "unassigned",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            312.0,
+            207.0
+          ],
+          [
+            320.0,
+            219.0
+          ],
+          [
+            328.0,
+            207.0
+          ],
+          [
+            320.0,
+            219.0
+          ],
+          [
+            312.0,
+            231.0
+          ],
+          [
+            320.0,
+            219.0
+          ],
+          [
+            328.0,
+            231.0
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-05",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        320.0,
+        245.0
+      ],
+      "destination": "unassigned",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            312.0,
+            233.0
+          ],
+          [
+            320.0,
+            245.0
+          ],
+          [
+            328.0,
+            233.0
+          ],
+          [
+            320.0,
+            245.0
+          ],
+          [
+            312.0,
+            257.0
+          ],
+          [
+            320.0,
+            245.0
+          ],
+          [
+            328.0,
+            257.0
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-06",
+      "parent_id": null,
+      "shape": "replicated_x"
+    }
+  ],
+  "schema_version": "1.0"
+}

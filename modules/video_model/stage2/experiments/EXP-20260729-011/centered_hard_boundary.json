@@ -1,0 +1,30 @@
+{
+  "canvas": {
+    "height": 576,
+    "width": 1024
+  },
+  "classification": "deterministic occupancy-normalized semantic line art",
+  "excluded": [
+    "new semantic lines",
+    "labels",
+    "arrows",
+    "material shading",
+    "model-generated pixels"
+  ],
+  "output": "centered_hard_boundary.png",
+  "paste_xy": [
+    253,
+    29
+  ],
+  "schema_version": "1.0",
+  "source": "output/phase-2/MATH-02/keyframes/03_end/layers/math02_hard_boundary.npy",
+  "source_bbox_xyxy": [
+    389,
+    64,
+    602,
+    277
+  ],
+  "target_short_edge_fraction": 0.9,
+  "target_size_px": 518,
+  "topology_change": false
+}

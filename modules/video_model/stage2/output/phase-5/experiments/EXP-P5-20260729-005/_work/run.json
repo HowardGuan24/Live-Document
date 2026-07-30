@@ -1,0 +1,513 @@
+{
+  "anchor_audit": null,
+  "case_id": "CHEM-01",
+  "classification": "LTX-2.3 first-last-frame conditioned video",
+  "color_identity_reference_audit": null,
+  "color_mass_trend_audit": {
+    "allowed_step_increase_pixels": 182.3,
+    "colored_pixel_counts": [
+      1823,
+      1862,
+      1878,
+      1924,
+      2136,
+      2188,
+      2192,
+      2388,
+      2396,
+      2420,
+      2680,
+      2696,
+      2696,
+      2870,
+      2890,
+      2958,
+      3018,
+      3161,
+      3201,
+      3229,
+      3320,
+      3404,
+      3436,
+      3468,
+      3564,
+      3564,
+      3572,
+      3484,
+      3488,
+      3500,
+      3264,
+      3276,
+      3244,
+      3196,
+      3112,
+      1888,
+      1768,
+      244,
+      232,
+      216,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "final_count": 0,
+    "final_fraction_of_initial": 0.0,
+    "final_integrated_color_score": 0.0,
+    "final_score_fraction_of_initial": 0.0,
+    "initial_count": 1823,
+    "initial_integrated_color_score": 98870.0,
+    "integrated_color_scores": [
+      98870.0,
+      100834.0,
+      101690.0,
+      103072.0,
+      114692.0,
+      116412.0,
+      117144.0,
+      129036.0,
+      129188.0,
+      130856.0,
+      141916.0,
+      144532.0,
+      145808.0,
+      152630.0,
+      152966.0,
+      156584.0,
+      159386.0,
+      164918.0,
+      165969.0,
+      168191.0,
+      172933.0,
+      176840.0,
+      177572.0,
+      179632.0,
+      184292.0,
+      185624.0,
+      185296.0,
+      175400.0,
+      174760.0,
+      173920.0,
+      153876.0,
+      152480.0,
+      147676.0,
+      94320.0,
+      78132.0,
+      38296.0,
+      34244.0,
+      4612.0,
+      4612.0,
+      4572.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "maximum_score_fraction_of_initial": 1.877455,
+    "maximum_step_increase_pixels": 260,
+    "measurement_zh": "只在规格给出的液体 ROI 内按颜色差计算局部显色像素量，检查它是否总体消散而不是重新增长。",
+    "passed": false,
+    "thresholds": {
+      "maximum_final_fraction_of_initial": 0.1,
+      "maximum_score_fraction_of_initial": 1.1,
+      "minimum_initial_pixels": 300
+    }
+  },
+  "endpoint_comparison": {
+    "first": {
+      "mean_absolute_pixel_error_0_255": 1.7792,
+      "psnr_db": 38.434
+    },
+    "last": {
+      "mean_absolute_pixel_error_0_255": 1.7086,
+      "psnr_db": 36.459
+    }
+  },
+  "experiment_id": "EXP-P5-20260729-005",
+  "experiment_spec_sha256": "0804b75503b7db66f1b7d99015a8e29ce6bf5557cbb0a7ae760a118051e1070d",
+  "generation_seconds": 25.079,
+  "hard_checks": [
+    {
+      "evidence": {
+        "codec": "h264",
+        "duration_seconds": 2.0416666666666665,
+        "fps": 24.0,
+        "frame_count": 49,
+        "has_audio": true,
+        "height": 320,
+        "width": 576
+      },
+      "name": "video_contract_matches_requested_dimensions",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "first": {
+          "mean_absolute_pixel_error_0_255": 1.7792,
+          "psnr_db": 38.434
+        },
+        "last": {
+          "mean_absolute_pixel_error_0_255": 1.7086,
+          "psnr_db": 36.459
+        },
+        "threshold": 15
+      },
+      "name": "first_and_last_frames_follow_inputs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 0.3992,
+        "mean": 0.1651,
+        "p95": 0.346,
+        "threshold": 12
+      },
+      "name": "no_single_frame_jump_exceeds_smoke_threshold",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum_mean_abs_color_difference_0_255": 15.5684,
+        "minimum_coverage_fraction": 0.935207,
+        "passed": true,
+        "reference_pixel_count": 3025,
+        "thresholds": {
+          "maximum_mean_abs_color_difference_0_255": 45.0,
+          "minimum_coverage_fraction": 0.6
+        }
+      },
+      "name": "declared_static_color_mask_remains_stable",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "allowed_step_increase_pixels": 182.3,
+        "final_count": 0,
+        "final_fraction_of_initial": 0.0,
+        "final_integrated_color_score": 0.0,
+        "final_score_fraction_of_initial": 0.0,
+        "initial_count": 1823,
+        "initial_integrated_color_score": 98870.0,
+        "maximum_score_fraction_of_initial": 1.877455,
+        "maximum_step_increase_pixels": 260,
+        "passed": false,
+        "thresholds": {
+          "maximum_final_fraction_of_initial": 0.1,
+          "maximum_score_fraction_of_initial": 1.1,
+          "minimum_initial_pixels": 300
+        }
+      },
+      "name": "declared_color_mass_follows_expected_trend",
+      "passed": false
+    }
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 1
+  },
+  "motion_class": "liquid_mixing",
+  "preview": {
+    "path": "generated-frames.jpg",
+    "sha256": "cff807073eaf6fbd46c3d372e02b10232b29c6e05b687ba2bd50e7906d911654",
+    "size_bytes": 143780
+  },
+  "prompt_id": "d837febc-1e3f-4975-ba68-74fc627f27f0",
+  "radial_propagation_audit": null,
+  "reference_color_mask_stability_audit": {
+    "maximum_mean_abs_color_difference_0_255": 15.5684,
+    "minimum_coverage_fraction": 0.935207,
+    "passed": true,
+    "records": [
+      {
+        "coverage_fraction": 0.98843,
+        "frame": 0,
+        "mean_abs_color_difference_0_255": 10.4829
+      },
+      {
+        "coverage_fraction": 0.980826,
+        "frame": 1,
+        "mean_abs_color_difference_0_255": 10.5104
+      },
+      {
+        "coverage_fraction": 0.982479,
+        "frame": 2,
+        "mean_abs_color_difference_0_255": 10.6069
+      },
+      {
+        "coverage_fraction": 0.973223,
+        "frame": 3,
+        "mean_abs_color_difference_0_255": 11.097
+      },
+      {
+        "coverage_fraction": 0.968264,
+        "frame": 4,
+        "mean_abs_color_difference_0_255": 13.5092
+      },
+      {
+        "coverage_fraction": 0.966281,
+        "frame": 5,
+        "mean_abs_color_difference_0_255": 13.858
+      },
+      {
+        "coverage_fraction": 0.963967,
+        "frame": 6,
+        "mean_abs_color_difference_0_255": 13.9251
+      },
+      {
+        "coverage_fraction": 0.960992,
+        "frame": 7,
+        "mean_abs_color_difference_0_255": 14.1221
+      },
+      {
+        "coverage_fraction": 0.960992,
+        "frame": 8,
+        "mean_abs_color_difference_0_255": 14.1514
+      },
+      {
+        "coverage_fraction": 0.960661,
+        "frame": 9,
+        "mean_abs_color_difference_0_255": 14.1819
+      },
+      {
+        "coverage_fraction": 0.958017,
+        "frame": 10,
+        "mean_abs_color_difference_0_255": 14.4275
+      },
+      {
+        "coverage_fraction": 0.956364,
+        "frame": 11,
+        "mean_abs_color_difference_0_255": 14.536
+      },
+      {
+        "coverage_fraction": 0.956033,
+        "frame": 12,
+        "mean_abs_color_difference_0_255": 14.6155
+      },
+      {
+        "coverage_fraction": 0.954711,
+        "frame": 13,
+        "mean_abs_color_difference_0_255": 14.5824
+      },
+      {
+        "coverage_fraction": 0.952727,
+        "frame": 14,
+        "mean_abs_color_difference_0_255": 14.6701
+      },
+      {
+        "coverage_fraction": 0.952397,
+        "frame": 15,
+        "mean_abs_color_difference_0_255": 14.6789
+      },
+      {
+        "coverage_fraction": 0.951736,
+        "frame": 16,
+        "mean_abs_color_difference_0_255": 14.7518
+      },
+      {
+        "coverage_fraction": 0.951736,
+        "frame": 17,
+        "mean_abs_color_difference_0_255": 14.7675
+      },
+      {
+        "coverage_fraction": 0.951405,
+        "frame": 18,
+        "mean_abs_color_difference_0_255": 14.8383
+      },
+      {
+        "coverage_fraction": 0.951405,
+        "frame": 19,
+        "mean_abs_color_difference_0_255": 14.9085
+      },
+      {
+        "coverage_fraction": 0.950413,
+        "frame": 20,
+        "mean_abs_color_difference_0_255": 14.9888
+      },
+      {
+        "coverage_fraction": 0.94876,
+        "frame": 21,
+        "mean_abs_color_difference_0_255": 15.0203
+      },
+      {
+        "coverage_fraction": 0.94876,
+        "frame": 22,
+        "mean_abs_color_difference_0_255": 15.0466
+      },
+      {
+        "coverage_fraction": 0.948099,
+        "frame": 23,
+        "mean_abs_color_difference_0_255": 15.1105
+      },
+      {
+        "coverage_fraction": 0.947438,
+        "frame": 24,
+        "mean_abs_color_difference_0_255": 15.1709
+      },
+      {
+        "coverage_fraction": 0.948099,
+        "frame": 25,
+        "mean_abs_color_difference_0_255": 15.1918
+      },
+      {
+        "coverage_fraction": 0.948099,
+        "frame": 26,
+        "mean_abs_color_difference_0_255": 15.2397
+      },
+      {
+        "coverage_fraction": 0.947438,
+        "frame": 27,
+        "mean_abs_color_difference_0_255": 15.2819
+      },
+      {
+        "coverage_fraction": 0.947107,
+        "frame": 28,
+        "mean_abs_color_difference_0_255": 15.3489
+      },
+      {
+        "coverage_fraction": 0.947107,
+        "frame": 29,
+        "mean_abs_color_difference_0_255": 15.3619
+      },
+      {
+        "coverage_fraction": 0.947107,
+        "frame": 30,
+        "mean_abs_color_difference_0_255": 15.3721
+      },
+      {
+        "coverage_fraction": 0.947107,
+        "frame": 31,
+        "mean_abs_color_difference_0_255": 15.3831
+      },
+      {
+        "coverage_fraction": 0.946446,
+        "frame": 32,
+        "mean_abs_color_difference_0_255": 15.4
+      },
+      {
+        "coverage_fraction": 0.945785,
+        "frame": 33,
+        "mean_abs_color_difference_0_255": 15.4158
+      },
+      {
+        "coverage_fraction": 0.944793,
+        "frame": 34,
+        "mean_abs_color_difference_0_255": 15.4627
+      },
+      {
+        "coverage_fraction": 0.935207,
+        "frame": 35,
+        "mean_abs_color_difference_0_255": 15.5639
+      },
+      {
+        "coverage_fraction": 0.935207,
+        "frame": 36,
+        "mean_abs_color_difference_0_255": 15.5675
+      },
+      {
+        "coverage_fraction": 0.942479,
+        "frame": 37,
+        "mean_abs_color_difference_0_255": 15.5496
+      },
+      {
+        "coverage_fraction": 0.942149,
+        "frame": 38,
+        "mean_abs_color_difference_0_255": 15.536
+      },
+      {
+        "coverage_fraction": 0.942149,
+        "frame": 39,
+        "mean_abs_color_difference_0_255": 15.5684
+      },
+      {
+        "coverage_fraction": 0.938182,
+        "frame": 40,
+        "mean_abs_color_difference_0_255": 15.5652
+      },
+      {
+        "coverage_fraction": 0.939504,
+        "frame": 41,
+        "mean_abs_color_difference_0_255": 15.5207
+      },
+      {
+        "coverage_fraction": 0.939835,
+        "frame": 42,
+        "mean_abs_color_difference_0_255": 15.4902
+      },
+      {
+        "coverage_fraction": 0.942149,
+        "frame": 43,
+        "mean_abs_color_difference_0_255": 15.23
+      },
+      {
+        "coverage_fraction": 0.941157,
+        "frame": 44,
+        "mean_abs_color_difference_0_255": 15.2518
+      },
+      {
+        "coverage_fraction": 0.947107,
+        "frame": 45,
+        "mean_abs_color_difference_0_255": 14.7144
+      },
+      {
+        "coverage_fraction": 0.946777,
+        "frame": 46,
+        "mean_abs_color_difference_0_255": 14.7501
+      },
+      {
+        "coverage_fraction": 0.94843,
+        "frame": 47,
+        "mean_abs_color_difference_0_255": 14.2581
+      },
+      {
+        "coverage_fraction": 0.940826,
+        "frame": 48,
+        "mean_abs_color_difference_0_255": 12.4048
+      }
+    ],
+    "reference_pixel_count": 3025,
+    "thresholds": {
+      "maximum_mean_abs_color_difference_0_255": 45.0,
+      "minimum_coverage_fraction": 0.6
+    }
+  },
+  "sample_indices": [
+    0,
+    6,
+    12,
+    18,
+    24,
+    30,
+    36,
+    42,
+    48
+  ],
+  "schema_version": "1.0",
+  "status": "generated_pending_visual_review",
+  "temporal_metrics": {
+    "maximum_consecutive_frame_mae_0_255": 0.3992,
+    "mean_consecutive_frame_mae_0_255": 0.1651,
+    "p95_consecutive_frame_mae_0_255": 0.346
+  },
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 2.0416666666666665,
+    "fps": 24.0,
+    "frame_count": 49,
+    "has_audio": true,
+    "height": 320,
+    "path": "transition.mp4",
+    "sha256": "175330337d8381cb7877f9861e2662d85676c428110a7dc57bd3d3509854430f",
+    "size_bytes": 58823,
+    "width": 576
+  }
+}

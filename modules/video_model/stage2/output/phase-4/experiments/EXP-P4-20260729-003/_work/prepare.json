@@ -1,0 +1,91 @@
+{
+  "case_id": "BIO-02",
+  "configurations": [
+    {
+      "configuration_id": "t2i_leaf_epidermis_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "d4ada6782acefa1f4d204f00d68cae6251de5619da21b828818a3019440083f5",
+    "size_bytes": 767
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.0206994,
+      "path": "controls/dense_canny.png",
+      "sha256": "ee485f6a91961cd0734fe54f22d26dbd73fef9118317abc20aa8e0563c543d85",
+      "size_bytes": 7782
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.00375027,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "0e97a32602d4089548af88481ce3062f6475ac36d5bfb3092e7692e17ae5e72f",
+      "size_bytes": 3389
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.0231052,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "4d21414e76b9c4566a6bf2ce53eb09002edb75b0dc989789220cbbc044d19dd6",
+      "size_bytes": 4808
+    }
+  },
+  "experiment_id": "EXP-P4-20260729-003",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "2ed82e76332e4c303e31e1654656c45f8966e9f4b35af2cb85377fcd09ba716d",
+    "size_bytes": 211,
+    "text": "stoma, pore, guard cells, leaf outline, veins, branches, flowers, seeds, insects, nuclei, circles, eyes, organs, panels, seams, text, labels, arrows, user interface, watermark, plastic, metal, perspective, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "c8ee33d1bdb0c41ecf8d2c45e29569dfcefc7891d21221a82ace68df19acd4af",
+    "size_bytes": 312,
+    "text": "Top-down scientific macro material image of uniform green leaf epidermal surface, edge-to-edge sample, fine organic cell-surface microtexture, subtle translucency, low-contrast natural variation, uniform material swatch without organ shapes or focal structures, even texture scale, no stomata, no veins, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "fine organic cell-surface microtexture, subtle translucency, low-contrast natural variation",
+    "must_preserve": "even texture scale, no stomata, no veins, no text",
+    "scene_identity": "Top-down scientific macro material image of uniform green leaf epidermal surface, edge-to-edge sample",
+    "state_delta": "uniform material swatch without organ shapes or focal structures"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "712ccde0e864504d9fa56bf06568e07b7e17d09a20b947ec3c71ce31cb4dc2e0",
+      "size_bytes": 41615
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/clean.png",
+      "sha256": "c3d48872743e84ce44b77ce07c46556a9f680a899931de0b1876ccb2919c5ade"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/semantic_layers.json",
+      "sha256": "ad654efce18e197ac18ea231817b7f28b318f71745ea6229c35b2157e46833ff"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "classification": "deterministic program hard boundary",
+  "meaning_zh": "主河、牛轭湖、捷径和两个封堵的全部水陆边界；作为材质投影不可修改带。",
+  "output": "protected_water_boundary.png",
+  "schema_version": "1.0",
+  "source": "output/phase-4/programs/GEO-01/keyframes/03_end/layers/geo01_water_boundary.npy"
+}

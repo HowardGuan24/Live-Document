@@ -1,0 +1,32 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "class_id": "rotating_point",
+      "geometry": {
+        "bbox_xyxy": [
+          110.50000000000003,
+          82.06733260263394,
+          124.50000000000003,
+          96.06733260263394
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "MATH-01-rotating-point"
+    },
+    {
+      "class_id": "sine_trace_head",
+      "geometry": {
+        "bbox_xyxy": [
+          425.0,
+          84.06733260263394,
+          435.0,
+          94.06733260263394
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "MATH-01-trace-head"
+    }
+  ],
+  "schema_version": "1.0"
+}

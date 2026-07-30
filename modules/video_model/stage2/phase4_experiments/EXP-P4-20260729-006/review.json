@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P4-20260729-006",
+  "review_mode": "blind_donors_then_machine_gates_and_full_resolution_composite",
+  "raw_donor_finding_zh": "2/4 供体是合格的均匀哑光细纹；另两张分别出现规则格栅和大型折面，不能单独使用。四种子中位数抑制了这两类大结构。",
+  "selected_variant": {
+    "variant_id": "gain_060",
+    "mechanism_fidelity_5": 5,
+    "material_improvement_5": 2.5,
+    "artifact_control_5": 5,
+    "seed_robustness_5": 5,
+    "allowed_pixel_fraction": 0.02929688,
+    "non_allowed_max_abs_difference_0_255": 0.0,
+    "allowed_mean_abs_detail_change_0_255": 0.926517,
+    "low_frequency_mse_vs_program": 0.003472,
+    "leave_one_out_maximum_mae_0_255": 0.031303
+  },
+  "verdict": "accepted_case_candidate_exact_apparatus_surface",
+  "verdict_zh": "接受 gain=0.6 作为 PHYS-02 器材候选：轻微哑光细纹只进入移动磁铁，红蓝极性、磁铁轮廓、线圈、电流表和表针读数不变。",
+  "generalization_zh": "受限材质残差适合给中等面积的精确器材表面增加微纹理，但它不负责把整个程序图照片化。raw 中 2/4 明显失败再次证明必须多种子聚合并保留盲审证据。",
+  "next_action_zh": "冻结该候选用于 Phase 5 相邻关键帧外观层；同一材质残差必须随磁铁 region 平移，不能每帧重新采样，否则会产生闪烁。"
+}

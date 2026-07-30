@@ -1,0 +1,114 @@
+{
+  "case_id": "GEO-01",
+  "common_checks": [
+    {
+      "evidence": {
+        "first": 0.0,
+        "frame_count": 49,
+        "last": 1.0
+      },
+      "name": "normalized_progress_is_monotonic",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "height": 360,
+        "mode": "RGB",
+        "width": 640
+      },
+      "name": "fixed_rgb_canvas",
+      "passed": true
+    },
+    {
+      "evidence": [
+        [
+          "geo01_water_boundary",
+          "hard_boundary"
+        ],
+        [
+          "geo01_water_region",
+          "region"
+        ],
+        [
+          "geo01_flow",
+          "vector_field"
+        ],
+        [
+          "geo01_waterbody_identity",
+          "object_identity"
+        ],
+        [
+          "geo-01_annotation",
+          "annotation"
+        ]
+      ],
+      "name": "semantic_layer_contract_is_stable",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "annotation_count": 4,
+        "used_as_model_input": false
+      },
+      "name": "annotations_are_post_generation_only",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "duration_seconds": 4.0833,
+        "fps": 12,
+        "frame_count": 49
+      },
+      "name": "video_was_encoded_from_program_frames",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "image": 0,
+        "video": 0
+      },
+      "name": "zero_generative_model_runs",
+      "passed": true
+    },
+    {
+      "evidence": "GEO-01",
+      "name": "case_id_matches_plugin",
+      "passed": true
+    }
+  ],
+  "mechanism_checks": [
+    {
+      "evidence": [
+        55.0,
+        42.81481481,
+        20.18518519,
+        8.0
+      ],
+      "name": "meander_neck_narrows_monotonically",
+      "passed": true
+    },
+    {
+      "evidence": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "cutoff_occurs_after_narrowing",
+      "passed": true
+    },
+    {
+      "evidence": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "name": "main_channel_remains_connected",
+      "passed": true
+    }
+  ],
+  "primary_mechanism_zh": "曲流颈先变窄，切弯后主河连通而旧河湾成为独立水体。",
+  "schema_version": "1.0",
+  "status": "passed"
+}

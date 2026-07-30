@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P5-20260729-001",
+  "review_mode": "full_video_plus_nine_time_samples_and_deterministic_motion_audits",
+  "selected_trial": 1,
+  "motion_class_passed": true,
+  "scores_5": {
+    "endpoint_adherence": 5,
+    "intermediate_mechanism": 5,
+    "temporal_continuity": 5,
+    "scene_stability": 5,
+    "motion_naturalness": 4,
+    "video_teaching_readability": 5
+  },
+  "weighted_score_100": 98,
+  "verdict": "accepted_continuous_field_motion_smoke",
+  "verdict_zh": "接受首轮 PHYS-01：两个固定振源之间没有换场，波纹从两点同步向外扩展，并准确到达相邻 K1；不使用第二次视频预算。",
+  "visual_finding_zh": "9 个时间点显示同心波纹平滑放大，两个橙色振源和白色边框保持稳定，没有第三个振源、倒放、突然跳帧或镜头运动。画面仍是科学程序风格，不是照片级水面。",
+  "machine_evidence_zh": "5/5 硬门通过；首尾 MAE 为 3.0134 和 3.3347/255；固定振源最大漂移 0.3705 px；相邻帧最大 MAE 2.0472/255；两组径向进度为 31 px 和 33 px。",
+  "generalization_zh": "首尾帧视频适合连接连续场的相邻正确状态，但必须有与运动类型匹配的审计；仅靠端点相似和低闪烁不能证明传播方向正确。径向场可复用最外有效圆环半径，其他运动类型需要各自的数据型 evaluator。",
+  "known_limitations_zh": "ComfyUI API 没有返回 LTX 文本编码器的实际 token 数，因此本次只记录字符长度，尚未通过发布级 prompt token integrity 门；视频自带模型音轨但报告默认静音。",
+  "next_action_zh": "继续 rigid_motion 代表 MATH-02；如果生成视频改变三角形数量或以形变代替刚体搬运，则拒绝模型路线并保留程序动画。"
+}

@@ -1,0 +1,196 @@
+{
+  "automatic_next_action": "run_remaining_case_route_smoke_experiments",
+  "classification": "data-type route plan; no image or video generation",
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "phase": 4,
+  "route_counts": {
+    "layered_static_scene_and_dynamic_field": 1,
+    "program_geometry_with_region_limited_material": 7,
+    "program_low_frequency_with_robust_material_residual": 1,
+    "semantic_boundary_t2i_with_program_state_overlay": 1
+  },
+  "routes": [
+    {
+      "case_id": "MATH-01",
+      "hard_gates": [
+        "curve_y_matches_circle_point_y",
+        "one_rotation_equals_one_period",
+        "trace_never_draws_future"
+      ],
+      "model_role_zh": "程序像素保留数量、身份、读数和拓扑；模型只提供允许区域内的限幅稳健材质残差。",
+      "phase3_evidence": "two disciplines rejected exact-count redraw; constrained region projection passed",
+      "required_inputs": [
+        "object_identity",
+        "allowed material region",
+        "protected hard boundary"
+      ],
+      "route_id": "program_geometry_with_region_limited_material",
+      "sentinel": false
+    },
+    {
+      "case_id": "MATH-02",
+      "hard_gates": [
+        "exactly_four_congruent_triangles",
+        "piece_area_is_constant",
+        "remaining_areas_are_equal"
+      ],
+      "model_role_zh": "程序像素保留数量、身份、读数和拓扑；模型只提供允许区域内的限幅稳健材质残差。",
+      "phase3_evidence": "two disciplines rejected exact-count redraw; constrained region projection passed",
+      "required_inputs": [
+        "object_identity",
+        "allowed material region",
+        "protected hard boundary"
+      ],
+      "route_id": "program_geometry_with_region_limited_material",
+      "sentinel": true
+    },
+    {
+      "case_id": "PHYS-01",
+      "hard_gates": [
+        "exactly_two_fixed_sources",
+        "node_topology_matches_program",
+        "boundary_reflection_stays_outside_window"
+      ],
+      "model_role_zh": "程序保存连续场和大尺度形状；模型供体只贡献多种子中位数中高频材质。",
+      "phase3_evidence": "continuous-field full-redraw boundary and robust residual experiment",
+      "required_inputs": [
+        "scalar or height field",
+        "protected identities",
+        "material donor prompt"
+      ],
+      "route_id": "program_low_frequency_with_robust_material_residual",
+      "sentinel": true
+    },
+    {
+      "case_id": "PHYS-02",
+      "hard_gates": [
+        "current_reverses_between_approach_and_withdrawal",
+        "current_is_zero_when_magnet_stops",
+        "apparatus_geometry_is_fixed"
+      ],
+      "model_role_zh": "程序像素保留数量、身份、读数和拓扑；模型只提供允许区域内的限幅稳健材质残差。",
+      "phase3_evidence": "two disciplines rejected exact-count redraw; constrained region projection passed",
+      "required_inputs": [
+        "object_identity",
+        "allowed material region",
+        "protected hard boundary"
+      ],
+      "route_id": "program_geometry_with_region_limited_material",
+      "sentinel": false
+    },
+    {
+      "case_id": "CHEM-01",
+      "hard_gates": [
+        "added_volume_is_monotonic",
+        "pre_endpoint_color_can_dissipate",
+        "endpoint_color_persists_after_mixing"
+      ],
+      "model_role_zh": "语义充分线稿生成固定玻璃器材；液面、颜色场、液滴和教学标记由程序在后续状态层控制。",
+      "phase3_evidence": "semantic apparatus line art passed 4/4",
+      "required_inputs": [
+        "semantically sufficient apparatus line art",
+        "state region/scalar field",
+        "post-generation state overlay"
+      ],
+      "route_id": "semantic_boundary_t2i_with_program_state_overlay",
+      "sentinel": true
+    },
+    {
+      "case_id": "CHEM-02",
+      "hard_gates": [
+        "no_crystal_before_supersaturation",
+        "crystal_identity_is_stable_after_nucleation",
+        "solute_mass_is_conserved"
+      ],
+      "model_role_zh": "程序像素保留数量、身份、读数和拓扑；模型只提供允许区域内的限幅稳健材质残差。",
+      "phase3_evidence": "two disciplines rejected exact-count redraw; constrained region projection passed",
+      "required_inputs": [
+        "object_identity",
+        "allowed material region",
+        "protected hard boundary"
+      ],
+      "route_id": "program_geometry_with_region_limited_material",
+      "sentinel": false
+    },
+    {
+      "case_id": "BIO-01",
+      "hard_gates": [
+        "chromosome_allocation_matches_program",
+        "mitosis_stage_order_is_preserved",
+        "no_chromosome_is_created_or_lost"
+      ],
+      "model_role_zh": "程序像素保留数量、身份、读数和拓扑；模型只提供允许区域内的限幅稳健材质残差。",
+      "phase3_evidence": "two disciplines rejected exact-count redraw; constrained region projection passed",
+      "required_inputs": [
+        "object_identity",
+        "allowed material region",
+        "protected hard boundary"
+      ],
+      "route_id": "program_geometry_with_region_limited_material",
+      "sentinel": true
+    },
+    {
+      "case_id": "BIO-02",
+      "hard_gates": [
+        "pore_area_follows_turgor",
+        "exactly_two_guard_cells",
+        "guard_cell_adjacency_is_fixed"
+      ],
+      "model_role_zh": "程序像素保留数量、身份、读数和拓扑；模型只提供允许区域内的限幅稳健材质残差。",
+      "phase3_evidence": "two disciplines rejected exact-count redraw; constrained region projection passed",
+      "required_inputs": [
+        "object_identity",
+        "allowed material region",
+        "protected hard boundary"
+      ],
+      "route_id": "program_geometry_with_region_limited_material",
+      "sentinel": false
+    },
+    {
+      "case_id": "GEO-01",
+      "hard_gates": [
+        "neck_width_decreases_before_cutoff",
+        "water_connectivity_changes_at_cutoff",
+        "main_flow_uses_new_shorter_channel"
+      ],
+      "model_role_zh": "程序像素保留数量、身份、读数和拓扑；模型只提供允许区域内的限幅稳健材质残差。",
+      "phase3_evidence": "two disciplines rejected exact-count redraw; constrained region projection passed",
+      "required_inputs": [
+        "object_identity",
+        "allowed material region",
+        "protected hard boundary"
+      ],
+      "route_id": "program_geometry_with_region_limited_material",
+      "sentinel": false
+    },
+    {
+      "case_id": "GEO-02",
+      "hard_gates": [
+        "terrain_is_fixed",
+        "primary_rain_is_on_windward_side",
+        "leeward_humidity_and_rainfall_decrease"
+      ],
+      "model_role_zh": "图像模型只生成静态地形材质；程序根据 scalar/vector field 在生成后绘回云雨等动态机制。",
+      "phase3_evidence": "static-terrain plus dynamic-field control scan rejected one-pass redraw",
+      "required_inputs": [
+        "static height_or_normal or hard boundary",
+        "dynamic scalar/vector field",
+        "post-generation overlay plugin"
+      ],
+      "route_id": "layered_static_scene_and_dynamic_field",
+      "sentinel": true
+    }
+  ],
+  "schema_version": "1.0",
+  "selector": {
+    "path": "framework/route_selector.py",
+    "sha256": "0ed92e2d30f2c725fa13b391be00affe9f8051cf78a6ca8e1dd6c85b28f536ff"
+  },
+  "source": {
+    "path": "case_registry.json",
+    "sha256": "79b9f19bc7e1804cce25a51c830a2fe3f22970cda86bd2fa323a63b48c72142e"
+  }
+}

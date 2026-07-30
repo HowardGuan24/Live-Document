@@ -1,0 +1,96 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "bbox_xyxy": [
+        193,
+        85,
+        209,
+        101
+      ],
+      "center_xy": [
+        201,
+        93
+      ],
+      "class_id": "mitosis_fixture_object",
+      "object_id": "BIO-01-object-01",
+      "visible": true
+    },
+    {
+      "bbox_xyxy": [
+        169,
+        115,
+        187,
+        133
+      ],
+      "center_xy": [
+        178,
+        124
+      ],
+      "class_id": "mitosis_fixture_object",
+      "object_id": "BIO-01-object-02",
+      "visible": true
+    },
+    {
+      "bbox_xyxy": [
+        125,
+        110,
+        145,
+        130
+      ],
+      "center_xy": [
+        135,
+        120
+      ],
+      "class_id": "mitosis_fixture_object",
+      "object_id": "BIO-01-object-03",
+      "visible": true
+    },
+    {
+      "bbox_xyxy": [
+        106,
+        78,
+        122,
+        94
+      ],
+      "center_xy": [
+        114,
+        86
+      ],
+      "class_id": "mitosis_fixture_object",
+      "object_id": "BIO-01-object-04",
+      "visible": true
+    },
+    {
+      "bbox_xyxy": [
+        133,
+        46,
+        151,
+        64
+      ],
+      "center_xy": [
+        142,
+        55
+      ],
+      "class_id": "mitosis_fixture_object",
+      "object_id": "BIO-01-object-05",
+      "visible": true
+    },
+    {
+      "bbox_xyxy": [
+        176,
+        49,
+        196,
+        69
+      ],
+      "center_xy": [
+        186,
+        59
+      ],
+      "class_id": "mitosis_fixture_object",
+      "object_id": "BIO-01-object-06",
+      "visible": true
+    }
+  ],
+  "schema_version": "1.0"
+}

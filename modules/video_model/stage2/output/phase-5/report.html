@@ -1,0 +1,381 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stage 2 · Phase 5 首尾帧视频工作流</title>
+<style>
+:root{--ink:#18343b;--deep:#0d2830;--paper:#f3efe4;--card:#fffdf7;
+--line:#bdcec9;--teal:#167d74;--orange:#d87636}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);
+font:16px/1.68 system-ui,-apple-system,"Noto Sans SC",sans-serif}
+header,main{max-width:1160px;margin:auto;padding:38px 24px}header{padding-top:62px}
+h1{font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.03;margin:.12em 0}
+h2{font-size:2rem;line-height:1.25}h3{margin-top:28px}section{
+border-top:3px solid var(--ink);padding:44px 0}.eyebrow{color:var(--teal);
+font-weight:800;letter-spacing:.11em}video,.wide{display:block;width:100%;
+border-radius:13px;background:var(--deep)}.pair{display:grid;
+grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}figure{margin:0;
+background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+figure img{display:block;width:100%}figcaption{padding:10px 13px}table{width:100%;
+border-collapse:collapse;background:var(--card)}th,td{border:1px solid var(--line);
+padding:9px;text-align:left}.note{background:#e3f0eb;border-left:5px solid var(--teal);
+padding:16px;border-radius:8px}details{background:var(--card);border:1px solid var(--line);
+border-radius:8px;margin:10px 0}summary{padding:12px;font-weight:700}pre{margin:0;
+padding:14px;white-space:pre-wrap;background:var(--deep);color:#edf7f3;overflow:auto}
+a{color:var(--teal)}@media(max-width:700px){.pair{grid-template-columns:1fr}
+header,main{padding-left:14px;padding-right:14px}}
+</style></head><body><header><p class="eyebrow">LOOP ENGINEER · PHASE 5 PASSED</p>
+<h1>首尾帧只定状态，<br>视频模型只补中间运动</h1>
+<p>本报告每完成一种运动类型就累积更新。当前已运行 8 次 LTX-2.3
+视频调用，覆盖 5/5 种运动。
+首轮不是纯文本视频：程序生成的相邻 K0/K1 分别接入模型的第一帧和最后一帧。</p>
+</header><main>
+<section><h2>第一次看的人先理解这五步</h2>
+<ol><li>程序先计算两个机制正确的相邻状态；</li>
+<li>去掉箭头和文字，只把 clean 图作为首尾帧；</li>
+<li>语言提示词只描述中间怎么动，以及什么必须不动；</li>
+<li>LTX-2.3 生成中间帧，固定种子只用于复现运动；</li>
+<li>端点、固定锚点、时间连续性和运动方向分别验收。</li></ol>
+<p>低闪烁并不等于机制正确。例如波纹平滑地向内收缩仍然是失败，所以每类运动必须
+有与其数据形态匹配的 evaluator。</p></section>
+<section><h2>五种运动覆盖状态</h2><table><thead><tr><th>运动类型</th>
+<th>代表案例</th><th>状态</th></tr></thead><tbody><tr><td><code>rigid_motion</code></td><td>MATH-02</td><td>通过</td></tr><tr><td><code>continuous_field_propagation</code></td><td>PHYS-01</td><td>通过</td></tr><tr><td><code>liquid_mixing</code></td><td>CHEM-01</td><td>通过</td></tr><tr><td><code>object_division</code></td><td>BIO-01</td><td>通过</td></tr><tr><td><code>boundary_topology_change</code></td><td>GEO-01</td><td>通过</td></tr></tbody></table>
+<p>自动下一项：<b>Phase 6 release regression</b>。</p></section>
+<section id="EXP-P5-20260729-001">
+    <p class="eyebrow">continuous_field_propagation · PHYS-01</p>
+    <h2>接受首轮 PHYS-01：两个固定振源之间没有换场，波纹从两点同步向外扩展，并准确到达相邻 K1；不使用第二次视频预算。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-001/samples/frame_024.png"
+    src="experiments/EXP-P5-20260729-001/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>9 个时间点显示同心波纹平滑放大，两个橙色振源和白色边框保持稳定，没有第三个振源、倒放、突然跳帧或镜头运动。画面仍是科学程序风格，不是照片级水面。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-001/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：00_start</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-001/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：01_mechanism</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-001/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-001/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>5/5 硬门通过；首尾 MAE 为 3.0134 和 3.3347/255；固定振源最大漂移 0.3705 px；相邻帧最大 MAE 2.0472/255；两组径向进度为 31 px 和 33 px。</p><p><b>方向审计：</b>最外波纹半径（px）为 55 → 61 → 66 → 71 → 75 → 79 → 83 → 83 → 86；55 → 60 → 66 → 70 → 75 → 79 → 83 → 82 → 88。这证明总体向外，不只是低闪烁。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>fixed_semantic_anchors_remain_visible_and_stable</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>declared_radial_motion_moves_outward</code>：通过</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>5/5</td></tr><tr><td>temporal_continuity</td><td>5/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>4/5</td></tr><tr><td>video_teaching_readability</td><td>5/5</td></tr>
+    <tr><th>加权总分</th><td>98/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    接受首轮 PHYS-01：两个固定振源之间没有换场，波纹从两点同步向外扩展，并准确到达相邻 K1；不使用第二次视频预算。<br><br>
+    <b>通用认识：</b>首尾帧视频适合连接连续场的相邻正确状态，但必须有与运动类型匹配的审计；仅靠端点相似和低闪烁不能证明传播方向正确。径向场可复用最外有效圆环半径，其他运动类型需要各自的数据型 evaluator。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic top-down scientific visualization of the exact same shallow blue water field shown in the supplied first and last frames. Exactly two fixed orange point sources remain at the same positions. Smooth circular water ripples propagate radially outward from both sources at the same steady speed and phase. The ripple radius grows continuously from the first supplied state to the last supplied state. Preserve the white rectangular boundary, blue background, framing, scale, colors, source count and source positions. One continuous physically understandable transition. No camera movement.</pre></details>
+        <details><summary>负向提示词</summary><pre>camera movement, pan, zoom, tilt, rotation, perspective change, scene change, moving sources, missing source, third source, duplicated source, source color change, waves moving inward, collapsing rings, reversed motion, random turbulence, ocean horizon, shoreline, objects, text, labels, arrows, flicker, jitter, pulsing brightness, abrupt cut, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-001/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-001/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-001/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-001/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-002">
+    <p class="eyebrow">rigid_motion · MATH-02</p>
+    <h2>拒绝 MATH-02 首轮：首尾和低跳变门通过，但中间用扫出画面、形变和提前完成拼图代替四块依次刚体搬运。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-002/samples/frame_024.png"
+    src="experiments/EXP-P5-20260729-002/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>0.75 秒附近红色与青色三角形被裁出画面；1 秒时四块已同时到位，和程序的一块一块移动顺序不符。轮廓有拉伸和边缘融化，不能用于拼图证明。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-002/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：00_start</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-002/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：01_mechanism</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-002/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-002/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>3/4 硬门通过；对象身份门失败。面积比范围 0.4881–1.9548，形状协方差特征值比 0.1396–9.1841，质心相对程序路径最大偏差 391.0505 px。</p><p><b>对象身份审计：</b>面积比 0.4881–1.9548，形状特征比 0.1396–9.1841，最大质心路径误差 391.0505 px。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>colored_object_identities_follow_program_rigid_motion</code>：失败</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>1/5</td></tr><tr><td>temporal_continuity</td><td>3/5</td></tr><tr><td>scene_stability</td><td>2/5</td></tr><tr><td>motion_naturalness</td><td>1/5</td></tr><tr><td>video_teaching_readability</td><td>1/5</td></tr>
+    <tr><th>加权总分</th><td>47/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    拒绝 MATH-02 首轮：首尾和低跳变门通过，但中间用扫出画面、形变和提前完成拼图代替四块依次刚体搬运。<br><br>
+    <b>通用认识：</b>首尾帧和提示词不能单独保证离散对象做刚体运动。对数学拼图必须用对象身份与程序参考路径验收；视频平滑和端点相似不能掩盖中间机制错误。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic top-down flat geometric teaching diagram, exactly matching the supplied first and last frames. Exactly four congruent right triangles, one red, one orange, one teal and one blue. Each colored triangle remains perfectly rigid with unchanged area, side lengths, color and identity. Move the four pieces one at a time by smooth translation and rotation from their separate starting positions into the pale green square arrangement shown in the supplied last frame. Preserve the warm ivory background, pale green target square, white triangle outlines, framing and scale. No camera movement. One continuous understandable dissection motion.</pre></details>
+        <details><summary>负向提示词</summary><pre>deformation, morphing, stretching, shrinking, growing, melting, curved triangle, changing area, changing color, fading, cross dissolve, ghost copy, duplicated triangle, missing triangle, fifth triangle, merged colors, changed target square, camera movement, pan, zoom, tilt, rotation of camera, perspective, scene change, text, labels, arrows, flicker, jitter, abrupt cut, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-002/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-002/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-002/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-002/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-003">
+    <p class="eyebrow">rigid_motion · MATH-02</p>
+    <h2>拒绝 MATH-02 第二轮：加倍时长没有修复刚体身份，四块仍同时滑动、剪切和弯曲；两次模型预算已用完。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-003/samples/frame_048.png"
+    src="experiments/EXP-P5-20260729-003/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>四秒版本避免了首轮的大幅扫出画面，但仍不是程序定义的一块一块搬运。中间青色和蓝色三角形弯曲，四块在约两秒时同时吸附到目标，无法用于严谨拼图证明。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-003/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：00_start</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-003/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：01_mechanism</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-003/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-003/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>3/4 硬门通过；对象身份门再次失败。面积比范围 0.7369–1.7839，形状协方差特征值比 0.1522–4.1383，质心相对程序路径最大偏差 337.1092 px。</p><p><b>对象身份审计：</b>面积比 0.7369–1.7839，形状特征比 0.1522–4.1383，最大质心路径误差 337.1092 px。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>colored_object_identities_follow_program_rigid_motion</code>：失败</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>1/5</td></tr><tr><td>temporal_continuity</td><td>3/5</td></tr><tr><td>scene_stability</td><td>3/5</td></tr><tr><td>motion_naturalness</td><td>1/5</td></tr><tr><td>video_teaching_readability</td><td>1/5</td></tr>
+    <tr><th>加权总分</th><td>50/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    拒绝 MATH-02 第二轮：加倍时长没有修复刚体身份，四块仍同时滑动、剪切和弯曲；两次模型预算已用完。<br><br>
+    <b>通用认识：</b>增加生成时长只能让错误更慢，不能让 FLF2V 获得离散对象的刚体约束。精确拼图应使用程序运动；若要模型材质，只能把静态材质贴回程序对象，不能让视频模型决定轨迹。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic top-down flat geometric teaching diagram, exactly matching the supplied first and last frames. Exactly four congruent right triangles, one red, one orange, one teal and one blue. Each colored triangle remains perfectly rigid with unchanged area, side lengths, color and identity. Move the four pieces one at a time by smooth translation and rotation from their separate starting positions into the pale green square arrangement shown in the supplied last frame. Preserve the warm ivory background, pale green target square, white triangle outlines, framing and scale. No camera movement. One continuous understandable dissection motion.</pre></details>
+        <details><summary>负向提示词</summary><pre>deformation, morphing, stretching, shrinking, growing, melting, curved triangle, changing area, changing color, fading, cross dissolve, ghost copy, duplicated triangle, missing triangle, fifth triangle, merged colors, changed target square, camera movement, pan, zoom, tilt, rotation of camera, perspective, scene change, text, labels, arrows, flicker, jitter, abrupt cut, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-003/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-003/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-003/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-003/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-004">
+    <p class="eyebrow">rigid_motion · MATH-02</p>
+    <h2>接受 MATH-02 程序回退：97 帧逐帧重算，四块依次平移和旋转；视频模型调用为 0。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-004/samples/frame_048.png"
+    src="experiments/EXP-P5-20260729-004/transition.mp4"></video>
+    <p><b>输出类型：</b>确定性程序回退（模型关闭）</p>
+    <p>九个时间点清楚显示橙、红、蓝、青四块依次进入目标正方形；没有同时吸附、裁出画面、形变、渐隐或对象复制。镜头和背景完全固定。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-004/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：00_start</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-004/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：01_mechanism</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-004/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-004/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>4/4 硬门通过；首尾源图逐像素一致，四个稳定对象 ID 不变，三角形边长为 90/120/150 px，最大边长漂移 0.00010221 px，97 帧 H.264 编码可完整解码。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>program_endpoints_are_bit_exact_to_declared_inputs</code>：通过</li><li><code>program_plugin_mechanism_checks_pass</code>：通过</li><li><code>object_ids_and_polygon_side_lengths_are_rigid</code>：通过</li><li><code>encoded_video_contract_matches_program_frames</code>：通过</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>5/5</td></tr><tr><td>temporal_continuity</td><td>5/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>5/5</td></tr><tr><td>video_teaching_readability</td><td>5/5</td></tr>
+    <tr><th>加权总分</th><td>100/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    接受 MATH-02 程序回退：97 帧逐帧重算，四块依次平移和旋转；视频模型调用为 0。<br><br>
+    <b>通用认识：</b>精确离散刚体运动属于程序动画职责。视频模型两次失败后，通用路由应自动回退；若仍需要真实材质，应让静态纹理随对象坐标变换，不能把运动轨迹交还给生成模型。</div></div>
+    <h3>为什么没有提示词</h3>
+        <p>该结果由确定性程序逐帧重采样，视频模型关闭；状态和对象轨迹直接来自
+        program plugin，因此没有正负向生成提示词。</p>
+    <p><a href="experiments/EXP-P5-20260729-004/_work/program_validation.json">程序机制与对象身份验证</a> · 
+    <a href="experiments/EXP-P5-20260729-004/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-004/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-004/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-005">
+    <p class="eyebrow">liquid_mixing · CHEM-01</p>
+    <h2>拒绝 CHEM-01 首轮：器材和端点稳定，但粉色显色先增强并分裂成多个团块，然后才消失，不是单一局部浓度场逐渐扩散。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-005/samples/frame_024.png"
+    src="experiments/EXP-P5-20260729-005/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>九个时间点显示粉色团块在前半段扩大，随后出现青色空洞并碎成多个小团；烧杯、滴定管和液面基本固定。最终确实变为无色，但中间过程会错误地暗示显色物质先增加。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-005/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：01_mechanism</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-005/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：02_result</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-005/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-005/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>4/5 硬门通过；首尾 MAE 为 1.7792 和 1.7086/255，器材参考色最小覆盖率 0.935207。颜色积分强度峰值达到首帧 1.877455 倍，超过 1.1 倍门限，颜色趋势门失败。</p><p><b>颜色量审计：</b>局部显色积分强度峰值为首帧的 1.877 倍，尾帧为 0.000 倍。这个数值门只检查颜色量，仍必须人工确认是在扩散，不是实心色块缩小。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>declared_static_color_mask_remains_stable</code>：通过</li><li><code>declared_color_mass_follows_expected_trend</code>：失败</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>2/5</td></tr><tr><td>temporal_continuity</td><td>4/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>2/5</td></tr><tr><td>video_teaching_readability</td><td>2/5</td></tr>
+    <tr><th>加权总分</th><td>69/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    拒绝 CHEM-01 首轮：器材和端点稳定，但粉色显色先增强并分裂成多个团块，然后才消失，不是单一局部浓度场逐渐扩散。<br><br>
+    <b>通用认识：</b>液体扩散不能只数显色像素，因为颜色变淡时面积可能扩大；应同时计算颜色面积和相对背景的积分色差。即便尾帧无色、器材稳定，局部颜色总量先大幅增加仍属于机制失败。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic front-view scientific visualization of the exact same glass titration apparatus shown in the supplied first and last frames. Preserve the burette, rectangular beaker, dark gray glass outlines, pale blue liquid level, background, framing, scale and camera exactly. One pale blue droplet continues downward into the liquid and disappears. The single localized magenta phenolphthalein plume gently disperses and dilutes through the nearby clear liquid, becoming progressively fainter until the solution is colorless as shown in the supplied last frame. Smooth fluid diffusion, one continuous physically understandable transition. No camera movement.</pre></details>
+        <details><summary>负向提示词</summary><pre>moving apparatus, bent burette, changing beaker, changing liquid level, broken glass, extra droplet, multiple plumes, permanent pink solution, pink color growing, solid pink object, blob shrinking without diffusion, boiling, splashing, bubbles, smoke, camera movement, pan, zoom, tilt, perspective change, scene change, text, labels, arrows, flicker, jitter, abrupt cut, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-005/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-005/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-005/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-005/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-006">
+    <p class="eyebrow">liquid_mixing · CHEM-01</p>
+    <h2>拒绝 CHEM-01 第二轮：5/5 自动门虽然通过，但粉色区域表现为一个实心球向下缩没，不是液体中的扩散；两次视频预算已用完。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-006/samples/frame_012.png"
+    src="experiments/EXP-P5-20260729-006/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>一秒版本把颜色量做成了单调下降，器材和液面也很稳定；然而粉色区域始终保持圆滑实心边界，只是下沉并缩小。观众看不到浓度梯度向周围液体扩开的过程，因此不能作为滴定混合教学过渡。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-006/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：01_mechanism</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-006/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：02_result</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-006/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-006/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>5/5 硬门通过；首尾 MAE 为 2.1043 和 2.0500/255，器材最小覆盖率 0.934545，显色积分强度从 106928 单调降为 0，峰值为首帧 1.0 倍。人工语义门仍判失败。</p><p><b>颜色量审计：</b>局部显色积分强度峰值为首帧的 1.000 倍，尾帧为 0.000 倍。这个数值门只检查颜色量，仍必须人工确认是在扩散，不是实心色块缩小。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>declared_static_color_mask_remains_stable</code>：通过</li><li><code>declared_color_mass_follows_expected_trend</code>：通过</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>1/5</td></tr><tr><td>temporal_continuity</td><td>5/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>1/5</td></tr><tr><td>video_teaching_readability</td><td>1/5</td></tr>
+    <tr><th>加权总分</th><td>64/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    拒绝 CHEM-01 第二轮：5/5 自动门虽然通过，但粉色区域表现为一个实心球向下缩没，不是液体中的扩散；两次视频预算已用完。<br><br>
+    <b>通用认识：</b>数值门是必要条件而不是充分条件。颜色总量单调下降既可能来自扩散稀释，也可能来自实心色块缩小；液体运动还需检查边界软化、低浓度区域外扩，或直接依赖程序标量场渲染。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic front-view scientific visualization of the exact same glass titration apparatus shown in the supplied first and last frames. Preserve the burette, rectangular beaker, dark gray glass outlines, pale blue liquid level, background, framing, scale and camera exactly. One pale blue droplet continues downward into the liquid and disappears. The single localized magenta phenolphthalein plume gently disperses and dilutes through the nearby clear liquid, becoming progressively fainter until the solution is colorless as shown in the supplied last frame. Smooth fluid diffusion, one continuous physically understandable transition. No camera movement.</pre></details>
+        <details><summary>负向提示词</summary><pre>moving apparatus, bent burette, changing beaker, changing liquid level, broken glass, extra droplet, multiple plumes, permanent pink solution, pink color growing, solid pink object, blob shrinking without diffusion, boiling, splashing, bubbles, smoke, camera movement, pan, zoom, tilt, perspective change, scene change, text, labels, arrows, flicker, jitter, abrupt cut, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-006/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-006/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-006/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-006/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-007">
+    <p class="eyebrow">liquid_mixing · CHEM-01</p>
+    <h2>接受 CHEM-01 程序标量场回退：粉色核心降低的同时，低浓度软边区域先向周围扩展再消失；视频模型调用为 0。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-007/samples/frame_024.png"
+    src="experiments/EXP-P5-20260729-007/transition.mp4"></video>
+    <p><b>输出类型：</b>确定性程序回退（模型关闭）</p>
+    <p>九个时间点先显示局部高浓度粉色核心，随后边缘软化并形成覆盖更宽的浅粉浓度云，最后整体变为无色。滴定管、烧杯、液面和镜头完全固定；这次能区分于前一轮的实心球缩小。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-007/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：01_mechanism</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-007/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：02_result</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-007/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-007/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>4/4 硬门通过；首尾源图逐像素一致，plume strength 从 1.0 降为 0，spread factor 从 1.0 升到 1.9，积分量代理从 1.0 单调降为 0；49 帧、24 fps、无音轨，图片和视频模型调用均为 0。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>program_endpoints_are_bit_exact_to_declared_inputs</code>：通过</li><li><code>program_plugin_mechanism_checks_pass</code>：通过</li><li><code>liquid_color_field_disperses_without_mass_regrowth</code>：通过</li><li><code>encoded_video_contract_matches_program_frames</code>：通过</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>5/5</td></tr><tr><td>temporal_continuity</td><td>5/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>4/5</td></tr><tr><td>video_teaching_readability</td><td>5/5</td></tr>
+    <tr><th>加权总分</th><td>98/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    接受 CHEM-01 程序标量场回退：粉色核心降低的同时，低浓度软边区域先向周围扩展再消失；视频模型调用为 0。<br><br>
+    <b>通用认识：</b>软标量场的程序回退不能只改透明度。通用做法是同时约束峰值降低、空间方差增大和积分量不增长，并把低浓度软边可视化；端点保持不变，新增可视提示只存在于中间帧。</div></div>
+    <h3>为什么没有提示词</h3>
+        <p>该结果由确定性程序逐帧重采样，视频模型关闭；状态和对象轨迹直接来自
+        program plugin，因此没有正负向生成提示词。</p>
+    <p><a href="experiments/EXP-P5-20260729-007/_work/program_validation.json">程序机制与对象身份验证</a> · 
+    <a href="experiments/EXP-P5-20260729-007/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-007/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-007/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-008">
+    <p class="eyebrow">object_division · BIO-01</p>
+    <h2>拒绝 BIO-01 首轮：模型把六个中央 X 当成一条紫色链，长时间静止后整体裂成两条，未表现六对姐妹染色单体逐对分离。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-008/samples/frame_024.png"
+    src="experiments/EXP-P5-20260729-008/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>前七个抽帧几乎完全不动，到 1.75 秒才出现左右两条弯曲紫线，最后才靠近输入尾帧。细胞膜和两个纺锤极稳定，但中间没有六个可辨认父对象，也没有十二个子对象的逐对运动。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-008/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：01_mechanism</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-008/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：02_result</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-008/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-008/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>4/5 硬门通过；首尾 MAE 为 2.9275 和 3.1626/255，相邻帧最大 MAE 1.3354/255，固定纺锤极最小覆盖率 0.990272。紫色组件从 1 增到 7，尾帧左 2、右 5，低于 10–14 且左右各至少 5 的门限。</p><p><b>对象分裂审计：</b>紫色组件从 1 个变为 7 个，尾帧左右为 2 + 5。组件计数能检查可见数量与分配，但不能恢复程序父子 ID。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>colored_parent_population_divides_into_balanced_groups</code>：失败</li><li><code>declared_static_color_mask_remains_stable</code>：通过</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>1/5</td></tr><tr><td>temporal_continuity</td><td>3/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>1/5</td></tr><tr><td>video_teaching_readability</td><td>2/5</td></tr>
+    <tr><th>加权总分</th><td>58/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    拒绝 BIO-01 首轮：模型把六个中央 X 当成一条紫色链，长时间静止后整体裂成两条，未表现六对姐妹染色单体逐对分离。<br><br>
+    <b>通用认识：</b>离散对象在输入像素上相互接触时，首尾帧模型会把它们压缩成一个视觉实体，即使提示词写了数量也不能恢复隐藏的程序 ID。对象分裂必须同时检查父子映射、组件数和左右分配。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic flat scientific cell-division diagram, exactly matching the supplied first and last frames. Preserve one fixed pale green oval animal cell, the dark green membrane, the two fixed blue spindle poles, background, framing, scale and camera. The six purple replicated chromosome units stacked on the center equator each separate into exactly two sister chromatids: one sister from every pair moves smoothly toward the left pole and the other moves smoothly toward the right pole. End with exactly six separate purple chromatids on the left and exactly six on the right as shown in the supplied last frame. Pairwise synchronous anaphase separation, stable count and one continuous biologically understandable motion. No camera movement.</pre></details>
+        <details><summary>负向提示词</summary><pre>random purple lines, extra chromosome, missing chromosome, unequal allocation, chromosome merging, chromosome melting, chromosome fading, arbitrary duplication, tangled chromosomes, all chromatids moving to one side, changed cell, dividing cell membrane, extra cell, missing spindle pole, moving spindle pole, camera movement, pan, zoom, tilt, perspective change, scene change, text, labels, arrows, flicker, jitter, abrupt cut, cross dissolve, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-008/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-008/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-008/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-008/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-009">
+    <p class="eyebrow">object_division · BIO-01</p>
+    <h2>接受 BIO-01 第二轮作为 object_division 冒烟结果：中央 X 链先分成左右两股，再形成左右各六条并向两极分开；明确保留像素不能证明父子 ID 的限制。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-009/samples/frame_048.png"
+    src="experiments/EXP-P5-20260729-009/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>前约一秒显示中央六个 X 的左右臂分开、两股紫线拉开并断成十二条短线，随后左右两组继续向纺锤极移动。细胞膜、背景和两个蓝色纺锤极稳定；约 1.5 秒后动作完成，余下时间偏静止。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-009/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：01_mechanism</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-009/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：02_result</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-009/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-009/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>5/5 硬门通过；首尾 MAE 为 2.0321 和 2.3075/255，相邻帧最大 MAE 1.7809/255。紫色组件由 1 增至 12，尾帧左 6、右 6；纺锤极最小覆盖率 0.976654、最大平均色差 8.0966/255。</p><p><b>对象分裂审计：</b>紫色组件从 1 个变为 12 个，尾帧左右为 6 + 6。组件计数能检查可见数量与分配，但不能恢复程序父子 ID。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>colored_parent_population_divides_into_balanced_groups</code>：通过</li><li><code>declared_static_color_mask_remains_stable</code>：通过</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>4/5</td></tr><tr><td>temporal_continuity</td><td>5/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>3/5</td></tr><tr><td>video_teaching_readability</td><td>4/5</td></tr>
+    <tr><th>加权总分</th><td>89/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    接受 BIO-01 第二轮作为 object_division 冒烟结果：中央 X 链先分成左右两股，再形成左右各六条并向两极分开；明确保留像素不能证明父子 ID 的限制。<br><br>
+    <b>通用认识：</b>对象分裂至少需要数量增长、空间分组和平衡分配三类审计；单纯首尾相似不能证明分裂。增加时长有时能让 LTX 展开动作，但像素组件仍不能替代程序父子 ID，发布级身份守恒应继续由程序状态负责。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic flat scientific cell-division diagram, exactly matching the supplied first and last frames. Preserve one fixed pale green oval animal cell, the dark green membrane, the two fixed blue spindle poles, background, framing, scale and camera. The six purple replicated chromosome units stacked on the center equator each separate into exactly two sister chromatids: one sister from every pair moves smoothly toward the left pole and the other moves smoothly toward the right pole. End with exactly six separate purple chromatids on the left and exactly six on the right as shown in the supplied last frame. Pairwise synchronous anaphase separation, stable count and one continuous biologically understandable motion. No camera movement.</pre></details>
+        <details><summary>负向提示词</summary><pre>random purple lines, extra chromosome, missing chromosome, unequal allocation, chromosome merging, chromosome melting, chromosome fading, arbitrary duplication, tangled chromosomes, all chromatids moving to one side, changed cell, dividing cell membrane, extra cell, missing spindle pole, moving spindle pole, camera movement, pan, zoom, tilt, perspective change, scene change, text, labels, arrows, flicker, jitter, abrupt cut, cross dissolve, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-009/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-009/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-009/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-009/review.json">评审原文</a></p>
+    </section><section id="EXP-P5-20260729-010">
+    <p class="eyebrow">boundary_topology_change · GEO-01</p>
+    <h2>接受 GEO-01 首轮：两个沉积塞逐渐封闭旧支路，横向捷径和左右贯通主河始终保留，尾帧形成一个独立牛轭湖；不使用第二次视频预算。</h2>
+    <video controls muted loop preload="metadata"
+    poster="experiments/EXP-P5-20260729-010/samples/frame_024.png"
+    src="experiments/EXP-P5-20260729-010/transition.mp4"></video>
+    <p><b>输出类型：</b>LTX-2.3 首尾帧生成</p>
+    <p>九个时间点显示两处浅棕沉积塞从小到大，最终切断上方旧河湾的两端；蓝色旧河湾始终可见，没有淡出或缩没。主河的横向捷径、河宽、绿色陆地、构图和镜头稳定。</p>
+    <div class="pair">
+      <figure><img src="experiments/EXP-P5-20260729-010/inputs/first.png" alt="首帧输入">
+      <figcaption>首帧：02_result</figcaption></figure>
+      <figure><img src="experiments/EXP-P5-20260729-010/inputs/last.png" alt="尾帧输入">
+      <figcaption>尾帧：03_end</figcaption></figure>
+    </div>
+    <h3>实际输出的 9 个时间点</h3>
+    <a href="experiments/EXP-P5-20260729-010/generated-frames.jpg"><img class="wide"
+    src="experiments/EXP-P5-20260729-010/generated-frames.jpg" alt="九个按时间排序的视频抽帧"></a>
+    <p>5/5 硬门通过；首尾 MAE 为 2.5417 和 2.8132/255，相邻帧最大 MAE 0.4360/255。所有 49 帧都恰有 1 个左右贯通水体，尾帧水色组件从 1 变为 2，独立组件面积 8317 px；陆地最小覆盖率 0.991152。</p><p><b>区域拓扑审计：</b>水色组件从 1 个变为 2 个；每一帧都保留一个左右贯通主通道，尾帧独立水体面积为 8317 px。这些值直接从输出像素连通域计算，不读取程序自报布尔值。</p>
+    <h3>硬门与人工评分</h3><ul><li><code>video_contract_matches_requested_dimensions</code>：通过</li><li><code>first_and_last_frames_follow_inputs</code>：通过</li><li><code>no_single_frame_jump_exceeds_smoke_threshold</code>：通过</li><li><code>colored_region_changes_topology_with_connected_trunk</code>：通过</li><li><code>declared_static_color_mask_remains_stable</code>：通过</li></ul>
+    <div class="pair"><table><tbody><tr><td>endpoint_adherence</td><td>5/5</td></tr><tr><td>intermediate_mechanism</td><td>5/5</td></tr><tr><td>temporal_continuity</td><td>5/5</td></tr><tr><td>scene_stability</td><td>5/5</td></tr><tr><td>motion_naturalness</td><td>4/5</td></tr><tr><td>video_teaching_readability</td><td>5/5</td></tr>
+    <tr><th>加权总分</th><td>98/100</td></tr>
+    </tbody></table>
+    <div class="note"><b>本轮结论：</b>
+    接受 GEO-01 首轮：两个沉积塞逐渐封闭旧支路，横向捷径和左右贯通主河始终保留，尾帧形成一个独立牛轭湖；不使用第二次视频预算。<br><br>
+    <b>通用认识：</b>拓扑变化必须从最终像素或语义 region 重新计算连通域，不能信任程序自报的布尔字段。通用门应同时要求主干始终贯通、尾帧独立组件存在且面积足够，避免用淡出、擦除或断主干伪造拓扑变化。</div></div>
+    <h3>实际提示词</h3>
+        <details><summary>正向提示词</summary><pre>Locked orthographic top-down flat geographic teaching diagram, exactly matching the supplied first and last frames. Preserve the pale green land, blue river material, framing, scale and camera. The left-to-right main river remains continuously connected through the short horizontal blue cutoff channel at the meander neck during every frame. Two tan sediment plugs gradually build on the two upward abandoned-channel branches, closing both ends of the old loop. The upper blue meander loop remains visible as one separate oxbow water body after both plugs complete. One continuous readable neck-cutoff transition: keep one connected main channel from left edge to right edge and finish with one additional isolated blue oxbow lake exactly as in the supplied last frame. No camera movement.</pre></details>
+        <details><summary>负向提示词</summary><pre>broken main river, blocked horizontal shortcut, disconnected left and right river, missing oxbow lake, fading old loop, shrinking loop, reconnecting oxbow, extra lake, extra river branch, moving landscape, changing river width everywhere, flood, dry river, island, boat, vegetation, text, labels, arrows, camera movement, pan, zoom, tilt, perspective change, scene change, flicker, jitter, abrupt cut, cross dissolve, plastic CGI, blur, watermark</pre></details>
+    <p><a href="experiments/EXP-P5-20260729-010/_work/workflow_api.json">完整 ComfyUI 工作流</a> · 
+    <a href="experiments/EXP-P5-20260729-010/_work/run.json">逐帧机器审计</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-010/spec.json">实验规格</a> ·
+    <a href="../../phase5_experiments/EXP-P5-20260729-010/review.json">评审原文</a></p>
+    </section>
+<section><h2>模型、参数与已知未通过项</h2>
+<table><tbody><tr><th>视频模型</th><td>LTX-2.3 22B dev FP8 +
+distilled 1.1 LoRA</td></tr><tr><th>文本编码器</th><td>Gemma 3 12B IT FP4 mixed</td></tr>
+<tr><th>首轮尺寸</th><td>576×320，24 fps，49 帧，约 2 秒</td></tr>
+<tr><th>本阶段图片调用</th><td>0</td></tr><tr><th>当前视频调用</th>
+<td>8</td></tr></tbody></table>
+<div class="note"><b>尚未通过发布门：</b>ComfyUI API 没有暴露 LTX 文本编码器的实际
+token 数，因此目前只记录提示词字符数，不能声称 prompt token integrity 已通过。
+Phase 5 已覆盖全部五种运动；下一步是 Phase 6 全量发布回归。</div>
+<pre>/persistent/ComfyUI/start-ltx2.3.sh
+/workspace/comfyui-rocm-env/bin/python -m modules.video_model.stage2.phase5_experiment \
+  --experiment EXP-P5-20260729-001 --prepare
+/workspace/comfyui-rocm-env/bin/python -m modules.video_model.stage2.phase5_experiment \
+  --experiment EXP-P5-20260729-001 --generate
+.venv/bin/python -m modules.video_model.stage2.phase5
+.venv/bin/python -m modules.video_model.stage2.phase5 --check</pre>
+<p><a href="phase5_manifest.json">机器可读 Phase 5 清单</a> ·
+<a href="../phase-4/program-report.html">Phase 4 关键帧报告</a></p></section>
+</main></body></html>

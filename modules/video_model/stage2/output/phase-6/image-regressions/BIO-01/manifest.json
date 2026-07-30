@@ -1,0 +1,287 @@
+{
+  "allowed_region_layer_id": "bio01_cell_region",
+  "case_id": "BIO-01",
+  "classification": "deterministic program sequence plus robust reused model-material residual",
+  "comparison": {
+    "path": "sequence-comparison.jpg",
+    "sha256": "83d42a87b2cb0b8e29afb764a390a2974484dce1d26bcb31c1faa25ce6600d5e",
+    "size_bytes": 77810
+  },
+  "cross_frame_applied_residual_max_difference_0_255": [
+    0.0,
+    1.0,
+    1.0
+  ],
+  "discipline": "biology",
+  "donor_evidence": {
+    "path": "output/phase-3/EXP-20260729-013/_work/generate.json",
+    "sha256": "7b76ea0e0ed3897dbcd9f6b23579c55660412bc90d364fb54755b522bc2f66ce",
+    "size_bytes": 7875
+  },
+  "donors": [
+    {
+      "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3101.png",
+      "sha256": "30984f41c6982dd0659705c0b399ddd0dde75ed5146728b3eff1fc95020644da",
+      "size_bytes": 916637
+    },
+    {
+      "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3102.png",
+      "sha256": "02f664a9c304a8b5969412ea2014d165402936ba802bf4b5ee3384f3bfb327d5",
+      "size_bytes": 949775
+    },
+    {
+      "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3103.png",
+      "sha256": "25bc46572e2f3f04868743797a03124a1e917131459679ef41ff4171fec57b4e",
+      "size_bytes": 919801
+    },
+    {
+      "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+      "sha256": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c",
+      "size_bytes": 919365
+    }
+  ],
+  "hard_checks": [
+    {
+      "evidence": 0.0,
+      "name": "all_non_allowed_and_protected_pixels_are_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.153533,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": 0.391506,
+      "name": "leave_one_out_material_projection_is_stable",
+      "passed": true
+    },
+    {
+      "evidence": 1.0,
+      "name": "same_material_residual_is_stable_across_keyframes",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "mean_mutable_detail_change_0_255": 1.296291,
+        "minimum": 0.2
+      },
+      "name": "material_enhancement_is_not_an_unchanged_no_op",
+      "passed": true
+    }
+  ],
+  "keyframes": [
+    {
+      "allowed_pixel_fraction": 0.32115885,
+      "final": {
+        "path": "final/00_start.png",
+        "sha256": "4beb8625db0f180a0971db0d6564c4d9254591c14e25756a0f94699a62ce2a70",
+        "size_bytes": 74122
+      },
+      "keyframe_id": "00_start",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.131315,
+        "mutable_mean_abs_detail_change_0_255": 1.309685,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.28201823,
+      "program": {
+        "path": "output/phase-2/BIO-01/keyframes/00_start/clean.png",
+        "sha256": "9b574796f658cccf148ab0b4991a2158b08df573767979c0bfe72dfeace494f1",
+        "size_bytes": 3788
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/BIO-01/keyframes/00_start/semantic_layers.json",
+        "sha256": "f09ff1f6bd17a13f913ac40dcf5a0863fdbf818355efe6467ed3dda34397947a",
+        "size_bytes": 5161
+      }
+    },
+    {
+      "allowed_pixel_fraction": 0.32115885,
+      "final": {
+        "path": "final/01_mechanism.png",
+        "sha256": "64ba340ae34fb5766b911635e65f609efc2389397650e8c64f31b0f04082e6c2",
+        "size_bytes": 77103
+      },
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.134602,
+        "mutable_mean_abs_detail_change_0_255": 1.285042,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.29480035,
+      "program": {
+        "path": "output/phase-2/BIO-01/keyframes/01_mechanism/clean.png",
+        "sha256": "4f5263776624a3c03a9f082fff45251141fbfc05a9a79070b085227f03a3352d",
+        "size_bytes": 3815
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/BIO-01/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "4c9526ff08ca506a32de4f3b0258467ac8916d4c4a7f4403dd3dfc755965fae1",
+        "size_bytes": 5197
+      }
+    },
+    {
+      "allowed_pixel_fraction": 0.32115885,
+      "final": {
+        "path": "final/02_result.png",
+        "sha256": "3473955106f61381f46c3b801e88f50c4285e6edecc6589e11a6f4539a9f709d",
+        "size_bytes": 77048
+      },
+      "keyframe_id": "02_result",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.134226,
+        "mutable_mean_abs_detail_change_0_255": 1.305866,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.28415365,
+      "program": {
+        "path": "output/phase-2/BIO-01/keyframes/02_result/clean.png",
+        "sha256": "9cfddce72bccfd21c25da4023a87b1c0cfa474d41a4dbbfc39e9af289fc00b19",
+        "size_bytes": 5347
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/BIO-01/keyframes/02_result/semantic_layers.json",
+        "sha256": "f2856fd0787714547bf84082116a5aac88dd6863a00ea3d14b064307e77e582f",
+        "size_bytes": 5171
+      }
+    },
+    {
+      "allowed_pixel_fraction": 0.35782118,
+      "final": {
+        "path": "final/03_end.png",
+        "sha256": "3bf491f68a3b0a8d0203abbe41ff95dcb87575bb8b19c2477556b5150b3ddbf9",
+        "size_bytes": 87118
+      },
+      "keyframe_id": "03_end",
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.153533,
+        "mutable_mean_abs_detail_change_0_255": 1.284571,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      },
+      "mutable_pixel_fraction": 0.31560764,
+      "program": {
+        "path": "output/phase-2/BIO-01/keyframes/03_end/clean.png",
+        "sha256": "21d9f27e898fae58ce74de6e23a43757c4b52cd5b3d41d29367ad86ea9bd6cc0",
+        "size_bytes": 4574
+      },
+      "semantic_layers": {
+        "path": "output/phase-2/BIO-01/keyframes/03_end/semantic_layers.json",
+        "sha256": "7b60421e077034e23566b91e49c81f93c706a828a355bc83130cb1896d272c89",
+        "size_bytes": 5144
+      }
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_1.png",
+        "sha256": "eff0dcc6a4ece36e62c353bce2467ce6afefaef70518ac04cb69ff0ddef9eec3",
+        "size_bytes": 93886
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3101.png",
+        "sha256": "30984f41c6982dd0659705c0b399ddd0dde75ed5146728b3eff1fc95020644da",
+        "size_bytes": 916637
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.222811,
+        "mutable_mean_abs_detail_change_0_255": 1.694948,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_2.png",
+        "sha256": "6281a7428f8ad84adac89c6a8d323e02d94990bb902a2d65c1fed2f8a2d62802",
+        "size_bytes": 93265
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3102.png",
+        "sha256": "02f664a9c304a8b5969412ea2014d165402936ba802bf4b5ee3384f3bfb327d5",
+        "size_bytes": 949775
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.231594,
+        "mutable_mean_abs_detail_change_0_255": 1.786054,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_3.png",
+        "sha256": "886563199d0b510678e5090344d3d5dd535c4669a5bf8dd425cf53c658f97076",
+        "size_bytes": 93047
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3103.png",
+        "sha256": "25bc46572e2f3f04868743797a03124a1e917131459679ef41ff4171fec57b4e",
+        "size_bytes": 919801
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.168601,
+        "mutable_mean_abs_detail_change_0_255": 1.504108,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "leave-one-out/exclude_4.png",
+        "sha256": "3252535c66534f142b876fcbb03e6fbfc6cf6578ff366ad3bc3bf592331302ef",
+        "size_bytes": 91339
+      },
+      "excluded_donor": {
+        "path": "output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+        "sha256": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c",
+        "size_bytes": 919365
+      },
+      "metrics": {
+        "low_frequency_mse_vs_program": 0.164219,
+        "mutable_mean_abs_detail_change_0_255": 1.426737,
+        "non_mutable_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 0.391506,
+    "values": [
+      0.277405,
+      0.391506,
+      0.384232,
+      0.384232,
+      0.391506,
+      0.277405
+    ]
+  },
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "protected_layers": [
+    {
+      "dilation_px": 7,
+      "kind": "object_identity",
+      "layer_id": "bio01_chromosome_identity"
+    }
+  ],
+  "reused_model_donors": 4,
+  "schema_version": "1.0",
+  "settings": {
+    "blur_radius": 12.0,
+    "minimum_visible_detail_change_0_255": 0.2,
+    "residual_clip": 10.0,
+    "residual_gain": 0.3
+  },
+  "source_hashes": {
+    "config_sha256": "f0a9d615a7892e720da446ced19b8792a8e8ffe5e38a97fe2c4709600794148d",
+    "runner_sha256": "6be66b57848bc13c4d9f72a3585d946fa8595412214d02e843f96f4b569f5767"
+  },
+  "status": "passed",
+  "visual_review": {
+    "artifact_control_5": 4,
+    "finding_zh": "细胞质获得跨帧一致的轻微显微纹理；染色体数量、位置、分离方向和两个子细胞轮廓没有被材质步骤改写。",
+    "material_improvement_5": 3,
+    "mechanism_fidelity_5": 5,
+    "status": "accepted"
+  }
+}

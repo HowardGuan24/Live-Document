@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-008",
+  "review_mode": "blind_first_then_unblind",
+  "configuration_summary": [
+    {
+      "configuration_id": "img2img_sparse_baseline",
+      "mean_mechanism_fidelity_5": 5.0,
+      "mean_material_naturalness_5": 2.0,
+      "usable_seed_fraction": 1.0,
+      "finding_zh": "器材和液位稳定，但仍是程序线框与平涂。"
+    },
+    {
+      "configuration_id": "t2i_sparse_hard_boundary",
+      "mean_mechanism_fidelity_5": 3.0,
+      "mean_material_naturalness_5": 5.0,
+      "usable_seed_fraction": 0.5,
+      "finding_zh": "四张都显著更真实，但只有两张形成大致一个容器与中央管；另外两张把抽象 U 形线解释成内嵌烧瓶或裁切装置。"
+    },
+    {
+      "configuration_id": "t2i_control_off",
+      "mean_mechanism_fidelity_5": 1.5,
+      "mean_material_naturalness_5": 5.0,
+      "usable_seed_fraction": 0.0,
+      "finding_zh": "材质真实但器材数量、类型和布局完全由模型自由决定。"
+    }
+  ],
+  "verdict": "supported_material_boundary_mechanism_gate_failed",
+  "verdict_zh": "确认 T2I ControlNet 能像网上 demo 一样生成真实玻璃，但当前稀疏 hard_boundary 的语义不足，只有 2/4 通过器材机制门禁，因此路线尚不能晋级。",
+  "generalization_boundary_zh": "边缘控制不是越稀疏越好；它至少要让目标物的类别和部件关系可辨认。只有 U 形容器和两条竖线，模型无法可靠知道这是烧杯、滴定管、活塞和滴嘴。",
+  "next_action_zh": "保持 T2I 和全部采样参数，增加一张无文字但语义完整的器材线稿；与当前稀疏基线做同种子对照。"
+}

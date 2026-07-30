@@ -1,0 +1,32 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "class_id": "guard_cell",
+      "geometry": {
+        "bbox_xyxy": [
+          213.5,
+          82,
+          309.5,
+          278
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "BIO-02-guard-cell-left"
+    },
+    {
+      "class_id": "guard_cell",
+      "geometry": {
+        "bbox_xyxy": [
+          330.5,
+          82,
+          426.5,
+          278
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "BIO-02-guard-cell-right"
+    }
+  ],
+  "schema_version": "1.0"
+}

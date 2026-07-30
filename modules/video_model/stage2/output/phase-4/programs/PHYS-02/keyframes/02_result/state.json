@@ -1,0 +1,10 @@
+{
+  "case_id": "PHYS-02",
+  "coil_x": 390,
+  "induced_current": 0.0,
+  "magnet_x": 270.0,
+  "magnetic_flux": 0.26359714,
+  "meter_pointer_angle": -1.57079633,
+  "progress": 0.666667,
+  "stage": "stopped"
+}

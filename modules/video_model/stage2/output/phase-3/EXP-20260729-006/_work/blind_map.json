@@ -1,0 +1,22 @@
+{
+  "A": {
+    "configuration_id": "t2i_pink_solution_donor",
+    "seed": 3104,
+    "sha256": "400c54ed288cc0496c0455b48611d4c65360811426c8bc920c87bd212632a8cb"
+  },
+  "B": {
+    "configuration_id": "t2i_pink_solution_donor",
+    "seed": 3103,
+    "sha256": "895f3b20cabb23d86da1ede240a2cada45243f967b9b738aed9eb8ce57614955"
+  },
+  "C": {
+    "configuration_id": "t2i_pink_solution_donor",
+    "seed": 3101,
+    "sha256": "a6c78cf9299eda2240bbfa4826332452bc60a1ff879e048b54dcdcdaae36ba77"
+  },
+  "D": {
+    "configuration_id": "t2i_pink_solution_donor",
+    "seed": 3102,
+    "sha256": "39775fb513c48f523180ddf471c2f272489d5dd72cc1d7cb9b7afb57bd484ede"
+  }
+}

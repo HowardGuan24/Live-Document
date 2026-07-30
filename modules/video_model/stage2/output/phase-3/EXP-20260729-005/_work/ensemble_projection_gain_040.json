@@ -1,0 +1,167 @@
+{
+  "case_id": "PHYS-01",
+  "comparison_sheet": {
+    "path": "ensemble-material-comparison-gain_040.jpg",
+    "sha256": "a6bf3dd924cd90580a4c1b5caa7e155f57c9c82b2968f5c5b64134408dde9f2d",
+    "size_bytes": 378224
+  },
+  "experiment_id": "EXP-20260729-005",
+  "full_ensemble": {
+    "composite": {
+      "path": "composite/ensemble_material/gain_040/all_seed_median.png",
+      "sha256": "0abde24164d746717d4080ec4271625fd363104197ef4d9c2d836f0a1d0ba6a3",
+      "size_bytes": 619089
+    },
+    "metrics": {
+      "allowed_mean_abs_detail_change_0_255": 2.077588,
+      "low_frequency_mse_vs_program": 0.566085,
+      "protected_max_abs_difference_0_255": 0.0
+    }
+  },
+  "hard_checks": [
+    {
+      "evidence": {
+        "full": 0.0,
+        "leave_one_out": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "all_protected_pixels_are_bit_exact",
+      "passed": true
+    },
+    {
+      "evidence": 0.566085,
+      "name": "low_frequency_program_structure_is_preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 1.656654,
+        "mean": 1.595536,
+        "values": [
+          1.625539,
+          1.504415,
+          1.656654,
+          1.656654,
+          1.504415,
+          1.625539
+        ]
+      },
+      "name": "leave_one_out_composites_are_stable",
+      "passed": true
+    }
+  ],
+  "leave_one_out": [
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3101.png",
+        "sha256": "23d4c7fd1c573d25cec8a021c2e3e76553e2c765ddab01ca353b92ce1cc1ce39",
+        "size_bytes": 636772
+      },
+      "excluded_seed": 3101,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 3.114856,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3102.png",
+        "sha256": "e4bc673d40e05f3b18d3dfe4a9325f030b6c53a7afbf8ea3bf0387dfe3950bbc",
+        "size_bytes": 676112
+      },
+      "excluded_seed": 3102,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.24708,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3103.png",
+        "sha256": "1a5c77c1c9a7c2475bdd8355580a8f68fea8c82b0e766c21ba2310d8df724714",
+        "size_bytes": 682614
+      },
+      "excluded_seed": 3103,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.464432,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    },
+    {
+      "composite": {
+        "path": "composite/ensemble_material/gain_040/exclude_seed_3104.png",
+        "sha256": "888ddee19cbb8dbef2930be913c6e90d0ea48eb070dea8685ada0e00f98a5409",
+        "size_bytes": 677116
+      },
+      "excluded_seed": 3104,
+      "included_seed_count": 3,
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 2.185438,
+        "protected_max_abs_difference_0_255": 0.0
+      }
+    }
+  ],
+  "leave_one_out_pairwise_mae_0_255": {
+    "maximum": 1.656654,
+    "mean": 1.595536,
+    "values": [
+      1.625539,
+      1.504415,
+      1.656654,
+      1.656654,
+      1.504415,
+      1.625539
+    ]
+  },
+  "method_zh": "每张 raw 供体先减去高斯低通并限幅，再对四个复现编号的残差逐像素取中位数。只在程序未保护区域加入该稳健残差；另做四张留一法结果，检查结论是否依赖某一个供体。",
+  "raw_donors": [
+    {
+      "artifact": {
+        "path": "raw/t2i_material_donor/seed_3101.png",
+        "sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "size_bytes": 1147324
+      },
+      "seed": 3101
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_material_donor/seed_3102.png",
+        "sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "size_bytes": 1152177
+      },
+      "seed": 3102
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_material_donor/seed_3103.png",
+        "sha256": "8d7e87405b565ab9e5f1d49eb380276e351b23e44b268c9d0e0043ccd9c1d848",
+        "size_bytes": 949373
+      },
+      "seed": 3103
+    },
+    {
+      "artifact": {
+        "path": "raw/t2i_material_donor/seed_3104.png",
+        "sha256": "0a1d5b92ee038684575402a5a73ff424195cf932c47624bb6c56015e98c97282",
+        "size_bytes": 1152479
+      },
+      "seed": 3104
+    }
+  ],
+  "schema_version": "1.0",
+  "settings": {
+    "aggregation": "pixelwise_median",
+    "blur_radius": 12.0,
+    "protect_dilation_px": 10,
+    "residual_clip": 12.0,
+    "residual_gain": 0.4,
+    "variant_id": "gain_040"
+  }
+}

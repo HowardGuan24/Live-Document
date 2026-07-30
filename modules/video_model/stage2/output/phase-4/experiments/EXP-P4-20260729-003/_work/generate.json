@@ -1,0 +1,221 @@
+{
+  "blind_shuffle_seed": 2026072918,
+  "cache": {
+    "generated": 4,
+    "policy": "reuse only if clean input, prompts, control, configuration, seed, render settings and model fingerprints all match",
+    "reused": 0
+  },
+  "candidates": [
+    {
+      "blind_id": "D",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_leaf_epidermis_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 8.913,
+      "input_signature": "6be3bf58a004c7ab6fb747610a31c7f11638a4324f778d89e104ca0d70a459e3",
+      "metrics": {
+        "candidate_edge_fraction": 0.2149353,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 38.7577,
+        "mean_saturation_0_255": 151.41232
+      },
+      "path": "raw/t2i_leaf_epidermis_material_donor/seed_3101.png",
+      "peak_gpu_memory_bytes": 11760833024,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3101,
+      "sha256": "a0c65af1cc18dd8c128f03b100f76759f5db5049a8cc3733a37374cf3381d639",
+      "size_bytes": 1281000
+    },
+    {
+      "blind_id": "C",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_leaf_epidermis_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.677,
+      "input_signature": "47b63f35e810ae4d9faf24fc58b1549e4a82c69b21500a58c0716bf4c5acda78",
+      "metrics": {
+        "candidate_edge_fraction": 0.21573215,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 30.25433,
+        "mean_saturation_0_255": 208.71042
+      },
+      "path": "raw/t2i_leaf_epidermis_material_donor/seed_3102.png",
+      "peak_gpu_memory_bytes": 11759849984,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3102,
+      "sha256": "f345bc1e5a6831ba8d404682027434b8d972efc2ecd83f13869295f8a480175b",
+      "size_bytes": 1281446
+    },
+    {
+      "blind_id": "B",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_leaf_epidermis_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.683,
+      "input_signature": "740a081d43e9d53b541a2a44c94afbf5d1a1f7b35e0b3d89ba947f72a9334d26",
+      "metrics": {
+        "candidate_edge_fraction": 0.22508409,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 31.40825,
+        "mean_saturation_0_255": 163.67491
+      },
+      "path": "raw/t2i_leaf_epidermis_material_donor/seed_3103.png",
+      "peak_gpu_memory_bytes": 11760570880,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3103,
+      "sha256": "87bc7fb49e0913c5241124a2ec52acd9eead9826c0359b2824960280aafa098c",
+      "size_bytes": 1380104
+    },
+    {
+      "blind_id": "A",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_leaf_epidermis_material_donor",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.721,
+      "input_signature": "55c67d5a15937ff9ba4780488b77f9882c0bd83810ea994438073452b0323140",
+      "metrics": {
+        "candidate_edge_fraction": 0.21864319,
+        "control_edge_coverage_within_4px": 0.0,
+        "luminance_std_0_255": 33.75459,
+        "mean_saturation_0_255": 197.91822
+      },
+      "path": "raw/t2i_leaf_epidermis_material_donor/seed_3104.png",
+      "peak_gpu_memory_bytes": 11762274816,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3104,
+      "sha256": "ee656b8f1b2f502f0570e77101739ac3e46d4b962160613ebdf3c3bd0f21b257",
+      "size_bytes": 1307762
+    }
+  ],
+  "case_id": "BIO-02",
+  "experiment_id": "EXP-P4-20260729-003",
+  "hypothesis_zh": "无器官轮廓的叶片表皮材质供体经多种子稳健残差，只进入两个保卫细胞 region 后，可增加有机表面层次且不改变细胞数和气孔开度。",
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "model_roots": {
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0"
+    },
+    "models": {
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      },
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      }
+    },
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run."
+  },
+  "model_load_seconds": 5.491,
+  "model_runs": {
+    "image_candidates": 4,
+    "video_candidates": 0
+  },
+  "models": {
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    },
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "Pillow": "11.0.0",
+    "accelerate": "1.13.0",
+    "diffusers": "0.35.2",
+    "numpy": "2.1.2",
+    "opencv-python-headless": "4.13.0.92",
+    "safetensors": "0.7.0",
+    "torch": "2.9.1+gitff65f5b",
+    "transformers": "4.57.6"
+  },
+  "pipeline_mode": "controlnet_t2i",
+  "prompt_token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 55,
+        "tokenizer_2": 55
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 67,
+        "tokenizer_2": 67
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "runtime": {
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336,
+    "hip": "7.2.53211-e1a6bc5663",
+    "torch": "2.9.1+gitff65f5b"
+  },
+  "scheduler": "EulerDiscreteScheduler",
+  "schema_version": "1.0",
+  "sheets": {
+    "blind": {
+      "path": "candidates-blind.jpg",
+      "sha256": "a3bc0988ba04f2f536bbc539bf2a2ff7fdbbc429acebd0f36f5c8fa6bac57167",
+      "size_bytes": 388042
+    },
+    "blind_map": {
+      "path": "_work/blind_map.json",
+      "sha256": "615a90c8709b4110c473296ab7c7ec0cdc682831bcd6c20b156425ff4a26edfa",
+      "size_bytes": 699
+    },
+    "labeled": {
+      "path": "candidates-labeled.jpg",
+      "sha256": "322827a69154543e25463c533722e45fe1401ffd6a8127dbecc11bbae4091667",
+      "size_bytes": 396504
+    }
+  },
+  "single_variable_zh": "相对程序底图只增加模型派生的受限中高频材质；两个细胞身份、边界、中央孔隙与背景不变。",
+  "status": "generated"
+}

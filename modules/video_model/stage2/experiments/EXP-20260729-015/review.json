@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-015",
+  "review_mode": "blind_first_then_unblind",
+  "configuration_summary": [
+    {
+      "configuration_id": "dense_scale_035",
+      "mean_mechanism_fidelity_5": 1.75,
+      "mean_material_naturalness_5": 4.25,
+      "usable_seed_fraction": 0.0,
+      "finding_zh": "山体最接近照片，但 4/4 都丢失明确左侧雨区，且三张明显改变原单峰剖面或视角。"
+    },
+    {
+      "configuration_id": "dense_scale_055",
+      "mean_mechanism_fidelity_5": 3.75,
+      "mean_material_naturalness_5": 3.5,
+      "usable_seed_fraction": 0.25,
+      "finding_zh": "两张保住左雨右干但雨仍像黑色划线；另两张把雨变成雾或完全丢失。只有单一种子接近折中，未达到 3/4 稳健门。"
+    },
+    {
+      "configuration_id": "dense_scale_075",
+      "mean_mechanism_fidelity_5": 4.5,
+      "mean_material_naturalness_5": 1.75,
+      "usable_seed_fraction": 0.0,
+      "finding_zh": "4/4 稳定保留机制分区，但全部保留明显程序墨线，与 EXP-014 一致。"
+    }
+  ],
+  "verdict": "rejected_no_robust_full_frame_compromise",
+  "verdict_zh": "三个强度都未同时达到机制与材质的 3/4 稳健门；不能靠挑选 0.55 的幸运种子宣布路线成功。",
+  "generalization_boundary_zh": "对“连续静态地形 + 局部动态现象”的画面，单个 Canny 强度同时承担两类信息会产生不可解折中：弱控制丢动态区域，强控制把动态笔划和轮廓烙进成品。",
+  "accepted_general_candidate_zh": "下一阶段把静态环境写实化与机制场显示拆开：图像模型只接收地形大形状，程序根据 scalar/vector field 在生成后绘回云雨等动态现象，并分别验收。",
+  "case_specific_configuration_zh": "迎风坡雨幕的颜色、倾角和密度属于 GEO-02 插件；“静态场与动态场分层”是待跨案例回归的通用候选。",
+  "next_action_zh": "Phase 3 到此停止该路线扫描；进入 Phase 4 时实现分层生成/合成接口，并在地形雨、滴定和三角洲三个标量场案例回归。"
+}

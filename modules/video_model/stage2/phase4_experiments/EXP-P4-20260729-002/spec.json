@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P4-20260729-002",
+  "case_id": "GEO-01",
+  "hypothesis_zh": "修正针孔后的 GEO-01 输入使用多供体限幅中位数水纹，可增加水面细节且逐像素保留牛轭湖拓扑、封堵、岸线和陆地。",
+  "single_variable_zh": "相对修正后的程序底图只增加模型派生的受限中高频材质；程序水体拓扑、边界、封堵与陆地不变。",
+  "source": {
+    "keyframe_id": "03_end",
+    "clean_frame": "output/phase-4/programs/GEO-01/keyframes/03_end/clean.png",
+    "semantic_layers": "output/phase-4/programs/GEO-01/keyframes/03_end/semantic_layers.json"
+  },
+  "control_overrides": {
+    "sparse_identity_boundary": "phase4_experiments/EXP-P4-20260729-002/protected_water_boundary.png"
+  },
+  "control_override_explanations": {
+    "sparse_identity_boundary": "由 build_control.py 直接复制修正后的 geo01_water_boundary；不从成图反推。"
+  },
+  "prompt_parts": {
+    "scene_identity": "Top-down macro photograph of calm natural blue river water, edge-to-edge material sample",
+    "material_goal": "fine irregular surface ripples, subtle reflections, low-contrast natural water texture",
+    "state_delta": "uniform material swatch without banks or focal objects",
+    "must_preserve": "even texture scale, no shoreline, no text"
+  },
+  "negative_artifacts": "shoreline, river bank, island, sandbar, boats, plants, fish, stones, concentric rings, point sources, panels, seams, dividing lines, text, labels, arrows, user interface, watermark, giant waves, plastic, metal, perspective, horizon, blur",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "t2i_water_material_donor",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0
+    }
+  ],
+  "blind_shuffle_seed": 2026072917,
+  "budget": {
+    "maximum_new_image_candidates": 12,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  },
+  "projection": {
+    "blur_radius": 12.0,
+    "residual_gain": 0.3,
+    "residual_clip": 12.0,
+    "protect_dilation_px": 8,
+    "aggregation": "pixelwise_median_with_leave_one_out",
+    "allowed_region_layer_id": "geo01_water_region",
+    "variant_id": "gain_030"
+  }
+}

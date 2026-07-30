@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stage 2 · Phase 3 图像模型能力边界</title>
+<style>
+:root{--ink:#17373d;--deep:#0d2930;--paper:#f2eee3;--card:#fffdf7;
+--line:#bed0ca;--teal:#167f76;--amber:#d2842d;--red:#a94b49}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);
+font:16px/1.65 system-ui,-apple-system,"Noto Sans SC",sans-serif}
+header,main{max-width:1200px;margin:auto;padding:36px 24px}header{padding-top:58px}
+h1{font-size:clamp(2.3rem,6vw,5rem);line-height:1.04;margin:.15em 0}
+h2{font-size:2rem;margin-top:0}h3{font-size:1.55rem;margin:.2em 0}
+h4{font-size:1.05rem;margin:1.25em 0 .55em}p{max-width:88ch}
+a{color:var(--teal)}section{border-top:3px solid var(--ink);padding:42px 0}
+.eyebrow{color:var(--teal);font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.metrics,.route-grid,.control-grid,.input-grid{display:grid;gap:13px;margin:20px 0}
+.metrics{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.route-grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.control-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.input-grid{grid-template-columns:minmax(240px,.8fr) minmax(300px,1.2fr);align-items:start}
+.metric,.route,.verdict,.note{background:var(--card);border:1px solid var(--line);
+border-radius:13px;padding:16px}.metric b{display:block;font-size:2rem;color:var(--teal)}
+.route.reject{border-left:6px solid var(--red)}.route.accept{border-left:6px solid var(--teal)}
+figure{margin:0}figure img,.wide{display:block;width:100%;height:auto;border-radius:9px;
+background:var(--deep)}figcaption{padding:7px 3px;color:#4f696d}
+.control-card{background:var(--card);border:1px solid var(--line);padding:9px;border-radius:11px}
+.control-card img{aspect-ratio:16/9;object-fit:contain}
+.experiment{border-top:2px solid var(--line)}.experiment>.eyebrow{margin-bottom:0}
+.prompt{font-size:.93rem;background:#eef3ef;padding:10px;border-radius:8px}
+.verdict{margin:16px 0;border-left:6px solid var(--amber)}.verdict b{font-size:1.05rem}
+.evidence{max-height:900px;object-fit:contain;background:var(--deep)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:.9rem}
+th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}
+pre{white-space:pre-wrap;overflow:auto;background:var(--deep);color:#eaf5f1;padding:15px;
+border-radius:9px}details{margin:12px 0}summary{cursor:pointer;font-weight:700}
+.muted{color:#60787c}.links{font-size:.92rem}code{overflow-wrap:anywhere}
+@media(max-width:760px){header,main{padding-left:14px;padding-right:14px}
+.input-grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><p class="eyebrow">LIVE-DOCUMENT · LOOP ENGINEER · PHASE 3</p>
+<h1>不是让模型重画一切，<br>而是先划清能力边界</h1>
+<p>这一阶段用数学、物理、化学、生物、地理五个程序动画的固定关键帧，
+做了 15 个单变量实验。目标不是从随机结果里挑一张漂亮图，而是回答：
+哪些信息能交给 SDXL，哪些事实必须留在程序里。</p>
+<div class="metrics">
+<div class="metric"><b>5 / 5</b>学科代表已覆盖</div>
+<div class="metric"><b>15 / 15</b>实验已盲评并判定</div>
+<div class="metric"><b>112</b>报告中的 raw 候选</div>
+<div class="metric"><b>92</b>实际新图片模型调用</div>
+<div class="metric"><b>20</b>严格签名复用候选</div>
+<div class="metric"><b>0</b>本阶段视频模型调用</div>
+</div></header><main>
+<section><h2>1. 第一次接手项目，先理解这条生成链</h2>
+<ol>
+<li><b>程序关键帧</b>先计算数量、位置、拓扑和连续场。报告里的输入图已经移除文字、
+箭头与界面。</li>
+<li><b>语义层</b>是程序同时输出的机器数据，例如物体边界、允许修改区域、水面高度或
+对象 ID；它不是模型凭截图猜出的 mask。</li>
+<li><b>控制图（conditioning）</b>是实际送入 Canny ControlNet 的黑底白线图。
+白线只是“请在这里保留边缘”，模型不知道线代表三角形、玻璃还是雨。</li>
+<li><b>语言提示</b>由场景、材料、本帧变化、必须保留项、负向禁区五部分编译。
+两个 tokenizer 都在加载完整扩散管线前检查 77-token 上限。</li>
+<li><b>seed</b>只是可复现的初始噪声编号。每个配置固定用 3101–3104，
+不是材质名，也不是人工评分。</li>
+<li><b>raw</b>是模型直接输出；<b>composite</b>是程序约束后的合成结果；
+<b>final</b>只允许来自已通过门禁且冻结选择规则的结果。三者绝不混称。</li>
+<li>先看隐藏路线名的联系表，再解盲评分；只要数量、拓扑、提示截断或模型指纹硬门失败，
+再漂亮也拒绝。</li>
+</ol>
+<div class="note"><b>固定模型：</b>SDXL Base 1.0 FP16 +
+SDXL Canny ControlNet FP16。所有实验使用相同本地权重指纹，没有下载、替换或把
+程序合成图冒充模型增强。</div></section>
+
+<section><h2>2. Phase 3 得出的通用路由表</h2>
+<div class="route-grid">
+<article class="route accept"><h3>精确数量 / 刚体几何</h3>
+<p><b>整图重绘关闭。</b>MATH-02 与 BIO-01 都证明 Canny 能保大轮廓，却不能可靠保证
+四块拼片或每细胞六条染色单体。程序保留结构，模型只提供受限材质残差。</p></article>
+<article class="route accept"><h3>语义明确的器材边界</h3>
+<p><b>可用 T2I ControlNet。</b>CHEM-01 中，只有外包围 U 形时成功率 2/4；
+加入烧杯口沿、液面、滴定管、活塞与滴嘴后达到 4/4。核心要求“线稿语义充分”，
+具体器材线仍属案例插件。</p></article>
+<article class="route accept"><h3>连续材质 / 高度场</h3>
+<p><b>程序决定大形，模型负责微纹理。</b>PHYS-01 的整图 Img2Img 在强度升高时先丢波形，
+后得到材质；多供体限幅中位数残差能保留程序低频结构并安全增加水纹。</p></article>
+<article class="route reject"><h3>静态环境 + 局部动态场</h3>
+<p><b>一个 Canny 强度不够。</b>GEO-02 中强控制留下墨线，弱控制丢雨区。
+Phase 4 要把地形写实化与程序云雨层分开，而不是继续堆 prompt 或挑幸运 seed。</p></article>
+</div></section>
+
+<section><h2>3. 如何读下面的 15 轮证据</h2>
+<p>每轮严格按实际顺序展示：无标注程序输入 → 模型控制图 → 完整提示词与 token 数 →
+全部 raw 候选 → 可选 composite → 解盲评分和结论。点击图片可看原尺寸；
+每轮末尾可打开包含模型 ID、权重指纹、参数、seed、耗时和 SHA-256 的 JSON。</p>
+</section>
+
+    <section class="experiment" id="EXP-20260729-001">
+      <p class="eyebrow">实验 01 · PHYS-01</p>
+      <h3>物理：三种控制图的第一轮对照</h3>
+      <p><b>要验证：</b>连续高度场的详细 Canny 容易把柔软波纹雕成硬槽；只保留对象身份边界或关闭 Canny 应更自然。</p>
+      <p><b>唯一变量：</b>只改变 ControlNet 接收到的边缘图及其开关；其余输入、提示词、模型、采样参数和种子完全一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-001/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-001/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down photograph of a shallow ripple tank, locked camera, two synchronized point exciters fixed left and right, translucent blue water, realistic small ripples, subtle reflections, soft laboratory light, two circular wave trains overlap into clear nodal and antinodal bands, exactly two symmetric sources, concentric outward waves, unchanged rectangular tank</p>
+        <p class="prompt"><b>负向：</b>text, labels, arrows, user interface, watermark, third wave source, moved sources, ocean shore, boats, giant breaking waves, frozen plastic, metallic rings, engraved grooves, hard neon outlines, duplicated emitters, perspective view, cropped tank, blur</p>
+        <p class="muted">正向 token：73 /
+        73；负向 token：
+        55 / 55；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-001/controls/control_off.png"><img loading="lazy"
+                src="EXP-20260729-001/controls/control_off.png" alt="control_off 控制图"></a>
+              <figcaption><code>control_off</code><br>
+              全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。<br>
+              <span class="muted">白线占画面 0.000%</span>
+              </figcaption></figure><figure class="control-card">
+              <a href="EXP-20260729-001/controls/dense_canny.png"><img loading="lazy"
+                src="EXP-20260729-001/controls/dense_canny.png" alt="dense_canny 控制图"></a>
+              <figcaption><code>dense_canny</code><br>
+              从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。<br>
+              <span class="muted">白线占画面 23.169%</span>
+              </figcaption></figure><figure class="control-card">
+              <a href="EXP-20260729-001/controls/sparse_identity_boundary.png"><img loading="lazy"
+                src="EXP-20260729-001/controls/sparse_identity_boundary.png" alt="sparse_identity_boundary 控制图"></a>
+              <figcaption><code>sparse_identity_boundary</code><br>
+              只从锁定画框和 object_identity 语义层的几何生成白线；不包含波峰、波谷、箭头或文字。<br>
+              <span class="muted">白线占画面 1.644%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-001/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-001/candidates-blind.jpg" alt="EXP-20260729-001 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-001/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-001/candidates-labeled.jpg" alt="EXP-20260729-001 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>control_off</code></td>
+            <td>机制 2.75/5；材质 3.50/5；可用种子 50%</td>
+            <td>没有控制时结果随复现编号明显波动：有的刻槽很重，有的几乎删除波纹。</td></tr><tr><td><code>dense_canny</code></td>
+            <td>机制 4.00/5；材质 4.00/5；可用种子 75%</td>
+            <td>与预期相反，0.55 强度的详细 Canny 在四个复现编号中最稳定；三张同时保留柔和水纹和干涉。</td></tr><tr><td><code>sparse_identity</code></td>
+            <td>机制 2.75/5；材质 3.25/5；可用种子 50%</td>
+            <td>稀疏边界稳定保留画框和两个振源，却不能保证模型保留连续波场；一半候选机制过弱。</td></tr></tbody></table>
+      <div class="verdict"><b>原假设被证伪：在当前 Img2Img 强度 0.5 与 ControlNet 强度 0.55 下，详细 Canny 没有普遍制造硬槽，反而是三条路线中最稳健的。</b><br>
+      <span>这个结论只证明 PHYS-01 当前参数下详细 Canny 可用，不能推广成所有连续场都应使用详细 Canny，也不能证明更高 ControlNet 强度安全。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-001/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-001/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-001/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-002">
+      <p class="eyebrow">实验 02 · PHYS-01</p>
+      <h3>物理：ControlNet 强度扫描</h3>
+      <p><b>要验证：</b>详细 Canny 存在中等强度窗口：过弱会丢失波场，过强会硬槽化，0.55 应比 0.25 和 0.90 更平衡。</p>
+      <p><b>唯一变量：</b>只改变 ControlNet conditioning scale；程序底图、详细 Canny、提示词、模型、Img2Img 参数、采样器和种子完全一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-002/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-002/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down photograph of a shallow ripple tank, locked camera, two synchronized point exciters fixed left and right, translucent blue water, realistic small ripples, subtle reflections, soft laboratory light, two circular wave trains overlap into clear nodal and antinodal bands, exactly two symmetric sources, concentric outward waves, unchanged rectangular tank</p>
+        <p class="prompt"><b>负向：</b>text, labels, arrows, user interface, watermark, third wave source, moved sources, ocean shore, boats, giant breaking waves, frozen plastic, metallic rings, engraved grooves, hard neon outlines, duplicated emitters, perspective view, cropped tank, blur</p>
+        <p class="muted">正向 token：73 /
+        73；负向 token：
+        55 / 55；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-002/controls/dense_canny.png"><img loading="lazy"
+                src="EXP-20260729-002/controls/dense_canny.png" alt="dense_canny 控制图"></a>
+              <figcaption><code>dense_canny</code><br>
+              从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。<br>
+              <span class="muted">白线占画面 23.169%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-002/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-002/candidates-blind.jpg" alt="EXP-20260729-002 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-002/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-002/candidates-labeled.jpg" alt="EXP-20260729-002 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>dense_scale_025</code></td>
+            <td>机制 3.75/5；材质 3.50/5；可用种子 75%</td>
+            <td>三张机制可读，一张完全丢波；弱控制没有稳定避免硬纹。</td></tr><tr><td><code>dense_scale_055</code></td>
+            <td>机制 4.00/5；材质 3.75/5；可用种子 75%</td>
+            <td>复用基线仍是三张清楚、一张过淡。</td></tr><tr><td><code>dense_scale_090</code></td>
+            <td>机制 4.50/5；材质 4.00/5；可用种子 75%</td>
+            <td>没有出现预期的普遍硬槽，平均机制与材质略高，但仍有一张干涉过淡。</td></tr></tbody></table>
+      <div class="verdict"><b>假设被证伪：0.90 并未比 0.55 更硬，0.25 也没有更自然；0.25–0.90 的强度变化小于种子差异。</b><br>
+      <span>只能确认当前区间没有清楚的硬槽阈值，不能据此无限提高 ControlNet 强度；所有组的写实材质提升仍有限。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-002/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-002/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-002/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-003">
+      <p class="eyebrow">实验 03 · PHYS-01</p>
+      <h3>物理：Img2Img 重绘强度扫描</h3>
+      <p><b>要验证：</b>提高 Img2Img strength 会增加水面材质重绘，但也会降低双源干涉机制；0.50 应是当前折中。</p>
+      <p><b>唯一变量：</b>只改变 Img2Img strength；程序底图、详细 Canny、ControlNet 0.90、提示词、模型、采样器和种子完全一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-003/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-003/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down photograph of a shallow ripple tank, locked camera, two synchronized point exciters fixed left and right, translucent blue water, realistic small ripples, subtle reflections, soft laboratory light, two circular wave trains overlap into clear nodal and antinodal bands, exactly two symmetric sources, concentric outward waves, unchanged rectangular tank</p>
+        <p class="prompt"><b>负向：</b>text, labels, arrows, user interface, watermark, third wave source, moved sources, ocean shore, boats, giant breaking waves, frozen plastic, metallic rings, engraved grooves, hard neon outlines, duplicated emitters, perspective view, cropped tank, blur</p>
+        <p class="muted">正向 token：73 /
+        73；负向 token：
+        55 / 55；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-003/controls/dense_canny.png"><img loading="lazy"
+                src="EXP-20260729-003/controls/dense_canny.png" alt="dense_canny 控制图"></a>
+              <figcaption><code>dense_canny</code><br>
+              从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。<br>
+              <span class="muted">白线占画面 23.169%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-003/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-003/candidates-blind.jpg" alt="EXP-20260729-003 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-003/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-003/candidates-labeled.jpg" alt="EXP-20260729-003 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>img2img_strength_035</code></td>
+            <td>机制 5.00/5；材质 3.00/5；可用种子 100%</td>
+            <td>四张都忠实继承程序波场，同时也忠实继承了程序化质感。</td></tr><tr><td><code>img2img_strength_050</code></td>
+            <td>机制 4.50/5；材质 4.00/5；可用种子 75%</td>
+            <td>当前最好的整图折中，但仍未达到照片级水面材质。</td></tr><tr><td><code>img2img_strength_070</code></td>
+            <td>机制 2.75/5；材质 3.00/5；可用种子 25%</td>
+            <td>三张明显丢失波场，材质平均分反而未提升。</td></tr></tbody></table>
+      <div class="verdict"><b>确认能力边界：整图重绘强度升高会先删除低振幅机制，而不是可靠地换来真实材质；继续提高 strength 没有价值。</b><br>
+      <span>结论针对连续、低对比高度场；不能直接推断硬边界、实体对象或大尺度材料区域的最佳 strength。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-003/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-003/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-003/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-004">
+      <p class="eyebrow">实验 04 · PHYS-01</p>
+      <h3>物理：单供体材质残差（失败）</h3>
+      <p><b>要验证：</b>模型只生成无机制的水面材质供体，程序仅投影其中高频残差，可以在不移动连续波场的前提下减少程序塑料感。</p>
+      <p><b>唯一变量：</b>与纯程序底图相比只增加模型材质残差；程序高度、振源身份、画框和教学结构不交给模型重画。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-004/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-004/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down macro photograph of a shallow laboratory water surface, locked camera, empty tank, transparent blue water, fine natural micro-ripples, subtle caustics, soft specular reflections, uniform quiet material texture without organized circular waves, even texture scale, stable lighting, no objects, no shoreline, no text</p>
+        <p class="prompt"><b>负向：</b>large concentric rings, point sources, emitters, interference diagram, text, labels, arrows, user interface, watermark, shoreline, boats, animals, giant waves, frozen plastic, metallic grooves, hard neon outlines, perspective view, cropped tank, blur</p>
+        <p class="muted">正向 token：64 /
+        64；负向 token：
+        54 / 54；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-004/controls/control_off.png"><img loading="lazy"
+                src="EXP-20260729-004/controls/control_off.png" alt="control_off 控制图"></a>
+              <figcaption><code>control_off</code><br>
+              全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。<br>
+              <span class="muted">白线占画面 0.000%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-004/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-004/candidates-blind.jpg" alt="EXP-20260729-004 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-004/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-004/candidates-labeled.jpg" alt="EXP-20260729-004 解盲联系表"></a></details>
+      <h4>程序约束后的 composite</h4>
+        <p>被拒绝的单供体投影：供体里的接缝和物体会一起进入 composite。</p>
+        <a href="EXP-20260729-004/material-projection-comparison.jpg"><img class="wide evidence"
+        loading="lazy" src="EXP-20260729-004/material-projection-comparison.jpg"
+        alt="被拒绝的单供体投影：供体里的接缝和物体会一起进入 composite。"></a>
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>seed_3101</code></td>
+            <td>材质增益 1/5；伪影控制 5/5</td>
+            <td>结构安全，但几乎看不出材质提升。</td></tr><tr><td><code>seed_3102</code></td>
+            <td>材质增益 1/5；伪影控制 1/5</td>
+            <td>高通把接缝当成纹理投进 composite，视觉失败。</td></tr><tr><td><code>seed_3103</code></td>
+            <td>材质增益 1/5；伪影控制 2/5</td>
+            <td>小圆边缘进入 composite；保护身份边界不足以识别新物体。</td></tr><tr><td><code>seed_3104</code></td>
+            <td>材质增益 1/5；伪影控制 5/5</td>
+            <td>没有明显伪影，也没有可感知材质增益。</td></tr></tbody></table>
+      <div class="verdict"><b>朴素单图高频残差投影被拒绝：机器结构门禁通过，但 2/4 composite 引入供体物体边缘，另外 2/4 没有材质提升。</b><br>
+      <span>程序保护区只能阻止已知身份被改动，不能自动识别模型在允许区域中新造的接缝或物体；高通也不会把“物体边缘”自动变成安全材质。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-004/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-004/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-004/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-005">
+      <p class="eyebrow">实验 05 · PHYS-01</p>
+      <h3>物理：多供体稳健水纹投影</h3>
+      <p><b>要验证：</b>纯文生图材质供体的限幅高频残差经过四种子逐像素中位数后，可以滤除单一供体物体，同时安全增加水面微纹理。</p>
+      <p><b>唯一变量：</b>相对被拒绝的单图投影，只改变供体生成方式和残差聚合；程序底图、保护区及其科学结构不变。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-005/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-005/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down macro photograph of calm shallow clear blue water, no horizon, no container, fine irregular surface micro-ripples, subtle caustics, small specular highlights, natural water texture, uniform edge-to-edge material sample without organized large waves, even texture scale, diffuse light, no focal object, no shoreline, no text</p>
+        <p class="prompt"><b>负向：</b>concentric rings, point sources, emitters, interference diagram, pool tiles, panels, seams, dividing lines, spheres, droplets, text, labels, arrows, user interface, watermark, shoreline, boats, animals, giant waves, frozen plastic, metal, perspective view, horizon, blur</p>
+        <p class="muted">正向 token：71 /
+        71；负向 token：
+        63 / 63；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-005/controls/control_off.png"><img loading="lazy"
+                src="EXP-20260729-005/controls/control_off.png" alt="control_off 控制图"></a>
+              <figcaption><code>control_off</code><br>
+              全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。<br>
+              <span class="muted">白线占画面 0.000%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-005/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-005/candidates-blind.jpg" alt="EXP-20260729-005 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-005/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-005/candidates-labeled.jpg" alt="EXP-20260729-005 解盲联系表"></a></details>
+      <h4>程序约束后的 composite</h4>
+        <p>接受的水纹稳健投影：程序底图、raw 供体、留一法 composite 并排。</p>
+        <a href="EXP-20260729-005/ensemble-material-comparison-gain_030.jpg"><img class="wide evidence"
+        loading="lazy" src="EXP-20260729-005/ensemble-material-comparison-gain_030.jpg"
+        alt="接受的水纹稳健投影：程序底图、raw 供体、留一法 composite 并排。"></a>
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>gain_120</code></td>
+            <td>机器门 1/3；rejected</td>
+            <td>纹理过量、低频偏移且留一法不稳定。</td></tr><tr><td><code>gain_040</code></td>
+            <td>机器门 3/3；usable_but_busy</td>
+            <td>结构与稳健性通过，但交叉微纹理仍偏密。</td></tr><tr><td><code>gain_020</code></td>
+            <td>机器门 3/3；safe_but_too_subtle</td>
+            <td>完全安全，材质增益难以感知。</td></tr><tr><td><code>gain_030</code></td>
+            <td>机器门 3/3；selected_candidate</td>
+            <td>可见的细小水面变化与机制可读性达到当前最好平衡。</td></tr></tbody></table>
+      <div class="verdict"><b>接受 gain=0.3 作为 PHYS-01 案例候选：它不是照片级最终图，但首次同时满足结构、低频、留一法和视觉材质增益。</b><br>
+      <span>中位数残差聚合和保护区逻辑可以成为通用候选；gain=0.3、供体提示词、频带半径和水面外观仍是案例配置，尚未跨学科验证。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-005/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-005/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-005/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-006">
+      <p class="eyebrow">实验 06 · CHEM-01</p>
+      <h3>化学：液体区域材质回归</h3>
+      <p><b>要验证：</b>PHYS-01 接受的四种子中位数材质残差可以不改参数地迁移到 CHEM-01，只在程序液体 region 内增加透明溶液微纹理。</p>
+      <p><b>唯一变量：</b>算法、频带、限幅和 gain 完全复用 EXP-005；只把案例输入、材料语言和程序允许区域替换为 CHEM-01。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-006/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-006/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down macro material photograph of translucent pale pink aqueous solution, edge-to-edge sample, fine liquid microtexture, soft optical caustics, subtle natural color variation, clean laboratory lighting, uniform weak phenolphthalein endpoint pink without mixing plume, even texture scale, no container edge, no objects, no text, no bubbles</p>
+        <p class="prompt"><b>负向：</b>beaker, flask, tube, container rim, dividing lines, panels, solid objects, crystals, cells, foam, large bubbles, mixing plume, text, labels, arrows, user interface, watermark, shoreline, metallic grooves, hard outlines, perspective view, horizon, blur</p>
+        <p class="muted">正向 token：73 /
+        73；负向 token：
+        58 / 58；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-006/controls/control_off.png"><img loading="lazy"
+                src="EXP-20260729-006/controls/control_off.png" alt="control_off 控制图"></a>
+              <figcaption><code>control_off</code><br>
+              全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。<br>
+              <span class="muted">白线占画面 0.000%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-006/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-006/candidates-blind.jpg" alt="EXP-20260729-006 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-006/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-006/candidates-labeled.jpg" alt="EXP-20260729-006 解盲联系表"></a></details>
+      <h4>程序约束后的 composite</h4>
+        <p>化学回归：机器门通过，但平滑粉色供体没有可见材质收益。</p>
+        <a href="EXP-20260729-006/ensemble-material-comparison-frozen_gain_030.jpg"><img class="wide evidence"
+        loading="lazy" src="EXP-20260729-006/ensemble-material-comparison-frozen_gain_030.jpg"
+        alt="化学回归：机器门通过，但平滑粉色供体没有可见材质收益。"></a>
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>selected_region_projection</code></td>
+            <td>机制 5/5；材质 1/5；伪影控制 5/5</td>
+            <td>跨学科回归失败：同一稳健残差算法在 CHEM-01 结构安全且稳定，但四张供体都过于平滑，液体材质没有可见提升。</td></tr></tbody></table>
+      <div class="verdict"><b>跨学科回归失败：同一稳健残差算法在 CHEM-01 结构安全且稳定，但四张供体都过于平滑，液体材质没有可见提升。</b><br>
+      <span>高频材质残差适合水面等本身有连续表面起伏的区域；透明滴定场景的关键真实感来自玻璃界面、弯月面、折射和整套器材光照，不能只改液体内部。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-006/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-006/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-006/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-007">
+      <p class="eyebrow">实验 07 · CHEM-01</p>
+      <h3>化学：Img2Img 控制路线</h3>
+      <p><b>要验证：</b>透明滴定器材需要程序 hard_boundary 约束；稀疏器材边界应比关闭控制或详细成图 Canny 更好地平衡玻璃材质和器材结构。</p>
+      <p><b>唯一变量：</b>只改变 ControlNet 边缘图及开关；程序图、提示词、模型、Img2Img 参数、采样器和种子完全一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-007/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-007/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Front-facing documentary photograph of one transparent laboratory beaker beneath one glass burette, locked camera, centered apparatus, realistic clear glass, pale pink aqueous solution, soft reflections, neutral laboratory background, phenolphthalein endpoint with uniform faint persistent pink solution, one beaker, one burette, same liquid level, straight-on view, no text</p>
+        <p class="prompt"><b>负向：</b>extra beakers, extra tubes, missing vessel, moved liquid level, pouring stream, mixing plume, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, hard diagram lines, perspective view, cropped apparatus, blur</p>
+        <p class="muted">正向 token：76 /
+        76；负向 token：
+        58 / 58；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-007/controls/control_off.png"><img loading="lazy"
+                src="EXP-20260729-007/controls/control_off.png" alt="control_off 控制图"></a>
+              <figcaption><code>control_off</code><br>
+              全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。<br>
+              <span class="muted">白线占画面 0.000%</span>
+              </figcaption></figure><figure class="control-card">
+              <a href="EXP-20260729-007/controls/dense_canny.png"><img loading="lazy"
+                src="EXP-20260729-007/controls/dense_canny.png" alt="dense_canny 控制图"></a>
+              <figcaption><code>dense_canny</code><br>
+              从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。<br>
+              <span class="muted">白线占画面 2.523%</span>
+              </figcaption></figure><figure class="control-card">
+              <a href="EXP-20260729-007/controls/sparse_hard_boundary.png"><img loading="lazy"
+                src="EXP-20260729-007/controls/sparse_hard_boundary.png" alt="sparse_hard_boundary 控制图"></a>
+              <figcaption><code>sparse_hard_boundary</code><br>
+              只合并程序明确声明为 hard_boundary 的数值层；不从成图猜边，也不加入区域、连续场、箭头或文字。<br>
+              <span class="muted">白线占画面 1.679%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-007/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-007/candidates-blind.jpg" alt="EXP-20260729-007 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-007/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-007/candidates-labeled.jpg" alt="EXP-20260729-007 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>control_off</code></td>
+            <td>机制 4.50/5；材质 2.00/5；可用种子 75%</td>
+            <td>初图本身保住器材，但外观仍是线框平涂；一张在液体中生成伪文字。</td></tr><tr><td><code>dense_canny</code></td>
+            <td>机制 5.00/5；材质 2.00/5；可用种子 100%</td>
+            <td>器材与液面最稳定，但四张都没有形成真实玻璃材质。</td></tr><tr><td><code>sparse_hard_boundary</code></td>
+            <td>机制 5.00/5；材质 2.00/5；可用种子 100%</td>
+            <td>硬边界被遵守，但材质与详细 Canny 没有可见优势，仍继承程序平涂。</td></tr></tbody></table>
+      <div class="verdict"><b>假设被证伪：稀疏 hard_boundary 在 Img2Img strength 0.65 下只提高结构约束，没有提高玻璃或透明液体材质。</b><br>
+      <span>ControlNet 能否跟线与模型能否脱离平涂初图生成材质是两个问题；Img2Img 初图约束在本例中压过了提示词和控制路线差异。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-007/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-007/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-007/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-008">
+      <p class="eyebrow">实验 08 · CHEM-01</p>
+      <h3>化学：T2I 与 Img2Img 能力差异</h3>
+      <p><b>要验证：</b>从噪声开始的 T2I ControlNet 能把稀疏器材线稿还原成真实玻璃，而 Img2Img 会被程序平涂初图锁住；稀疏边界还能比 T2I 无控制更稳地保持器材布局。</p>
+      <p><b>唯一变量：</b>比较是否使用 Img2Img 初图以及 T2I 是否接收稀疏边界；提示词、权重、采样参数、分辨率和种子保持一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-008/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-008/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Front-facing documentary photograph of one transparent laboratory beaker beneath one glass burette, locked camera, centered apparatus, realistic clear glass, pale pink aqueous solution, soft reflections, neutral laboratory background, phenolphthalein endpoint with uniform faint persistent pink solution, one beaker, one burette, same liquid level, straight-on view, no text</p>
+        <p class="prompt"><b>负向：</b>extra beakers, extra tubes, missing vessel, moved liquid level, pouring stream, mixing plume, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, hard diagram lines, perspective view, cropped apparatus, blur</p>
+        <p class="muted">正向 token：76 /
+        76；负向 token：
+        58 / 58；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-008/controls/sparse_hard_boundary.png"><img loading="lazy"
+                src="EXP-20260729-008/controls/sparse_hard_boundary.png" alt="sparse_hard_boundary 控制图"></a>
+              <figcaption><code>sparse_hard_boundary</code><br>
+              只合并程序明确声明为 hard_boundary 的数值层；不从成图猜边，也不加入区域、连续场、箭头或文字。<br>
+              <span class="muted">白线占画面 1.679%</span>
+              </figcaption></figure><figure class="control-card">
+              <a href="EXP-20260729-008/controls/control_off.png"><img loading="lazy"
+                src="EXP-20260729-008/controls/control_off.png" alt="control_off 控制图"></a>
+              <figcaption><code>control_off</code><br>
+              全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。<br>
+              <span class="muted">白线占画面 0.000%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-008/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-008/candidates-blind.jpg" alt="EXP-20260729-008 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-008/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-008/candidates-labeled.jpg" alt="EXP-20260729-008 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>img2img_sparse_baseline</code></td>
+            <td>机制 5.00/5；材质 2.00/5；可用种子 100%</td>
+            <td>器材和液位稳定，但仍是程序线框与平涂。</td></tr><tr><td><code>t2i_sparse_hard_boundary</code></td>
+            <td>机制 3.00/5；材质 5.00/5；可用种子 50%</td>
+            <td>四张都显著更真实，但只有两张形成大致一个容器与中央管；另外两张把抽象 U 形线解释成内嵌烧瓶或裁切装置。</td></tr><tr><td><code>t2i_control_off</code></td>
+            <td>机制 1.50/5；材质 5.00/5；可用种子 0%</td>
+            <td>材质真实但器材数量、类型和布局完全由模型自由决定。</td></tr></tbody></table>
+      <div class="verdict"><b>确认 T2I ControlNet 能像网上 demo 一样生成真实玻璃，但当前稀疏 hard_boundary 的语义不足，只有 2/4 通过器材机制门禁，因此路线尚不能晋级。</b><br>
+      <span>边缘控制不是越稀疏越好；它至少要让目标物的类别和部件关系可辨认。只有 U 形容器和两条竖线，模型无法可靠知道这是烧杯、滴定管、活塞和滴嘴。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-008/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-008/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-008/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-009">
+      <p class="eyebrow">实验 09 · CHEM-01</p>
+      <h3>化学：语义充分的器材线稿</h3>
+      <p><b>要验证：</b>T2I ControlNet 的失败来自线稿语义不足；加入烧杯口沿、滴定管刻度、活塞和滴嘴等无文字部件线索，应显著提高器材机制成功率而不损失玻璃材质。</p>
+      <p><b>唯一变量：</b>只替换 ControlNet 线稿内容；T2I 管线、提示词、模型、控制强度、采样参数、分辨率和种子完全一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-009/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-009/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Front-facing documentary photograph of one transparent laboratory beaker beneath one glass burette, locked camera, centered apparatus, realistic clear glass, pale pink aqueous solution, soft reflections, neutral laboratory background, phenolphthalein endpoint with uniform faint persistent pink solution, one beaker, one burette, same liquid level, straight-on view, no text</p>
+        <p class="prompt"><b>负向：</b>extra beakers, extra tubes, missing vessel, moved liquid level, pouring stream, mixing plume, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, hard diagram lines, perspective view, cropped apparatus, blur</p>
+        <p class="muted">正向 token：76 /
+        76；负向 token：
+        58 / 58；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-009/controls/sparse_hard_boundary.png"><img loading="lazy"
+                src="EXP-20260729-009/controls/sparse_hard_boundary.png" alt="sparse_hard_boundary 控制图"></a>
+              <figcaption><code>sparse_hard_boundary</code><br>
+              只合并程序明确声明为 hard_boundary 的数值层；不从成图猜边，也不加入区域、连续场、箭头或文字。<br>
+              <span class="muted">白线占画面 1.679%</span>
+              </figcaption></figure><figure class="control-card">
+              <a href="EXP-20260729-009/controls/semantic_apparatus_line_art.png"><img loading="lazy"
+                src="EXP-20260729-009/controls/semantic_apparatus_line_art.png" alt="semantic_apparatus_line_art 控制图"></a>
+              <figcaption><code>semantic_apparatus_line_art</code><br>
+              由 build_control.py 确定性绘制；白线只描述烧杯、液面、滴定管、活塞、手柄和滴嘴的部件关系，不含文字、箭头或材质。<br>
+              <span class="muted">白线占画面 1.981%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-009/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-009/candidates-blind.jpg" alt="EXP-20260729-009 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-009/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-009/candidates-labeled.jpg" alt="EXP-20260729-009 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>sparse_hard_baseline</code></td>
+            <td>机制 3.00/5；材质 5.00/5；可用种子 50%</td>
+            <td>真实玻璃稳定出现，但抽象 U 形边界只有两张被正确解释成一个容器与中央管。</td></tr><tr><td><code>semantic_line_art</code></td>
+            <td>机制 4.75/5；材质 5.00/5；可用种子 100%</td>
+            <td>4/4 都形成开口烧杯、中央滴定管、活塞/滴嘴与容器内粉红液体；外观保持真实玻璃。</td></tr></tbody></table>
+      <div class="verdict"><b>接受语义完整线稿作为 hard_boundary 路线候选：它把器材成功率从 2/4 提到 4/4，且没有牺牲 T2I 材质。</b><br>
+      <span>通用原则是“线稿最小但语义充分”，不是把化学器材坐标硬编码进核心；部件线如何画仍由案例插件负责。该原则尚需在其他学科硬边界案例回归。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-009/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-009/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-009/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-010">
+      <p class="eyebrow">实验 10 · MATH-02</p>
+      <h3>数学：未归一化拼图控制</h3>
+      <p><b>要验证：</b>MATH-02 完整 hard_boundary 足以让 T2I ControlNet 保持四个全等三角形和两个方形剩余区，同时生成真实木质拼图材质。</p>
+      <p><b>唯一变量：</b>相对程序基线只增加 T2I 材质生成；程序硬边界、提示词、模型、控制强度和四个复现编号冻结。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-010/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-010/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down studio photograph of one physical Pythagorean dissection puzzle inside a square frame, locked camera, four colored matte wooden congruent right-triangle pieces, soft shadows, off-white tabletop, pieces arranged around two uncovered square regions for a squared plus b squared, exactly four triangles, straight edges, unchanged square layout, no text</p>
+        <p class="prompt"><b>负向：</b>extra pieces, missing piece, five triangles, curved edges, gaps, overlaps, distorted square, tangram animals, raised blocks, perspective view, hands, numbers, letters, formulas, text, labels, arrows, user interface, watermark, plastic toy, blur</p>
+        <p class="muted">正向 token：73 /
+        73；负向 token：
+        59 / 59；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-010/controls/sparse_hard_boundary.png"><img loading="lazy"
+                src="EXP-20260729-010/controls/sparse_hard_boundary.png" alt="sparse_hard_boundary 控制图"></a>
+              <figcaption><code>sparse_hard_boundary</code><br>
+              只合并程序明确声明为 hard_boundary 的数值层；不从成图猜边，也不加入区域、连续场、箭头或文字。<br>
+              <span class="muted">白线占画面 1.300%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-010/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-010/candidates-blind.jpg" alt="EXP-20260729-010 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-010/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-010/candidates-labeled.jpg" alt="EXP-20260729-010 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>t2i_program_hard_boundary</code></td>
+            <td>机制 2.50/5；材质 4.75/5；可用种子 0%</td>
+            <td>四张都把受控区域解释成木质拼图并大体保留局部拓扑，但 4/4 都在左侧大面积空白区臆造了第二个框、额外拼块或额外面板。</td></tr></tbody></table>
+      <div class="verdict"><b>拒绝当前结果：真实木材成立，但“只有一个拼图”和精确物体数全部失败，不能作为数学关键帧。</b><br>
+      <span>线稿的语义内容并非唯一变量；线稿在画布中的占用率与位置也会改变模型解释。把小控制对象偏置在宽画布一侧，空白区会被 T2I 当作可自由补全区域。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-010/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-010/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-010/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-011">
+      <p class="eyebrow">实验 11 · MATH-02</p>
+      <h3>数学：控制占用率归一化</h3>
+      <p><b>要验证：</b>同一拼图线稿裁切、等比放大并居中后，T2I 应减少在空白区臆造的额外框与拼块，同时保留木质材质和机制拓扑。</p>
+      <p><b>唯一变量：</b>相对 EXP-010 只改变控制图的位置与占用率；线条拓扑、提示词、模型、控制强度、采样参数、分辨率和种子完全一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-011/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-011/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down studio photograph of one physical Pythagorean dissection puzzle inside a square frame, locked camera, four colored matte wooden congruent right-triangle pieces, soft shadows, off-white tabletop, pieces arranged around two uncovered square regions for a squared plus b squared, exactly four triangles, straight edges, unchanged square layout, no text</p>
+        <p class="prompt"><b>负向：</b>extra pieces, missing piece, five triangles, curved edges, gaps, overlaps, distorted square, tangram animals, raised blocks, perspective view, hands, numbers, letters, formulas, text, labels, arrows, user interface, watermark, plastic toy, blur</p>
+        <p class="muted">正向 token：73 /
+        73；负向 token：
+        59 / 59；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-011/controls/centered_hard_boundary.png"><img loading="lazy"
+                src="EXP-20260729-011/controls/centered_hard_boundary.png" alt="centered_hard_boundary 控制图"></a>
+              <figcaption><code>centered_hard_boundary</code><br>
+              由 build_control.py 对程序 hard_boundary 的非零边界框做确定性裁切、等比放大和居中；不增删任何机制线。<br>
+              <span class="muted">白线占画面 2.890%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-011/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-011/candidates-blind.jpg" alt="EXP-20260729-011 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-011/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-011/candidates-labeled.jpg" alt="EXP-20260729-011 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>t2i_centered_hard_boundary</code></td>
+            <td>机制 2.00/5；材质 4.50/5；可用种子 0%</td>
+            <td>4/4 都只生成一个居中框，额外面板问题消失；但 4/4 仍把四个三角形解释成空隔间、任意木块或错误数量的拼片。</td></tr></tbody></table>
+      <div class="verdict"><b>占用率归一化子假设成立，但数学整图重绘总路线仍拒绝：物体数量和全等关系没有一个种子同时通过。</b><br>
+      <span>控制图裁切、放大、居中应成为 T2I 通用预处理；它能减少空白区臆造，却不能让扩散模型承担严格离散计数、全等关系或证明拓扑。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-011/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-011/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-011/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-012">
+      <p class="eyebrow">实验 12 · MATH-02</p>
+      <h3>数学：只在拼片内投影木纹</h3>
+      <p><b>要验证：</b>无对象木纹供体的多种子稳健高频残差，只投影到程序拼图区后，可增加自然木材触感且逐像素保留数学结构。</p>
+      <p><b>唯一变量：</b>相对程序底图只增加模型派生的受限高频材质；程序构图、颜色、身份、边界、空区与背景不变。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-012/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-012/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down macro material photograph of uniform fine-grain unfinished pale wood, edge-to-edge sample, subtle natural wood fibers, fine pores, low contrast matte surface, diffuse studio light, even material swatch without boards or assembled objects, uniform texture scale, no seams, no focal object, no text</p>
+        <p class="prompt"><b>负向：</b>planks, board seams, panels, frames, puzzle pieces, blocks, furniture, knots, cracks, holes, saw marks, strong stripes, perspective, shadows, hands, numbers, letters, formulas, text, labels, arrows, user interface, watermark, plastic, metal, blur</p>
+        <p class="muted">正向 token：66 /
+        66；负向 token：
+        62 / 62；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-012/controls/control_off.png"><img loading="lazy"
+                src="EXP-20260729-012/controls/control_off.png" alt="control_off 控制图"></a>
+              <figcaption><code>control_off</code><br>
+              全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。<br>
+              <span class="muted">白线占画面 0.000%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-012/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-012/candidates-blind.jpg" alt="EXP-20260729-012 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-012/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-012/candidates-labeled.jpg" alt="EXP-20260729-012 解盲联系表"></a></details>
+      <h4>程序约束后的 composite</h4>
+        <p>接受的数学安全路线：木纹只进入四个拼片，空区和背景不改。</p>
+        <a href="EXP-20260729-012/ensemble-material-comparison-gain_070.jpg"><img class="wide evidence"
+        loading="lazy" src="EXP-20260729-012/ensemble-material-comparison-gain_070.jpg"
+        alt="接受的数学安全路线：木纹只进入四个拼片，空区和背景不改。"></a>
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>t2i_wood_material_donor_plus_gain_070_projection</code></td>
+            <td>机制 5.00/5；材质 3.50/5；可用种子 100%</td>
+            <td>四个 raw 供体都是无对象木纹；gain 0.7 合成图只在四个程序拼片内出现细木纹，四块身份、共享边、两个方形空区和背景逐像素保持。</td></tr></tbody></table>
+      <div class="verdict"><b>接受受限材质投影作为精确数学图的通用候选；它不追求把整张程序图伪装成照片，而是在可验证不改结构的前提下减弱纯色塑料感。</b><br>
+      <span>该路线适合 exact_count、rigid_geometry 或 proof_topology 为硬约束的案例。它只能增加中高频表面细节，不能产生真实厚度、阴影或透视；这些效果若会改变证明结构就应主动放弃。</span></div>
+      <pre>{&#x27;selected_variant&#x27;: &#x27;gain_070&#x27;, &#x27;non_allowed_max_abs_difference_0_255&#x27;: 0.0, &#x27;low_frequency_mse_vs_program&#x27;: 0.023946, &#x27;leave_one_out_maximum_mae_0_255&#x27;: 0.163041, &#x27;hard_checks_passed&#x27;: &#x27;3/3&#x27;}</pre>
+      <p class="links"><a href="EXP-20260729-012/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-012/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-012/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-013">
+      <p class="eyebrow">实验 13 · BIO-01</p>
+      <h3>生物：两个细胞与精确染色体计数</h3>
+      <p><b>要验证：</b>包含细胞轮廓和十二条染色单体线的 dense Canny，可让 T2I 生成显微材质并保持两个子细胞、每个六条染色单体。</p>
+      <p><b>唯一变量：</b>相对程序关键帧只增加固定的 SDXL T2I ControlNet 重绘；控制图、提示词、模型、参数和四个种子冻结。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-013/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-013/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Top-down fluorescence micrograph of exactly two daughter cells after mitosis, translucent membranes, subtle cytoplasm, magenta chromosomes, dark background, exactly six separated straight chromatids inside each cell, two cells, six chromatids each, symmetric layout, no text</p>
+        <p class="prompt"><b>负向：</b>third cell, extra cells, one cell, extra chromatids, missing chromatids, chromosome clumps, duplicated nuclei, oversized nucleus, anatomy, tissue, embryos, bacteria, labels, arrows, numbers, letters, text, user interface, watermark, plastic icon, cartoon, blur</p>
+        <p class="muted">正向 token：63 /
+        63；负向 token：
+        68 / 68；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-013/controls/dense_canny.png"><img loading="lazy"
+                src="EXP-20260729-013/controls/dense_canny.png" alt="dense_canny 控制图"></a>
+              <figcaption><code>dense_canny</code><br>
+              从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。<br>
+              <span class="muted">白线占画面 2.920%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-013/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-013/candidates-blind.jpg" alt="EXP-20260729-013 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-013/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-013/candidates-labeled.jpg" alt="EXP-20260729-013 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>t2i_dense_cell_and_chromatids</code></td>
+            <td>机制 2.50/5；材质 3.00/5；可用种子 0%</td>
+            <td>4/4 保留左右两个细胞的大轮廓，但 0/4 能在每个细胞内明确数出六条染色单体；模型把短线融合成中轴、团块或器官状结构。</td></tr></tbody></table>
+      <div class="verdict"><b>拒绝生物整图重绘；它改善了显微纹理，却破坏了必须可数的遗传物质，因此不具备教学可用性。</b><br>
+      <span>MATH-02 与 BIO-01 的一致失败表明，Canny 能约束大轮廓，却不能可靠保证离散对象数量、身份和亲缘关系。提示词写出 exact six 也不能替代程序数据。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-013/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-013/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-013/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-014">
+      <p class="eyebrow">实验 14 · GEO-02</p>
+      <h3>地理：强控制保机制但留下墨线</h3>
+      <p><b>要验证：</b>对连续地形与降水分区案例，dense Canny T2I 可保留单峰和迎风坡雨区，同时生成自然山体、天空与雨幕。</p>
+      <p><b>唯一变量：</b>相对程序关键帧只增加固定的 SDXL T2I ControlNet 重绘；控制图、提示词、模型、参数和四个种子冻结。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-014/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-014/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Side-view landscape photograph of one mountain ridge beneath open sky, natural green rock, atmospheric sky, localized rain curtain, daylight, heavy rain only on the left windward slope; right leeward slope stays dry, one peak, same silhouette, rain left of summit, dry right, no text</p>
+        <p class="prompt"><b>负向：</b>second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur</p>
+        <p class="muted">正向 token：61 /
+        61；负向 token：
+        54 / 54；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-014/controls/dense_canny.png"><img loading="lazy"
+                src="EXP-20260729-014/controls/dense_canny.png" alt="dense_canny 控制图"></a>
+              <figcaption><code>dense_canny</code><br>
+              从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。<br>
+              <span class="muted">白线占画面 3.425%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-014/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-014/candidates-blind.jpg" alt="EXP-20260729-014 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-014/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-014/candidates-labeled.jpg" alt="EXP-20260729-014 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>t2i_dense_terrain_and_rain</code></td>
+            <td>机制 4.50/5；材质 1.75/5；可用种子 0%</td>
+            <td>4/4 保留单峰和左侧迎风坡降雨，机制空间分区稳定；但强控制把山线与雨线直接描成墨线，整体仍像插图或网格纸而非自然景观。</td></tr></tbody></table>
+      <div class="verdict"><b>机制门通过但材质门失败；当前结果不能作为写实关键帧。</b><br>
+      <span>连续轮廓案例比精确计数更适合整图重绘，但强 dense Canny 会把程序线条本身变成最终纹理。控制强度需要在机制与材质之间标定。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-014/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-014/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-014/review.json">Agent 评审原文</a></p>
+    </section>
+    <section class="experiment" id="EXP-20260729-015">
+      <p class="eyebrow">实验 15 · GEO-02</p>
+      <h3>地理：控制强度的机制—材质折中</h3>
+      <p><b>要验证：</b>降低 dense Canny 控制强度可在保留单峰与左雨右干的同时减少墨线感，改善自然材质。</p>
+      <p><b>唯一变量：</b>只扫描 controlnet_conditioning_scale 0.35、0.55、0.75；其余输入、提示词、模型、参数与种子完全一致。</p>
+      <div class="input-grid">
+        <figure><a href="EXP-20260729-015/inputs/clean_keyframe.png"><img loading="lazy" src="EXP-20260729-015/inputs/clean_keyframe.png"
+        alt="无标注程序关键帧"></a><figcaption>无标注程序关键帧：事实与几何的来源</figcaption></figure>
+        <div><h4>本轮模型实际读到的语言</h4>
+        <p class="prompt"><b>正向：</b>Side-view landscape photograph of one mountain ridge beneath open sky, natural green rock, atmospheric sky, localized rain curtain, daylight, heavy rain only on the left windward slope; right leeward slope stays dry, one peak, same silhouette, rain left of summit, dry right, no text</p>
+        <p class="prompt"><b>负向：</b>second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur</p>
+        <p class="muted">正向 token：61 /
+        61；负向 token：
+        54 / 54；
+        两个上限都是 77，均未截断。</p></div>
+      </div>
+      <h4>模型看到的控制图</h4>
+      <div class="control-grid"><figure class="control-card">
+              <a href="EXP-20260729-015/controls/dense_canny.png"><img loading="lazy"
+                src="EXP-20260729-015/controls/dense_canny.png" alt="dense_canny 控制图"></a>
+              <figcaption><code>dense_canny</code><br>
+              从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。<br>
+              <span class="muted">白线占画面 3.425%</span>
+              </figcaption></figure></div>
+      <h4>全部 raw 模型候选（先盲评）</h4>
+      <p>字母只是盲评编号；图中没有路线名或 seed，避免先入为主。</p>
+      <a href="EXP-20260729-015/candidates-blind.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-015/candidates-blind.jpg" alt="EXP-20260729-015 全部 raw 候选盲评表"></a>
+      <details><summary>展开带配置名与 seed 的联系表</summary>
+      <a href="EXP-20260729-015/candidates-labeled.jpg"><img class="wide" loading="lazy"
+      src="EXP-20260729-015/candidates-labeled.jpg" alt="EXP-20260729-015 解盲联系表"></a></details>
+      
+      <h4>解盲后判定</h4>
+      <table><thead><tr><th>配置</th><th>分数</th><th>看到什么</th></tr></thead>
+      <tbody><tr><td><code>dense_scale_035</code></td>
+            <td>机制 1.75/5；材质 4.25/5；可用种子 0%</td>
+            <td>山体最接近照片，但 4/4 都丢失明确左侧雨区，且三张明显改变原单峰剖面或视角。</td></tr><tr><td><code>dense_scale_055</code></td>
+            <td>机制 3.75/5；材质 3.50/5；可用种子 25%</td>
+            <td>两张保住左雨右干但雨仍像黑色划线；另两张把雨变成雾或完全丢失。只有单一种子接近折中，未达到 3/4 稳健门。</td></tr><tr><td><code>dense_scale_075</code></td>
+            <td>机制 4.50/5；材质 1.75/5；可用种子 0%</td>
+            <td>4/4 稳定保留机制分区，但全部保留明显程序墨线，与 EXP-014 一致。</td></tr></tbody></table>
+      <div class="verdict"><b>三个强度都未同时达到机制与材质的 3/4 稳健门；不能靠挑选 0.55 的幸运种子宣布路线成功。</b><br>
+      <span>对“连续静态地形 + 局部动态现象”的画面，单个 Canny 强度同时承担两类信息会产生不可解折中：弱控制丢动态区域，强控制把动态笔划和轮廓烙进成品。</span></div>
+      
+      <p class="links"><a href="EXP-20260729-015/_work/generate.json">候选参数、哈希和耗时</a>
+      · <a href="EXP-20260729-015/controls/derivation.json">控制图推导</a>
+      · <a href="../../experiments/EXP-20260729-015/review.json">Agent 评审原文</a></p>
+    </section>
+
+<section><h2>4. 阶段自评与自动晋级</h2>
+<table><thead><tr><th>门禁</th><th>结果</th><th>证据</th></tr></thead><tbody>
+<tr><td>五学科代表覆盖</td><td>通过</td><td>MATH-02、PHYS-01、CHEM-01、BIO-01、GEO-02</td></tr>
+<tr><td>实验预算</td><td>通过</td><td>每轮最多 12 张；总计 92 次新图片调用，20 张严格缓存复用</td></tr>
+<tr><td>模型与提示完整性</td><td>通过</td><td>15/15 权重 ID 与指纹一致；0 次 token 静默截断</td></tr>
+<tr><td>证据可审计</td><td>通过</td><td>全部控制图、提示、raw、composite、盲表、失败结果和哈希保留</td></tr>
+<tr><td>能力边界是否可执行</td><td>通过</td><td>形成按 exact-count、semantic-boundary、continuous-field、layered-field 路由的规则</td></tr>
+</tbody></table>
+<div class="verdict"><b>Phase 3 判定：passed。</b><br>
+本阶段的成功标准是明确图像模型职责边界，不是让五个案例都在此阶段产出最终关键帧。
+未通过硬门的图片仍作为失败证据保存。下一步自动进入 Phase 4：实现剩余五个程序案例，
+并按这张路由表稳定十案例关键帧。</div>
+</section>
+
+<section><h2>5. 从零复现</h2>
+<pre># 先重建确定性的五学科程序动画
+.venv/bin/python -m modules.video_model.stage2.phase2
+
+# 单轮：准备控制图、检查提示，再调用已登记模型
+/opt/venv/bin/python -m modules.video_model.stage2.phase3_experiment \
+  --experiment EXP-20260729-009 --prepare
+/opt/venv/bin/python -m modules.video_model.stage2.phase3_experiment \
+  --experiment EXP-20260729-009 --generate
+
+# 需要受限材质时，执行确定性多供体合成
+/opt/venv/bin/python -m modules.video_model.stage2.phase3_experiment \
+  --experiment EXP-20260729-012 --project-material-ensemble \
+  --projection-variant gain_070 --residual-gain 0.7
+
+# 重建本总报告并检查所有哈希、预算和链接
+.venv/bin/python -m modules.video_model.stage2.phase3 --report
+.venv/bin/python -m modules.video_model.stage2.phase3 --check</pre>
+<p><a href="phase3_manifest.json">Phase 3 机器清单</a> ·
+<a href="../../experiments/ledger.json">完整实验账本</a> ·
+<a href="../phase-2/report.html">Phase 2 程序动画报告</a></p>
+</section></main></body></html>

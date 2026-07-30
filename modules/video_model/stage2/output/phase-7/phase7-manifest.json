@@ -1,0 +1,343 @@
+{
+  "checks": [
+    {
+      "name": "route_a_has_36_model_candidates",
+      "passed": true
+    },
+    {
+      "name": "routes_b_c_have_48_renders",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "current_output_count": 48,
+        "passed": true,
+        "previous_output_count": 48,
+        "status": "passed",
+        "unchanged_sha256_count": 48
+      },
+      "name": "routes_b_c_repeat_byte_for_byte",
+      "passed": true
+    },
+    {
+      "name": "four_selected_sequences_exist",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "experiment_count": 6,
+        "preflight": "actual CLIP tokenizers"
+      },
+      "name": "route_a_prompts_do_not_truncate",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "indicator_mean_in_liquid": [
+          0.0,
+          0.143768,
+          1.5e-05,
+          0.879632
+        ],
+        "outside_apparatus_max_difference_0_255": 0
+      },
+      "name": "chemistry_state_order_and_static_background",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "keyframe_count": 4
+      },
+      "name": "biology_program_cell_area_is_exact",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "keyframe_count": 4,
+        "object_count": 4
+      },
+      "name": "math_object_identity_and_area_are_exact",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "gradient_luminance_correlations": [
+          -0.695949,
+          -0.716215,
+          -0.66761,
+          -0.638861
+        ]
+      },
+      "name": "physics_uses_visible_program_height_field",
+      "passed": true
+    },
+    {
+      "name": "report_links_resolve",
+      "passed": true
+    }
+  ],
+  "classification": "self_iterated_three_route_prototype",
+  "counts": {
+    "route_a_experiments": 6,
+    "route_a_model_images": 36,
+    "route_b_c_renders": 48,
+    "total_visual_outputs": 84
+  },
+  "executable_route_examples": {
+    "exact_field": "C_exact_renderer",
+    "frozen_scene_local_state": "B_frozen_base_projection",
+    "no_real_base_yet": "A_once_then_B"
+  },
+  "model_runs_during_phase7": {
+    "image": 36,
+    "video": 0
+  },
+  "phase": 7,
+  "report": {
+    "path": "output/phase-7/report.html"
+  },
+  "review": {
+    "path": "output/phase-7/phase7-review.json",
+    "sha256": "8d304a2a81ea475f339d9359e26ee8038a9b55f7c430ae9e83c99d784cad4dab",
+    "size_bytes": 4506
+  },
+  "route_a_experiments": [
+    {
+      "candidate_count": 6,
+      "candidate_sheet": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start/candidates-labeled.jpg",
+        "sha256": "7ab8d71cad802823388e35730876e99cdff6c1e920e2ae763b056aabe7c64010",
+        "size_bytes": 169113
+      },
+      "case_id": "CHEM-01",
+      "configuration_count": 2,
+      "control": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start/controls/phase7_semantic_control.png",
+        "sha256": "bb564e5a5f1a2747364e51143c254b4a2ad151c80600657ec08d438a56ad3b42",
+        "size_bytes": 5335
+      },
+      "experiment_id": "EXP-P7-A-chem-01-00_start",
+      "keyframe_id": "00_start",
+      "negative_prompt": "extra beakers, extra burettes, extra tubes, missing vessel, moved liquid level, pouring stream, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, cropped apparatus, tilted camera, perspective view, blur\n",
+      "positive_prompt": "Straight-on photo of one glass beaker under one glass burette, locked centered camera, clear glass, colorless liquid, realistic refraction and reflections, neutral laboratory, initial acidic solution is colorless with no pink region, one beaker, one burette, fixed liquid level and layout, no text\n",
+      "render": {
+        "dtype": "float16",
+        "guidance_scale": 6.0,
+        "height": 576,
+        "seeds": [
+          7101,
+          7102,
+          7103
+        ],
+        "steps": 30,
+        "strength": 0.5,
+        "width": 1024
+      }
+    },
+    {
+      "candidate_count": 6,
+      "candidate_sheet": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-01_mechanism/candidates-labeled.jpg",
+        "sha256": "d5a723faa94eb37cfdbb39f237f61c6f9a93954dd27a9a540ea6454e9fb63f62",
+        "size_bytes": 155511
+      },
+      "case_id": "CHEM-01",
+      "configuration_count": 2,
+      "control": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-01_mechanism/controls/phase7_semantic_control.png",
+        "sha256": "bb564e5a5f1a2747364e51143c254b4a2ad151c80600657ec08d438a56ad3b42",
+        "size_bytes": 5335
+      },
+      "experiment_id": "EXP-P7-A-chem-01-01_mechanism",
+      "keyframe_id": "01_mechanism",
+      "negative_prompt": "extra beakers, extra burettes, extra tubes, missing vessel, moved liquid level, pouring stream, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, cropped apparatus, tilted camera, perspective view, blur\n",
+      "positive_prompt": "Straight-on photo of one glass beaker under one glass burette, locked centered camera, clear glass, colorless liquid, realistic refraction and reflections, neutral laboratory, one small pale pink plume below the tip, all other liquid colorless, one beaker, one burette, fixed liquid level and layout, no text\n",
+      "render": {
+        "dtype": "float16",
+        "guidance_scale": 6.0,
+        "height": 576,
+        "seeds": [
+          7101,
+          7102,
+          7103
+        ],
+        "steps": 30,
+        "strength": 0.5,
+        "width": 1024
+      }
+    },
+    {
+      "candidate_count": 6,
+      "candidate_sheet": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-02_result/candidates-labeled.jpg",
+        "sha256": "035fd660383d23d8978a7dfed94d3323accd9a401d23d381b62d820ba9fc85e5",
+        "size_bytes": 173769
+      },
+      "case_id": "CHEM-01",
+      "configuration_count": 2,
+      "control": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-02_result/controls/phase7_semantic_control.png",
+        "sha256": "bb564e5a5f1a2747364e51143c254b4a2ad151c80600657ec08d438a56ad3b42",
+        "size_bytes": 5335
+      },
+      "experiment_id": "EXP-P7-A-chem-01-02_result",
+      "keyframe_id": "02_result",
+      "negative_prompt": "extra beakers, extra burettes, extra tubes, missing vessel, moved liquid level, pouring stream, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, cropped apparatus, tilted camera, perspective view, blur\n",
+      "positive_prompt": "Straight-on photo of one glass beaker under one glass burette, locked centered camera, clear glass, almost colorless liquid, realistic refraction and reflections, neutral laboratory, the temporary pink plume has dispersed and nearly vanished, one beaker, one burette, fixed liquid level and layout, no text\n",
+      "render": {
+        "dtype": "float16",
+        "guidance_scale": 6.0,
+        "height": 576,
+        "seeds": [
+          7101,
+          7102,
+          7103
+        ],
+        "steps": 30,
+        "strength": 0.5,
+        "width": 1024
+      }
+    },
+    {
+      "candidate_count": 6,
+      "candidate_sheet": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-03_end/candidates-labeled.jpg",
+        "sha256": "3b7e4a0e77789bc2e34a7823c2a0eafc55965380868279c22be94b74294f79fe",
+        "size_bytes": 159057
+      },
+      "case_id": "CHEM-01",
+      "configuration_count": 2,
+      "control": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-chem-01-03_end/controls/phase7_semantic_control.png",
+        "sha256": "bb564e5a5f1a2747364e51143c254b4a2ad151c80600657ec08d438a56ad3b42",
+        "size_bytes": 5335
+      },
+      "experiment_id": "EXP-P7-A-chem-01-03_end",
+      "keyframe_id": "03_end",
+      "negative_prompt": "extra beakers, extra burettes, extra tubes, missing vessel, moved liquid level, pouring stream, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, cropped apparatus, tilted camera, perspective view, blur\n",
+      "positive_prompt": "Straight-on photo of one glass beaker under one glass burette, locked centered camera, clear glass, very pale pink liquid, realistic refraction and reflections, neutral laboratory, the whole solution has a uniform persistent endpoint tint, one beaker, one burette, fixed liquid level and layout, no text\n",
+      "render": {
+        "dtype": "float16",
+        "guidance_scale": 6.0,
+        "height": 576,
+        "seeds": [
+          7101,
+          7102,
+          7103
+        ],
+        "steps": 30,
+        "strength": 0.5,
+        "width": 1024
+      }
+    },
+    {
+      "candidate_count": 6,
+      "candidate_sheet": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result/candidates-labeled.jpg",
+        "sha256": "3b174b64b96e1cf1d3b9c34a08bfc0d85bf17236787319486e50886e5de8f891",
+        "size_bytes": 173248
+      },
+      "case_id": "GEO-02",
+      "configuration_count": 2,
+      "control": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result/controls/phase7_semantic_control.png",
+        "sha256": "d0a3b2d398886e7713c19baef13cdfb650dd3de2037673b0c1b4ec51c0419fd6",
+        "size_bytes": 4882
+      },
+      "experiment_id": "EXP-P7-A-geo-02-02_result",
+      "keyframe_id": "02_result",
+      "negative_prompt": "second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur\n",
+      "positive_prompt": "Wide side-view documentary landscape photograph of one mountain ridge beneath open sky, natural green rock and vegetation, deep atmospheric sky, volumetric cloud, realistic localized rain curtain, daylight, heavy rain only on the left windward slope while the right leeward slope remains dry, one peak, same silhouette, cloud and rain left of summit, dry right side, no text\n",
+      "render": {
+        "dtype": "float16",
+        "guidance_scale": 6.0,
+        "height": 576,
+        "seeds": [
+          7101,
+          7102,
+          7103
+        ],
+        "steps": 30,
+        "strength": 0.5,
+        "width": 1024
+      }
+    },
+    {
+      "candidate_count": 6,
+      "candidate_sheet": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result-terrain_only/candidates-labeled.jpg",
+        "sha256": "04d654cec2666110eb9bc08fa0cf5a4e3db6b9139c0a1d91ab239e9dab05aab1",
+        "size_bytes": 175434
+      },
+      "case_id": "GEO-02",
+      "configuration_count": 2,
+      "control": {
+        "path": "output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result-terrain_only/controls/phase7_semantic_control.png",
+        "sha256": "0cf5b28580f949a0168c15fa412c48137b41f69d8203177aa241d8e5807d5612",
+        "size_bytes": 3954
+      },
+      "experiment_id": "EXP-P7-A-geo-02-02_result-terrain_only",
+      "keyframe_id": "02_result",
+      "negative_prompt": "second mountain, multiple peaks, rain on right slope, rain everywhere, snowstorm, waterfall, ocean, lake, buildings, roads, people, arrows, labels, diagram, numbers, letters, text, user interface, watermark, fantasy landscape, plastic, blur\n",
+      "positive_prompt": "Wide side-view documentary landscape photograph of one mountain ridge beneath open sky, natural green rock and vegetation, deep atmospheric sky, volumetric cloud, realistic localized rain curtain, daylight, heavy rain only on the left windward slope while the right leeward slope remains dry, one peak, same silhouette, cloud and rain left of summit, dry right side, no text\n",
+      "render": {
+        "dtype": "float16",
+        "guidance_scale": 6.0,
+        "height": 576,
+        "seeds": [
+          7101,
+          7102,
+          7103
+        ],
+        "steps": 30,
+        "strength": 0.5,
+        "width": 1024
+      }
+    }
+  ],
+  "route_status": {
+    "A": "partial_donor_only",
+    "B": "accepted_for_stable_scene_material_cases",
+    "C": "accepted_for_exact_geometry_and_fields"
+  },
+  "schema_version": "1.0",
+  "selected": {
+    "BIO-01": {
+      "route": "B",
+      "sequence": {
+        "path": "output/phase-7/report-assets/bio-selected-sequence.jpg",
+        "sha256": "77dbb40d0569d668c18b3e8d226953c0321d3cdcad48a1f7021c2637f93ade6d",
+        "size_bytes": 108429
+      },
+      "variant": "stable_material_plus_depth"
+    },
+    "CHEM-01": {
+      "route": "B",
+      "sequence": {
+        "path": "output/phase-7/report-assets/chem-selected-sequence.jpg",
+        "sha256": "22a424e9b06c467ad83d707bc45d568525302c5176e3225461fea12af72e0f13",
+        "size_bytes": 48290
+      },
+      "variant": "optical_tint_plus_drop"
+    },
+    "MATH-02": {
+      "route": "C",
+      "sequence": {
+        "path": "output/phase-7/report-assets/math-selected-sequence.jpg",
+        "sha256": "7073fb8b1029dfeb126a0093c215d119a5cc66d9ad882cae68064ee860273234",
+        "size_bytes": 47841
+      },
+      "variant": "studio_pbr"
+    },
+    "PHYS-01": {
+      "route": "C",
+      "sequence": {
+        "path": "output/phase-7/report-assets/phys-selected-sequence.jpg",
+        "sha256": "75581109cbaf3cc143a51826a5a9448e853d26d4c284260eeb53280f0714f167",
+        "size_bytes": 83459
+      },
+      "variant": "specular_water"
+    }
+  },
+  "status": "passed_with_documented_boundaries"
+}

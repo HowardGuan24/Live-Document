@@ -1,0 +1,102 @@
+{
+  "case_id": "CHEM-01",
+  "configurations": [
+    {
+      "configuration_id": "semantic_control_065",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.65,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "semantic_control_080",
+      "control_route": "phase7_semantic_control",
+      "controlnet_conditioning_scale": 0.8,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "24c0e50cb959eb6d6a4dc87238484e9d4a06798aa5f93f342f99ccf14f46c825",
+    "size_bytes": 923
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.02801514,
+      "path": "controls/dense_canny.png",
+      "sha256": "a7b534e7cac9f28234c15c875eda3dff706b42abf86dd94b9411543e9ad4009a",
+      "size_bytes": 3314
+    },
+    "phase7_semantic_control": {
+      "edge_fraction": 0.01981099,
+      "path": "controls/phase7_semantic_control.png",
+      "sha256": "bb564e5a5f1a2747364e51143c254b4a2ad151c80600657ec08d438a56ad3b42",
+      "size_bytes": 5335
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.01679315,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "2f607cabfc4e320744b77b8b09c78b23dd44f072b46825e588a2d0749d88be33",
+      "size_bytes": 2863
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.02413262,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "848a23cefff27f79d1a64b04d517ef6411ddedf791071d2736c5f030d233397c",
+      "size_bytes": 3084
+    }
+  },
+  "experiment_id": "EXP-P7-A-chem-01-00_start",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "767e927f7ef683c74b92a0d5130ae6a3d181b1ea3a7ed6989ca25cde698d16fa",
+    "size_bytes": 266,
+    "text": "extra beakers, extra burettes, extra tubes, missing vessel, moved liquid level, pouring stream, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, cropped apparatus, tilted camera, perspective view, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "66ee455588d8754204b3b4fbd1ac88d097bcb2a44eb0b9b75694ce719688ea05",
+    "size_bytes": 298,
+    "text": "Straight-on photo of one glass beaker under one glass burette, locked centered camera, clear glass, colorless liquid, realistic refraction and reflections, neutral laboratory, initial acidic solution is colorless with no pink region, one beaker, one burette, fixed liquid level and layout, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "clear glass, colorless liquid, realistic refraction and reflections, neutral laboratory",
+    "must_preserve": "one beaker, one burette, fixed liquid level and layout, no text",
+    "scene_identity": "Straight-on photo of one glass beaker under one glass burette, locked centered camera",
+    "state_delta": "initial acidic solution is colorless with no pink region"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      7101,
+      7102,
+      7103
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "c7494252b335b5313ec2a0cfe0cc0e433facfa6d63fa114c6bff508544b87dea",
+      "size_bytes": 6230
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/clean.png",
+      "sha256": "622ce73e40355f52764cd030dd4f2b2d651ecae6e3075d5948858e60b538f64e"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json",
+      "sha256": "fb522d77fd58c4275b9632200ef731f716b602eb649a718bb16d3841ac852e6c"
+    }
+  }
+}

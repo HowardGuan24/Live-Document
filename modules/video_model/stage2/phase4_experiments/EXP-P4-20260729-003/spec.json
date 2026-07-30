@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P4-20260729-003",
+  "case_id": "BIO-02",
+  "hypothesis_zh": "无器官轮廓的叶片表皮材质供体经多种子稳健残差，只进入两个保卫细胞 region 后，可增加有机表面层次且不改变细胞数和气孔开度。",
+  "single_variable_zh": "相对程序底图只增加模型派生的受限中高频材质；两个细胞身份、边界、中央孔隙与背景不变。",
+  "source": {
+    "keyframe_id": "01_mechanism",
+    "clean_frame": "output/phase-4/programs/BIO-02/keyframes/01_mechanism/clean.png",
+    "semantic_layers": "output/phase-4/programs/BIO-02/keyframes/01_mechanism/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Top-down scientific macro material image of uniform green leaf epidermal surface, edge-to-edge sample",
+    "material_goal": "fine organic cell-surface microtexture, subtle translucency, low-contrast natural variation",
+    "state_delta": "uniform material swatch without organ shapes or focal structures",
+    "must_preserve": "even texture scale, no stomata, no veins, no text"
+  },
+  "negative_artifacts": "stoma, pore, guard cells, leaf outline, veins, branches, flowers, seeds, insects, nuclei, circles, eyes, organs, panels, seams, text, labels, arrows, user interface, watermark, plastic, metal, perspective, blur",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "t2i_leaf_epidermis_material_donor",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0
+    }
+  ],
+  "blind_shuffle_seed": 2026072918,
+  "budget": {
+    "maximum_new_image_candidates": 12,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  },
+  "projection": {
+    "blur_radius": 12.0,
+    "residual_gain": 0.3,
+    "residual_clip": 12.0,
+    "protect_dilation_px": 8,
+    "aggregation": "pixelwise_median_with_leave_one_out",
+    "allowed_region_layer_id": "bio02_guard_region",
+    "variant_id": "gain_030"
+  }
+}

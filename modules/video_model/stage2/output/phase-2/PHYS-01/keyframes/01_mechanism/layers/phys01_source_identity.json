@@ -1,0 +1,36 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "class_id": "coherent_point_source",
+      "frequency_relative": 1.0,
+      "geometry": {
+        "bbox_xyxy": [
+          228.0,
+          173.0,
+          242.0,
+          187.0
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "PHYS-01-source-01",
+      "phase_radians": 0.0
+    },
+    {
+      "class_id": "coherent_point_source",
+      "frequency_relative": 1.0,
+      "geometry": {
+        "bbox_xyxy": [
+          398.0,
+          173.0,
+          412.0,
+          187.0
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "PHYS-01-source-02",
+      "phase_radians": 0.0
+    }
+  ],
+  "schema_version": "1.0"
+}

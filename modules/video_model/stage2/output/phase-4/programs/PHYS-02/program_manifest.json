@@ -1,0 +1,1399 @@
+{
+  "animation": {
+    "path": "program-animation.mp4",
+    "sha256": "bec9d1e3593f9febce87771c569c372d6fd661c241d989f9d106b81c59d0318e",
+    "size_bytes": 50801
+  },
+  "canvas": {
+    "height": 360,
+    "mode": "RGB",
+    "width": 640
+  },
+  "case_id": "PHYS-02",
+  "checks": [
+    {
+      "evidence": [
+        0.0,
+        1.0,
+        0.0,
+        -1.0
+      ],
+      "name": "approach_stop_withdraw_current_signs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "case_id": "PHYS-02",
+        "coil_x": 390,
+        "induced_current": 0.0,
+        "magnet_x": 270.0,
+        "magnetic_flux": 0.26359714,
+        "meter_pointer_angle": -1.57079633,
+        "progress": 0.666667,
+        "stage": "stopped"
+      },
+      "name": "nearby_stationary_magnet_has_zero_current",
+      "passed": true
+    },
+    {
+      "evidence": [
+        390,
+        390,
+        390,
+        390
+      ],
+      "name": "coil_is_fixed",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "first": 0.0,
+        "frame_count": 49,
+        "last": 1.0
+      },
+      "name": "normalized_progress_is_monotonic",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "height": 360,
+        "mode": "RGB",
+        "width": 640
+      },
+      "name": "fixed_rgb_canvas",
+      "passed": true
+    },
+    {
+      "evidence": [
+        [
+          "phys02_hard_boundary",
+          "hard_boundary"
+        ],
+        [
+          "phys02_magnetic_field",
+          "vector_field"
+        ],
+        [
+          "phys02_magnet_region",
+          "region"
+        ],
+        [
+          "phys02_object_identity",
+          "object_identity"
+        ],
+        [
+          "phys-02_annotation",
+          "annotation"
+        ]
+      ],
+      "name": "semantic_layer_contract_is_stable",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "annotation_count": 4,
+        "used_as_model_input": false
+      },
+      "name": "annotations_are_post_generation_only",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "duration_seconds": 4.0833,
+        "fps": 12,
+        "frame_count": 49
+      },
+      "name": "video_was_encoded_from_program_frames",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "image": 0,
+        "video": 0
+      },
+      "name": "zero_generative_model_runs",
+      "passed": true
+    },
+    {
+      "evidence": "PHYS-02",
+      "name": "case_id_matches_plugin",
+      "passed": true
+    }
+  ],
+  "classification": "deterministic scientific program animation; not an image-model render",
+  "contact_sheet": {
+    "path": "keyframe-contact-sheet.jpg",
+    "sha256": "c677cb00593900f0bd03d575907ea6f5a5c7dae6066e8a36927e27ffca86fc64",
+    "size_bytes": 178577
+  },
+  "frame_hashes": [
+    {
+      "path": "frames/frame_000.png",
+      "sha256": "d23322362aab42d6ec62bc381f97a3e8f36af1f5b57be0be43669220d3e0039c",
+      "size_bytes": 6184
+    },
+    {
+      "path": "frames/frame_001.png",
+      "sha256": "3b9e47720571958a07c4594136260b401082266d81c045a3d20aed23e954ce55",
+      "size_bytes": 6152
+    },
+    {
+      "path": "frames/frame_002.png",
+      "sha256": "175356a0ff749340b8d47d828ea8fd3382e5ccaa56c42031500d0ddf3c317025",
+      "size_bytes": 6098
+    },
+    {
+      "path": "frames/frame_003.png",
+      "sha256": "a07e7c31500ec16150bb358b774b02af035e916d177e4325ac646e013a55784b",
+      "size_bytes": 6166
+    },
+    {
+      "path": "frames/frame_004.png",
+      "sha256": "c05a998c90faf07e9141220d9100105581f98ffe3fa49bb944cb1612fc4a6c7f",
+      "size_bytes": 6340
+    },
+    {
+      "path": "frames/frame_005.png",
+      "sha256": "47b011506f9b18425be9ce64672bcf8cf93ca536df3e2d566e25cece23efbb93",
+      "size_bytes": 6583
+    },
+    {
+      "path": "frames/frame_006.png",
+      "sha256": "bebc3db8f46ec4ca7950dc250e54afeace28ec6afb4fd45b07be377ff013e5a8",
+      "size_bytes": 6605
+    },
+    {
+      "path": "frames/frame_007.png",
+      "sha256": "ac3daa80c9d87e6c3db5b1b8889eb92bd4b813790c32d941ae3bc94d1c52b043",
+      "size_bytes": 6488
+    },
+    {
+      "path": "frames/frame_008.png",
+      "sha256": "ee8ec537982c63ecf95b790904997f7cd377993ce07cdb83996256f45192bf77",
+      "size_bytes": 6524
+    },
+    {
+      "path": "frames/frame_009.png",
+      "sha256": "b32dd18a3e15960cc36568f3677250d17717506ab1cbaeb71f93ae90a47f5627",
+      "size_bytes": 6532
+    },
+    {
+      "path": "frames/frame_010.png",
+      "sha256": "85b9e0b8040bff2b770ad45f5237ff3451ecd98228fc2a05e22201b0cc7729c9",
+      "size_bytes": 6561
+    },
+    {
+      "path": "frames/frame_011.png",
+      "sha256": "a26eb9c1c22467b902dd24a53a628316bf5b9041b4faee83d7f0aac30883aa15",
+      "size_bytes": 6515
+    },
+    {
+      "path": "frames/frame_012.png",
+      "sha256": "c45513df456edc693648aa80aa11facdd9722ee246421db53fe172a60a8ebd77",
+      "size_bytes": 6684
+    },
+    {
+      "path": "frames/frame_013.png",
+      "sha256": "8bd9396021f646e03ef08fc99cb704c93612c268e4e0cf3eba82126a0d4029a1",
+      "size_bytes": 6467
+    },
+    {
+      "path": "frames/frame_014.png",
+      "sha256": "ce9adfe3b431724be27ae8caa75d9388e96bd46a97fedce3c9382ee61176fb24",
+      "size_bytes": 6688
+    },
+    {
+      "path": "frames/frame_015.png",
+      "sha256": "6c8f018e3c58603f39b60d40089b8d01727f6301667c2847848bea4b5cea212f",
+      "size_bytes": 6713
+    },
+    {
+      "path": "frames/frame_016.png",
+      "sha256": "2f45589f0998ab72899986dbd3e71e30bf18aa48864de25496aace0b2cb361f0",
+      "size_bytes": 6557
+    },
+    {
+      "path": "frames/frame_017.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_018.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_019.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_020.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_021.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_022.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_023.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_024.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_025.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_026.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_027.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_028.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_029.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_030.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_031.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_032.png",
+      "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+      "size_bytes": 6484
+    },
+    {
+      "path": "frames/frame_033.png",
+      "sha256": "1c295f321702f43bbc69958e5faca446247bf8027ef36dda494f7fa77364ccd6",
+      "size_bytes": 6497
+    },
+    {
+      "path": "frames/frame_034.png",
+      "sha256": "ba330b87f4bb3e1b52391d3b0b9e663f1740c74c0ab752d80157273bd40c5770",
+      "size_bytes": 6375
+    },
+    {
+      "path": "frames/frame_035.png",
+      "sha256": "e44b65ff2d514acb867ca478534ca2711c0f53c73c8dbb9c9db55474b5d681bf",
+      "size_bytes": 6352
+    },
+    {
+      "path": "frames/frame_036.png",
+      "sha256": "2f475bac94b683b7142b7c71ad13918ed524fc3f105d0dddfedc4363f5623e70",
+      "size_bytes": 6578
+    },
+    {
+      "path": "frames/frame_037.png",
+      "sha256": "317082a09572c9ba5675ca6edda0a1444915610a02209a47138f46d181f21f4b",
+      "size_bytes": 6701
+    },
+    {
+      "path": "frames/frame_038.png",
+      "sha256": "77b8de3e4d6d9f8b5b730a2acc7db3f483d1009d856b41363d917dae5c6f8c87",
+      "size_bytes": 6478
+    },
+    {
+      "path": "frames/frame_039.png",
+      "sha256": "f35c3f9872a131647e1baca4dde6ec257103f6fd8d447dfb253a81f1b1d18995",
+      "size_bytes": 6403
+    },
+    {
+      "path": "frames/frame_040.png",
+      "sha256": "6a0a421c27b5f85bc9b72d140bb1abd0d84f96409334842e4b0d10d45c617f3a",
+      "size_bytes": 6600
+    },
+    {
+      "path": "frames/frame_041.png",
+      "sha256": "83adb2c341fa3a9d0ca9303fa0fcd563a2fd96a657ee83eee5077db6bc2ddda6",
+      "size_bytes": 6734
+    },
+    {
+      "path": "frames/frame_042.png",
+      "sha256": "bb8bd39a6615f47b9e3eaeb328fc1c20d47e175e52ef940721b472f9d0babae4",
+      "size_bytes": 6791
+    },
+    {
+      "path": "frames/frame_043.png",
+      "sha256": "1fab1b319c84218a57939b31d5969622d94cfcad283e51a0cbd846be3b7d2536",
+      "size_bytes": 6590
+    },
+    {
+      "path": "frames/frame_044.png",
+      "sha256": "a98154acab28ca381ec27c0f058b66a7a3a7d40fdb464dc52b89d7a6a03cd17c",
+      "size_bytes": 6573
+    },
+    {
+      "path": "frames/frame_045.png",
+      "sha256": "ba185f241f0cfe4d15541a7d9048a522538413d5ed97f1017b112c13c7918430",
+      "size_bytes": 6408
+    },
+    {
+      "path": "frames/frame_046.png",
+      "sha256": "a11e29d0645b64bcdda8adeaf63d9f571781aac2de7bfa7be2743b6881a8fb91",
+      "size_bytes": 6505
+    },
+    {
+      "path": "frames/frame_047.png",
+      "sha256": "e70904f05d94e3e83a3a25998c196e8b9d9c79e4cac5f541f4a3a11881c348f8",
+      "size_bytes": 6429
+    },
+    {
+      "path": "frames/frame_048.png",
+      "sha256": "9050dab631da78187a1105c6d9a0b53cd0ebefe218687e03635c83dd6ee64954",
+      "size_bytes": 6381
+    }
+  ],
+  "keyframes": [
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/clean.png",
+        "sha256": "53e7b0045f704cba32342b25650cce7f60c718db789f182e1718665496668d5c",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3132,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 0,
+      "keyframe_id": "00_start",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/00_start/layers/phys02_hard_boundary.npy",
+            "sha256": "1bf75da1745206d875f78f81413cb7b42c27084a3762ed58e06cfa6e96a53c30",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "防止模型复制磁铁或改变线圈。",
+          "layer_id": "phys02_hard_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "锁定磁铁尺寸和固定线圈位置。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/phys02_hard_boundary_preview.png",
+            "sha256": "397f5a54d0dd11f01b79eb6bdd175b146543a048263ba317bb9e9b181640ae08",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1127,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈器材边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/00_start/layers/phys02_magnetic_field.npy",
+            "sha256": "b209af909dd5456105b7772fd2bb90734c0cb5683d584786c293801c536ca4ab",
+            "shape": [
+              360,
+              640,
+              2
+            ],
+            "size_bytes": 1843328,
+            "value_range": [
+              0.0,
+              1.0
+            ]
+          },
+          "final_role_zh": "供程序验收和视频方向审计，不默认显示箭头。",
+          "layer_id": "phys02_magnetic_field",
+          "layer_type": "vector_field",
+          "meaning_zh": "程序根据磁铁位置计算的磁场方向示意。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/phys02_magnetic_field_preview.png",
+            "sha256": "c20bce7d1516795400c8677044c2645953fecdd6ab2c75ee953fdbd7df86af85",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 3244,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁场方向场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/00_start/layers/phys02_magnet_region.npy",
+            "sha256": "3d9e78e98c0da6664f455f02f03f93d6dc8056792cc3a7b0255ba0775a2caab0",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "限定哑光金属细节，轮廓、极性分色和位置仍由程序决定。",
+          "layer_id": "phys02_magnet_region",
+          "layer_type": "region",
+          "meaning_zh": "只包含程序磁铁的红蓝矩形内部，并随磁铁位置移动。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/phys02_magnet_region_preview.png",
+            "sha256": "20987abf75ff11e5300b881978428d3a40b2cb5eb13e8000f64ac5296fd0a1a4",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 929,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "移动条形磁铁表面",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/00_start/layers/phys02_object_identity.json",
+            "sha256": "c911c72639d45e07e2be23b6b57e2c3edc9e381525a8d28c599f82fd9602eb3e",
+            "shape": [
+              2
+            ],
+            "size_bytes": 722,
+            "value_range": null
+          },
+          "final_role_zh": "确保器材不复制且线圈保持固定。",
+          "layer_id": "phys02_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "一个移动磁铁和一个固定线圈的稳定 ID。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/phys02_object_identity_preview.png",
+            "sha256": "a351d7e752b5d6fc5861c1ace899661cdc70f74dce480ce19ed3ae9d3507d286",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2229,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈身份",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/00_start/layers/phys-02_annotation.json",
+            "sha256": "6f252f66249c4bcdd61b5a4365c2ebf933a7c88b3c2174ef061051fd3336203c",
+            "shape": [
+              3
+            ],
+            "size_bytes": 801,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "phys-02_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/phys-02_annotation_preview.png",
+            "sha256": "bbb253f3fe9c0ab0f6919682c933cd46b44ec7c532a1b791e41f7e971cceaa6c",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1717,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 0,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/program.png",
+        "sha256": "d23322362aab42d6ec62bc381f97a3e8f36af1f5b57be0be43669220d3e0039c",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 6184,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 0.0,
+      "semantic_layers": {
+        "path": "keyframes/00_start/semantic_layers.json",
+        "sha256": "a0bc3094b89269157346bb7857c3cbd5d31d154a3749105a3bdfaa3e2e18996b",
+        "size_bytes": 6448
+      },
+      "state": {
+        "path": "keyframes/00_start/state.json",
+        "sha256": "1c281c1f309f4a2fa4465d6516e06cde9be57bb5b78d0f58db060fd7bb7f22c4",
+        "size_bytes": 201
+      }
+    },
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/clean.png",
+        "sha256": "89a4d21fd3075db61b150ec2f0df623986ce0aed5ac11c5ece93f481fc2f0e29",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3243,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 16,
+      "keyframe_id": "01_mechanism",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/01_mechanism/layers/phys02_hard_boundary.npy",
+            "sha256": "08b46186b3b15ea45f726396122b8ded6f61bf497c87b372fcfaa931ee30d98e",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "防止模型复制磁铁或改变线圈。",
+          "layer_id": "phys02_hard_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "锁定磁铁尺寸和固定线圈位置。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/phys02_hard_boundary_preview.png",
+            "sha256": "d00940deef90d4c34918e021e0761ef1a39a68e37257b10d8b9780a41a8aef80",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1132,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈器材边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/01_mechanism/layers/phys02_magnetic_field.npy",
+            "sha256": "c9545f7ee4f489fea9df4cc48c65f4b1b7d9461404bbc16a23fad0426b983cd8",
+            "shape": [
+              360,
+              640,
+              2
+            ],
+            "size_bytes": 1843328,
+            "value_range": [
+              0.0,
+              1.0
+            ]
+          },
+          "final_role_zh": "供程序验收和视频方向审计，不默认显示箭头。",
+          "layer_id": "phys02_magnetic_field",
+          "layer_type": "vector_field",
+          "meaning_zh": "程序根据磁铁位置计算的磁场方向示意。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/phys02_magnetic_field_preview.png",
+            "sha256": "b0f0dd0b900cc983884626491efac728e5572be4800a4507fc146bba58677fc2",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2933,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁场方向场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/01_mechanism/layers/phys02_magnet_region.npy",
+            "sha256": "4dfaeac65355cd0ad3d57cea295a5262a83af7b2c51db607b69f0d9d1b369ad9",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "限定哑光金属细节，轮廓、极性分色和位置仍由程序决定。",
+          "layer_id": "phys02_magnet_region",
+          "layer_type": "region",
+          "meaning_zh": "只包含程序磁铁的红蓝矩形内部，并随磁铁位置移动。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/phys02_magnet_region_preview.png",
+            "sha256": "c02278cdb3ca07259eab1c183ea3b12b8a8fa7339fb34d606ea7449f8e71905e",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 932,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "移动条形磁铁表面",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/01_mechanism/layers/phys02_object_identity.json",
+            "sha256": "5416086b785766eee62bf42ece6745c1a6efa4f571b1e84865cbcf99b333665d",
+            "shape": [
+              2
+            ],
+            "size_bytes": 724,
+            "value_range": null
+          },
+          "final_role_zh": "确保器材不复制且线圈保持固定。",
+          "layer_id": "phys02_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "一个移动磁铁和一个固定线圈的稳定 ID。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/phys02_object_identity_preview.png",
+            "sha256": "2b88f08cdfde45b48628f01a6708b039866b69c18a6790f6fe49ae54d282e523",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2230,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈身份",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/01_mechanism/layers/phys-02_annotation.json",
+            "sha256": "fb3c33bd41f2b9e866fb1029fda48714d5015e5877f302249064f200ba650dd0",
+            "shape": [
+              3
+            ],
+            "size_bytes": 826,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "phys-02_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/phys-02_annotation_preview.png",
+            "sha256": "544742009ae1f3dfc67552d9fb93067d263d36dd941be628d1d610b02459cd61",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1884,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 1,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/program.png",
+        "sha256": "2f45589f0998ab72899986dbd3e71e30bf18aa48864de25496aace0b2cb361f0",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 6557,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 0.333333,
+      "semantic_layers": {
+        "path": "keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "9d31ce1d24211a9ba28755196bf2091d7561fa12072150b2ef58f538dd25a93b",
+        "size_bytes": 6492
+      },
+      "state": {
+        "path": "keyframes/01_mechanism/state.json",
+        "sha256": "d07398de19956dc76358c9fa14a9fa7255eced3fc34571f742e1ef4ea68ef101",
+        "size_bytes": 207
+      }
+    },
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/clean.png",
+        "sha256": "61a52a0db8a79e8edda4890c180c6b38e4d38a794d2524a63fde7c5a3d8920e8",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3129,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 32,
+      "keyframe_id": "02_result",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/02_result/layers/phys02_hard_boundary.npy",
+            "sha256": "08b46186b3b15ea45f726396122b8ded6f61bf497c87b372fcfaa931ee30d98e",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "防止模型复制磁铁或改变线圈。",
+          "layer_id": "phys02_hard_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "锁定磁铁尺寸和固定线圈位置。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/phys02_hard_boundary_preview.png",
+            "sha256": "d00940deef90d4c34918e021e0761ef1a39a68e37257b10d8b9780a41a8aef80",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1132,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈器材边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/02_result/layers/phys02_magnetic_field.npy",
+            "sha256": "c9545f7ee4f489fea9df4cc48c65f4b1b7d9461404bbc16a23fad0426b983cd8",
+            "shape": [
+              360,
+              640,
+              2
+            ],
+            "size_bytes": 1843328,
+            "value_range": [
+              0.0,
+              1.0
+            ]
+          },
+          "final_role_zh": "供程序验收和视频方向审计，不默认显示箭头。",
+          "layer_id": "phys02_magnetic_field",
+          "layer_type": "vector_field",
+          "meaning_zh": "程序根据磁铁位置计算的磁场方向示意。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/phys02_magnetic_field_preview.png",
+            "sha256": "b0f0dd0b900cc983884626491efac728e5572be4800a4507fc146bba58677fc2",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2933,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁场方向场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/02_result/layers/phys02_magnet_region.npy",
+            "sha256": "4dfaeac65355cd0ad3d57cea295a5262a83af7b2c51db607b69f0d9d1b369ad9",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "限定哑光金属细节，轮廓、极性分色和位置仍由程序决定。",
+          "layer_id": "phys02_magnet_region",
+          "layer_type": "region",
+          "meaning_zh": "只包含程序磁铁的红蓝矩形内部，并随磁铁位置移动。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/phys02_magnet_region_preview.png",
+            "sha256": "c02278cdb3ca07259eab1c183ea3b12b8a8fa7339fb34d606ea7449f8e71905e",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 932,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "移动条形磁铁表面",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/02_result/layers/phys02_object_identity.json",
+            "sha256": "5416086b785766eee62bf42ece6745c1a6efa4f571b1e84865cbcf99b333665d",
+            "shape": [
+              2
+            ],
+            "size_bytes": 724,
+            "value_range": null
+          },
+          "final_role_zh": "确保器材不复制且线圈保持固定。",
+          "layer_id": "phys02_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "一个移动磁铁和一个固定线圈的稳定 ID。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/phys02_object_identity_preview.png",
+            "sha256": "2b88f08cdfde45b48628f01a6708b039866b69c18a6790f6fe49ae54d282e523",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2230,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈身份",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/02_result/layers/phys-02_annotation.json",
+            "sha256": "68aadbd32f0a55d54b9783bae01f1986c3179b5e22dd5f9f0f5fe7616d2a46d0",
+            "shape": [
+              3
+            ],
+            "size_bytes": 802,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "phys-02_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/phys-02_annotation_preview.png",
+            "sha256": "74f478adf4c70bf8f3913a5f386f3192639d598031935125fdb0a80f199a6c84",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1867,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 2,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/program.png",
+        "sha256": "cc9cd9f127093d70f96202caafcd91cb311251b917d51d5db531539e1795224a",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 6484,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 0.666667,
+      "semantic_layers": {
+        "path": "keyframes/02_result/semantic_layers.json",
+        "sha256": "1ce5df7f3ad2af26c529764e76314281320c85accd97e6e2ebd4345534de4d26",
+        "size_bytes": 6459
+      },
+      "state": {
+        "path": "keyframes/02_result/state.json",
+        "sha256": "32dec4d1d9362923dc7b50087d51aeb54e2d8ec4299ca52baaa8ab92e1f4d89a",
+        "size_bytes": 206
+      }
+    },
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/clean.png",
+        "sha256": "35cd49d67d097f76d92887dee9078768501f638017aa08bdde3ce5611313c8e0",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3243,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 48,
+      "keyframe_id": "03_end",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/03_end/layers/phys02_hard_boundary.npy",
+            "sha256": "1bf75da1745206d875f78f81413cb7b42c27084a3762ed58e06cfa6e96a53c30",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "防止模型复制磁铁或改变线圈。",
+          "layer_id": "phys02_hard_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "锁定磁铁尺寸和固定线圈位置。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/phys02_hard_boundary_preview.png",
+            "sha256": "397f5a54d0dd11f01b79eb6bdd175b146543a048263ba317bb9e9b181640ae08",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1127,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈器材边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/03_end/layers/phys02_magnetic_field.npy",
+            "sha256": "b209af909dd5456105b7772fd2bb90734c0cb5683d584786c293801c536ca4ab",
+            "shape": [
+              360,
+              640,
+              2
+            ],
+            "size_bytes": 1843328,
+            "value_range": [
+              0.0,
+              1.0
+            ]
+          },
+          "final_role_zh": "供程序验收和视频方向审计，不默认显示箭头。",
+          "layer_id": "phys02_magnetic_field",
+          "layer_type": "vector_field",
+          "meaning_zh": "程序根据磁铁位置计算的磁场方向示意。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/phys02_magnetic_field_preview.png",
+            "sha256": "c20bce7d1516795400c8677044c2645953fecdd6ab2c75ee953fdbd7df86af85",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 3244,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁场方向场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/03_end/layers/phys02_magnet_region.npy",
+            "sha256": "3d9e78e98c0da6664f455f02f03f93d6dc8056792cc3a7b0255ba0775a2caab0",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "限定哑光金属细节，轮廓、极性分色和位置仍由程序决定。",
+          "layer_id": "phys02_magnet_region",
+          "layer_type": "region",
+          "meaning_zh": "只包含程序磁铁的红蓝矩形内部，并随磁铁位置移动。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/phys02_magnet_region_preview.png",
+            "sha256": "20987abf75ff11e5300b881978428d3a40b2cb5eb13e8000f64ac5296fd0a1a4",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 929,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "移动条形磁铁表面",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/03_end/layers/phys02_object_identity.json",
+            "sha256": "c911c72639d45e07e2be23b6b57e2c3edc9e381525a8d28c599f82fd9602eb3e",
+            "shape": [
+              2
+            ],
+            "size_bytes": 722,
+            "value_range": null
+          },
+          "final_role_zh": "确保器材不复制且线圈保持固定。",
+          "layer_id": "phys02_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "一个移动磁铁和一个固定线圈的稳定 ID。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/phys02_object_identity_preview.png",
+            "sha256": "a351d7e752b5d6fc5861c1ace899661cdc70f74dce480ce19ed3ae9d3507d286",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2229,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "磁铁与线圈身份",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/03_end/layers/phys-02_annotation.json",
+            "sha256": "a3a53dd85fdfa442c8436f1c97a355f1e5b4134459d85b67f39e14034a061a66",
+            "shape": [
+              3
+            ],
+            "size_bytes": 825,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "phys-02_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/phys-02_annotation_preview.png",
+            "sha256": "a2d2b34f53dbb298bc800b3bf3fb6e80c4d188b10eac8b7196565f3845e79df4",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1773,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 3,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/program.png",
+        "sha256": "9050dab631da78187a1105c6d9a0b53cd0ebefe218687e03635c83dd6ee64954",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 6381,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 1.0,
+      "semantic_layers": {
+        "path": "keyframes/03_end/semantic_layers.json",
+        "sha256": "a0d97219bd97204d4e29493d973d9c19b5151ab06d36dbf9228ffb42d02333cf",
+        "size_bytes": 6426
+      },
+      "state": {
+        "path": "keyframes/03_end/state.json",
+        "sha256": "85597b21ea5e58e02547f6f5dd1a1ec27eca331c576feadd1b7346263106dd65",
+        "size_bytes": 202
+      }
+    }
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "phase": 4,
+  "primary_mechanism_zh": "靠近与撤离电流方向相反，磁铁停止时电流归零。",
+  "schema_version": "1.0",
+  "state_source": "case plugin computes deterministic state from normalized progress",
+  "states": {
+    "path": "states.jsonl",
+    "sha256": "994f4500f8668536dcdc19b86f2c979044b6ea9218a0190a4c105e364127ad67",
+    "size_bytes": 8779
+  },
+  "status": "passed",
+  "timeline": {
+    "duration_seconds": 4.0833,
+    "fps": 12,
+    "frame_count": 49,
+    "progress_domain": [
+      0.0,
+      1.0
+    ]
+  },
+  "title_zh": "磁通变化产生电磁感应",
+  "validation": {
+    "path": "validation.json",
+    "sha256": "025ed6d58398dd6b6ad68fbb71f3e4a2f801f0ae88f5b18692c72d216d91a64f",
+    "size_bytes": 2400
+  }
+}

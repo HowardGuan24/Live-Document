@@ -1,0 +1,169 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 360,
+    "width": 640
+  },
+  "case_id": "BIO-01",
+  "layers": [
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/03_end/layers/bio01_cell_region.npy",
+        "sha256": "c3b4f361ec0b8d0223fb312626931be191f937a002a03741ed178bb62913c2a6",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "控制细胞形变和分裂拓扑。",
+      "layer_id": "bio01_cell_region",
+      "layer_type": "region",
+      "meaning_zh": "细胞膜以内的区域，后期从一个连通体变为两个。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/bio01_cell_region_preview.png",
+        "sha256": "78f626fff767361deb1a23e9428b6f2dc537e12af1bd021f9449bd06be07aadc",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2798,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "细胞与子细胞区域",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "npy",
+        "path": "keyframes/03_end/layers/bio01_spindle_direction.npy",
+        "sha256": "fcb223c5c3c13728a64e09ac07eaf25430a167f3877750df988bd0fe3383c984",
+        "shape": [
+          360,
+          640,
+          2
+        ],
+        "size_bytes": 1843328,
+        "value_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      "final_role_zh": "为动画和视频检查提供运动方向。",
+      "layer_id": "bio01_spindle_direction",
+      "layer_type": "vector_field",
+      "meaning_zh": "表示染色单体分别向左右两极移动的方向。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/bio01_spindle_direction_preview.png",
+        "sha256": "5da0fa431475d22483bef554abf3fe64d6c6b9d126eedfcc00f7632c6eb7b4cc",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2854,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "纺锤体方向场",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/03_end/layers/bio01_chromosome_identity.json",
+        "sha256": "d18aa922bab479bc21e91f6e486d02928dce3bb5a00b9730d82b4a9e28eac277",
+        "shape": [
+          12
+        ],
+        "size_bytes": 5291,
+        "value_range": null
+      },
+      "final_role_zh": "防止遗传物质被模型复制或吞掉。",
+      "layer_id": "bio01_chromosome_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "保存父染色体、姐妹 ID、当前位置和目的地。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/bio01_chromosome_identity_preview.png",
+        "sha256": "c77d9c63bc6d5c76d35500f9c9ce2e17036d625066dfe5cb662ca1593d1ee441",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2125,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "染色体与姐妹染色单体身份",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/03_end/layers/bio-01_annotation.json",
+        "sha256": "3a743f0f498cee6fd480b8e895fb0e379bab17740b83f8c479049c604df073e3",
+        "shape": [
+          3
+        ],
+        "size_bytes": 772,
+        "value_range": null
+      },
+      "final_role_zh": "帮助解释机制，不输入图像模型。",
+      "layer_id": "bio-01_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/layers/bio-01_annotation_preview.png",
+        "sha256": "909d2530269bdaa7a03834c134f12b978fe4686a6a5dc7c2e00b16b51bd6d2cc",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2054,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "教学箭头",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "03_end"
+}

@@ -1,0 +1,22 @@
+{
+  "A": {
+    "configuration_id": "material_donor_control_off",
+    "seed": 3101,
+    "sha256": "f9c5b45a9d41ac34494bc1eafc8aec9bccbe5e7200dc514232f763b7053ccb2b"
+  },
+  "B": {
+    "configuration_id": "material_donor_control_off",
+    "seed": 3103,
+    "sha256": "5f9c84c3269d3efc71f03c21efea5b8e72fe277b59ac62ac97a36a2c89d8ff7b"
+  },
+  "C": {
+    "configuration_id": "material_donor_control_off",
+    "seed": 3102,
+    "sha256": "9c958d1eb89e47866666fb1c5fcb317c4df28fc8b581ce6f3e9efe6fb30d8ee4"
+  },
+  "D": {
+    "configuration_id": "material_donor_control_off",
+    "seed": 3104,
+    "sha256": "12af500b9e738ec9a5501c6f00046bc7263fa2e6acfea77066c1315155ad999e"
+  }
+}

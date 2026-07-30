@@ -1,0 +1,221 @@
+{
+  "blind_shuffle_seed": 2026072913,
+  "cache": {
+    "generated": 4,
+    "policy": "reuse only if clean input, prompts, control, configuration, seed, render settings and model fingerprints all match",
+    "reused": 0
+  },
+  "candidates": [
+    {
+      "blind_id": "D",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_cell_and_chromatids",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.85,
+      "img2img_strength": 0.5,
+      "inference_seconds": 8.973,
+      "input_signature": "1e12ddd6cec839ade444de484f4ce6b1ba829e6df8821fb31b2d8b3d0990b656",
+      "metrics": {
+        "candidate_edge_fraction": 0.03371853,
+        "control_edge_coverage_within_4px": 0.96499274,
+        "luminance_std_0_255": 29.26225,
+        "mean_saturation_0_255": 57.34963
+      },
+      "path": "raw/t2i_dense_cell_and_chromatids/seed_3101.png",
+      "peak_gpu_memory_bytes": 11763126784,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3101,
+      "sha256": "30984f41c6982dd0659705c0b399ddd0dde75ed5146728b3eff1fc95020644da",
+      "size_bytes": 916637
+    },
+    {
+      "blind_id": "B",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_cell_and_chromatids",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.85,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.776,
+      "input_signature": "edea46694ebdd3ee565739e8f063fccffa03fc71fe97cddf7a3a631e8bce2de3",
+      "metrics": {
+        "candidate_edge_fraction": 0.06030273,
+        "control_edge_coverage_within_4px": 0.99582003,
+        "luminance_std_0_255": 20.30237,
+        "mean_saturation_0_255": 83.68785
+      },
+      "path": "raw/t2i_dense_cell_and_chromatids/seed_3102.png",
+      "peak_gpu_memory_bytes": 11762143744,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3102,
+      "sha256": "02f664a9c304a8b5969412ea2014d165402936ba802bf4b5ee3384f3bfb327d5",
+      "size_bytes": 949775
+    },
+    {
+      "blind_id": "A",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_cell_and_chromatids",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.85,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.795,
+      "input_signature": "aad826f6c6c28c25db34b33845efa787774400180a0883cbd7bd80689d2f7ce5",
+      "metrics": {
+        "candidate_edge_fraction": 0.03720262,
+        "control_edge_coverage_within_4px": 0.93172714,
+        "luminance_std_0_255": 31.21575,
+        "mean_saturation_0_255": 100.80754
+      },
+      "path": "raw/t2i_dense_cell_and_chromatids/seed_3103.png",
+      "peak_gpu_memory_bytes": 11761553920,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3103,
+      "sha256": "25bc46572e2f3f04868743797a03124a1e917131459679ef41ff4171fec57b4e",
+      "size_bytes": 919801
+    },
+    {
+      "blind_id": "C",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "t2i_dense_cell_and_chromatids",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.85,
+      "img2img_strength": 0.5,
+      "inference_seconds": 7.752,
+      "input_signature": "027df22f567776c2d9606b1503f9b354f42f4da8f4a1ac2a93176d8c990beac7",
+      "metrics": {
+        "candidate_edge_fraction": 0.09300571,
+        "control_edge_coverage_within_4px": 0.99518142,
+        "luminance_std_0_255": 18.60448,
+        "mean_saturation_0_255": 103.20729
+      },
+      "path": "raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+      "peak_gpu_memory_bytes": 11760767488,
+      "pipeline_mode": "controlnet_t2i",
+      "reused": false,
+      "reused_from": null,
+      "seed": 3104,
+      "sha256": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c",
+      "size_bytes": 919365
+    }
+  ],
+  "case_id": "BIO-01",
+  "experiment_id": "EXP-20260729-013",
+  "hypothesis_zh": "包含细胞轮廓和十二条染色单体线的 dense Canny，可让 T2I 生成显微材质并保持两个子细胞、每个六条染色单体。",
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "model_roots": {
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0"
+    },
+    "models": {
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      },
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      }
+    },
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run."
+  },
+  "model_load_seconds": 5.133,
+  "model_runs": {
+    "image_candidates": 4,
+    "video_candidates": 0
+  },
+  "models": {
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    },
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "Pillow": "11.0.0",
+    "accelerate": "1.13.0",
+    "diffusers": "0.35.2",
+    "numpy": "2.1.2",
+    "opencv-python-headless": "4.13.0.92",
+    "safetensors": "0.7.0",
+    "torch": "2.9.1+gitff65f5b",
+    "transformers": "4.57.6"
+  },
+  "pipeline_mode": "controlnet_t2i",
+  "prompt_token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 68,
+        "tokenizer_2": 68
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 63,
+        "tokenizer_2": 63
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "runtime": {
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336,
+    "hip": "7.2.53211-e1a6bc5663",
+    "torch": "2.9.1+gitff65f5b"
+  },
+  "scheduler": "EulerDiscreteScheduler",
+  "schema_version": "1.0",
+  "sheets": {
+    "blind": {
+      "path": "candidates-blind.jpg",
+      "sha256": "ba5ccabd79a3237b7e972a42201c1b4ab11e01bbdfc091e25362181de8a57630",
+      "size_bytes": 209257
+    },
+    "blind_map": {
+      "path": "_work/blind_map.json",
+      "sha256": "6fe0cfbb8fc3a01427b132844451f21607d5caa84df55472903023798e993539",
+      "size_bytes": 683
+    },
+    "labeled": {
+      "path": "candidates-labeled.jpg",
+      "sha256": "edac1471eb1554351e20ce97b1acc28493d81ae8635037fe5725db229f13f62b",
+      "size_bytes": 217356
+    }
+  },
+  "single_variable_zh": "相对程序关键帧只增加固定的 SDXL T2I ControlNet 重绘；控制图、提示词、模型、参数和四个种子冻结。",
+  "status": "generated"
+}

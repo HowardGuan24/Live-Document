@@ -1,0 +1,7 @@
+{
+  "classification": "corrected deterministic program hard boundary",
+  "meaning_zh": "无针孔的主河、牛轭湖、捷径和封堵水陆边界。",
+  "output": "protected_water_boundary.png",
+  "schema_version": "1.0",
+  "source": "output/phase-4/programs/GEO-01/keyframes/03_end/layers/geo01_water_boundary.npy"
+}

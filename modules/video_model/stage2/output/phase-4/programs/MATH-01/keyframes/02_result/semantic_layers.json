@@ -1,0 +1,168 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 360,
+    "width": 640
+  },
+  "case_id": "MATH-01",
+  "layers": [
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/02_result/layers/math01_hard_boundary.npy",
+        "sha256": "b74fa8a6c356e7a62605a104df15478521a4a4ac3aabae9ac4d435f0bd2af207",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "防止圆变椭圆或绘图区漂移。",
+      "layer_id": "math01_hard_boundary",
+      "layer_type": "hard_boundary",
+      "meaning_zh": "固定单位圆、绘图区坐标轴和镜头。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/math01_hard_boundary_preview.png",
+        "sha256": "28e24bb4c65d29788b613d89a242d2d094ba60eedfba6985fd816685ba868974",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2477,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "圆与坐标轴硬边界",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/02_result/layers/math01_paper_region.npy",
+        "sha256": "49ca50b8540230a6fd59cf8e6af7a85b3acc983bc8f77bd1c2184e3a2cff1a4b",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "模型如需增加纸张质感，只能在空白底纸中贡献限幅细节。",
+      "layer_id": "math01_paper_region",
+      "layer_type": "region",
+      "meaning_zh": "只包含程序底色像素，不包含圆、坐标轴、半径、曲线或运动点。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/math01_paper_region_preview.png",
+        "sha256": "b4dea4353c2199af6896202857c6dcb5a72ee20031b35f9dc6788393262c353f",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 3277,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "未被数学图形占用的底纸",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/02_result/layers/math01_point_identity.json",
+        "sha256": "9840b68535e52d4ec7344635a6c49453c60d512e26745ce35ae76ce8b2f8fc9d",
+        "shape": [
+          2
+        ],
+        "size_bytes": 656,
+        "value_range": null
+      },
+      "final_role_zh": "验证两个红点纵坐标始终一致。",
+      "layer_id": "math01_point_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "保存同一个运动点在圆和曲线中的对应位置。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/math01_point_identity_preview.png",
+        "sha256": "ba75bb341b5742fd8c9a1b29414e6bfce13f6e302ff217cacab0a95c94f388cd",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1693,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "圆周点与曲线头身份",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/02_result/layers/math-01_annotation.json",
+        "sha256": "a29a01e6f4b7a1d3139afbe546c2d153d2745e6bdc3361800ed4e8b6f0929803",
+        "shape": [
+          3
+        ],
+        "size_bytes": 829,
+        "value_range": null
+      },
+      "final_role_zh": "帮助解释机制，不输入图像模型。",
+      "layer_id": "math-01_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/math-01_annotation_preview.png",
+        "sha256": "a2cabe0b545864e76793b9f43753caa2cd099546e6ca0408bddcd706b60e5308",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2200,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "教学箭头",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "02_result"
+}

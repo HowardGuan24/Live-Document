@@ -1,0 +1,687 @@
+{
+  "case_id": "PHYS-01",
+  "comparison": {
+    "path": "all-variants-sequence.jpg",
+    "sha256": "399c21a4fe065708024d8af260aaa4b3d24060e0f0ba11d0590c075730ab3626",
+    "size_bytes": 809866
+  },
+  "donors": [
+    {
+      "path": "output/phase-3/EXP-20260729-005/raw/t2i_material_donor/seed_3101.png",
+      "sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+      "size_bytes": 1147324
+    },
+    {
+      "path": "output/phase-3/EXP-20260729-005/raw/t2i_material_donor/seed_3102.png",
+      "sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+      "size_bytes": 1152177
+    }
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "records": [
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 0.915816,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/height_tint/00_start.png",
+        "sha256": "254397dfe976ad88d5cefbefbde07516ef89b245f31da5e2b4074c2008b0bb99",
+        "size_bytes": 387839
+      },
+      "variant": "height_tint"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 1.862652,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/height_tint/01_mechanism.png",
+        "sha256": "abe98b7e9c633f8ba4d9a9974613c106f999e466be8cbe9a71c5dd0614dd1504",
+        "size_bytes": 389059
+      },
+      "variant": "height_tint"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 3.006545,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/height_tint/02_result.png",
+        "sha256": "068333971e56e04468873c7ad7ef571a27561536534c85d7bb9d199499406ba5",
+        "size_bytes": 390064
+      },
+      "variant": "height_tint"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 4.080362,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/height_tint/03_end.png",
+        "sha256": "953e8fdf22f0728466580c570745b48eead9f99d67b8cf3b902db916f87f15cd",
+        "size_bytes": 391448
+      },
+      "variant": "height_tint"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 1.776994,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/gradient_overlay/00_start.png",
+        "sha256": "3a87fe2044ee4ce3fb3aeddc2a316cd4d7d66ee650b1502e65123d6a538aca10",
+        "size_bytes": 389342
+      },
+      "variant": "gradient_overlay"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 3.667737,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/gradient_overlay/01_mechanism.png",
+        "sha256": "40a4be2bef6a81b03314d7153c576ca36940d16e5b6b1481d4c0bd3b0d494807",
+        "size_bytes": 391113
+      },
+      "variant": "gradient_overlay"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 5.716512,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/gradient_overlay/02_result.png",
+        "sha256": "8f96715c80d336f2d6dfa165a01fc166295cab6b4253e4b551296551b0dcfbeb",
+        "size_bytes": 392660
+      },
+      "variant": "gradient_overlay"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 7.983569,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/gradient_overlay/03_end.png",
+        "sha256": "1c6230fc6400904cad1f5341a8d967ba8fbd0e11e8ac53f119689273fca8500c",
+        "size_bytes": 394263
+      },
+      "variant": "gradient_overlay"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 11.499651,
+        "program_overlay_to_realized_luminance_correlation": 0.999995,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/frozen_water_relief/00_start.png",
+        "sha256": "9e18d809fe0dc10ebdb28e8a0d12c5bed7bfa7c6d23e4c67bddce40d61d9ffeb",
+        "size_bytes": 393906
+      },
+      "variant": "frozen_water_relief"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 12.648773,
+        "program_overlay_to_realized_luminance_correlation": 0.999999,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/frozen_water_relief/01_mechanism.png",
+        "sha256": "2baf0d488fbbb59a409d5938e7b02b96eb58fe33e73403e9b20947b5f02a9fef",
+        "size_bytes": 400748
+      },
+      "variant": "frozen_water_relief"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 14.109806,
+        "program_overlay_to_realized_luminance_correlation": 0.999988,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/frozen_water_relief/02_result.png",
+        "sha256": "e2fcc9671ec71a39e6cf3eeb6150c05f8f19a2d3d6b5e311e418a1084ceb847a",
+        "size_bytes": 407451
+      },
+      "variant": "frozen_water_relief"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "0a68ae11e37ab9ffa3429d6137802428c7f99311a79e26f1b544ae517cf495e5",
+        "frozen_base_transform": "resize_only",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 14.275214,
+        "program_overlay_to_realized_luminance_correlation": 0.999988,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/frozen_water_relief/03_end.png",
+        "sha256": "e4158792f483b7228145172b5a681f6e1af099b99693a05202aa109b6642655f",
+        "size_bytes": 412223
+      },
+      "variant": "frozen_water_relief"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 0.912172,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/clean_height_tint/00_start.png",
+        "sha256": "2d614392ccf2800410a7b940b18cd66e43dcfab13be1754c6d2f1df46e733984",
+        "size_bytes": 301336
+      },
+      "variant": "clean_height_tint"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 1.859007,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/clean_height_tint/01_mechanism.png",
+        "sha256": "de21265bc445e9b704ce093fa5019d4d5a587e409bab08575926486d6ba6d1d6",
+        "size_bytes": 304072
+      },
+      "variant": "clean_height_tint"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 3.002901,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/clean_height_tint/02_result.png",
+        "sha256": "d39d997ce68dba06bebfeed14c5a03b332c3beb7bae2a0d3c9ede1a1c93719ab",
+        "size_bytes": 307132
+      },
+      "variant": "clean_height_tint"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 4.076717,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/clean_height_tint/03_end.png",
+        "sha256": "f104833c4a2c3eedddaa19c4e152c236c57600dadf6ed62b01ad36412317008d",
+        "size_bytes": 310528
+      },
+      "variant": "clean_height_tint"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 1.773349,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/clean_gradient_overlay/00_start.png",
+        "sha256": "e7c4f3703910e614b3b1241ea8660b4855217567b86fd00b1257d2249203c238",
+        "size_bytes": 303172
+      },
+      "variant": "clean_gradient_overlay"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 3.664074,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/clean_gradient_overlay/01_mechanism.png",
+        "sha256": "fb91e490a92e5059f3abc670bd5661946bf718efbe8c73cecbba3649a9c0f653",
+        "size_bytes": 306511
+      },
+      "variant": "clean_gradient_overlay"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 5.712807,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/clean_gradient_overlay/02_result.png",
+        "sha256": "544194e9d0d7cef69da1c190acf3d17a813c24604269d04cbb546606992e5b65",
+        "size_bytes": 309269
+      },
+      "variant": "clean_gradient_overlay"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 7.979521,
+        "program_overlay_to_realized_luminance_correlation": 0.999998,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/clean_gradient_overlay/03_end.png",
+        "sha256": "a0fb5a6c4b79389da0871c15a1a2a53c7fc7714a80af5c84b0532ece2af0cea7",
+        "size_bytes": 312689
+      },
+      "variant": "clean_gradient_overlay"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 11.496593,
+        "program_overlay_to_realized_luminance_correlation": 0.999997,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/clean_frozen_water_relief/00_start.png",
+        "sha256": "268c22d2a68535405b08018ebccae82459ce985e004e5972b20b4fd1a698a68d",
+        "size_bytes": 309915
+      },
+      "variant": "clean_frozen_water_relief"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 12.642323,
+        "program_overlay_to_realized_luminance_correlation": 0.999865,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/clean_frozen_water_relief/01_mechanism.png",
+        "sha256": "62b3802ccc4a9b94c75f11a964348289e3dc3f37c45a94cab5174b735cdafd50",
+        "size_bytes": 321829
+      },
+      "variant": "clean_frozen_water_relief"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 14.107788,
+        "program_overlay_to_realized_luminance_correlation": 0.999873,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/clean_frozen_water_relief/02_result.png",
+        "sha256": "74712e1ed8ca87c5ac1fc1c1756fe8c37d2a5d722359398965e0a3ac1e8acf85",
+        "size_bytes": 333227
+      },
+      "variant": "clean_frozen_water_relief"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_2.2_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 14.266499,
+        "program_overlay_to_realized_luminance_correlation": 0.999821,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/clean_frozen_water_relief/03_end.png",
+        "sha256": "c0030fab02398afe99e3a4af8edbbdc050b03985454162ef4319adf264d56aef",
+        "size_bytes": 343473
+      },
+      "variant": "clean_frozen_water_relief"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 0.910204,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/calm_height_tint/00_start.png",
+        "sha256": "01208fbb1481bbe6d74754304ee1b3b4216e32f9a3cb0578c8130c537a947467",
+        "size_bytes": 183972
+      },
+      "variant": "calm_height_tint"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 1.85704,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/calm_height_tint/01_mechanism.png",
+        "sha256": "c9414e1b92a99745a64180597e647e579bed1e75cc44bc5bb5f5c41a6685fd48",
+        "size_bytes": 191477
+      },
+      "variant": "calm_height_tint"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 3.000933,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/calm_height_tint/02_result.png",
+        "sha256": "290ac6cb9290bb770e21001476b53a22a56c21500d4f28101f49c91808513a5d",
+        "size_bytes": 199158
+      },
+      "variant": "calm_height_tint"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 4.07475,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/calm_height_tint/03_end.png",
+        "sha256": "a2765eb41602d128e1a21fe9d2b8fd0df0d9b75d32181e5f7022528e0842b605",
+        "size_bytes": 207782
+      },
+      "variant": "calm_height_tint"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 1.771382,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/calm_gradient_overlay/00_start.png",
+        "sha256": "491b255a86a783a1d3ee1b1785827885281c1788941fc44f4562bdba5b81c2c0",
+        "size_bytes": 189287
+      },
+      "variant": "calm_gradient_overlay"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 3.662131,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/calm_gradient_overlay/01_mechanism.png",
+        "sha256": "97e676a1a4722ee566fcf8fd5c6371187de6f2fb8d84374fb2d3dda1aae47220",
+        "size_bytes": 199552
+      },
+      "variant": "calm_gradient_overlay"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 5.710923,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/calm_gradient_overlay/02_result.png",
+        "sha256": "38e6915855a74067b78c1ee45103bdfa3df88356bf9478a26155a7ca5857cd66",
+        "size_bytes": 208466
+      },
+      "variant": "calm_gradient_overlay"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 7.977966,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/calm_gradient_overlay/03_end.png",
+        "sha256": "477617d6ef4d9ad106670e0a3a8d0274ecde41b78f19a6d95576c8a5dd446734",
+        "size_bytes": 216964
+      },
+      "variant": "calm_gradient_overlay"
+    },
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 11.494795,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.0,
+        "surface_height_min": -0.907844
+      },
+      "output": {
+        "path": "variants/calm_frozen_water_relief/00_start.png",
+        "sha256": "ad58437628925eb659bdb0fbf8d20e345259741b9b7b1723412161da41a79d63",
+        "size_bytes": 198982
+      },
+      "variant": "calm_frozen_water_relief"
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 12.643733,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.083166,
+        "surface_height_min": -0.953491
+      },
+      "output": {
+        "path": "variants/calm_frozen_water_relief/01_mechanism.png",
+        "sha256": "4e570cfb09de19669aef82f18a8a06fc51e5dc3f5d498336a73b73a5daad3a46",
+        "size_bytes": 220839
+      },
+      "variant": "calm_frozen_water_relief"
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 14.110038,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.329335,
+        "surface_height_min": -1.340757
+      },
+      "output": {
+        "path": "variants/calm_frozen_water_relief/02_result.png",
+        "sha256": "efc3c089a4952db6c8b141632f9db15a93ba72c8925514a8d541c71bf02f71e6",
+        "size_bytes": 242180
+      },
+      "variant": "calm_frozen_water_relief"
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "frozen_base_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+        "frozen_base_transform": "gaussian_blur_8.0_then_resize",
+        "material_coordinate_system": "frozen_screen_xy",
+        "mean_abs_change_from_base_0_255": 14.273818,
+        "program_overlay_to_realized_luminance_correlation": 1.0,
+        "surface_height_max": 1.361321,
+        "surface_height_min": -1.335772
+      },
+      "output": {
+        "path": "variants/calm_frozen_water_relief/03_end.png",
+        "sha256": "3896a2c7bbb5a8b667a4a6bd55a5f94a35baa20e093ac416d21cc5833a7dae57",
+        "size_bytes": 261525
+      },
+      "variant": "calm_frozen_water_relief"
+    }
+  ],
+  "route_contract": "B_frozen_base_plus_program_state",
+  "schema_version": "1.0",
+  "variants": [
+    "height_tint",
+    "gradient_overlay",
+    "frozen_water_relief",
+    "clean_height_tint",
+    "clean_gradient_overlay",
+    "clean_frozen_water_relief",
+    "calm_height_tint",
+    "calm_gradient_overlay",
+    "calm_frozen_water_relief"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "class_id": "moving_air_parcel",
+      "geometry": {
+        "bbox_xyxy": [
+          318.89,
+          59.41263778686525,
+          332.89,
+          73.41263778686525
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "GEO-02-air-parcel"
+    }
+  ],
+  "schema_version": "1.0"
+}

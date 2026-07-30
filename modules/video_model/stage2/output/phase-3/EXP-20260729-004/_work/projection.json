@@ -1,0 +1,196 @@
+{
+  "case_id": "PHYS-01",
+  "comparison_sheet": {
+    "path": "material-projection-comparison.jpg",
+    "sha256": "4710243a6b1262cdf13782d55361521ba5f6a69d1f239e5dd6be099751460d9c",
+    "size_bytes": 233060
+  },
+  "experiment_id": "EXP-20260729-004",
+  "hard_checks": [
+    {
+      "evidence": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "name": "all_protected_pixels_are_bit_exact",
+      "passed": true
+    },
+    {
+      "evidence": [
+        {
+          "composite": 0.597664,
+          "raw_donor": 389.522583
+        },
+        {
+          "composite": 1.388579,
+          "raw_donor": 159.09668
+        },
+        {
+          "composite": 2.304798,
+          "raw_donor": 652.632507
+        },
+        {
+          "composite": 0.507158,
+          "raw_donor": 112.911461
+        }
+      ],
+      "name": "composite_discards_donor_low_frequency_layout",
+      "passed": true
+    }
+  ],
+  "method_zh": "对 raw 材质供体做高斯低通，再把供体减去低通得到的中高频残差，只加到程序未保护区域；不采用供体的大尺度构图、对象或波形。",
+  "records": [
+    {
+      "base": {
+        "path": "inputs/clean_keyframe.png",
+        "sha256": "a6c068dbfe6a8a04279dc4052110193c72cadfe601e640aaa3ad4b50c578466d",
+        "size_bytes": 194812
+      },
+      "classification": "deterministic composite: program base plus model-derived high-frequency material residual",
+      "composite": {
+        "path": "composite/material_residual/seed_3101.png",
+        "sha256": "b1f6da33ce2454668f13e0ae24dd8806bd6e76281ec47cdcfadf88d4a92b1ab3",
+        "size_bytes": 269813
+      },
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.39423,
+        "composite_low_frequency_mse_vs_program": 0.597664,
+        "donor_low_frequency_mse_vs_program": 389.522583,
+        "protected_max_abs_difference_0_255": 0.0,
+        "protected_pixel_fraction": 0.12717014
+      },
+      "protected_boundary": {
+        "path": "controls/sparse_identity_boundary.png",
+        "sha256": "c91d3eb6dc061fcaa1d9df4154fc7224b816323d24639016183b15cae12be23b",
+        "size_bytes": 3255
+      },
+      "raw_material_donor": {
+        "path": "raw/material_donor_control_off/seed_3101.png",
+        "sha256": "f9c5b45a9d41ac34494bc1eafc8aec9bccbe5e7200dc514232f763b7053ccb2b",
+        "size_bytes": 164460
+      },
+      "seed": 3101,
+      "settings": {
+        "blur_radius": 10.0,
+        "protect_dilation_px": 10,
+        "residual_gain": 0.8
+      }
+    },
+    {
+      "base": {
+        "path": "inputs/clean_keyframe.png",
+        "sha256": "a6c068dbfe6a8a04279dc4052110193c72cadfe601e640aaa3ad4b50c578466d",
+        "size_bytes": 194812
+      },
+      "classification": "deterministic composite: program base plus model-derived high-frequency material residual",
+      "composite": {
+        "path": "composite/material_residual/seed_3102.png",
+        "sha256": "fdc6cda11c30cc1c17ee140412465537dde1ca760810ac0eef24f335edc0b81e",
+        "size_bytes": 258738
+      },
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 1.371837,
+        "composite_low_frequency_mse_vs_program": 1.388579,
+        "donor_low_frequency_mse_vs_program": 159.09668,
+        "protected_max_abs_difference_0_255": 0.0,
+        "protected_pixel_fraction": 0.12717014
+      },
+      "protected_boundary": {
+        "path": "controls/sparse_identity_boundary.png",
+        "sha256": "c91d3eb6dc061fcaa1d9df4154fc7224b816323d24639016183b15cae12be23b",
+        "size_bytes": 3255
+      },
+      "raw_material_donor": {
+        "path": "raw/material_donor_control_off/seed_3102.png",
+        "sha256": "9c958d1eb89e47866666fb1c5fcb317c4df28fc8b581ce6f3e9efe6fb30d8ee4",
+        "size_bytes": 133455
+      },
+      "seed": 3102,
+      "settings": {
+        "blur_radius": 10.0,
+        "protect_dilation_px": 10,
+        "residual_gain": 0.8
+      }
+    },
+    {
+      "base": {
+        "path": "inputs/clean_keyframe.png",
+        "sha256": "a6c068dbfe6a8a04279dc4052110193c72cadfe601e640aaa3ad4b50c578466d",
+        "size_bytes": 194812
+      },
+      "classification": "deterministic composite: program base plus model-derived high-frequency material residual",
+      "composite": {
+        "path": "composite/material_residual/seed_3103.png",
+        "sha256": "b1b58c12036776df0188f2cb8ae49500bfdc154489b7d1edc97ec4b2c6e8b70b",
+        "size_bytes": 450817
+      },
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 1.218308,
+        "composite_low_frequency_mse_vs_program": 2.304798,
+        "donor_low_frequency_mse_vs_program": 652.632507,
+        "protected_max_abs_difference_0_255": 0.0,
+        "protected_pixel_fraction": 0.12717014
+      },
+      "protected_boundary": {
+        "path": "controls/sparse_identity_boundary.png",
+        "sha256": "c91d3eb6dc061fcaa1d9df4154fc7224b816323d24639016183b15cae12be23b",
+        "size_bytes": 3255
+      },
+      "raw_material_donor": {
+        "path": "raw/material_donor_control_off/seed_3103.png",
+        "sha256": "5f9c84c3269d3efc71f03c21efea5b8e72fe277b59ac62ac97a36a2c89d8ff7b",
+        "size_bytes": 453368
+      },
+      "seed": 3103,
+      "settings": {
+        "blur_radius": 10.0,
+        "protect_dilation_px": 10,
+        "residual_gain": 0.8
+      }
+    },
+    {
+      "base": {
+        "path": "inputs/clean_keyframe.png",
+        "sha256": "a6c068dbfe6a8a04279dc4052110193c72cadfe601e640aaa3ad4b50c578466d",
+        "size_bytes": 194812
+      },
+      "classification": "deterministic composite: program base plus model-derived high-frequency material residual",
+      "composite": {
+        "path": "composite/material_residual/seed_3104.png",
+        "sha256": "4cf68e1161f48fa28d749440146efde6c054b229942ff6489508937ce7a8621b",
+        "size_bytes": 328107
+      },
+      "metrics": {
+        "allowed_mean_abs_detail_change_0_255": 0.637718,
+        "composite_low_frequency_mse_vs_program": 0.507158,
+        "donor_low_frequency_mse_vs_program": 112.911461,
+        "protected_max_abs_difference_0_255": 0.0,
+        "protected_pixel_fraction": 0.12717014
+      },
+      "protected_boundary": {
+        "path": "controls/sparse_identity_boundary.png",
+        "sha256": "c91d3eb6dc061fcaa1d9df4154fc7224b816323d24639016183b15cae12be23b",
+        "size_bytes": 3255
+      },
+      "raw_material_donor": {
+        "path": "raw/material_donor_control_off/seed_3104.png",
+        "sha256": "12af500b9e738ec9a5501c6f00046bc7263fa2e6acfea77066c1315155ad999e",
+        "size_bytes": 273280
+      },
+      "seed": 3104,
+      "settings": {
+        "blur_radius": 10.0,
+        "protect_dilation_px": 10,
+        "residual_gain": 0.8
+      }
+    }
+  ],
+  "schema_version": "1.0",
+  "settings": {
+    "blur_radius": 10.0,
+    "protect_dilation_px": 10,
+    "residual_gain": 0.8
+  }
+}

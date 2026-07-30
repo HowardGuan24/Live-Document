@@ -1,0 +1,1400 @@
+{
+  "animation": {
+    "path": "program-animation.mp4",
+    "sha256": "853ae7e21c1c113b97544c35d3d4c393b5dabb9ab46f87c86b07ba80d0f0d59b",
+    "size_bytes": 23798
+  },
+  "canvas": {
+    "height": 360,
+    "mode": "RGB",
+    "width": 640
+  },
+  "case_id": "CHEM-01",
+  "checks": [
+    {
+      "evidence": [
+        0.0,
+        0.05,
+        4.8,
+        5.01
+      ],
+      "name": "added_base_volume_is_monotonic",
+      "passed": true
+    },
+    {
+      "evidence": [
+        238,
+        237,
+        234,
+        233
+      ],
+      "name": "liquid_level_tracks_added_volume",
+      "passed": true
+    },
+    {
+      "evidence": [
+        0.0,
+        0.134573,
+        0.0,
+        0.971801
+      ],
+      "name": "local_color_then_clear_then_endpoint",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "acid_moles": 0.0005,
+        "base_moles": 0.000501,
+        "bulk_ph": 8.978769
+      },
+      "name": "endpoint_is_slight_base_excess",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "first": 0.0,
+        "frame_count": 49,
+        "last": 1.0
+      },
+      "name": "normalized_progress_is_monotonic",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "height": 360,
+        "mode": "RGB",
+        "width": 640
+      },
+      "name": "fixed_rgb_canvas",
+      "passed": true
+    },
+    {
+      "evidence": [
+        [
+          "chem01_apparatus_boundary",
+          "hard_boundary"
+        ],
+        [
+          "chem01_liquid_region",
+          "region"
+        ],
+        [
+          "chem01_ph_field",
+          "scalar_field"
+        ],
+        [
+          "chem01_object_identity",
+          "object_identity"
+        ],
+        [
+          "chem-01_annotation",
+          "annotation"
+        ]
+      ],
+      "name": "semantic_layer_contract_is_stable",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "annotation_count": 4,
+        "used_as_model_input": false
+      },
+      "name": "annotations_are_post_generation_only",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "duration_seconds": 4.0833,
+        "fps": 12,
+        "frame_count": 49
+      },
+      "name": "video_was_encoded_from_program_frames",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "image": 0,
+        "video": 0
+      },
+      "name": "zero_generative_model_runs",
+      "passed": true
+    },
+    {
+      "evidence": "CHEM-01",
+      "name": "case_id_matches_plugin",
+      "passed": true
+    }
+  ],
+  "classification": "deterministic scientific program animation; not an image-model render",
+  "contact_sheet": {
+    "path": "keyframe-contact-sheet.jpg",
+    "sha256": "3aa7bc55347eb857fab773f95a1c4f799bbdece0ce7d3af48d3489662b50b5bd",
+    "size_bytes": 108382
+  },
+  "frame_hashes": [
+    {
+      "path": "frames/frame_000.png",
+      "sha256": "410c9132de2cf04fe1128ce880a0827346b9de93033c10ff26d0e62afc128e90",
+      "size_bytes": 4491
+    },
+    {
+      "path": "frames/frame_001.png",
+      "sha256": "68550564cf401e15207cf23537021a064cfc306c8d056b0d4d9a9d7d225f7728",
+      "size_bytes": 4468
+    },
+    {
+      "path": "frames/frame_002.png",
+      "sha256": "68550564cf401e15207cf23537021a064cfc306c8d056b0d4d9a9d7d225f7728",
+      "size_bytes": 4468
+    },
+    {
+      "path": "frames/frame_003.png",
+      "sha256": "987c45078b3e7157013e863dc41d20ccb9b5803ca69b54ad17a295ab993e2d68",
+      "size_bytes": 4565
+    },
+    {
+      "path": "frames/frame_004.png",
+      "sha256": "faf5fafd595ce8bb136046632505fe9973331b1a15f42d13d7957c9e9c554a04",
+      "size_bytes": 4593
+    },
+    {
+      "path": "frames/frame_005.png",
+      "sha256": "959fcf7c02c80c4fbf373a34a98de37aa7b71fcc782d9090e68701aa17f5d0d3",
+      "size_bytes": 4580
+    },
+    {
+      "path": "frames/frame_006.png",
+      "sha256": "de5f24021e185810c3b513b15a1b512b82a0347ee32a15e7df19f77a32915761",
+      "size_bytes": 4667
+    },
+    {
+      "path": "frames/frame_007.png",
+      "sha256": "b475d77f651a5eeda7edca2e884181f71e8d389910a94d6a91ac5b15e5cc20f2",
+      "size_bytes": 4675
+    },
+    {
+      "path": "frames/frame_008.png",
+      "sha256": "bc986297b85261d8f5de3563aaeef636b5fbedc12ab55f2aee974dfb15704019",
+      "size_bytes": 4704
+    },
+    {
+      "path": "frames/frame_009.png",
+      "sha256": "ddee06514b342a7b170e7aab7796017588d70dfe616d204813ea4c434f877f7a",
+      "size_bytes": 5112
+    },
+    {
+      "path": "frames/frame_010.png",
+      "sha256": "680c4348b5817740b02d05c60b660f43de13fbf9b940afa3a44fd75babede91e",
+      "size_bytes": 6282
+    },
+    {
+      "path": "frames/frame_011.png",
+      "sha256": "0466b4d10c3f727db85e91aceeaeaad02503839ead7663d43b67788aa10a529e",
+      "size_bytes": 7071
+    },
+    {
+      "path": "frames/frame_012.png",
+      "sha256": "2ad52800fa4f05b6aedbf802c49cf47145fed2ab41ed1ec1c059e139a2b9f5d8",
+      "size_bytes": 7269
+    },
+    {
+      "path": "frames/frame_013.png",
+      "sha256": "876d8218ecdaab483f015bdcb82319f3b0bbd86b2ba9c7ed42cde06713915464",
+      "size_bytes": 7125
+    },
+    {
+      "path": "frames/frame_014.png",
+      "sha256": "7fca00ec945590c916ab9a16f4dad29f8bba4e6022f7dd6498bb70d0cca354e9",
+      "size_bytes": 7007
+    },
+    {
+      "path": "frames/frame_015.png",
+      "sha256": "d0eae47ed6a4c3d27115f1e9a7e42056065e28a064605d6484dbfaac3739a556",
+      "size_bytes": 6963
+    },
+    {
+      "path": "frames/frame_016.png",
+      "sha256": "b01bbb64d755db78920d8cfb95ddd871b16e308d867a4b8f9fcee7cfc58e7c00",
+      "size_bytes": 6973
+    },
+    {
+      "path": "frames/frame_017.png",
+      "sha256": "41466f065b9626c34f281cc581c9f19e7aceb976c904ebd5f3dac2143486bbc8",
+      "size_bytes": 6940
+    },
+    {
+      "path": "frames/frame_018.png",
+      "sha256": "69cd44a6799a3ad0fc7c3e09be2ce5d19ec288082c259ece3446f1d15ddc6296",
+      "size_bytes": 7355
+    },
+    {
+      "path": "frames/frame_019.png",
+      "sha256": "0852b7696d97ce3960910da0ea5b0d875b97c7ab0854a4c35bb5c5eab7103696",
+      "size_bytes": 7818
+    },
+    {
+      "path": "frames/frame_020.png",
+      "sha256": "afc56ce85f51c8b4e0be4e882cac2c7c6ad3fa29bdb6e97cffcf3450e632e270",
+      "size_bytes": 7945
+    },
+    {
+      "path": "frames/frame_021.png",
+      "sha256": "4877a9a1eb0f8402a7b49ed3a5bae38dc8d4f4307737abe1717c55e44beb378b",
+      "size_bytes": 6607
+    },
+    {
+      "path": "frames/frame_022.png",
+      "sha256": "e20bed78fe6de2eed64c3bd743a1bfac5bf4143023b11b2de463896077265a63",
+      "size_bytes": 6675
+    },
+    {
+      "path": "frames/frame_023.png",
+      "sha256": "17e512e4293ab25c5261e3c0e3c4250d8b3688d5e02b2395fec6702fc5eb2b8d",
+      "size_bytes": 7003
+    },
+    {
+      "path": "frames/frame_024.png",
+      "sha256": "6934e83478cee5cdbc93dbcfc4d60cdc95208d7c3d3ede2c9c4424e057be0935",
+      "size_bytes": 6872
+    },
+    {
+      "path": "frames/frame_025.png",
+      "sha256": "29546fc914a17d56d5d485e847892bedcaef7cb31007f4b46b6f82f178bcc253",
+      "size_bytes": 7132
+    },
+    {
+      "path": "frames/frame_026.png",
+      "sha256": "09eb42bed9e38cb7e6dd7b3600a2a0ac0059744208c436ead118026c6bd4ecf1",
+      "size_bytes": 6685
+    },
+    {
+      "path": "frames/frame_027.png",
+      "sha256": "c53efdeb1563599b723a5ab10a3cf23cfdfe43abea73fdead4866f08ed4d4fc1",
+      "size_bytes": 6535
+    },
+    {
+      "path": "frames/frame_028.png",
+      "sha256": "a3897677b56e8147c9d7e2298cc7c0cfb66649c4f0eae50c49dfc9ed2de22ae6",
+      "size_bytes": 6139
+    },
+    {
+      "path": "frames/frame_029.png",
+      "sha256": "c5204ffd85f4fd2cf2992c66a0be057e96999dea0134ffefd7460b1c0ca99b07",
+      "size_bytes": 5699
+    },
+    {
+      "path": "frames/frame_030.png",
+      "sha256": "9ecfd099463de58016e7e3d6a6b19aa9d681e002bfd058be9262d8a287359665",
+      "size_bytes": 5039
+    },
+    {
+      "path": "frames/frame_031.png",
+      "sha256": "5a3e9f680130ac8d20f19558a9ef51666d1faf6538456d3f686682eb30865f0c",
+      "size_bytes": 4905
+    },
+    {
+      "path": "frames/frame_032.png",
+      "sha256": "e448f165d8d948e8df39b7cdc47a35456e82fe1270fda8d98158780456265ef8",
+      "size_bytes": 4693
+    },
+    {
+      "path": "frames/frame_033.png",
+      "sha256": "e448f165d8d948e8df39b7cdc47a35456e82fe1270fda8d98158780456265ef8",
+      "size_bytes": 4693
+    },
+    {
+      "path": "frames/frame_034.png",
+      "sha256": "656273af82ad5482a8253955dadc159454b864cfbad7bc15d51a608ad1d2fcdb",
+      "size_bytes": 4564
+    },
+    {
+      "path": "frames/frame_035.png",
+      "sha256": "14133633e2239b24aa6c4f311ac89ff24716bd55f71dddbea34ed36b5758edfa",
+      "size_bytes": 4735
+    },
+    {
+      "path": "frames/frame_036.png",
+      "sha256": "9713e952c5be4204cf6b4ce8413e81d12cbf99a46d27c5494b85bc2cdeb53a3a",
+      "size_bytes": 4759
+    },
+    {
+      "path": "frames/frame_037.png",
+      "sha256": "c74337c0b481b64bb5d0719ac935b6fb38b887aec21da927e8a5a4e1647b1b1d",
+      "size_bytes": 4716
+    },
+    {
+      "path": "frames/frame_038.png",
+      "sha256": "8593d373422a7c62e26711f69e8a3a59b725a251a67c6e0082e02cd5364b809f",
+      "size_bytes": 4726
+    },
+    {
+      "path": "frames/frame_039.png",
+      "sha256": "d476a5b2e072906f55d362bc7a56f77442862d9b5a90f4b56298ee870192f1b6",
+      "size_bytes": 4752
+    },
+    {
+      "path": "frames/frame_040.png",
+      "sha256": "64e22369bb0253fa2b645936b390a810499b6473d7690b10620c0436fb8bc914",
+      "size_bytes": 4521
+    },
+    {
+      "path": "frames/frame_041.png",
+      "sha256": "507377a1efcf46b18f27515a5fcbefd60f119350d78cb43490c8ed371f2680e0",
+      "size_bytes": 4435
+    },
+    {
+      "path": "frames/frame_042.png",
+      "sha256": "3bc0d9982372231cdd72dc4f23b08d2ba6d23b984e21ffcd92923b626779722c",
+      "size_bytes": 4520
+    },
+    {
+      "path": "frames/frame_043.png",
+      "sha256": "c8b0bdd2202440d743f7fdef19fb55b56cc29d0f26d97f34cf8c401e1e430078",
+      "size_bytes": 4577
+    },
+    {
+      "path": "frames/frame_044.png",
+      "sha256": "85f27a4ca9c3a067417e77a125971020995176bb91c32920b4cc82a239d55be6",
+      "size_bytes": 4564
+    },
+    {
+      "path": "frames/frame_045.png",
+      "sha256": "6bffc832d24a6b9b69497ebe7db677fb3766ca038d62f2b3ad1f3c1e6b95cbdd",
+      "size_bytes": 4442
+    },
+    {
+      "path": "frames/frame_046.png",
+      "sha256": "7bcca28cab881d50665d297811a9a46820c7378258ab6614c28d3fa28f7e2c6e",
+      "size_bytes": 4364
+    },
+    {
+      "path": "frames/frame_047.png",
+      "sha256": "b17171e84e6bd8bb2124e25392a7511291cb40e0f298db856d7b5e81805ee211",
+      "size_bytes": 4456
+    },
+    {
+      "path": "frames/frame_048.png",
+      "sha256": "d21a269b74dd35dbf8d5a844e9975a9c1936fd5153ac6cb7f989e98d40fbd1dc",
+      "size_bytes": 4448
+    }
+  ],
+  "keyframes": [
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/clean.png",
+        "sha256": "622ce73e40355f52764cd030dd4f2b2d651ecae6e3075d5948858e60b538f64e",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1669,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 0,
+      "keyframe_id": "00_start",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/00_start/layers/chem01_apparatus_boundary.npy",
+            "sha256": "25c4730d949b1daab2c55218a2c56546146274193825061aef1a9f5f8abebb6a",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "保持玻璃器材和镜头稳定。",
+          "layer_id": "chem01_apparatus_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "固定滴定管与烧杯轮廓，不包含颜色羽流。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/chem01_apparatus_boundary_preview.png",
+            "sha256": "63ab06e8cfbdc6ca1a3e9ef0cf6710f116eaf5024f4129f6e459e313624da42d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1395,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材硬边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/00_start/layers/chem01_liquid_region.npy",
+            "sha256": "45f3056d629d6deb7aa1eb06bdf5b938dbd5ae0ec8aad8743b2fab1584e8c547",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "把透明液体材质限制在烧杯内部。",
+          "layer_id": "chem01_liquid_region",
+          "layer_type": "region",
+          "meaning_zh": "由加入总体积计算的液面和液体范围。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/chem01_liquid_region_preview.png",
+            "sha256": "f5e8f4d358d02f00195198a4706c2b9e131e235ff72fc0cde8303139d4d06b9e",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 896,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "当前液体区域",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/00_start/layers/chem01_ph_field.npy",
+            "sha256": "b2e085e9b30b46cc78dfd681653d4f6e1bde7b17b72a1b272b35dc5d880a72cc",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 921728,
+            "value_range": [
+              0.0,
+              2.30102992
+            ]
+          },
+          "final_role_zh": "决定局部变色与终点持续颜色。",
+          "layer_id": "chem01_ph_field",
+          "layer_type": "scalar_field",
+          "meaning_zh": "每个液体像素的 pH；非液体区域为零。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/chem01_ph_field_preview.png",
+            "sha256": "2a5aa04f16646962bf73f8250abc87f2ac79df0c283874fc8b130a13c3dfc6ea",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1506,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "局部 pH 场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/00_start/layers/chem01_object_identity.json",
+            "sha256": "ce043aa3ffe462c056d1b2d1813db9d3dc719fe0eac3da411384fbf62dd04f7a",
+            "shape": [
+              1
+            ],
+            "size_bytes": 492,
+            "value_range": null
+          },
+          "final_role_zh": "防止模型改变器材或凭空增加液滴。",
+          "layer_id": "chem01_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "固定容器身份，并在出现时追踪当前液滴。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/chem01_object_identity_preview.png",
+            "sha256": "bb6cdf5dd8cca6e0f56b91c6bce13dd43e336d15b6f7194792e1c320dbc0c04d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1539,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材与当前液滴",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/00_start/layers/chem-01_annotation.json",
+            "sha256": "212bec7685c414d855704d2912eb648b68e9f46fa19aa29eff7f490d0ec79455",
+            "shape": [
+              2
+            ],
+            "size_bytes": 552,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "chem-01_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/00_start/layers/chem-01_annotation_preview.png",
+            "sha256": "a7f73067bd880554aed8bb3cb186bd828eb12d1341608afab680a8eebafc291f",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2053,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 0,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/program.png",
+        "sha256": "410c9132de2cf04fe1128ce880a0827346b9de93033c10ff26d0e62afc128e90",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 4491,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 0.0,
+      "semantic_layers": {
+        "path": "keyframes/00_start/semantic_layers.json",
+        "sha256": "fb522d77fd58c4275b9632200ef731f716b602eb649a718bb16d3841ac852e6c",
+        "size_bytes": 6367
+      },
+      "state": {
+        "path": "keyframes/00_start/state.json",
+        "sha256": "9caeb4274fa934739ca413c63c96a96444fd36ceb93b5a1a16103b5be57a78af",
+        "size_bytes": 363
+      }
+    },
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/clean.png",
+        "sha256": "009553fca975b89f00fb0037b3b9d2f482b19d0d63463a9871d2595a8e8a19f1",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 4082,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 16,
+      "keyframe_id": "01_mechanism",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/01_mechanism/layers/chem01_apparatus_boundary.npy",
+            "sha256": "25c4730d949b1daab2c55218a2c56546146274193825061aef1a9f5f8abebb6a",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "保持玻璃器材和镜头稳定。",
+          "layer_id": "chem01_apparatus_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "固定滴定管与烧杯轮廓，不包含颜色羽流。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/chem01_apparatus_boundary_preview.png",
+            "sha256": "63ab06e8cfbdc6ca1a3e9ef0cf6710f116eaf5024f4129f6e459e313624da42d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1395,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材硬边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/01_mechanism/layers/chem01_liquid_region.npy",
+            "sha256": "83f708ebdd05ab28282e935533c69fc674fc0d14fb22a3a39cdd04174c33d398",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "把透明液体材质限制在烧杯内部。",
+          "layer_id": "chem01_liquid_region",
+          "layer_type": "region",
+          "meaning_zh": "由加入总体积计算的液面和液体范围。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/chem01_liquid_region_preview.png",
+            "sha256": "2c9b1421fd07c163da4d00ab0ae120943a64af9599ba22400268728ee2bc122d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 899,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "当前液体区域",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/01_mechanism/layers/chem01_ph_field.npy",
+            "sha256": "2209455ffb7d66820d474e64999c045dcf6360b0ba17942777b8577c232ccfe3",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 921728,
+            "value_range": [
+              0.0,
+              11.30428886
+            ]
+          },
+          "final_role_zh": "决定局部变色与终点持续颜色。",
+          "layer_id": "chem01_ph_field",
+          "layer_type": "scalar_field",
+          "meaning_zh": "每个液体像素的 pH；非液体区域为零。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/chem01_ph_field_preview.png",
+            "sha256": "158519dfa2f5d14f6f8ba984eccf33bf143d91f70834627888fbad0b8bdeae75",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 6290,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "局部 pH 场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/01_mechanism/layers/chem01_object_identity.json",
+            "sha256": "308d18fd8e44fb55acf20c0584ac542b2e56056c88d2756030a14cf0efaaa5ea",
+            "shape": [
+              2
+            ],
+            "size_bytes": 733,
+            "value_range": null
+          },
+          "final_role_zh": "防止模型改变器材或凭空增加液滴。",
+          "layer_id": "chem01_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "固定容器身份，并在出现时追踪当前液滴。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/chem01_object_identity_preview.png",
+            "sha256": "c8548aebece7b30183511bba9a4f9cc346ca69c166e1c64dcdf3c970cf2207e3",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1661,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材与当前液滴",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/01_mechanism/layers/chem-01_annotation.json",
+            "sha256": "ad42e9945af36c7d793b97647c2961e19731712fc78a7eade2d1ccfdd95656e7",
+            "shape": [
+              2
+            ],
+            "size_bytes": 552,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "chem-01_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/01_mechanism/layers/chem-01_annotation_preview.png",
+            "sha256": "ec39b5f8bef89d90854897f17e802bd93eef61d0978b0b1c70e75e6ad509387b",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2052,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 1,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/program.png",
+        "sha256": "b01bbb64d755db78920d8cfb95ddd871b16e308d867a4b8f9fcee7cfc58e7c00",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 6973,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 0.333333,
+      "semantic_layers": {
+        "path": "keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "00d6e39cf18ad98184868106490ad5dc43e2beed92a88448159bc7890a0388ac",
+        "size_bytes": 6412
+      },
+      "state": {
+        "path": "keyframes/01_mechanism/state.json",
+        "sha256": "52f69bca495b58be974af0d2c998101fb65c3a021a90de5ef06c36162da38d9f",
+        "size_bytes": 377
+      }
+    },
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/clean.png",
+        "sha256": "c195b5704b397e8e2782d31d9390352aebc6e199c372b59c16815d84cb76a7a0",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1669,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 32,
+      "keyframe_id": "02_result",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/02_result/layers/chem01_apparatus_boundary.npy",
+            "sha256": "25c4730d949b1daab2c55218a2c56546146274193825061aef1a9f5f8abebb6a",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "保持玻璃器材和镜头稳定。",
+          "layer_id": "chem01_apparatus_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "固定滴定管与烧杯轮廓，不包含颜色羽流。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/chem01_apparatus_boundary_preview.png",
+            "sha256": "63ab06e8cfbdc6ca1a3e9ef0cf6710f116eaf5024f4129f6e459e313624da42d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1395,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材硬边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/02_result/layers/chem01_liquid_region.npy",
+            "sha256": "a84ac59dcb00d1a47f3fd2203eb9852dc346a0db169ec3a23bad2502f84db2fd",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "把透明液体材质限制在烧杯内部。",
+          "layer_id": "chem01_liquid_region",
+          "layer_type": "region",
+          "meaning_zh": "由加入总体积计算的液面和液体范围。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/chem01_liquid_region_preview.png",
+            "sha256": "22c5788e004492d6a1b30af32aae1fdf63d383192129f5e7560683a6cf5d3438",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 906,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "当前液体区域",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/02_result/layers/chem01_ph_field.npy",
+            "sha256": "7f5fddd9f1ac0ab7a2cf21ba35b04c47af86528801c22592cb372c2a6b7b395e",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 921728,
+            "value_range": [
+              0.0,
+              3.71933126
+            ]
+          },
+          "final_role_zh": "决定局部变色与终点持续颜色。",
+          "layer_id": "chem01_ph_field",
+          "layer_type": "scalar_field",
+          "meaning_zh": "每个液体像素的 pH；非液体区域为零。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/chem01_ph_field_preview.png",
+            "sha256": "90ee52631666228b8c0c688a06f30c55e7789efd7c686a4af99c4da68ff3121f",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1506,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "局部 pH 场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/02_result/layers/chem01_object_identity.json",
+            "sha256": "ce043aa3ffe462c056d1b2d1813db9d3dc719fe0eac3da411384fbf62dd04f7a",
+            "shape": [
+              1
+            ],
+            "size_bytes": 492,
+            "value_range": null
+          },
+          "final_role_zh": "防止模型改变器材或凭空增加液滴。",
+          "layer_id": "chem01_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "固定容器身份，并在出现时追踪当前液滴。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/chem01_object_identity_preview.png",
+            "sha256": "bb6cdf5dd8cca6e0f56b91c6bce13dd43e336d15b6f7194792e1c320dbc0c04d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1539,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材与当前液滴",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/02_result/layers/chem-01_annotation.json",
+            "sha256": "1db60a3cc18ee4b69da238898db384cc6e45dcfb9cb8ca31da3654d05b926451",
+            "shape": [
+              2
+            ],
+            "size_bytes": 552,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "chem-01_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/02_result/layers/chem-01_annotation_preview.png",
+            "sha256": "8209e5442a5a4fb25ff07f48256277cb86281e8b52d45547db5d562908041d8b",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2037,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 2,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/program.png",
+        "sha256": "e448f165d8d948e8df39b7cdc47a35456e82fe1270fda8d98158780456265ef8",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 4693,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 0.666667,
+      "semantic_layers": {
+        "path": "keyframes/02_result/semantic_layers.json",
+        "sha256": "13ba6e85ed07e786949710dc9320a6b5277baacecbb635e5a6cdf2e3204b8ce3",
+        "size_bytes": 6378
+      },
+      "state": {
+        "path": "keyframes/02_result/state.json",
+        "sha256": "4850240ee0caa0a3d7704b50763953146a5bdeb177d48a49dd45e521587ba2ae",
+        "size_bytes": 373
+      }
+    },
+    {
+      "clean_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/clean.png",
+        "sha256": "74c6bcf863835bdd31e677bdc8c3a91af74ce5839614dab2417f1ae78df9550a",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1671,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "frame_index": 48,
+      "keyframe_id": "03_end",
+      "layers": [
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/03_end/layers/chem01_apparatus_boundary.npy",
+            "sha256": "25c4730d949b1daab2c55218a2c56546146274193825061aef1a9f5f8abebb6a",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "保持玻璃器材和镜头稳定。",
+          "layer_id": "chem01_apparatus_boundary",
+          "layer_type": "hard_boundary",
+          "meaning_zh": "固定滴定管与烧杯轮廓，不包含颜色羽流。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/chem01_apparatus_boundary_preview.png",
+            "sha256": "63ab06e8cfbdc6ca1a3e9ef0cf6710f116eaf5024f4129f6e459e313624da42d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1395,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材硬边界",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "uint8",
+            "encoding": "npy",
+            "path": "keyframes/03_end/layers/chem01_liquid_region.npy",
+            "sha256": "f7012f5bef09c95a2ae83fc48bc4b4108a68d71e4643c3a3a2f69c4226fc399e",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 230528,
+            "value_range": [
+              0.0,
+              255.0
+            ]
+          },
+          "final_role_zh": "把透明液体材质限制在烧杯内部。",
+          "layer_id": "chem01_liquid_region",
+          "layer_type": "region",
+          "meaning_zh": "由加入总体积计算的液面和液体范围。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/chem01_liquid_region_preview.png",
+            "sha256": "8f5c2edf40d22eed0e2b606752f23d0f2c5d2d44a47bf2e761bb71b9ab6e2c57",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 906,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "当前液体区域",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "float32",
+            "encoding": "npy",
+            "path": "keyframes/03_end/layers/chem01_ph_field.npy",
+            "sha256": "6a4d919d3ee6a8640124c5e55edf97d87a2e9811c12f06445e7d366545c8466f",
+            "shape": [
+              360,
+              640
+            ],
+            "size_bytes": 921728,
+            "value_range": [
+              0.0,
+              8.9787693
+            ]
+          },
+          "final_role_zh": "决定局部变色与终点持续颜色。",
+          "layer_id": "chem01_ph_field",
+          "layer_type": "scalar_field",
+          "meaning_zh": "每个液体像素的 pH；非液体区域为零。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/chem01_ph_field_preview.png",
+            "sha256": "fbe79b0a719e9937e423b4b331e17bf12ac58d0cd5e395086534b657aceaa4b6",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1506,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "局部 pH 场",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/03_end/layers/chem01_object_identity.json",
+            "sha256": "ce043aa3ffe462c056d1b2d1813db9d3dc719fe0eac3da411384fbf62dd04f7a",
+            "shape": [
+              1
+            ],
+            "size_bytes": 492,
+            "value_range": null
+          },
+          "final_role_zh": "防止模型改变器材或凭空增加液滴。",
+          "layer_id": "chem01_object_identity",
+          "layer_type": "object_identity",
+          "meaning_zh": "固定容器身份，并在出现时追踪当前液滴。",
+          "model_input_policy": "allowed_by_route",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/chem01_object_identity_preview.png",
+            "sha256": "bb6cdf5dd8cca6e0f56b91c6bce13dd43e336d15b6f7194792e1c320dbc0c04d",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 1539,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "滴定器材与当前液滴",
+          "used_as_model_input": false
+        },
+        {
+          "data": {
+            "dtype": "structured",
+            "encoding": "json",
+            "path": "keyframes/03_end/layers/chem-01_annotation.json",
+            "sha256": "83513d9b701387e153535e2c0eac80d438e093a49f638c4a5be3481fe2fbd0f1",
+            "shape": [
+              2
+            ],
+            "size_bytes": 552,
+            "value_range": null
+          },
+          "final_role_zh": "帮助解释机制，不输入图像模型。",
+          "layer_id": "chem-01_annotation",
+          "layer_type": "annotation",
+          "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+          "model_input_policy": "never",
+          "preview": {
+            "dtype": "uint8",
+            "encoding": "png",
+            "path": "keyframes/03_end/layers/chem-01_annotation_preview.png",
+            "sha256": "04233f1f43037d377d1d88c6b2c64b2f578abc05910c25f6283248c954f52d16",
+            "shape": [
+              360,
+              640,
+              3
+            ],
+            "size_bytes": 2002,
+            "value_range": [
+              0,
+              255
+            ]
+          },
+          "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+          "title_zh": "教学箭头",
+          "used_as_model_input": false
+        }
+      ],
+      "order": 3,
+      "program_frame": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/03_end/program.png",
+        "sha256": "d21a269b74dd35dbf8d5a844e9975a9c1936fd5153ac6cb7f989e98d40fbd1dc",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 4448,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "progress": 1.0,
+      "semantic_layers": {
+        "path": "keyframes/03_end/semantic_layers.json",
+        "sha256": "a9c38abda5cb9aeb3034d822ef031d1467f9cd83dcdcaee10682cf506775d02a",
+        "size_bytes": 6344
+      },
+      "state": {
+        "path": "keyframes/03_end/state.json",
+        "sha256": "43590476875bb87a50ded44392834314060b4c5e2987311569f22725f4f71061",
+        "size_bytes": 375
+      }
+    }
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "phase": 2,
+  "primary_mechanism_zh": "加入体积、化学计量、局部 pH 与指示剂颜色保持一致。",
+  "schema_version": "1.0",
+  "state_source": "case plugin computes deterministic state from normalized progress",
+  "states": {
+    "path": "states.jsonl",
+    "sha256": "bcc9a9616a6fe3e715c32aff4c5da1dc52209d014cfbccc7a99f00efc95356cb",
+    "size_bytes": 16643
+  },
+  "status": "passed",
+  "timeline": {
+    "duration_seconds": 4.0833,
+    "fps": 12,
+    "frame_count": 49,
+    "progress_domain": [
+      0.0,
+      1.0
+    ]
+  },
+  "title_zh": "酸碱滴定从局部变色到到达终点",
+  "validation": {
+    "path": "validation.json",
+    "sha256": "7021d419f54f95db23c1b2aec98068e3ac67740e4de6bbcffa07c2362966e607",
+    "size_bytes": 2427
+  }
+}

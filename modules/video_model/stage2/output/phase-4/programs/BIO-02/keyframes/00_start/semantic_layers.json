@@ -1,0 +1,250 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 360,
+    "width": 640
+  },
+  "case_id": "BIO-02",
+  "layers": [
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/00_start/layers/bio02_guard_boundary.npy",
+        "sha256": "ea4066ce55943f254f093f28a652b6b5454a02cd3861978072b6c8f1934203c2",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "防止模型合并、复制或交换细胞。",
+      "layer_id": "bio02_guard_boundary",
+      "layer_type": "hard_boundary",
+      "meaning_zh": "分别保存左右两个保卫细胞的轮廓。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/layers/bio02_guard_boundary_preview.png",
+        "sha256": "0e421aaf188164276344aa14523c97e722107d0bfdf902c2edf2de09d2c52801",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1693,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "两个保卫细胞边界",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/00_start/layers/bio02_guard_region.npy",
+        "sha256": "86f8a13bfe025b87c9c3571ba12687c2af450769d882db7dda2c817bbbd6efb4",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "限定细胞材质，中央气孔和背景保持不变。",
+      "layer_id": "bio02_guard_region",
+      "layer_type": "region",
+      "meaning_zh": "只允许表面材质进入左右保卫细胞内部。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/layers/bio02_guard_region_preview.png",
+        "sha256": "67947608d765322ed4188b52cc7458a13359e56183a40849a85669224c53eef2",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1807,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "两个保卫细胞占用区",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/00_start/layers/bio02_pore_region.npy",
+        "sha256": "e424d483401bceedcaa7bc10d2b7b2bd8e9e3ecd7c855a25f78ed2441e9b2ad1",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "验证开闭幅度而不是只看细胞外观。",
+      "layer_id": "bio02_pore_region",
+      "layer_type": "region",
+      "meaning_zh": "随膨压变化的中央孔隙。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/layers/bio02_pore_region_preview.png",
+        "sha256": "a5001c6cbb616650fb3c2c79da69bfb334a3f5a71c155f6b3fb94cc1cca50d4e",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1158,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "气孔开口区域",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "npy",
+        "path": "keyframes/00_start/layers/bio02_turgor.npy",
+        "sha256": "6bb4ad6afc86bac9a6f62897ea1182f934d41229c0ea2a0738cae082b5d49eef",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 921728,
+        "value_range": [
+          0.0,
+          0.25
+        ]
+      },
+      "final_role_zh": "驱动形变并用于机制验收。",
+      "layer_id": "bio02_turgor",
+      "layer_type": "scalar_field",
+      "meaning_zh": "两个保卫细胞内部的连续隐变量。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/layers/bio02_turgor_preview.png",
+        "sha256": "53dc4de15c8bc0c68e879f5bc128bf46779dbff41c0be43d5964504e51e6251a",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2152,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "保卫细胞膨压",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/00_start/layers/bio02_guard_identity.json",
+        "sha256": "8c40007a6ab8b000db81a4a623ba2492fcd052eaacad97d9f3bcef156dad0258",
+        "shape": [
+          2
+        ],
+        "size_bytes": 572,
+        "value_range": null
+      },
+      "final_role_zh": "确保始终只有两个保卫细胞。",
+      "layer_id": "bio02_guard_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "左右两细胞稳定 ID。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/layers/bio02_guard_identity_preview.png",
+        "sha256": "5da821716cd3b78d736f9c0a5fb62bedd7d41a64cfce097678b564b3446c52ba",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2605,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "保卫细胞身份",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/00_start/layers/bio-02_annotation.json",
+        "sha256": "45b9b60ab17b9f3852f6cc39450c5272f6c81969065ddac08399de31630ce7ee",
+        "shape": [
+          3
+        ],
+        "size_bytes": 780,
+        "value_range": null
+      },
+      "final_role_zh": "帮助解释机制，不输入图像模型。",
+      "layer_id": "bio-02_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/00_start/layers/bio-02_annotation_preview.png",
+        "sha256": "0fc2aa1259782bb4e3a505fd9f354d1e2464594a3e0cc801273a4ec075c9b6d6",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1668,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "教学箭头",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "00_start"
+}

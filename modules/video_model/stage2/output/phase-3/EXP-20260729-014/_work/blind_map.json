@@ -1,0 +1,22 @@
+{
+  "A": {
+    "configuration_id": "t2i_dense_terrain_and_rain",
+    "seed": 3101,
+    "sha256": "98bd4202fb9b1cff0a52e9ec99903315218cc66a940e1831114bcb9713c531c2"
+  },
+  "B": {
+    "configuration_id": "t2i_dense_terrain_and_rain",
+    "seed": 3104,
+    "sha256": "abdf3dd446df64a757e35f7d6ef0463fff1c44b8633d0a2a9fb4c04f9e67a5bd"
+  },
+  "C": {
+    "configuration_id": "t2i_dense_terrain_and_rain",
+    "seed": 3102,
+    "sha256": "2c96c86b2e709263c42f3c6cf8c3e4f0cd5042b5bf8c4e8b79bdff9c522b7bc3"
+  },
+  "D": {
+    "configuration_id": "t2i_dense_terrain_and_rain",
+    "seed": 3103,
+    "sha256": "f1c1ca2ac1cb5045192f50c09fbe98b3a0a9f6f1bb8d6785d201cdc31321a830"
+  }
+}

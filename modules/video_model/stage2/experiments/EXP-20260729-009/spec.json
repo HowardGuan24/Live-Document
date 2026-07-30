@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-009",
+  "case_id": "CHEM-01",
+  "hypothesis_zh": "T2I ControlNet 的失败来自线稿语义不足；加入烧杯口沿、滴定管刻度、活塞和滴嘴等无文字部件线索，应显著提高器材机制成功率而不损失玻璃材质。",
+  "single_variable_zh": "只替换 ControlNet 线稿内容；T2I 管线、提示词、模型、控制强度、采样参数、分辨率和种子完全一致。",
+  "source": {
+    "keyframe_id": "03_end",
+    "clean_frame": "output/phase-2/CHEM-01/keyframes/03_end/clean.png",
+    "semantic_layers": "output/phase-2/CHEM-01/keyframes/03_end/semantic_layers.json"
+  },
+  "control_overrides": {
+    "semantic_apparatus_line_art": "experiments/EXP-20260729-009/semantic_apparatus_line_art.png"
+  },
+  "control_override_explanations": {
+    "semantic_apparatus_line_art": "由 build_control.py 确定性绘制；白线只描述烧杯、液面、滴定管、活塞、手柄和滴嘴的部件关系，不含文字、箭头或材质。"
+  },
+  "prompt_parts": {
+    "scene_identity": "Front-facing documentary photograph of one transparent laboratory beaker beneath one glass burette, locked camera, centered apparatus",
+    "material_goal": "realistic clear glass, pale pink aqueous solution, soft reflections, neutral laboratory background",
+    "state_delta": "phenolphthalein endpoint with uniform faint persistent pink solution",
+    "must_preserve": "one beaker, one burette, same liquid level, straight-on view, no text"
+  },
+  "negative_artifacts": "extra beakers, extra tubes, missing vessel, moved liquid level, pouring stream, mixing plume, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, hard diagram lines, perspective view, cropped apparatus, blur",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.65,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "sparse_hard_baseline",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "sparse_hard_boundary",
+      "controlnet_conditioning_scale": 0.75,
+      "reuse_from": {
+        "experiment_root": "output/phase-3/EXP-20260729-008",
+        "configuration_id": "t2i_sparse_hard_boundary",
+        "control_route": "sparse_hard_boundary"
+      }
+    },
+    {
+      "configuration_id": "semantic_line_art",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "semantic_apparatus_line_art",
+      "controlnet_conditioning_scale": 0.75
+    }
+  ],
+  "blind_shuffle_seed": 2026072909,
+  "budget": {
+    "maximum_new_image_candidates": 12,
+    "actual_planned_image_candidates": 8,
+    "planned_external_reuse": 4,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  }
+}

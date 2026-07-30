@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-001",
+  "review_mode": "blind_first_then_unblind",
+  "blind_review_completed": true,
+  "rating_note_zh": "机制、材质和无硬槽均为 0–5 分；无硬槽分越高表示刻槽越少。材质自然但机制缺失不能算成功。",
+  "candidate_reviews": [
+    {
+      "blind_id": "A",
+      "mechanism_fidelity_5": 4,
+      "material_naturalness_5": 4,
+      "groove_artifact_5": 4,
+      "notes_zh": "两个振源和重叠区清楚，环纹柔和；节点带仍略弱。"
+    },
+    {
+      "blind_id": "B",
+      "mechanism_fidelity_5": 5,
+      "material_naturalness_5": 4,
+      "groove_artifact_5": 4,
+      "notes_zh": "本轮最均衡：双源、圆波和中央干涉同时清楚，没有明显硬槽。"
+    },
+    {
+      "blind_id": "C",
+      "mechanism_fidelity_5": 4,
+      "material_naturalness_5": 4,
+      "groove_artifact_5": 4,
+      "notes_zh": "波纹较柔和且保持双源，右侧振源外观略不对称。"
+    },
+    {
+      "blind_id": "D",
+      "mechanism_fidelity_5": 3,
+      "material_naturalness_5": 3,
+      "groove_artifact_5": 2,
+      "notes_zh": "可见双源叠加，但高对比环纹和中央纵向痕迹像硬槽。"
+    },
+    {
+      "blind_id": "E",
+      "mechanism_fidelity_5": 4,
+      "material_naturalness_5": 3,
+      "groove_artifact_5": 2,
+      "notes_zh": "结构可读，但同心环过深，像规则压纹。"
+    },
+    {
+      "blind_id": "F",
+      "mechanism_fidelity_5": 2,
+      "material_naturalness_5": 3,
+      "groove_artifact_5": 3,
+      "notes_zh": "两个振源仍在，但主要波列消失，只剩异常的大外圈。"
+    },
+    {
+      "blind_id": "G",
+      "mechanism_fidelity_5": 4,
+      "material_naturalness_5": 3,
+      "groove_artifact_5": 2,
+      "notes_zh": "干涉轮廓强，但每圈过于均匀和坚硬。"
+    },
+    {
+      "blind_id": "H",
+      "mechanism_fidelity_5": 4,
+      "material_naturalness_5": 3,
+      "groove_artifact_5": 2,
+      "notes_zh": "干涉区明显，水面却像被机械刻出深槽。"
+    },
+    {
+      "blind_id": "I",
+      "mechanism_fidelity_5": 3,
+      "material_naturalness_5": 4,
+      "groove_artifact_5": 3,
+      "notes_zh": "水面相对柔和，但干涉节点不够清楚，并出现异常大外圈。"
+    },
+    {
+      "blind_id": "J",
+      "mechanism_fidelity_5": 1,
+      "material_naturalness_5": 4,
+      "groove_artifact_5": 5,
+      "notes_zh": "表面干净但几乎没有传播波与干涉，机制失败。"
+    },
+    {
+      "blind_id": "K",
+      "mechanism_fidelity_5": 3,
+      "material_naturalness_5": 4,
+      "groove_artifact_5": 5,
+      "notes_zh": "双源波仍可辨认且非常柔和，但中央干涉过淡。"
+    },
+    {
+      "blind_id": "L",
+      "mechanism_fidelity_5": 1,
+      "material_naturalness_5": 4,
+      "groove_artifact_5": 5,
+      "notes_zh": "只剩两个振源和极淡的大圈，教学机制不可读。"
+    }
+  ],
+  "configuration_summary": [
+    {
+      "configuration_id": "control_off",
+      "mean_mechanism_fidelity_5": 2.75,
+      "mean_material_naturalness_5": 3.5,
+      "mean_groove_artifact_5": 3.0,
+      "usable_seed_fraction": 0.5,
+      "finding_zh": "没有控制时结果随复现编号明显波动：有的刻槽很重，有的几乎删除波纹。"
+    },
+    {
+      "configuration_id": "dense_canny",
+      "mean_mechanism_fidelity_5": 4.0,
+      "mean_material_naturalness_5": 4.0,
+      "mean_groove_artifact_5": 4.25,
+      "usable_seed_fraction": 0.75,
+      "finding_zh": "与预期相反，0.55 强度的详细 Canny 在四个复现编号中最稳定；三张同时保留柔和水纹和干涉。"
+    },
+    {
+      "configuration_id": "sparse_identity",
+      "mean_mechanism_fidelity_5": 2.75,
+      "mean_material_naturalness_5": 3.25,
+      "mean_groove_artifact_5": 3.0,
+      "usable_seed_fraction": 0.5,
+      "finding_zh": "稀疏边界稳定保留画框和两个振源，却不能保证模型保留连续波场；一半候选机制过弱。"
+    }
+  ],
+  "verdict": "rejected",
+  "verdict_zh": "原假设被证伪：在当前 Img2Img 强度 0.5 与 ControlNet 强度 0.55 下，详细 Canny 没有普遍制造硬槽，反而是三条路线中最稳健的。",
+  "generalization_boundary_zh": "这个结论只证明 PHYS-01 当前参数下详细 Canny 可用，不能推广成所有连续场都应使用详细 Canny，也不能证明更高 ControlNet 强度安全。",
+  "next_action_zh": "留在 Phase 3，用相同输入、提示词和四个复现编号，只扫描详细 Canny 的控制强度，寻找从机制丢失到硬槽化的能力边界。"
+}

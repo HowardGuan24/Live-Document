@@ -1,0 +1,46 @@
+{
+  "assumptions_zh": [
+    "两个振源同频、同相、等振幅。",
+    "主讲解时段内忽略容器边界反射。"
+  ],
+  "case_id": "PHYS-01",
+  "discipline": "physics",
+  "forbidden_shortcuts_zh": [
+    "用漂亮画面掩盖机制条件缺失",
+    "让图像模型重新决定程序事实",
+    "让一个视频过渡跨越多个主要变化"
+  ],
+  "learning_goal_zh": "看到两列相干水波相遇后形成相长区、相消区和稳定节点拓扑。",
+  "schema_version": "1.0",
+  "segments": [
+    {
+      "meaning_zh": "两个固定振源开始发波，波前尚未相遇",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "两个固定振源开始发波，波前尚未相遇",
+      "order": 0,
+      "segment_id": "segment_00"
+    },
+    {
+      "meaning_zh": "第一批圆形波前进入重叠区",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.333333；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "第一批圆形波前进入重叠区",
+      "order": 1,
+      "segment_id": "segment_01"
+    },
+    {
+      "meaning_zh": "增强位置与近静止位置开始可见",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.666667；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "增强位置与近静止位置开始可见",
+      "order": 2,
+      "segment_id": "segment_02"
+    },
+    {
+      "meaning_zh": "稳定干涉图样形成但波前继续传播",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 1.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "稳定干涉图样形成但波前继续传播",
+      "order": 3,
+      "segment_id": "segment_03"
+    }
+  ],
+  "title_zh": "两个同步振源产生的水面波干涉"
+}

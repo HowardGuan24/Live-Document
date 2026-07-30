@@ -1,0 +1,99 @@
+{
+  "case_id": "PHYS-01",
+  "configurations": [
+    {
+      "configuration_id": "dense_scale_025",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.25
+    },
+    {
+      "configuration_id": "dense_scale_055",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.55,
+      "reuse_from": {
+        "configuration_id": "dense_canny",
+        "control_route": "dense_canny",
+        "experiment_root": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-001"
+      }
+    },
+    {
+      "configuration_id": "dense_scale_090",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "beac0a2dc4072eaa4cdfba31da1e7d0ad6ade56e95605d26c18bf8974d016878",
+    "size_bytes": 591
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.23168776,
+      "path": "controls/dense_canny.png",
+      "sha256": "fd383780cf203317a162d315d8d0e9243ebcc99bffe6c76522bf5751b88a817a",
+      "size_bytes": 53679
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.0164388,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "c91d3eb6dc061fcaa1d9df4154fc7224b816323d24639016183b15cae12be23b",
+      "size_bytes": 3255
+    }
+  },
+  "experiment_id": "EXP-20260729-002",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "ea343ea770ae1bf3d3eccd27e6fe79d3aad1f1d9145a94be105eca0d7eda0632",
+    "size_bytes": 253,
+    "text": "text, labels, arrows, user interface, watermark, third wave source, moved sources, ocean shore, boats, giant breaking waves, frozen plastic, metallic rings, engraved grooves, hard neon outlines, duplicated emitters, perspective view, cropped tank, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "b99ecf996b9241bc02368dfd14e7c6e2c87a5cbb0c4fdf2a97f78492d260a49d",
+    "size_bytes": 362,
+    "text": "Top-down photograph of a shallow ripple tank, locked camera, two synchronized point exciters fixed left and right, translucent blue water, realistic small ripples, subtle reflections, soft laboratory light, two circular wave trains overlap into clear nodal and antinodal bands, exactly two symmetric sources, concentric outward waves, unchanged rectangular tank"
+  },
+  "prompt_parts": {
+    "material_goal": "translucent blue water, realistic small ripples, subtle reflections, soft laboratory light",
+    "must_preserve": "exactly two symmetric sources, concentric outward waves, unchanged rectangular tank",
+    "scene_identity": "Top-down photograph of a shallow ripple tank, locked camera, two synchronized point exciters fixed left and right",
+    "state_delta": "two circular wave trains overlap into clear nodal and antinodal bands"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "a6c068dbfe6a8a04279dc4052110193c72cadfe601e640aaa3ad4b50c578466d",
+      "size_bytes": 194812
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/clean.png",
+      "sha256": "9036ffee19f1c617be55b48b3585c7151932090679fa64406b8186d9fec248ab"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/semantic_layers.json",
+      "sha256": "86d7f3d410474dcf3d72a24326ff2b7ea4093cd1e5bb4709357697991ab5b209"
+    }
+  }
+}

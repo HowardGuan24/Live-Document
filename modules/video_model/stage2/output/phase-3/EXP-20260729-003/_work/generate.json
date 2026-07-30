@@ -1,0 +1,428 @@
+{
+  "blind_shuffle_seed": 2026072903,
+  "cache": {
+    "generated": 8,
+    "policy": "reuse only if clean input, prompts, control, configuration, seed, render settings and model fingerprints all match",
+    "reused": 4
+  },
+  "candidates": [
+    {
+      "blind_id": "G",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_035",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.35,
+      "inference_seconds": 4.021,
+      "input_signature": "82ea1037cb3090bfc7bdff082513136ad34b20933458801217f1fb211dc63544",
+      "metrics": {
+        "candidate_edge_fraction": 0.0110338,
+        "control_edge_coverage_within_4px": 0.14577586,
+        "luminance_std_0_255": 14.3388,
+        "mean_saturation_0_255": 145.57519
+      },
+      "path": "raw/img2img_strength_035/seed_3101.png",
+      "peak_gpu_memory_bytes": 11761882112,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3101,
+      "sha256": "486888f739d7428bb9d949310cdfd0680d2b68e9b03dfe32bc7374069cb22720",
+      "size_bytes": 394886
+    },
+    {
+      "blind_id": "B",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_035",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.35,
+      "inference_seconds": 2.957,
+      "input_signature": "0ad179ebf2583a10b24d06b0d85d7759ab45d6ca3c9af2b04fc964417670fc7d",
+      "metrics": {
+        "candidate_edge_fraction": 0.01102363,
+        "control_edge_coverage_within_4px": 0.14639786,
+        "luminance_std_0_255": 14.5332,
+        "mean_saturation_0_255": 148.0867
+      },
+      "path": "raw/img2img_strength_035/seed_3102.png",
+      "peak_gpu_memory_bytes": 11761226752,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3102,
+      "sha256": "bc86299ade9b420fe766af2dcd4adaae8d76f386bda96c490383499cd6a83e4a",
+      "size_bytes": 386555
+    },
+    {
+      "blind_id": "F",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_035",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.35,
+      "inference_seconds": 2.952,
+      "input_signature": "c1c484264a111da53563f3b9a33656f4052b6d325df302a9e3560783cb01a723",
+      "metrics": {
+        "candidate_edge_fraction": 0.01103719,
+        "control_edge_coverage_within_4px": 0.14618565,
+        "luminance_std_0_255": 15.01223,
+        "mean_saturation_0_255": 146.49311
+      },
+      "path": "raw/img2img_strength_035/seed_3103.png",
+      "peak_gpu_memory_bytes": 11760571392,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3103,
+      "sha256": "5a49da34b42431fbecd09b90ba7bb52dd7863b3d40f60017f11b121df25a5b0f",
+      "size_bytes": 385577
+    },
+    {
+      "blind_id": "I",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_035",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.35,
+      "inference_seconds": 2.962,
+      "input_signature": "e9e635675cc97fcf8ea16e71cf8690b35f149e0e557f1bea0544a3a40e86927a",
+      "metrics": {
+        "candidate_edge_fraction": 0.0110321,
+        "control_edge_coverage_within_4px": 0.1466613,
+        "luminance_std_0_255": 14.14519,
+        "mean_saturation_0_255": 148.03949
+      },
+      "path": "raw/img2img_strength_035/seed_3104.png",
+      "peak_gpu_memory_bytes": 11761243136,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3104,
+      "sha256": "2f7d185bce02c7cc0e7c33cf7f73d7b1641637c01ea2d854d1191f559cd6ff5c",
+      "size_bytes": 384100
+    },
+    {
+      "blind_id": "J",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_050",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.018,
+      "input_signature": "739c65f38367552c7b32aa46ab187e6132e5acddad7703d9b80fbc4fb2d37490",
+      "metrics": {
+        "candidate_edge_fraction": 0.01110501,
+        "control_edge_coverage_within_4px": 0.14588562,
+        "luminance_std_0_255": 12.13751,
+        "mean_saturation_0_255": 143.77019
+      },
+      "path": "raw/img2img_strength_050/seed_3101.png",
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "reused_from": {
+        "configuration_id": "dense_scale_090",
+        "experiment_id": "EXP-20260729-002",
+        "experiment_root": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-002",
+        "reason": "clean input, prompts, control image, render settings, model fingerprints, ControlNet scale and seed are byte-identical",
+        "seed": 3101,
+        "sha256": "d1819fe7ef55cb4ca309d7fbe5c337c75fb1a2d3db9c340bc332a8b102e58285"
+      },
+      "seed": 3101,
+      "sha256": "d1819fe7ef55cb4ca309d7fbe5c337c75fb1a2d3db9c340bc332a8b102e58285",
+      "size_bytes": 394923
+    },
+    {
+      "blind_id": "D",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_050",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.017,
+      "input_signature": "f74a24e40de96dbebf4b010bc139f9f1eec2e1c2d21294987481d1b253dc1807",
+      "metrics": {
+        "candidate_edge_fraction": 0.01102871,
+        "control_edge_coverage_within_4px": 0.14657349,
+        "luminance_std_0_255": 12.62987,
+        "mean_saturation_0_255": 147.24675
+      },
+      "path": "raw/img2img_strength_050/seed_3102.png",
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "reused_from": {
+        "configuration_id": "dense_scale_090",
+        "experiment_id": "EXP-20260729-002",
+        "experiment_root": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-002",
+        "reason": "clean input, prompts, control image, render settings, model fingerprints, ControlNet scale and seed are byte-identical",
+        "seed": 3102,
+        "sha256": "06689a86eb318595c1d4184607250f65c1f3ac0e57ce29ae489d79a82dec6eff"
+      },
+      "seed": 3102,
+      "sha256": "06689a86eb318595c1d4184607250f65c1f3ac0e57ce29ae489d79a82dec6eff",
+      "size_bytes": 371893
+    },
+    {
+      "blind_id": "L",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_050",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.018,
+      "input_signature": "caa3d947f1da3944530e458bff25f32a8fb6cb8d26d46d11fb2b9f829ef49386",
+      "metrics": {
+        "candidate_edge_fraction": 0.01089647,
+        "control_edge_coverage_within_4px": 0.14560755,
+        "luminance_std_0_255": 13.23126,
+        "mean_saturation_0_255": 144.49105
+      },
+      "path": "raw/img2img_strength_050/seed_3103.png",
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "reused_from": {
+        "configuration_id": "dense_scale_090",
+        "experiment_id": "EXP-20260729-002",
+        "experiment_root": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-002",
+        "reason": "clean input, prompts, control image, render settings, model fingerprints, ControlNet scale and seed are byte-identical",
+        "seed": 3103,
+        "sha256": "96a4d84f989fc27bb8cc8c900b4efc7569a99fd1d8f3abec160b390c008297aa"
+      },
+      "seed": 3103,
+      "sha256": "96a4d84f989fc27bb8cc8c900b4efc7569a99fd1d8f3abec160b390c008297aa",
+      "size_bytes": 379131
+    },
+    {
+      "blind_id": "E",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_050",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.5,
+      "inference_seconds": 0.018,
+      "input_signature": "9a4a23775af605d23f6c947ead9358b19c2f30071822aced40977f4030b60db6",
+      "metrics": {
+        "candidate_edge_fraction": 0.01128303,
+        "control_edge_coverage_within_4px": 0.1418243,
+        "luminance_std_0_255": 11.86201,
+        "mean_saturation_0_255": 147.66458
+      },
+      "path": "raw/img2img_strength_050/seed_3104.png",
+      "peak_gpu_memory_bytes": null,
+      "reused": true,
+      "reused_from": {
+        "configuration_id": "dense_scale_090",
+        "experiment_id": "EXP-20260729-002",
+        "experiment_root": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-002",
+        "reason": "clean input, prompts, control image, render settings, model fingerprints, ControlNet scale and seed are byte-identical",
+        "seed": 3104,
+        "sha256": "5ad6959d4a48a8bdcb8f6d561dec7f8496ce84f1f4e5f5d0b3ce770c27daeb95"
+      },
+      "seed": 3104,
+      "sha256": "5ad6959d4a48a8bdcb8f6d561dec7f8496ce84f1f4e5f5d0b3ce770c27daeb95",
+      "size_bytes": 377987
+    },
+    {
+      "blind_id": "H",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_070",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.7,
+      "inference_seconds": 5.673,
+      "input_signature": "298061ea2465fcb277b66f338f3817d430e90383aea2f52ee8ddbfc50ae0283c",
+      "metrics": {
+        "candidate_edge_fraction": 0.01197476,
+        "control_edge_coverage_within_4px": 0.14707841,
+        "luminance_std_0_255": 11.4514,
+        "mean_saturation_0_255": 140.09122
+      },
+      "path": "raw/img2img_strength_070/seed_3101.png",
+      "peak_gpu_memory_bytes": 11760129024,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3101,
+      "sha256": "d10f4089feae10efee7c5640b235fe8d3d476b8a9553b60961cba4da14888081",
+      "size_bytes": 438403
+    },
+    {
+      "blind_id": "A",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_070",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.7,
+      "inference_seconds": 5.667,
+      "input_signature": "e00a2257e05bbae8ae3ce0876c28ef2cf5db9e571447345bcb70a2fdb6588533",
+      "metrics": {
+        "candidate_edge_fraction": 0.01083374,
+        "control_edge_coverage_within_4px": 0.1460832,
+        "luminance_std_0_255": 12.6447,
+        "mean_saturation_0_255": 146.77762
+      },
+      "path": "raw/img2img_strength_070/seed_3102.png",
+      "peak_gpu_memory_bytes": 11762553856,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3102,
+      "sha256": "79433b7e10b272b4a157e9637630de0548b95eaa861846023bb29f7469d83f6b",
+      "size_bytes": 447768
+    },
+    {
+      "blind_id": "C",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_070",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.7,
+      "inference_seconds": 5.659,
+      "input_signature": "17a96a72d69258dd0d07333054f5d8f057128a15f5acafd2b7c2cfde3e139a77",
+      "metrics": {
+        "candidate_edge_fraction": 0.0112559,
+        "control_edge_coverage_within_4px": 0.14371227,
+        "luminance_std_0_255": 14.87959,
+        "mean_saturation_0_255": 142.3497
+      },
+      "path": "raw/img2img_strength_070/seed_3103.png",
+      "peak_gpu_memory_bytes": 11762013184,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3103,
+      "sha256": "f16912a8d70c2f5296f66e648960634b74974f1e315c96b7a0e01a016b12f8d5",
+      "size_bytes": 433987
+    },
+    {
+      "blind_id": "K",
+      "classification": "raw SDXL ControlNet Img2Img output",
+      "configuration_id": "img2img_strength_070",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.9,
+      "img2img_strength": 0.7,
+      "inference_seconds": 5.677,
+      "input_signature": "c0256e1a41dc6e1618bb2370fadd95da06fc99b5f24a4e921e5521b75a07d3a0",
+      "metrics": {
+        "candidate_edge_fraction": 0.0115899,
+        "control_edge_coverage_within_4px": 0.13774834,
+        "luminance_std_0_255": 10.58735,
+        "mean_saturation_0_255": 150.05259
+      },
+      "path": "raw/img2img_strength_070/seed_3104.png",
+      "peak_gpu_memory_bytes": 11762160640,
+      "reused": false,
+      "reused_from": null,
+      "seed": 3104,
+      "sha256": "6dd032e552b645ac9c11229c74b4d5a59bbceb439808d8c5511883e1ab10bab6",
+      "size_bytes": 428148
+    }
+  ],
+  "case_id": "PHYS-01",
+  "experiment_id": "EXP-20260729-003",
+  "hypothesis_zh": "提高 Img2Img strength 会增加水面材质重绘，但也会降低双源干涉机制；0.50 应是当前折中。",
+  "model_fingerprints": {
+    "algorithm": "sha256",
+    "model_roots": {
+      "diffusers/controlnet-canny-sdxl-1.0": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "stabilityai/stable-diffusion-xl-base-1.0": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0"
+    },
+    "models": {
+      "diffusers/controlnet-canny-sdxl-1.0": {
+        "diffusion_pytorch_model.fp16.safetensors": "b2e7d3921058a442cc80430d1ec8847f42599c705e2451c95e77cf4dcf8d6c25"
+      },
+      "stabilityai/stable-diffusion-xl-base-1.0": {
+        "text_encoder/model.fp16.safetensors": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+        "text_encoder_2/model.fp16.safetensors": "ec310df2af79c318e24d20511b601a591ca8cd4f1fce1d8dff822a356bcdb1f4",
+        "unet/diffusion_pytorch_model.fp16.safetensors": "83e012a805b84c7ca28e5646747c90a243c65c8ba4f070e2d7ddc9d74661e139",
+        "vae/diffusion_pytorch_model.fp16.safetensors": "bcb60880a46b63dea58e9bc591abe15f8350bde47b405f9c38f4be70c6161e68"
+      }
+    },
+    "purpose": "Identify the exact local FP16 weight files used for this Stage 1 run."
+  },
+  "model_load_seconds": 5.489,
+  "model_runs": {
+    "image_candidates": 8,
+    "video_candidates": 0
+  },
+  "models": {
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    },
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    }
+  },
+  "package_versions": {
+    "Pillow": "11.0.0",
+    "accelerate": "1.13.0",
+    "diffusers": "0.35.2",
+    "numpy": "2.1.2",
+    "opencv-python-headless": "4.13.0.92",
+    "safetensors": "0.7.0",
+    "torch": "2.9.1+gitff65f5b",
+    "transformers": "4.57.6"
+  },
+  "prompt_token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 55,
+        "tokenizer_2": 55
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 73,
+        "tokenizer_2": 73
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "runtime": {
+    "gpu": "AMD Radeon Graphics",
+    "gpu_memory_bytes": 51522830336,
+    "hip": "7.2.53211-e1a6bc5663",
+    "torch": "2.9.1+gitff65f5b"
+  },
+  "scheduler": "EulerDiscreteScheduler",
+  "schema_version": "1.0",
+  "sheets": {
+    "blind": {
+      "path": "candidates-blind.jpg",
+      "sha256": "315f223842d6bb0654ab95e26b8261047e440107cec3d7c8ad9c85c4ca3dced5",
+      "size_bytes": 345931
+    },
+    "blind_map": {
+      "path": "_work/blind_map.json",
+      "sha256": "111ecd44d410c7c31cbc217e90fea1e94f9bf3970a198a4a96400eba83c02b38",
+      "size_bytes": 1935
+    },
+    "labeled": {
+      "path": "candidates-labeled.jpg",
+      "sha256": "27db5ae959846439a946d4143a294a4ceef282d05f487b68260d18d613d0a43e",
+      "size_bytes": 366868
+    }
+  },
+  "single_variable_zh": "只改变 Img2Img strength；程序底图、详细 Canny、ControlNet 0.90、提示词、模型、采样器和种子完全一致。",
+  "status": "generated"
+}

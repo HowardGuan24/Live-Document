@@ -1,0 +1,209 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 360,
+    "width": 640
+  },
+  "case_id": "MATH-02",
+  "layers": [
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/01_mechanism/layers/math02_hard_boundary.npy",
+        "sha256": "ec7f9356d31c27800d8ce6951403059510ba8646e06da645d89478501b3c33a6",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "防止图像模型改变三角形数量、边长或外框。",
+      "layer_id": "math02_hard_boundary",
+      "layer_type": "hard_boundary",
+      "meaning_zh": "精确保存大正方形和四个全等三角形的轮廓。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/math02_hard_boundary_preview.png",
+        "sha256": "bb7d2bf7f139f4e4bc74698f0b631f1947fefac04e0e6a10a8b5f0c8e04525af",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2550,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "拼图与外框硬边界",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/01_mechanism/layers/math02_remaining_region.npy",
+        "sha256": "6010659c8642e85ba70d672354496e34bfac7ea4bf83811953ad86ac1a7ceaaf",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "显示 c² 或 a²+b² 的面积证据。",
+      "layer_id": "math02_remaining_region",
+      "layer_type": "region",
+      "meaning_zh": "外框内未被四个三角形占用的区域。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/math02_remaining_region_preview.png",
+        "sha256": "27deeabfd3e1b740ffaf4ea7bc03532a8d32ad489d8151696d592b9d85c53af5",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2354,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "当前剩余面积",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/01_mechanism/layers/math02_piece_region.npy",
+        "sha256": "df2e6ab57786fc36507f6a7316845c7bbce4f94e05524d3c70eec62950518e0a",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "限定材质增强只能发生在拼图内部，空区和背景保持逐像素不变。",
+      "layer_id": "math02_piece_region",
+      "layer_type": "region",
+      "meaning_zh": "四个三角形当前占用的像素并集；共享边仍由 hard_boundary 单独保存。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/math02_piece_region_preview.png",
+        "sha256": "10764624aae522464fa15f4527b5703c40f068a9c67786947e4faee5efab680f",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2303,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "四块拼图占用区",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/01_mechanism/layers/math02_piece_identity.json",
+        "sha256": "01a7d30ceb723f9187c48f3c12d3436afc11a1e98b3fc22660e9391de7b20ad6",
+        "shape": [
+          4
+        ],
+        "size_bytes": 1675,
+        "value_range": null
+      },
+      "final_role_zh": "验证只发生刚体移动，没有复制或拉伸。",
+      "layer_id": "math02_piece_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "四个三角形的稳定 ID、顶点和面积。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/math02_piece_identity_preview.png",
+        "sha256": "e1f4c6b8a32ed87055fa1056283f8f0af88a7971cef929ec9e5ecee1c46791a8",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 2788,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "四块拼图身份",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/01_mechanism/layers/math-02_annotation.json",
+        "sha256": "9f30c5ef2f08348f2122b36ab6f8b133196ec68186fe047e381d7d9bb40d594f",
+        "shape": [
+          2
+        ],
+        "size_bytes": 558,
+        "value_range": null
+      },
+      "final_role_zh": "帮助解释机制，不输入图像模型。",
+      "layer_id": "math-02_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/01_mechanism/layers/math-02_annotation_preview.png",
+        "sha256": "f186cf45736334f0b447472477f48d30a030d9ef9d0e53341bcc7f51e7d865af",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1418,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "教学箭头",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "01_mechanism"
+}

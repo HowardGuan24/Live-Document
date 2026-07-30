@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-P5-20260729-005",
+  "review_mode": "full_video_plus_nine_time_samples_and_integrated_color_mass_audit",
+  "selected_trial": 1,
+  "motion_class_passed": false,
+  "scores_5": {
+    "endpoint_adherence": 5,
+    "intermediate_mechanism": 2,
+    "temporal_continuity": 4,
+    "scene_stability": 5,
+    "motion_naturalness": 2,
+    "video_teaching_readability": 2
+  },
+  "weighted_score_100": 69,
+  "verdict": "rejected_liquid_color_mass_grows_before_dissipation",
+  "verdict_zh": "拒绝 CHEM-01 首轮：器材和端点稳定，但粉色显色先增强并分裂成多个团块，然后才消失，不是单一局部浓度场逐渐扩散。",
+  "visual_finding_zh": "九个时间点显示粉色团块在前半段扩大，随后出现青色空洞并碎成多个小团；烧杯、滴定管和液面基本固定。最终确实变为无色，但中间过程会错误地暗示显色物质先增加。",
+  "machine_evidence_zh": "4/5 硬门通过；首尾 MAE 为 1.7792 和 1.7086/255，器材参考色最小覆盖率 0.935207。颜色积分强度峰值达到首帧 1.877455 倍，超过 1.1 倍门限，颜色趋势门失败。",
+  "generalization_zh": "液体扩散不能只数显色像素，因为颜色变淡时面积可能扩大；应同时计算颜色面积和相对背景的积分色差。即便尾帧无色、器材稳定，局部颜色总量先大幅增加仍属于机制失败。",
+  "known_limitations_zh": "颜色积分审计只衡量局部颜色量，不能区分真正的空间扩散和实心色块缩小，因此通过数值门后仍需人工语义审图。",
+  "next_action_zh": "使用第二次也是最后一次模型预算，只把时长从 49 帧缩短到 25 帧；其他变量、模型、种子、提示词和首尾帧保持不变。"
+}

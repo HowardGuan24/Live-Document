@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage 2 Phase 0｜Loop Engineer 基线与协议</title>
+<style>
+:root { --ink:#173038; --muted:#60767b; --paper:#f7f5ee; --card:#fff;
+  --line:#d9e0dc; --accent:#126e67; --accent2:#db7c3b; --ok:#167249; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--ink); background:var(--paper);
+  font:16px/1.72 system-ui,-apple-system,"Segoe UI",sans-serif; }
+header { padding:64px 24px 48px; color:white;
+  background:linear-gradient(125deg,#11373b,#176d67 62%,#d3763c); }
+header>div, main { max-width:1180px; margin:auto; }
+h1 { font-size:clamp(34px,6vw,66px); line-height:1.06; margin:8px 0 20px; }
+h2 { font-size:30px; line-height:1.2; margin:0 0 14px; }
+h3 { margin:0 0 8px; line-height:1.35; }
+p { margin:8px 0 14px; }
+.lede { max-width:850px; font-size:19px; opacity:.94; }
+.eyebrow { font-size:13px; font-weight:800; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--accent); }
+header .eyebrow { color:#c8fff3; }
+nav { position:sticky; top:0; z-index:4; display:flex; gap:10px;
+  overflow:auto; padding:12px max(24px,calc((100vw - 1180px)/2));
+  background:rgba(247,245,238,.96); border-bottom:1px solid var(--line); }
+nav a { white-space:nowrap; text-decoration:none; color:var(--ink);
+  padding:5px 10px; border-radius:18px; background:white; }
+main { padding:28px 24px 80px; }
+section { margin:28px 0; padding:30px; border:1px solid var(--line);
+  border-radius:20px; background:rgba(255,255,255,.76); }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:16px; }
+.cards article, .stat { padding:18px; border-radius:15px; background:var(--card);
+  border:1px solid var(--line); }
+.stat strong { display:block; font-size:34px; color:var(--accent); }
+.status { display:inline-block; padding:7px 12px; border-radius:20px;
+  color:#0b5534; background:#d8f5e6; font-weight:800; }
+.warning { border-left:5px solid var(--accent2); padding:13px 17px;
+  background:#fff2e7; border-radius:9px; }
+.plain { border-left:5px solid var(--accent); padding:13px 17px;
+  background:#eaf6f4; border-radius:9px; }
+table { width:100%; border-collapse:collapse; margin-top:16px; background:white; }
+th,td { padding:11px 12px; border:1px solid var(--line); text-align:left;
+  vertical-align:top; }
+th { background:#eaf2ef; }
+.table-wrap { overflow:auto; }
+.pill { display:inline-block; padding:2px 8px; margin:2px 4px 2px 0;
+  border-radius:12px; background:#e7f2f0; font-size:13px; white-space:nowrap; }
+figure { margin:12px 0; padding:10px; border:1px solid var(--line);
+  border-radius:14px; background:white; }
+figure img { display:block; width:100%; height:auto; border-radius:9px; }
+figcaption { margin-top:9px; color:var(--muted); }
+code { padding:2px 5px; border-radius:4px; background:#edf1ef; font-size:.91em; }
+pre { overflow:auto; padding:16px; border-radius:12px; background:#112c31;
+  color:#e6fffa; }
+a { color:#0a6761; }
+.pass { color:var(--ok); font-weight:800; }
+.small { color:var(--muted); font-size:14px; }
+@media(max-width:700px) { section { padding:20px 15px; } th,td { min-width:130px; } }
+</style>
+</head>
+<body>
+<header><div>
+<p class="eyebrow">Stage 2 · Phase 0 · Loop 正式启动</p>
+<h1>先冻结尺子，再让 Agent 自我迭代</h1>
+<p class="lede">这一阶段没有生成新图片。它把十个跨学科案例、Stage 1 参考结果、
+评分办法、回归层级和每轮预算固定下来。后面的 Agent 每次声称“变好了”，都必须拿
+这些不随实验改变的证据来验证。</p>
+<span class="status">Phase 0 自动检查全部通过</span>
+</div></header>
+<nav>
+<a href="#outcome">结果</a><a href="#baseline">历史基线</a>
+<a href="#cases">十个案例</a><a href="#sentinels">哨兵案例</a>
+<a href="#score">怎么评分</a><a href="#regression">怎么回归</a>
+<a href="#budget">预算</a><a href="#audit">审计与复现</a>
+</nav>
+<main>
+<section id="outcome">
+<p class="eyebrow">01 · 本阶段结果</p><h2>Phase 0 冻结了什么</h2>
+<div class="grid">
+<div class="stat"><strong>10</strong>个 Stage 2 新案例</div>
+<div class="stat"><strong>5</strong>个学科，每科两个</div>
+<div class="stat"><strong>5</strong>个首批哨兵案例</div>
+<div class="stat"><strong>14</strong>个 Stage 1 基线文件已验哈希</div>
+<div class="stat"><strong>100</strong>图片评分满分</div>
+<div class="stat"><strong>0</strong>次图片或视频模型调用</div>
+</div>
+<p class="plain"><strong>“冻结”是什么意思？</strong> 这些案例 ID、参考文件哈希、
+评分权重和种子组成为版本化输入。Agent 可以提出新策略，但不能为了让分数好看而
+悄悄换关键帧、换参考图或换评分办法。</p>
+</section>
+
+<section id="baseline">
+<p class="eyebrow">02 · 历史基线</p><h2>Stage 1 提供起跑线，不是像素答案</h2>
+<p>跨概念图片不能直接计算像素相似度。下面的三角洲结果只用来比较四件事：材料是否
+自然、固定场景是否稳定、机制变化是否清楚、模型伪影是否更少。</p>
+<div class="grid">
+<figure><a href="../../../stage1/output/keyframe_render/final/comparison.jpg"><img src="../../../stage1/output/keyframe_render/final/comparison.jpg"
+alt="Stage 1 选定首尾关键帧"></a><figcaption>Stage 1 最初选定的首尾关键帧。
+<a href="../../../stage1/output/keyframe_render/report.html">打开当时的完整报告</a></figcaption></figure>
+<figure><a href="../../../stage1/output/keyframe_render/delta_sequence/sequence-contact-sheet.jpg"><img src="../../../stage1/output/keyframe_render/delta_sequence/sequence-contact-sheet.jpg"
+alt="Stage 1 三角洲五张连续关键帧"></a><figcaption>后续五张机制关键帧，用于回归
+固定背景、沉积增长和分流。<a href="../../../stage1/output/keyframe_render/delta_sequence/report.html">打开完整过程报告</a></figcaption>
+</figure></div>
+<p class="warning"><strong>诚实的基线说明：</strong>Stage 1 的最终图大量依靠程序区域
+和固定背景合成来守住机制；SDXL 原始全图候选没有直接成为最终像素。因此 Stage 2
+既要保住机制一致性，也要单独证明图像模型确实改善了材料。</p>
+</section>
+
+<section id="cases">
+<p class="eyebrow">03 · 案例注册表</p><h2>十个案例覆盖哪些程序数据</h2>
+<p>“主要数据层”决定生成路线。例如连续浓度不应该被强行变成线稿；精确拼图也不能
+只靠一句提示词维持数量和面积。</p>
+<div class="table-wrap"><table><thead><tr><th>ID</th><th>学科</th><th>概念</th>
+<th>主要程序数据层</th><th>首批哨兵</th></tr></thead><tbody><tr><td><code>MATH-01</code></td><td>数学</td><td>单位圆怎样生成正弦曲线</td><td><span class="pill">硬边界</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>否</td></tr><tr><td><code>MATH-02</code></td><td>数学</td><td>勾股定理的拼图重排证明</td><td><span class="pill">硬边界</span><span class="pill">对象或允许修改区域</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>是</td></tr><tr><td><code>PHYS-01</code></td><td>物理</td><td>两个同步振源产生的水面波干涉</td><td><span class="pill">连续标量场</span><span class="pill">高度或法线</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>是</td></tr><tr><td><code>PHYS-02</code></td><td>物理</td><td>磁铁运动为什么在线圈中产生感应电流</td><td><span class="pill">硬边界</span><span class="pill">连续标量场</span><span class="pill">矢量场</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>否</td></tr><tr><td><code>CHEM-01</code></td><td>化学</td><td>酸碱滴定从局部变色到到达终点</td><td><span class="pill">硬边界</span><span class="pill">对象或允许修改区域</span><span class="pill">连续标量场</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>是</td></tr><tr><td><code>CHEM-02</code></td><td>化学</td><td>盐溶液蒸发、过饱和与晶体生长</td><td><span class="pill">对象或允许修改区域</span><span class="pill">连续标量场</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>否</td></tr><tr><td><code>BIO-01</code></td><td>生物</td><td>一个动物细胞的有丝分裂</td><td><span class="pill">对象或允许修改区域</span><span class="pill">矢量场</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>是</td></tr><tr><td><code>BIO-02</code></td><td>生物</td><td>气孔保卫细胞吸水后怎样打开气孔</td><td><span class="pill">对象或允许修改区域</span><span class="pill">连续标量场</span><span class="pill">矢量场</span><span class="pill">对象身份</span><span class="pill">教学叠加</span></td><td>否</td></tr><tr><td><code>GEO-01</code></td><td>地理</td><td>曲流发展、裁弯取直与牛轭湖形成</td><td><span class="pill">硬边界</span><span class="pill">对象或允许修改区域</span><span class="pill">连续标量场</span><span class="pill">矢量场</span><span class="pill">高度或法线</span><span class="pill">教学叠加</span></td><td>否</td></tr><tr><td><code>GEO-02</code></td><td>地理</td><td>地形雨与背风坡雨影</td><td><span class="pill">连续标量场</span><span class="pill">矢量场</span><span class="pill">高度或法线</span><span class="pill">教学叠加</span></td><td>是</td></tr></tbody>
+</table></div>
+<p class="small">完整的教学片段、模型职责和案例硬门禁见
+<a href="../../case.txt">case.txt</a>；机器读取的稳定 ID 与能力标签见
+<a href="../../case_registry.json">case_registry.json</a>。</p>
+</section>
+
+<section id="sentinels">
+<p class="eyebrow">04 · 第一批实现顺序</p><h2>先用五个“哨兵”覆盖五种学科</h2>
+<p>哨兵不是最容易的五个，而是用较少案例尽早暴露不同失败方式。通过它们之后，再把
+路线扩展到剩余五个案例。</p>
+<div class="grid cards"><article><p class="eyebrow">数学</p><h3><code>MATH-02</code> 勾股定理的拼图重排证明</h3><p>主要验证：exact_geometry、rigid_transform、area_conservation</p></article><article><p class="eyebrow">物理</p><h3><code>PHYS-01</code> 两个同步振源产生的水面波干涉</h3><p>主要验证：periodic_phase、continuous_field、control_route_off</p></article><article><p class="eyebrow">化学</p><h3><code>CHEM-01</code> 酸碱滴定从局部变色到到达终点</h3><p>主要验证：transparent_mixing、local_threshold、volume_conservation</p></article><article><p class="eyebrow">生物</p><h3><code>BIO-01</code> 一个动物细胞的有丝分裂</h3><p>主要验证：many_object_identity、deformable_region、division_topology</p></article><article><p class="eyebrow">地理</p><h3><code>GEO-02</code> 地形雨与背风坡雨影</h3><p>主要验证：fixed_terrain、coupled_fields、hidden_variable</p></article></div>
+</section>
+
+<section id="score">
+<p class="eyebrow">05 · 固定评分尺</p><h2>先过硬门禁，再谈好不好看</h2>
+<p>每个软评分维度由评审给 0–5 分，再按
+<code>该维度权重 × 评分 ÷ 5</code> 换算。硬门禁失败时，不能用材质分抵消机制错误。</p>
+<h3>图片与关键帧序列：满分 100</h3>
+<div class="table-wrap"><table><thead><tr><th>维度</th><th>权重</th><th>普通话问题</th>
+</tr></thead><tbody><tr><td>机制忠实度</td><td>25</td><td>程序定义的位置、数量、范围、拓扑和先后关系是否正确？</td></tr><tr><td>跨帧一致性</td><td>20</td><td>镜头、背景、固定物体、材质尺度和光照是否稳定？</td></tr><tr><td>材质提升</td><td>15</td><td>与程序底图相比是否更像真实材料，而不是塑料、贴图或刻痕？</td></tr><tr><td>教学可读性</td><td>15</td><td>第一次观看的人能否指出本帧发生的主要变化？</td></tr><tr><td>伪影控制</td><td>10</td><td>是否避免多余物体、文字泄漏、硬描边、结构融化和重复纹理？</td></tr><tr><td>种子稳健性</td><td>10</td><td>固定种子组中的多数候选是否有效，而不是只靠一张幸运结果？</td></tr><tr><td>可复现与可审计</td><td>5</td><td>参数、哈希、中间图和选择依据是否齐全？</td></tr></tbody></table></div>
+<h3 style="margin-top:24px">视频：满分 100</h3>
+<div class="table-wrap"><table><thead><tr><th>维度</th><th>权重</th><th>普通话问题</th>
+</tr></thead><tbody><tr><td>首尾遵守</td><td>20</td><td>第一帧和最后一帧是否忠实于输入？</td></tr><tr><td>中间机制</td><td>25</td><td>中间运动是否沿程序允许的路径推进？</td></tr><tr><td>时间连续性</td><td>20</td><td>是否没有闪烁、跳变、倒退和突然出现？</td></tr><tr><td>场景稳定性</td><td>15</td><td>镜头、背景和固定物体是否不漂移？</td></tr><tr><td>运动自然度</td><td>10</td><td>速度和形变是否可信？</td></tr><tr><td>视频教学可读性</td><td>10</td><td>过渡是否帮助理解，而不只是视觉变形？</td></tr></tbody></table></div>
+<h3 style="margin-top:24px">任何一个失败都要拒绝的门禁</h3>
+<div class="grid cards"><article><h3>file_manifest_integrity</h3><p>尺寸、模式、哈希和 manifest 对应</p></article><article><h3>case_mechanism_facts</h3><p>案例 evaluator 验证数量、位置、身份、拓扑和因果顺序</p></article><article><h3>fixed_scene_drift</h3><p>静态区域差异不超过案例配置阈值</p></article><article><h3>annotation_leakage</h3><p>写实底图不含 UI、图例、箭头、标签或模型生成文字</p></article><article><h3>raw_composite_final_separation</h3><p>模型原图、程序约束结果与最终交付分别保存</p></article><article><h3>prompt_token_integrity</h3><p>实际 tokenizer 记录证明提示词没有静默截断</p></article><article><h3>model_runtime_identity</h3><p>模型、权重指纹、精度和运行时与登记配置一致</p></article><article><h3>video_endpoint_identity</h3><p>视频端点与输入关键帧对应且没有换场</p></article></div>
+</section>
+
+<section id="regression">
+<p class="eyebrow">06 · 分层回归</p><h2>不是每改一处都跑十套昂贵模型</h2>
+<div class="grid cards">
+<article><h3>1. 契约冒烟</h3><p>十个案例全部检查 schema、状态、语义层、控制来源、
+manifest 和报告链接；不加载模型。</p></article>
+<article><h3>2. 路线回归</h3><p>当前案例 + 至少两个其他学科的同数据类型案例 +
+Stage 1 三角洲。用于判断策略能否成为通用候选。</p></article>
+<article><h3>3. 学科代表</h3><p>数学、物理、化学、生物、地理各一个固定哨兵，
+用于阶段版本的图片回归。</p></article>
+<article><h3>4. 完整发布</h3><p>十案例契约全部通过；五学科图片代表和五类运动视频
+代表全部通过；三角洲不退化。</p></article>
+</div>
+<h3 style="margin-top:24px">五类视频运动代表</h3>
+<div class="table-wrap"><table><thead><tr><th>运动类型</th><th>固定代表案例</th></tr>
+</thead><tbody><tr><td>刚体运动</td><td><code>MATH-02</code></td></tr><tr><td>连续场传播</td><td><code>PHYS-01</code></td></tr><tr><td>液体混合</td><td><code>CHEM-01</code></td></tr><tr><td>对象分裂</td><td><code>BIO-01</code></td></tr><tr><td>边界拓扑变化</td><td><code>GEO-01</code></td></tr></tbody></table></div>
+</section>
+
+<section id="budget">
+<p class="eyebrow">07 · 单轮预算</p><h2>Loop 不是无限抽卡</h2>
+<div class="grid">
+<div class="stat"><strong>1</strong>个主要假设</div>
+<div class="stat"><strong>1</strong>张代表帧先试</div>
+<div class="stat"><strong>3</strong>种配置，包含基线</div>
+<div class="stat"><strong>12</strong>张新候选上限</div>
+<div class="stat"><strong>2</strong>次视频试验上限</div>
+</div>
+<p>固定复现编号为：<code>3101、3102、3103、3104</code>。它们只是模型噪声起点的编号，
+不是材料名，也不代表某个案例。固定四个编号是为了计算成功率；至少 3/4 有效，才达到
+当前协议的 75% 种子稳健性阈值。</p>
+<p class="warning">连续三轮目标维度提升不足 2 分、硬门禁失败、输入基线变化、
+模型身份不符或只有一个种子成功时，当前 loop 必须停止并记录证据。</p>
+</section>
+
+<section id="audit">
+<p class="eyebrow">08 · 自动验证与复现</p><h2>本报告不是手工写的结论页</h2>
+<p>报告由同一份机器配置生成。下面的检查在生成前执行；任一失败，报告构建命令会以
+错误退出。</p>
+<div class="table-wrap"><table><thead><tr><th>检查</th><th>结果</th><th>证据</th>
+</tr></thead><tbody><tr><td>ten_unique_cases</td><td class="pass">通过</td><td><code>{&quot;count&quot;: 10, &quot;case_ids&quot;: [&quot;MATH-01&quot;, &quot;MATH-02&quot;, &quot;PHYS-01&quot;, &quot;PHYS-02&quot;, &quot;CHEM-01&quot;, &quot;CHEM-02&quot;, &quot;BIO-01&quot;, &quot;BIO-02&quot;, &quot;GEO-01&quot;, &quot;GEO-02&quot;]}</code></td></tr><tr><td>two_cases_per_discipline</td><td class="pass">通过</td><td><code>{&quot;biology&quot;: 2, &quot;chemistry&quot;: 2, &quot;geography&quot;: 2, &quot;mathematics&quot;: 2, &quot;physics&quot;: 2}</code></td></tr><tr><td>one_sentinel_per_discipline</td><td class="pass">通过</td><td><code>[&quot;MATH-02&quot;, &quot;PHYS-01&quot;, &quot;CHEM-01&quot;, &quot;BIO-01&quot;, &quot;GEO-02&quot;]</code></td></tr><tr><td>case_text_matches_registry</td><td class="pass">通过</td><td><code>&quot;modules/video_model/stage2/case.txt&quot;</code></td></tr><tr><td>image_score_weights</td><td class="pass">通过</td><td><code>{&quot;total&quot;: 100}</code></td></tr><tr><td>video_score_weights</td><td class="pass">通过</td><td><code>{&quot;total&quot;: 100}</code></td></tr><tr><td>hard_gates_defined</td><td class="pass">通过</td><td><code>[&quot;file_manifest_integrity&quot;, &quot;case_mechanism_facts&quot;, &quot;fixed_scene_drift&quot;, &quot;annotation_leakage&quot;, &quot;raw_composite_final_separation&quot;, &quot;prompt_token_integrity&quot;, &quot;model_runtime_identity&quot;, &quot;video_endpoint_identity&quot;]</code></td></tr><tr><td>score_record_schema</td><td class="pass">通过</td><td><code>[&quot;dimensions&quot;, &quot;hard_gates&quot;, &quot;protocol_id&quot;, &quot;subject_id&quot;, &quot;total_points&quot;, &quot;verdict&quot;]</code></td></tr><tr><td>all_case_contract_smoke</td><td class="pass">通过</td><td><code>[&quot;MATH-01&quot;, &quot;MATH-02&quot;, &quot;PHYS-01&quot;, &quot;PHYS-02&quot;, &quot;CHEM-01&quot;, &quot;CHEM-02&quot;, &quot;BIO-01&quot;, &quot;BIO-02&quot;, &quot;GEO-01&quot;, &quot;GEO-02&quot;]</code></td></tr><tr><td>five_discipline_representatives</td><td class="pass">通过</td><td><code>[&quot;MATH-02&quot;, &quot;PHYS-01&quot;, &quot;CHEM-01&quot;, &quot;BIO-01&quot;, &quot;GEO-02&quot;]</code></td></tr><tr><td>five_video_motion_representatives</td><td class="pass">通过</td><td><code>{&quot;rigid_motion&quot;: &quot;MATH-02&quot;, &quot;continuous_field_propagation&quot;: &quot;PHYS-01&quot;, &quot;liquid_mixing&quot;: &quot;CHEM-01&quot;, &quot;object_division&quot;: &quot;BIO-01&quot;, &quot;boundary_topology_change&quot;: &quot;GEO-01&quot;}</code></td></tr><tr><td>fixed_seed_budget</td><td class="pass">通过</td><td><code>[3101, 3102, 3103, 3104]</code></td></tr><tr><td>single_hypothesis_budget</td><td class="pass">通过</td><td><code>{&quot;maximum_primary_hypotheses&quot;: 1, &quot;representative_frames_before_full_sequence&quot;: 1, &quot;maximum_candidate_configurations_including_baseline&quot;: 3, &quot;maximum_new_image_candidates&quot;: 12, &quot;maximum_full_keyframe_sequences&quot;: 1, &quot;maximum_video_trials_after_image_gates&quot;: 2, &quot;minimum_cross_discipline_route_cases&quot;: 2}</code></td></tr><tr><td>phase_0_zero_model_runs</td><td class="pass">通过</td><td><code>{&quot;image_model_runs&quot;: 0, &quot;video_model_runs&quot;: 0}</code></td></tr><tr><td>stage1_baseline_hashes</td><td class="pass">通过</td><td><code>{&quot;asset_count&quot;: 14, &quot;roles&quot;: [&quot;delta_frame_00&quot;, &quot;delta_frame_01&quot;, &quot;delta_frame_02&quot;, &quot;delta_frame_03&quot;, &quot;delta_frame_04&quot;, &quot;delta_sequence_contact_sheet&quot;, &quot;delta_sequence_report&quot;, &quot;selected_pair_comparison&quot;, &quot;selected_pair_first&quot;, &quot;selected_pair_last&quot;, &quot;selected_pair_report&quot;, &quot;video_transition&quot;, &quot;video_transition_metadata&quot;, &quot;video_transition_samples&quot;]}</code></td></tr></tbody></table></div>
+<h3 style="margin-top:24px">冻结文件指纹</h3>
+<div class="table-wrap"><table><thead><tr><th>用途</th><th>文件</th><th>SHA-256</th>
+<th>字节</th></tr></thead><tbody><tr><td>selected_pair_report</td><td><a href="../../../stage1/output/keyframe_render/report.html"><code>modules/video_model/stage1/output/keyframe_render/report.html</code></a></td><td><code>7eb0722d365e04bd…</code></td><td>6,464</td></tr><tr><td>selected_pair_first</td><td><a href="../../../stage1/output/keyframe_render/final/first.png"><code>modules/video_model/stage1/output/keyframe_render/final/first.png</code></a></td><td><code>6d4d54e0fddc8ac3…</code></td><td>190,417</td></tr><tr><td>selected_pair_last</td><td><a href="../../../stage1/output/keyframe_render/final/last.png"><code>modules/video_model/stage1/output/keyframe_render/final/last.png</code></a></td><td><code>e1254edac11e9402…</code></td><td>191,181</td></tr><tr><td>selected_pair_comparison</td><td><a href="../../../stage1/output/keyframe_render/final/comparison.jpg"><code>modules/video_model/stage1/output/keyframe_render/final/comparison.jpg</code></a></td><td><code>57bd69feb7e8daab…</code></td><td>36,674</td></tr><tr><td>delta_sequence_report</td><td><a href="../../../stage1/output/keyframe_render/delta_sequence/report.html"><code>modules/video_model/stage1/output/keyframe_render/delta_sequence/report.html</code></a></td><td><code>ec5fc74407a232aa…</code></td><td>61,830</td></tr><tr><td>delta_sequence_contact_sheet</td><td><a href="../../../stage1/output/keyframe_render/delta_sequence/sequence-contact-sheet.jpg"><code>modules/video_model/stage1/output/keyframe_render/delta_sequence/sequence-contact-sheet.jpg</code></a></td><td><code>b094c3d54074aa09…</code></td><td>109,071</td></tr><tr><td>delta_frame_00</td><td><a href="../../../stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png"><code>modules/video_model/stage1/output/keyframe_render/delta_sequence/final/00_at_outlet.png</code></a></td><td><code>ac2864e5b5edd2d0…</code></td><td>1,552,210</td></tr><tr><td>delta_frame_01</td><td><a href="../../../stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png"><code>modules/video_model/stage1/output/keyframe_render/delta_sequence/final/01_decelerated_plume.png</code></a></td><td><code>6acac8af0cab1065…</code></td><td>1,552,667</td></tr><tr><td>delta_frame_02</td><td><a href="../../../stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png"><code>modules/video_model/stage1/output/keyframe_render/delta_sequence/final/02_underwater_accumulation.png</code></a></td><td><code>84b84946bc09f4d7…</code></td><td>1,551,231</td></tr><tr><td>delta_frame_03</td><td><a href="../../../stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png"><code>modules/video_model/stage1/output/keyframe_render/delta_sequence/final/03_sandbar_emergence.png</code></a></td><td><code>1830b19ef2339db1…</code></td><td>1,550,989</td></tr><tr><td>delta_frame_04</td><td><a href="../../../stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png"><code>modules/video_model/stage1/output/keyframe_render/delta_sequence/final/04_rerouted_flow.png</code></a></td><td><code>e90fb592ea60c35c…</code></td><td>1,547,090</td></tr><tr><td>video_transition</td><td><a href="../../../stage1/output/video_transition/ltx23_flf/transition.mp4"><code>modules/video_model/stage1/output/video_transition/ltx23_flf/transition.mp4</code></a></td><td><code>7db2a431b6b7eb68…</code></td><td>166,607</td></tr><tr><td>video_transition_metadata</td><td><a href="../../../stage1/output/video_transition/ltx23_flf/metadata.json"><code>modules/video_model/stage1/output/video_transition/ltx23_flf/metadata.json</code></a></td><td><code>38a74d0628d0e672…</code></td><td>3,775</td></tr><tr><td>video_transition_samples</td><td><a href="../../../stage1/output/video_transition/ltx23_flf/generated_frames.jpg"><code>modules/video_model/stage1/output/video_transition/ltx23_flf/generated_frames.jpg</code></a></td><td><code>d70f93a53654f8b1…</code></td><td>234,846</td></tr></tbody></table></div>
+<h3 style="margin-top:24px">从仓库根目录复现</h3>
+<pre>.venv/bin/python -m modules.video_model.stage2.phase0
+.venv/bin/python -m modules.video_model.stage2.phase0 --check
+.venv/bin/python -m pytest -q modules/video_model/stage2/tests</pre>
+<p>Phase 0 的配置文件：</p><ul><li><a href="../../case_registry.json">case_registry</a></li><li><a href="../../protocols/scoring_protocol.json">scoring_protocol</a></li><li><a href="../../protocols/regression_policy.json">regression_policy</a></li><li><a href="../../protocols/compute_budget.json">compute_budget</a></li><li><a href="../../benchmarks/stage1_baseline.json">stage1_baseline</a></li><li><a href="../../framework/schemas/score_record.schema.json">score_record_schema</a></li>
+<li><a href="phase0_manifest.json">本次构建 manifest</a></li></ul>
+</section>
+
+<section>
+<p class="eyebrow">09 · 下一检查点</p><h2>Phase 1：通用契约与无需模型的骨架</h2>
+<p>下一步会实现统一的概念规格、序列规格和七类语义层接口，并为十个案例建立最小
+fixture。仍然先证明状态、控制和报告可复现，再进入五个哨兵案例的程序动画。</p>
+</section>
+</main></body></html>

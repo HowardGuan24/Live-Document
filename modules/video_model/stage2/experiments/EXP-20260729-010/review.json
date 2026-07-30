@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-20260729-010",
+  "review_mode": "blind_first_then_unblind",
+  "configuration_summary": [
+    {
+      "configuration_id": "t2i_program_hard_boundary",
+      "mean_mechanism_fidelity_5": 2.5,
+      "mean_material_naturalness_5": 4.75,
+      "usable_seed_fraction": 0.0,
+      "finding_zh": "四张都把受控区域解释成木质拼图并大体保留局部拓扑，但 4/4 都在左侧大面积空白区臆造了第二个框、额外拼块或额外面板。"
+    }
+  ],
+  "verdict": "rejected_control_framing_confounded",
+  "verdict_zh": "拒绝当前结果：真实木材成立，但“只有一个拼图”和精确物体数全部失败，不能作为数学关键帧。",
+  "generalization_boundary_zh": "线稿的语义内容并非唯一变量；线稿在画布中的占用率与位置也会改变模型解释。把小控制对象偏置在宽画布一侧，空白区会被 T2I 当作可自由补全区域。",
+  "accepted_general_candidate_zh": "在进入 T2I 前增加确定性的控制占用率检查：裁出非零边界框、等比放大并居中，同时保留安全边距；这只改变构图归一化，不增加案例语义。",
+  "case_specific_configuration_zh": "四个三角形与两个方形区域的具体线条属于 MATH-02 案例插件，不进入通用核心。",
+  "next_action_zh": "保持提示词、模型、种子和控制强度不变，只把同一线稿裁切、放大并居中，验证额外物体是否减少。"
+}

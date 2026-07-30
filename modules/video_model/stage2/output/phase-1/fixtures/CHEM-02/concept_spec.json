@@ -1,0 +1,46 @@
+{
+  "assumptions_zh": [
+    "溶质总质量在系统内守恒。",
+    "成核规则与晶体生长规则由程序配置冻结。"
+  ],
+  "case_id": "CHEM-02",
+  "discipline": "chemistry",
+  "forbidden_shortcuts_zh": [
+    "用漂亮画面掩盖机制条件缺失",
+    "让图像模型重新决定程序事实",
+    "让一个视频过渡跨越多个主要变化"
+  ],
+  "learning_goal_zh": "区分蒸发浓缩、达到过饱和、成核和已有晶体生长四个阶段。",
+  "schema_version": "1.0",
+  "segments": [
+    {
+      "meaning_zh": "透明溶液中没有可见晶体",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "透明溶液中没有可见晶体",
+      "order": 0,
+      "segment_id": "segment_00"
+    },
+    {
+      "meaning_zh": "水位下降且浓度上升但未成核",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.333333；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "水位下降且浓度上升但未成核",
+      "order": 1,
+      "segment_id": "segment_01"
+    },
+    {
+      "meaning_zh": "少数带身份的晶核首次出现",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 0.666667；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "少数带身份的晶核首次出现",
+      "order": 2,
+      "segment_id": "segment_02"
+    },
+    {
+      "meaning_zh": "已有晶体长大且溶液继续减少",
+      "mechanism_condition_zh": "Phase 1 fixture_progress = 1.000000；Phase 2 必须替换为该案例的真实机制条件。",
+      "only_major_change_zh": "已有晶体长大且溶液继续减少",
+      "order": 3,
+      "segment_id": "segment_03"
+    }
+  ],
+  "title_zh": "盐溶液蒸发、过饱和与晶体生长"
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "MATH-01",
+  "circle_normalized_y": -0.0,
+  "circle_point_xy": [
+    275.0,
+    180.0
+  ],
+  "curve_head_xy": [
+    610.0,
+    180.0
+  ],
+  "curve_normalized_y": -0.0,
+  "progress": 1.0,
+  "theta_rad": 6.28318531,
+  "trace_fraction": 1.0
+}

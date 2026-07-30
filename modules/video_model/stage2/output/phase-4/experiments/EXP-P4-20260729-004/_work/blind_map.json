@@ -1,0 +1,22 @@
+{
+  "A": {
+    "configuration_id": "t2i_salt_facet_material_donor",
+    "seed": 3104,
+    "sha256": "b134aad5fe271f8d5dc6fff2ae053b620dfe08cf61119d24a9127e1cf428692e"
+  },
+  "B": {
+    "configuration_id": "t2i_salt_facet_material_donor",
+    "seed": 3103,
+    "sha256": "11e4ec50f5ef590346db0c0979b2c0546cbe7ee82596097eee0664f074e23ddd"
+  },
+  "C": {
+    "configuration_id": "t2i_salt_facet_material_donor",
+    "seed": 3102,
+    "sha256": "566bbd84ac526c7e15582e6d9e19d9e55b3cbfcd705a5d1ba6ae9e2bd96974ae"
+  },
+  "D": {
+    "configuration_id": "t2i_salt_facet_material_donor",
+    "seed": 3101,
+    "sha256": "9ff451e4cf726769dbb776e84331d89893a42585028743d4aa3bbbcdf2f80445"
+  }
+}

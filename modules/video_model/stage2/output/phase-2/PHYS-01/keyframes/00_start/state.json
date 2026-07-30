@@ -1,0 +1,22 @@
+{
+  "antinode_pixel_count": 0,
+  "case_id": "PHYS-01",
+  "node_pixel_count": 0,
+  "overlap_envelope_max": null,
+  "overlap_envelope_min": null,
+  "overlap_pixel_count": 0,
+  "progress": 0.0,
+  "source_count": 2,
+  "sources_xy": [
+    [
+      235.0,
+      180.0
+    ],
+    [
+      405.0,
+      180.0
+    ]
+  ],
+  "wavefront_radius_px": 60.0,
+  "wavelength_px": 30.0
+}

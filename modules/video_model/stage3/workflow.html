@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stage 3：确定性程序图转生成图流程设想</title>
+  <style>
+    :root {
+      --ink: #17343b;
+      --muted: #5d747a;
+      --paper: #f1eee4;
+      --card: #fffdf7;
+      --line: #c8d4d0;
+      --det: #16735b;
+      --model: #276f91;
+      --gate: #a06a17;
+      --fail: #a44646;
+      --artifact: #6b658e;
+      --shadow: 0 9px 24px rgba(24, 52, 59, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 9% 0%, rgba(39, 111, 145, .10), transparent 29rem),
+        radial-gradient(circle at 96% 14%, rgba(22, 115, 91, .10), transparent 28rem),
+        var(--paper);
+      color: var(--ink);
+      font: 16px/1.72 system-ui, -apple-system, "Noto Sans SC", sans-serif;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 38px 24px 90px;
+    }
+
+    h1 {
+      max-width: 950px;
+      margin: 12px 0 18px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.06;
+      letter-spacing: -.035em;
+    }
+
+    h2 {
+      margin: 62px 0 18px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      font-size: clamp(27px, 4vw, 36px);
+      line-height: 1.25;
+    }
+
+    h3 { margin: 0 0 8px; font-size: 20px; }
+    p { margin: 9px 0; }
+    a { color: #116850; }
+    code {
+      padding: .12em .34em;
+      border-radius: 4px;
+      background: #e2e8e5;
+      overflow-wrap: anywhere;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .lead {
+      max-width: 1000px;
+      font-size: 21px;
+    }
+
+    .card, .node, .decision, details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      margin: 22px 0;
+      padding: 20px 22px;
+    }
+
+    figure {
+      margin: 24px 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 9px;
+      background: #dfe4e1;
+    }
+
+    figure.single img {
+      max-height: 560px;
+      object-fit: contain;
+      background: #142e35;
+    }
+
+    figcaption {
+      padding: 10px 5px 2px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .image-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .example {
+      margin-top: 13px;
+      padding: 11px 13px;
+      border-radius: 9px;
+      background: #edf2ef;
+      color: #3e585f;
+      font-size: 14px;
+    }
+
+    .example strong { color: var(--ink); }
+
+    .lineage {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 7px 13px;
+      margin: 14px 0 0;
+      padding: 13px 15px;
+      border-radius: 10px;
+      background: #f0f4f2;
+      font-size: 14px;
+    }
+
+    .lineage dt {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .lineage dd {
+      margin: 0;
+      color: #455f65;
+    }
+
+    .plain-name {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .contract-use td:first-child { font-weight: 780; }
+
+    .truth { border-left: 8px solid var(--det); }
+    .warning { border-left: 8px solid var(--gate); }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin: 25px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .dot.det { background: var(--det); }
+    .dot.model { background: var(--model); }
+    .dot.gate { background: var(--gate); }
+    .dot.fail { background: var(--fail); }
+    .dot.artifact { background: var(--artifact); }
+
+    .flow {
+      max-width: 1000px;
+      margin: 24px auto;
+    }
+
+    .node {
+      position: relative;
+      padding: 18px 20px 19px 78px;
+      border-left-width: 8px;
+    }
+
+    .node.det { border-left-color: var(--det); }
+    .node.model { border-left-color: var(--model); }
+    .node.gate { border-left-color: var(--gate); }
+    .node.artifact { border-left-color: var(--artifact); }
+    .node.fail { border-left-color: var(--fail); }
+
+    .index {
+      position: absolute;
+      left: 20px;
+      top: 18px;
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      font-weight: 800;
+    }
+
+    .io {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .arrow {
+      height: 40px;
+      position: relative;
+    }
+
+    .arrow::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 5px;
+      height: 24px;
+      border-left: 2px solid #7b918e;
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      left: calc(50% - 5px);
+      top: 25px;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid #7b918e;
+      border-bottom: 2px solid #7b918e;
+      transform: rotate(45deg);
+    }
+
+    .pass-note {
+      margin: -6px 0 8px;
+      color: var(--det);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 8px 0 0;
+    }
+
+    .decision {
+      padding: 18px 20px;
+      border-top: 7px solid var(--gate);
+    }
+
+    .branch-label {
+      display: inline-block;
+      margin-bottom: 7px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      color: white;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .yes { background: var(--det); }
+    .no { background: var(--fail); }
+
+    .mini-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .mini {
+      padding: 12px;
+      border-radius: 10px;
+      background: #eef3f1;
+      font-size: 14px;
+    }
+
+    .mini strong { display: block; color: var(--ink); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #e7ece8; }
+    .glossary td:first-child { width: 19%; font-weight: 780; }
+    .glossary td:nth-child(2) { width: 35%; }
+
+    pre {
+      margin: 16px 0;
+      padding: 18px;
+      border-radius: 11px;
+      background: #142e35;
+      color: #eef7f4;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font: 14px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    ul, ol { padding-left: 24px; }
+    li + li { margin-top: 6px; }
+
+    details {
+      margin: 17px 0;
+      padding: 16px 18px;
+    }
+
+    summary { cursor: pointer; font-weight: 760; }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .phase {
+      padding: 17px;
+      border-top: 5px solid var(--det);
+      border-radius: 12px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .small { color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 800px) {
+      .split, .mini-flow, .phase-grid, .image-pair { grid-template-columns: 1fr; }
+      .node { padding-left: 68px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Live-Document / Video Model / Stage 3 / Design draft</div>
+  <h1>把随机生图关进<br>一个确定的生产流程</h1>
+  <p class="lead">
+    Stage 2 已经证明“先生成一张可信外观，再把程序状态确定性地放回去”是可行方向。
+    Stage 3 不再为单个案例临时画控制图，而是要让同一份标准输入经过同一套编译、
+    搜索、验收和冻结规则，得到同一个被接受的结果，或得到一份明确的失败报告。
+  </p>
+
+  <div class="card truth">
+    <strong>核心设想：</strong>
+    程序同时输出画面和事实数据；“控制图生成器”把事实数据变成模型能读的结构线，
+    “提示词生成器”把合同和用户视觉目标变成外观描述。SDXL 只按预先登记的有限参数组合
+    生成候选；检查器按合同淘汰错误图片并冻结一张外观底图。之后所有关键帧都由程序状态
+    和这张同一底图产生。
+  </div>
+
+  <div class="card warning">
+    <strong>这里的“确定”不是承诺扩散模型没有随机性。</strong>
+    我们能保证的是：输入、代码、权重、运行时和版本配置相同，就执行相同路线、使用
+    相同 seed 集合、生成相同候选集合、运行相同验收并选中相同 ID。若没有候选通过，
+    流程必须停止并报告失败，不能把不合格图片包装成成功结果。
+  </div>
+
+  <p class="small">本页是待审核的 Stage 3 流程设计，尚未宣称已经实现。下面直接使用
+    我们 Stage 2 已经生成的烧杯产物解释，不要求新人先跳到另一份报告。</p>
+
+  <h2>先用烧杯案例看懂整件事</h2>
+  <p>
+    程序要讲的是酸碱滴定：开始时液体无色；滴入碱液后，落点附近短暂变粉；
+    混合后粉色消退；到终点时整杯保持浅粉。下面四张是程序决定的四个事实状态，
+    不是模型自由想象的四幅画。
+  </p>
+  <figure>
+    <img
+      src="../stage2/output/phase-9/report-assets/chem-program-sequence.jpg"
+      alt="烧杯滴定的四张程序图：开始、局部粉色、恢复无色、最终整杯粉色">
+    <figcaption>
+      我们的实际程序图。START、MECHANISM、RESULT、END 分别表示开始、局部反应、
+      混合结果和滴定终点。Stage 3 必须保留这个因果顺序。
+    </figcaption>
+  </figure>
+
+  <p>
+    图片模型的任务不是重新发明滴定过程，而是先把“简陋烧杯图”变成一张可信的玻璃器材
+    外观。下图展示了 Stage 2 真正走过的四个文件。它也暴露了 Stage 3 要解决的问题：
+    第三张好用的器材线稿当时是固定模板，不是由第一张程序图自动编译出来的。
+  </p>
+  <figure>
+    <img
+      src="../stage2/output/phase-9/report-assets/chem-a-control-comparison.jpg"
+      alt="程序图、自动密集Canny、语义器材线稿和SDXL生成烧杯的四栏对比">
+    <figcaption>
+      从左到右：①程序图；②自动 dense Canny，只会照着亮度变化描边；
+      ③真正送入 ControlNet 的干净器材线稿；④SDXL + ControlNet 生成的玻璃烧杯。
+      Stage 3 的目标就是让 ①→③ 变成自动、通用、可追溯的 Control Compiler。
+    </figcaption>
+  </figure>
+
+  <p>
+    生图不会只吐出一张。Stage 2 用两个控制强度和三个 seed 得到下面六张；同一条线稿
+    仍会产生不同背景、反射和器材细节。Stage 3 不会假装这一步不随机，而是把“允许生成
+    哪六张、怎样验收、选哪一张”全部固定下来。
+  </p>
+  <figure>
+    <img
+      src="../stage2/output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start/candidates-labeled.jpg"
+      alt="六张烧杯候选，分为0.65和0.80两种控制强度，每种三个seed">
+    <figcaption>
+      我们实际生成的六张候选。第一行是 ControlNet scale 0.65，第二行是 0.80；
+      每行 seed 7101、7102、7103。最终冻结左上角的 0.65 / 7101。
+    </figcaption>
+  </figure>
+  <figure class="single">
+    <img
+      src="../stage2/output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start/raw/semantic_control_065/seed_7101.png"
+      alt="被选中并冻结的透明玻璃烧杯底图">
+    <figcaption>
+      这张就是 Appearance Anchor：六张候选中被选中并冻结的 0.65 / 7101。
+      它只提供玻璃、光照、相机和背景，后续不让模型重新画另外三只烧杯。
+    </figcaption>
+  </figure>
+
+  <p>
+    最后，程序用“哪里是液体”和“每个液体像素的 pH 是多少”修改同一张冻结烧杯，
+    而不是让 SDXL 独立重画四次。这样背景、相机和玻璃外形不会随帧漂移。
+  </p>
+  <div class="image-pair">
+    <figure>
+      <img
+        src="../stage2/output/phase-9/report-assets/chem-liquid-masks.jpg"
+        alt="四帧液体区域遮罩，白色表示允许修改的液体区域">
+      <figcaption>
+        液体 mask：白色是允许改变颜色的液体，黑色禁止修改。mask 就是一张“修改许可图”。
+      </figcaption>
+    </figure>
+    <figure>
+      <img
+        src="../stage2/output/phase-9/report-assets/chem-ph-fields.jpg"
+        alt="四帧pH数值场，蓝色偏酸，红色偏碱">
+      <figcaption>
+        pH scalar field：每个液体像素都有一个 pH 数值。蓝色偏酸、暖色偏碱；
+        第二帧中间的暖色斑块就是局部反应。
+      </figcaption>
+    </figure>
+  </div>
+  <figure>
+    <img
+      src="../stage2/output/phase-9/report-assets/chem-b-mapping.jpg"
+      alt="程序液体遮罩映射到真实烧杯液体表面的过程">
+    <figcaption>
+      State Renderer B 的实际映射：左边程序 mask 是矩形；中间粉线标出真实烧杯里允许
+      修改的液面梯形；右边是把终点 pH 粉色投影进去后的结果。程序坐标不能直接贴到照片上，
+      必须先做这种 surface calibration（表面标定）。
+    </figcaption>
+  </figure>
+  <figure>
+    <img
+      src="../stage2/output/phase-9/report-assets/chem-final-b-sequence.jpg"
+      alt="同一写实烧杯产生的无色、局部粉色、恢复无色、整体粉色四张最终关键帧">
+    <figcaption>
+      我们已经得到的最终四帧：同一个烧杯、同一个相机和背景，只改变程序允许变化的液体
+      状态。这就是 Stage 3 想稳定复现并推广到新案例的目标结果。
+    </figcaption>
+  </figure>
+
+  <details>
+  <summary>可选附录：新概念普通话词典（主流程不依赖先读这张表）</summary>
+  <table class="glossary">
+    <thead>
+      <tr><th>术语</th><th>普通话解释</th><th>烧杯案例中的具体东西</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>标准输入包</td>
+        <td>一次任务的完整材料，而不只是一张截图；还要说明每帧发生什么、哪些区域能变。</td>
+        <td>上面的四张程序图、四帧 pH、液体区域、对象数量和固定相机要求。</td>
+      </tr>
+      <tr>
+        <td>输入合同</td>
+        <td>进入流程前双方同意且不能偷改的规则。缺少含义或坐标的输入直接报错。</td>
+        <td>必须只有一个烧杯和一根滴定管；状态必须按无色→局部粉→无色→整杯粉排列。</td>
+      </tr>
+      <tr>
+        <td>语义层<br>semantic layer</td>
+        <td>把程序图拆成机器能理解、各负其责的数据层，而不是让模型从截图猜。</td>
+        <td>液体 mask 是一个层，pH 数值场是另一个层，烧杯边界又是另一个层。</td>
+      </tr>
+      <tr>
+        <td>Semantic Normalizer</td>
+        <td>把案例自己的名字归入通用类别，后面按数据类型处理，而不是按学科写特例。</td>
+        <td><code>chem01_liquid_region</code> 归为 region；
+          <code>chem01_ph_field</code> 归为 scalar field。</td>
+      </tr>
+      <tr>
+        <td>受控随机</td>
+        <td>模型内部仍从噪声生成，但外部把模型、参数、seed 数量、验收和停止条件全部锁死。</td>
+        <td>烧杯不是“生成到满意为止”，而是只运行上面明确展示的六种组合。</td>
+      </tr>
+      <tr>
+        <td>hard boundary</td>
+        <td>不能随便改变的主要轮廓或拓扑，例如容器外形、河岸、物体边界。</td>
+        <td>烧杯外轮廓、滴定管位置和液面大致高度。</td>
+      </tr>
+      <tr>
+        <td>region / mask</td>
+        <td>一张黑白许可图：白色区域允许某种修改，黑色区域不允许。</td>
+        <td>上面四张白色长方形只允许 B 修改杯中液体，不准染到桌面和玻璃外。</td>
+      </tr>
+      <tr>
+        <td>scalar field</td>
+        <td>不是一整块只有一个数，而是每个像素都保存一个连续数值。</td>
+        <td>pH 场让第二帧只有落点附近偏碱，而不是整杯突然一起变粉。</td>
+      </tr>
+      <tr>
+        <td>height / normal</td>
+        <td>height 记录每个位置有多高；normal 记录表面朝向，用来算地形或水面的明暗。</td>
+        <td>烧杯案例暂时不需要；以后画山地或水波时用，不能粗暴地全转成 Canny 线。</td>
+      </tr>
+      <tr>
+        <td>object identity</td>
+        <td>为每个物体保留身份证：数量、位置和跨帧对应关系。</td>
+        <td>四帧中同一根滴定管和同一个烧杯不能凭空增加、消失或换位置。</td>
+      </tr>
+      <tr>
+        <td>Control Compiler</td>
+        <td>把上述语义层自动翻译成模型能使用的线稿、mask、深度、法线和锚点。</td>
+        <td>目标是自动得到四栏对比中的第三张干净器材线稿；当前 Stage 2 还靠固定模板。</td>
+      </tr>
+      <tr>
+        <td>dense Canny</td>
+        <td>对截图中每个明显亮度变化都描线；实现容易，但不懂哪些线有教学意义。</td>
+        <td>四栏对比的第二张连程序矩形感一起保留，因此只作为负对照。</td>
+      </tr>
+      <tr>
+        <td>sparse semantic control</td>
+        <td>只保留模型必须服从的少量结构线，让 SDXL 有空间生成自然材质。</td>
+        <td>四栏对比的第三张只画器材结构，不画颜色、pH、文字和背景纹理。</td>
+      </tr>
+      <tr>
+        <td>Prompt Compiler</td>
+        <td>按固定槽位拼提示词，不让 Agent 每次临场发挥。</td>
+        <td>固定写“一只透明玻璃烧杯、一根滴定管、正视相机、实验室光照”，并禁止多余器材、
+          文字和塑料感；逐帧粉色状态不写进 Anchor prompt。</td>
+      </tr>
+      <tr>
+        <td>seed</td>
+        <td>随机噪声的起点编号。它不是质量分数；换编号就可能换背景、反射和细节。</td>
+        <td>六张候选中的 7101、7102、7103。</td>
+      </tr>
+      <tr>
+        <td>ControlNet scale</td>
+        <td>结构线对 SDXL 的牵引强度，不是图片缩放百分比。越高通常越贴线，也可能更僵硬。</td>
+        <td>六张候选比较了 0.65 和 0.80，最终选中 0.65 / 7101。</td>
+      </tr>
+      <tr>
+        <td>固定候选矩阵</td>
+        <td>在运行前就写死要试的有限组合，禁止看到结果后无限加 seed 抽卡。</td>
+        <td>本例是 2 个 scale × 3 个 seed = 6 张 raw candidates。</td>
+      </tr>
+      <tr>
+        <td>硬门禁</td>
+        <td>不满足事实就直接淘汰，不能用“更好看”抵消。</td>
+        <td>多画烧杯、滴定管缺失、器材被裁掉、出现文字，都直接拒绝。</td>
+      </tr>
+      <tr>
+        <td>视觉评分</td>
+        <td>只在硬门禁通过后比较玻璃是否自然、塑料感、光照、伪影和可读性。</td>
+        <td>六张都要先过器材检查，再比较哪张最像真实玻璃且背景适合做动画。</td>
+      </tr>
+      <tr>
+        <td>tie-break</td>
+        <td>两张得分相同时的固定裁决顺序，避免重跑时随意换图。</td>
+        <td>例如先按配置 ID，再按 seed 从小到大选择；规则必须提前写进版本配置。</td>
+      </tr>
+      <tr>
+        <td>Appearance Anchor</td>
+        <td>被选中并冻结的一张外观底图，只负责材料、光照、相机和稳定构图。</td>
+        <td>六张候选左上角的 0.65 / 7101；后面四帧都使用这同一张烧杯。</td>
+      </tr>
+      <tr>
+        <td>State Renderer B</td>
+        <td>不用生图模型，按程序数据把不同状态确定性地投影到同一 Anchor。</td>
+        <td>读取液体 mask 和 pH 场，生成最后那组无色→局部粉→无色→整杯粉。</td>
+      </tr>
+      <tr>
+        <td>surface calibration<br>表面标定</td>
+        <td>告诉 B“程序里的区域”在真实底图中对应哪里，避免把矩形数据直接贴到透视物体外面。</td>
+        <td>上面的三栏图把程序矩形液体映射到真实烧杯的粉色梯形液面。</td>
+      </tr>
+      <tr>
+        <td>fallback ladder</td>
+        <td>预先写好的有限补救顺序；当前档失败才能进下一档，用完就停止。</td>
+        <td>例如先试标准稀疏线，再试稍强结构线；不能失败后临时手画一张新线稿。</td>
+      </tr>
+      <tr>
+        <td>输入签名 / SHA-256</td>
+        <td>文件和配置的数字指纹，用来确认重跑读取的确实是同一批东西。</td>
+        <td>冻结 0.65 / 7101 后记录图片哈希；B 必须读取这张图，不能悄悄换候选。</td>
+      </tr>
+    </tbody>
+  </table>
+  </details>
+
+  <h2>主流程图</h2>
+  <div class="card truth">
+    <strong>第 0 步可以这样理解：</strong>
+    把程序关键帧、重要过程定义、不可改变的对象，以及液体 mask、pH 如何变化等数据
+    一起冻结成一个“输入包”。其中 <code>input_contract.json</code> 写含义、规则、
+    文件路径和验收条件；逐像素 mask、pH 数组等较大数据保存在它引用的 PNG/NPY 文件里。
+    后续检查会读取这份 JSON 及其引用的数据，而不是直接把生成图片和一段 JSON 文字相减。
+  </div>
+  <table class="contract-use">
+    <thead><tr><th>合同中的内容</th><th>以后在哪里使用</th></tr></thead>
+    <tbody>
+      <tr><td>文件是否齐全、尺寸和坐标是否一致</td><td>G0：输入完整性检查</td></tr>
+      <tr><td>烧杯/滴定管数量、边界和位置</td><td>G1 检查控制图；G2 检查模型候选</td></tr>
+      <tr><td>液体允许变化区域</td><td>步骤 6 限制修改范围；G3 检查杯外是否被改动</td></tr>
+      <tr><td>pH 数值及无色→局部粉→无色→整杯粉顺序</td><td>步骤 6 生成状态；G3 检查整组关键帧</td></tr>
+    </tbody>
+  </table>
+  <details open>
+    <summary>烧杯输入合同大约长什么样</summary>
+    <p>下面是 Stage 3 拟定的数据结构示意。JSON 保存规则和文件索引；每个像素的 pH
+      不直接铺在 JSON 里，而是放在它指向的 NPY 文件中。</p>
+    <pre>{
+  "case_id": "CHEM-01",
+  "required_objects": [
+    {"id": "beaker", "count": 1},
+    {"id": "burette", "count": 1}
+  ],
+  "camera": {"view": "front", "locked": true},
+  "keyframes": [
+    {"id": "00_start", "expected_state": "colorless"},
+    {"id": "01_mechanism", "expected_state": "local_pink"},
+    {"id": "02_result", "expected_state": "colorless"},
+    {"id": "03_end", "expected_state": "uniform_pale_pink"}
+  ],
+  "layers": [
+    {
+      "id": "liquid_region",
+      "type": "region",
+      "path_pattern": "layers/{keyframe}/liquid_mask.npy",
+      "meaning_zh": "只有该区域允许出现液体状态变化"
+    },
+    {
+      "id": "ph_field",
+      "type": "scalar_field",
+      "path_pattern": "layers/{keyframe}/ph_field.npy",
+      "range": [0, 14],
+      "meaning_zh": "每个液体像素的 pH"
+    }
+  ],
+  "visual_goal": {
+    "material": "realistic clear glass",
+    "lighting": "neutral laboratory"
+  },
+  "sequence_rules": [
+    "background_must_stay_fixed",
+    "pink_pixels_must_stay_inside_liquid_region"
+  ]
+}</pre>
+  </details>
+  <div class="legend">
+    <span><i class="dot det"></i>确定性程序步骤</span>
+    <span><i class="dot model"></i>固定边界内的生成模型</span>
+    <span><i class="dot gate"></i>检查/确定性决策</span>
+    <span><i class="dot artifact"></i>冻结产物</span>
+    <span><i class="dot fail"></i>失败即停止，不伪造成功</span>
+  </div>
+
+  <section class="flow" aria-label="Stage 3 程序图转生成图主流程">
+    <article class="node det">
+      <div class="index">源</div>
+      <h3>程序同时输出“给人看的图”和“给机器看的数据”</h3>
+      <p>
+        程序本来就先计算内部状态，再把状态画成关键帧。Stage 3 要求程序在画图的同时，
+        把关键数据另存出来；这些数据就是语义层的来源，不是后面从截图里猜出来的。
+      </p>
+      <dl class="lineage">
+        <dt>谁提供</dt><dd>概念规划器定义要讲什么；程序代码计算每个关键时刻的状态。</dd>
+        <dt>程序输入</dt><dd>概念参数和时间点，例如滴定液加入量、初始 pH、终点阈值。</dd>
+        <dt>程序输出</dt><dd>关键帧 PNG；液体 mask；逐像素 pH 数组；烧杯、滴定管等对象记录。</dd>
+        <dt>烧杯例子</dt><dd>同一个 pH 数组既决定程序图哪里变粉，也原样导出为
+          <code>ph_field.npy</code>，因此图片和数据来自同一个计算结果。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node det">
+      <div class="index">0</div>
+      <span class="plain-name">原名：冻结标准输入</span>
+      <h3>把任务、关键帧、数据层和验收标准固定下来</h3>
+      <p>把上游程序产物整理成一个有版本、可检查、后续不能偷改的输入包。</p>
+      <dl class="lineage">
+        <dt>输入</dt><dd>概念说明、关键帧 PNG、程序状态、语义层文件和用户认可的外观目标。</dd>
+        <dt>处理</dt><dd>写明每个文件是什么、坐标系、取值范围、允许变化和必须保持的内容；
+          为全部文件和配置计算数字指纹。</dd>
+        <dt>输出</dt><dd><code>input_contract.json</code> + 它引用的
+          <code>program_frames/</code>、<code>layers/</code> 和 <code>states/</code>。</dd>
+        <dt>烧杯例子</dt><dd>合同写明一个烧杯、一根滴定管、固定正视相机、四个状态；
+          液体 mask 和 pH 文件路径及含义也写在合同中。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node gate">
+      <div class="index">G0</div>
+      <span class="plain-name">不要叫“门禁”：它就是一次输入检查</span>
+      <h3>检查输入是否完整、互相一致</h3>
+      <dl class="lineage">
+        <dt>读取</dt><dd><code>input_contract.json</code> 以及它列出的全部 PNG/NPY/JSON。</dd>
+        <dt>检查</dt><dd>文件存在、尺寸和坐标一致、状态顺序完整、每个数据层有名字和含义、
+          pH 数值在声明范围内。</dd>
+        <dt>不检查</dt><dd>这里还没有生成图片，因此不判断玻璃是否真实，也不选择候选。</dd>
+        <dt>失败例子</dt><dd>只有一张粉色截图，却没说明粉色代表 pH、哪块是液体或它属于
+          第几个状态，流程就在这里停止。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node det">
+      <div class="index">1</div>
+      <span class="plain-name">代码模块名可叫 Semantic Normalizer</span>
+      <h3>统一语义层接口，让后续程序知道每层数据该怎么用</h3>
+      <p>
+        “语义层”已经由上游程序导出；这一步不创造 pH 或 mask，只把不同案例自己的名称
+        映射为几种通用处理类型。这样控制图生成器不需要认识“化学滴定”这个案例名。
+      </p>
+      <div class="mini-flow">
+        <div class="mini"><strong>hard boundary</strong>物体轮廓与拓扑</div>
+        <div class="mini"><strong>region / scalar</strong>区域、浓度、温度、厚度</div>
+        <div class="mini"><strong>height / normal</strong>地形和水面起伏</div>
+        <div class="mini"><strong>object identity</strong>数量、锚点和跨帧身份</div>
+      </div>
+      <dl class="lineage">
+        <dt>输入</dt><dd>合同中登记的原始语义层，例如
+          <code>chem01_liquid_region</code> 和 <code>chem01_ph_field</code>。</dd>
+        <dt>处理</dt><dd>按合同声明，把层归类为 boundary、region、scalar field、
+          height/normal 或 object identity；不修改原始数值。</dd>
+        <dt>输出</dt><dd><code>normalized_layers.json</code>：每个通用类型指向哪个原始文件、
+          后面允许用于哪种处理。</dd>
+        <dt>烧杯例子</dt><dd>液体许可图归为 region，pH 归为 scalar field，
+          杯壁/滴定管归为 hard boundary，器材数量归为 object identity。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node det">
+      <div class="index">2</div>
+      <span class="plain-name">代码模块名可叫 Control Compiler</span>
+      <h3>根据语义层生成图片模型真正要看的控制数据</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd><code>normalized_layers.json</code> 及其指向的边界、region、
+          scalar field、height/normal 和对象数据。</dd>
+        <dt>处理</dt><dd>boundary 生成稀疏黑白结构线；region 保持为独立 mask；
+          height/normal 保持为几何数据；scalar field 留给步骤 6，不画成密集线。</dd>
+        <dt>输出</dt><dd><code>structure_control.png</code>、
+          <code>regions/*.png</code>、<code>geometry/*</code>、
+          <code>anchors.json</code> 和每个输出的推导记录。</dd>
+        <dt>烧杯例子</dt><dd>结构图只保留杯口、杯壁、滴定管和液面；pH 粉色、文字和背景
+          不进入结构控制。</dd>
+      </dl>
+      <div class="card warning">
+        <strong>Canny 在这里是什么关系？</strong>
+        Canny 只是生成黑白结构线的一种工具，不是本流程必经的独立阶段。
+        如果程序已经输出矢量/干净边界，就直接渲染成线稿，不需要 Canny；
+        如果只有一张干净的 boundary 图层，可以只对该图层跑 Canny。
+        默认禁止对整张彩色程序截图跑 dense Canny，因为它会把文字、颜色分界和程序方框
+        一起描出来。无论线稿由直接渲染还是 Canny 得到，最后的
+        <code>structure_control.png</code> 才是送给 Canny ControlNet 的图片。
+      </div>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node gate">
+      <div class="index">G1</div>
+      <span class="plain-name">原名“控制图门禁”</span>
+      <h3>检查控制图是否正确</h3>
+      <dl class="lineage">
+        <dt>比较双方</dt><dd>步骤 2 生成的结构图，与合同引用的 boundary、对象数量、
+          锚点和禁止内容数据。</dd>
+        <dt>检查方法</dt><dd>比较轮廓覆盖率、连通关系、对象数量、锚点偏差和边缘密度；
+          检查是否混入 annotation、UI 或文字区域。</dd>
+        <dt>不是</dt><dd>不是把 PNG 和 JSON 字符串直接比较。JSON 告诉检查器应读取哪个
+          边界数组、期望几个对象和阈值是多少。</dd>
+        <dt>烧杯例子</dt><dd>控制图必须保留一只杯和一根管；缺杯口、管子错位、出现标题
+          或碎线过密，都不能进入生图。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node det">
+      <div class="index">3</div>
+      <span class="plain-name">代码模块名可叫 Prompt Compiler</span>
+      <h3>根据合同和视觉目标生成外观提示词</h3>
+      <p>提示词有明确来源，不是 Agent 运行到这里临场写一句英文。</p>
+      <dl class="lineage">
+        <dt>来源一</dt><dd>输入合同：场景是什么、对象数量、固定镜头、必须保留和禁止出现什么。</dd>
+        <dt>来源二</dt><dd>用户认可的视觉目标：例如“材料真实、像纪录片画面、不要塑料感”。</dd>
+        <dt>来源三</dt><dd>Stage 3 版本化模板和材质词典：把上述字段按固定顺序组装。</dd>
+        <dt>输出</dt><dd><code>positive_prompt.txt</code>、
+          <code>negative_prompt.txt</code> 和 <code>prompt_manifest.json</code>；
+          manifest 写清每一段词来自哪个合同字段，并检查 token 是否截断。</dd>
+        <dt>烧杯例子</dt><dd>正向词来自“一只烧杯、一根滴定管、透明玻璃、正视相机、中性实验室
+          光照”；负向词来自“禁止多余器材、文字和塑料感”。逐帧粉色变化不写入外观底图提示词。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node model">
+      <div class="index">4</div>
+      <span class="plain-name">原名“固定候选矩阵”</span>
+      <h3>按预先写好的有限参数组合生成候选图</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd>通过检查的结构控制图、正/负提示词、固定 SDXL/ControlNet 权重
+          和版本化生成配置。</dd>
+        <dt>处理</dt><dd>只运行配置中预先登记的 seed、ControlNet 强度、尺寸、步数和
+          scheduler 组合，不根据结果临时追加抽卡。</dd>
+        <dt>输出</dt><dd>未经后期修改的模型候选图，以及每张图对应的模型、参数、seed、
+          输入签名和文件哈希。</dd>
+        <dt>烧杯例子</dt><dd>上面展示的 2 个控制强度 × 3 个 seed = 6 张候选；
+          看完结果后不能临时追加 seed 7104。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node gate">
+      <div class="index">G2</div>
+      <span class="plain-name">原名“事实硬门禁 + 视觉评分”</span>
+      <h3>检查候选图是否符合合同，再按固定规则排序</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd>六张模型候选、输入合同、对象/边界数据，以及版本化视觉评分表。</dd>
+        <dt>事实检查</dt><dd>读取合同中的对象数量、位置、镜头、禁止文字和裁切范围；
+          多画、漏画或结构错误的候选直接拒绝。</dd>
+        <dt>视觉比较</dt><dd>只比较事实检查通过的图片：材料自然度、塑料感、光照、
+          控制线残留和动画使用价值。</dd>
+        <dt>输出</dt><dd>每张候选的通过/拒绝状态、逐项分数和原因。分数相同则按预先固定的
+          配置 ID、seed 顺序裁决。</dd>
+        <dt>烧杯例子</dt><dd>器材多画或缺失先淘汰；剩下的再比玻璃和反射，最终固定选中
+          0.65 / 7101，而不是每次重新表达个人喜好。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <div class="split">
+      <article class="decision">
+        <span class="branch-label yes">至少一张通过</span>
+        <h3>按固定排序选中唯一一张外观底图</h3>
+        <p>
+          按固定分数、配置 ID、seed 顺序选出唯一候选；记录路径、SHA-256、模型和全部
+          参数。以后重跑直接复用该冻结文件，不重新审美抽选。
+        </p>
+        <div class="example"><strong>“外观底图”也叫 Appearance Anchor：</strong>
+          它只固定材质、光照、相机和背景。烧杯例子中就是左上角 0.65 / 7101；
+          四张关键帧都必须读它。</div>
+      </article>
+      <article class="decision">
+        <span class="branch-label no">全部失败</span>
+        <h3>执行预先规定、次数有限的补救步骤</h3>
+        <p>
+          这就是原先写的 fallback ladder。它只允许进入版本中预先声明的下一档控制密度
+          或控制强度。所有档位用尽后输出失败报告并停止；禁止临时手改线稿、改提示词或
+          继续换 seed。这个分支不会进入下方的冻结步骤。
+        </p>
+        <div class="example"><strong>烧杯例子：</strong>如果六张都多画器材，就按配置进入
+          下一档控制；下一档也失败就报告“无合格 Anchor”，不能挑一张错误图凑数。</div>
+      </article>
+    </div>
+    <div class="arrow"></div>
+    <div class="pass-note">↓ 只有左侧“至少一张通过”分支可以继续 ↓</div>
+
+    <article class="node artifact">
+      <div class="index">5</div>
+      <span class="plain-name">Appearance Anchor = 冻结外观底图</span>
+      <h3>冻结选中的外观底图，后续不再换图</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd>步骤 G2 的唯一选中候选及其完整生成记录。</dd>
+        <dt>处理</dt><dd>复制为生产底图，记录 SHA-256、选择原因和所有上游文件签名。</dd>
+        <dt>输出</dt><dd><code>appearance_anchor.png</code> 和
+          <code>selection.json</code>。</dd>
+        <dt>烧杯例子</dt><dd>冻结图提供玻璃、反射、背景和相机；无色或粉色仍由程序 pH
+          决定，不由这张底图决定。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node det">
+      <div class="index">6</div>
+      <span class="plain-name">代码模块名可叫 State Renderer B</span>
+      <h3>用程序状态和同一张外观底图生成全部关键帧</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd>冻结外观底图；每帧 region、scalar field、height/normal、
+          object identity；合同中的坐标和允许变化规则。</dd>
+        <dt>处理</dt><dd>先把程序坐标映射到真实底图，再执行区域着色、数值场材质变化、
+          对象合成或法线光学。这里不调用图片生成模型。</dd>
+        <dt>输出</dt><dd>所有写实关键帧、每帧修改区域以及状态到像素的推导记录。</dd>
+        <dt>烧杯例子</dt><dd>把程序矩形液体标定到真实杯内梯形；mask 限制位置，pH 转成
+          酚酞粉色强度，得到无色→局部粉→无色→整杯粉四帧。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node gate">
+      <div class="index">G3</div>
+      <span class="plain-name">原名“序列门禁”</span>
+      <h3>把整组关键帧与输入合同逐项核对</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd>步骤 6 的全部关键帧、输入合同和它引用的每帧状态/语义层。</dd>
+        <dt>检查</dt><dd>对象身份、因果顺序、允许变化区域、静态背景、首尾状态和案例声明的
+          守恒/单调性。</dd>
+        <dt>输出</dt><dd>通过的关键帧组，或精确到帧、区域和合同条目的失败报告。</dd>
+        <dt>烧杯例子</dt><dd>杯外背景必须不动；粉色必须按无色→局部粉→无色→整杯粉，
+          且颜色不能跑到 mask 外。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node model">
+      <div class="index">7</div>
+      <h3>用通过检查的相邻关键帧生成视频过渡</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd>通过 G3 的相邻两张关键帧、这段过程允许发生的运动和禁止变化。</dd>
+        <dt>处理</dt><dd>使用固定视频模型、提示词、seed 和有限候选数生成过渡。</dd>
+        <dt>检查</dt><dd>首尾对应、是否换场、对象是否丢失、运动方向和过程约束。</dd>
+        <dt>失败处理</dt><dd>模型候选全部失败则回退到确定性程序动画，不牺牲教学事实。</dd>
+        <dt>烧杯例子</dt><dd>模型只能补全液滴落下和颜色扩散，不能把一只杯变成两只，
+          也不能在结束时丢掉滴定管。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node artifact">
+      <div class="index">8</div>
+      <h3>交付图片、视频和一份能从头追到尾的报告</h3>
+      <dl class="lineage">
+        <dt>收集</dt><dd>输入包、标准化语义层、控制图、提示词、模型参数、未修改候选、
+          拒绝原因、冻结底图、状态投影和最终视频。</dd>
+        <dt>输出</dt><dd>最终交付文件、manifest、文件哈希和新人可读 HTML；报告链接也自动检查。</dd>
+        <dt>烧杯例子</dt><dd>读者在一页内看到本页开头的程序图、控制对比、六张候选、
+          mask、pH、映射和最终四帧，并能回答每张图从哪里来、下一步去了哪里。</dd>
+      </dl>
+    </article>
+  </section>
+
+  <h2>Stage 3 必须消除的三种临时性</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Stage 2 暂时做法</th>
+        <th>Stage 3 确定做法</th>
+        <th>验收证据</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>烧杯控制图由固定坐标模板单独绘制</td>
+        <td>控制图必须由标准语义层通过 Control Compiler 自动派生</td>
+        <td>每条线/区域都有来源 layer、算法、参数和哈希；可反查到程序状态</td>
+      </tr>
+      <tr>
+        <td>Agent 看候选后临时决定继续怎么试</td>
+        <td>候选矩阵、fallback ladder、最大预算和停止条件预先版本化</td>
+        <td>同一输入签名得到同一 job list，不能运行未登记的第 N+1 次抽卡</td>
+      </tr>
+      <tr>
+        <td>“好不好看”主要依赖临场判断</td>
+        <td>固定硬门禁、冻结视觉标尺、版本化评分器和唯一 tie-break</td>
+        <td>每个候选都有逐项分数与拒绝原因；生产选择无需重新人工挑选</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Control Compiler 是 Stage 3 的第一核心</h2>
+  <p>
+    Stage 2 的烧杯结果证明：语义干净、信息充分的稀疏线稿比 dense Canny 更有潜力；
+    但它还没有证明线稿能够从程序自动得到。因此 Stage 3 的第一个真正实验不应该继续
+    调 prompt，而应比较同一批程序输入的三种控制：
+  </p>
+  <ol>
+    <li><strong>负对照：</strong>直接从程序截图得到的 dense Canny。</li>
+    <li><strong>当前上限：</strong>Phase 9 中的人工固定器材模板。</li>
+    <li><strong>目标路线：</strong>由统一语义层自动编译的 sparse semantic control。</li>
+  </ol>
+  <p>
+    目标路线只有在化学案例接近或达到人工模板，同时在至少两个其他学科案例不退化，
+    才能成为通用核心。否则它仍只是一个案例技巧。
+  </p>
+
+  <details open>
+    <summary>Control Compiler 的通用规则草案</summary>
+    <ul>
+      <li><code>hard_boundary</code>：保留外轮廓、拓扑节点和必要内轮廓；按画布比例控制线宽。</li>
+      <li><code>region</code>：输出独立 mask，不把整片区域纹理转成密集边缘。</li>
+      <li><code>scalar_field</code>：保留原始浮点数据供 B 使用；默认不送 Canny。</li>
+      <li><code>height_or_normal</code>：输出深度/法线；只把大尺度遮挡边界送结构控制。</li>
+      <li><code>object_identity</code>：输出中心、包围盒、数量和跨帧 ID，供硬门禁检查。</li>
+      <li><code>annotation</code>：从模型控制中排除，写实化完成后再由程序叠加。</li>
+      <li>任何案例插件只允许提供语义数据，不能偷偷提供一张无法追溯的最终控制图。</li>
+    </ul>
+  </details>
+
+  <h2>“保证得到想要的结果”的准确边界</h2>
+  <pre>Stage 3 可以保证：
+同一输入签名
+→ 同一语义归一化
+→ 同一控制图
+→ 同一提示词
+→ 同一有限候选集合
+→ 同一门禁和排序
+→ 同一选中 ID / 同一失败结论
+→ 同一确定性 B 关键帧
+
+Stage 3 不能诚实保证：
+任意新概念第一次输入
+→ SDXL 必定生成一张视觉上完美的图片</pre>
+  <p>
+    因此生产合同应写成：<strong>系统只交付通过视觉与机制验收的结果；如果固定搜索空间
+    内没有合格结果，则交付可诊断失败，而不是交付错误图片。</strong>这比“每次一定吐出
+    一张图”更接近真正可靠的确定流程。
+  </p>
+
+  <h2>审核通过后的实现顺序</h2>
+  <div class="phase-grid">
+    <article class="phase">
+      <h3>S3.0 冻结合同与基线</h3>
+      <p>冻结 Phase 9 烧杯目标、跨学科回归输入、目录 schema、质量门禁和失败定义。</p>
+    </article>
+    <article class="phase">
+      <h3>S3.1 Control Compiler</h3>
+      <p>先不改模型和提示词，只验证程序语义能否自动生成达到人工模板上限的控制。</p>
+    </article>
+    <article class="phase">
+      <h3>S3.2 固定搜索与选择</h3>
+      <p>版本化候选矩阵、fallback ladder、质量评分和唯一 tie-break，消除临场抽卡。</p>
+    </article>
+    <article class="phase">
+      <h3>S3.3 Prompt Compiler</h3>
+      <p>把提示词拆成稳定槽位并做 token/禁区检查，不再由案例脚本拼自由字符串。</p>
+    </article>
+    <article class="phase">
+      <h3>S3.4 通用 State Renderer B</h3>
+      <p>统一区域、标量、对象和法线四类算子，验证一张 Anchor 能稳定产生多关键帧。</p>
+    </article>
+    <article class="phase">
+      <h3>S3.5 跨学科发布门</h3>
+      <p>至少覆盖数学、物理、化学、生物、地理代表案例，并回归三角洲和 Phase 9 烧杯。</p>
+    </article>
+  </div>
+
+  <p class="small">
+    文档状态：Stage 3 流程设计草案。创建本页不运行图片或视频模型，也不修改 Stage 2
+    的任何冻结结果。
+  </p>
+</main>
+</body>
+</html>

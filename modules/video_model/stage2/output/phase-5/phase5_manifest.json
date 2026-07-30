@@ -1,0 +1,294 @@
+{
+  "automatic_next_action": "run_phase6_release_regression",
+  "experiments": [
+    {
+      "case_id": "PHYS-01",
+      "experiment_id": "EXP-P5-20260729-001",
+      "motion_class": "continuous_field_propagation",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-001/review.json",
+        "sha256": "4666cd7093bc4a1ffc55f0486513d51d2aa21e19a95a2fcd2c7cc05f1cd889af",
+        "size_bytes": 1820
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-001/_work/run.json",
+        "sha256": "c729a8b50500e632d15c2036b95d86a8bad1ea319bb7d356c6965ef2baab9bfc",
+        "size_bytes": 34331
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-001/spec.json",
+        "sha256": "5e2f8de90ab17023e34ccdb97e207f7d0397585518992d854967d327b28292d5",
+        "size_bytes": 3334
+      },
+      "verdict": "accepted_continuous_field_motion_smoke"
+    },
+    {
+      "case_id": "MATH-02",
+      "experiment_id": "EXP-P5-20260729-002",
+      "motion_class": "rigid_motion",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-002/review.json",
+        "sha256": "64c759c18ded53dda372d6da3d12e26b69cdaf28509136830ff368b40717383e",
+        "size_bytes": 1686
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-002/_work/run.json",
+        "sha256": "bef4475761641bdc78a430b532b254f61b40ca99297f9fe095e5c98cbb2fa475",
+        "size_bytes": 66782
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-002/spec.json",
+        "sha256": "c6a0270d843116a893c5d6ec0a655aee02ec25e5b9fd4dc32a776b8bfe6c6879",
+        "size_bytes": 3666
+      },
+      "verdict": "rejected_rigid_identity_and_path_failure"
+    },
+    {
+      "case_id": "MATH-02",
+      "experiment_id": "EXP-P5-20260729-003",
+      "motion_class": "rigid_motion",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-003/review.json",
+        "sha256": "3ea1c43647713530bd3e9c84beaf7295f9a67af7ddff3c556a5050cdab217b18",
+        "size_bytes": 1731
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-003/_work/run.json",
+        "sha256": "c38fd599e84c1ab749deae7a3d94a4d056f1dbf4f46ceb5b8b5fe1513cbb794f",
+        "size_bytes": 128547
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-003/spec.json",
+        "sha256": "8f4fa1c21b23ced19ceb706118af52a5ae350290a01e97ab19640ac3cace7c27",
+        "size_bytes": 3675
+      },
+      "verdict": "rejected_rigid_motion_after_budget_exhausted"
+    },
+    {
+      "case_id": "MATH-02",
+      "experiment_id": "EXP-P5-20260729-004",
+      "motion_class": "rigid_motion",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-004/review.json",
+        "sha256": "6a661ed279ef9a5ed4a9d268927342ab4e5a799bc0b30dafe960abe9e788b3f9",
+        "size_bytes": 1705
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-004/_work/run.json",
+        "sha256": "d3de65b4bb51759e624771f4c246d2c1e483016f0a05fd181681b972d2a29797",
+        "size_bytes": 2903
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-004/spec.json",
+        "sha256": "7760d6353d8a448c1ec41ec658d1c83811a9f87fe8c408bdbf1a53901984327c",
+        "size_bytes": 901
+      },
+      "verdict": "accepted_rigid_motion_program_fallback_model_off"
+    },
+    {
+      "case_id": "CHEM-01",
+      "experiment_id": "EXP-P5-20260729-005",
+      "motion_class": "liquid_mixing",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-005/review.json",
+        "sha256": "0195911c3c106beff280aa6c13d0576e6ada6dfe8540aad5dc95299686061672",
+        "size_bytes": 1801
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-005/_work/run.json",
+        "sha256": "6dc4fe6f7e7246f35e21f5dbafa599524da50a0f75e6e64165f9490e3d587174",
+        "size_bytes": 12299
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-005/spec.json",
+        "sha256": "0804b75503b7db66f1b7d99015a8e29ce6bf5557cbb0a7ae760a118051e1070d",
+        "size_bytes": 3218
+      },
+      "verdict": "rejected_liquid_color_mass_grows_before_dissipation"
+    },
+    {
+      "case_id": "CHEM-01",
+      "experiment_id": "EXP-P5-20260729-006",
+      "motion_class": "liquid_mixing",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-006/review.json",
+        "sha256": "7d5aaccc93254b39ae8763a4ff604b94f2ffb977c8e60176c8523e495d8c23dc",
+        "size_bytes": 1882
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-006/_work/run.json",
+        "sha256": "88468f21dd78c4aa8bb03e3d27d2fccd886de303da2bb042758cfd3eed8bc099",
+        "size_bytes": 8985
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-006/spec.json",
+        "sha256": "6120d38d3c82a751555e1ebf6250a673a8906468b65c32f57b45f4ed2e75c9fb",
+        "size_bytes": 3262
+      },
+      "verdict": "rejected_liquid_semantics_after_budget_exhausted"
+    },
+    {
+      "case_id": "CHEM-01",
+      "experiment_id": "EXP-P5-20260729-007",
+      "motion_class": "liquid_mixing",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-007/review.json",
+        "sha256": "d0dfb1b14b9c6c4624654df33311f59693ad67c05aec99bc7d216bf477d5c280",
+        "size_bytes": 1944
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-007/_work/run.json",
+        "sha256": "2a7c51b78e0d58d8e6f74a2e7efd93f787320b7994f5c4d9a86cc5dfac41bba9",
+        "size_bytes": 8466
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-007/spec.json",
+        "sha256": "c2218e9c1823fa64fbaea723369c644b16cedbb4dd0dc59e7032d38b3c5aa74d",
+        "size_bytes": 952
+      },
+      "verdict": "accepted_liquid_mixing_program_scalar_field_model_off"
+    },
+    {
+      "case_id": "BIO-01",
+      "experiment_id": "EXP-P5-20260729-008",
+      "motion_class": "object_division",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-008/review.json",
+        "sha256": "f73038fc2ea4538d5685d31eabc83702c545bffcd03900ad491c82da6e90e818",
+        "size_bytes": 1886
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-008/_work/run.json",
+        "sha256": "32b274f80276cf77e17c33ac099c8e664ebab64636e70c57573040fb1e1a1640",
+        "size_bytes": 40534
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-008/spec.json",
+        "sha256": "94882fbc38e7b651324b8216bf02367310acf6e93b2c47830891cc5580c1a122",
+        "size_bytes": 3461
+      },
+      "verdict": "rejected_object_division_collapses_parent_identities"
+    },
+    {
+      "case_id": "BIO-01",
+      "experiment_id": "EXP-P5-20260729-009",
+      "motion_class": "object_division",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-009/review.json",
+        "sha256": "ca6824a899431c9fe5fbd6378f3590a71664c780cfc196d465be23ec31a5b143",
+        "size_bytes": 2014
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-009/_work/run.json",
+        "sha256": "077c9e05f5c3cead3f2381d0b63c357e71a7f8aff0e00dabd948d6c8ece385c0",
+        "size_bytes": 314086
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-009/spec.json",
+        "sha256": "4c85d8955723f2b0f822f98d6ac13919ace29863ee38b6c63fb4345dce061222",
+        "size_bytes": 3438
+      },
+      "verdict": "accepted_object_division_motion_smoke_with_identity_limit"
+    },
+    {
+      "case_id": "GEO-01",
+      "experiment_id": "EXP-P5-20260729-010",
+      "motion_class": "boundary_topology_change",
+      "review": {
+        "path": "phase5_experiments/EXP-P5-20260729-010/review.json",
+        "sha256": "d4e54cb7c72b4dacd2e20705e05a41e811f4d3a611a9cef5f6ec694981e22611",
+        "size_bytes": 1935
+      },
+      "run": {
+        "path": "output/phase-5/experiments/EXP-P5-20260729-010/_work/run.json",
+        "sha256": "4ab0ccf652c62b1d5bfa186950728f3e4461567c99d404707611d0c9b0022866",
+        "size_bytes": 39609
+      },
+      "spec": {
+        "path": "phase5_experiments/EXP-P5-20260729-010/spec.json",
+        "sha256": "3720e2b9ec3f83c31340bbf2177fed5a9521c253b2a3db5e4b9fa1c49ee553b0",
+        "size_bytes": 3533
+      },
+      "verdict": "accepted_boundary_topology_change_after_program_raster_fix"
+    }
+  ],
+  "known_release_blockers": [
+    "video_prompt_token_integrity_not_exposed_by_comfyui_api"
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 8
+  },
+  "motion_classes_passed": 5,
+  "motion_classes_total": 5,
+  "motion_status": [
+    {
+      "case_id": "MATH-02",
+      "motion_class": "rigid_motion",
+      "status": "passed"
+    },
+    {
+      "case_id": "PHYS-01",
+      "motion_class": "continuous_field_propagation",
+      "status": "passed"
+    },
+    {
+      "case_id": "CHEM-01",
+      "motion_class": "liquid_mixing",
+      "status": "passed"
+    },
+    {
+      "case_id": "BIO-01",
+      "motion_class": "object_division",
+      "status": "passed"
+    },
+    {
+      "case_id": "GEO-01",
+      "motion_class": "boundary_topology_change",
+      "status": "passed"
+    }
+  ],
+  "phase": 5,
+  "phase_complete": true,
+  "report": {
+    "path": "report.html",
+    "sha256": "dc91e1af8be78795348e81adcb2070eff538400cf5c9e1578d0927a50c33cfd5",
+    "size_bytes": 48888
+  },
+  "schema_version": "1.0",
+  "sources": {
+    "experiment_cli": {
+      "path": "phase5_experiment.py",
+      "sha256": "c7ce26744592191ba22ad133e568416ec64ad7794977fec2ce7c10d4a90ad0cd"
+    },
+    "generic_ltx_runner": {
+      "path": "framework/ltx_flf.py",
+      "sha256": "e57cdd27ec19b6c851c65442466e671c6e682b95c26325e0a3f98b5c7dec78ee"
+    },
+    "phase5_builder": {
+      "path": "phase5.py",
+      "sha256": "6ddc3ad567fac9768c087b98f60cb94d31692eb2600507acb744bbff125ca3f4"
+    },
+    "program_fallback_cli": {
+      "path": "phase5_program_fallback.py",
+      "sha256": "b2e3d14cc0c072795ee8c5ab5365ed63e0b7078a4eb97001eb342b33f01f1949"
+    },
+    "program_video_fallback": {
+      "path": "framework/program_video.py",
+      "sha256": "d186e0efb2fde846bef879e89aa68ec0494f97a3bce87377a56c33842ada1fad"
+    },
+    "regression_policy": {
+      "path": "protocols/regression_policy.json",
+      "sha256": "e2f91acf4f9089993fb8f91c6d8b7e3d76b3250b7aa05cc5c0712e683fa6459f"
+    },
+    "remaining_program_plugins": {
+      "path": "cases/remaining_programs.py",
+      "sha256": "79804a88ed18f2ec23703a7c2691fba38ff0b33d751b039bd6e6b07ba0f08a8a"
+    },
+    "sentinel_program_plugins": {
+      "path": "cases/sentinel_programs.py",
+      "sha256": "aec47e1947d58ca7e1576caeb8f423563501cec6b785a4b2eb3506cc7e1cbd36"
+    }
+  },
+  "status": "passed"
+}

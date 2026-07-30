@@ -1,0 +1,250 @@
+{
+  "canvas": {
+    "coordinate_system": "pixel_xy_top_left",
+    "height": 360,
+    "width": 640
+  },
+  "case_id": "CHEM-02",
+  "layers": [
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/02_result/layers/chem02_dish_boundary.npy",
+        "sha256": "376d4e52ed006ba104e6565891b503f06cec09d6c32b056b96be358a43463873",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "防止器皿随蒸发改变。",
+      "layer_id": "chem02_dish_boundary",
+      "layer_type": "hard_boundary",
+      "meaning_zh": "固定器皿外形和镜头。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/chem02_dish_boundary_preview.png",
+        "sha256": "e58da387caaa16f0ac8f6ff1f098e6d442ac5186c675bc6f4c1b25d73336cc81",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1981,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "蒸发皿硬边界",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/02_result/layers/chem02_liquid_region.npy",
+        "sha256": "4c7d9bfc165b3be9cbaa990b9bc1d1747ef70e24b25bdd9eca3a42b17b925c37",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "限定液体材质和液面位置。",
+      "layer_id": "chem02_liquid_region",
+      "layer_type": "region",
+      "meaning_zh": "液面以下仍由溶液占据的像素。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/chem02_liquid_region_preview.png",
+        "sha256": "8e141caffe2691b642e965b3202cdb3c3870fcf32a501ec9b74f59926f346c81",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1855,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "当前溶液区域",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "float32",
+        "encoding": "npy",
+        "path": "keyframes/02_result/layers/chem02_concentration.npy",
+        "sha256": "f68bbcaabae2162153987f54960a1653100f7c8e5cad594dde13a8401e95d9d2",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 921728,
+        "value_range": [
+          0.0,
+          0.85090852
+        ]
+      },
+      "final_role_zh": "控制阈值与成核时刻，不直接变成密集线稿。",
+      "layer_id": "chem02_concentration",
+      "layer_type": "scalar_field",
+      "meaning_zh": "由溶剂体积和守恒质量计算的连续浓度。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/chem02_concentration_preview.png",
+        "sha256": "375ccc84dcd31760c7cfc3337efbd1b2ff4f0ccbcbd99edc460dd73464ee1e29",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 11870,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "溶质浓度场",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "uint8",
+        "encoding": "npy",
+        "path": "keyframes/02_result/layers/chem02_crystal_region.npy",
+        "sha256": "09eb266343c38c2d5187a4d564ffdbb613e6947b5bb4ec07325a80ec194d72c3",
+        "shape": [
+          360,
+          640
+        ],
+        "size_bytes": 230528,
+        "value_range": [
+          0.0,
+          255.0
+        ]
+      },
+      "final_role_zh": "限定晶面材质只能进入四颗程序晶体内部。",
+      "layer_id": "chem02_crystal_region",
+      "layer_type": "region",
+      "meaning_zh": "每颗已成核晶体的程序轮廓并集，数量和位置来自稳定对象身份。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/chem02_crystal_region_preview.png",
+        "sha256": "84aed95ec2bf2686363bb796f2935d3fdad9677dca03ef18ad06e0c6944a7c72",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 865,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "晶体占用区",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/02_result/layers/chem02_crystal_identity.json",
+        "sha256": "478ee1e4bb1e1b5e7d76c7909ea40fc9f817b7ecc9c3b42ea0a13938c2228d5d",
+        "shape": [
+          1
+        ],
+        "size_bytes": 589,
+        "value_range": null
+      },
+      "final_role_zh": "防止模型凭空增加或删除晶体。",
+      "layer_id": "chem02_crystal_identity",
+      "layer_type": "object_identity",
+      "meaning_zh": "记录每个晶核的稳定 ID、位置与质量。",
+      "model_input_policy": "allowed_by_route",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/chem02_crystal_identity_preview.png",
+        "sha256": "55efc57ada6ccb1bc2dff9c424d29798fd339f013a4ea7f327fc385c38186b65",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1601,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "晶体身份",
+      "used_as_model_input": false
+    },
+    {
+      "data": {
+        "dtype": "structured",
+        "encoding": "json",
+        "path": "keyframes/02_result/layers/chem-02_annotation.json",
+        "sha256": "fb1d12b68320ca7a4a4ce413426028bc3b10116a1f12a05c141ae434a0c8e115",
+        "shape": [
+          3
+        ],
+        "size_bytes": 791,
+        "value_range": null
+      },
+      "final_role_zh": "帮助解释机制，不输入图像模型。",
+      "layer_id": "chem-02_annotation",
+      "layer_type": "annotation",
+      "meaning_zh": "程序在写实底图之后叠加的重点箭头。",
+      "model_input_policy": "never",
+      "preview": {
+        "dtype": "uint8",
+        "encoding": "png",
+        "path": "keyframes/02_result/layers/chem-02_annotation_preview.png",
+        "sha256": "f18a50655d4797424b12bbf56c9e36b90de6252d3703b9d8963a14bdec72859e",
+        "shape": [
+          360,
+          640,
+          3
+        ],
+        "size_bytes": 1725,
+        "value_range": [
+          0,
+          255
+        ]
+      },
+      "source_zh": "由同一时刻的确定性机制状态直接计算，不由图片反推。",
+      "title_zh": "教学箭头",
+      "used_as_model_input": false
+    }
+  ],
+  "schema_version": "1.0",
+  "state_id": "02_result"
+}

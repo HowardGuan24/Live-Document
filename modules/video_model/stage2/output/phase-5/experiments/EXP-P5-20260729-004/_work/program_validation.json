@@ -1,0 +1,54 @@
+{
+  "case_id": "MATH-02",
+  "identity_check": {
+    "evidence": {
+      "identities_stable": true,
+      "maximum_side_length_error_px": 0.00010221,
+      "object_ids": [
+        "MATH-02-triangle-01",
+        "MATH-02-triangle-02",
+        "MATH-02-triangle-03",
+        "MATH-02-triangle-04"
+      ]
+    },
+    "name": "object_ids_and_polygon_side_lengths_are_rigid",
+    "passed": true
+  },
+  "mechanism_checks": [
+    {
+      "evidence": [
+        "MATH-02-triangle-01",
+        "MATH-02-triangle-02",
+        "MATH-02-triangle-03",
+        "MATH-02-triangle-04"
+      ],
+      "name": "four_stable_triangle_identities",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "area_px2": 5400.0,
+        "side_lengths_px": [
+          90.0,
+          120.0,
+          150.0
+        ]
+      },
+      "name": "triangles_move_rigidly",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "a2_plus_b2": 22500.0,
+        "c2": 22500.0
+      },
+      "name": "pythagorean_remaining_area",
+      "passed": true
+    }
+  ],
+  "progress_range": [
+    0.0,
+    0.3333333333333333
+  ],
+  "schema_version": "1.0"
+}

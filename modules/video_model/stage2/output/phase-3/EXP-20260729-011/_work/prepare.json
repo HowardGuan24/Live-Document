@@ -1,0 +1,97 @@
+{
+  "case_id": "MATH-02",
+  "configurations": [
+    {
+      "configuration_id": "t2i_centered_hard_boundary",
+      "control_route": "centered_hard_boundary",
+      "controlnet_conditioning_scale": 0.85,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "002b5f47481c0e6eb5b13031bb4df4891c8efef69df7460eb2f3030c123e2d58",
+    "size_bytes": 920
+  },
+  "controls": {
+    "centered_hard_boundary": {
+      "edge_fraction": 0.02890184,
+      "path": "controls/centered_hard_boundary.png",
+      "sha256": "0b20b48ffbf190ed633bfb54d857cf799e2777e8832a6fc31d6c9d6f14e5f970",
+      "size_bytes": 4276
+    },
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.01984829,
+      "path": "controls/dense_canny.png",
+      "sha256": "36509cd37b81f43b87b332d7d94b1b23af425f16d9115c8a8fcdc8ea51db1dcd",
+      "size_bytes": 5292
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.01299879,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "ca80bc86dbd54fcf235566b31fc7a4b66023bed9152f679c4d8529b649a7e9c4",
+      "size_bytes": 3655
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.02529399,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "a81ca510f0454116f359d8234a4311f32a8f84fff2927366538eeda404918a8d",
+      "size_bytes": 4232
+    }
+  },
+  "experiment_id": "EXP-20260729-011",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "0a022b2e9d64cbdda83ecaec22abf5f5a7796733e40ce34e8e8eac4b5bffe111",
+    "size_bytes": 245,
+    "text": "extra pieces, missing piece, five triangles, curved edges, gaps, overlaps, distorted square, tangram animals, raised blocks, perspective view, hands, numbers, letters, formulas, text, labels, arrows, user interface, watermark, plastic toy, blur"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "c5f7545e9b44d04c50a5fd4bd8b246241a62bbd9d98483924200879b0f7e9c9b",
+    "size_bytes": 359,
+    "text": "Top-down studio photograph of one physical Pythagorean dissection puzzle inside a square frame, locked camera, four colored matte wooden congruent right-triangle pieces, soft shadows, off-white tabletop, pieces arranged around two uncovered square regions for a squared plus b squared, exactly four triangles, straight edges, unchanged square layout, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "four colored matte wooden congruent right-triangle pieces, soft shadows, off-white tabletop",
+    "must_preserve": "exactly four triangles, straight edges, unchanged square layout, no text",
+    "scene_identity": "Top-down studio photograph of one physical Pythagorean dissection puzzle inside a square frame, locked camera",
+    "state_delta": "pieces arranged around two uncovered square regions for a squared plus b squared"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "141324860996ebe3aaf940c857e2009423b7c28db196a65d01bd24a07e196ad5",
+      "size_bytes": 21463
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/MATH-02/keyframes/03_end/clean.png",
+      "sha256": "1bb18f3c800e022ffc8646aa2886fa9d6251a25eeb23bb78483ebd4b2ab048cb"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/MATH-02/keyframes/03_end/semantic_layers.json",
+      "sha256": "aec5e81bd5cb90addf880db431c847f2613b7b5777839d6c628f2e908edcce9f"
+    }
+  }
+}
