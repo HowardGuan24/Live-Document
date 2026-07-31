@@ -1,0 +1,438 @@
+{
+  "anchor": {
+    "prepared": {
+      "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/frozen_anchor.png",
+      "sha256": "80017cba9a1a193964fd54e8cdcd83581c52767a669181e1ef8e1eae357c7ca9",
+      "size_bytes": 303645
+    },
+    "preprocess": {
+      "mode": "resize",
+      "size": [
+        640,
+        360
+      ]
+    },
+    "source": {
+      "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-012/raw/t2i_wood_material_donor/seed_3101.png",
+      "sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+      "size_bytes": 770794
+    },
+    "source_sha256_before_preprocess": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be"
+  },
+  "base_canvas": {
+    "prepared": {
+      "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/frozen_base_canvas.png",
+      "sha256": "80017cba9a1a193964fd54e8cdcd83581c52767a669181e1ef8e1eae357c7ca9",
+      "size_bytes": 303645
+    },
+    "spec": {
+      "mode": "anchor"
+    }
+  },
+  "case_id": "MATH-02",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "operator_ids": [
+    "remaining_area_inlay",
+    "triangle_material_binding"
+  ],
+  "plan_id": "S3.4-MATH-02-V1",
+  "records": [
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 40.70429874,
+        "mutable_area_px": 66725,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/mutable/00_start.png",
+        "sha256": "c20e75e7fc7d93183d23e3b0ce3271d6d5d766e550e4ff0d98f6ba990b2a71f1",
+        "size_bytes": 2014
+      },
+      "operator_records": [
+        {
+          "mean_abs_change_from_previous_0_255": 5.58675909,
+          "operator_id": "remaining_area_inlay",
+          "operator_type": "region_fill",
+          "region_area_px": 44521,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/00_start/layers/math02_remaining_region.npy",
+            "sha256": "553a5d3abfaf2275a388028082bb60119f3428ed1b6f34b4df72049e51c4d182",
+            "size_bytes": 230528
+          }
+        },
+        {
+          "area_relative_error": 0.0,
+          "expected_area_px2": 21600.0,
+          "geometry_area_px2": 21600.0,
+          "interior_overlap_area_px": 0,
+          "material_coordinate_system": "object_local_barycentric",
+          "mean_abs_change_from_previous_0_255": 6.20155954,
+          "object_count": 4,
+          "object_ids": [
+            "MATH-02-triangle-01",
+            "MATH-02-triangle-02",
+            "MATH-02-triangle-03",
+            "MATH-02-triangle-04"
+          ],
+          "object_local_luminance_samples": {
+            "MATH-02-triangle-01": [
+              91.931244,
+              94.026375,
+              89.521271,
+              85.079254,
+              95.952927,
+              95.32019
+            ],
+            "MATH-02-triangle-02": [
+              132.257965,
+              135.272141,
+              128.790833,
+              122.400284,
+              138.043823,
+              137.133469
+            ],
+            "MATH-02-triangle-03": [
+              104.017433,
+              106.387993,
+              101.290627,
+              96.264557,
+              108.567848,
+              107.851913
+            ],
+            "MATH-02-triangle-04": [
+              83.109825,
+              85.003876,
+              80.931091,
+              76.915268,
+              86.745605,
+              86.173538
+            ]
+          },
+          "operator_id": "triangle_material_binding",
+          "operator_type": "object_material",
+          "rendered_area_px": 22204,
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/00_start/layers/math02_piece_identity.json",
+            "sha256": "e5640c9ed45e2c05da382fae52d873f1bdb3b236f6be059910746eaeda8b22d7",
+            "size_bytes": 1671
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/frames/00_start.png",
+        "sha256": "a9864ba19c1de7925646e051dd4b59c53e73dc201f8097485840491594d6df1a",
+        "size_bytes": 294379
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/00_start/semantic_layers.json",
+        "sha256": "a1abed5a57ef323445184b3014de2f71979bc50b4017fdc06dcc3bb0033ad14d",
+        "size_bytes": 6462
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/00_start/state.json",
+        "sha256": "4519f8b0d1a6315bd9877055a91a8e6d61685a42e03f814192b13a8190d53b6f",
+        "size_bytes": 1855
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 46.26774631,
+        "mutable_area_px": 44521,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/mutable/01_mechanism.png",
+        "sha256": "8c696123c2493a4594d735b679d14da931eff6c5ea6d3c92c21ae6a751fc658a",
+        "size_bytes": 719
+      },
+      "operator_records": [
+        {
+          "mean_abs_change_from_previous_0_255": 2.65138888,
+          "operator_id": "remaining_area_inlay",
+          "operator_type": "region_fill",
+          "region_area_px": 22321,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/01_mechanism/layers/math02_remaining_region.npy",
+            "sha256": "6010659c8642e85ba70d672354496e34bfac7ea4bf83811953ad86ac1a7ceaaf",
+            "size_bytes": 230528
+          }
+        },
+        {
+          "area_relative_error": 0.0,
+          "expected_area_px2": 21600.0,
+          "geometry_area_px2": 21600.0,
+          "interior_overlap_area_px": 0,
+          "material_coordinate_system": "object_local_barycentric",
+          "mean_abs_change_from_previous_0_255": 6.28964758,
+          "object_count": 4,
+          "object_ids": [
+            "MATH-02-triangle-01",
+            "MATH-02-triangle-02",
+            "MATH-02-triangle-03",
+            "MATH-02-triangle-04"
+          ],
+          "object_local_luminance_samples": {
+            "MATH-02-triangle-01": [
+              91.93119,
+              94.026375,
+              89.52124,
+              85.079361,
+              95.952866,
+              95.320152
+            ],
+            "MATH-02-triangle-02": [
+              132.257919,
+              135.272232,
+              128.790833,
+              122.400505,
+              138.04393,
+              137.133484
+            ],
+            "MATH-02-triangle-03": [
+              104.017403,
+              106.388,
+              101.290581,
+              96.264664,
+              108.56778,
+              107.851982
+            ],
+            "MATH-02-triangle-04": [
+              83.109779,
+              85.003876,
+              80.931061,
+              76.915268,
+              86.745529,
+              86.173523
+            ]
+          },
+          "operator_id": "triangle_material_binding",
+          "operator_type": "object_material",
+          "rendered_area_px": 22204,
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/01_mechanism/layers/math02_piece_identity.json",
+            "sha256": "01a7d30ceb723f9187c48f3c12d3436afc11a1e98b3fc22660e9391de7b20ad6",
+            "size_bytes": 1675
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/frames/01_mechanism.png",
+        "sha256": "2a451c25c52326a90af98a9941b1302e485a97eefdbe98d11d3763bade8dc164",
+        "size_bytes": 308382
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "f0b69a143390f7ffb063ac10252325d3a45cd6f639fee7b4f1f101bf996fcbe8",
+        "size_bytes": 6506
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/01_mechanism/state.json",
+        "sha256": "568c555531bfdea2e2870f35d65c5148b14f151dcee54c34235fe4e0f5497dee",
+        "size_bytes": 1865
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 40.70429874,
+        "mutable_area_px": 66725,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/mutable/02_result.png",
+        "sha256": "c20e75e7fc7d93183d23e3b0ce3271d6d5d766e550e4ff0d98f6ba990b2a71f1",
+        "size_bytes": 2014
+      },
+      "operator_records": [
+        {
+          "mean_abs_change_from_previous_0_255": 5.58675909,
+          "operator_id": "remaining_area_inlay",
+          "operator_type": "region_fill",
+          "region_area_px": 44521,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/02_result/layers/math02_remaining_region.npy",
+            "sha256": "553a5d3abfaf2275a388028082bb60119f3428ed1b6f34b4df72049e51c4d182",
+            "size_bytes": 230528
+          }
+        },
+        {
+          "area_relative_error": 0.0,
+          "expected_area_px2": 21600.0,
+          "geometry_area_px2": 21600.0,
+          "interior_overlap_area_px": 0,
+          "material_coordinate_system": "object_local_barycentric",
+          "mean_abs_change_from_previous_0_255": 6.20155954,
+          "object_count": 4,
+          "object_ids": [
+            "MATH-02-triangle-01",
+            "MATH-02-triangle-02",
+            "MATH-02-triangle-03",
+            "MATH-02-triangle-04"
+          ],
+          "object_local_luminance_samples": {
+            "MATH-02-triangle-01": [
+              91.931244,
+              94.026375,
+              89.521271,
+              85.079254,
+              95.952927,
+              95.32019
+            ],
+            "MATH-02-triangle-02": [
+              132.257965,
+              135.272141,
+              128.790833,
+              122.400284,
+              138.043823,
+              137.133469
+            ],
+            "MATH-02-triangle-03": [
+              104.017433,
+              106.387993,
+              101.290627,
+              96.264557,
+              108.567848,
+              107.851913
+            ],
+            "MATH-02-triangle-04": [
+              83.109825,
+              85.003876,
+              80.931091,
+              76.915268,
+              86.745605,
+              86.173538
+            ]
+          },
+          "operator_id": "triangle_material_binding",
+          "operator_type": "object_material",
+          "rendered_area_px": 22204,
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/02_result/layers/math02_piece_identity.json",
+            "sha256": "e5640c9ed45e2c05da382fae52d873f1bdb3b236f6be059910746eaeda8b22d7",
+            "size_bytes": 1671
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/frames/02_result.png",
+        "sha256": "a9864ba19c1de7925646e051dd4b59c53e73dc201f8097485840491594d6df1a",
+        "size_bytes": 294379
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/02_result/semantic_layers.json",
+        "sha256": "8fcadd483db8663f24dc3b9d172bb09aa847e4974368d9ce1af59901fd9883ed",
+        "size_bytes": 6473
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/02_result/state.json",
+        "sha256": "783de67d850e921e32b2acbcebd435a2a6e6440e53b13a4a0f45ebb74886ec59",
+        "size_bytes": 1867
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 47.39974394,
+        "mutable_area_px": 44521,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/mutable/03_end.png",
+        "sha256": "8c696123c2493a4594d735b679d14da931eff6c5ea6d3c92c21ae6a751fc658a",
+        "size_bytes": 719
+      },
+      "operator_records": [
+        {
+          "mean_abs_change_from_previous_0_255": 2.78076506,
+          "operator_id": "remaining_area_inlay",
+          "operator_type": "region_fill",
+          "region_area_px": 22500,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/03_end/layers/math02_remaining_region.npy",
+            "sha256": "795d928cb8c2d951b1a026284a0b5f3757b8fd1f1a18cc4de891de6f7f1fb0e6",
+            "size_bytes": 230528
+          }
+        },
+        {
+          "area_relative_error": 0.0,
+          "expected_area_px2": 21600.0,
+          "geometry_area_px2": 21600.0,
+          "interior_overlap_area_px": 0,
+          "material_coordinate_system": "object_local_barycentric",
+          "mean_abs_change_from_previous_0_255": 6.37861109,
+          "object_count": 4,
+          "object_ids": [
+            "MATH-02-triangle-01",
+            "MATH-02-triangle-02",
+            "MATH-02-triangle-03",
+            "MATH-02-triangle-04"
+          ],
+          "object_local_luminance_samples": {
+            "MATH-02-triangle-01": [
+              91.931206,
+              94.026421,
+              89.521294,
+              85.079422,
+              95.953011,
+              95.320183
+            ],
+            "MATH-02-triangle-02": [
+              132.25798,
+              135.27211,
+              128.790833,
+              122.400192,
+              138.04393,
+              137.133469
+            ],
+            "MATH-02-triangle-03": [
+              104.017403,
+              106.387993,
+              101.290581,
+              96.264664,
+              108.56778,
+              107.851898
+            ],
+            "MATH-02-triangle-04": [
+              83.109779,
+              85.003876,
+              80.931061,
+              76.915352,
+              86.745529,
+              86.173538
+            ]
+          },
+          "operator_id": "triangle_material_binding",
+          "operator_type": "object_material",
+          "rendered_area_px": 22204,
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/03_end/layers/math02_piece_identity.json",
+            "sha256": "48851844ad6138a631ba9b3042e31ff592be39b2fe7cd812f25daa5d3f40f647",
+            "size_bytes": 1676
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/regressions/MATH-02/frames/03_end.png",
+        "sha256": "33139cdec9701de334d2c4977de053b16c667615a032d139439be5155c5938f8",
+        "size_bytes": 305059
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/03_end/semantic_layers.json",
+        "sha256": "aec5e81bd5cb90addf880db431c847f2613b7b5777839d6c628f2e908edcce9f",
+        "size_bytes": 6440
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/03_end/state.json",
+        "sha256": "62503a1cbbdd6880e51758b806e963924798c174272f892ad31c0ee4a525819b",
+        "size_bytes": 1864
+      }
+    }
+  ],
+  "route_contract": "B_frozen_anchor_plus_program_state",
+  "schema_version": "1.0"
+}

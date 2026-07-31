@@ -1,0 +1,71 @@
+{
+  "appearance_profile": "wood_geometry",
+  "case_id": "MATH-02",
+  "compiler_id": "stage3_prompt_compiler_v2",
+  "input_signatures": {
+    "contract_sha256": "ccd999c9f4f0f87b2583dcef1a774c91bae34e373f5c90fec82c8ce1742debc1",
+    "lexicon_sha256": "a74a6cbd3fb86b67ad5a39eb41f294c73c5f3c83cc92cd5a6fb45ae97e73b53a",
+    "visual_target_sha256": "d63bea76e3ed97bf7761ef9844ee14870fbeacac4b0550571161c7106ae6a0da"
+  },
+  "negative_prompt": "changed geometry, extra object, missing object, warped edge, future trace, text, label, plastic, blur, watermark",
+  "positive_prompt": "four congruent right-triangle wooden pieces, locked orthographic teaching camera, fine natural wood grain attached to each piece, small bevels, soft overhead studio light, show only the contracted program state, preserve every object, exact geometry, topology and locked camera",
+  "provenance": {
+    "camera": [
+      "input_contract.geometry_policy",
+      "prompt_lexicon.policy_camera@stage3_prompt_lexicon_v5"
+    ],
+    "material_and_light": [
+      "visual_target:VT-MATH-02-V1",
+      "prompt_lexicon.material_profiles.wood_geometry"
+    ],
+    "must_preserve": [
+      "input_contract.hard_gates",
+      "S3.2 selector failure pattern: object separation"
+    ],
+    "negative": [
+      "visual_target:VT-MATH-02-V1.negative_refs",
+      "prompt_lexicon.negative_profiles.preserve_exact"
+    ],
+    "scene_identity": [
+      "input_contract.semantic_exports.control_object_requirements",
+      "prompt_lexicon.object_phrases@stage3_prompt_lexicon_v5"
+    ],
+    "state": [
+      "input_contract.keyframes[00_start]",
+      "case hard gates"
+    ]
+  },
+  "schema_version": "1.0",
+  "slots": {
+    "camera": "locked orthographic teaching camera",
+    "material_and_light": "fine natural wood grain attached to each piece, small bevels, soft overhead studio light",
+    "must_preserve": "preserve every object, exact geometry, topology and locked camera",
+    "scene_identity": "four congruent right-triangle wooden pieces",
+    "state": "show only the contracted program state"
+  },
+  "token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 27,
+        "tokenizer_2": 27
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 56,
+        "tokenizer_2": 56
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "visual_target_status": "accepted_project_baseline"
+}

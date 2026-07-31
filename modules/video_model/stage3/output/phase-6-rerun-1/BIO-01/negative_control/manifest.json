@@ -1,0 +1,1179 @@
+{
+  "anchor": {
+    "prepared": {
+      "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/frozen_anchor.png",
+      "sha256": "99a18b5bdbc723a62bd53ba2db9c26e84324e1926f6c8ef171ab09f5e0d5d1e3",
+      "size_bytes": 353866
+    },
+    "preprocess": {
+      "mode": "resize",
+      "size": [
+        640,
+        360
+      ]
+    },
+    "source": {
+      "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+      "sha256": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c",
+      "size_bytes": 919365
+    },
+    "source_sha256_before_preprocess": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c"
+  },
+  "base_canvas": {
+    "prepared": {
+      "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/frozen_base_canvas.png",
+      "sha256": "b161d3c685a14211e3418e82391759e4546bb624ce88eb07ad712f0751958b2c",
+      "size_bytes": 11115
+    },
+    "spec": {
+      "mode": "constant_with_low_frequency_variation",
+      "rgb": [
+        22,
+        31,
+        41
+      ],
+      "variation_amplitude": 2.0,
+      "variation_period_x_px": 39.0,
+      "variation_period_y_px": 27.0
+    }
+  },
+  "case_id": "BIO-01",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "operator_ids": [
+    "cell_material",
+    "chromosome_lineage"
+  ],
+  "plan_id": "S3.6R1-BIO-01-RAW-UNDERLAY",
+  "records": [
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 99.49277178,
+        "mutable_area_px": 79019,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/mutable/00_start.png",
+        "sha256": "5c05d9abcdcbd7cd1606eac85eaa0300cb374a16eba0deaf3159cfb52086c365",
+        "size_bytes": 2030
+      },
+      "operator_records": [
+        {
+          "appearance_source_usage": "full_rgb_underlay",
+          "connected_component_count": 1,
+          "mean_abs_change_from_previous_0_255": 33.73843002,
+          "operator_id": "cell_material",
+          "operator_type": "region_material",
+          "region_area_px": 73995,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/00_start/layers/bio01_cell_region.npy",
+            "sha256": "127b5bb8d72a6dc73aa9b56e93b90e25843309a27ef7810349ba8078ab2a835b",
+            "size_bytes": 230528
+          },
+          "transfer_mode": "raw_underlay"
+        },
+        {
+          "children_per_parent": {},
+          "destination_counts": {
+            "unassigned": 6
+          },
+          "lineage_unit_count": 12,
+          "mean_abs_change_from_previous_0_255": 0.70074189,
+          "object_count": 6,
+          "object_ids": [
+            "BIO-01-chromosome-01",
+            "BIO-01-chromosome-02",
+            "BIO-01-chromosome-03",
+            "BIO-01-chromosome-04",
+            "BIO-01-chromosome-05",
+            "BIO-01-chromosome-06"
+          ],
+          "operator_id": "chromosome_lineage",
+          "operator_type": "identity_stroke",
+          "projected_items": [
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-01",
+              "parent_id": null,
+              "points": [
+                [
+                  262.0,
+                  120.0
+                ],
+                [
+                  270.0,
+                  132.0
+                ],
+                [
+                  278.0,
+                  120.0
+                ],
+                [
+                  270.0,
+                  132.0
+                ],
+                [
+                  262.0,
+                  144.0
+                ],
+                [
+                  270.0,
+                  132.0
+                ],
+                [
+                  278.0,
+                  144.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-02",
+              "parent_id": null,
+              "points": [
+                [
+                  342.0,
+                  116.0
+                ],
+                [
+                  350.0,
+                  128.0
+                ],
+                [
+                  358.0,
+                  116.0
+                ],
+                [
+                  350.0,
+                  128.0
+                ],
+                [
+                  342.0,
+                  140.0
+                ],
+                [
+                  350.0,
+                  128.0
+                ],
+                [
+                  358.0,
+                  140.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-03",
+              "parent_id": null,
+              "points": [
+                [
+                  286.0,
+                  168.0
+                ],
+                [
+                  294.0,
+                  180.0
+                ],
+                [
+                  302.0,
+                  168.0
+                ],
+                [
+                  294.0,
+                  180.0
+                ],
+                [
+                  286.0,
+                  192.0
+                ],
+                [
+                  294.0,
+                  180.0
+                ],
+                [
+                  302.0,
+                  192.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-04",
+              "parent_id": null,
+              "points": [
+                [
+                  348.0,
+                  174.0
+                ],
+                [
+                  356.0,
+                  186.0
+                ],
+                [
+                  364.0,
+                  174.0
+                ],
+                [
+                  356.0,
+                  186.0
+                ],
+                [
+                  348.0,
+                  198.0
+                ],
+                [
+                  356.0,
+                  186.0
+                ],
+                [
+                  364.0,
+                  198.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-05",
+              "parent_id": null,
+              "points": [
+                [
+                  270.0,
+                  216.0
+                ],
+                [
+                  278.0,
+                  228.0
+                ],
+                [
+                  286.0,
+                  216.0
+                ],
+                [
+                  278.0,
+                  228.0
+                ],
+                [
+                  270.0,
+                  240.0
+                ],
+                [
+                  278.0,
+                  228.0
+                ],
+                [
+                  286.0,
+                  240.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-06",
+              "parent_id": null,
+              "points": [
+                [
+                  334.0,
+                  220.0
+                ],
+                [
+                  342.0,
+                  232.0
+                ],
+                [
+                  350.0,
+                  220.0
+                ],
+                [
+                  342.0,
+                  232.0
+                ],
+                [
+                  334.0,
+                  244.0
+                ],
+                [
+                  342.0,
+                  232.0
+                ],
+                [
+                  350.0,
+                  244.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/00_start/layers/bio01_chromosome_identity.json",
+            "sha256": "de4b78166392d14521c4bb5c0df5e619ad0b0b4c84c8be7d6dc2ee1658e3b06c",
+            "size_bytes": 4441
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/frames/00_start.png",
+        "sha256": "a1958f000c3a38a463d9c39bb4eb4eb4f6a3d5d6c62bb87559ad5579b45fe552",
+        "size_bytes": 154740
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/00_start/semantic_layers.json",
+        "sha256": "f09ff1f6bd17a13f913ac40dcf5a0863fdbf818355efe6467ed3dda34397947a",
+        "size_bytes": 5161
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/00_start/state.json",
+        "sha256": "de54ec2b2bf2b4dfb269463e1e314285ea4f5728db3b604a9905683b23092dd8",
+        "size_bytes": 1460
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 99.57672627,
+        "mutable_area_px": 79019,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/mutable/01_mechanism.png",
+        "sha256": "5c05d9abcdcbd7cd1606eac85eaa0300cb374a16eba0deaf3159cfb52086c365",
+        "size_bytes": 2030
+      },
+      "operator_records": [
+        {
+          "appearance_source_usage": "full_rgb_underlay",
+          "connected_component_count": 1,
+          "mean_abs_change_from_previous_0_255": 33.73843002,
+          "operator_id": "cell_material",
+          "operator_type": "region_material",
+          "region_area_px": 73995,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/01_mechanism/layers/bio01_cell_region.npy",
+            "sha256": "127b5bb8d72a6dc73aa9b56e93b90e25843309a27ef7810349ba8078ab2a835b",
+            "size_bytes": 230528
+          },
+          "transfer_mode": "raw_underlay"
+        },
+        {
+          "children_per_parent": {},
+          "destination_counts": {
+            "unassigned": 6
+          },
+          "lineage_unit_count": 12,
+          "mean_abs_change_from_previous_0_255": 0.44961968,
+          "object_count": 6,
+          "object_ids": [
+            "BIO-01-chromosome-01",
+            "BIO-01-chromosome-02",
+            "BIO-01-chromosome-03",
+            "BIO-01-chromosome-04",
+            "BIO-01-chromosome-05",
+            "BIO-01-chromosome-06"
+          ],
+          "operator_id": "chromosome_lineage",
+          "operator_type": "identity_stroke",
+          "projected_items": [
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-01",
+              "parent_id": null,
+              "points": [
+                [
+                  312.0,
+                  103.0
+                ],
+                [
+                  320.0,
+                  115.0
+                ],
+                [
+                  328.0,
+                  103.0
+                ],
+                [
+                  320.0,
+                  115.0
+                ],
+                [
+                  312.0,
+                  127.0
+                ],
+                [
+                  320.0,
+                  115.0
+                ],
+                [
+                  328.0,
+                  127.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-02",
+              "parent_id": null,
+              "points": [
+                [
+                  312.0,
+                  129.0
+                ],
+                [
+                  320.0,
+                  141.0
+                ],
+                [
+                  328.0,
+                  129.0
+                ],
+                [
+                  320.0,
+                  141.0
+                ],
+                [
+                  312.0,
+                  153.0
+                ],
+                [
+                  320.0,
+                  141.0
+                ],
+                [
+                  328.0,
+                  153.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-03",
+              "parent_id": null,
+              "points": [
+                [
+                  312.0,
+                  155.0
+                ],
+                [
+                  320.0,
+                  167.0
+                ],
+                [
+                  328.0,
+                  155.0
+                ],
+                [
+                  320.0,
+                  167.0
+                ],
+                [
+                  312.0,
+                  179.0
+                ],
+                [
+                  320.0,
+                  167.0
+                ],
+                [
+                  328.0,
+                  179.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-04",
+              "parent_id": null,
+              "points": [
+                [
+                  312.0,
+                  181.0
+                ],
+                [
+                  320.0,
+                  193.0
+                ],
+                [
+                  328.0,
+                  181.0
+                ],
+                [
+                  320.0,
+                  193.0
+                ],
+                [
+                  312.0,
+                  205.0
+                ],
+                [
+                  320.0,
+                  193.0
+                ],
+                [
+                  328.0,
+                  205.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-05",
+              "parent_id": null,
+              "points": [
+                [
+                  312.0,
+                  207.0
+                ],
+                [
+                  320.0,
+                  219.0
+                ],
+                [
+                  328.0,
+                  207.0
+                ],
+                [
+                  320.0,
+                  219.0
+                ],
+                [
+                  312.0,
+                  231.0
+                ],
+                [
+                  320.0,
+                  219.0
+                ],
+                [
+                  328.0,
+                  231.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            },
+            {
+              "destination": "unassigned",
+              "object_id": "BIO-01-chromosome-06",
+              "parent_id": null,
+              "points": [
+                [
+                  312.0,
+                  233.0
+                ],
+                [
+                  320.0,
+                  245.0
+                ],
+                [
+                  328.0,
+                  233.0
+                ],
+                [
+                  320.0,
+                  245.0
+                ],
+                [
+                  312.0,
+                  257.0
+                ],
+                [
+                  320.0,
+                  245.0
+                ],
+                [
+                  328.0,
+                  257.0
+                ]
+              ],
+              "style_key": "replicated_x"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/01_mechanism/layers/bio01_chromosome_identity.json",
+            "sha256": "a01ba9800cb10c55064a5d33fe494a0b91f2ea41655a5b429d8cea717a7f5a4a",
+            "size_bytes": 4441
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/frames/01_mechanism.png",
+        "sha256": "5e63376d70df05f8c048d3fd3f09984c4fba6e2026487ebfe6f8008af7989283",
+        "size_bytes": 155558
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "4c9526ff08ca506a32de4f3b0258467ac8916d4c4a7f4403dd3dfc755965fae1",
+        "size_bytes": 5197
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/01_mechanism/state.json",
+        "sha256": "7147be795a2db69f445410eeb60876470ad5fff3ae13af7622edf29586cf7203",
+        "size_bytes": 1465
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 99.41439822,
+        "mutable_area_px": 79019,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/mutable/02_result.png",
+        "sha256": "5c05d9abcdcbd7cd1606eac85eaa0300cb374a16eba0deaf3159cfb52086c365",
+        "size_bytes": 2030
+      },
+      "operator_records": [
+        {
+          "appearance_source_usage": "full_rgb_underlay",
+          "connected_component_count": 1,
+          "mean_abs_change_from_previous_0_255": 33.73843002,
+          "operator_id": "cell_material",
+          "operator_type": "region_material",
+          "region_area_px": 73995,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/layers/bio01_cell_region.npy",
+            "sha256": "127b5bb8d72a6dc73aa9b56e93b90e25843309a27ef7810349ba8078ab2a835b",
+            "size_bytes": 230528
+          },
+          "transfer_mode": "raw_underlay"
+        },
+        {
+          "children_per_parent": {
+            "BIO-01-chromosome-01": 2,
+            "BIO-01-chromosome-02": 2,
+            "BIO-01-chromosome-03": 2,
+            "BIO-01-chromosome-04": 2,
+            "BIO-01-chromosome-05": 2,
+            "BIO-01-chromosome-06": 2
+          },
+          "destination_counts": {
+            "left": 6,
+            "right": 6
+          },
+          "lineage_unit_count": 12,
+          "mean_abs_change_from_previous_0_255": 0.65064031,
+          "object_count": 12,
+          "object_ids": [
+            "BIO-01-chromosome-01-A",
+            "BIO-01-chromosome-01-B",
+            "BIO-01-chromosome-02-A",
+            "BIO-01-chromosome-02-B",
+            "BIO-01-chromosome-03-A",
+            "BIO-01-chromosome-03-B",
+            "BIO-01-chromosome-04-A",
+            "BIO-01-chromosome-04-B",
+            "BIO-01-chromosome-05-A",
+            "BIO-01-chromosome-05-B",
+            "BIO-01-chromosome-06-A",
+            "BIO-01-chromosome-06-B"
+          ],
+          "operator_id": "chromosome_lineage",
+          "operator_type": "identity_stroke",
+          "projected_items": [
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-01-A",
+              "parent_id": "BIO-01-chromosome-01",
+              "points": [
+                [
+                  271.0,
+                  103.0
+                ],
+                [
+                  277.0,
+                  127.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-01-B",
+              "parent_id": "BIO-01-chromosome-01",
+              "points": [
+                [
+                  363.0,
+                  103.0
+                ],
+                [
+                  369.0,
+                  127.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-02-A",
+              "parent_id": "BIO-01-chromosome-02",
+              "points": [
+                [
+                  271.0,
+                  129.0
+                ],
+                [
+                  277.0,
+                  153.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-02-B",
+              "parent_id": "BIO-01-chromosome-02",
+              "points": [
+                [
+                  363.0,
+                  129.0
+                ],
+                [
+                  369.0,
+                  153.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-03-A",
+              "parent_id": "BIO-01-chromosome-03",
+              "points": [
+                [
+                  271.0,
+                  155.0
+                ],
+                [
+                  277.0,
+                  179.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-03-B",
+              "parent_id": "BIO-01-chromosome-03",
+              "points": [
+                [
+                  363.0,
+                  155.0
+                ],
+                [
+                  369.0,
+                  179.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-04-A",
+              "parent_id": "BIO-01-chromosome-04",
+              "points": [
+                [
+                  271.0,
+                  181.0
+                ],
+                [
+                  277.0,
+                  205.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-04-B",
+              "parent_id": "BIO-01-chromosome-04",
+              "points": [
+                [
+                  363.0,
+                  181.0
+                ],
+                [
+                  369.0,
+                  205.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-05-A",
+              "parent_id": "BIO-01-chromosome-05",
+              "points": [
+                [
+                  271.0,
+                  207.0
+                ],
+                [
+                  277.0,
+                  231.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-05-B",
+              "parent_id": "BIO-01-chromosome-05",
+              "points": [
+                [
+                  363.0,
+                  207.0
+                ],
+                [
+                  369.0,
+                  231.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-06-A",
+              "parent_id": "BIO-01-chromosome-06",
+              "points": [
+                [
+                  271.0,
+                  233.0
+                ],
+                [
+                  277.0,
+                  257.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-06-B",
+              "parent_id": "BIO-01-chromosome-06",
+              "points": [
+                [
+                  363.0,
+                  233.0
+                ],
+                [
+                  369.0,
+                  257.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/layers/bio01_chromosome_identity.json",
+            "sha256": "81f18579c890fb9e3f558fa884d89e1e3d2405f7f8f7585f4d52b73df885659b",
+            "size_bytes": 5293
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/frames/02_result.png",
+        "sha256": "0f911db5ef3772453a92d1083688f8e66391b27db9d90d4ed06d7449cac5ec12",
+        "size_bytes": 154468
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/semantic_layers.json",
+        "sha256": "f2856fd0787714547bf84082116a5aac88dd6863a00ea3d14b064307e77e582f",
+        "size_bytes": 5171
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/state.json",
+        "sha256": "2f20f440555e133301520e3ebc509f16d52a78f3636ad3d8aadfaa996115df46",
+        "size_bytes": 2914
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 103.22230127,
+        "mutable_area_px": 89962,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/mutable/03_end.png",
+        "sha256": "3a2f4e3e53d9970294956047e703f972f7edb508f021645dfaa96d45b8a58cef",
+        "size_bytes": 2125
+      },
+      "operator_records": [
+        {
+          "appearance_source_usage": "full_rgb_underlay",
+          "connected_component_count": 2,
+          "mean_abs_change_from_previous_0_255": 39.78164291,
+          "operator_id": "cell_material",
+          "operator_type": "region_material",
+          "region_area_px": 82442,
+          "source_region": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/layers/bio01_cell_region.npy",
+            "sha256": "c3b4f361ec0b8d0223fb312626931be191f937a002a03741ed178bb62913c2a6",
+            "size_bytes": 230528
+          },
+          "transfer_mode": "raw_underlay"
+        },
+        {
+          "children_per_parent": {
+            "BIO-01-chromosome-01": 2,
+            "BIO-01-chromosome-02": 2,
+            "BIO-01-chromosome-03": 2,
+            "BIO-01-chromosome-04": 2,
+            "BIO-01-chromosome-05": 2,
+            "BIO-01-chromosome-06": 2
+          },
+          "destination_counts": {
+            "left": 6,
+            "right": 6
+          },
+          "lineage_unit_count": 12,
+          "mean_abs_change_from_previous_0_255": 0.52843714,
+          "object_count": 12,
+          "object_ids": [
+            "BIO-01-chromosome-01-A",
+            "BIO-01-chromosome-01-B",
+            "BIO-01-chromosome-02-A",
+            "BIO-01-chromosome-02-B",
+            "BIO-01-chromosome-03-A",
+            "BIO-01-chromosome-03-B",
+            "BIO-01-chromosome-04-A",
+            "BIO-01-chromosome-04-B",
+            "BIO-01-chromosome-05-A",
+            "BIO-01-chromosome-05-B",
+            "BIO-01-chromosome-06-A",
+            "BIO-01-chromosome-06-B"
+          ],
+          "operator_id": "chromosome_lineage",
+          "operator_type": "identity_stroke",
+          "projected_items": [
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-01-A",
+              "parent_id": "BIO-01-chromosome-01",
+              "points": [
+                [
+                  207.0,
+                  88.0
+                ],
+                [
+                  213.0,
+                  112.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-01-B",
+              "parent_id": "BIO-01-chromosome-01",
+              "points": [
+                [
+                  427.0,
+                  88.0
+                ],
+                [
+                  433.0,
+                  112.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-02-A",
+              "parent_id": "BIO-01-chromosome-02",
+              "points": [
+                [
+                  207.0,
+                  120.0
+                ],
+                [
+                  213.0,
+                  144.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-02-B",
+              "parent_id": "BIO-01-chromosome-02",
+              "points": [
+                [
+                  427.0,
+                  120.0
+                ],
+                [
+                  433.0,
+                  144.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-03-A",
+              "parent_id": "BIO-01-chromosome-03",
+              "points": [
+                [
+                  207.0,
+                  152.0
+                ],
+                [
+                  213.0,
+                  176.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-03-B",
+              "parent_id": "BIO-01-chromosome-03",
+              "points": [
+                [
+                  427.0,
+                  152.0
+                ],
+                [
+                  433.0,
+                  176.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-04-A",
+              "parent_id": "BIO-01-chromosome-04",
+              "points": [
+                [
+                  207.0,
+                  184.0
+                ],
+                [
+                  213.0,
+                  208.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-04-B",
+              "parent_id": "BIO-01-chromosome-04",
+              "points": [
+                [
+                  427.0,
+                  184.0
+                ],
+                [
+                  433.0,
+                  208.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-05-A",
+              "parent_id": "BIO-01-chromosome-05",
+              "points": [
+                [
+                  207.0,
+                  216.0
+                ],
+                [
+                  213.0,
+                  240.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-05-B",
+              "parent_id": "BIO-01-chromosome-05",
+              "points": [
+                [
+                  427.0,
+                  216.0
+                ],
+                [
+                  433.0,
+                  240.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "left",
+              "object_id": "BIO-01-chromosome-06-A",
+              "parent_id": "BIO-01-chromosome-06",
+              "points": [
+                [
+                  207.0,
+                  248.0
+                ],
+                [
+                  213.0,
+                  272.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            },
+            {
+              "destination": "right",
+              "object_id": "BIO-01-chromosome-06-B",
+              "parent_id": "BIO-01-chromosome-06",
+              "points": [
+                [
+                  427.0,
+                  248.0
+                ],
+                [
+                  433.0,
+                  272.0
+                ]
+              ],
+              "style_key": "sister_chromatid"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/layers/bio01_chromosome_identity.json",
+            "sha256": "d18aa922bab479bc21e91f6e486d02928dce3bb5a00b9730d82b4a9e28eac277",
+            "size_bytes": 5291
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/negative_control/frames/03_end.png",
+        "sha256": "b47782f03b497a0d6e8a81af751868584fcd13d87e2da0cc7503ff046866eace",
+        "size_bytes": 180802
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/semantic_layers.json",
+        "sha256": "7b60421e077034e23566b91e49c81f93c706a828a355bc83130cb1896d272c89",
+        "size_bytes": 5144
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/state.json",
+        "sha256": "fab5dac6ada9635192b03d317434dcff947d0aba27b039520720cb23f192b046",
+        "size_bytes": 2915
+      }
+    }
+  ],
+  "role": "negative_control",
+  "route_contract": "B_frozen_anchor_plus_program_state",
+  "schema_version": "1.0"
+}

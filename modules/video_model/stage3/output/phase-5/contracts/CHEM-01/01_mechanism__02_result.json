@@ -1,0 +1,96 @@
+{
+  "case_id": "CHEM-01",
+  "contract_id": "S3.5-CHEM-01-01_mechanism__02_result-V1",
+  "downstream_use": "The prompt compiler converts ordered events, trends and invariants to L1 text. G4 reads the numeric g4 section. The raw program RGB video is evidence, not a style input.",
+  "entities": [
+    {
+      "class": "liquid_drop",
+      "count": 1,
+      "id": "current_drop"
+    },
+    {
+      "class": "localized_scalar_field",
+      "count": 1,
+      "id": "indicator_plume"
+    }
+  ],
+  "forbidden": [
+    "pink color growing before it fades",
+    "a second drop or second plume",
+    "splashing, boiling, smoke or bubbles",
+    "glass deformation or apparatus movement"
+  ],
+  "g4": {
+    "audit_type": "scalar_decay",
+    "maximum_consecutive_frame_mae_0_255": 12,
+    "maximum_endpoint_mae_0_255": 15,
+    "maximum_final_fraction_of_initial": 0.1,
+    "maximum_peak_fraction_of_initial": 1.1,
+    "maximum_step_increase_fraction_of_initial": 0.1,
+    "minimum_b_minus_g": 0,
+    "minimum_initial_pixels": 300,
+    "minimum_r_minus_g": 20,
+    "r_min": 150,
+    "roi_normalized_xyxy": [
+      0.32,
+      0.72,
+      0.68,
+      0.9
+    ]
+  },
+  "invariants": [
+    "glass dispenser shape and position",
+    "beaker shape and position",
+    "liquid surface",
+    "lighting, framing, background and camera"
+  ],
+  "model_capability": {
+    "native_guides": [
+      "first_frame",
+      "last_frame"
+    ],
+    "native_middle_frame": false,
+    "program_video_conditioning": false
+  },
+  "motion_class": "liquid_mixing",
+  "ordered_events": [
+    "The single small pink drop moves downward into the liquid and ceases to be a separate object.",
+    "The one localized pink indicator plume disperses within the liquid and becomes progressively fainter.",
+    "The liquid reaches the supplied colorless final state."
+  ],
+  "program_video_source": {
+    "path": "modules/video_model/stage2/output/phase-2/CHEM-01/program-animation.mp4",
+    "sha256": "853ae7e21c1c113b97544c35d3d4c393b5dabb9ab46f87c86b07ba80d0f0d59b",
+    "size_bytes": 23798
+  },
+  "schema_version": "1.0",
+  "segment_id": "01_mechanism__02_result",
+  "source_keyframes": [
+    {
+      "frame": {
+        "path": "modules/video_model/stage3/output/phase-4/CHEM-01/frames/01_mechanism.png",
+        "sha256": "b85a52c36ebc9f57dab0084526aeb9aa6cf79d701556abc3be619143b6bc8b59",
+        "size_bytes": 557575
+      },
+      "keyframe_id": "01_mechanism"
+    },
+    {
+      "frame": {
+        "path": "modules/video_model/stage3/output/phase-4/CHEM-01/frames/02_result.png",
+        "sha256": "7e62b5d051f08c93a687369ca135112b82bd2ef4ee533eba327f7f0febaa5b66",
+        "size_bytes": 557471
+      },
+      "keyframe_id": "02_result"
+    }
+  ],
+  "state_trends": [
+    "pink_indicator_mass: non_increasing",
+    "separate_drop_count: one_to_zero",
+    "liquid_level: effectively_constant"
+  ],
+  "timeline_source": {
+    "path": "modules/video_model/stage2/output/phase-2/CHEM-01/states.jsonl",
+    "sha256": "bcc9a9616a6fe3e715c32aff4c5da1dc52209d014cfbccc7a99f00efc95356cb",
+    "size_bytes": 16643
+  }
+}

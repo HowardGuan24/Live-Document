@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "replay_selected_candidate_id": "auto_control_080-s7103",
+  "same_frozen_candidate_count": true,
+  "v1_selected_candidate_id": "auto_control_080-s7101",
+  "v1_selected_rejected_by_v2": true,
+  "v2_selected_candidate_id": "auto_control_080-s7103"
+}

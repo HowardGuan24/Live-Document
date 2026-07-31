@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "anchors": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/03_end/anchors.json",
+      "sha256": "cd81c7eb70a56ab03ec0639bc86c7dc6a2cf49d91823832c544866f0f6f57dae",
+      "size_bytes": 174
+    },
+    "regions": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/03_end/regions.png",
+      "sha256": "62909bef0cd0b4959bdfcfc270f8e6c18717404fae2e4ab9f2546c5ec82c0e00",
+      "size_bytes": 3577
+    },
+    "structure_control": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/03_end/structure_control.png",
+      "sha256": "9eba7503db515f87d791eb3daf27a2f67a55578a92493e3d02cf9665afb29857",
+      "size_bytes": 3430
+    }
+  },
+  "case_id": "GEO-02",
+  "checks": [
+    {
+      "evidence": [
+        {
+          "area_px": 61797,
+          "boundary_px": 716,
+          "layer_id": "geo02_terrain_region",
+          "source_sha256": "ed6fe2d7338b41d6eebeaac592515788f3123a230d485e7ce593c255df7cc62a"
+        }
+      ],
+      "name": "region_topology_exported",
+      "passed": true
+    },
+    {
+      "evidence": [
+        {
+          "center_xy": [
+            511.2,
+            231.689
+          ],
+          "class_id": "moving_air_parcel",
+          "object_id": "GEO-02-air-parcel"
+        }
+      ],
+      "name": "identity_anchors_exported",
+      "passed": true
+    },
+    {
+      "evidence": 0.003281,
+      "name": "sparse_structure_density",
+      "passed": true
+    },
+    {
+      "evidence": "only region boundaries and identity anchors are drawn",
+      "name": "scalar_and_annotation_not_converted_to_edges",
+      "passed": true
+    },
+    {
+      "name": "appearance_reference_not_read",
+      "passed": true
+    }
+  ],
+  "geometry_policy": "layout_only",
+  "keyframe_id": "03_end",
+  "passed": true,
+  "schema_version": "1.0",
+  "source_semantics": {
+    "path": "modules/video_model/stage2/output/phase-2/GEO-02/keyframes/03_end/semantic_layers.json",
+    "sha256": "c16ffc4838e57511d1cb9ebfc52d65c27c10b63c150bd0820f9d64346de7c915",
+    "size_bytes": 7706
+  }
+}

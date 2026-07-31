@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "AUDIT-S3-20260730-003-V1",
+  "candidate_id": "auto_control_080-s7101",
+  "candidate_sha256": "d64a8d50738e9f1649e0ec141e7be0dbc2541bba26e6f33168ee0737098d840b",
+  "passed": false,
+  "checks": [
+    {
+      "name_zh": "画面只有一个烧杯",
+      "passed": true,
+      "evidence_zh": "主体区域只见一个烧杯。"
+    },
+    {
+      "name_zh": "画面只有一个滴定管",
+      "passed": true,
+      "evidence_zh": "上方只有一个滴定管主体。"
+    },
+    {
+      "name_zh": "滴定管与烧杯按合同保持分离",
+      "passed": false,
+      "evidence_zh": "滴定管下方出现一条贯穿烧杯液体的幽灵竖线，把两个本应分离的对象视觉连通。"
+    },
+    {
+      "name_zh": "没有文字或伪文字",
+      "passed": false,
+      "evidence_zh": "滴定管和杯内中心线上出现类似数字的不可读伪刻度。"
+    },
+    {
+      "name_zh": "玻璃与液体材质可信",
+      "passed": true,
+      "evidence_zh": "玻璃折射、透明液体和中性实验室光照基本可信。"
+    }
+  ],
+  "verdict_zh": "拒绝 v1 选中图。失败属于 gate_or_selector：候选集中存在更干净的分离器材，但 v1 指标只奖励控制覆盖，没有惩罚额外连接和杯内中心线。"
+}

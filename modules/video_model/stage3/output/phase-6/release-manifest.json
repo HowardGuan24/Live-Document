@@ -1,0 +1,91 @@
+{
+  "alpha_release_passed": true,
+  "artifacts": [
+    {
+      "path": "modules/video_model/stage3/release_policy.json",
+      "sha256": "a530d4725c7e8e823f51ec669d1cc35236c65e48b235dae742c075946dcf45f5",
+      "size_bytes": 3374
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-6/release-audit.json",
+      "sha256": "ac8603ce353a1cbe961c18aca470e2a7417c3e17355669e7c1e03cfcf7fa4733",
+      "size_bytes": 14264
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-6/report-assets/release-evidence.jpg",
+      "sha256": "15085bb196726bbaba824e26f73a9f33716959b1d50ce9e65c43b3ad97d407df",
+      "size_bytes": 221087
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-6/report.html",
+      "sha256": "bb728301ae3bdd71fd6707cd58ac7fc7de1d8aa495d1329910a6afb9a414ca47",
+      "size_bytes": 10284
+    },
+    {
+      "path": "modules/video_model/stage3/CHANGELOG.md",
+      "sha256": "f194ce3a49f9015a7b1fbde9f624ef44d0fa61280ae463d0d1dce828e52e5d6e",
+      "size_bytes": 1409
+    },
+    {
+      "path": "modules/video_model/stage3/README.md",
+      "sha256": "7ae803d8ca9f49c146c52958cebaf72685b8cc1ec34370f777cf3a2a032a3a70",
+      "size_bytes": 1098
+    }
+  ],
+  "historical_regressions": [
+    {
+      "path": "modules/video_model/stage1/output/keyframe_render/delta_sequence/sequence-contact-sheet.jpg",
+      "sha256": "b094c3d54074aa098715dfa171fd60a2218c6498c2265443a8c667cabdf76669",
+      "size_bytes": 109071
+    },
+    {
+      "path": "modules/video_model/stage2/output/phase-9/report-assets/chem-final-b-sequence.jpg",
+      "sha256": "5899b49500161998f22a7f5f26186ab99d79a142f3047b5f35eb34aa16deb728",
+      "size_bytes": 57014
+    }
+  ],
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "prior_phase_reports": [
+    {
+      "path": "modules/video_model/stage3/output/phase-0/report.html",
+      "sha256": "21e43d793741c0d1c5a510b0e1229f8dee57096560f2aa2396194b6468db305b",
+      "size_bytes": 11333
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-1/report.html",
+      "sha256": "44229bd27a6b38f2676e2379e8093bda54d28769546c39df46eb71da470962d4",
+      "size_bytes": 8513
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-2/report.html",
+      "sha256": "d0032209f9218353bf0af84ecf9958244cd137cc615fc6ffc0089fcbe0c029d9",
+      "size_bytes": 7609
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-3/report.html",
+      "sha256": "1ee080cb50a4f0d404c8c3693da6744cc7a328b686fd0ae72992cf0a416b2a49",
+      "size_bytes": 16268
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-4/report.html",
+      "sha256": "57f826082a62bfd9bd3863dc3dd529ac16b909fce6433db6c6ba8ba6764281e7",
+      "size_bytes": 9695
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/report.html",
+      "sha256": "a7bafaada37ec2b128a99f98304caa7e2946073c0f8ec2382bb0bd8ecde2b83a",
+      "size_bytes": 13326
+    }
+  ],
+  "production_1_0_ready": false,
+  "release_class": "reproducible_core_alpha",
+  "release_id": "stage3-core-0.1.0-alpha.1",
+  "schema_version": "1.0",
+  "verification": {
+    "local_link_check": "performed after manifest creation",
+    "tests": "10 passed"
+  }
+}

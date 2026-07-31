@@ -1,0 +1,128 @@
+{
+  "artifacts": {
+    "canonicalize_process": {
+      "path": "modules/video_model/stage3/output/phase-1/report-assets/canonicalize-process.jpg",
+      "sha256": "1b590372695428f52c79532ae6082e5d6d04f3b238efe5a2520880aa840cfced",
+      "size_bytes": 93894
+    },
+    "cross_discipline": {
+      "path": "modules/video_model/stage3/output/phase-1/report-assets/cross-discipline-controls.jpg",
+      "sha256": "4d5ea295382540b3b1018b92b2eac40429d0d5247400ea706a2f30aa47ff5463",
+      "size_bytes": 144663
+    },
+    "delta_adapter": {
+      "path": "modules/video_model/stage3/output/phase-1/report-assets/delta-state-adapter.jpg",
+      "sha256": "57a0c1b7a1a8d862ce9b64c18a5ebc7dcba68491d75fa60e379ed1857ac049be",
+      "size_bytes": 79277
+    },
+    "experiment_001": {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260730-001/review.json",
+      "sha256": "ccb4ad644a02c6ec2ca8ca95eb416617b743ee3c9317444b22285b0dbdc025a0",
+      "size_bytes": 2476
+    },
+    "experiment_002": {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260730-002/review.json",
+      "sha256": "458378182720c0ce9b1a3622d678c405bbf1021f03d2187d7ffde9db2ec0e3e0",
+      "size_bytes": 2581
+    },
+    "g0": {
+      "path": "modules/video_model/stage3/output/phase-1/g0.json",
+      "sha256": "12c7fa233a429f9fd6c689c940b041d91c334026a79ab4bfd9dd35e450bbba23",
+      "size_bytes": 5055
+    },
+    "report": {
+      "path": "modules/video_model/stage3/output/phase-1/report.html",
+      "sha256": "44229bd27a6b38f2676e2379e8093bda54d28769546c39df46eb71da470962d4",
+      "size_bytes": 8513
+    }
+  },
+  "checks": [
+    {
+      "evidence_zh": "7 个 target/regression Case 的合同和关键帧文件签名均有效。",
+      "name": "G0_all_selected_inputs_and_hashes_pass",
+      "passed": true
+    },
+    {
+      "evidence_zh": "缺失 glass_burette 被归类为 semantic_export，而非静默手画。",
+      "name": "direct_identity_hypothesis_was_falsified",
+      "passed": true
+    },
+    {
+      "evidence_zh": "canonicalize / preserve_exact / layout_only 均有 target 和跨学科回归。",
+      "name": "all_three_geometry_policy_cohorts_pass",
+      "passed": true
+    },
+    {
+      "evidence_zh": "6 个正式案例各 4 帧 + 三角洲终态。",
+      "name": "twenty_five_G1_records_pass",
+      "passed": true
+    },
+    {
+      "evidence_zh": "三类策略各抽一例重新编译，PNG SHA-256 相同。",
+      "name": "representative_controls_replay_byte_identically",
+      "passed": true
+    },
+    {
+      "evidence_zh": "model_runs: image=0, video=0。",
+      "name": "S3_1_used_no_image_or_video_model",
+      "passed": true
+    },
+    {
+      "evidence_zh": "所有过程图、实验记录和本地证据可直接打开。",
+      "name": "report_links_resolve",
+      "passed": true
+    }
+  ],
+  "classification": "geometry_resolver_and_control_compiler",
+  "cohorts": [
+    {
+      "gate_record_count": 12,
+      "passed": true,
+      "policy": "canonicalize",
+      "reason_zh": "烧杯有人工上限却与程序断链；PHYS-02 检查器材库跨学科，MATH-02 检查该路线不会污染精确几何。",
+      "regressions": [
+        "PHYS-02",
+        "MATH-02"
+      ],
+      "target": "CHEM-01"
+    },
+    {
+      "gate_record_count": 12,
+      "passed": true,
+      "policy": "preserve_exact",
+      "reason_zh": "拼图的点、面积和对象身份不能近似；PHYS-01 检查连续高度场，CHEM-01 检查策略隔离。",
+      "regressions": [
+        "PHYS-01",
+        "CHEM-01"
+      ],
+      "target": "MATH-02"
+    },
+    {
+      "gate_record_count": 13,
+      "historical": [
+        "GEO-HIST-DELTA-01"
+      ],
+      "passed": true,
+      "policy": "layout_only",
+      "reason_zh": "山地与有机细胞不应被粗程序轮廓锁死；只保留区域拓扑、对象锚点和场接口，并回归历史三角洲。",
+      "regressions": [
+        "BIO-01",
+        "PHYS-01"
+      ],
+      "target": "GEO-02"
+    }
+  ],
+  "g1_record_count": 25,
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "next_phase": {
+    "phase": "S3.2",
+    "status": "in_progress",
+    "target": "CHEM-01"
+  },
+  "phase": "S3.1",
+  "schema_version": "1.0",
+  "status": "passed"
+}

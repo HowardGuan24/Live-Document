@@ -1,0 +1,131 @@
+{
+  "case_id": "BIO-01",
+  "left_destination_count": 6,
+  "objects": [
+    {
+      "center_xy": [
+        213.43017578125,
+        102.34375
+      ],
+      "destination": "left",
+      "object_id": "BIO-01-chromosome-01-A",
+      "parent_id": "BIO-01-chromosome-01",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        426.56982421875,
+        102.34375
+      ],
+      "destination": "right",
+      "object_id": "BIO-01-chromosome-01-B",
+      "parent_id": "BIO-01-chromosome-01",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        213.43017578125,
+        133.40625
+      ],
+      "destination": "left",
+      "object_id": "BIO-01-chromosome-02-A",
+      "parent_id": "BIO-01-chromosome-02",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        426.56982421875,
+        133.40625
+      ],
+      "destination": "right",
+      "object_id": "BIO-01-chromosome-02-B",
+      "parent_id": "BIO-01-chromosome-02",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        213.43017578125,
+        164.46875
+      ],
+      "destination": "left",
+      "object_id": "BIO-01-chromosome-03-A",
+      "parent_id": "BIO-01-chromosome-03",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        426.56982421875,
+        164.46875
+      ],
+      "destination": "right",
+      "object_id": "BIO-01-chromosome-03-B",
+      "parent_id": "BIO-01-chromosome-03",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        213.43017578125,
+        195.53125
+      ],
+      "destination": "left",
+      "object_id": "BIO-01-chromosome-04-A",
+      "parent_id": "BIO-01-chromosome-04",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        426.56982421875,
+        195.53125
+      ],
+      "destination": "right",
+      "object_id": "BIO-01-chromosome-04-B",
+      "parent_id": "BIO-01-chromosome-04",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        213.43017578125,
+        226.59375
+      ],
+      "destination": "left",
+      "object_id": "BIO-01-chromosome-05-A",
+      "parent_id": "BIO-01-chromosome-05",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        426.56982421875,
+        226.59375
+      ],
+      "destination": "right",
+      "object_id": "BIO-01-chromosome-05-B",
+      "parent_id": "BIO-01-chromosome-05",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        213.43017578125,
+        257.65625
+      ],
+      "destination": "left",
+      "object_id": "BIO-01-chromosome-06-A",
+      "parent_id": "BIO-01-chromosome-06",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        426.56982421875,
+        257.65625
+      ],
+      "destination": "right",
+      "object_id": "BIO-01-chromosome-06-B",
+      "parent_id": "BIO-01-chromosome-06",
+      "shape": "sister_chromatid"
+    }
+  ],
+  "progress": 0.916667,
+  "replicated_chromosome_count": 0,
+  "right_destination_count": 6,
+  "sister_chromatid_count": 12,
+  "stage": "anaphase_to_cytokinesis"
+}

@@ -1,0 +1,17 @@
+{
+  "evidence": {
+    "g4": {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/g4.json",
+      "sha256": "bad18a08c323154b8424ba0b6741ada791871d5c86496291d48e0bc28d22e680",
+      "size_bytes": 42332
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-016",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 1
+  },
+  "reason_zh": "L2 把中间两帧 MAE 从 8.946/12.5005 降到 5.232/6.7277，但没有增加机制门禁通过数，并在分段边界出现更大的 4.668/5.5116 像素跳变；不升级默认。",
+  "schema_version": "1.0",
+  "verdict": "accepted_optional_not_default"
+}

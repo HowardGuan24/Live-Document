@@ -1,0 +1,71 @@
+{
+  "appearance_profile": "wood_geometry",
+  "case_id": "MATH-02",
+  "compiler_id": "stage3_prompt_compiler_v1",
+  "input_signatures": {
+    "contract_sha256": "ccd999c9f4f0f87b2583dcef1a774c91bae34e373f5c90fec82c8ce1742debc1",
+    "lexicon_sha256": "e29e2f6964cc0acc4670698ee15bd1636527db730d60f4f51b57cb07524e2e5e",
+    "visual_target_sha256": "d63bea76e3ed97bf7761ef9844ee14870fbeacac4b0550571161c7106ae6a0da"
+  },
+  "negative_prompt": "changed geometry, extra object, missing object, warped edge, future trace, text, label, plastic, blur, watermark",
+  "positive_prompt": "four congruent right-triangle wooden pieces, locked orthographic teaching camera, fine natural wood grain attached to each piece, small bevels, soft overhead studio light, show only the contracted program state, preserve object count, identity, topology and locked camera",
+  "provenance": {
+    "camera": [
+      "input_contract.geometry_policy",
+      "prompt_lexicon.policy_camera@stage3_prompt_lexicon_v1"
+    ],
+    "material_and_light": [
+      "visual_target:VT-MATH-02-V1",
+      "prompt_lexicon.material_profiles.wood_geometry"
+    ],
+    "must_preserve": [
+      "input_contract.hard_gates",
+      "S3.2 selector failure pattern: object separation"
+    ],
+    "negative": [
+      "visual_target:VT-MATH-02-V1.negative_refs",
+      "prompt_lexicon.negative_profiles.preserve_exact"
+    ],
+    "scene_identity": [
+      "input_contract.semantic_exports.control_object_requirements",
+      "prompt_lexicon.object_phrases@stage3_prompt_lexicon_v1"
+    ],
+    "state": [
+      "input_contract.keyframes[00_start]",
+      "case hard gates"
+    ]
+  },
+  "schema_version": "1.0",
+  "slots": {
+    "camera": "locked orthographic teaching camera",
+    "material_and_light": "fine natural wood grain attached to each piece, small bevels, soft overhead studio light",
+    "must_preserve": "preserve object count, identity, topology and locked camera",
+    "scene_identity": "four congruent right-triangle wooden pieces",
+    "state": "show only the contracted program state"
+  },
+  "token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 27,
+        "tokenizer_2": 27
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 55,
+        "tokenizer_2": 55
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "visual_target_status": "accepted_project_baseline"
+}

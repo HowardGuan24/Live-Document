@@ -1,0 +1,461 @@
+{
+  "cases": [
+    {
+      "case_id": "MATH-01",
+      "completeness": {
+        "case_id": "MATH-01",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "preserve_exact",
+        "keyframe_count": 4,
+        "known_gaps": [
+          "Visual target package has not yet been curated; model generation is forbidden until it exists."
+        ],
+        "object_classes": [
+          "rotating_point",
+          "sine_trace_head"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "hard_boundary",
+          "object_identity",
+          "region"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "missing"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "mathematics",
+      "discipline_zh": "数学",
+      "geometry_policy": "preserve_exact",
+      "input_contract": "modules/video_model/stage3/contracts/MATH-01.json",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "motion_classes": [
+        "rigid_motion"
+      ],
+      "role": "scale",
+      "slug": "unit_circle_sine",
+      "title_zh": "单位圆怎样生成正弦曲线",
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "MATH-02",
+      "completeness": {
+        "case_id": "MATH-02",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "preserve_exact",
+        "keyframe_count": 4,
+        "known_gaps": [],
+        "object_classes": [
+          "congruent_right_triangle"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "hard_boundary",
+          "object_identity",
+          "region"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "accepted_project_baseline"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "mathematics",
+      "discipline_zh": "数学",
+      "geometry_policy": "preserve_exact",
+      "input_contract": "modules/video_model/stage3/contracts/MATH-02.json",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "motion_classes": [
+        "rigid_motion"
+      ],
+      "role": "sentinel",
+      "slug": "pythagorean_dissection",
+      "title_zh": "勾股定理的拼图重排证明",
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "PHYS-01",
+      "completeness": {
+        "case_id": "PHYS-01",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "preserve_exact",
+        "keyframe_count": 4,
+        "known_gaps": [],
+        "object_classes": [
+          "coherent_point_source"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "height_or_normal",
+          "object_identity",
+          "scalar_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "accepted_project_baseline"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "physics",
+      "discipline_zh": "物理",
+      "geometry_policy": "preserve_exact",
+      "input_contract": "modules/video_model/stage3/contracts/PHYS-01.json",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "motion_classes": [
+        "continuous_field_propagation"
+      ],
+      "role": "sentinel",
+      "slug": "wave_interference",
+      "title_zh": "两个同步振源产生的水面波干涉",
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "PHYS-02",
+      "completeness": {
+        "case_id": "PHYS-02",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "canonicalize",
+        "keyframe_count": 4,
+        "known_gaps": [
+          "Visual target package has not yet been curated; model generation is forbidden until it exists."
+        ],
+        "object_classes": [
+          "bar_magnet",
+          "fixed_coil"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "hard_boundary",
+          "object_identity",
+          "region",
+          "vector_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "missing"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "physics",
+      "discipline_zh": "物理",
+      "geometry_policy": "canonicalize",
+      "input_contract": "modules/video_model/stage3/contracts/PHYS-02.json",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "motion_classes": [
+        "rigid_motion",
+        "state_transition"
+      ],
+      "role": "scale",
+      "slug": "electromagnetic_induction",
+      "title_zh": "磁铁运动为什么在线圈中产生感应电流",
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "CHEM-01",
+      "completeness": {
+        "case_id": "CHEM-01",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "canonicalize",
+        "keyframe_count": 4,
+        "known_gaps": [],
+        "object_classes": [
+          "base_solution_drop",
+          "glass_beaker"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "hard_boundary",
+          "object_identity",
+          "region",
+          "scalar_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "accepted_project_baseline"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "chemistry",
+      "discipline_zh": "化学",
+      "geometry_policy": "canonicalize",
+      "input_contract": "modules/video_model/stage3/contracts/CHEM-01.json",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "motion_classes": [
+        "liquid_mixing",
+        "state_transition"
+      ],
+      "role": "sentinel",
+      "slug": "acid_base_titration",
+      "title_zh": "酸碱滴定从局部变色到到达终点",
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "CHEM-02",
+      "completeness": {
+        "case_id": "CHEM-02",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "canonicalize",
+        "keyframe_count": 4,
+        "known_gaps": [
+          "Visual target package has not yet been curated; model generation is forbidden until it exists."
+        ],
+        "object_classes": [
+          "salt_crystal"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "hard_boundary",
+          "object_identity",
+          "region",
+          "scalar_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "missing"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "chemistry",
+      "discipline_zh": "化学",
+      "geometry_policy": "canonicalize",
+      "input_contract": "modules/video_model/stage3/contracts/CHEM-02.json",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "motion_classes": [
+        "material_phase_growth"
+      ],
+      "role": "scale",
+      "slug": "evaporation_crystallization",
+      "title_zh": "盐溶液蒸发、过饱和与晶体生长",
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "BIO-01",
+      "completeness": {
+        "case_id": "BIO-01",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "layout_only",
+        "keyframe_count": 4,
+        "known_gaps": [],
+        "object_classes": [
+          "untyped_object"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "object_identity",
+          "region",
+          "vector_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "accepted_project_baseline"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "biology",
+      "discipline_zh": "生物",
+      "geometry_policy": "layout_only",
+      "input_contract": "modules/video_model/stage3/contracts/BIO-01.json",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "motion_classes": [
+        "object_division"
+      ],
+      "role": "sentinel",
+      "slug": "mitosis",
+      "title_zh": "一个动物细胞的有丝分裂",
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "BIO-02",
+      "completeness": {
+        "case_id": "BIO-02",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "layout_only",
+        "keyframe_count": 4,
+        "known_gaps": [
+          "Visual target package has not yet been curated; model generation is forbidden until it exists."
+        ],
+        "object_classes": [
+          "guard_cell"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "hard_boundary",
+          "object_identity",
+          "region",
+          "scalar_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "missing"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "biology",
+      "discipline_zh": "生物",
+      "geometry_policy": "layout_only",
+      "input_contract": "modules/video_model/stage3/contracts/BIO-02.json",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "motion_classes": [
+        "constrained_deformation"
+      ],
+      "role": "scale",
+      "slug": "stomatal_opening",
+      "title_zh": "气孔保卫细胞吸水后怎样打开气孔",
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "GEO-01",
+      "completeness": {
+        "case_id": "GEO-01",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "layout_only",
+        "keyframe_count": 4,
+        "known_gaps": [
+          "Visual target package has not yet been curated; model generation is forbidden until it exists."
+        ],
+        "object_classes": [
+          "isolated_oxbow_lake",
+          "main_river"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "hard_boundary",
+          "object_identity",
+          "region",
+          "vector_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "missing"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "geography",
+      "discipline_zh": "地理",
+      "geometry_policy": "layout_only",
+      "input_contract": "modules/video_model/stage3/contracts/GEO-01.json",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "motion_classes": [
+        "boundary_topology_change"
+      ],
+      "role": "scale",
+      "slug": "oxbow_lake_formation",
+      "title_zh": "曲流发展、裁弯取直与牛轭湖形成",
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "GEO-02",
+      "completeness": {
+        "case_id": "GEO-02",
+        "continuous_program_frames": 49,
+        "contract_smoke_passed": true,
+        "geometry_policy": "layout_only",
+        "keyframe_count": 4,
+        "known_gaps": [
+          "Visual target is provisional; a generated candidate must not be promoted without visual and mechanism review."
+        ],
+        "object_classes": [
+          "moving_air_parcel"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "annotation",
+          "height_or_normal",
+          "object_identity",
+          "region",
+          "scalar_field",
+          "vector_field"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "provisional"
+      },
+      "continuous_program_frames": 49,
+      "discipline": "geography",
+      "discipline_zh": "地理",
+      "geometry_policy": "layout_only",
+      "input_contract": "modules/video_model/stage3/contracts/GEO-02.json",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target is provisional; a generated candidate must not be promoted without visual and mechanism review."
+      ],
+      "motion_classes": [
+        "field_advection"
+      ],
+      "role": "sentinel",
+      "slug": "orographic_rain_shadow",
+      "title_zh": "地形雨与背风坡雨影",
+      "visual_target_status": "provisional"
+    },
+    {
+      "case_id": "GEO-HIST-DELTA-01",
+      "completeness": {
+        "case_id": "GEO-HIST-DELTA-01",
+        "continuous_program_frames": 0,
+        "contract_smoke_passed": true,
+        "geometry_policy": "layout_only",
+        "keyframe_count": 5,
+        "known_gaps": [],
+        "object_classes": [
+          "original_coast",
+          "river_channel",
+          "sediment_plume",
+          "wet_sandbar"
+        ],
+        "program_available": true,
+        "semantic_layer_types": [
+          "hard_boundary",
+          "region",
+          "scalar_field",
+          "vector_field",
+          "object_identity"
+        ],
+        "timeline_available": true,
+        "visual_target_status": "accepted_project_baseline"
+      },
+      "continuous_program_frames": 0,
+      "discipline": "geography",
+      "discipline_zh": "地理",
+      "geometry_policy": "layout_only",
+      "input_contract": "modules/video_model/stage3/contracts/GEO-HIST-DELTA-01.json",
+      "keyframe_count": 5,
+      "known_gaps": [],
+      "motion_classes": [
+        "material_transport",
+        "boundary_evolution",
+        "flow_rerouting"
+      ],
+      "role": "historical_quality_regression",
+      "slug": "delta_formation_historical",
+      "title_zh": "历史三角洲形成质量回归",
+      "visual_target_status": "accepted_project_baseline"
+    }
+  ],
+  "schema_version": "1.0",
+  "source_registry": {
+    "path": "modules/video_model/stage2/case_registry.json",
+    "sha256": "79b9f19bc7e1804cce25a51c830a2fe3f22970cda86bd2fa323a63b48c72142e",
+    "size_bytes": 7973
+  },
+  "suite_id": "stage3_deterministic_program_to_visual_v1"
+}

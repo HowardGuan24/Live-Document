@@ -1,0 +1,71 @@
+{
+  "case_id": "BIO-01",
+  "left_destination_count": 0,
+  "objects": [
+    {
+      "center_xy": [
+        304.1796875,
+        120.37890625
+      ],
+      "destination": "unassigned",
+      "object_id": "BIO-01-chromosome-01",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        329.4921875,
+        136.88671875
+      ],
+      "destination": "unassigned",
+      "object_id": "BIO-01-chromosome-02",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        311.7734375,
+        171.11328125
+      ],
+      "destination": "unassigned",
+      "object_id": "BIO-01-chromosome-03",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        331.390625,
+        190.78515625
+      ],
+      "destination": "unassigned",
+      "object_id": "BIO-01-chromosome-04",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        306.7109375,
+        221.84765625
+      ],
+      "destination": "unassigned",
+      "object_id": "BIO-01-chromosome-05",
+      "parent_id": null,
+      "shape": "replicated_x"
+    },
+    {
+      "center_xy": [
+        326.9609375,
+        240.88671875
+      ],
+      "destination": "unassigned",
+      "object_id": "BIO-01-chromosome-06",
+      "parent_id": null,
+      "shape": "replicated_x"
+    }
+  ],
+  "progress": 0.208333,
+  "replicated_chromosome_count": 6,
+  "right_destination_count": 0,
+  "sister_chromatid_count": 0,
+  "stage": "prophase_to_metaphase"
+}

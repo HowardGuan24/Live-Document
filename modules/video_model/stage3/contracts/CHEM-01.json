@@ -1,0 +1,184 @@
+{
+  "case_definition": {
+    "capability_tags": [
+      "transparent_mixing",
+      "local_threshold",
+      "volume_conservation"
+    ],
+    "discipline": "chemistry",
+    "discipline_zh": "化学",
+    "slug": "acid_base_titration",
+    "title_zh": "酸碱滴定从局部变色到到达终点"
+  },
+  "case_id": "CHEM-01",
+  "geometry_policy": "canonicalize",
+  "hard_gates": [
+    "added_volume_is_monotonic",
+    "pre_endpoint_color_can_dissipate",
+    "endpoint_color_persists_after_mixing",
+    "appearance_to_geometry_leakage"
+  ],
+  "keyframes": [
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/program.png",
+        "sha256": "410c9132de2cf04fe1128ce880a0827346b9de93033c10ff26d0e62afc128e90",
+        "size_bytes": 4491
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/clean.png",
+        "sha256": "622ce73e40355f52764cd030dd4f2b2d651ecae6e3075d5948858e60b538f64e",
+        "size_bytes": 1669
+      },
+      "keyframe_id": "00_start",
+      "order": 0,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json",
+        "sha256": "fb522d77fd58c4275b9632200ef731f716b602eb649a718bb16d3841ac852e6c",
+        "size_bytes": 6367
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/state.json",
+        "sha256": "9caeb4274fa934739ca413c63c96a96444fd36ceb93b5a1a16103b5be57a78af",
+        "size_bytes": 363
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/program.png",
+        "sha256": "b01bbb64d755db78920d8cfb95ddd871b16e308d867a4b8f9fcee7cfc58e7c00",
+        "size_bytes": 6973
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/clean.png",
+        "sha256": "009553fca975b89f00fb0037b3b9d2f482b19d0d63463a9871d2595a8e8a19f1",
+        "size_bytes": 4082
+      },
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "00d6e39cf18ad98184868106490ad5dc43e2beed92a88448159bc7890a0388ac",
+        "size_bytes": 6412
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/state.json",
+        "sha256": "52f69bca495b58be974af0d2c998101fb65c3a021a90de5ef06c36162da38d9f",
+        "size_bytes": 377
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/02_result/program.png",
+        "sha256": "e448f165d8d948e8df39b7cdc47a35456e82fe1270fda8d98158780456265ef8",
+        "size_bytes": 4693
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/02_result/clean.png",
+        "sha256": "c195b5704b397e8e2782d31d9390352aebc6e199c372b59c16815d84cb76a7a0",
+        "size_bytes": 1669
+      },
+      "keyframe_id": "02_result",
+      "order": 2,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/02_result/semantic_layers.json",
+        "sha256": "13ba6e85ed07e786949710dc9320a6b5277baacecbb635e5a6cdf2e3204b8ce3",
+        "size_bytes": 6378
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/02_result/state.json",
+        "sha256": "4850240ee0caa0a3d7704b50763953146a5bdeb177d48a49dd45e521587ba2ae",
+        "size_bytes": 373
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/03_end/program.png",
+        "sha256": "d21a269b74dd35dbf8d5a844e9975a9c1936fd5153ac6cb7f989e98d40fbd1dc",
+        "size_bytes": 4448
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/03_end/clean.png",
+        "sha256": "74c6bcf863835bdd31e677bdc8c3a91af74ce5839614dab2417f1ae78df9550a",
+        "size_bytes": 1671
+      },
+      "keyframe_id": "03_end",
+      "order": 3,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/03_end/semantic_layers.json",
+        "sha256": "a9c38abda5cb9aeb3034d822ef031d1467f9cd83dcdcaee10682cf506775d02a",
+        "size_bytes": 6344
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/03_end/state.json",
+        "sha256": "43590476875bb87a50ded44392834314060b4c5e2987311569f22725f4f71061",
+        "size_bytes": 375
+      }
+    }
+  ],
+  "motion_contract": {
+    "path": "modules/video_model/stage3/motion_contracts/CHEM-01.json",
+    "sha256": "355fb6c8f3fff5ac5f8dd7aa9994f5c14ae882b34cc055d652f93dd529ffb869"
+  },
+  "program_source": {
+    "concept_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/CHEM-01/concept_spec.json",
+      "sha256": "dea08de88250575187e7cd7f0b6c3693493c26c8e93788d8874400f229ba609c",
+      "size_bytes": 1967
+    },
+    "program_manifest": {
+      "path": "modules/video_model/stage2/output/phase-2/CHEM-01/program_manifest.json",
+      "sha256": "c141bc568e5208e3fae09ac1b827e2cdfa7da0474473d2516b37331add6b8677",
+      "size_bytes": 44524
+    },
+    "root": "modules/video_model/stage2/output/phase-2/CHEM-01",
+    "sequence_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/CHEM-01/sequence_spec.json",
+      "sha256": "fe6644ddf55976ba0822633addc9848fdc947da13796efd42134f4835545683b",
+      "size_bytes": 2884
+    }
+  },
+  "schema_version": "1.0",
+  "semantic_exports": {
+    "control_object_requirements": [
+      {
+        "cardinality": 1,
+        "class_id": "glass_beaker",
+        "source": "object_identity"
+      },
+      {
+        "cardinality": 1,
+        "class_id": "glass_burette",
+        "legacy_migration": {
+          "coordinates_must_be_inferred": true,
+          "relation": "paired_parallel_boundaries_above_glass_beaker",
+          "source": "unclaimed_hard_boundary_components"
+        },
+        "source": "object_identity"
+      }
+    ],
+    "layer_ids": [
+      "chem-01_annotation",
+      "chem01_apparatus_boundary",
+      "chem01_liquid_region",
+      "chem01_object_identity",
+      "chem01_ph_field"
+    ],
+    "layer_types": [
+      "annotation",
+      "hard_boundary",
+      "object_identity",
+      "region",
+      "scalar_field"
+    ],
+    "object_classes": [
+      "base_solution_drop",
+      "glass_beaker"
+    ],
+    "source_policy": "Exported directly from deterministic program state; not inferred from the rendered screenshot."
+  },
+  "visual_target_package": {
+    "path": "modules/video_model/stage3/visual_targets/CHEM-01/manifest.json",
+    "status": "accepted_project_baseline"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "artifacts": {
+    "exact_payload": {
+      "path": "modules/video_model/stage3/output/phase-1/_smoke/PHYS-01/02_result/phys01_surface_height.npy",
+      "sha256": "5521a38761d6e37bd8ad7c37faae3a589d0641706424bf298cd47c961f0b6e4c",
+      "size_bytes": 921728
+    },
+    "structure_control": {
+      "path": "modules/video_model/stage3/output/phase-1/_smoke/PHYS-01/02_result/structure_control.png",
+      "sha256": "8bb44cc497430280110c940200ed5bff6c3ae19d21e848ebb3222386eec8146a",
+      "size_bytes": 43602
+    }
+  },
+  "case_id": "PHYS-01",
+  "checks": [
+    {
+      "evidence": {
+        "copied_sha256": "5521a38761d6e37bd8ad7c37faae3a589d0641706424bf298cd47c961f0b6e4c",
+        "source_sha256": "5521a38761d6e37bd8ad7c37faae3a589d0641706424bf298cd47c961f0b6e4c"
+      },
+      "name": "semantic_payload_byte_identical",
+      "passed": true
+    },
+    {
+      "name": "appearance_reference_not_read",
+      "passed": true
+    }
+  ],
+  "control_kind": "height_field_exact",
+  "geometry_policy": "preserve_exact",
+  "keyframe_id": "02_result",
+  "passed": true,
+  "schema_version": "1.0",
+  "source_semantics": {
+    "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/02_result/semantic_layers.json",
+    "sha256": "f7f743b4e7982a0018845cdf8e1fea405de29af4df339ef7013211ab63dc5af2",
+    "size_bytes": 5189
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "anchors": [
+    {
+      "center_xy": [
+        320.0,
+        115.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-01"
+    },
+    {
+      "center_xy": [
+        320.0,
+        141.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-02"
+    },
+    {
+      "center_xy": [
+        320.0,
+        167.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-03"
+    },
+    {
+      "center_xy": [
+        320.0,
+        193.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-04"
+    },
+    {
+      "center_xy": [
+        320.0,
+        219.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-05"
+    },
+    {
+      "center_xy": [
+        320.0,
+        245.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-06"
+    }
+  ]
+}

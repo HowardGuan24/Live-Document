@@ -1,0 +1,28 @@
+{
+  "correction_zh": "不改图像和阈值；面积改用多边形鞋带公式，材质抽查改用固定重心坐标的双线性采样。",
+  "experiment_id": "EXP-S3-20260731-011",
+  "failed_checks": [
+    {
+      "case_id": "MATH-02",
+      "name": "piece_area_preserved",
+      "observed": [
+        0.02796296,
+        0.02796296,
+        0.02796296,
+        0.02796296
+      ],
+      "root_cause": "raster boundary pixels were compared with analytical polygon area",
+      "threshold": 0.025
+    },
+    {
+      "case_id": "MATH-02",
+      "name": "object_local_material_binding_stable",
+      "observed_minimum": 0.95220047,
+      "root_cause": "nearest-pixel audit moved the sample point after rigid rotation",
+      "threshold": 0.97
+    }
+  ],
+  "passed": false,
+  "reason_zh": "第一版图像本身满足对象几何，但门禁错误地用填充后的栅格像素数与解析三角形面积比较；同时用最近邻像素抽查局部材质，旋转后出现采样跳动。",
+  "schema_version": "1.0"
+}

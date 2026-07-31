@@ -1,0 +1,7 @@
+Positive prompt:
+
+The pink drop and pink cloud disappear smoothly while the camera stays still.
+
+Negative prompt:
+
+camera movement, scene change, abrupt cut, flicker, jitter, watermark

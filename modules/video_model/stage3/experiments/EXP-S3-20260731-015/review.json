@@ -1,0 +1,17 @@
+{
+  "evidence": {
+    "g4": {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-015/g4.json",
+      "sha256": "f33e3ded6affedd09bba46b793141e1b8891548cf6c4c0a9129e9b55242a78b7",
+      "size_bytes": 42304
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-015",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 1
+  },
+  "reason_zh": "L1 保持两个固定点源，波纹从两中心向外扩展，首尾、连续性和中间合同帧误差门禁全部通过。",
+  "schema_version": "1.0",
+  "verdict": "accepted_motion_default"
+}

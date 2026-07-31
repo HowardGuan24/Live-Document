@@ -1,0 +1,126 @@
+{
+  "artifacts": [
+    {
+      "path": "modules/video_model/stage3/output/phase-5/report.html",
+      "sha256": "a7bafaada37ec2b128a99f98304caa7e2946073c0f8ec2382bb0bd8ecde2b83a",
+      "size_bytes": 13326
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/report-assets/mechanism-metrics.png",
+      "sha256": "52c66bd5310411dc868cbf041c4d1e7e64d01bbea4850a002c9617e5f58fae9b",
+      "size_bytes": 41250
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/preflight.json",
+      "sha256": "827bf42ca5728c744cbf8c34070955b1f2a27d92cda0fd08dd38c2bd7acfb47e",
+      "size_bytes": 4255
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/controlled-variable-audit.json",
+      "sha256": "cc5fcb7ee9758a1d466fccfa973489587c7c54b9f202f8413c76ee7edf2adbd0",
+      "size_bytes": 964
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/g4-summary.json",
+      "sha256": "d8516c4a31d92929db12e6fa1979faea87227359a025b6ff3cb7e90149e14881",
+      "size_bytes": 3044
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/guidance-decisions.json",
+      "sha256": "1ff9bda9f2c31209c95c9bfb8e2cef32bf97ca318d94395d104cdf01237091e8",
+      "size_bytes": 1565
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/fallbacks/manifest.json",
+      "sha256": "539dc410529bf2aef07d07b6d2df01419ca18554be4ce5aaa033616eab2dbc7b",
+      "size_bytes": 2305
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-013/transition.mp4",
+      "sha256": "548865d9d6ff0edebae104a2e6aeae1163f6c0447ac5d9f8aa3422cf1b778975",
+      "size_bytes": 37159
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-013/g4.json",
+      "sha256": "8d11027f6776a144a700901037a49738e212e9010aa405560d368ccacbfc3435",
+      "size_bytes": 2927
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-013/generated-frames.jpg",
+      "sha256": "6287c25d3244cb38720ab1495e97ba2c8a46ab649e1003608a75c4aec478c145",
+      "size_bytes": 212714
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-014/transition.mp4",
+      "sha256": "ef227df837bd5eda8434189415ad5330f4fc74473c3cb3feca57756507add55b",
+      "size_bytes": 37783
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-014/g4.json",
+      "sha256": "146e9b0f860a5b8284c3c499e7c5cbe249c71e0d2abd8282de0e11ca0d3745ff",
+      "size_bytes": 2964
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-014/generated-frames.jpg",
+      "sha256": "34a452edcd43c23ca50c4967ee437f3a9b7955b509cf3294aa7fd1c6c67d6eb3",
+      "size_bytes": 213383
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-015/transition.mp4",
+      "sha256": "3109ffd9dfad0702b91af36881c7c4ae4fea7f2b2db4e7e58c9d0a4b8fb7ed61",
+      "size_bytes": 180092
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-015/g4.json",
+      "sha256": "f33e3ded6affedd09bba46b793141e1b8891548cf6c4c0a9129e9b55242a78b7",
+      "size_bytes": 42304
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-015/generated-frames.jpg",
+      "sha256": "f1dc6cb33a7747a455ecd23e9f232f28da214312b3d0e7a9c953c973f9c3cda6",
+      "size_bytes": 416791
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/transition.mp4",
+      "sha256": "b3d4adc088398dba322b21c994e0f752aeabf7220e0bb4a03f60906f495e77fb",
+      "size_bytes": 183978
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/g4.json",
+      "sha256": "bad18a08c323154b8424ba0b6741ada791871d5c86496291d48e0bc28d22e680",
+      "size_bytes": 42332
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/generated-frames.jpg",
+      "sha256": "76a9796d6bd24883f296f92d0614bd9223a3aa5f12bc52f2116c71fa38ed3612",
+      "size_bytes": 191011
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-017/transition.mp4",
+      "sha256": "d038d478de1a3f711fb7af120371b1bd704ad588e07bae81b58ab0bcfb8b3d42",
+      "size_bytes": 115319
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-017/g4.json",
+      "sha256": "ce2a47d5567bd5c60b94f37e91c000b0ea7c73538988800807a7df37eb64f87a",
+      "size_bytes": 8159
+    },
+    {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-017/generated-frames.jpg",
+      "sha256": "05fb17c72a5bfaa0f7087c3a7e147b4dbcd25e739e54f57274749cafdf4aa7c8",
+      "size_bytes": 451917
+    }
+  ],
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 5,
+    "video_model_calls": 7
+  },
+  "phase": "S3.5",
+  "schema_version": "1.0",
+  "status": "passed_with_motion_class_routing",
+  "tests": {
+    "command": "/opt/venv/bin/python -m pytest -q modules/video_model/stage3/tests",
+    "result": "8 passed"
+  }
+}

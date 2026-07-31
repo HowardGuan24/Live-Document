@@ -1,0 +1,138 @@
+{
+  "case_id": "CHEM-01",
+  "checks": [
+    {
+      "evidence": {
+        "maximum_mae_0_255": 15.0,
+        "metrics": {
+          "first": {
+            "mean_absolute_pixel_error_0_255": 2.3837
+          },
+          "last": {
+            "mean_absolute_pixel_error_0_255": 2.2573
+          }
+        }
+      },
+      "name": "first_and_last_frames_follow_inputs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 0.4473,
+        "maximum_allowed": 12.0,
+        "mean": 0.156,
+        "p95": 0.3704
+      },
+      "name": "no_abrupt_pixel_jump",
+      "passed": true
+    },
+    {
+      "allowed_step_increase_pixels": 82.4,
+      "colored_pixel_counts": [
+        824,
+        164,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        28,
+        684,
+        936,
+        628,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "final_fraction_of_initial": 0.0,
+      "initial_count": 824,
+      "integrated_color_scores": [
+        16300.0,
+        2336.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        156.0,
+        19440.0,
+        17504.0,
+        14024.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_step_increase_pixels": 656,
+      "name": "localized_scalar_mass_decays_without_regrowth",
+      "passed": false,
+      "peak_fraction_of_initial": 1.135922,
+      "roi_pixel_xyxy": [
+        184,
+        230,
+        392,
+        288
+      ]
+    }
+  ],
+  "consecutive_metrics": {
+    "maximum": 0.4473,
+    "mean": 0.156,
+    "p95": 0.3704
+  },
+  "endpoint_metrics": {
+    "first": {
+      "mean_absolute_pixel_error_0_255": 2.3837
+    },
+    "last": {
+      "mean_absolute_pixel_error_0_255": 2.2573
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-013",
+  "guidance_level": "L0",
+  "motion_contract": {
+    "path": "modules/video_model/stage3/output/phase-5/contracts/CHEM-01/01_mechanism__02_result.json",
+    "sha256": "539ec3d5860a2fafa6064dd56daec075fdaf51f5d8a8a7f7ff7cc40e59d3c2b4",
+    "size_bytes": 3069
+  },
+  "passed": false,
+  "preview": {
+    "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-013/generated-frames.jpg",
+    "sha256": "6287c25d3244cb38720ab1495e97ba2c8a46ab649e1003608a75c4aec478c145",
+    "size_bytes": 212714
+  },
+  "schema_version": "1.0",
+  "video": {
+    "duration_seconds": 1.0416666666666667,
+    "fps": 24.0,
+    "frame_count": 25,
+    "height": 320,
+    "width": 576
+  },
+  "video_artifact": {
+    "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-013/transition.mp4",
+    "sha256": "548865d9d6ff0edebae104a2e6aeae1163f6c0447ac5d9f8aa3422cf1b778975",
+    "size_bytes": 37159
+  }
+}

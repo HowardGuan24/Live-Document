@@ -1,0 +1,78 @@
+{
+  "case_id": "MATH-02",
+  "contract_id": "S3.5-MATH-02-00_start__01_mechanism-V1",
+  "downstream_use": "The prompt compiler converts ordered events, trends and invariants to L1 text. G4 reads the numeric g4 section. The raw program RGB video is evidence, not a style input.",
+  "entities": [
+    {
+      "class": "congruent_right_triangle",
+      "count": 4,
+      "id": "triangle_set"
+    }
+  ],
+  "forbidden": [
+    "triangle morphing, stretching, melting, fading or cross-dissolving",
+    "duplicated, missing, merged or fifth triangle",
+    "changing colors or wood grain sliding independently of a piece",
+    "camera movement or scene change"
+  ],
+  "g4": {
+    "audit_type": "rigid_identity",
+    "identity_count": 4,
+    "maximum_area_deviation_fraction": 0.12,
+    "maximum_consecutive_frame_mae_0_255": 12,
+    "maximum_endpoint_mae_0_255": 15
+  },
+  "invariants": [
+    "each triangle's material coordinates and color identity",
+    "wooden background, target region, framing and camera"
+  ],
+  "model_capability": {
+    "native_guides": [
+      "first_frame",
+      "last_frame"
+    ],
+    "native_middle_frame": false,
+    "program_video_conditioning": false
+  },
+  "motion_class": "rigid_motion",
+  "ordered_events": [
+    "Each of the four colored wooden right triangles moves by rigid translation and rotation toward its supplied final pose.",
+    "Every triangle keeps its own color, side lengths, area and local wood grain.",
+    "The four pieces finish in the supplied square arrangement without overlap."
+  ],
+  "program_video_source": {
+    "path": "modules/video_model/stage2/output/phase-2/MATH-02/program-animation.mp4",
+    "sha256": "f0f734873c8a9d9100ed322a922f228aed7831ccd5c9bbce9ab52db113663609",
+    "size_bytes": 68562
+  },
+  "schema_version": "1.0",
+  "segment_id": "00_start__01_mechanism",
+  "source_keyframes": [
+    {
+      "frame": {
+        "path": "modules/video_model/stage3/output/phase-4/MATH-02/frames/00_start.png",
+        "sha256": "a9864ba19c1de7925646e051dd4b59c53e73dc201f8097485840491594d6df1a",
+        "size_bytes": 294379
+      },
+      "keyframe_id": "00_start"
+    },
+    {
+      "frame": {
+        "path": "modules/video_model/stage3/output/phase-4/MATH-02/frames/01_mechanism.png",
+        "sha256": "2a451c25c52326a90af98a9941b1302e485a97eefdbe98d11d3763bade8dc164",
+        "size_bytes": 308382
+      },
+      "keyframe_id": "01_mechanism"
+    }
+  ],
+  "state_trends": [
+    "triangle_count: constant_four",
+    "triangle_area: constant",
+    "object_identity: preserved"
+  ],
+  "timeline_source": {
+    "path": "modules/video_model/stage2/output/phase-2/MATH-02/states.jsonl",
+    "sha256": "af24fb282832963f0b76ae165184d736e4fb34a8fe66dcf3f5c866ff56cad46f",
+    "size_bytes": 46124
+  }
+}

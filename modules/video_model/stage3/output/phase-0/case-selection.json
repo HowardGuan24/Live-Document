@@ -1,0 +1,124 @@
+{
+  "candidate_ranking": [
+    {
+      "case_id": "CHEM-01",
+      "priority_tuple": [
+        3,
+        3,
+        2,
+        0
+      ],
+      "reason_zh": "Stage 2 已证明手写器材模板有效，但模板与程序语义断开；这是把一次性烧杯结果改成通用几何重建器的最高优先缺口。"
+    },
+    {
+      "case_id": "CHEM-02",
+      "priority_tuple": [
+        3,
+        1,
+        0,
+        -1
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "PHYS-02",
+      "priority_tuple": [
+        3,
+        1,
+        0,
+        -1
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "MATH-02",
+      "priority_tuple": [
+        2,
+        1,
+        2,
+        0
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "PHYS-01",
+      "priority_tuple": [
+        2,
+        1,
+        2,
+        0
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "MATH-01",
+      "priority_tuple": [
+        2,
+        1,
+        0,
+        -1
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "BIO-01",
+      "priority_tuple": [
+        1,
+        1,
+        2,
+        0
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "GEO-02",
+      "priority_tuple": [
+        1,
+        1,
+        1,
+        -1
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "BIO-02",
+      "priority_tuple": [
+        1,
+        1,
+        0,
+        -1
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    },
+    {
+      "case_id": "GEO-01",
+      "priority_tuple": [
+        1,
+        1,
+        0,
+        -1
+      ],
+      "reason_zh": "按阶段缺口、失败严重度、视觉目标完整度排序。"
+    }
+  ],
+  "historical_regression": {
+    "case_id": "GEO-HIST-DELTA-01",
+    "reason_zh": "本轮只改 typed apparatus canonicalizer，不触碰地貌 layout_only 编译。",
+    "required": false
+  },
+  "phase": "S3.1",
+  "regression_cohort": [
+    {
+      "case_id": "PHYS-02",
+      "role": "cross_discipline_canonical_apparatus"
+    },
+    {
+      "case_id": "MATH-02",
+      "role": "preserve_exact_non_interference"
+    }
+  ],
+  "rule": "phase gap → hard failure severity → cross-disciplinary coverage → input/visual completeness → cost → case_id",
+  "schema_version": "1.0",
+  "selected_geometry_policy": "canonicalize",
+  "selected_target": "CHEM-01"
+}

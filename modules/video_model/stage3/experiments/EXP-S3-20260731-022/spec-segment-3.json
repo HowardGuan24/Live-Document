@@ -1,0 +1,50 @@
+{
+  "audit": {
+    "thresholds": {
+      "maximum_consecutive_frame_mae_0_255": 12,
+      "maximum_endpoint_mae_0_255": 15
+    }
+  },
+  "case_id": "BIO-01",
+  "experiment_id": "EXP-S3-20260731-022-SEG3",
+  "model": {
+    "checkpoint": "ltx-2.3-22b-dev-fp8.safetensors",
+    "distilled_lora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+    "lora_strength": 0.5,
+    "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors"
+  },
+  "motion_class": "object_division",
+  "output_prefix": "exp_s3_20260731_022_seg3",
+  "prompt": {
+    "negative": "extra or missing chromosome lineage, more than two daughter cells, cell fusion after division, chromosomes dissolving, multiplying, turning into organelles or leaving the cell, orange organelles or pink vertical donor bands, camera movement or scene change, camera movement, pan, zoom, tilt, perspective change, scene change, abrupt cut, flicker, jitter, ghosting, uncontracted object birth or loss, watermark",
+    "positive": "Locked straight-on scientific microscopy illustration of the exact same green cell material on the exact same dark background in every supplied frame. Keep exactly 1 deformable cell region, exactly 6 replicated chromosome lineage. The six magenta X-shaped replicated chromosomes move to and align along the center of the one cell. Then Each X separates into exactly two sister chromatids without any chromosome lineage appearing or disappearing. Then Exactly six sister chromatids move left and exactly six move right. Then Only after that allocation, the single green cell membrane pinches into exactly two daughter cells, each containing six sister chromatids. State constraints: cell_region_count: one_then_two_once; replicated_chromosome_count: six_to_zero; sister_chromatid_count: zero_to_twelve; lineage_unit_count: constant_twelve; left_destination_count: zero_to_six; right_destination_count: zero_to_six. Preserve dark background, green cell material and mint membrane, magenta chromosome identity color, framing, scale, lighting and camera, six parent lineages and their two-child mapping. End exactly at the supplied last frame. One continuous physically or mathematically understandable transition. Locked camera."
+  },
+  "schema_version": "1.0",
+  "settings": {
+    "cfg": 1.0,
+    "fps": 24,
+    "frame_count": 25,
+    "guide_strength": 0.7,
+    "height": 320,
+    "image_compression": 25,
+    "noise_seed": 2026073122,
+    "sigmas": [
+      1.0,
+      0.99375,
+      0.9875,
+      0.98125,
+      0.975,
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ],
+    "width": 576
+  },
+  "source": {
+    "first_frame": "/workspace/Live-Document/modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/candidate/frames/02_result.png",
+    "first_keyframe_id": "02_result",
+    "last_frame": "/workspace/Live-Document/modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/candidate/frames/03_end.png",
+    "last_keyframe_id": "03_end"
+  }
+}

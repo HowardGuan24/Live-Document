@@ -1,0 +1,159 @@
+{
+  "artifacts": {
+    "anchors": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/BIO-01/03_end/anchors.json",
+      "sha256": "7969082b472fe06ab11b7b950cc87909d397ca0c432cd393f09ccae39629526b",
+      "size_bytes": 1762
+    },
+    "regions": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/BIO-01/03_end/regions.png",
+      "sha256": "072f9fc105cadea482b77b5ca9aebdebfa39301776e2f4488e1020fb810ed442",
+      "size_bytes": 4416
+    },
+    "structure_control": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/BIO-01/03_end/structure_control.png",
+      "sha256": "c71aac741858d7b4ae98b04fa829ebf467b63b1dbb35ec160eb233843cc43b1e",
+      "size_bytes": 4797
+    }
+  },
+  "case_id": "BIO-01",
+  "checks": [
+    {
+      "evidence": [
+        {
+          "area_px": 82442,
+          "boundary_px": 1304,
+          "layer_id": "bio01_cell_region",
+          "source_sha256": "c3b4f361ec0b8d0223fb312626931be191f937a002a03741ed178bb62913c2a6"
+        }
+      ],
+      "name": "region_topology_exported",
+      "passed": true
+    },
+    {
+      "evidence": [
+        {
+          "center_xy": [
+            210.0,
+            100.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-01-A"
+        },
+        {
+          "center_xy": [
+            430.0,
+            100.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-01-B"
+        },
+        {
+          "center_xy": [
+            210.0,
+            132.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-02-A"
+        },
+        {
+          "center_xy": [
+            430.0,
+            132.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-02-B"
+        },
+        {
+          "center_xy": [
+            210.0,
+            164.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-03-A"
+        },
+        {
+          "center_xy": [
+            430.0,
+            164.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-03-B"
+        },
+        {
+          "center_xy": [
+            210.0,
+            196.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-04-A"
+        },
+        {
+          "center_xy": [
+            430.0,
+            196.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-04-B"
+        },
+        {
+          "center_xy": [
+            210.0,
+            228.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-05-A"
+        },
+        {
+          "center_xy": [
+            430.0,
+            228.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-05-B"
+        },
+        {
+          "center_xy": [
+            210.0,
+            260.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-06-A"
+        },
+        {
+          "center_xy": [
+            430.0,
+            260.0
+          ],
+          "class_id": "untyped",
+          "object_id": "BIO-01-chromosome-06-B"
+        }
+      ],
+      "name": "identity_anchors_exported",
+      "passed": true
+    },
+    {
+      "evidence": 0.007743,
+      "name": "sparse_structure_density",
+      "passed": true
+    },
+    {
+      "evidence": "only region boundaries and identity anchors are drawn",
+      "name": "scalar_and_annotation_not_converted_to_edges",
+      "passed": true
+    },
+    {
+      "name": "appearance_reference_not_read",
+      "passed": true
+    }
+  ],
+  "geometry_policy": "layout_only",
+  "keyframe_id": "03_end",
+  "passed": true,
+  "schema_version": "1.0",
+  "source_semantics": {
+    "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/semantic_layers.json",
+    "sha256": "7b60421e077034e23566b91e49c81f93c706a828a355bc83130cb1896d272c89",
+    "size_bytes": 5144
+  }
+}

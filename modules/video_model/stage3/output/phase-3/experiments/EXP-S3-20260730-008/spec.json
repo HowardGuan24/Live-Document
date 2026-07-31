@@ -1,0 +1,66 @@
+{
+  "blind_shuffle_seed": 2026073008,
+  "budget": {
+    "actual_planned_image_candidates": 9,
+    "maximum_new_generation": 9,
+    "maximum_new_image_candidates": 9,
+    "maximum_video_trials": 0,
+    "planned_external_reuse": 0
+  },
+  "case_id": "CHEM-01",
+  "configurations": [
+    {
+      "configuration_id": "auto_control_050",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.5,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_065",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.65,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_080",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.8,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_override_explanations": {
+    "stage3_auto_control": "frozen geometry control referenced by the trial matrix"
+  },
+  "control_overrides": {
+    "stage3_auto_control": "/workspace/Live-Document/modules/video_model/stage3/output/phase-1/controls/CHEM-01/00_start/structure_control.png"
+  },
+  "experiment_id": "EXP-S3-20260730-008",
+  "hypothesis_zh": "把几何 provider 声明的身份部件也编译进正向提示词后，固定候选集里至少一张既保留滴定管刻度，又通过既有外轮廓、对象分离、材质和曝光门禁。",
+  "negative_artifacts": "pink, magenta, colored liquid, colored lighting, flask, bottle, Erlenmeyer flask, side object, extra vessel, extra burette, extra beaker, fused parts, connecting rod, center ruler, center line inside liquid, pseudo text, labels, arrows, plastic, metal container, crop, tilt, blur, watermark",
+  "prompt_parts": {
+    "material_goal": "thin borosilicate glass, crisp natural highlights, clear liquid, neutral softbox light, empty matte gray backdrop",
+    "must_preserve": "air gap between burette tip and beaker rim, one of each, no text",
+    "scene_identity": "one clear glass beaker, one separate glass burette with seven visible horizontal graduation ticks on its left side, locked straight-on view",
+    "state_delta": "transparent neutral solution"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      7101,
+      7102,
+      7103
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "single_variable_zh": "相对 EXP-007 只改变版本化 prompt lexicon；模型、控制图、seed、ControlNet scale、采样参数保持不变。selector_v3 已在本轮生成前冻结，并新增通用 primitive 内部标志门禁。",
+  "source": {
+    "clean_frame": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/clean.png",
+    "keyframe_id": "00_start",
+    "semantic_layers": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json"
+  }
+}

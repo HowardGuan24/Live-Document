@@ -1,0 +1,24 @@
+{
+  "case_id": "BIO-01",
+  "experiment_id": "EXP-S3-20260731-022",
+  "guidance_level": "L2",
+  "schema_version": "1.0",
+  "segment_specs": [
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-022/spec-segment-1.json",
+      "sha256": "6b648bebe0ede2225b8e3b1ceec5170e004ddd2d7e382628678bedee8ce57e17",
+      "size_bytes": 2973
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-022/spec-segment-2.json",
+      "sha256": "4eb1527a52054d28396358958a777fd5f628de0e72a0de9271ddba308b33b4d6",
+      "size_bytes": 2975
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-022/spec-segment-3.json",
+      "sha256": "f3e00ec7fbc95ced6c4ea785bbdf42e29141d18e0a11b24c26a6fcdfe673d95a",
+      "size_bytes": 2963
+    }
+  ],
+  "single_variable_from_L1": "add accepted middle keyframes as segment boundaries; prompt, model settings and total 73 frames stay fixed"
+}

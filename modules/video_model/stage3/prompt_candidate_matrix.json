@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "matrix_id": "S3.3-CHEM-PROMPT-V1",
+  "status": "frozen_before_generation",
+  "case_id": "CHEM-01",
+  "keyframe_id": "00_start",
+  "single_variable": "prompt_compiler_v1 versus frozen Phase 7 prompt",
+  "geometry_control": {
+    "path": "modules/video_model/stage3/output/phase-1/controls/CHEM-01/00_start/structure_control.png",
+    "policy": "canonicalize",
+    "must_match_s3_2": true
+  },
+  "prompt_manifest": "modules/video_model/stage3/output/phase-3/prompts/CHEM-01/prompt_manifest.json",
+  "models": {
+    "sdxl_base": {
+      "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/sdxl-base-1.0",
+      "variant": "fp16"
+    },
+    "controlnet_canny": {
+      "model_id": "diffusers/controlnet-canny-sdxl-1.0",
+      "path": "/workspace/ai-concept-animator/.cache/models/controlnet-canny-sdxl-1.0",
+      "variant": "fp16"
+    }
+  },
+  "pipeline_mode": "controlnet_t2i",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "scheduler_expected": "EulerDiscreteScheduler",
+    "seeds": [7101, 7102, 7103]
+  },
+  "configurations": [
+    {
+      "configuration_id": "auto_control_050",
+      "controlnet_conditioning_scale": 0.5
+    },
+    {
+      "configuration_id": "auto_control_065",
+      "controlnet_conditioning_scale": 0.65
+    },
+    {
+      "configuration_id": "auto_control_080",
+      "controlnet_conditioning_scale": 0.8
+    }
+  ],
+  "selector": {
+    "policy": "modules/video_model/stage3/selector_v2.json",
+    "must_match_s3_2": true
+  },
+  "appearance_target": {
+    "manifest": "modules/video_model/stage3/visual_targets/CHEM-01/manifest.json",
+    "positive_reference": "modules/video_model/stage2/output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start/raw/semantic_control_065/seed_7101.png",
+    "geometry_must_not_be_taken_from_reference": true
+  },
+  "budget": {
+    "maximum_new_image_candidates": 9,
+    "maximum_video_candidates": 0,
+    "post_hoc_seed_addition_forbidden": true,
+    "post_hoc_prompt_change_forbidden": true
+  }
+}

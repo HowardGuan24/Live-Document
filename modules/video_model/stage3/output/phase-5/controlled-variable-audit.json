@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "name": "case_id_identical",
+      "passed": true
+    },
+    {
+      "name": "motion_class_identical",
+      "passed": true
+    },
+    {
+      "name": "source_identical",
+      "passed": true
+    },
+    {
+      "name": "model_identical",
+      "passed": true
+    },
+    {
+      "name": "settings_identical",
+      "passed": true
+    },
+    {
+      "name": "audit_identical",
+      "passed": true
+    },
+    {
+      "name": "prompt_is_only_semantic_input_difference",
+      "passed": true
+    }
+  ],
+  "comparison": [
+    "EXP-S3-20260731-013",
+    "EXP-S3-20260731-014"
+  ],
+  "left_prompt_characters": {
+    "negative": 69,
+    "positive": 77
+  },
+  "note_zh": "experiment_id 和输出文件名前缀只用于隔离产物；两条模型调用的图像内容、模型、seed、采样、帧数和门禁相同。",
+  "passed": true,
+  "right_prompt_characters": {
+    "negative": 297,
+    "positive": 819
+  },
+  "schema_version": "1.0"
+}

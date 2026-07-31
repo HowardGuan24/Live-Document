@@ -1,0 +1,983 @@
+{
+  "appearance_target_features": {
+    "dark_fraction": 0.00121223,
+    "edge_fraction": 0.01902771,
+    "highlight_fraction": 0.00889926,
+    "luminance_std_0_255": 33.790829,
+    "mean_luminance_0_255": 156.109485,
+    "mean_saturation_0_255": 4.291348
+  },
+  "eligible_count": 0,
+  "input_signatures": {
+    "appearance_target_sha256": "42f00932056e2614b70b706bbd5e836135689d1f7de1a36e8dbdfd8549674e35",
+    "control_sha256": "f92b100612853bb34e15a8a42f775251f3113197ff86b914ed9409dfa43cb82f",
+    "generation_metadata_sha256": "efe246f6b4970fa4f43519897c598b20382f550bf065440e486e24acdc18aa75",
+    "geometry_gate_sha256": "2ec964a1c1e6f14f3588ed6fd0350da7e9b346f5feb8c89e068efd325fa6236a",
+    "matrix_sha256": "d4b097cdc0b71d7aba7cba700cc664916a68ca3671df9e850bf840f7468abcff",
+    "selector_policy_sha256": "f952ad8e516817d1a18b67fb0f3ff2cf63d64205cc08c2849cd927bd747f1698"
+  },
+  "limitations_zh": [
+    "v1 自动量表能检查控制覆盖、曝光、饱和度和与已接受外观统计的接近程度。",
+    "它不能仅凭传统图像特征可靠识别重复烧杯、错误玻璃结构或高级材质审美；阶段报告仍需独立视觉审计。"
+  ],
+  "matrix_id": "S3.3-CHEM-PROMPT-V1",
+  "records": [
+    {
+      "appearance_features": {
+        "dark_fraction": 0.00094944,
+        "edge_fraction": 0.01818,
+        "highlight_fraction": 0.0068868,
+        "luminance_std_0_255": 34.723439,
+        "mean_luminance_0_255": 158.692078,
+        "mean_saturation_0_255": 25.516359
+      },
+      "candidate_id": "auto_control_050-s7101",
+      "configuration_id": "auto_control_050",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.88317317,
+        "lower_object_center_edge_fraction": 0.0749354,
+        "outside_apparatus_edge_fraction": 0.00025537,
+        "per_object": {
+          "glass_beaker": 0.9886126,
+          "glass_burette": 0.94545455
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.97639997
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.97639997
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.9886126
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.94545455
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 25.516359
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 34.723439
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00094944
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.0068868
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.88317317
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.00025537
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": false,
+          "threshold": 0.05,
+          "value": 0.0749354
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_050/seed_7101.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.93741971,
+        "control_fidelity": 0.96556907,
+        "exposure_balance": 0.99216376,
+        "neutral_material": 0.75698706,
+        "total": 0.92849643
+      },
+      "seed": 7101,
+      "sha256": "c080e0737457733b41d1e59f84d023ef44990cc3566beb222426a39d84dc5550"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 2.374e-05,
+        "edge_fraction": 0.02074348,
+        "highlight_fraction": 0.004442,
+        "luminance_std_0_255": 34.377061,
+        "mean_luminance_0_255": 149.877099,
+        "mean_saturation_0_255": 18.311705
+      },
+      "candidate_id": "auto_control_050-s7102",
+      "configuration_id": "auto_control_050",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.80993088,
+        "lower_object_center_edge_fraction": 0.02158383,
+        "outside_apparatus_edge_fraction": 0.00290273,
+        "per_object": {
+          "glass_beaker": 0.85858703,
+          "glass_burette": 0.93737374
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.88208207
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.88208207
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.85858703
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.93737374
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 18.311705
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 34.377061
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 2.374e-05
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.004442
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.80993088
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.00290273
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.02158383
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_050/seed_7102.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.94408841,
+        "control_fidelity": 0.87385881,
+        "exposure_balance": 0.99553426,
+        "neutral_material": 0.82560281,
+        "total": 0.89985683
+      },
+      "seed": 7102,
+      "sha256": "b2bbcfc99507ce532113a35146a333f15cd9583db6bd3cf7ccb81f459fec2311"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.00607469,
+        "edge_fraction": 0.03295729,
+        "highlight_fraction": 0.00019328,
+        "luminance_std_0_255": 31.90803,
+        "mean_luminance_0_255": 151.471542,
+        "mean_saturation_0_255": 9.897564
+      },
+      "candidate_id": "auto_control_050-s7103",
+      "configuration_id": "auto_control_050",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.91935484,
+        "lower_object_center_edge_fraction": 0.02614379,
+        "outside_apparatus_edge_fraction": 0.02433465,
+        "per_object": {
+          "glass_beaker": 0.92481989,
+          "glass_burette": 0.89350649
+        },
+        "separate_objects_remain_disconnected": false,
+        "total": 0.91645424
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.91645424
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.92481989
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.89350649
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 9.897564
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 31.90803
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00607469
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00019328
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.91935484
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": false,
+          "threshold": 0.01,
+          "value": 0.02433465
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.02614379
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": false,
+          "threshold": true,
+          "value": false
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_050/seed_7103.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.94175115,
+        "control_fidelity": 0.90842253,
+        "exposure_balance": 0.99373203,
+        "neutral_material": 0.90573749,
+        "total": 0.92654931
+      },
+      "seed": 7103,
+      "sha256": "9105bfaa6ff51c94fc45bb807036210936299eb39569260cdc806022dfe4a068"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.00193617,
+        "edge_fraction": 0.0172899,
+        "highlight_fraction": 0.01017931,
+        "luminance_std_0_255": 33.754132,
+        "mean_luminance_0_255": 156.097015,
+        "mean_saturation_0_255": 24.500302
+      },
+      "candidate_id": "auto_control_065-s7101",
+      "configuration_id": "auto_control_065",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.87522194,
+        "lower_object_center_edge_fraction": 0.09043928,
+        "outside_apparatus_edge_fraction": 0.00014057,
+        "per_object": {
+          "glass_beaker": 0.98884499,
+          "glass_burette": 0.95555556
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.97944248
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.97944248
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.98884499
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.95555556
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 24.500302
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 33.754132
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00193617
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.01017931
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.87522194
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.00014057
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": false,
+          "threshold": 0.05,
+          "value": 0.09043928
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_065/seed_7101.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.94819088,
+        "control_fidelity": 0.97108206,
+        "exposure_balance": 0.98788452,
+        "neutral_material": 0.76666379,
+        "total": 0.93523221
+      },
+      "seed": 7101,
+      "sha256": "f69b54123c2793d796c86242c13ec92da91641bf29e5e92c106744ea8e64868c"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.0,
+        "edge_fraction": 0.01492988,
+        "highlight_fraction": 0.00438944,
+        "luminance_std_0_255": 35.836734,
+        "mean_luminance_0_255": 148.524872,
+        "mean_saturation_0_255": 17.354418
+      },
+      "candidate_id": "auto_control_065-s7102",
+      "configuration_id": "auto_control_065",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.89166477,
+        "lower_object_center_edge_fraction": 0.01109591,
+        "outside_apparatus_edge_fraction": 0.0,
+        "per_object": {
+          "glass_beaker": 0.9360911,
+          "glass_burette": 0.97056277
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.94638599
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.94638599
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.9360911
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.97056277
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 17.354418
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 35.836734
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.0
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00438944
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.89166477
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.0
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.01109591
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_065/seed_7102.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.93439108,
+        "control_fidelity": 0.94278278,
+        "exposure_balance": 0.99561056,
+        "neutral_material": 0.83471983,
+        "total": 0.9293386
+      },
+      "seed": 7102,
+      "sha256": "6423d2ebb016e68d27be5f2e4bee6abf20b8d0715f5192388ac500e9e3f60397"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.00182766,
+        "edge_fraction": 0.02783542,
+        "highlight_fraction": 0.00131904,
+        "luminance_std_0_255": 31.192912,
+        "mean_luminance_0_255": 147.36025,
+        "mean_saturation_0_255": 9.143204
+      },
+      "candidate_id": "auto_control_065-s7103",
+      "configuration_id": "auto_control_065",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.93392899,
+        "lower_object_center_edge_fraction": 0.02614379,
+        "outside_apparatus_edge_fraction": 0.01853622,
+        "per_object": {
+          "glass_beaker": 0.93864746,
+          "glass_burette": 0.93823954
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.93898528
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.93898528
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.93864746
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.93823954
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 9.143204
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 31.192912
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00182766
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00131904
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.93392899
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": false,
+          "threshold": 0.01,
+          "value": 0.01853622
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.02614379
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_065/seed_7103.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.94120847,
+        "control_fidelity": 0.93872427,
+        "exposure_balance": 0.9968533,
+        "neutral_material": 0.91292187,
+        "total": 0.94141207
+      },
+      "seed": 7103,
+      "sha256": "f4d305cd2af952897188814993a15305f22fcc44f475bb845392b70c4c52411d"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.00034756,
+        "edge_fraction": 0.01694404,
+        "highlight_fraction": 0.00808377,
+        "luminance_std_0_255": 32.399965,
+        "mean_luminance_0_255": 155.998556,
+        "mean_saturation_0_255": 22.370992
+      },
+      "candidate_id": "auto_control_080-s7101",
+      "configuration_id": "auto_control_080",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.87886391,
+        "lower_object_center_edge_fraction": 0.09165527,
+        "outside_apparatus_edge_fraction": 7.028e-05,
+        "per_object": {
+          "glass_beaker": 0.99047176,
+          "glass_burette": 0.97691198
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.98667873
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.98667873
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.99047176
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.97691198
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 22.370992
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 32.399965
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00034756
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00808377
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.87886391
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 7.028e-05
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": false,
+          "threshold": 0.05,
+          "value": 0.09165527
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_080/seed_7101.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.94771036,
+        "control_fidelity": 0.98326037,
+        "exposure_balance": 0.99156867,
+        "neutral_material": 0.78694293,
+        "total": 0.94397858
+      },
+      "seed": 7101,
+      "sha256": "9915eff4ce3610e431282b4fe3dc368f802764a4d9a0838966f92a3f9b63703d"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 1.017e-05,
+        "edge_fraction": 0.01478916,
+        "highlight_fraction": 0.00467936,
+        "luminance_std_0_255": 36.985737,
+        "mean_luminance_0_255": 148.117021,
+        "mean_saturation_0_255": 14.737169
+      },
+      "candidate_id": "auto_control_080-s7102",
+      "configuration_id": "auto_control_080",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.85112489,
+        "lower_object_center_edge_fraction": 0.0130719,
+        "outside_apparatus_edge_fraction": 2.577e-05,
+        "per_object": {
+          "glass_beaker": 0.94085522,
+          "glass_burette": 0.96594517
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.94844174
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.94844174
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.94085522
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.96594517
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 14.737169
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 36.985737
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 1.017e-05
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00467936
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.85112489
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 2.577e-05
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.0130719
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_080/seed_7102.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.93536725,
+        "control_fidelity": 0.94578646,
+        "exposure_balance": 0.99531047,
+        "neutral_material": 0.85964601,
+        "total": 0.93469203
+      },
+      "seed": 7102,
+      "sha256": "72f5a70686ba0e899f3aec4003acf9322383e61fe0266d31402e1bda641947f9"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 1.187e-05,
+        "edge_fraction": 0.013404,
+        "highlight_fraction": 0.00241597,
+        "luminance_std_0_255": 21.71581,
+        "mean_luminance_0_255": 143.483551,
+        "mean_saturation_0_255": 5.46559
+      },
+      "candidate_id": "auto_control_080-s7103",
+      "configuration_id": "auto_control_080",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.97002277,
+        "lower_object_center_edge_fraction": 0.01960784,
+        "outside_apparatus_edge_fraction": 0.0,
+        "per_object": {
+          "glass_beaker": 0.96560539,
+          "glass_burette": 0.92727273
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.95493792
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.95493792
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.96560539
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.92727273
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 5.46559
+        },
+        {
+          "name": "luminance_std",
+          "passed": false,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 21.71581
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 1.187e-05
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00241597
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.97002277
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.0
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.01960784
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        }
+      ],
+      "hard_gate_passed": false,
+      "path": "raw/auto_control_080/seed_7103.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.91034074,
+        "control_fidelity": 0.9452551,
+        "exposure_balance": 0.99757216,
+        "neutral_material": 0.94794676,
+        "total": 0.94041625
+      },
+      "seed": 7103,
+      "sha256": "8dca94c7cb626acf92edfb0b2ffd796d274b46a2a84598e11071ce33fac618e4"
+    }
+  ],
+  "schema_version": "1.0",
+  "selected_artifact": null,
+  "selected_candidate": null,
+  "selected_candidate_id": null,
+  "selector_version": "stage3_candidate_selector_v2",
+  "status": "no_candidate_passed",
+  "tie_break": [
+    "higher total score",
+    "higher minimum per-object control coverage",
+    "configuration priority auto_control_065, auto_control_080, auto_control_050",
+    "lower seed"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "class_id": "bar_magnet",
+      "geometry": {
+        "kind": "polygon",
+        "points": [
+          [
+            38.0,
+            142
+          ],
+          [
+            146.0,
+            142
+          ],
+          [
+            146.0,
+            218
+          ],
+          [
+            38.0,
+            218
+          ]
+        ]
+      },
+      "object_id": "PHYS-02-magnet"
+    },
+    {
+      "class_id": "fixed_coil",
+      "geometry": {
+        "bbox_xyxy": [
+          334,
+          112,
+          446,
+          248
+        ],
+        "kind": "ellipse"
+      },
+      "object_id": "PHYS-02-coil"
+    }
+  ],
+  "schema_version": "1.0"
+}

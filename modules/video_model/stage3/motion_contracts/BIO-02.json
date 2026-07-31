@@ -1,0 +1,63 @@
+{
+  "case_id": "BIO-02",
+  "keyframe_selection": [
+    {
+      "keyframe_id": "00_start",
+      "order": 0,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/00_start/state.json",
+        "sha256": "a1ff2c85cf9fa485b27b8093264130f41ab8c2af157d67b90233965d56f8e3f0",
+        "size_bytes": 155
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/state.json",
+        "sha256": "c88d0ab1837f3504727f342bead773ee54dba4c7280edf55415b50ff9899026a",
+        "size_bytes": 160
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "order": 2,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/02_result/state.json",
+        "sha256": "4e3e93fb012279b3592fcc16239008bf4573824b65b17fe9951c6b95f000e38d",
+        "size_bytes": 160
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "order": 3,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/03_end/state.json",
+        "sha256": "61c4faf318b0a6debb08acaa773139cac93df152b7b6863fa38617bd972cc4cf",
+        "size_bytes": 155
+      }
+    }
+  ],
+  "model_input_policy": "The full timeline is used to extract direction, topology, speed trend, and occlusion constraints. Raw program video is not a default pixel input to an image or video model.",
+  "motion_classes": [
+    "constrained_deformation"
+  ],
+  "program_video": {
+    "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/program-animation.mp4",
+    "sha256": "dd468d2ad459c5e11075b8674c8b08ee2cac3bf09bb83ff42c3ed99927d06de8",
+    "size_bytes": 50278
+  },
+  "schema_version": "1.0",
+  "state_timeline": {
+    "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/states.jsonl",
+    "sha256": "9a9063915e8773e3d54ac90602edcc6788171256bc81ffeea8c2f0f0c777b7a6",
+    "size_bytes": 6827
+  },
+  "temporal_gates": [
+    "pore_area_follows_turgor",
+    "exactly_two_guard_cells",
+    "guard_cell_adjacency_is_fixed",
+    "camera_and_background_remain_fixed",
+    "no_uncontracted_object_birth_or_loss"
+  ]
+}

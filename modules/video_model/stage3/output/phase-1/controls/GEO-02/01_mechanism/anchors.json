@@ -1,0 +1,12 @@
+{
+  "anchors": [
+    {
+      "center_xy": [
+        242.82,
+        178.815
+      ],
+      "class_id": "moving_air_parcel",
+      "object_id": "GEO-02-air-parcel"
+    }
+  ]
+}

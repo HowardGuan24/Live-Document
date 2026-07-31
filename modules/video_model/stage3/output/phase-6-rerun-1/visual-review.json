@@ -1,0 +1,60 @@
+{
+  "blind_map": {
+    "A": "highpass_statistics candidate",
+    "B": "raw_underlay negative control",
+    "policy_zh": "匿名表只显示 A/B；visual-review.json 保存逐项理由，本文件用于审查后解盲和可复现回放。",
+    "schema_version": "1.0"
+  },
+  "blind_sheet": {
+    "path": "modules/video_model/stage3/output/phase-6-rerun-1/report-assets/blind-image-comparison.jpg",
+    "sha256": "3af2ed0f3b9211ecb39bc915c62f18371f15ea1aa4c7573ad54cb633e2f313d9",
+    "size_bytes": 246174
+  },
+  "options": {
+    "A": {
+      "hard_gates": {
+        "appearance_to_geometry_leakage": true,
+        "negative_reference_avoidance": true
+      },
+      "judgment_zh": "细胞质有颗粒和柔和深度，但供体的橙色团块、粉色纵带和器官布局没有进入结果；程序染色体仍是最醒目的教学对象。",
+      "scores_1_to_5": {
+        "camera_and_scene_stability": 5.0,
+        "lighting_coherence": 4.0,
+        "material_legibility": 4.2,
+        "realism_without_plasticity": 4.1,
+        "teaching_readability": 4.6
+      },
+      "weighted_score": 4.34
+    },
+    "B": {
+      "hard_gates": {
+        "appearance_to_geometry_leakage": false,
+        "negative_reference_avoidance": false
+      },
+      "judgment_zh": "直接贴供体把橙色团块、粉色纵带和供体内部结构带入每帧，虽然程序对象计数仍对，但新人很难分清哪些结构属于机制。",
+      "scores_1_to_5": {
+        "camera_and_scene_stability": 5.0,
+        "lighting_coherence": 3.4,
+        "material_legibility": 3.8,
+        "realism_without_plasticity": 3.0,
+        "teaching_readability": 1.8
+      },
+      "weighted_score": 3.6
+    }
+  },
+  "passed": true,
+  "rubric": {
+    "path": "modules/video_model/stage3/visual_targets/BIO-01/rubric.json",
+    "sha256": "d0624d50e23b42918739fd83b51a7937c2f60f5f89ff73aca3b965254be84a53",
+    "size_bytes": 1480
+  },
+  "schema_version": "1.0",
+  "selected_blind_id": "A",
+  "selected_route": "highpass_statistics",
+  "selection_reason_zh": "A 超过 4.0 加权阈值并通过两个外观硬门；B 复现了 Visual Target Package 明示的反例，不得被材质鲜艳度补偿。",
+  "style_board": {
+    "path": "modules/video_model/stage3/visual_targets/BIO-01/style_board.html",
+    "sha256": "27d9cb3d133d32a83d3ebf1aac5c03ac2abbb142db887cf307b0e748d393ac61",
+    "size_bytes": 1761
+  }
+}

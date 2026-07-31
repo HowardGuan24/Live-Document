@@ -1,0 +1,66 @@
+{
+  "blind_shuffle_seed": 2026073003,
+  "budget": {
+    "actual_planned_image_candidates": 9,
+    "maximum_new_generation": 9,
+    "maximum_new_image_candidates": 9,
+    "maximum_video_trials": 0,
+    "planned_external_reuse": 0
+  },
+  "case_id": "CHEM-01",
+  "configurations": [
+    {
+      "configuration_id": "auto_control_050",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.5,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_065",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.65,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_080",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.8,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_override_explanations": {
+    "stage3_auto_control": "由 S3.1 typed object identity、程序 hard_boundary 和 canonical primitive 自动编译；不读取视觉目标图几何。"
+  },
+  "control_overrides": {
+    "stage3_auto_control": "/workspace/Live-Document/modules/video_model/stage3/output/phase-1/controls/CHEM-01/00_start/structure_control.png"
+  },
+  "experiment_id": "EXP-S3-20260730-003",
+  "hypothesis_zh": "Stage 3 自动 canonical control 在固定 SDXL + Canny ControlNet 搜索空间内，能产生至少一个同时通过结构与基础外观门禁的候选。",
+  "negative_artifacts": "extra beakers, extra burettes, extra tubes, missing vessel, moved liquid level, pouring stream, crystals, foam, large bubbles, text, labels, arrows, user interface, watermark, plastic toy, metallic container, cropped apparatus, tilted camera, perspective view, blur",
+  "prompt_parts": {
+    "material_goal": "clear glass, colorless liquid, realistic refraction and reflections, neutral laboratory",
+    "must_preserve": "one beaker, one burette, fixed liquid level and layout, no text",
+    "scene_identity": "Straight-on photo of one glass beaker under one glass burette, locked centered camera",
+    "state_delta": "initial acidic solution is colorless with no pink region"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      7101,
+      7102,
+      7103
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "single_variable_zh": "只改变 ControlNet conditioning scale；模型、提示词、控制图、scheduler、步数、尺寸和三个 seed 全部固定。",
+  "source": {
+    "clean_frame": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/clean.png",
+    "keyframe_id": "00_start",
+    "semantic_layers": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json"
+  }
+}

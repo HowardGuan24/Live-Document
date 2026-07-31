@@ -1,0 +1,7 @@
+Positive prompt:
+
+Front-view close scientific shot of the exact same glass dispenser and transparent beaker in both supplied frames. Keep exactly 1 liquid drop, exactly 1 localized scalar field. The single small pink drop moves downward into the liquid and ceases to be a separate object. Then The one localized pink indicator plume disperses within the liquid and becomes progressively fainter. Then The liquid reaches the supplied colorless final state. State constraints: pink_indicator_mass: non_increasing; separate_drop_count: one_to_zero; liquid_level: effectively_constant. Preserve glass dispenser shape and position, beaker shape and position, liquid surface, lighting, framing, background and camera. End exactly at the supplied last frame. One continuous physically or mathematically understandable transition. Locked camera.
+
+Negative prompt:
+
+pink color growing before it fades, a second drop or second plume, splashing, boiling, smoke or bubbles, glass deformation or apparatus movement, camera movement, pan, zoom, tilt, perspective change, scene change, abrupt cut, flicker, jitter, ghosting, uncontracted object birth or loss, watermark

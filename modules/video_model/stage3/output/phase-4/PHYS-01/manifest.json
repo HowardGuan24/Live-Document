@@ -1,0 +1,393 @@
+{
+  "anchor": {
+    "prepared": {
+      "path": "modules/video_model/stage3/output/phase-4/PHYS-01/frozen_anchor.png",
+      "sha256": "601ec83b73626fe63f7f4e653df589d28e5ed9aeaa1f5fb8e77589b0b989a751",
+      "size_bytes": 176979
+    },
+    "preprocess": {
+      "mode": "gaussian_blur_then_resize",
+      "radius": 8.0,
+      "size": [
+        640,
+        360
+      ]
+    },
+    "source": {
+      "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-005/raw/t2i_material_donor/seed_3102.png",
+      "sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+      "size_bytes": 1152177
+    },
+    "source_sha256_before_preprocess": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5"
+  },
+  "case_id": "PHYS-01",
+  "comparison_assets": {
+    "mutable_sequence": {
+      "path": "modules/video_model/stage3/output/phase-4/PHYS-01/mutable-sequence.jpg",
+      "sha256": "3dae5250c6a33dff90b87759106c601905fba880faeec6468746ef18f7223ea2",
+      "size_bytes": 14873
+    },
+    "sequence": {
+      "path": "modules/video_model/stage3/output/phase-4/PHYS-01/sequence.jpg",
+      "sha256": "03e5ab3860e81bf939d30eb3ba124d4ded239dc92c548e6693c4d9ad8b2a4461",
+      "size_bytes": 157225
+    }
+  },
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "operator_ids": [
+    "water_surface_relief",
+    "coherent_sources"
+  ],
+  "plan_id": "S3.4-PHYS-01-V1",
+  "records": [
+    {
+      "keyframe_id": "00_start",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 10.5707364,
+        "mutable_area_px": 230400,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/mutable/00_start.png",
+        "sha256": "00ec552482fe5a9ec582c6119b3964784e84faeb5c1429b82d4f0635eca5440f",
+        "size_bytes": 985
+      },
+      "operator_records": [
+        {
+          "height_max": 1.0,
+          "height_min": -0.90784371,
+          "mean_abs_change_0_255": 10.22056293,
+          "mean_abs_change_from_previous_0_255": 10.22056293,
+          "operator_id": "water_surface_relief",
+          "operator_type": "height_normal",
+          "program_shading_to_realized_luminance_correlation": 0.99999998,
+          "source_height": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/00_start/layers/phys01_surface_height.npy",
+            "sha256": "f7c6f4032d00d063d5eea01d7495ca2174b3c6b49f519d43360f867f05955cde",
+            "size_bytes": 921728
+          }
+        },
+        {
+          "mean_abs_change_from_previous_0_255": 0.15382817,
+          "object_count": 2,
+          "object_counts_by_class": {
+            "coherent_point_source": 2
+          },
+          "operator_id": "coherent_sources",
+          "operator_type": "object_overlay",
+          "projected_items": [
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  228.0,
+                  173.0,
+                  242.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-01"
+            },
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  398.0,
+                  173.0,
+                  412.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-02"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/00_start/layers/phys01_source_identity.json",
+            "sha256": "ecb546180f49d5a4af9a908c0a28952d3600aa4e4947640df1a1abae23fa7a83",
+            "size_bytes": 715
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/frames/00_start.png",
+        "sha256": "db9b97bc005008e77c5cf66b85d61e61edfc76b5ca374ca1b9139a517e8af5d0",
+        "size_bytes": 198369
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/00_start/semantic_layers.json",
+        "sha256": "7f2b3e0d7aab89caa027fbb3ae9bb04fca1c5b55fd0984c684dfcb2d20dc9ac1",
+        "size_bytes": 5166
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/00_start/state.json",
+        "sha256": "8965cc73f480259f753253f90989ca536a46ea22c4341254d7f82bb2e054313b",
+        "size_bytes": 367
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 11.81126591,
+        "mutable_area_px": 230400,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/mutable/01_mechanism.png",
+        "sha256": "00ec552482fe5a9ec582c6119b3964784e84faeb5c1429b82d4f0635eca5440f",
+        "size_bytes": 985
+      },
+      "operator_records": [
+        {
+          "height_max": 1.08316624,
+          "height_min": -0.95349097,
+          "mean_abs_change_0_255": 11.70240784,
+          "mean_abs_change_from_previous_0_255": 11.70240784,
+          "operator_id": "water_surface_relief",
+          "operator_type": "height_normal",
+          "program_shading_to_realized_luminance_correlation": 0.99999975,
+          "source_height": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/01_mechanism/layers/phys01_surface_height.npy",
+            "sha256": "fd1ffb6b48ea763373dfdc6d92c7722e6d9f8e7af96fd08124918ae97ae7c1b2",
+            "size_bytes": 921728
+          }
+        },
+        {
+          "mean_abs_change_from_previous_0_255": 0.13401096,
+          "object_count": 2,
+          "object_counts_by_class": {
+            "coherent_point_source": 2
+          },
+          "operator_id": "coherent_sources",
+          "operator_type": "object_overlay",
+          "projected_items": [
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  228.0,
+                  173.0,
+                  242.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-01"
+            },
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  398.0,
+                  173.0,
+                  412.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-02"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/01_mechanism/layers/phys01_source_identity.json",
+            "sha256": "ecb546180f49d5a4af9a908c0a28952d3600aa4e4947640df1a1abae23fa7a83",
+            "size_bytes": 715
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/frames/01_mechanism.png",
+        "sha256": "02da3c5a232174277597e215c330781a69522598b53aa3e30094b303834aed1d",
+        "size_bytes": 219351
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "c3588624930139e2c923d599071d5e8d48528924399f7077590478fe123ecbe1",
+        "size_bytes": 5216
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/01_mechanism/state.json",
+        "sha256": "62f3f2e33fb24348464abd6cae2849ce353436b510d9aa2a2e71209a6426c2fc",
+        "size_bytes": 385
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 13.37440249,
+        "mutable_area_px": 230400,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/mutable/02_result.png",
+        "sha256": "00ec552482fe5a9ec582c6119b3964784e84faeb5c1429b82d4f0635eca5440f",
+        "size_bytes": 985
+      },
+      "operator_records": [
+        {
+          "height_max": 1.32933545,
+          "height_min": -1.34075701,
+          "mean_abs_change_0_255": 13.00713253,
+          "mean_abs_change_from_previous_0_255": 13.00713253,
+          "operator_id": "water_surface_relief",
+          "operator_type": "height_normal",
+          "program_shading_to_realized_luminance_correlation": 0.9999997,
+          "source_height": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/02_result/layers/phys01_surface_height.npy",
+            "sha256": "5521a38761d6e37bd8ad7c37faae3a589d0641706424bf298cd47c961f0b6e4c",
+            "size_bytes": 921728
+          }
+        },
+        {
+          "mean_abs_change_from_previous_0_255": 0.15151881,
+          "object_count": 2,
+          "object_counts_by_class": {
+            "coherent_point_source": 2
+          },
+          "operator_id": "coherent_sources",
+          "operator_type": "object_overlay",
+          "projected_items": [
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  228.0,
+                  173.0,
+                  242.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-01"
+            },
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  398.0,
+                  173.0,
+                  412.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-02"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/02_result/layers/phys01_source_identity.json",
+            "sha256": "ecb546180f49d5a4af9a908c0a28952d3600aa4e4947640df1a1abae23fa7a83",
+            "size_bytes": 715
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/frames/02_result.png",
+        "sha256": "4b3045b76c501f15eb7bf7824b8b286f3c33f2cd14e0177bbc3d39144e819d36",
+        "size_bytes": 240090
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/02_result/semantic_layers.json",
+        "sha256": "f7f743b4e7982a0018845cdf8e1fea405de29af4df339ef7013211ab63dc5af2",
+        "size_bytes": 5189
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/02_result/state.json",
+        "sha256": "b141d81615c7d2f5904bf5dcb196bd5cd468df97a85b8bdb48f7d68cea2bf7c7",
+        "size_bytes": 389
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "metrics": {
+        "inside_mutable_mean_difference_0_255": 13.67256655,
+        "mutable_area_px": 230400,
+        "outside_mutable_max_difference_0_255": 0
+      },
+      "mutable_mask": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/mutable/03_end.png",
+        "sha256": "00ec552482fe5a9ec582c6119b3964784e84faeb5c1429b82d4f0635eca5440f",
+        "size_bytes": 985
+      },
+      "operator_records": [
+        {
+          "height_max": 1.36132085,
+          "height_min": -1.3357718,
+          "mean_abs_change_0_255": 13.62083149,
+          "mean_abs_change_from_previous_0_255": 13.62083149,
+          "operator_id": "water_surface_relief",
+          "operator_type": "height_normal",
+          "program_shading_to_realized_luminance_correlation": 0.99999961,
+          "source_height": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/layers/phys01_surface_height.npy",
+            "sha256": "5bda8b1ac6b060cb0b0ac2ae4d3fe19c1775e76af37131f234d4b448d3e74c85",
+            "size_bytes": 921728
+          }
+        },
+        {
+          "mean_abs_change_from_previous_0_255": 0.13355973,
+          "object_count": 2,
+          "object_counts_by_class": {
+            "coherent_point_source": 2
+          },
+          "operator_id": "coherent_sources",
+          "operator_type": "object_overlay",
+          "projected_items": [
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  228.0,
+                  173.0,
+                  242.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-01"
+            },
+            {
+              "class_id": "coherent_point_source",
+              "geometry": {
+                "bbox_xyxy": [
+                  398.0,
+                  173.0,
+                  412.0,
+                  187.0
+                ],
+                "kind": "ellipse"
+              },
+              "object_id": "PHYS-01-source-02"
+            }
+          ],
+          "source_identity": {
+            "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/layers/phys01_source_identity.json",
+            "sha256": "ecb546180f49d5a4af9a908c0a28952d3600aa4e4947640df1a1abae23fa7a83",
+            "size_bytes": 715
+          }
+        }
+      ],
+      "output": {
+        "path": "modules/video_model/stage3/output/phase-4/PHYS-01/frames/03_end.png",
+        "sha256": "a970804fcea24bb5cb3471525bd1debe5e08d7d10cf76efec511c384aa18979b",
+        "size_bytes": 258640
+      },
+      "source_semantics": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/semantic_layers.json",
+        "sha256": "86d7f3d410474dcf3d72a24326ff2b7ea4093cd1e5bb4709357697991ab5b209",
+        "size_bytes": 5160
+      },
+      "source_state": {
+        "path": "modules/video_model/stage2/output/phase-2/PHYS-01/keyframes/03_end/state.json",
+        "sha256": "c875e68673100afe875d09cb1ed806a565e1591ee37afe438725d9370b9198d7",
+        "size_bytes": 387
+      }
+    }
+  ],
+  "route_contract": "B_frozen_anchor_plus_program_state",
+  "schema_version": "1.0"
+}

@@ -1,0 +1,20 @@
+{
+  "problems": [
+    {
+      "problem_id": "S3-PROBLEM-VISUAL-001",
+      "summary_zh": "GEO-02 Visual Target 仍为 provisional，不能作为正式发布外观。",
+      "taxonomy": "visual_target"
+    },
+    {
+      "problem_id": "S3-PROBLEM-RELEASE-GEO-001",
+      "summary_zh": "S3.6 仍缺地理代表案例的正式 G2–G4；旧 alpha 结论已撤销。",
+      "taxonomy": "cross_discipline_coverage"
+    },
+    {
+      "problem_id": "S3-PROBLEM-VTP-SCALE-001",
+      "summary_zh": "五个非 sentinel scale Case 仍缺 Visual Target Package。",
+      "taxonomy": "visual_target"
+    }
+  ],
+  "schema_version": "1.0"
+}

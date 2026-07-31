@@ -1,0 +1,59 @@
+{
+  "accepted_core_version": "candidate-v2-not-released",
+  "active_loop_id": "LOOP-S3-0002",
+  "budget": {
+    "image_candidate_limit": 0,
+    "preflight_before_gpu_work": true,
+    "video_candidate_limit_per_guidance_level": 0
+  },
+  "consecutive_no_progress_loops": 0,
+  "current_case_cohort": {
+    "historical_regression": "GEO-HIST-DELTA-01",
+    "route_regressions": [
+      "PHYS-01",
+      "CHEM-01"
+    ],
+    "target": "GEO-02"
+  },
+  "current_cohort": {
+    "historical": "GEO-HIST-DELTA-01",
+    "regressions": [
+      "PHYS-01",
+      "CHEM-01"
+    ],
+    "target": "GEO-02"
+  },
+  "current_hypothesis": {
+    "falsification_zh": "若现有资料存在互斥视觉目标或没有可审查正反例，不得把 provisional 自动升级为 accepted。",
+    "hypothesis_id": "H-S3-0008A",
+    "statement_zh": "下一轮先审计 GEO-02 的正例、反例和外观量表，不能用程序控制图替代外观认可。"
+  },
+  "current_hypothesis_id": "H-S3-0008A",
+  "current_problem": {
+    "problem_id": "S3-PROBLEM-VISUAL-001",
+    "summary_zh": "GEO-02 外观目标仍为 provisional。",
+    "taxonomy": "visual_target"
+  },
+  "current_problem_id": "S3-PROBLEM-VISUAL-001",
+  "exit_criteria": [
+    "All five discipline representatives pass complete formal release regression",
+    "Delta and Phase 9 historical regressions pass",
+    "All accepted baselines and newcomer report links resolve"
+  ],
+  "loop_id": "LOOP-S3-0002",
+  "next_action": "Inspect GEO-02 provisional Visual Target Package before any model call; do not restore the superseded alpha claim.",
+  "open_problem_ids": [
+    "S3-PROBLEM-VISUAL-001",
+    "S3-PROBLEM-RELEASE-GEO-001",
+    "S3-PROBLEM-VTP-SCALE-001"
+  ],
+  "phase": "S3.6",
+  "phase_exit_criteria": [
+    "Math, physics, chemistry, biology and geography representatives complete G0–G4 or an explicitly accepted fallback",
+    "No representative relies on a provisional Visual Target Package"
+  ],
+  "phase_status": "in_progress",
+  "remaining_image_budget": 0,
+  "remaining_video_budget": 0,
+  "schema_version": "1.0"
+}

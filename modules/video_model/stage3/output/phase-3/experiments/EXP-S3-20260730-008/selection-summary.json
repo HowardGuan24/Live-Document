@@ -1,0 +1,1371 @@
+{
+  "appearance_target_features": {
+    "dark_fraction": 0.00121223,
+    "edge_fraction": 0.01902771,
+    "highlight_fraction": 0.00889926,
+    "luminance_std_0_255": 33.790829,
+    "mean_luminance_0_255": 156.109485,
+    "mean_saturation_0_255": 4.291348
+  },
+  "eligible_count": 2,
+  "input_signatures": {
+    "appearance_target_sha256": "42f00932056e2614b70b706bbd5e836135689d1f7de1a36e8dbdfd8549674e35",
+    "control_sha256": "f92b100612853bb34e15a8a42f775251f3113197ff86b914ed9409dfa43cb82f",
+    "generation_metadata_sha256": "bae3f25cdba5574692ce9c70abbf9a17248ef4c5a519dd17438d78aa057a1229",
+    "geometry_gate_sha256": "c46c2b33a05d8c1e90cbf4e12fc565403558e52918de68d20512a232de73c4ba",
+    "matrix_sha256": "d4b097cdc0b71d7aba7cba700cc664916a68ca3671df9e850bf840f7468abcff",
+    "selector_policy_sha256": "ac48ba2e8f53019e0c7d88e25b8b0b9eb87ae5594b5e11b80f0ca81db3235459"
+  },
+  "limitations_zh": [
+    "自动量表能检查控制覆盖、曝光、饱和度、外观统计和 primitive 声明的内部几何标志。",
+    "它仍不能仅凭传统图像特征可靠评价高级材质审美或未在 primitive provider 中声明的语义部件；阶段报告仍需独立视觉审计。"
+  ],
+  "matrix_id": "S3.3-CHEM-PROMPT-V1",
+  "records": [
+    {
+      "appearance_features": {
+        "dark_fraction": 0.00045946,
+        "edge_fraction": 0.01460775,
+        "highlight_fraction": 0.00247871,
+        "luminance_std_0_255": 31.236011,
+        "mean_luminance_0_255": 160.325884,
+        "mean_saturation_0_255": 15.997384
+      },
+      "candidate_id": "auto_control_050-s7101",
+      "configuration_id": "auto_control_050",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.99099662,
+        "lower_object_center_edge_fraction": 0.02614379,
+        "outside_apparatus_edge_fraction": 0.00145019,
+        "per_object": {
+          "glass_beaker": 0.98721822,
+          "glass_burette": 0.87907648
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.95650029
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.95650029
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.98721822
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.87907648
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 15.997384
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 31.236011
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00045946
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00247871
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.99099662
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.00145019
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.02614379
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": false,
+          "threshold": 5,
+          "value": 0
+        }
+      ],
+      "hard_gate_passed": false,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 0,
+          "detected_group_center_y": [],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": false,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_050/seed_7101.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.94250314,
+        "control_fidelity": 0.92940196,
+        "exposure_balance": 0.99706183,
+        "neutral_material": 0.84764396,
+        "total": 0.9278346
+      },
+      "seed": 7101,
+      "sha256": "35325d7e66d8ca334b1e822b2523f2a046948c91c11dabfa49cead83907e788f"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.0,
+        "edge_fraction": 0.01698812,
+        "highlight_fraction": 0.00038995,
+        "luminance_std_0_255": 27.523544,
+        "mean_luminance_0_255": 151.329632,
+        "mean_saturation_0_255": 6.795836
+      },
+      "candidate_id": "auto_control_050-s7102",
+      "configuration_id": "auto_control_050",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.87505524,
+        "lower_object_center_edge_fraction": 0.01823985,
+        "outside_apparatus_edge_fraction": 0.00226783,
+        "per_object": {
+          "glass_beaker": 0.906693,
+          "glass_burette": 0.94170274
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.91735877
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.91735877
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.906693
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.94170274
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 6.795836
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 27.523544
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.0
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00038995
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.87505524
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.00226783
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.01823985
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": false,
+          "threshold": 5,
+          "value": 2
+        }
+      ],
+      "hard_gate_passed": false,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 2,
+          "detected_group_center_y": [
+            43,
+            51
+          ],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": false,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_050/seed_7102.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.95121054,
+        "control_fidelity": 0.91362575,
+        "exposure_balance": 0.99961005,
+        "neutral_material": 0.93527775,
+        "total": 0.93674742
+      },
+      "seed": 7102,
+      "sha256": "88e4812140cec6aea78e51fc4dba2832b28793b758d0e413675d45749eda265a"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 1.7e-06,
+        "edge_fraction": 0.01193407,
+        "highlight_fraction": 0.00017293,
+        "luminance_std_0_255": 16.557851,
+        "mean_luminance_0_255": 149.731703,
+        "mean_saturation_0_255": 4.298087
+      },
+      "candidate_id": "auto_control_050-s7103",
+      "configuration_id": "auto_control_050",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.98707203,
+        "lower_object_center_edge_fraction": 0.01960784,
+        "outside_apparatus_edge_fraction": 0.0,
+        "per_object": {
+          "glass_beaker": 0.95654195,
+          "glass_burette": 0.8963925
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.93972535
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.93972535
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.95654195
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.8963925
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 4.298087
+        },
+        {
+          "name": "luminance_std",
+          "passed": false,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 16.557851
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 1.7e-06
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00017293
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.98707203
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.0
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.01960784
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": false,
+          "threshold": 5,
+          "value": 0
+        }
+      ],
+      "hard_gate_passed": false,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 0,
+          "detected_group_center_y": [],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": false,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_050/seed_7103.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.90560016,
+        "control_fidelity": 0.92455885,
+        "exposure_balance": 0.99982537,
+        "neutral_material": 0.95906584,
+        "total": 0.93157394
+      },
+      "seed": 7103,
+      "sha256": "3f691f3663629a07851f3d71d7ca22885f0762c80feab89615797fc0076b018a"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.00023905,
+        "edge_fraction": 0.01267497,
+        "highlight_fraction": 0.00246514,
+        "luminance_std_0_255": 30.340114,
+        "mean_luminance_0_255": 161.285765,
+        "mean_saturation_0_255": 15.912457
+      },
+      "candidate_id": "auto_control_065-s7101",
+      "configuration_id": "auto_control_065",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.9923705,
+        "lower_object_center_edge_fraction": 0.00881593,
+        "outside_apparatus_edge_fraction": 1.171e-05,
+        "per_object": {
+          "glass_beaker": 0.95828492,
+          "glass_burette": 0.91515152
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.94630376
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.94630376
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.95828492
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.91515152
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 15.912457
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 30.340114
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00023905
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00246514
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.9923705
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 1.171e-05
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.00881593
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": false,
+          "threshold": 5,
+          "value": 3
+        }
+      ],
+      "hard_gate_passed": false,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 3,
+          "detected_group_center_y": [
+            82,
+            99,
+            116
+          ],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": false,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_065/seed_7101.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.93428737,
+        "control_fidelity": 0.93540048,
+        "exposure_balance": 0.99729581,
+        "neutral_material": 0.84845279,
+        "total": 0.92821393
+      },
+      "seed": 7101,
+      "sha256": "6d6009518aa6a3b5d1e776cd7a2316c876e4d6d438fc19be0250bf95e987285b"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 1.187e-05,
+        "edge_fraction": 0.01465352,
+        "highlight_fraction": 0.000295,
+        "luminance_std_0_255": 29.303985,
+        "mean_luminance_0_255": 152.137316,
+        "mean_saturation_0_255": 5.360168
+      },
+      "candidate_id": "auto_control_065-s7102",
+      "configuration_id": "auto_control_065",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.88088709,
+        "lower_object_center_edge_fraction": 0.00653595,
+        "outside_apparatus_edge_fraction": 0.00059976,
+        "per_object": {
+          "glass_beaker": 0.9416686,
+          "glass_burette": 0.99307359
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.95674698
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.95674698
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.9416686
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.99307359
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 5.360168
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 29.303985
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 1.187e-05
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.000295
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.88088709
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.00059976
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.00653595
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": false,
+          "threshold": 5,
+          "value": 4
+        }
+      ],
+      "hard_gate_passed": false,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 4,
+          "detected_group_center_y": [
+            42,
+            49,
+            56,
+            157
+          ],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": false,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_065/seed_7102.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.95985743,
+        "control_fidelity": 0.95146955,
+        "exposure_balance": 0.99969313,
+        "neutral_material": 0.94895078,
+        "total": 0.95843046
+      },
+      "seed": 7102,
+      "sha256": "a4ff7e4cfe79268785d13f3bd2f59abf6f82051c81bf5c4154ca933bf36c5df5"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 3.39e-06,
+        "edge_fraction": 0.01481798,
+        "highlight_fraction": 0.00053914,
+        "luminance_std_0_255": 18.460133,
+        "mean_luminance_0_255": 148.499012,
+        "mean_saturation_0_255": 3.515004
+      },
+      "candidate_id": "auto_control_065-s7103",
+      "configuration_id": "auto_control_065",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.96132723,
+        "lower_object_center_edge_fraction": 0.02644779,
+        "outside_apparatus_edge_fraction": 0.0,
+        "per_object": {
+          "glass_beaker": 0.99477109,
+          "glass_burette": 0.91861472
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.97311076
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.97311076
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.99477109
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.91861472
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 3.515004
+        },
+        {
+          "name": "luminance_std",
+          "passed": false,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 18.460133
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 3.39e-06
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00053914
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.96132723
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.0
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.02644779
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": false,
+          "threshold": 5,
+          "value": 1
+        }
+      ],
+      "hard_gate_passed": false,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 1,
+          "detected_group_center_y": [
+            153
+          ],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": false,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_065/seed_7103.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.9120881,
+        "control_fidelity": 0.95403715,
+        "exposure_balance": 0.99945747,
+        "neutral_material": 0.96652377,
+        "total": 0.94786746
+      },
+      "seed": 7103,
+      "sha256": "51c1cbaf23620d5247998a0a403d6ca577631c1e0bd775be200969339a016cba"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 0.0001119,
+        "edge_fraction": 0.01276143,
+        "highlight_fraction": 0.00201077,
+        "luminance_std_0_255": 27.997484,
+        "mean_luminance_0_255": 160.949599,
+        "mean_saturation_0_255": 14.234953
+      },
+      "candidate_id": "auto_control_080-s7101",
+      "configuration_id": "auto_control_080",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.99401834,
+        "lower_object_center_edge_fraction": 0.0130719,
+        "outside_apparatus_edge_fraction": 9.37e-06,
+        "per_object": {
+          "glass_beaker": 0.93980944,
+          "glass_burette": 0.97575758
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.95049749
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.95049749
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.93980944
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.97575758
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 14.234953
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 27.997484
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.0001119
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00201077
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.99401834
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 9.37e-06
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.0130719
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": true,
+          "threshold": 5,
+          "value": 5
+        }
+      ],
+      "hard_gate_passed": true,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 5,
+          "detected_group_center_y": [
+            80,
+            98,
+            116,
+            136,
+            155
+          ],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": true,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_080/seed_7101.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.93020244,
+        "control_fidelity": 0.94675667,
+        "exposure_balance": 0.99787733,
+        "neutral_material": 0.86442902,
+        "total": 0.93455332
+      },
+      "seed": 7101,
+      "sha256": "7e62b5d051f08c93a687369ca135112b82bd2ef4ee533eba327f7f0febaa5b66"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 2.543e-05,
+        "edge_fraction": 0.0139228,
+        "highlight_fraction": 0.00011698,
+        "luminance_std_0_255": 30.894647,
+        "mean_luminance_0_255": 152.054564,
+        "mean_saturation_0_255": 4.416058
+      },
+      "candidate_id": "auto_control_080-s7102",
+      "configuration_id": "auto_control_080",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.91658548,
+        "lower_object_center_edge_fraction": 0.01367989,
+        "outside_apparatus_edge_fraction": 0.0,
+        "per_object": {
+          "glass_beaker": 0.97373925,
+          "glass_burette": 0.9988456
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.98108708
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.98108708
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.97373925
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.9988456
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 4.416058
+        },
+        {
+          "name": "luminance_std",
+          "passed": true,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 30.894647
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 2.543e-05
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00011698
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.91658548
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.0
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.01367989
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": true,
+          "threshold": 5,
+          "value": 7
+        }
+      ],
+      "hard_gate_passed": true,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 7,
+          "detected_group_center_y": [
+            41,
+            48,
+            55,
+            60,
+            80,
+            99,
+            161
+          ],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": true,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_080/seed_7102.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.96669337,
+        "control_fidelity": 0.97851534,
+        "exposure_balance": 0.99985759,
+        "neutral_material": 0.9579423,
+        "total": 0.97401702
+      },
+      "seed": 7102,
+      "sha256": "3c9667e0c92dc072844937a7cb3b3ec4547c56e350b54b347ac277dcc12c25fa"
+    },
+    {
+      "appearance_features": {
+        "dark_fraction": 1.7e-06,
+        "edge_fraction": 0.015291,
+        "highlight_fraction": 0.00056118,
+        "luminance_std_0_255": 19.414735,
+        "mean_luminance_0_255": 146.998628,
+        "mean_saturation_0_255": 4.997581
+      },
+      "candidate_id": "auto_control_080-s7103",
+      "configuration_id": "auto_control_080",
+      "control_coverage": {
+        "candidate_edge_precision_within_12px": 0.95609269,
+        "lower_object_center_edge_fraction": 0.02568779,
+        "outside_apparatus_edge_fraction": 0.0,
+        "per_object": {
+          "glass_beaker": 0.99349291,
+          "glass_burette": 0.95036075
+        },
+        "separate_objects_remain_disconnected": true,
+        "total": 0.98125154
+      },
+      "hard_checks": [
+        {
+          "name": "total_control_coverage",
+          "passed": true,
+          "threshold": 0.58,
+          "value": 0.98125154
+        },
+        {
+          "name": "beaker_control_coverage",
+          "passed": true,
+          "threshold": 0.55,
+          "value": 0.99349291
+        },
+        {
+          "name": "burette_control_coverage",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.95036075
+        },
+        {
+          "name": "mean_saturation",
+          "passed": true,
+          "threshold": 105.0,
+          "value": 4.997581
+        },
+        {
+          "name": "luminance_std",
+          "passed": false,
+          "threshold": [
+            22.0,
+            92.0
+          ],
+          "value": 19.414735
+        },
+        {
+          "name": "dark_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 1.7e-06
+        },
+        {
+          "name": "highlight_fraction",
+          "passed": true,
+          "threshold": 0.42,
+          "value": 0.00056118
+        },
+        {
+          "name": "candidate_edge_precision_within_12px",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.95609269
+        },
+        {
+          "name": "outside_apparatus_edge_fraction",
+          "passed": true,
+          "threshold": 0.01,
+          "value": 0.0
+        },
+        {
+          "name": "lower_object_center_edge_fraction",
+          "passed": true,
+          "threshold": 0.05,
+          "value": 0.02568779
+        },
+        {
+          "name": "separate_objects_remain_disconnected",
+          "passed": true,
+          "threshold": true,
+          "value": true
+        },
+        {
+          "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+          "passed": false,
+          "threshold": 5,
+          "value": 3
+        }
+      ],
+      "hard_gate_passed": false,
+      "internal_landmarks": [
+        {
+          "class_id": "glass_burette",
+          "detected_distinct_groups": 3,
+          "detected_group_center_y": [
+            41,
+            60,
+            155
+          ],
+          "kind": "repeated_horizontal_segments",
+          "landmark_id": "graduation_ticks",
+          "minimum_distinct_groups": 5,
+          "object_id": "CHEM-01-normalized-glass_burette",
+          "passed": false,
+          "roi_xyxy": [
+            483,
+            39,
+            512,
+            161
+          ]
+        }
+      ],
+      "path": "raw/auto_control_080/seed_7103.png",
+      "scores": {
+        "accepted_appearance_similarity": 0.91288653,
+        "control_fidelity": 0.97043976,
+        "exposure_balance": 0.99943712,
+        "neutral_material": 0.95240399,
+        "total": 0.95336816
+      },
+      "seed": 7103,
+      "sha256": "80764b4dfed07d7a07a4327220a04bbb5d38b678fd6506e7d989638cda0fa62c"
+    }
+  ],
+  "schema_version": "1.0",
+  "selected_artifact": {
+    "path": "modules/video_model/stage3/output/phase-3/selection-v4/selected.png",
+    "sha256": "3c9667e0c92dc072844937a7cb3b3ec4547c56e350b54b347ac277dcc12c25fa",
+    "size_bytes": 488964
+  },
+  "selected_candidate": {
+    "appearance_features": {
+      "dark_fraction": 2.543e-05,
+      "edge_fraction": 0.0139228,
+      "highlight_fraction": 0.00011698,
+      "luminance_std_0_255": 30.894647,
+      "mean_luminance_0_255": 152.054564,
+      "mean_saturation_0_255": 4.416058
+    },
+    "candidate_id": "auto_control_080-s7102",
+    "configuration_id": "auto_control_080",
+    "control_coverage": {
+      "candidate_edge_precision_within_12px": 0.91658548,
+      "lower_object_center_edge_fraction": 0.01367989,
+      "outside_apparatus_edge_fraction": 0.0,
+      "per_object": {
+        "glass_beaker": 0.97373925,
+        "glass_burette": 0.9988456
+      },
+      "separate_objects_remain_disconnected": true,
+      "total": 0.98108708
+    },
+    "hard_checks": [
+      {
+        "name": "total_control_coverage",
+        "passed": true,
+        "threshold": 0.58,
+        "value": 0.98108708
+      },
+      {
+        "name": "beaker_control_coverage",
+        "passed": true,
+        "threshold": 0.55,
+        "value": 0.97373925
+      },
+      {
+        "name": "burette_control_coverage",
+        "passed": true,
+        "threshold": 0.42,
+        "value": 0.9988456
+      },
+      {
+        "name": "mean_saturation",
+        "passed": true,
+        "threshold": 105.0,
+        "value": 4.416058
+      },
+      {
+        "name": "luminance_std",
+        "passed": true,
+        "threshold": [
+          22.0,
+          92.0
+        ],
+        "value": 30.894647
+      },
+      {
+        "name": "dark_fraction",
+        "passed": true,
+        "threshold": 0.42,
+        "value": 2.543e-05
+      },
+      {
+        "name": "highlight_fraction",
+        "passed": true,
+        "threshold": 0.42,
+        "value": 0.00011698
+      },
+      {
+        "name": "candidate_edge_precision_within_12px",
+        "passed": true,
+        "threshold": 0.9,
+        "value": 0.91658548
+      },
+      {
+        "name": "outside_apparatus_edge_fraction",
+        "passed": true,
+        "threshold": 0.01,
+        "value": 0.0
+      },
+      {
+        "name": "lower_object_center_edge_fraction",
+        "passed": true,
+        "threshold": 0.05,
+        "value": 0.01367989
+      },
+      {
+        "name": "separate_objects_remain_disconnected",
+        "passed": true,
+        "threshold": true,
+        "value": true
+      },
+      {
+        "name": "internal_landmark:CHEM-01-normalized-glass_burette:graduation_ticks",
+        "passed": true,
+        "threshold": 5,
+        "value": 7
+      }
+    ],
+    "hard_gate_passed": true,
+    "internal_landmarks": [
+      {
+        "class_id": "glass_burette",
+        "detected_distinct_groups": 7,
+        "detected_group_center_y": [
+          41,
+          48,
+          55,
+          60,
+          80,
+          99,
+          161
+        ],
+        "kind": "repeated_horizontal_segments",
+        "landmark_id": "graduation_ticks",
+        "minimum_distinct_groups": 5,
+        "object_id": "CHEM-01-normalized-glass_burette",
+        "passed": true,
+        "roi_xyxy": [
+          483,
+          39,
+          512,
+          161
+        ]
+      }
+    ],
+    "path": "raw/auto_control_080/seed_7102.png",
+    "scores": {
+      "accepted_appearance_similarity": 0.96669337,
+      "control_fidelity": 0.97851534,
+      "exposure_balance": 0.99985759,
+      "neutral_material": 0.9579423,
+      "total": 0.97401702
+    },
+    "seed": 7102,
+    "sha256": "3c9667e0c92dc072844937a7cb3b3ec4547c56e350b54b347ac277dcc12c25fa"
+  },
+  "selected_candidate_id": "auto_control_080-s7102",
+  "selector_version": "stage3_candidate_selector_v3",
+  "status": "selected",
+  "tie_break": [
+    "higher total score",
+    "higher minimum per-object control coverage",
+    "configuration priority auto_control_065, auto_control_080, auto_control_050",
+    "lower seed"
+  ]
+}

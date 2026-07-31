@@ -1,0 +1,68 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stage 3 · S3.0 冻结输入与启动 Loop</title><style>
+:root{--ink:#17231f;--muted:#5e6b64;--paper:#f5f1e7;--card:#fffdf8;
+--line:#d8d1c2;--green:#176548;--blue:#28587a;--amber:#9a5d14}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);
+font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Noto Sans SC",sans-serif;
+line-height:1.68}.hero{padding:64px max(5vw,24px) 42px;background:#173d34;color:#fff}
+.hero p{max-width:900px;color:#dbeae5;font-size:18px}main{max-width:1240px;margin:auto;
+padding:34px 24px 80px}section{background:var(--card);border:1px solid var(--line);
+border-radius:18px;padding:28px;margin:22px 0}h1{font-size:clamp(32px,5vw,58px);
+line-height:1.08;margin:.15em 0}h2{font-size:27px;margin:0 0 12px}h3{margin-top:26px}
+.badge{display:inline-block;padding:5px 10px;border-radius:999px;background:#dff3e9;
+color:var(--green);font-weight:750}.grid{display:grid;grid-template-columns:repeat(4,1fr);
+gap:14px}.step{border-left:4px solid var(--blue);padding:12px;background:#edf3f5}
+.step strong{display:block;font-size:20px}.gallery{display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.gallery figure{margin:0;
+border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#111}
+.gallery img{display:block;width:100%;height:310px;object-fit:contain}.gallery figcaption{
+background:white;padding:13px}table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);
+padding:11px 9px}th{background:#eee8dc;position:sticky;top:0}code{background:#e9eee9;
+padding:2px 5px;border-radius:5px}.pass{color:var(--green);font-weight:700;
+margin:8px 0}.pass small{display:block;color:var(--muted);font-weight:400;margin-left:22px}
+.warning{border-left:5px solid var(--amber);padding:12px 16px;background:#fff2d8}
+.decision{border-left:6px solid var(--green);background:#eaf6ef;padding:18px}
+a{color:#135f78}@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}
+.gallery{grid-template-columns:1fr}table{display:block;overflow:auto}}
+</style></head><body><header class="hero"><span class="badge">S3.0 PASS</span>
+<h1>先把“输入、好图、坏图和验收”冻结，再让 Agent 自己迭代</h1>
+<p>本阶段没有运行 SDXL 或视频模型。它解决的是更基础的问题：以后每次实验到底拿什么当输入、
+什么不能被改、好看具体指什么、失败后怎样选择下一项。十个跨学科案例和历史三角洲都已进入同一套可校验合同。</p>
+</header><main>
+<section><h2>第一次接手项目，只需先理解这四件事</h2><div class="grid">
+<div class="step"><strong>1 程序是真值</strong>连续状态、对象身份、区域和物理场由确定性程序输出。</div>
+<div class="step"><strong>2 几何策略分流</strong>精确保留、规范重建或只保留布局；不再默认对整张截图做 Canny。</div>
+<div class="step"><strong>3 外观另有目标包</strong>好图、坏图、材质、光照、相机与真实感量表单独保存。</div>
+<div class="step"><strong>4 门禁决定能否继续</strong>先查合同与控制图，再生成，再查机制与外观，最后才做视频。</div>
+</div></section>
+<section><h2>真实数据长什么样：用烧杯举例</h2>
+<p>左上是程序四个关键状态；右上是程序直接导出的器材对象身份；左下是器材硬边界；
+右下是项目已接受的外观质量。前三者决定“东西在哪里、怎样变”，最后一张只决定“玻璃与光照看起来怎样”。</p>
+<div class="gallery">
+<figure><img src='../../../stage2/output/phase-2/CHEM-01/keyframe-contact-sheet.jpg' alt='烧杯程序关键帧'><figcaption><strong>程序关键帧</strong>：机制与阶段真值。</figcaption></figure>
+<figure><img src='../../../stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/layers/chem01_object_identity_preview.png' alt='烧杯对象身份'><figcaption><strong>对象身份</strong>：烧杯和液滴的稳定 ID 及位置。</figcaption></figure>
+<figure><img src='../../../stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/layers/chem01_apparatus_boundary_preview.png' alt='器材硬边界'><figcaption><strong>硬边界</strong>：可供控制编译器选择，不等于整图 Canny。</figcaption></figure>
+<figure><img src='../../../stage2/output/phase-9/report-assets/chem-final-b-sequence.jpg' alt='烧杯外观目标'><figcaption><strong>外观基线</strong>：只回答玻璃、材质、光照与真实感。</figcaption></figure>
+</div>
+<p class="warning"><strong>本轮发现并明确记录的历史缺口：</strong>Stage 2 烧杯的漂亮线稿来自固定坐标模板，
+并没有由程序语义生成。Stage 3 不把它伪装成已解决；S3.1 正是要把这条断链替换成 typed geometry canonicalizer。</p>
+</section>
+<section><h2>十一项输入的完整度矩阵</h2><p>“视觉目标 missing”不会阻止合同冒烟，
+但会阻止该案例调用图像模型。当前五个 sentinel 与历史三角洲均已有目标包；GEO-02 明确标为 provisional。</p>
+<table><thead><tr><th>案例</th><th>学科</th><th>几何策略</th><th>时间信息</th>
+<th>视觉目标</th><th>已知缺口</th></tr></thead><tbody><tr><td><strong>MATH-01</strong><br>单位圆怎样生成正弦曲线</td><td>数学</td><td><code>preserve_exact</code></td><td>4 个关键帧；49 个连续帧</td><td><code>missing</code></td><td>Visual target package has not yet been curated; model generation is forbidden until it exists.</td></tr><tr><td><strong>MATH-02</strong><br>勾股定理的拼图重排证明</td><td>数学</td><td><code>preserve_exact</code></td><td>4 个关键帧；49 个连续帧</td><td><code>accepted_project_baseline</code></td><td>—</td></tr><tr><td><strong>PHYS-01</strong><br>两个同步振源产生的水面波干涉</td><td>物理</td><td><code>preserve_exact</code></td><td>4 个关键帧；49 个连续帧</td><td><code>accepted_project_baseline</code></td><td>—</td></tr><tr><td><strong>PHYS-02</strong><br>磁铁运动为什么在线圈中产生感应电流</td><td>物理</td><td><code>canonicalize</code></td><td>4 个关键帧；49 个连续帧</td><td><code>missing</code></td><td>Visual target package has not yet been curated; model generation is forbidden until it exists.</td></tr><tr><td><strong>CHEM-01</strong><br>酸碱滴定从局部变色到到达终点</td><td>化学</td><td><code>canonicalize</code></td><td>4 个关键帧；49 个连续帧</td><td><code>accepted_project_baseline</code></td><td>—</td></tr><tr><td><strong>CHEM-02</strong><br>盐溶液蒸发、过饱和与晶体生长</td><td>化学</td><td><code>canonicalize</code></td><td>4 个关键帧；49 个连续帧</td><td><code>missing</code></td><td>Visual target package has not yet been curated; model generation is forbidden until it exists.</td></tr><tr><td><strong>BIO-01</strong><br>一个动物细胞的有丝分裂</td><td>生物</td><td><code>layout_only</code></td><td>4 个关键帧；49 个连续帧</td><td><code>accepted_project_baseline</code></td><td>—</td></tr><tr><td><strong>BIO-02</strong><br>气孔保卫细胞吸水后怎样打开气孔</td><td>生物</td><td><code>layout_only</code></td><td>4 个关键帧；49 个连续帧</td><td><code>missing</code></td><td>Visual target package has not yet been curated; model generation is forbidden until it exists.</td></tr><tr><td><strong>GEO-01</strong><br>曲流发展、裁弯取直与牛轭湖形成</td><td>地理</td><td><code>layout_only</code></td><td>4 个关键帧；49 个连续帧</td><td><code>missing</code></td><td>Visual target package has not yet been curated; model generation is forbidden until it exists.</td></tr><tr><td><strong>GEO-02</strong><br>地形雨与背风坡雨影</td><td>地理</td><td><code>layout_only</code></td><td>4 个关键帧；49 个连续帧</td><td><code>provisional</code></td><td>Visual target is provisional; a generated candidate must not be promoted without visual and mechanism review.</td></tr><tr><td><strong>GEO-HIST-DELTA-01</strong><br>历史三角洲形成质量回归</td><td>地理</td><td><code>layout_only</code></td><td>5 个关键帧；0 个连续帧</td><td><code>accepted_project_baseline</code></td><td>—</td></tr></tbody></table></section>
+<section><h2>S3.0 自动检验</h2><ul><li class='pass'>✓ five_json_schemas_are_frozen<small>输入、注册表、视觉目标、运动和 Loop 状态均有版本化 Schema。</small></li><li class='pass'>✓ ten_scale_cases_plus_delta_are_registered<small>10 个跨学科案例 + 1 个历史三角洲质量回归。</small></li><li class='pass'>✓ all_ten_scale_cases_have_continuous_program_frames<small>每个规模案例都有 49 帧程序时间线，不只利用关键帧截图。</small></li><li class='pass'>✓ all_contracts_export_object_identity<small>对象身份被作为稳定几何与跨帧追踪接口。</small></li><li class='pass'>✓ all_sentinel_visual_targets_are_not_missing<small>5 个 sentinel 与历史三角洲均有本地正例、反例和量表。</small></li><li class='pass'>✓ geometry_and_appearance_are_separated<small>外观参考不能作为几何来源，泄漏检查是硬门禁。</small></li><li class='pass'>✓ case_selector_is_deterministic<small>S3.1 固定选择 CHEM-01，回归 PHYS-02 与 MATH-02。</small></li><li class='pass'>✓ phase0_used_no_image_or_video_model<small>model_runs: image=0, video=0。</small></li><li class='pass'>✓ report_links_resolve<small>报告中的本地图片与机器可读产物链接全部存在。</small></li></ul><p>所有文件都保存 SHA-256；同一输入重跑 Phase 0 会产生相同合同与选择结果。
+视觉包明确设置 <code>appearance_to_geometry_leakage</code> 硬门禁，防止参考图反过来偷改几何。</p></section>
+<section><h2>Loop 自动选择的下一步</h2><div class="decision">
+<p><strong>目标：</strong> CHEM-01 · <code>canonicalize</code></p>
+<p><strong>跨学科回归：</strong> PHYS-02（同类器材规范重建）与 MATH-02（确保精确几何路线不被误改）。</p>
+<p><strong>首个问题：</strong>固定坐标的烧杯线稿能产生好图，但无法从任意程序语义复现。</p>
+<p><strong>首个可证伪假设：</strong>如果每个几何对象都有 typed identity 和程序 bbox，
+通用规范几何库就能在不读取最终好图几何的前提下生成稳定控制图；若对象缺失、越界或精确路线被改动，则假设失败。</p>
+</div><p>排序规则原样保存于 <a href='case-selection.json'>case-selection.json</a>；不是围绕烧杯临时拍脑袋。它依次考虑阶段缺口、失败严重度、
+跨学科覆盖、输入/视觉目标完整度、成本和稳定 case_id。</p></section>
+<section><h2>可复现入口</h2><p><code>.venv/bin/python -m modules.video_model.stage3.phase0</code></p>
+<p>主要机器可读产物：<a href='../../case_registry.json'>case_registry.json</a> · <a href='../../state.json'>state.json</a> · <a href='../../baselines/accepted.json'>accepted.json</a> · <a href='phase0_manifest.json'>phase0_manifest.json</a></p></section>
+</main></body></html>

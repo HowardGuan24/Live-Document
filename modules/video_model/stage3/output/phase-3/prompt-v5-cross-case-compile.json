@@ -1,0 +1,74 @@
+{
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "passed": true,
+  "records": {
+    "CHEM-01": {
+      "appearance_profile": "transparent_lab",
+      "compiler_id": "stage3_prompt_compiler_v2",
+      "negative_tokens": {
+        "tokenizer": 69,
+        "tokenizer_2": 69
+      },
+      "positive_tokens": {
+        "tokenizer": 74,
+        "tokenizer_2": 74
+      },
+      "provenance_slots": [
+        "camera",
+        "material_and_light",
+        "must_preserve",
+        "negative",
+        "scene_identity",
+        "state"
+      ],
+      "would_truncate": false
+    },
+    "MATH-02": {
+      "appearance_profile": "wood_geometry",
+      "compiler_id": "stage3_prompt_compiler_v2",
+      "negative_tokens": {
+        "tokenizer": 27,
+        "tokenizer_2": 27
+      },
+      "positive_tokens": {
+        "tokenizer": 56,
+        "tokenizer_2": 56
+      },
+      "provenance_slots": [
+        "camera",
+        "material_and_light",
+        "must_preserve",
+        "negative",
+        "scene_identity",
+        "state"
+      ],
+      "would_truncate": false
+    },
+    "PHYS-01": {
+      "appearance_profile": "water_field",
+      "compiler_id": "stage3_prompt_compiler_v2",
+      "negative_tokens": {
+        "tokenizer": 27,
+        "tokenizer_2": 27
+      },
+      "positive_tokens": {
+        "tokenizer": 53,
+        "tokenizer_2": 53
+      },
+      "provenance_slots": [
+        "camera",
+        "material_and_light",
+        "must_preserve",
+        "negative",
+        "scene_identity",
+        "state"
+      ],
+      "would_truncate": false
+    }
+  },
+  "schema_version": "1.0",
+  "scope_zh": "证明编译器接口和来源追踪跨三种几何/材质 profile 工作；不声称 MATH-02、PHYS-01 的扩散图像质量已经验证。"
+}

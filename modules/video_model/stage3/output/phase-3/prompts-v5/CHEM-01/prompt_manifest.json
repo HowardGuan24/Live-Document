@@ -1,0 +1,71 @@
+{
+  "appearance_profile": "transparent_lab",
+  "case_id": "CHEM-01",
+  "compiler_id": "stage3_prompt_compiler_v2",
+  "input_signatures": {
+    "contract_sha256": "423f0dfcb02d3193bc41fd803223d40a4cbdb0dce9e50efc73ae31ad2b7bd1da",
+    "lexicon_sha256": "a74a6cbd3fb86b67ad5a39eb41f294c73c5f3c83cc92cd5a6fb45ae97e73b53a",
+    "visual_target_sha256": "572009605f00cfa13b3534caad75a79289e59972ed212f10a07857ab720bb530"
+  },
+  "negative_prompt": "pink, magenta, colored liquid, colored lighting, flask, bottle, Erlenmeyer flask, side object, extra vessel, extra burette, extra beaker, fused parts, connecting rod, center ruler, center line inside liquid, pseudo text, labels, arrows, plastic, metal container, crop, tilt, blur, watermark",
+  "positive_prompt": "one clear glass beaker, one separate glass burette with seven visible horizontal graduation ticks on its left side, locked straight-on view, thin borosilicate glass, crisp natural highlights, clear liquid, neutral softbox light, empty matte gray backdrop, transparent neutral solution, air gap between burette tip and beaker rim, one of each, no text",
+  "provenance": {
+    "camera": [
+      "input_contract.geometry_policy",
+      "prompt_lexicon.policy_camera@stage3_prompt_lexicon_v5"
+    ],
+    "material_and_light": [
+      "visual_target:VT-CHEM-01-V1",
+      "prompt_lexicon.material_profiles.transparent_lab"
+    ],
+    "must_preserve": [
+      "input_contract.hard_gates",
+      "S3.2 selector failure pattern: object separation"
+    ],
+    "negative": [
+      "visual_target:VT-CHEM-01-V1.negative_refs",
+      "prompt_lexicon.negative_profiles.canonicalize"
+    ],
+    "scene_identity": [
+      "input_contract.semantic_exports.control_object_requirements",
+      "prompt_lexicon.object_phrases@stage3_prompt_lexicon_v5"
+    ],
+    "state": [
+      "input_contract.keyframes[00_start]",
+      "case hard gates"
+    ]
+  },
+  "schema_version": "1.0",
+  "slots": {
+    "camera": "locked straight-on view",
+    "material_and_light": "thin borosilicate glass, crisp natural highlights, clear liquid, neutral softbox light, empty matte gray backdrop",
+    "must_preserve": "air gap between burette tip and beaker rim, one of each, no text",
+    "scene_identity": "one clear glass beaker, one separate glass burette with seven visible horizontal graduation ticks on its left side",
+    "state": "transparent neutral solution"
+  },
+  "token_preflight": {
+    "negative": {
+      "counts_including_special_tokens": {
+        "tokenizer": 69,
+        "tokenizer_2": 69
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    },
+    "positive": {
+      "counts_including_special_tokens": {
+        "tokenizer": 74,
+        "tokenizer_2": 74
+      },
+      "limits": {
+        "tokenizer": 77,
+        "tokenizer_2": 77
+      },
+      "would_truncate": false
+    }
+  },
+  "visual_target_status": "accepted_project_baseline"
+}

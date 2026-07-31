@@ -1,0 +1,50 @@
+{
+  "audit": {
+    "thresholds": {
+      "maximum_consecutive_frame_mae_0_255": 12,
+      "maximum_endpoint_mae_0_255": 15
+    }
+  },
+  "case_id": "MATH-02",
+  "experiment_id": "EXP-S3-20260731-017",
+  "model": {
+    "checkpoint": "ltx-2.3-22b-dev-fp8.safetensors",
+    "distilled_lora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+    "lora_strength": 0.5,
+    "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors"
+  },
+  "motion_class": "rigid_motion",
+  "output_prefix": "exp_s3_20260731_017",
+  "prompt": {
+    "negative": "triangle morphing, stretching, melting, fading or cross-dissolving, duplicated, missing, merged or fifth triangle, changing colors or wood grain sliding independently of a piece, camera movement or scene change, camera movement, pan, zoom, tilt, perspective change, scene change, abrupt cut, flicker, jitter, ghosting, uncontracted object birth or loss, watermark",
+    "positive": "Locked orthographic top-down view of the exact same wooden teaching board in both supplied frames. Keep exactly 4 congruent right triangle. Each of the four colored wooden right triangles moves by rigid translation and rotation toward its supplied final pose. Then Every triangle keeps its own color, side lengths, area and local wood grain. Then The four pieces finish in the supplied square arrangement without overlap. State constraints: triangle_count: constant_four; triangle_area: constant; object_identity: preserved. Preserve each triangle's material coordinates and color identity, wooden background, target region, framing and camera. End exactly at the supplied last frame. One continuous physically or mathematically understandable transition. Locked camera."
+  },
+  "schema_version": "1.0",
+  "settings": {
+    "cfg": 1.0,
+    "fps": 24,
+    "frame_count": 49,
+    "guide_strength": 0.7,
+    "height": 320,
+    "image_compression": 25,
+    "noise_seed": 2026073105,
+    "sigmas": [
+      1.0,
+      0.99375,
+      0.9875,
+      0.98125,
+      0.975,
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ],
+    "width": 576
+  },
+  "source": {
+    "first_frame": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/MATH-02/frames/00_start.png",
+    "first_keyframe_id": "00_start",
+    "last_frame": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/MATH-02/frames/01_mechanism.png",
+    "last_keyframe_id": "01_mechanism"
+  }
+}

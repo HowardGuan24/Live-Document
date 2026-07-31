@@ -1,0 +1,226 @@
+{
+  "checks": [
+    {
+      "evidence": "output/phase-6 is retained as history; rerun writes a new directory",
+      "name": "old_S3_6_claim_is_not_reused",
+      "passed": true
+    },
+    {
+      "evidence": [
+        {
+          "case_id": "BIO-01",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/BIO-01.json",
+            "sha256": "db71c2d937e2e8e0c35be20a0e9b8ce3845d03916eee5e2e74d775cf0b5da393",
+            "size_bytes": 6456
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "BIO-02",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/BIO-02.json",
+            "sha256": "2e1c21b2c48540da1a815760a90a5864a9c2bbe88417778cb8184898d562d0eb",
+            "size_bytes": 6592
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "CHEM-01",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/CHEM-01.json",
+            "sha256": "423f0dfcb02d3193bc41fd803223d40a4cbdb0dce9e50efc73ae31ad2b7bd1da",
+            "size_bytes": 7018
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "CHEM-02",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/CHEM-02.json",
+            "sha256": "66b10aa53c1c459e7d5b1078a7a0ca18bfc29551b199876563f43296d36fdc74",
+            "size_bytes": 6659
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "GEO-01",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/GEO-01.json",
+            "sha256": "b2ec08b6f49f4ef5aa369f1d689e707e6be2917058b6191244723e52ff4b2d72",
+            "size_bytes": 6627
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "GEO-02",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/GEO-02.json",
+            "sha256": "7390dc78c77f7ce8708140db1a1a7b8c41293e553d6512db3a0e3afa3b1dc221",
+            "size_bytes": 6534
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "GEO-HIST-DELTA-01",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/GEO-HIST-DELTA-01.json",
+            "sha256": "d8cfb2f46ca0063199fef6f93f845346e11b5b742c1fc4366b36acb29d6ba083",
+            "size_bytes": 8093
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "MATH-01",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/MATH-01.json",
+            "sha256": "baeba735fc8e4d9d30faf0d200ed982e970e3987c6b618594db2530c7b85c70b",
+            "size_bytes": 6571
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "MATH-02",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/MATH-02.json",
+            "sha256": "ccd999c9f4f0f87b2583dcef1a774c91bae34e373f5c90fec82c8ce1742debc1",
+            "size_bytes": 6642
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "PHYS-01",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/PHYS-01.json",
+            "sha256": "25bc2105c89562b7ec5db0ce2d545354f9920ba7b4f55385747f862c33df4951",
+            "size_bytes": 6512
+          },
+          "error": null,
+          "passed": true
+        },
+        {
+          "case_id": "PHYS-02",
+          "contract": {
+            "path": "modules/video_model/stage3/contracts/PHYS-02.json",
+            "sha256": "571bea359dcfe2d0a228c291bdda80a138512fdd23172076a782d5d4c528ae69",
+            "size_bytes": 6889
+          },
+          "error": null,
+          "passed": true
+        }
+      ],
+      "name": "all_eleven_contracts_pass_smoke",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "error": null,
+        "status": "accepted_project_baseline"
+      },
+      "name": "target_visual_target_is_accepted_and_resolves",
+      "passed": true
+    },
+    {
+      "evidence": [
+        "negative_control",
+        "candidate"
+      ],
+      "name": "target_has_exactly_one_negative_and_one_candidate",
+      "passed": true
+    },
+    {
+      "evidence": "region_material.transfer_mode",
+      "name": "single_variable_is_frozen",
+      "passed": true
+    },
+    {
+      "evidence": "source token scan",
+      "name": "core_has_no_case_ids_or_model_runtime",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "plans": [
+          {
+            "anchor": {
+              "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+              "sha256": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c",
+              "size_bytes": 919365
+            },
+            "contract": {
+              "path": "modules/video_model/stage3/contracts/BIO-01.json",
+              "sha256": "db71c2d937e2e8e0c35be20a0e9b8ce3845d03916eee5e2e74d775cf0b5da393",
+              "size_bytes": 6456
+            },
+            "keyframes_match_contract": true,
+            "plan_id": "S3.6R1-BIO-01-RAW-UNDERLAY"
+          },
+          {
+            "anchor": {
+              "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+              "sha256": "2fd085b41a8a246d8c2b27d8265c43258d217a939d9b6d7abf25ba20bbfcea8c",
+              "size_bytes": 919365
+            },
+            "contract": {
+              "path": "modules/video_model/stage3/contracts/BIO-01.json",
+              "sha256": "db71c2d937e2e8e0c35be20a0e9b8ce3845d03916eee5e2e74d775cf0b5da393",
+              "size_bytes": 6456
+            },
+            "keyframes_match_contract": true,
+            "plan_id": "S3.6R1-BIO-01-HIGHPASS-STATISTICS"
+          }
+        ],
+        "provenance": [
+          {
+            "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/_work/generate.json",
+            "role": "source_experiment",
+            "sha256": "7b76ea0e0ed3897dbcd9f6b23579c55660412bc90d364fb54755b522bc2f66ce",
+            "size_bytes": 7875
+          },
+          {
+            "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/inputs/positive_prompt.txt",
+            "role": "positive_prompt",
+            "sha256": "e56545a6071ffcd8e529bc27368ba36038f142871351d708603b8b4a15be942d",
+            "size_bytes": 275
+          },
+          {
+            "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/inputs/negative_prompt.txt",
+            "role": "negative_prompt",
+            "sha256": "624eb2500299072b078168d952f0b3bd9aabb3efc5940e8449834583e3c766ae",
+            "size_bytes": 261
+          },
+          {
+            "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/controls/dense_canny.png",
+            "role": "control",
+            "sha256": "870b04136e91469a4ff746de5fde1c6cbf61b3a4d5dc352fc156bb4f60ce35a9",
+            "size_bytes": 9996
+          },
+          {
+            "path": "modules/video_model/stage2/output/phase-3/EXP-20260729-013/_work/model_fingerprints.json",
+            "role": "model_fingerprints",
+            "sha256": "9cbf580ea028f09496371697007e8a921e05aae713852d4d46b0152df80541f5",
+            "size_bytes": 1080
+          }
+        ]
+      },
+      "name": "all_plan_and_provenance_files_resolve",
+      "passed": true
+    }
+  ],
+  "model_budget": {
+    "deterministic_image_candidates": 2,
+    "new_image_model_candidates": 0,
+    "video_model_candidates_after_image_gate": 2
+  },
+  "passed": true,
+  "schema_version": "1.0"
+}

@@ -1,0 +1,66 @@
+{
+  "blind_shuffle_seed": 2026073006,
+  "budget": {
+    "actual_planned_image_candidates": 9,
+    "maximum_new_generation": 9,
+    "maximum_new_image_candidates": 9,
+    "maximum_video_trials": 0,
+    "planned_external_reuse": 0
+  },
+  "case_id": "CHEM-01",
+  "configurations": [
+    {
+      "configuration_id": "auto_control_050",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.5,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_065",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.65,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_080",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.8,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_override_explanations": {
+    "stage3_auto_control": "unchanged S3.1 accepted control"
+  },
+  "control_overrides": {
+    "stage3_auto_control": "/workspace/Live-Document/modules/video_model/stage3/output/phase-1/controls/CHEM-01/00_start/structure_control.png"
+  },
+  "experiment_id": "EXP-S3-20260730-006",
+  "hypothesis_zh": "禁用颜色只进入 negative conditioning 后，初始态不再被该颜色词污染，同时保持 S3.2 几何门禁。",
+  "negative_artifacts": "pink, magenta, colored liquid, colored lighting, extra vessel, extra apparatus, fused parts, connecting rod, center line inside liquid, pseudo text, labels, arrows, background bottle, plastic, metal container, crop, tilt, blur, watermark",
+  "prompt_parts": {
+    "material_goal": "thin transparent glass, pure clear liquid, realistic refraction, soft neutral daylight, matte gray laboratory background",
+    "must_preserve": "air gap between burette tip and beaker rim, one of each, no text",
+    "scene_identity": "one open borosilicate glass beaker, one separate graduated glass burette, straight-on locked centered camera",
+    "state_delta": "pure transparent solution with a neutral colorless appearance"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      7101,
+      7102,
+      7103
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "single_variable_zh": "相对 EXP-005 只改变 state/material/negative prompt 中的颜色词归属。",
+  "source": {
+    "clean_frame": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/clean.png",
+    "keyframe_id": "00_start",
+    "semantic_layers": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json"
+  }
+}

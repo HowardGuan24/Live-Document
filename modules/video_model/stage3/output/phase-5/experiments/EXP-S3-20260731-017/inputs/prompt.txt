@@ -1,0 +1,7 @@
+Positive prompt:
+
+Locked orthographic top-down view of the exact same wooden teaching board in both supplied frames. Keep exactly 4 congruent right triangle. Each of the four colored wooden right triangles moves by rigid translation and rotation toward its supplied final pose. Then Every triangle keeps its own color, side lengths, area and local wood grain. Then The four pieces finish in the supplied square arrangement without overlap. State constraints: triangle_count: constant_four; triangle_area: constant; object_identity: preserved. Preserve each triangle's material coordinates and color identity, wooden background, target region, framing and camera. End exactly at the supplied last frame. One continuous physically or mathematically understandable transition. Locked camera.
+
+Negative prompt:
+
+triangle morphing, stretching, melting, fading or cross-dissolving, duplicated, missing, merged or fifth triangle, changing colors or wood grain sliding independently of a piece, camera movement or scene change, camera movement, pan, zoom, tilt, perspective change, scene change, abrupt cut, flicker, jitter, ghosting, uncontracted object birth or loss, watermark

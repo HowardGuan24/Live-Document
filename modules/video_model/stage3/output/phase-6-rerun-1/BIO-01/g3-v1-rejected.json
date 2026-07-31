@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "passed": false,
+  "classification": "metric_domain",
+  "checks": [
+    {
+      "name": "cell_topology_matches_program",
+      "passed": true,
+      "evidence": [1, 1, 1, 2]
+    },
+    {
+      "name": "identity_object_counts_match_program",
+      "passed": true,
+      "evidence": [6, 6, 12, 12]
+    },
+    {
+      "name": "no_chromosome_lineage_unit_is_created_or_lost",
+      "passed": true,
+      "evidence": [12, 12, 12, 12]
+    },
+    {
+      "name": "outside_declared_mutable_area_is_pixel_exact",
+      "passed": false,
+      "evidence": [1, 1, 1, 1]
+    }
+  ],
+  "root_cause_zh": "背景画布先以浮点数计算、保存时四舍五入为 uint8；旧量表却把最终 uint8 图片和保存前浮点数比较，把小数舍入误报为 1/255 的区域外变化。",
+  "correction_zh": "不改候选图片、参数或阈值；量表改为最终图片与实际保存的 uint8 base canvas 比较。"
+}

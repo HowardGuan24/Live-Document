@@ -1,0 +1,47 @@
+{
+  "A": {
+    "configuration_id": "auto_control_080",
+    "seed": 7101,
+    "sha256": "436f77daf136c04bd1b2269ae7ae5cc60dae546bb39de813c4ef12731d7254b4"
+  },
+  "B": {
+    "configuration_id": "auto_control_065",
+    "seed": 7103,
+    "sha256": "87b7dd32e61d2f359bc04497d20628576bf710e02b60cbc8661e09ef329bb3e3"
+  },
+  "C": {
+    "configuration_id": "auto_control_065",
+    "seed": 7101,
+    "sha256": "c761ce606d40e6c42796b08c5e73a1fe0ee94abfb954a7de8a7ddd6008da3e68"
+  },
+  "D": {
+    "configuration_id": "auto_control_080",
+    "seed": 7103,
+    "sha256": "7ac3158eb2001c57e5d99eb2e362cd09a15abcd04ccc80e5b90a566bc761d07d"
+  },
+  "E": {
+    "configuration_id": "auto_control_050",
+    "seed": 7102,
+    "sha256": "16f908d07a7a922849906b36ea2b2cb635e66c8f81672475121795a542bca849"
+  },
+  "F": {
+    "configuration_id": "auto_control_050",
+    "seed": 7101,
+    "sha256": "7167dc24a434cc6e97ff1a7f8a100b8d29d60936a6c4173f2080442ed754b3bc"
+  },
+  "G": {
+    "configuration_id": "auto_control_080",
+    "seed": 7102,
+    "sha256": "4575ffc8f162ee2fd05cfabb5d67fbab7583325aff1f2993ce47d931fe10039f"
+  },
+  "H": {
+    "configuration_id": "auto_control_065",
+    "seed": 7102,
+    "sha256": "009081da9e2adac339bf5b6c4ed12b830facff2c96b51789f26e4a7ffba75ae0"
+  },
+  "I": {
+    "configuration_id": "auto_control_050",
+    "seed": 7103,
+    "sha256": "6d384755946a3b677eb771c98f6673e3aab66a671fb07277234cbf4f4af9a5cd"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "coordinate_system": "pixel_xy_top_left",
+  "items": [
+    {
+      "center_xy": [
+        210.2051123380661,
+        100.16845703125
+      ],
+      "destination": "left",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            207.2051123380661,
+            88.16845703125
+          ],
+          [
+            213.2051123380661,
+            112.16845703125
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-01-A",
+      "parent_id": "BIO-01-chromosome-01",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        429.7948876619339,
+        100.16845703125
+      ],
+      "destination": "right",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            426.7948876619339,
+            88.16845703125
+          ],
+          [
+            432.7948876619339,
+            112.16845703125
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-01-B",
+      "parent_id": "BIO-01-chromosome-01",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        210.2051123380661,
+        132.10107421875
+      ],
+      "destination": "left",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            207.2051123380661,
+            120.10107421875
+          ],
+          [
+            213.2051123380661,
+            144.10107421875
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-02-A",
+      "parent_id": "BIO-01-chromosome-02",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        429.7948876619339,
+        132.10107421875
+      ],
+      "destination": "right",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            426.7948876619339,
+            120.10107421875
+          ],
+          [
+            432.7948876619339,
+            144.10107421875
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-02-B",
+      "parent_id": "BIO-01-chromosome-02",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        210.2051123380661,
+        164.03369140625
+      ],
+      "destination": "left",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            207.2051123380661,
+            152.03369140625
+          ],
+          [
+            213.2051123380661,
+            176.03369140625
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-03-A",
+      "parent_id": "BIO-01-chromosome-03",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        429.7948876619339,
+        164.03369140625
+      ],
+      "destination": "right",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            426.7948876619339,
+            152.03369140625
+          ],
+          [
+            432.7948876619339,
+            176.03369140625
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-03-B",
+      "parent_id": "BIO-01-chromosome-03",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        210.2051123380661,
+        195.96630859375
+      ],
+      "destination": "left",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            207.2051123380661,
+            183.96630859375
+          ],
+          [
+            213.2051123380661,
+            207.96630859375
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-04-A",
+      "parent_id": "BIO-01-chromosome-04",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        429.7948876619339,
+        195.96630859375
+      ],
+      "destination": "right",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            426.7948876619339,
+            183.96630859375
+          ],
+          [
+            432.7948876619339,
+            207.96630859375
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-04-B",
+      "parent_id": "BIO-01-chromosome-04",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        210.2051123380661,
+        227.89892578125
+      ],
+      "destination": "left",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            207.2051123380661,
+            215.89892578125
+          ],
+          [
+            213.2051123380661,
+            239.89892578125
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-05-A",
+      "parent_id": "BIO-01-chromosome-05",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        429.7948876619339,
+        227.89892578125
+      ],
+      "destination": "right",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            426.7948876619339,
+            215.89892578125
+          ],
+          [
+            432.7948876619339,
+            239.89892578125
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-05-B",
+      "parent_id": "BIO-01-chromosome-05",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        210.2051123380661,
+        259.83154296875
+      ],
+      "destination": "left",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            207.2051123380661,
+            247.83154296875
+          ],
+          [
+            213.2051123380661,
+            271.83154296875
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-06-A",
+      "parent_id": "BIO-01-chromosome-06",
+      "shape": "sister_chromatid"
+    },
+    {
+      "center_xy": [
+        429.7948876619339,
+        259.83154296875
+      ],
+      "destination": "right",
+      "geometry": {
+        "kind": "polyline",
+        "points": [
+          [
+            426.7948876619339,
+            247.83154296875
+          ],
+          [
+            432.7948876619339,
+            271.83154296875
+          ]
+        ]
+      },
+      "object_id": "BIO-01-chromosome-06-B",
+      "parent_id": "BIO-01-chromosome-06",
+      "shape": "sister_chromatid"
+    }
+  ],
+  "schema_version": "1.0"
+}

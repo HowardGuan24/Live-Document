@@ -1,0 +1,50 @@
+{
+  "audit": {
+    "thresholds": {
+      "maximum_consecutive_frame_mae_0_255": 12,
+      "maximum_endpoint_mae_0_255": 15
+    }
+  },
+  "case_id": "PHYS-01",
+  "experiment_id": "EXP-S3-20260731-016-SEG1",
+  "model": {
+    "checkpoint": "ltx-2.3-22b-dev-fp8.safetensors",
+    "distilled_lora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+    "lora_strength": 0.5,
+    "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors"
+  },
+  "motion_class": "continuous_field_propagation",
+  "output_prefix": "exp_s3_20260731_016_seg1",
+  "prompt": {
+    "negative": "waves collapsing inward, a moving, missing or additional source, ocean horizon, shoreline, objects or splashes, camera movement or scene change, camera movement, pan, zoom, tilt, perspective change, scene change, abrupt cut, flicker, jitter, ghosting, uncontracted object birth or loss, watermark",
+    "positive": "Locked top-down view of the exact same shallow blue water surface in every supplied frame. Keep exactly 1 coherent point source, exactly 1 coherent point source, exactly 1 continuous height field. Circular wavefronts propagate radially outward from both fixed orange sources. Then The two wave systems overlap while retaining two identifiable fixed centers. Then Interference bands develop in the overlap region as the radius grows. State constraints: wavefront_radius: monotonically_increasing; source_count: constant_two; source_position: fixed. Preserve two orange source identities and positions, water material, framing, lighting, background and camera. End exactly at the supplied last frame. One continuous physically or mathematically understandable transition. Locked camera."
+  },
+  "schema_version": "1.0",
+  "settings": {
+    "cfg": 1.0,
+    "fps": 24,
+    "frame_count": 25,
+    "guide_strength": 0.7,
+    "height": 320,
+    "image_compression": 25,
+    "noise_seed": 2026073105,
+    "sigmas": [
+      1.0,
+      0.99375,
+      0.9875,
+      0.98125,
+      0.975,
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ],
+    "width": 576
+  },
+  "source": {
+    "first_frame": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/PHYS-01/frames/00_start.png",
+    "first_keyframe_id": "00_start",
+    "last_frame": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/PHYS-01/frames/01_mechanism.png",
+    "last_keyframe_id": "01_mechanism"
+  }
+}

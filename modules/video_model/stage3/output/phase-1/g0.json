@@ -1,0 +1,227 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "case_id": "CHEM-01",
+      "checks": [
+        {
+          "name": "00_start_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "01_mechanism_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "02_result_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "03_end_artifact_hashes",
+          "passed": true
+        },
+        {
+          "evidence": "canonicalize",
+          "name": "geometry_policy_supported",
+          "passed": true
+        },
+        {
+          "name": "semantic_coordinate_source_declared",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "PHYS-02",
+      "checks": [
+        {
+          "name": "00_start_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "01_mechanism_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "02_result_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "03_end_artifact_hashes",
+          "passed": true
+        },
+        {
+          "evidence": "canonicalize",
+          "name": "geometry_policy_supported",
+          "passed": true
+        },
+        {
+          "name": "semantic_coordinate_source_declared",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "MATH-02",
+      "checks": [
+        {
+          "name": "00_start_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "01_mechanism_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "02_result_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "03_end_artifact_hashes",
+          "passed": true
+        },
+        {
+          "evidence": "preserve_exact",
+          "name": "geometry_policy_supported",
+          "passed": true
+        },
+        {
+          "name": "semantic_coordinate_source_declared",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "PHYS-01",
+      "checks": [
+        {
+          "name": "00_start_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "01_mechanism_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "02_result_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "03_end_artifact_hashes",
+          "passed": true
+        },
+        {
+          "evidence": "preserve_exact",
+          "name": "geometry_policy_supported",
+          "passed": true
+        },
+        {
+          "name": "semantic_coordinate_source_declared",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "GEO-02",
+      "checks": [
+        {
+          "name": "00_start_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "01_mechanism_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "02_result_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "03_end_artifact_hashes",
+          "passed": true
+        },
+        {
+          "evidence": "layout_only",
+          "name": "geometry_policy_supported",
+          "passed": true
+        },
+        {
+          "name": "semantic_coordinate_source_declared",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "BIO-01",
+      "checks": [
+        {
+          "name": "00_start_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "01_mechanism_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "02_result_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "03_end_artifact_hashes",
+          "passed": true
+        },
+        {
+          "evidence": "layout_only",
+          "name": "geometry_policy_supported",
+          "passed": true
+        },
+        {
+          "name": "semantic_coordinate_source_declared",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "GEO-HIST-DELTA-01",
+      "checks": [
+        {
+          "name": "at_outlet_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "decelerated_plume_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "underwater_accumulation_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "sandbar_emergence_artifact_hashes",
+          "passed": true
+        },
+        {
+          "name": "rerouted_flow_artifact_hashes",
+          "passed": true
+        },
+        {
+          "evidence": "layout_only",
+          "name": "geometry_policy_supported",
+          "passed": true
+        },
+        {
+          "name": "semantic_coordinate_source_declared",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "schema_version": "1.0"
+}

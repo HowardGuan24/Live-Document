@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stage 3 · S3.3 Prompt Compiler 阶段报告</title>
+<style>
+:root{--ink:#172321;--muted:#5b6864;--paper:#f4f0e6;--card:#fffdf7;--green:#0d6d59;--red:#a13c32;--gold:#b48120;}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.68 system-ui,-apple-system,"Noto Sans SC",sans-serif}
+main{max-width:1180px;margin:auto;padding:42px 24px 90px} h1{font-size:clamp(34px,5vw,64px);line-height:1.05;margin:.2em 0}
+h2{margin-top:52px;border-top:1px solid #c9c4b7;padding-top:28px} h3{margin-bottom:6px} p{max-width:86ch}
+.lead{font-size:20px;color:#31413d} .status{display:inline-block;background:#d7eee7;color:#075342;padding:7px 12px;border-radius:999px;font-weight:750}
+.warning{background:#fff0cf;border-left:5px solid var(--gold);padding:14px 18px} .bad{color:var(--red)} .good{color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px} .card,.round,details{background:var(--card);border:1px solid #d9d3c5;border-radius:14px;padding:18px}
+img{display:block;max-width:100%;height:auto;border-radius:10px;border:1px solid #cfc9bb} .hero{width:100%;margin:20px 0}
+table{width:100%;border-collapse:collapse;background:var(--card)} th,td{padding:11px 12px;text-align:left;vertical-align:top;border-bottom:1px solid #ddd7ca} th{background:#e7eee9}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace} pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#142422;color:#e9f3ef;padding:15px;border-radius:9px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch} .flow div{background:#e5eee9;border-radius:10px;padding:12px} .flow b{display:block;color:var(--green)}
+@media(max-width:800px){.flow{grid-template-columns:1fr}} a{color:#086b58} .small{font-size:14px;color:var(--muted)}
+</style></head><body><main>
+<span class="status">S3.3 已通过 · 已进入 S3.4</span>
+<h1>Prompt Compiler：从“凭感觉写提示词”到可追溯、可失败、可复现</h1>
+<p class="lead">本阶段不是为了证明一条神奇 prompt 可以解决所有案例，而是固定一套编译和验收方法。
+同一合同、视觉目标、词表、控制图、模型、seed 和参数，会得到同一批候选与同一选择结论；
+固定集合没有合格图时，系统明确失败。</p>
+
+<h2>先看结果</h2>
+<a href="report-assets/prompt-loop-process.jpg"><img class="hero" src="report-assets/prompt-loop-process.jpg" alt="四轮提示词实验的完整过程"></a>
+<div class="grid">
+<div class="card"><h3 class="good">编译器结论：通过</h3><p>词段只来自 Input Contract、Visual Target Package 和版本词表；
+CHEM-01、MATH-02、PHYS-01 均完成来源追踪和 token 预检。</p></div>
+<div class="card"><h3 class="good">CHEM-01 Anchor：案例级接受</h3><p>最终选中 <code>auto_control_080-s7101</code>，
+ControlNet scale 080，seed 7101。九张中只有一张通过，未推广成全局风格。</p></div>
+<div class="card"><h3 class="bad">保留了三类失败</h3><p>颜色词污染、无候选通过、外轮廓正确但内部刻度丢失。失败图没有删除，也没有包装成成功。</p></div>
+</div>
+
+<h2>输入怎样一步步变成图片</h2>
+<div class="flow">
+<div><b>1. 输入合同</b>程序关键帧、对象类别/数量、几何策略和必须保持的关系。</div>
+<div><b>2. 几何控制</b>S3.1 根据程序语义重建黑底白线；它只决定“东西在哪里”。</div>
+<div><b>3. Prompt Compiler</b>把对象、相机、材质/光、当前状态、保留项和反例编成六个可追溯槽位。</div>
+<div><b>4. SDXL + ControlNet</b>SDXL 负责合成像素；ControlNet 在每个去噪步骤把结构线转换成额外引导残差，约束 SDXL 的布局。</div>
+<div><b>5. 门禁与排序</b>先拒绝几何、身份部件、曝光或禁区失败的图；只在合格图内按冻结权重排序。</div>
+</div>
+<p><strong>Canny 是什么：</strong>它是一种传统边缘检测算法，把亮暗突变变成线。本案例喂给模型的控制图不是把整张截图做
+dense Canny，而是 Geometry Resolver 画出的干净语义线；“SDXL Canny ControlNet”之所以叫 Canny，
+是因为它训练时学会理解这类边缘图。selector 另外使用 Canny 测量输出图的边缘是否贴近控制。</p>
+<p><strong>conditioning 是什么：</strong>它不是最后的图，而是影响扩散去噪过程的条件。正向文字描述想出现什么，
+负向文字描述要压制什么；ControlNet conditioning 是结构线。ControlNet 返回中间特征残差，SDXL 把这些残差加进
+自己的去噪网络后输出最终 RGB 图片。</p>
+
+<h2>几何与外观没有混在一起</h2>
+<div class="grid">
+<div class="card"><h3>几何端口</h3><img src="../phase-1/controls/CHEM-01/00_start/structure_control.png" alt="实际结构控制图">
+<p>来源：程序 object identity + hard boundary + canonical primitive。决定一个烧杯、一个上方滴定管、两者分离和内部刻度位置；
+不读取外观参考图。</p></div>
+<div class="card"><h3>外观正例</h3><img src="../../../stage2/output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start/raw/semantic_control_065/seed_7101.png" alt="透明玻璃外观正例">
+<p>只提供玻璃、光照、色调和真实感目标；它的位置不能覆盖程序几何。</p></div>
+<div class="card"><h3>外观反例</h3><img src="../../../stage2/output/phase-9/report-assets/chem-a-rejected-direct-sequence.jpg" alt="逐帧自由生成反例">
+<p>告诉词表和量表要避免器材漂移、背景变化、颜色泄漏；反例不作为结构输入。</p></div>
+</div>
+
+<h2>四轮自迭代，不是看图后无限抽卡</h2>
+<article class='round'><h3>v1 / EXP-005：失败——颜色词极性写反</h3><p>正向句子里写了 “no pink”。对扩散模型来说，pink 仍是一个被关注的词，所以九张都发粉。</p><a href='experiments/EXP-S3-20260730-005/candidates-labeled.jpg'><img src='experiments/EXP-S3-20260730-005/candidates-labeled.jpg' alt='v1 / EXP-005：失败——颜色词极性写反'></a></article><article class='round'><h3>v2 / EXP-006：失败——颜色正确，但 0 张通过固定门禁</h3><p>把 pink 移入负向提示后颜色恢复中性；没有候选同时满足轮廓精度、额外边缘和对比度，因此没有事后降门槛。</p><a href='experiments/EXP-S3-20260730-006/candidates-labeled.jpg'><img src='experiments/EXP-S3-20260730-006/candidates-labeled.jpg' alt='v2 / EXP-006：失败——颜色正确，但 0 张通过固定门禁'></a></article><article class='round'><h3>v3 / EXP-007：失败——外观干净，但刻度消失</h3><p>删除宽泛实验室语境后，8/9 通过旧门禁；人工语义复核发现所谓“滴定管”丢了刻度，暴露出 selector 只看外轮廓。</p><a href='experiments/EXP-S3-20260730-007/candidates-labeled.jpg'><img src='experiments/EXP-S3-20260730-007/candidates-labeled.jpg' alt='v3 / EXP-007：失败——外观干净，但刻度消失'></a></article><article class='round'><h3>v4 / EXP-008：案例级成功——刻度进入 prompt 与门禁</h3><p>最终门禁只保留 1/9：scale 0.8、seed 7101。它成为 CHEM-01 Anchor，但单个通过样本不足以宣称所有 Case 都会改善。</p><a href='experiments/EXP-S3-20260730-008/candidates-labeled.jpg'><img src='experiments/EXP-S3-20260730-008/candidates-labeled.jpg' alt='v4 / EXP-008：案例级成功——刻度进入 prompt 与门禁'></a></article>
+
+<h2>为什么“数到横线”仍然会错</h2>
+<a href="report-assets/landmark-audit.jpg"><img class="hero" src="report-assets/landmark-audit.jpg" alt="刻度位置门禁解释"></a>
+<p>v3 selector 只数黄色 ROI 里有多少组横向边缘，所以玻璃顶部的反光带也能凑够数量。
+v4 改为由 <code>canonical_graduated_tube_v1</code> provider 输出七个预期纵向位置和 ±3 px 容差，
+候选至少匹配五个才通过。selector 代码只实现“重复水平标志”的通用测量，不包含
+<code>CHEM-01</code> 或烧杯坐标；新 primitive 若有身份部件，也必须自己声明。</p>
+
+<h2>完整提示词与每次变化</h2>
+<p>正向 prompt 不是一整段自由作文，而是：
+<code>scene identity + camera + material/light + state + must preserve</code>。
+negative prompt 是独立的反例/伪影槽。v1-v4 文件均冻结并记录 SHA-256。</p>
+<details ><summary>v1 完整提示词</summary><p><strong>正向 conditioning：</strong></p><pre>one open borosilicate glass beaker, one separate graduated glass burette, straight-on locked centered camera, thin transparent glass, clear liquid, realistic refraction, soft studio daylight, matte neutral laboratory background, initial solution remains colorless, no pink, air gap between burette tip and beaker rim, one of each, no text</pre><p><strong>负向 conditioning：</strong></p><pre>extra vessel, extra apparatus, fused parts, connecting rod, center line inside liquid, pseudo text, labels, arrows, background bottle, plastic, metal container, crop, tilt, blur, watermark</pre></details>
+<details ><summary>v2 完整提示词</summary><p><strong>正向 conditioning：</strong></p><pre>one open borosilicate glass beaker, one separate graduated glass burette, straight-on locked centered camera, thin transparent glass, pure clear liquid, realistic refraction, soft neutral daylight, matte gray laboratory background, pure transparent solution with a neutral colorless appearance, air gap between burette tip and beaker rim, one of each, no text</pre><p><strong>负向 conditioning：</strong></p><pre>pink, magenta, colored liquid, colored lighting, extra vessel, extra apparatus, fused parts, connecting rod, center line inside liquid, pseudo text, labels, arrows, background bottle, plastic, metal container, crop, tilt, blur, watermark</pre></details>
+<details ><summary>v3 完整提示词</summary><p><strong>正向 conditioning：</strong></p><pre>one open borosilicate glass beaker, one separate graduated glass burette, straight-on locked centered camera, thin clear borosilicate glass with crisp natural highlights, water-clear liquid, neutral softbox lighting, empty matte gray studio backdrop, pure transparent neutral solution, air gap between burette tip and beaker rim, one of each, no text</pre><p><strong>负向 conditioning：</strong></p><pre>pink, magenta, colored liquid, colored lighting, flask, bottle, Erlenmeyer flask, side object, extra vessel, extra burette, extra beaker, fused parts, connecting rod, center ruler, center line inside liquid, pseudo text, labels, arrows, plastic, metal container, crop, tilt, blur, watermark</pre></details>
+<details open><summary>v4 完整提示词</summary><p><strong>正向 conditioning：</strong></p><pre>one clear glass beaker, one separate glass burette with seven visible horizontal graduation ticks on its left side, locked straight-on view, thin borosilicate glass, crisp natural highlights, clear liquid, neutral softbox light, empty matte gray backdrop, transparent neutral solution, air gap between burette tip and beaker rim, one of each, no text</pre><p><strong>负向 conditioning：</strong></p><pre>pink, magenta, colored liquid, colored lighting, flask, bottle, Erlenmeyer flask, side object, extra vessel, extra burette, extra beaker, fused parts, connecting rod, center ruler, center line inside liquid, pseudo text, labels, arrows, plastic, metal container, crop, tilt, blur, watermark</pre></details>
+
+<h2>参数不是暗号：每个值控制什么</h2>
+<table><thead><tr><th>参数</th><th>本阶段值</th><th>普通话解释</th><th>是否参与本路线</th></tr></thead><tbody>
+<tr><td>SDXL Base 1.0 FP16</td><td><code>stabilityai/stable-diffusion-xl-base-1.0</code></td><td>主图片生成模型；FP16 是半精度权重，降低显存占用。</td><td>是</td></tr>
+<tr><td>SDXL Canny ControlNet FP16</td><td><code>diffusers/controlnet-canny-sdxl-1.0</code></td><td>读取结构边缘并在 SDXL 去噪过程中提供空间残差。</td><td>是</td></tr>
+<tr><td>ControlNet scale</td><td>0.50 / 0.65 / 0.80</td><td>结构残差的权重；越高通常越贴线，也可能更僵硬。三档在看图前冻结。</td><td>是</td></tr>
+<tr><td>seed</td><td>7101 / 7102 / 7103</td><td>初始噪声编号；相同输入与运行时使用相同 seed 可重放同一候选。它不是质量分。</td><td>是</td></tr>
+<tr><td>steps</td><td>30</td><td>去噪迭代次数；不是帧数。</td><td>是</td></tr>
+<tr><td>guidance scale</td><td>6.0</td><td>文字条件相对无条件预测的影响强度。</td><td>是</td></tr>
+<tr><td>strength</td><td>配置中保留 0.5</td><td>只有 Img2Img 才决定保留输入 RGB 的程度。本阶段实际为 <code>controlnet_t2i</code>，代码不会把 strength 传给 pipeline，因此它不影响结果。</td><td><strong>否</strong></td></tr>
+<tr><td>resolution / dtype</td><td>1024×576 / float16</td><td>输出尺寸与模型计算精度。</td><td>是</td></tr>
+<tr><td>token preflight</td><td>v4 正 74、负 69；上限 77</td><td>SDXL 有两个 tokenizer；任一会截断就停止，避免尾部“必须保留”静默丢失。</td><td>是</td></tr>
+</tbody></table>
+
+<h2>跨案例证明了什么，没证明什么</h2>
+<table><thead><tr><th>Case</th><th>外观 profile</th><th>正/负 token</th><th>编译</th></tr></thead><tbody><tr><td><code>CHEM-01</code></td><td>transparent_lab</td><td>74 / 69</td><td>通过</td></tr>
+<tr><td><code>MATH-02</code></td><td>wood_geometry</td><td>56 / 27</td><td>通过</td></tr>
+<tr><td><code>PHYS-01</code></td><td>water_field</td><td>53 / 27</td><td>通过</td></tr></tbody></table>
+<p class="warning"><strong>边界：</strong>这三例证明 v5 编译器能够从数据配置路由 profile、生成六槽 prompt、
+追踪来源并避免截断；S3.3 没有为 MATH-02 和 PHYS-01 新跑扩散候选，所以不宣称它们的图片质量已经提升。
+CHEM-01 的 v4 词表只登记为案例级配置。</p>
+
+<h2>模型、运行时与复现</h2>
+<p>EXP-008 实际运行：<code>AMD Radeon Graphics</code>；
+PyTorch <code>2.9.1+gitff65f5b</code>，diffusers
+<code>0.35.2</code>，scheduler
+<code>EulerDiscreteScheduler</code>。本阶段共新生成 36 张图片候选、0 个视频候选。</p>
+<p>权重指纹、每张图片哈希、生成耗时和显存记录在
+<a href="experiments/EXP-S3-20260730-008/_work/generate.json"><code>generate.json</code></a>；
+最终门禁明细在 <a href="selection-v4-position-audit/selection.json"><code>selection.json</code></a>。</p>
+<pre>cd /workspace/Live-Document
+/opt/venv/bin/python -m modules.video_model.stage3.phase3_trial preflight   --plan modules/video_model/stage3/prompt_trials/EXP-S3-20260730-008.json
+/opt/venv/bin/python -m modules.video_model.stage3.phase3_trial generate   --plan modules/video_model/stage3/prompt_trials/EXP-S3-20260730-008.json
+/opt/venv/bin/python -m modules.video_model.stage3.phase3_trial select   --plan modules/video_model/stage3/prompt_trials/EXP-S3-20260730-008.json
+/opt/venv/bin/python -m modules.video_model.stage3.phase3_finalize</pre>
+<p class="small">注意：上面 trial plan 冻结的是 selector_v3，忠实重放 EXP-008 的第一次选择。
+最终 position-matching selector_v4 是同一九张候选上的零模型回放，见 EXP-009 与
+<code>selection-v4-position-audit</code>；没有追加 seed。</p>
+
+<h2>阶段结论与下一步</h2>
+<ul>
+<li><strong>进入核心：</strong>Prompt Compiler v2 的数据驱动 profile/preservation 路由；
+primitive 声明内部身份标志、selector 按预期位置验收的接口。</li>
+<li><strong>只进入 CHEM-01 配置：</strong>prompt lexicon v4 与选中的透明玻璃 Anchor。</li>
+<li><strong>没有声称：</strong>任意概念都能一次生成好图，或 v4 是所有学科的共同风格。</li>
+<li><strong>下一阶段 S3.4：</strong>不再重新抽 Anchor；从同一冻结底图出发，用程序 region、
+scalar field、object 和 height/normal 数据确定性生成多个机制关键帧，并检查稳定区域是否变化。</li>
+</ul>
+</main></body></html>

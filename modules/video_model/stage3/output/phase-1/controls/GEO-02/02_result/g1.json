@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "anchors": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/02_result/anchors.json",
+      "sha256": "2f49a1a809d751f80e9232448b534dacfa6176ab2af55f80d595aaeff0b50ee4",
+      "size_bytes": 174
+    },
+    "regions": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/02_result/regions.png",
+      "sha256": "62909bef0cd0b4959bdfcfc270f8e6c18717404fae2e4ab9f2546c5ec82c0e00",
+      "size_bytes": 3577
+    },
+    "structure_control": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/02_result/structure_control.png",
+      "sha256": "1090ed1565bb61c30b3ff1f2051561e25633879b011f516f45d8631194775326",
+      "size_bytes": 3462
+    }
+  },
+  "case_id": "GEO-02",
+  "checks": [
+    {
+      "evidence": [
+        {
+          "area_px": 61797,
+          "boundary_px": 716,
+          "layer_id": "geo02_terrain_region",
+          "source_sha256": "ed6fe2d7338b41d6eebeaac592515788f3123a230d485e7ce593c255df7cc62a"
+        }
+      ],
+      "name": "region_topology_exported",
+      "passed": true
+    },
+    {
+      "evidence": [
+        {
+          "center_xy": [
+            325.89,
+            66.413
+          ],
+          "class_id": "moving_air_parcel",
+          "object_id": "GEO-02-air-parcel"
+        }
+      ],
+      "name": "identity_anchors_exported",
+      "passed": true
+    },
+    {
+      "evidence": 0.003281,
+      "name": "sparse_structure_density",
+      "passed": true
+    },
+    {
+      "evidence": "only region boundaries and identity anchors are drawn",
+      "name": "scalar_and_annotation_not_converted_to_edges",
+      "passed": true
+    },
+    {
+      "name": "appearance_reference_not_read",
+      "passed": true
+    }
+  ],
+  "geometry_policy": "layout_only",
+  "keyframe_id": "02_result",
+  "passed": true,
+  "schema_version": "1.0",
+  "source_semantics": {
+    "path": "modules/video_model/stage2/output/phase-2/GEO-02/keyframes/02_result/semantic_layers.json",
+    "sha256": "31ebc6f3c6244aaeef3191320db7f4212d31f38804379659739cbe7f5872f06b",
+    "size_bytes": 7738
+  }
+}

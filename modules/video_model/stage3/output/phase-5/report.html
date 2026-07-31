@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stage 3 · S3.5 Motion Contract 与视频引导</title>
+<style>
+:root{--ink:#102a2f;--muted:#52676b;--paper:#f4f0e5;--card:#fffdf7;--teal:#2d7e96;--green:#679a5c;--red:#dc4f69;--gold:#bb8b2f;}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 system-ui,-apple-system,"Noto Sans SC",sans-serif}
+main{max-width:1220px;margin:auto;padding:42px 24px 90px} h1{font-size:42px;line-height:1.15;margin:.1em 0 .3em} h2{margin-top:2.3em;font-size:29px} h3{font-size:22px;margin-top:1.8em}
+.lead{font-size:21px;max-width:980px} .card{background:var(--card);border:1px solid #d8d1bf;border-radius:15px;padding:22px 25px;margin:18px 0;box-shadow:0 5px 18px #2333}
+.ok{border-left:7px solid var(--green)} .bad{border-left:7px solid var(--red)} .warn{border-left:7px solid var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px} .grid .card{margin:0}
+table{width:100%;border-collapse:collapse;background:var(--card)} th,td{padding:12px 13px;border:1px solid #d8d1bf;vertical-align:top;text-align:left} th{background:#e8e3d5}
+img,video{width:100%;border-radius:10px;background:#14292d} video{aspect-ratio:16/9} code,pre{font-family:ui-monospace,SFMono-Regular,monospace} pre{white-space:pre-wrap;background:#102a2f;color:#edf6f0;padding:17px;border-radius:10px;overflow:auto}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;text-align:center} .flow div{background:#e2ece8;padding:16px 10px;border-radius:10px} .arrow{font-size:28px;color:var(--teal)}
+.metric{font-size:27px;font-weight:750} .muted{color:var(--muted)} a{color:#16677d} .tag{display:inline-block;padding:2px 9px;border-radius:20px;background:#dce9e5;margin-right:6px}
+@media(max-width:760px){.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}h1{font-size:34px}}
+</style></head><body><main>
+<p class="muted">Live-Document · Stage 3 · S3.5 · 2026-07-31</p>
+<h1>什么运动能交给视频模型，什么不能</h1>
+<p class="lead">本阶段不是挑一条“看着顺”的视频，而是用同一套逐帧门禁确定最低充分引导。
+结论是：<b>连续水波用 L1 就够；液体浓度单调变化和精确刚体身份不能只靠当前首尾帧模型，
+必须回退确定性程序运动。</b> L2 能提高中间帧吻合度，但不是自动默认。</p>
+
+<div class="card ok"><b>阶段结果：通过。</b>5 个固定视频候选、7 次模型调用（L2 由 3 段组成）；
+2 个通过全部 G4，3 个作为失败证据保留；8 项仓库测试通过。通过指“默认分流规则已确定”，
+不是说所有视频模型候选都成功。</div>
+
+<h2>1. 先讲清模型实际接收什么</h2>
+<p>当前部署的是 <b>LTX‑2.3 22B First/Last‑Frame to Video</b>。22B 表示约 220 亿参数；
+FP8 checkpoint 是较低精度的模型权重文件。Gemma 文本编码器把提示词变成模型可用的向量；
+LTX 的两个 <code>LTXVAddGuide</code> 节点只在 <code>frame_idx=0</code> 和
+<code>frame_idx=-1</code> 放入首帧和尾帧。它没有原生的程序视频、对象轨迹、mask、
+运动场或中间帧入口。</p>
+<div class="flow">
+<div>程序 states.jsonl<br><small>运动事实</small></div><span class="arrow">→</span>
+<div>Motion Contract<br><small>对象、顺序、趋势、静止项</small></div><span class="arrow">→</span>
+<div>Prompt Compiler<br><small>变成正/负文本</small></div>
+</div>
+<div class="flow" style="margin-top:12px">
+<div>首帧 PNG<br><small>Guide at frame 0</small></div><span class="arrow">→</span>
+<div>LTX‑2.3 去噪采样<br><small>文本 + 首尾图</small></div><span class="arrow">←</span>
+<div>尾帧 PNG<br><small>Guide at last frame</small></div>
+</div>
+<p>所以 Motion Contract <b>不是</b>一种隐藏的 ControlNet，也不会返回逐帧残差。它有两个用途：
+一是编译更明确的语言；二是生成模型输出后逐帧验收。模型能忽略语言中的“单调”
+或“对象身份”，G4 就必须拒绝。</p>
+
+<h3>四个引导等级</h3>
+<table><tr><th>等级</th><th>模型拿到的输入</th><th>本阶段含义</th></tr>
+<tr><td>L0</td><td>首帧 + 尾帧 + 一句简短语言</td><td>语言基线</td></tr>
+<tr><td>L1</td><td>同一首尾帧 + 合同编译文本</td><td>对象清单、事件顺序、趋势、静止项</td></tr>
+<tr><td>L2</td><td>多个相邻 L1 首尾帧片段再拼接</td><td>这是分段 FLF，不冒充原生中间帧控制</td></tr>
+<tr><td>L3</td><td>程序视频/轨迹/运动场</td><td><b>当前接口不支持，禁用</b></td></tr></table>
+
+<h2>2. 实验如何做到可复现</h2>
+<p>所有规格在模型调用前写入 <a href="../../motion_guidance.json">motion_guidance.json</a>，
+预检见 <a href="preflight.json">preflight.json</a>。CHEM 的 L0/L1
+严格单变量检查为 <b>true</b>：
+输入图片、模型、seed、采样器、分辨率、帧数和门禁逐项相同，只改变提示词。</p>
+<table><tr><th>固定项</th><th>值</th><th>它控制什么</th></tr>
+<tr><td>模型</td><td>LTX‑2.3 22B FP8 + distilled LoRA 0.5</td><td>视频生成器及加速适配权重</td></tr>
+<tr><td>画面</td><td>576×320，24 fps</td><td>输出像素尺寸与播放帧率</td></tr>
+<tr><td>guide_strength</td><td>0.7</td><td>首尾图片对首尾 latent 的约束强度</td></tr>
+<tr><td>CFG</td><td>1.0</td><td>文本条件的 classifier-free guidance 比例</td></tr>
+<tr><td>image_compression</td><td>25</td><td>输入图在 LTX 预处理中的压缩级别</td></tr>
+<tr><td>noise seed</td><td>2026073105；L2 后两段依次 +1</td><td>固定扩散噪声起点；不是事后抽卡</td></tr>
+<tr><td>候选预算</td><td>每级 1 个</td><td>失败后不追加 seed 直到碰巧通过</td></tr></table>
+<p>完整 ComfyUI API 工作流、提示词和模型指纹都在每个实验目录的 <code>_work/</code>。
+模型文件指纹不是模型名称猜测，而是实际部署文件的 SHA‑256 记录。</p>
+
+<h2>3. CHEM‑01：语言没有控制住浓度单调性</h2>
+<p>相邻帧从“一个粉色液滴和局部粉色羽流”到“无色溶液”。硬门禁不只看最后是否无色，
+还要求粉色质量不能先增长。合同见 <a href="contracts/CHEM-01/01_mechanism__02_result.json">01_mechanism__02_result.json</a>。</p>
+<div class="grid">
+<div class="card bad"><h3>L0 简短语言</h3><video controls muted loop preload="metadata" poster="experiments/EXP-S3-20260731-013/generated-frames.jpg"><source src="experiments/EXP-S3-20260731-013/transition.mp4" type="video/mp4"></video>
+<p><span class="metric">1.136×</span><br>中途粉色峰值；门禁 ≤ 1.10×。</p>
+<p><a href="experiments/EXP-S3-20260731-013/generated-frames.jpg">九帧过程图</a> · <a href="experiments/EXP-S3-20260731-013/g4.json">逐帧 G4</a></p></div>
+<div class="card bad"><h3>L1 结构化合同</h3><video controls muted loop preload="metadata" poster="experiments/EXP-S3-20260731-014/generated-frames.jpg"><source src="experiments/EXP-S3-20260731-014/transition.mp4" type="video/mp4"></video>
+<p><span class="metric">1.465×</span><br>更长提示词反而形成更大的竖直粉色柱。</p>
+<p><a href="experiments/EXP-S3-20260731-014/generated-frames.jpg">九帧过程图</a> · <a href="experiments/EXP-S3-20260731-014/g4.json">逐帧 G4</a></p></div>
+</div>
+<div class="card warn"><b>决定：</b>当前 LTX 路线不发布。首尾 MAE 和连续性都通过，但标量质量门禁失败；
+默认使用 <a href="fallbacks/CHEM-01/program-motion.mp4">确定性程序运动回退</a>。
+回退保机制、不是 S3.4 写实外观，报告不把它包装成最终成片。</div>
+
+<h2>4. PHYS‑01：L1 已足够，L2 更准但有接缝成本</h2>
+<p>长段从 60 px 波前到 165 px 波前，两个橙色点源必须固定。合同见
+<a href="contracts/PHYS-01/00_start__03_end.json">00_start__03_end.json</a>。L1 一次生成 73 帧；L2 用
+00→01、01→02、02→03 三个 25 帧片段，删除重复边界帧后仍为 73 帧。</p>
+<div class="grid">
+<div class="card ok"><h3>L1 单段（默认）</h3><video controls muted loop preload="metadata" poster="experiments/EXP-S3-20260731-015/generated-frames.jpg"><source src="experiments/EXP-S3-20260731-015/transition.mp4" type="video/mp4"></video>
+<p>点源最大漂移 0.877 px；两个波前测得向外进展 68/69 px。</p>
+<p><a href="experiments/EXP-S3-20260731-015/generated-frames.jpg">九帧过程图</a> · <a href="experiments/EXP-S3-20260731-015/g4.json">G4</a></p></div>
+<div class="card warn"><h3>L2 稀疏分段（可选）</h3><video controls muted loop preload="metadata" poster="experiments/EXP-S3-20260731-016/generated-frames.jpg"><source src="experiments/EXP-S3-20260731-016/transition.mp4" type="video/mp4"></video>
+<p>中间帧 MAE：5.23 /
+6.73，优于 L1 的
+8.95 /
+12.50；但边界跳变为 4.668/5.512。</p>
+<p><a href="experiments/EXP-S3-20260731-016/generated-frames.jpg">九帧过程图</a> · <a href="experiments/EXP-S3-20260731-016/g4.json">G4</a> ·
+<a href="experiments/EXP-S3-20260731-016/_work/assembly.json">拼接记录</a></p></div>
+</div>
+<div class="card ok"><b>决定：</b>两者都通过机制门禁，但按“最低充分”规则选择 L1。
+只有教学合同要求精确经过中间状态、且接缝门禁仍通过时才升级 L2。</div>
+
+<h2>5. MATH‑02：首尾正确不代表四块刚体真的移动</h2>
+<p>合同要求四块三角形的颜色、面积、身份和对象局部木纹贯穿运动。合同见
+<a href="contracts/MATH-02/00_start__01_mechanism.json">00_start__01_mechanism.json</a>。</p>
+<div class="card bad"><video controls muted loop preload="metadata" poster="experiments/EXP-S3-20260731-017/generated-frames.jpg"><source src="experiments/EXP-S3-20260731-017/transition.mp4" type="video/mp4"></video>
+<p>模型在中间反复把“左侧四块”和“右侧完整拼图”闪回/融合。四种颜色最大面积偏差为
+[1.0, 0.036607, 0.260371, 0.890255]，门禁是每块 ≤ 0.12。</p>
+<p><a href="experiments/EXP-S3-20260731-017/generated-frames.jpg">九帧过程图</a> · <a href="experiments/EXP-S3-20260731-017/g4.json">G4</a> ·
+<a href="fallbacks/MATH-02/program-motion.mp4">确定性程序回退</a></p></div>
+<p>这也复现了 Stage 2 两次 LTX 刚体失败：扩散视频模型有像素连续性，但当前接口没有对象 ID、
+解析面积和刚体轨迹条件。默认回退不是“模型不够好看”，而是模型没有该类硬约束。</p>
+
+<h2>6. 一张图看完量化结果</h2>
+<img src="report-assets/mechanism-metrics.png" alt="CHEM 粉色质量曲线与 PHYS 中间帧误差对比">
+
+<h2>7. 发布给后续 Case 的确定规则</h2>
+<table><tr><th>运动类型</th><th>默认</th><th>为什么</th></tr>
+<tr><td>连续场传播</td><td><b>L1</b></td><td>水波方向、固定点源和中间状态门禁全部通过；L2 没有新增机制通过项。</td></tr>
+<tr><td>复杂路径且中间状态是硬合同</td><td>L2 可选</td><td>只在中间帧误差显著改善、且边界跳变仍合格时升级。</td></tr>
+<tr><td>液体混合/浓度单调性</td><td>确定性程序运动</td><td>L0/L1 均出现中途标量反向增长。</td></tr>
+<tr><td>精确刚体对象身份</td><td>确定性程序运动</td><td>模型中间丢失、融合或重生对象。</td></tr>
+<tr><td>程序视频/运动场直连</td><td>unsupported</td><td>部署工作流没有这一输入，不能伪造。</td></tr></table>
+<p>机器可读版本：<a href="guidance-decisions.json">guidance-decisions.json</a>；
+失败回退来源与哈希：<a href="fallbacks/manifest.json">fallbacks/manifest.json</a>。</p>
+
+<h2>8. 从零复现</h2>
+<pre>cd /workspace/Live-Document
+
+# 1) 只做规格、输入、模型文件和工作流预检；不调用模型
+/workspace/comfyui-rocm-env/bin/python -m modules.video_model.stage3.phase5 --prepare
+
+# 2) 启动已部署的 ComfyUI
+/persistent/ComfyUI/start-ltx2.3.sh
+
+# 3) 运行五个冻结候选；已存在的视频会保留，不重复调用
+/workspace/comfyui-rocm-env/bin/python -m modules.video_model.stage3.phase5 --generate
+
+# 4) 逐帧 G4、回退清单和报告
+/workspace/comfyui-rocm-env/bin/python -m modules.video_model.stage3.phase5 --audit --fallbacks
+/workspace/comfyui-rocm-env/bin/python -m modules.video_model.stage3.phase5_finalize
+
+# 5) 不依赖视频环境的仓库测试
+/opt/venv/bin/python -m pytest -q modules/video_model/stage3/tests</pre>
+
+<h2>9. 没有隐藏掉的限制</h2>
+<ul>
+<li>G4 的水波“向外传播”量表检查总体半径和固定源，不宣称逐像素恢复完整波相位。</li>
+<li>L2 三段使用不同固定 seed（主 seed 依次 +0/+1/+2）；这是预先冻结的分段规格，不是失败后抽卡。</li>
+<li>确定性回退目前来自程序视觉，不继承 S3.4 的完整写实材质；这是后续“全状态 B 渲染视频”的明确工程缺口。</li>
+<li>本阶段只覆盖三种代表运动类型；未把结论偷换成所有十一个 Case 都已发布。</li>
+</ul>
+<p class="muted">下一步已自动进入 S3.6：先做零模型跨学科发布回归，再决定是否存在新模型调用的正当理由。</p>
+</main></body></html>

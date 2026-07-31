@@ -1,0 +1,358 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+    }
+  },
+  "10": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "crop": "center",
+      "height": 320,
+      "image": [
+        "8",
+        0
+      ],
+      "upscale_method": "bicubic",
+      "width": 576
+    }
+  },
+  "11": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "crop": "center",
+      "height": 320,
+      "image": [
+        "9",
+        0
+      ],
+      "upscale_method": "bicubic",
+      "width": 576
+    }
+  },
+  "12": {
+    "class_type": "LTXVPreprocess",
+    "inputs": {
+      "image": [
+        "10",
+        0
+      ],
+      "img_compression": 25
+    }
+  },
+  "13": {
+    "class_type": "LTXVPreprocess",
+    "inputs": {
+      "image": [
+        "11",
+        0
+      ],
+      "img_compression": 25
+    }
+  },
+  "14": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "batch_size": 1,
+      "height": 320,
+      "length": 25,
+      "width": 576
+    }
+  },
+  "15": {
+    "class_type": "LTXVEmptyLatentAudio",
+    "inputs": {
+      "audio_vae": [
+        "7",
+        0
+      ],
+      "batch_size": 1,
+      "frame_rate": 24.0,
+      "frames_number": 25
+    }
+  },
+  "16": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "frame_idx": 0,
+      "image": [
+        "12",
+        0
+      ],
+      "latent": [
+        "14",
+        0
+      ],
+      "negative": [
+        "5",
+        1
+      ],
+      "positive": [
+        "5",
+        0
+      ],
+      "strength": 0.7,
+      "vae": [
+        "1",
+        2
+      ]
+    }
+  },
+  "17": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "frame_idx": -1,
+      "image": [
+        "13",
+        0
+      ],
+      "latent": [
+        "16",
+        2
+      ],
+      "negative": [
+        "16",
+        1
+      ],
+      "positive": [
+        "16",
+        0
+      ],
+      "strength": 0.7,
+      "vae": [
+        "1",
+        2
+      ]
+    }
+  },
+  "18": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {
+      "audio_latent": [
+        "15",
+        0
+      ],
+      "video_latent": [
+        "17",
+        2
+      ]
+    }
+  },
+  "19": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 2026073105
+    }
+  },
+  "2": {
+    "class_type": "LTXAVTextEncoderLoader",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors",
+      "device": "default",
+      "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors"
+    }
+  },
+  "20": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "cfg": 1.0,
+      "model": [
+        "6",
+        0
+      ],
+      "negative": [
+        "17",
+        1
+      ],
+      "positive": [
+        "17",
+        0
+      ]
+    }
+  },
+  "21": {
+    "class_type": "SamplerEulerAncestral",
+    "inputs": {
+      "eta": 0.0,
+      "s_noise": 1.0
+    }
+  },
+  "22": {
+    "class_type": "ManualSigmas",
+    "inputs": {
+      "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+    }
+  },
+  "23": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "guider": [
+        "20",
+        0
+      ],
+      "latent_image": [
+        "18",
+        0
+      ],
+      "noise": [
+        "19",
+        0
+      ],
+      "sampler": [
+        "21",
+        0
+      ],
+      "sigmas": [
+        "22",
+        0
+      ]
+    }
+  },
+  "24": {
+    "class_type": "LTXVSeparateAVLatent",
+    "inputs": {
+      "av_latent": [
+        "23",
+        1
+      ]
+    }
+  },
+  "25": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "latent": [
+        "24",
+        0
+      ],
+      "negative": [
+        "17",
+        1
+      ],
+      "positive": [
+        "17",
+        0
+      ]
+    }
+  },
+  "26": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "overlap": 64,
+      "samples": [
+        "25",
+        2
+      ],
+      "temporal_overlap": 4,
+      "temporal_size": 64,
+      "tile_size": 768,
+      "vae": [
+        "1",
+        2
+      ]
+    }
+  },
+  "27": {
+    "class_type": "LTXVAudioVAEDecode",
+    "inputs": {
+      "audio_vae": [
+        "7",
+        0
+      ],
+      "samples": [
+        "24",
+        1
+      ]
+    }
+  },
+  "28": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "audio": [
+        "27",
+        0
+      ],
+      "bit_depth": 8,
+      "fps": 24.0,
+      "images": [
+        "26",
+        0
+      ]
+    }
+  },
+  "29": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "codec": "h264",
+      "filename_prefix": "exp_s3_20260731_016_seg1",
+      "format": "mp4",
+      "video": [
+        "28",
+        0
+      ]
+    }
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "Locked top-down view of the exact same shallow blue water surface in every supplied frame. Keep exactly 1 coherent point source, exactly 1 coherent point source, exactly 1 continuous height field. Circular wavefronts propagate radially outward from both fixed orange sources. Then The two wave systems overlap while retaining two identifiable fixed centers. Then Interference bands develop in the overlap region as the radius grows. State constraints: wavefront_radius: monotonically_increasing; source_count: constant_two; source_position: fixed. Preserve two orange source identities and positions, water material, framing, lighting, background and camera. End exactly at the supplied last frame. One continuous physically or mathematically understandable transition. Locked camera."
+    }
+  },
+  "4": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "waves collapsing inward, a moving, missing or additional source, ocean horizon, shoreline, objects or splashes, camera movement or scene change, camera movement, pan, zoom, tilt, perspective change, scene change, abrupt cut, flicker, jitter, ghosting, uncontracted object birth or loss, watermark"
+    }
+  },
+  "5": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "frame_rate": 24.0,
+      "negative": [
+        "4",
+        0
+      ],
+      "positive": [
+        "3",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "lora_name": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+      "model": [
+        "1",
+        0
+      ],
+      "strength_model": 0.5
+    }
+  },
+  "7": {
+    "class_type": "LTXVAudioVAELoader",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+    }
+  },
+  "8": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "exp_s3_20260731_016_seg1_first.png"
+    }
+  },
+  "9": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "exp_s3_20260731_016_seg1_last.png"
+    }
+  }
+}

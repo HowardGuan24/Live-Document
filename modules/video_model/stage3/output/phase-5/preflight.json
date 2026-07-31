@@ -1,0 +1,130 @@
+{
+  "checks": [
+    {
+      "name": "runtime_interface_is_explicit",
+      "passed": true
+    },
+    {
+      "name": "motion_core_has_no_case_ids",
+      "passed": true
+    },
+    {
+      "name": "all_model_files_exist",
+      "passed": true
+    },
+    {
+      "name": "five_fixed_experiments",
+      "passed": true
+    },
+    {
+      "name": "all_specs_prepared_without_model_call",
+      "passed": true
+    }
+  ],
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "passed": true,
+  "prepared_runs": [
+    {
+      "experiment_id": "EXP-S3-20260731-013",
+      "prompt": {
+        "path": "inputs/prompt.txt",
+        "sha256": "c1a16f3cfbe7ce3380a5a96ac9d67d09a9d9967a3b23c1098b7e78193e9f11e4",
+        "size_bytes": 185
+      },
+      "root": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-013",
+      "workflow": {
+        "path": "_work/workflow_api.json",
+        "sha256": "a86ee13522d65aef9f333f0552ecd84bd32488b87e276706d15a79f8813034ef",
+        "size_bytes": 5814
+      }
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-014",
+      "prompt": {
+        "path": "inputs/prompt.txt",
+        "sha256": "3728651b995d3b1e1ed43ff4849d41f9955fec65e8a408e5e61cfe5e72fc5b84",
+        "size_bytes": 1155
+      },
+      "root": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-014",
+      "workflow": {
+        "path": "_work/workflow_api.json",
+        "sha256": "9427f18bbea2fbcb48b89aacff6dd0f414375a6392106bc9523e9b13b1d46e7a",
+        "size_bytes": 6784
+      }
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-015",
+      "prompt": {
+        "path": "inputs/prompt.txt",
+        "sha256": "7cfc5831ff82c25002821bc24dd4339a31113682ef46ebabfa7d28826e94334c",
+        "size_bytes": 1119
+      },
+      "root": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-015",
+      "workflow": {
+        "path": "_work/workflow_api.json",
+        "sha256": "edc740667d3b53857b61da7cc5a2d97d2abeaaaae14c6034b79a13af4305546c",
+        "size_bytes": 6748
+      }
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-016-SEG1",
+      "prompt": {
+        "path": "inputs/prompt.txt",
+        "sha256": "7cfc5831ff82c25002821bc24dd4339a31113682ef46ebabfa7d28826e94334c",
+        "size_bytes": 1119
+      },
+      "root": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/segments/01_00_start__01_mechanism",
+      "workflow": {
+        "path": "_work/workflow_api.json",
+        "sha256": "5239350a7bb90e9ec27dc3592d5e7821074b1f2bb25197c70f0a547a51ae1e61",
+        "size_bytes": 6763
+      }
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-016-SEG2",
+      "prompt": {
+        "path": "inputs/prompt.txt",
+        "sha256": "7cfc5831ff82c25002821bc24dd4339a31113682ef46ebabfa7d28826e94334c",
+        "size_bytes": 1119
+      },
+      "root": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/segments/02_01_mechanism__02_result",
+      "workflow": {
+        "path": "_work/workflow_api.json",
+        "sha256": "ce87fff83f4af080b52f6a946780c4784e2d5002723cb86a6ed77146a8609a2e",
+        "size_bytes": 6763
+      }
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-016-SEG3",
+      "prompt": {
+        "path": "inputs/prompt.txt",
+        "sha256": "7cfc5831ff82c25002821bc24dd4339a31113682ef46ebabfa7d28826e94334c",
+        "size_bytes": 1119
+      },
+      "root": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/segments/03_02_result__03_end",
+      "workflow": {
+        "path": "_work/workflow_api.json",
+        "sha256": "f337f56e52a0f1f5381308d41ffe1bf29c20d5963fb0f354a3133436b89ec36a",
+        "size_bytes": 6763
+      }
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-017",
+      "prompt": {
+        "path": "inputs/prompt.txt",
+        "sha256": "c5f7497a05c6099f7246083ae1fbad8f95707d786f02819dd1771f1c64550d5c",
+        "size_bytes": 1172
+      },
+      "root": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-017",
+      "workflow": {
+        "path": "_work/workflow_api.json",
+        "sha256": "6e809d555718abead94a4ce3144abe192b8aedc362914f2ddac290fb0f18815e",
+        "size_bytes": 6801
+      }
+    }
+  ],
+  "schema_version": "1.0"
+}

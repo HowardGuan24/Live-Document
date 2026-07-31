@@ -1,0 +1,43 @@
+{
+  "cases": {
+    "CHEM-01": {
+      "appearance_profile": "transparent_lab",
+      "negative_tokens": {
+        "tokenizer": 42,
+        "tokenizer_2": 42
+      },
+      "positive_tokens": {
+        "tokenizer": 71,
+        "tokenizer_2": 71
+      },
+      "provenance_complete": true
+    },
+    "MATH-02": {
+      "appearance_profile": "wood_geometry",
+      "negative_tokens": {
+        "tokenizer": 27,
+        "tokenizer_2": 27
+      },
+      "positive_tokens": {
+        "tokenizer": 55,
+        "tokenizer_2": 55
+      },
+      "provenance_complete": true
+    },
+    "PHYS-01": {
+      "appearance_profile": "water_field",
+      "negative_tokens": {
+        "tokenizer": 27,
+        "tokenizer_2": 27
+      },
+      "positive_tokens": {
+        "tokenizer": 52,
+        "tokenizer_2": 52
+      },
+      "provenance_complete": true
+    }
+  },
+  "compiler_id": "stage3_prompt_compiler_v1",
+  "passed": true,
+  "schema_version": "1.0"
+}

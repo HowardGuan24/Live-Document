@@ -1,0 +1,63 @@
+{
+  "case_id": "BIO-01",
+  "keyframe_selection": [
+    {
+      "keyframe_id": "00_start",
+      "order": 0,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/00_start/state.json",
+        "sha256": "de54ec2b2bf2b4dfb269463e1e314285ea4f5728db3b604a9905683b23092dd8",
+        "size_bytes": 1460
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/01_mechanism/state.json",
+        "sha256": "7147be795a2db69f445410eeb60876470ad5fff3ae13af7622edf29586cf7203",
+        "size_bytes": 1465
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "order": 2,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/state.json",
+        "sha256": "2f20f440555e133301520e3ebc509f16d52a78f3636ad3d8aadfaa996115df46",
+        "size_bytes": 2914
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "order": 3,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/BIO-01/keyframes/03_end/state.json",
+        "sha256": "fab5dac6ada9635192b03d317434dcff947d0aba27b039520720cb23f192b046",
+        "size_bytes": 2915
+      }
+    }
+  ],
+  "model_input_policy": "The full timeline is used to extract direction, topology, speed trend, and occlusion constraints. Raw program video is not a default pixel input to an image or video model.",
+  "motion_classes": [
+    "object_division"
+  ],
+  "program_video": {
+    "path": "modules/video_model/stage2/output/phase-2/BIO-01/program-animation.mp4",
+    "sha256": "79c7883e4d402a7135e62e27231ad38089c63a8fb4405f7710f22b9030a87c19",
+    "size_bytes": 65211
+  },
+  "schema_version": "1.0",
+  "state_timeline": {
+    "path": "modules/video_model/stage2/output/phase-2/BIO-01/states.jsonl",
+    "sha256": "3f7d2ab46dd329b460c4726841a683f0dea3b0262742c34f6c07d75d8cd8c811",
+    "size_bytes": 86318
+  },
+  "temporal_gates": [
+    "chromosome_allocation_matches_program",
+    "mitosis_stage_order_is_preserved",
+    "no_chromosome_is_created_or_lost",
+    "camera_and_background_remain_fixed",
+    "no_uncontracted_object_birth_or_loss"
+  ]
+}

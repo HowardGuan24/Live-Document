@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "anchors": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/01_mechanism/anchors.json",
+      "sha256": "821b2cdd621114137092f8d3e454b9fc7b5a826ab1d9700c94b3bdc2e51a34ef",
+      "size_bytes": 175
+    },
+    "regions": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/01_mechanism/regions.png",
+      "sha256": "62909bef0cd0b4959bdfcfc270f8e6c18717404fae2e4ab9f2546c5ec82c0e00",
+      "size_bytes": 3577
+    },
+    "structure_control": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/GEO-02/01_mechanism/structure_control.png",
+      "sha256": "94a15bcfedab4135f4739cbbb04c6465e4fbeecb9096cdcb7ee9bdab4015e3c2",
+      "size_bytes": 3419
+    }
+  },
+  "case_id": "GEO-02",
+  "checks": [
+    {
+      "evidence": [
+        {
+          "area_px": 61797,
+          "boundary_px": 716,
+          "layer_id": "geo02_terrain_region",
+          "source_sha256": "ed6fe2d7338b41d6eebeaac592515788f3123a230d485e7ce593c255df7cc62a"
+        }
+      ],
+      "name": "region_topology_exported",
+      "passed": true
+    },
+    {
+      "evidence": [
+        {
+          "center_xy": [
+            242.82,
+            178.815
+          ],
+          "class_id": "moving_air_parcel",
+          "object_id": "GEO-02-air-parcel"
+        }
+      ],
+      "name": "identity_anchors_exported",
+      "passed": true
+    },
+    {
+      "evidence": 0.003281,
+      "name": "sparse_structure_density",
+      "passed": true
+    },
+    {
+      "evidence": "only region boundaries and identity anchors are drawn",
+      "name": "scalar_and_annotation_not_converted_to_edges",
+      "passed": true
+    },
+    {
+      "name": "appearance_reference_not_read",
+      "passed": true
+    }
+  ],
+  "geometry_policy": "layout_only",
+  "keyframe_id": "01_mechanism",
+  "passed": true,
+  "schema_version": "1.0",
+  "source_semantics": {
+    "path": "modules/video_model/stage2/output/phase-2/GEO-02/keyframes/01_mechanism/semantic_layers.json",
+    "sha256": "75b509c92d29c2227536e9920676f5e0bceadeeccb25d073097af66545f5617b",
+    "size_bytes": 7784
+  }
+}

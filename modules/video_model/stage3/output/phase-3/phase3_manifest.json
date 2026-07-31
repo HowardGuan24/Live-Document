@@ -1,0 +1,46 @@
+{
+  "accepted_case_specific": [
+    "CHEM-01 prompt lexicon v4",
+    "CHEM-01 anchor auto_control_080-s7101"
+  ],
+  "accepted_core": [
+    "stage3_prompt_compiler_v2",
+    "primitive-declared internal landmark gate",
+    "position-matching candidate selector v4"
+  ],
+  "assets": {
+    "landmarks": {
+      "path": "modules/video_model/stage3/output/phase-3/report-assets/landmark-audit.jpg",
+      "sha256": "8186730e328f59b5f91eafa8c83065086f510b129c53645c327d29eecb20c246",
+      "size_bytes": 81224
+    },
+    "process": {
+      "path": "modules/video_model/stage3/output/phase-3/report-assets/prompt-loop-process.jpg",
+      "sha256": "fe489d3b9d6adccf7afeabae38459dc1d9931d4f04d24981e1745fb68861c26d",
+      "size_bytes": 154887
+    }
+  },
+  "cross_case_compile": {
+    "path": "modules/video_model/stage3/output/phase-3/prompt-v5-cross-case-compile.json",
+    "sha256": "7d616a5d9c3c7cd7be3d2f86011e1f840a8b750fa1d55ab1348dacff89a503a6",
+    "size_bytes": 1786
+  },
+  "model_runs": {
+    "image_candidates": 36,
+    "video_candidates": 0
+  },
+  "next_phase": "S3.4",
+  "phase": "S3.3",
+  "report": {
+    "path": "modules/video_model/stage3/output/phase-3/report.html",
+    "sha256": "1ee080cb50a4f0d404c8c3693da6744cc7a328b686fd0ae72992cf0a416b2a49",
+    "size_bytes": 16268
+  },
+  "schema_version": "1.0",
+  "selected_anchor": {
+    "path": "modules/video_model/stage3/output/phase-3/selection-v4-position-audit/selected.png",
+    "sha256": "7e62b5d051f08c93a687369ca135112b82bd2ef4ee533eba327f7f0febaa5b66",
+    "size_bytes": 557471
+  },
+  "status": "passed"
+}

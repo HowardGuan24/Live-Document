@@ -1,0 +1,37 @@
+{
+  "case_id": "CHEM-01",
+  "derivations": [
+    {
+      "appearance_reference_used": false,
+      "class_id": "glass_burette",
+      "method": "paired_parallel_boundaries_above_glass_beaker",
+      "output_bbox_xyxy": [
+        298,
+        20,
+        342,
+        64
+      ],
+      "rendered_screenshot_used": false,
+      "selected_component_bboxes": [
+        [
+          298,
+          20,
+          302,
+          64
+        ],
+        [
+          338,
+          20,
+          342,
+          64
+        ]
+      ],
+      "source_layer": "chem01_apparatus_boundary",
+      "source_layer_sha256": "25c4730d949b1daab2c55218a2c56546146274193825061aef1a9f5f8abebb6a"
+    }
+  ],
+  "identity_source_layer": "chem01_object_identity",
+  "identity_source_sha256": "ce043aa3ffe462c056d1b2d1813db9d3dc719fe0eac3da411384fbf62dd04f7a",
+  "schema_version": "1.0",
+  "state_id": "03_end"
+}

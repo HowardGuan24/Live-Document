@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "AUDIT-S3-20260730-004-V2",
+  "candidate_id": "auto_control_080-s7103",
+  "candidate_sha256": "4bd9904edb849a9ed1b3d02d496c428cfdae3c4081e60087487bded54797b4d5",
+  "passed": true,
+  "checks": [
+    {
+      "name_zh": "画面只有一个烧杯",
+      "passed": true,
+      "evidence_zh": "主体区域只有一个开口玻璃烧杯，没有复制容器。"
+    },
+    {
+      "name_zh": "画面只有一个滴定管",
+      "passed": true,
+      "evidence_zh": "烧杯上方只有一个带刻度的透明滴定器材。"
+    },
+    {
+      "name_zh": "滴定管与烧杯按合同保持分离",
+      "passed": true,
+      "evidence_zh": "滴定管尖端与杯口之间有清楚空气间隙，没有玻璃颈或幽灵竖线把两者连接。"
+    },
+    {
+      "name_zh": "没有文字、标签或伪文字",
+      "passed": true,
+      "evidence_zh": "仅有规则刻度短线，没有数字、字母、标签、箭头或 UI。"
+    },
+    {
+      "name_zh": "玻璃与液体材质可信",
+      "passed": true,
+      "evidence_zh": "杯壁高光、底部折射、透明液体和中性棚拍光照一致；没有明显塑料玩具感。"
+    },
+    {
+      "name_zh": "外观参考没有改写自动几何",
+      "passed": true,
+      "evidence_zh": "候选几何覆盖的是 S3.1 自动控制；参考图只参与曝光、饱和度和纹理统计评分。"
+    }
+  ],
+  "limitations_zh": [
+    "烧杯比例偏矮宽，但仍符合 canonicalize 策略允许的规范重建范围。",
+    "深色液面主要来自折射和背景反射；后续 State Renderer 必须从程序液体 mask 重建状态，不能把这条暗带当成 pH。"
+  ],
+  "verdict_zh": "通过 S3.2。v2 在同一九张冻结候选中唯一保留 auto_control_080-s7103；它修复了 v1 未识别的对象粘连、杯内中心线和额外边缘问题，且没有追加模型候选。"
+}

@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "first_sha256": "2c884dad1f688570fcd17c9aecdbddb7077ac375ab908b2cc34022f496917240",
+      "identical": true,
+      "keyframe_id": "00_start",
+      "replay_sha256": "2c884dad1f688570fcd17c9aecdbddb7077ac375ab908b2cc34022f496917240"
+    },
+    {
+      "first_sha256": "b88cad7cb447fb9ad469a8c8bbf96731f257462b7097b41e9226a13e832507a7",
+      "identical": true,
+      "keyframe_id": "01_mechanism",
+      "replay_sha256": "b88cad7cb447fb9ad469a8c8bbf96731f257462b7097b41e9226a13e832507a7"
+    },
+    {
+      "first_sha256": "5c33cb1fac4c251607d53011b6de03018344fbebd03e22b2939c1c917a91b198",
+      "identical": true,
+      "keyframe_id": "02_result",
+      "replay_sha256": "5c33cb1fac4c251607d53011b6de03018344fbebd03e22b2939c1c917a91b198"
+    },
+    {
+      "first_sha256": "36cdadc8fd81c9ed91c30f205f23f46c8daca0a66c7f74b09013bcc1b0e7c52a",
+      "identical": true,
+      "keyframe_id": "03_end",
+      "replay_sha256": "36cdadc8fd81c9ed91c30f205f23f46c8daca0a66c7f74b09013bcc1b0e7c52a"
+    }
+  ],
+  "schema_version": "1.0",
+  "seed_robustness": {
+    "reason_zh": "本轮没有重新运行图片模型；同一冻结外观供体进入确定性 State Renderer。因此检查的是逐文件重建一致性，不伪装成多 seed 结论。",
+    "status": "not_applicable"
+  }
+}

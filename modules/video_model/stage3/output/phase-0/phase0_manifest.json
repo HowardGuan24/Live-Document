@@ -1,0 +1,125 @@
+{
+  "artifacts": {
+    "baselines": {
+      "path": "modules/video_model/stage3/baselines/accepted.json",
+      "sha256": "db2a836f0121ca2021cabb6b704e664eb6daf1f15ec26e308bdee664293e6c0b",
+      "size_bytes": 6149
+    },
+    "completeness": {
+      "path": "modules/video_model/stage3/output/phase-0/case-completeness.json",
+      "sha256": "e8d7b4556504778ad6ac6304ae98dc544ab31d49187b179bc8b58ea5c30e9f3e",
+      "size_bytes": 6879
+    },
+    "registry": {
+      "path": "modules/video_model/stage3/case_registry.json",
+      "sha256": "26488d77be70f38719ad26b68a14fe3d3c01afe63d3a16d7fe3c95d54f499b5d",
+      "size_bytes": 14618
+    },
+    "report": {
+      "path": "modules/video_model/stage3/output/phase-0/report.html",
+      "sha256": "21e43d793741c0d1c5a510b0e1229f8dee57096560f2aa2396194b6468db305b",
+      "size_bytes": 11333
+    },
+    "selection": {
+      "path": "modules/video_model/stage3/output/phase-0/case-selection.json",
+      "sha256": "2502b57f53a08a58eb101b37c2c6f303f9a0e8258e0492b69b247bb67b20a247",
+      "size_bytes": 2859
+    },
+    "state": {
+      "path": "modules/video_model/stage3/state.json",
+      "sha256": "ad188336ab3c4c33b907d273e4f94ac8dc65a339069bcd6f362e3688e3de42bc",
+      "size_bytes": 1618
+    }
+  },
+  "checks": [
+    {
+      "evidence_zh": "输入、注册表、视觉目标、运动和 Loop 状态均有版本化 Schema。",
+      "name": "five_json_schemas_are_frozen",
+      "passed": true
+    },
+    {
+      "evidence_zh": "10 个跨学科案例 + 1 个历史三角洲质量回归。",
+      "name": "ten_scale_cases_plus_delta_are_registered",
+      "passed": true
+    },
+    {
+      "evidence_zh": "每个规模案例都有 49 帧程序时间线，不只利用关键帧截图。",
+      "name": "all_ten_scale_cases_have_continuous_program_frames",
+      "passed": true
+    },
+    {
+      "evidence_zh": "对象身份被作为稳定几何与跨帧追踪接口。",
+      "name": "all_contracts_export_object_identity",
+      "passed": true
+    },
+    {
+      "evidence_zh": "5 个 sentinel 与历史三角洲均有本地正例、反例和量表。",
+      "name": "all_sentinel_visual_targets_are_not_missing",
+      "passed": true
+    },
+    {
+      "evidence_zh": "外观参考不能作为几何来源，泄漏检查是硬门禁。",
+      "name": "geometry_and_appearance_are_separated",
+      "passed": true
+    },
+    {
+      "evidence_zh": "S3.1 固定选择 CHEM-01，回归 PHYS-02 与 MATH-02。",
+      "name": "case_selector_is_deterministic",
+      "passed": true
+    },
+    {
+      "evidence_zh": "model_runs: image=0, video=0。",
+      "name": "phase0_used_no_image_or_video_model",
+      "passed": true
+    },
+    {
+      "evidence_zh": "报告中的本地图片与机器可读产物链接全部存在。",
+      "name": "report_links_resolve",
+      "passed": true
+    }
+  ],
+  "classification": "contract_and_baseline_freeze",
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "next_phase": {
+    "phase": "S3.1",
+    "regressions": [
+      "PHYS-02",
+      "MATH-02"
+    ],
+    "status": "in_progress",
+    "target": "CHEM-01"
+  },
+  "phase": "S3.0",
+  "schema_records": [
+    {
+      "id": "https://live-document.local/stage3/case-registry.schema.json",
+      "name": "case_registry.schema.json",
+      "sha256": "cd5edae5fc93a0ef30220f4b53979fd2600f35819312ab6d7f353eec828ffa68"
+    },
+    {
+      "id": "https://live-document.local/stage3/input-contract.schema.json",
+      "name": "input_contract.schema.json",
+      "sha256": "9f37ae7f5f3d29f1298ca87390a0277c70d7331e04cb8cf026f9975176cdb4b3"
+    },
+    {
+      "id": "https://live-document.local/stage3/motion-contract.schema.json",
+      "name": "motion_contract.schema.json",
+      "sha256": "89846fff1943c9eec3983f14317b2439e61f14ed9e2d48cacc83b6ef34cb91bc"
+    },
+    {
+      "id": "https://live-document.local/stage3/state.schema.json",
+      "name": "state.schema.json",
+      "sha256": "690ac5fdf5c3155f48697e2cac6449c8bf0a233d9bd8ed406233cdd066e05450"
+    },
+    {
+      "id": "https://live-document.local/stage3/visual-target.schema.json",
+      "name": "visual_target.schema.json",
+      "sha256": "9595dc6e41efc3bb5ce7eac6e70a3c3074c7ed2e7d778f57576f9f199da2460e"
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "passed"
+}

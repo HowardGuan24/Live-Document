@@ -1,0 +1,39 @@
+{
+  "case_id": "MATH-02",
+  "geometry_control_separation": {
+    "appearance_source": "only the positive/negative references in this package",
+    "geometry_source": "frozen input contract + semantic layers + geometry policy",
+    "leakage_gate": "appearance_to_geometry_leakage"
+  },
+  "negative_refs": [
+    {
+      "label_zh": "反例：屏幕坐标纹理会在移动拼块内部滑动。",
+      "path": "modules/video_model/stage2/output/phase-8/route-b-only/MATH-02/variants/frozen_texture_tint/01_mechanism.png",
+      "role": "appearance_negative",
+      "sha256": "4761a88a384d9d42f3e6d5e0af588d886e082b835a5a53b009b943d726da73a9",
+      "size_bytes": 289370
+    }
+  ],
+  "package_id": "VT-MATH-02-V1",
+  "positive_refs": [
+    {
+      "label_zh": "已评审的统一 B 路线：冻结材质，保留四块拼图的精确几何。",
+      "path": "modules/video_model/stage2/output/phase-8/route-b-only/MATH-02/variants/frozen_scene_depth/03_end.png",
+      "role": "appearance_positive",
+      "sha256": "7f570d6f9351d977b3712f42e29b7226d4223899d25d922e269c8ca4878f3c6d",
+      "size_bytes": 292341
+    },
+    {
+      "label_zh": "历史质量上界：对象局部木纹、倒角和稳定棚拍光。",
+      "path": "modules/video_model/stage2/output/phase-7/route-c/MATH-02/variants/studio_pbr/03_end.png",
+      "role": "appearance_positive",
+      "sha256": "0a2f93702638383ceb99a221a9de822043edffda9bfd4f0ac63d7941ecfb37c0",
+      "size_bytes": 55183
+    }
+  ],
+  "rubric": "modules/video_model/stage3/visual_targets/MATH-02/rubric.json",
+  "schema_version": "1.0",
+  "status": "accepted_project_baseline",
+  "style_board": "modules/video_model/stage3/visual_targets/MATH-02/style_board.html",
+  "summary_zh": "桌面木质拼块可有倒角和木纹，但四块全等三角形的面积、身份与刚体变换不能变。"
+}

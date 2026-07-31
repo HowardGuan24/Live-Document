@@ -1,0 +1,105 @@
+{
+  "anchor_audit": null,
+  "case_id": "MATH-02",
+  "classification": "LTX-2.3 first-last-frame conditioned video",
+  "color_component_division_audit": null,
+  "color_identity_reference_audit": null,
+  "color_mass_trend_audit": null,
+  "color_region_topology_audit": null,
+  "endpoint_comparison": {
+    "first": {
+      "mean_absolute_pixel_error_0_255": 5.0938,
+      "psnr_db": 31.3241
+    },
+    "last": {
+      "mean_absolute_pixel_error_0_255": 5.4351,
+      "psnr_db": 30.6327
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-017",
+  "experiment_spec_sha256": "047cbd2173b168478298768fe7f19d3a8fbed57aca4ac586e8a09fb715c3da85",
+  "generation_seconds": 25.007,
+  "hard_checks": [
+    {
+      "evidence": {
+        "codec": "h264",
+        "duration_seconds": 2.0416666666666665,
+        "fps": 24.0,
+        "frame_count": 49,
+        "has_audio": true,
+        "height": 320,
+        "width": 576
+      },
+      "name": "video_contract_matches_requested_dimensions",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "first": {
+          "mean_absolute_pixel_error_0_255": 5.0938,
+          "psnr_db": 31.3241
+        },
+        "last": {
+          "mean_absolute_pixel_error_0_255": 5.4351,
+          "psnr_db": 30.6327
+        },
+        "threshold": 15
+      },
+      "name": "first_and_last_frames_follow_inputs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 7.0811,
+        "mean": 1.3743,
+        "p95": 6.6246,
+        "threshold": 12
+      },
+      "name": "no_single_frame_jump_exceeds_smoke_threshold",
+      "passed": true
+    }
+  ],
+  "model_runs": {
+    "image": 0,
+    "video": 1
+  },
+  "motion_class": "rigid_motion",
+  "preview": {
+    "path": "generated-frames.jpg",
+    "sha256": "05fb17c72a5bfaa0f7087c3a7e147b4dbcd25e739e54f57274749cafdf4aa7c8",
+    "size_bytes": 451917
+  },
+  "prompt_id": "bf2b41ab-24c5-4726-b4b6-462ee9b6bdd8",
+  "radial_propagation_audit": null,
+  "reference_color_mask_stability_audit": null,
+  "sample_indices": [
+    0,
+    6,
+    12,
+    18,
+    24,
+    30,
+    36,
+    42,
+    48
+  ],
+  "schema_version": "1.0",
+  "status": "generated_pending_visual_review",
+  "temporal_metrics": {
+    "maximum_consecutive_frame_mae_0_255": 7.0811,
+    "mean_consecutive_frame_mae_0_255": 1.3743,
+    "p95_consecutive_frame_mae_0_255": 6.6246
+  },
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 2.0416666666666665,
+    "fps": 24.0,
+    "frame_count": 49,
+    "has_audio": true,
+    "height": 320,
+    "path": "transition.mp4",
+    "sha256": "d038d478de1a3f711fb7af120371b1bd704ad588e07bae81b58ab0bcfb8b3d42",
+    "size_bytes": 115319,
+    "width": 576
+  }
+}

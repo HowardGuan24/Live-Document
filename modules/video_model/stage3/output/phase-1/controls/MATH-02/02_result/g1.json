@@ -1,0 +1,39 @@
+{
+  "artifacts": {
+    "exact_payload": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/MATH-02/02_result/math02_hard_boundary.npy",
+      "sha256": "7e8cbd453c3f6393ca771fa6d5369ca340ac40e0cca98697aa61af941ed3efce",
+      "size_bytes": 230528
+    },
+    "structure_control": {
+      "path": "modules/video_model/stage3/output/phase-1/controls/MATH-02/02_result/structure_control.png",
+      "sha256": "e3f69bb704262ae2c996d2d192c92fc412d73000b2a35a1749d9ba73e7511f0f",
+      "size_bytes": 2777
+    }
+  },
+  "case_id": "MATH-02",
+  "checks": [
+    {
+      "evidence": {
+        "copied_sha256": "7e8cbd453c3f6393ca771fa6d5369ca340ac40e0cca98697aa61af941ed3efce",
+        "source_sha256": "7e8cbd453c3f6393ca771fa6d5369ca340ac40e0cca98697aa61af941ed3efce"
+      },
+      "name": "semantic_payload_byte_identical",
+      "passed": true
+    },
+    {
+      "name": "appearance_reference_not_read",
+      "passed": true
+    }
+  ],
+  "control_kind": "hard_boundary_exact",
+  "geometry_policy": "preserve_exact",
+  "keyframe_id": "02_result",
+  "passed": true,
+  "schema_version": "1.0",
+  "source_semantics": {
+    "path": "modules/video_model/stage2/output/phase-2/MATH-02/keyframes/02_result/semantic_layers.json",
+    "sha256": "8fcadd483db8663f24dc3b9d172bb09aa847e4974368d9ce1af59901fd9883ed",
+    "size_bytes": 6473
+  }
+}

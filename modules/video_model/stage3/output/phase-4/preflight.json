@@ -1,0 +1,56 @@
+{
+  "checks": [
+    {
+      "name": "plan_set_frozen",
+      "passed": true
+    },
+    {
+      "name": "three_cross_case_plans",
+      "passed": true
+    },
+    {
+      "name": "operator_core_has_no_case_ids",
+      "passed": true
+    },
+    {
+      "name": "no_model_runtime_import",
+      "passed": true
+    },
+    {
+      "name": "all_plan_inputs_complete",
+      "passed": true
+    }
+  ],
+  "model_budget": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "passed": true,
+  "plans": [
+    {
+      "anchor_path": "/workspace/Live-Document/modules/video_model/stage3/output/phase-3/selection-v4-position-audit/selected.png",
+      "anchor_sha256": "7e62b5d051f08c93a687369ca135112b82bd2ef4ee533eba327f7f0febaa5b66",
+      "keyframes_match_contract": true,
+      "operator_ids_unique": true,
+      "passed": true,
+      "plan_id": "S3.4-CHEM-01-V1"
+    },
+    {
+      "anchor_path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-005/raw/t2i_material_donor/seed_3102.png",
+      "anchor_sha256": "a1762ce1f30cd1b5ad89ebe8745af8e92eb7294a86449a66ea6b5e189c8610d5",
+      "keyframes_match_contract": true,
+      "operator_ids_unique": true,
+      "passed": true,
+      "plan_id": "S3.4-PHYS-01-V1"
+    },
+    {
+      "anchor_path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-3/EXP-20260729-012/raw/t2i_wood_material_donor/seed_3101.png",
+      "anchor_sha256": "6095402f50b5acc858b16d6c6bd5269e3422af0ef592848ca7e99004dbd6a0be",
+      "keyframes_match_contract": true,
+      "operator_ids_unique": true,
+      "passed": true,
+      "plan_id": "S3.4-MATH-02-V1"
+    }
+  ],
+  "schema_version": "1.0"
+}

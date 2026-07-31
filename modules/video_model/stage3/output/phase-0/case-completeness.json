@@ -1,0 +1,254 @@
+{
+  "historical_regression_count": 1,
+  "records": [
+    {
+      "case_id": "MATH-01",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "preserve_exact",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "object_classes": [
+        "rotating_point",
+        "sine_trace_head"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "hard_boundary",
+        "object_identity",
+        "region"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "MATH-02",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "preserve_exact",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "object_classes": [
+        "congruent_right_triangle"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "hard_boundary",
+        "object_identity",
+        "region"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "PHYS-01",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "preserve_exact",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "object_classes": [
+        "coherent_point_source"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "height_or_normal",
+        "object_identity",
+        "scalar_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "PHYS-02",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "canonicalize",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "object_classes": [
+        "bar_magnet",
+        "fixed_coil"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "hard_boundary",
+        "object_identity",
+        "region",
+        "vector_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "CHEM-01",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "canonicalize",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "object_classes": [
+        "base_solution_drop",
+        "glass_beaker"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "hard_boundary",
+        "object_identity",
+        "region",
+        "scalar_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "CHEM-02",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "canonicalize",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "object_classes": [
+        "salt_crystal"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "hard_boundary",
+        "object_identity",
+        "region",
+        "scalar_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "BIO-01",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "layout_only",
+      "keyframe_count": 4,
+      "known_gaps": [],
+      "object_classes": [
+        "untyped_object"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "object_identity",
+        "region",
+        "vector_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "accepted_project_baseline"
+    },
+    {
+      "case_id": "BIO-02",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "layout_only",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "object_classes": [
+        "guard_cell"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "hard_boundary",
+        "object_identity",
+        "region",
+        "scalar_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "GEO-01",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "layout_only",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target package has not yet been curated; model generation is forbidden until it exists."
+      ],
+      "object_classes": [
+        "isolated_oxbow_lake",
+        "main_river"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "hard_boundary",
+        "object_identity",
+        "region",
+        "vector_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "missing"
+    },
+    {
+      "case_id": "GEO-02",
+      "continuous_program_frames": 49,
+      "contract_smoke_passed": true,
+      "geometry_policy": "layout_only",
+      "keyframe_count": 4,
+      "known_gaps": [
+        "Visual target is provisional; a generated candidate must not be promoted without visual and mechanism review."
+      ],
+      "object_classes": [
+        "moving_air_parcel"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "annotation",
+        "height_or_normal",
+        "object_identity",
+        "region",
+        "scalar_field",
+        "vector_field"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "provisional"
+    },
+    {
+      "case_id": "GEO-HIST-DELTA-01",
+      "continuous_program_frames": 0,
+      "contract_smoke_passed": true,
+      "geometry_policy": "layout_only",
+      "keyframe_count": 5,
+      "known_gaps": [],
+      "object_classes": [
+        "original_coast",
+        "river_channel",
+        "sediment_plume",
+        "wet_sandbar"
+      ],
+      "program_available": true,
+      "semantic_layer_types": [
+        "hard_boundary",
+        "region",
+        "scalar_field",
+        "vector_field",
+        "object_identity"
+      ],
+      "timeline_available": true,
+      "visual_target_status": "accepted_project_baseline"
+    }
+  ],
+  "scale_case_count": 10,
+  "schema_version": "1.0"
+}

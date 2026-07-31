@@ -1,0 +1,17 @@
+{"experiment_id": "EXP-S3-20260730-001", "failure_taxonomy": "semantic_export", "falsification_zh": "任何稳定器材在任一关键帧缺少 typed identity 即失败。", "hypothesis_id": "H-S3-0001A", "statement_zh": "现有 object_identity 已足够让规范几何库直接重建烧杯与滴定管。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260730-002", "falsification_zh": "若恢复对象数量错误、越界、控制图密度异常、跨学科器材失败，或 preserve_exact payload 改变任一字节，即失败。", "hypothesis_id": "H-S3-0001B", "scope": "core geometry/control compiler; appearance quality not tested", "statement_zh": "合同声明缺失类型与空间关系后，Semantic Normalizer 可从未归属的 hard_boundary 分量恢复 bbox，再由通用 typed primitive 重建器出图；全程不读取 RGB 程序截图或外观参考。", "verdict": "accepted_core"}
+{"experiment_id": "EXP-S3-20260730-003", "failure_taxonomy": "gate_or_selector", "hypothesis_id": "H-S3-0002A", "learning_zh": "只奖励控制覆盖会偏爱带有额外连接的候选；coverage 不是 geometry precision。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260730-004", "hypothesis_id": "H-S3-0002B", "learning_zh": "对象分离、额外边缘精度和内部禁区必须由合同关系生成，并在外观排名之前作为硬门禁。", "verdict": "accepted_core"}
+{"experiment_id": "EXP-S3-20260730-005", "hypothesis_id": "H-S3-0003A", "learning_zh": "negative phrase 放在 positive prompt 里仍会激活其中的名词；颜色禁区必须由字段所有权控制。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260730-006", "hypothesis_id": "H-S3-0003B", "learning_zh": "修正颜色词不足以保证几何通过，冻结门禁无候选时必须报告失败。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260730-007", "hypothesis_id": "H-S3-0003C", "learning_zh": "外轮廓覆盖不能证明对象身份部件仍存在。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260730-008", "hypothesis_id": "H-S3-0003D", "learning_zh": "身份部件既应进入结构 provider，也可进入 traceable prompt slot；目前证据只支持 CHEM-01。", "verdict": "accepted_case_specific"}
+{"experiment_id": "EXP-S3-20260730-009", "hypothesis_id": "H-S3-0003E", "learning_zh": "重复标志要匹配 provider 声明的位置；只数边缘组会把反光误判为刻度。", "verdict": "accepted_core"}
+{"experiment_id": "EXP-S3-20260730-010", "hypothesis_id": "H-S3-0003F", "learning_zh": "visual package → profile 与 preservation wording 已从代码分支迁到版本数据。", "verdict": "accepted_core"}
+{"experiment_id": "EXP-S3-20260731-011", "failure_taxonomy": "metric_domain", "hypothesis_id": "H-S3-0004A", "learning_zh": "解析几何面积不能用含边界的栅格像素数验收；移动对象的局部材质不能用最近邻屏幕像素抽查。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260731-012", "hypothesis_id": "H-S3-0004B", "learning_zh": "region、scalar、object 和 height/normal 可共用一个冻结 Anchor + 程序状态接口；Case 差异留在版本 plan。", "verdict": "accepted_core"}
+{"hypothesis_id": "H-S3-0005A", "phase": "S3.5", "status": "partially_supported", "statement_zh": "结构化 motion contract 对连续场足够；但它没有改善液体标量单调性和精确刚体身份，稀疏分段也不是自动默认。", "evidence": "modules/video_model/stage3/output/phase-5/guidance-decisions.json"}
+{"experiment_id": "EXP-S3-20260731-020", "hypothesis_id": "H-S3-0007A", "learning_zh": "region + object_identity 的有机对象可只迁移供体高频统计；整图供体不得带入对象布局。", "verdict": "accepted_core"}
+{"experiment_id": "EXP-S3-20260731-021", "hypothesis_id": "H-S3-0007B", "learning_zh": "首尾帧和文字合同不能让 FLF 模型稳定保持对象分裂拓扑与谱系质量。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260731-022", "hypothesis_id": "H-S3-0007C", "learning_zh": "稀疏分段改善端点和跳变，但不能自动修复片段内部的对象复制。", "verdict": "rejected"}
+{"experiment_id": "EXP-S3-20260731-023", "hypothesis_id": "H-S3-0007D", "learning_zh": "当完整程序能逐帧导出语义层时，同一 State Renderer 可以把写实材质带进确定性回退，而不退回原始程序图。", "verdict": "accepted_case_specific"}

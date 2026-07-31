@@ -1,0 +1,100 @@
+{
+  "anchors": [
+    {
+      "center_xy": [
+        274.0,
+        115.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-01-A"
+    },
+    {
+      "center_xy": [
+        366.0,
+        115.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-01-B"
+    },
+    {
+      "center_xy": [
+        274.0,
+        141.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-02-A"
+    },
+    {
+      "center_xy": [
+        366.0,
+        141.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-02-B"
+    },
+    {
+      "center_xy": [
+        274.0,
+        167.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-03-A"
+    },
+    {
+      "center_xy": [
+        366.0,
+        167.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-03-B"
+    },
+    {
+      "center_xy": [
+        274.0,
+        193.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-04-A"
+    },
+    {
+      "center_xy": [
+        366.0,
+        193.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-04-B"
+    },
+    {
+      "center_xy": [
+        274.0,
+        219.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-05-A"
+    },
+    {
+      "center_xy": [
+        366.0,
+        219.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-05-B"
+    },
+    {
+      "center_xy": [
+        274.0,
+        245.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-06-A"
+    },
+    {
+      "center_xy": [
+        366.0,
+        245.0
+      ],
+      "class_id": "untyped",
+      "object_id": "BIO-01-chromosome-06-B"
+    }
+  ]
+}

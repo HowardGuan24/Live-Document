@@ -1,0 +1,1831 @@
+{
+  "case_id": "PHYS-01",
+  "checks": [
+    {
+      "evidence": {
+        "maximum_mae_0_255": 15.0,
+        "metrics": {
+          "first": {
+            "mean_absolute_pixel_error_0_255": 3.9325
+          },
+          "last": {
+            "mean_absolute_pixel_error_0_255": 6.7378
+          }
+        }
+      },
+      "name": "first_and_last_frames_follow_inputs",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "maximum": 5.5116,
+        "maximum_allowed": 12.0,
+        "mean": 2.3971,
+        "p95": 3.6039
+      },
+      "name": "no_abrupt_pixel_jump",
+      "passed": true
+    },
+    {
+      "all_visible": true,
+      "maximum_drift_px": 0.6615,
+      "name": "two_declared_sources_remain_visible_and_fixed",
+      "passed": true,
+      "records": [
+        {
+          "frame": 0,
+          "sources": [
+            {
+              "detected_xy": [
+                211.312,
+                159.771
+              ],
+              "drift_px": 0.2961,
+              "pixel_count": 48,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.17,
+                159.872
+              ],
+              "drift_px": 0.3536,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "sources": [
+            {
+              "detected_xy": [
+                211.298,
+                159.787
+              ],
+              "drift_px": 0.2935,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.146,
+                159.812
+              ],
+              "drift_px": 0.4007,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "sources": [
+            {
+              "detected_xy": [
+                211.277,
+                159.915
+              ],
+              "drift_px": 0.2391,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.146,
+                159.812
+              ],
+              "drift_px": 0.4007,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "sources": [
+            {
+              "detected_xy": [
+                211.422,
+                159.911
+              ],
+              "drift_px": 0.1181,
+              "pixel_count": 45,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.106,
+                159.894
+              ],
+              "drift_px": 0.4077,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 4,
+          "sources": [
+            {
+              "detected_xy": [
+                211.37,
+                159.826
+              ],
+              "drift_px": 0.2174,
+              "pixel_count": 46,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.188,
+                159.854
+              ],
+              "drift_px": 0.3449,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 5,
+          "sources": [
+            {
+              "detected_xy": [
+                211.265,
+                159.735
+              ],
+              "drift_px": 0.3542,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.188,
+                159.854
+              ],
+              "drift_px": 0.3449,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 6,
+          "sources": [
+            {
+              "detected_xy": [
+                211.265,
+                159.735
+              ],
+              "drift_px": 0.3542,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.188,
+                159.854
+              ],
+              "drift_px": 0.3449,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 7,
+          "sources": [
+            {
+              "detected_xy": [
+                211.188,
+                159.688
+              ],
+              "drift_px": 0.4419,
+              "pixel_count": 48,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.106,
+                159.894
+              ],
+              "drift_px": 0.4077,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 8,
+          "sources": [
+            {
+              "detected_xy": [
+                211.174,
+                159.848
+              ],
+              "drift_px": 0.3598,
+              "pixel_count": 46,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.062,
+                159.833
+              ],
+              "drift_px": 0.4682,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 9,
+          "sources": [
+            {
+              "detected_xy": [
+                211.234,
+                159.766
+              ],
+              "drift_px": 0.3543,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.149,
+                159.83
+              ],
+              "drift_px": 0.3902,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 10,
+          "sources": [
+            {
+              "detected_xy": [
+                211.383,
+                159.66
+              ],
+              "drift_px": 0.36,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.122,
+                159.816
+              ],
+              "drift_px": 0.4199,
+              "pixel_count": 49,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 11,
+          "sources": [
+            {
+              "detected_xy": [
+                211.458,
+                159.583
+              ],
+              "drift_px": 0.4187,
+              "pixel_count": 48,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.125,
+                159.896
+              ],
+              "drift_px": 0.3892,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 12,
+          "sources": [
+            {
+              "detected_xy": [
+                211.469,
+                159.571
+              ],
+              "drift_px": 0.4297,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.125,
+                159.896
+              ],
+              "drift_px": 0.3892,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 13,
+          "sources": [
+            {
+              "detected_xy": [
+                211.42,
+                159.52
+              ],
+              "drift_px": 0.4866,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.149,
+                159.979
+              ],
+              "drift_px": 0.3517,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 14,
+          "sources": [
+            {
+              "detected_xy": [
+                211.42,
+                159.52
+              ],
+              "drift_px": 0.4866,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.217,
+                159.913
+              ],
+              "drift_px": 0.2957,
+              "pixel_count": 46,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 15,
+          "sources": [
+            {
+              "detected_xy": [
+                211.38,
+                159.52
+              ],
+              "drift_px": 0.4948,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.217,
+                159.913
+              ],
+              "drift_px": 0.2957,
+              "pixel_count": 46,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 16,
+          "sources": [
+            {
+              "detected_xy": [
+                211.362,
+                159.532
+              ],
+              "drift_px": 0.4881,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.217,
+                159.913
+              ],
+              "drift_px": 0.2957,
+              "pixel_count": 46,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 17,
+          "sources": [
+            {
+              "detected_xy": [
+                211.362,
+                159.532
+              ],
+              "drift_px": 0.4881,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.217,
+                159.913
+              ],
+              "drift_px": 0.2957,
+              "pixel_count": 46,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 18,
+          "sources": [
+            {
+              "detected_xy": [
+                211.362,
+                159.532
+              ],
+              "drift_px": 0.4881,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.17,
+                159.83
+              ],
+              "drift_px": 0.3711,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 19,
+          "sources": [
+            {
+              "detected_xy": [
+                211.417,
+                159.583
+              ],
+              "drift_px": 0.4249,
+              "pixel_count": 48,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.17,
+                159.83
+              ],
+              "drift_px": 0.3711,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 20,
+          "sources": [
+            {
+              "detected_xy": [
+                211.49,
+                159.612
+              ],
+              "drift_px": 0.3879,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.229,
+                159.771
+              ],
+              "drift_px": 0.3548,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 21,
+          "sources": [
+            {
+              "detected_xy": [
+                211.49,
+                159.612
+              ],
+              "drift_px": 0.3879,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.204,
+                159.694
+              ],
+              "drift_px": 0.4258,
+              "pixel_count": 49,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 22,
+          "sources": [
+            {
+              "detected_xy": [
+                211.49,
+                159.612
+              ],
+              "drift_px": 0.3879,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.319,
+                159.787
+              ],
+              "drift_px": 0.2792,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 23,
+          "sources": [
+            {
+              "detected_xy": [
+                211.367,
+                159.51
+              ],
+              "drift_px": 0.5074,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.319,
+                159.787
+              ],
+              "drift_px": 0.2792,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 24,
+          "sources": [
+            {
+              "detected_xy": [
+                211.42,
+                159.36
+              ],
+              "drift_px": 0.645,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.467,
+                159.778
+              ],
+              "drift_px": 0.2247,
+              "pixel_count": 45,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 25,
+          "sources": [
+            {
+              "detected_xy": [
+                211.636,
+                159.886
+              ],
+              "drift_px": 0.1775,
+              "pixel_count": 44,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.535,
+                159.953
+              ],
+              "drift_px": 0.0581,
+              "pixel_count": 43,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 26,
+          "sources": [
+            {
+              "detected_xy": [
+                211.738,
+                160.0
+              ],
+              "drift_px": 0.2381,
+              "pixel_count": 42,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.535,
+                159.953
+              ],
+              "drift_px": 0.0581,
+              "pixel_count": 43,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 27,
+          "sources": [
+            {
+              "detected_xy": [
+                211.651,
+                160.07
+              ],
+              "drift_px": 0.1665,
+              "pixel_count": 43,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.545,
+                159.886
+              ],
+              "drift_px": 0.1224,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 28,
+          "sources": [
+            {
+              "detected_xy": [
+                211.667,
+                159.978
+              ],
+              "drift_px": 0.1681,
+              "pixel_count": 45,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.512,
+                160.146
+              ],
+              "drift_px": 0.1468,
+              "pixel_count": 41,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 29,
+          "sources": [
+            {
+              "detected_xy": [
+                211.605,
+                160.093
+              ],
+              "drift_px": 0.14,
+              "pixel_count": 43,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.605,
+                160.093
+              ],
+              "drift_px": 0.14,
+              "pixel_count": 43,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 30,
+          "sources": [
+            {
+              "detected_xy": [
+                211.69,
+                160.024
+              ],
+              "drift_px": 0.192,
+              "pixel_count": 42,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.523,
+                159.795
+              ],
+              "drift_px": 0.2058,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 31,
+          "sources": [
+            {
+              "detected_xy": [
+                211.698,
+                159.93
+              ],
+              "drift_px": 0.2096,
+              "pixel_count": 43,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.75,
+                159.886
+              ],
+              "drift_px": 0.2746,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 32,
+          "sources": [
+            {
+              "detected_xy": [
+                211.714,
+                160.119
+              ],
+              "drift_px": 0.2451,
+              "pixel_count": 42,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.886,
+                159.909
+              ],
+              "drift_px": 0.3969,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 33,
+          "sources": [
+            {
+              "detected_xy": [
+                211.732,
+                160.146
+              ],
+              "drift_px": 0.2741,
+              "pixel_count": 41,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.889,
+                159.933
+              ],
+              "drift_px": 0.3946,
+              "pixel_count": 45,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 34,
+          "sources": [
+            {
+              "detected_xy": [
+                211.78,
+                160.146
+              ],
+              "drift_px": 0.3164,
+              "pixel_count": 41,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.767,
+                159.977
+              ],
+              "drift_px": 0.2685,
+              "pixel_count": 43,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 35,
+          "sources": [
+            {
+              "detected_xy": [
+                211.884,
+                160.163
+              ],
+              "drift_px": 0.4168,
+              "pixel_count": 43,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.818,
+                159.955
+              ],
+              "drift_px": 0.3214,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 36,
+          "sources": [
+            {
+              "detected_xy": [
+                211.949,
+                160.154
+              ],
+              "drift_px": 0.4744,
+              "pixel_count": 39,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.667,
+                159.857
+              ],
+              "drift_px": 0.2195,
+              "pixel_count": 42,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 37,
+          "sources": [
+            {
+              "detected_xy": [
+                211.805,
+                160.317
+              ],
+              "drift_px": 0.4399,
+              "pixel_count": 41,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.867,
+                159.867
+              ],
+              "drift_px": 0.3902,
+              "pixel_count": 45,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 38,
+          "sources": [
+            {
+              "detected_xy": [
+                211.805,
+                160.317
+              ],
+              "drift_px": 0.4399,
+              "pixel_count": 41,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.872,
+                159.787
+              ],
+              "drift_px": 0.4288,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 39,
+          "sources": [
+            {
+              "detected_xy": [
+                211.735,
+                160.082
+              ],
+              "drift_px": 0.2485,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.872,
+                159.787
+              ],
+              "drift_px": 0.4288,
+              "pixel_count": 47,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 40,
+          "sources": [
+            {
+              "detected_xy": [
+                211.723,
+                160.149
+              ],
+              "drift_px": 0.2685,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.938,
+                159.812
+              ],
+              "drift_px": 0.476,
+              "pixel_count": 48,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 41,
+          "sources": [
+            {
+              "detected_xy": [
+                211.547,
+                160.019
+              ],
+              "drift_px": 0.0508,
+              "pixel_count": 53,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.96,
+                159.66
+              ],
+              "drift_px": 0.572,
+              "pixel_count": 50,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 42,
+          "sources": [
+            {
+              "detected_xy": [
+                211.5,
+                160.056
+              ],
+              "drift_px": 0.0556,
+              "pixel_count": 54,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.96,
+                159.66
+              ],
+              "drift_px": 0.572,
+              "pixel_count": 50,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 43,
+          "sources": [
+            {
+              "detected_xy": [
+                211.389,
+                160.056
+              ],
+              "drift_px": 0.1242,
+              "pixel_count": 54,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.981,
+                159.547
+              ],
+              "drift_px": 0.6607,
+              "pixel_count": 53,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 44,
+          "sources": [
+            {
+              "detected_xy": [
+                211.389,
+                160.056
+              ],
+              "drift_px": 0.1242,
+              "pixel_count": 54,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.981,
+                159.547
+              ],
+              "drift_px": 0.6607,
+              "pixel_count": 53,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 45,
+          "sources": [
+            {
+              "detected_xy": [
+                211.389,
+                160.056
+              ],
+              "drift_px": 0.1242,
+              "pixel_count": 54,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                365.157,
+                159.922
+              ],
+              "drift_px": 0.6615,
+              "pixel_count": 51,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 46,
+          "sources": [
+            {
+              "detected_xy": [
+                211.389,
+                160.056
+              ],
+              "drift_px": 0.1242,
+              "pixel_count": 54,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                365.08,
+                159.88
+              ],
+              "drift_px": 0.5923,
+              "pixel_count": 50,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 47,
+          "sources": [
+            {
+              "detected_xy": [
+                211.518,
+                159.946
+              ],
+              "drift_px": 0.0565,
+              "pixel_count": 56,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                365.08,
+                159.88
+              ],
+              "drift_px": 0.5923,
+              "pixel_count": 50,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 48,
+          "sources": [
+            {
+              "detected_xy": [
+                211.518,
+                159.946
+              ],
+              "drift_px": 0.0565,
+              "pixel_count": 56,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                365.08,
+                159.86
+              ],
+              "drift_px": 0.5967,
+              "pixel_count": 50,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 49,
+          "sources": [
+            {
+              "detected_xy": [
+                211.38,
+                159.72
+              ],
+              "drift_px": 0.3046,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.256,
+                159.718
+              ],
+              "drift_px": 0.3727,
+              "pixel_count": 39,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 50,
+          "sources": [
+            {
+              "detected_xy": [
+                211.38,
+                159.72
+              ],
+              "drift_px": 0.3046,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.256,
+                159.718
+              ],
+              "drift_px": 0.3727,
+              "pixel_count": 39,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 51,
+          "sources": [
+            {
+              "detected_xy": [
+                211.347,
+                159.531
+              ],
+              "drift_px": 0.4937,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.297,
+                159.919
+              ],
+              "drift_px": 0.2183,
+              "pixel_count": 37,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 52,
+          "sources": [
+            {
+              "detected_xy": [
+                211.34,
+                159.404
+              ],
+              "drift_px": 0.6167,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.154,
+                159.846
+              ],
+              "drift_px": 0.3788,
+              "pixel_count": 39,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 53,
+          "sources": [
+            {
+              "detected_xy": [
+                211.391,
+                159.478
+              ],
+              "drift_px": 0.5329,
+              "pixel_count": 46,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                363.921,
+                159.816
+              ],
+              "drift_px": 0.6075,
+              "pixel_count": 38,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 54,
+          "sources": [
+            {
+              "detected_xy": [
+                211.391,
+                159.478
+              ],
+              "drift_px": 0.5329,
+              "pixel_count": 46,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                363.895,
+                159.789
+              ],
+              "drift_px": 0.6408,
+              "pixel_count": 38,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 55,
+          "sources": [
+            {
+              "detected_xy": [
+                211.562,
+                159.521
+              ],
+              "drift_px": 0.4832,
+              "pixel_count": 48,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.171,
+                159.805
+              ],
+              "drift_px": 0.3827,
+              "pixel_count": 41,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 56,
+          "sources": [
+            {
+              "detected_xy": [
+                211.723,
+                159.468
+              ],
+              "drift_px": 0.5769,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.22,
+                159.927
+              ],
+              "drift_px": 0.2899,
+              "pixel_count": 41,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 57,
+          "sources": [
+            {
+              "detected_xy": [
+                211.88,
+                159.64
+              ],
+              "drift_px": 0.5235,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.405,
+                159.929
+              ],
+              "drift_px": 0.119,
+              "pixel_count": 42,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 58,
+          "sources": [
+            {
+              "detected_xy": [
+                211.809,
+                159.745
+              ],
+              "drift_px": 0.4005,
+              "pixel_count": 47,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.386,
+                160.045
+              ],
+              "drift_px": 0.1224,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 59,
+          "sources": [
+            {
+              "detected_xy": [
+                211.76,
+                159.88
+              ],
+              "drift_px": 0.2864,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.341,
+                160.0
+              ],
+              "drift_px": 0.1591,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 60,
+          "sources": [
+            {
+              "detected_xy": [
+                211.776,
+                159.816
+              ],
+              "drift_px": 0.3311,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.378,
+                160.156
+              ],
+              "drift_px": 0.1978,
+              "pixel_count": 45,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 61,
+          "sources": [
+            {
+              "detected_xy": [
+                211.82,
+                159.74
+              ],
+              "drift_px": 0.4123,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.295,
+                160.227
+              ],
+              "drift_px": 0.3058,
+              "pixel_count": 44,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 62,
+          "sources": [
+            {
+              "detected_xy": [
+                211.82,
+                159.74
+              ],
+              "drift_px": 0.4123,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.095,
+                160.214
+              ],
+              "drift_px": 0.458,
+              "pixel_count": 42,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 63,
+          "sources": [
+            {
+              "detected_xy": [
+                211.633,
+                159.837
+              ],
+              "drift_px": 0.2104,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.2,
+                160.125
+              ],
+              "drift_px": 0.325,
+              "pixel_count": 40,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 64,
+          "sources": [
+            {
+              "detected_xy": [
+                211.583,
+                159.771
+              ],
+              "drift_px": 0.2438,
+              "pixel_count": 48,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.128,
+                160.154
+              ],
+              "drift_px": 0.4024,
+              "pixel_count": 39,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 65,
+          "sources": [
+            {
+              "detected_xy": [
+                211.62,
+                159.9
+              ],
+              "drift_px": 0.1562,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.512,
+                160.073
+              ],
+              "drift_px": 0.0742,
+              "pixel_count": 41,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 66,
+          "sources": [
+            {
+              "detected_xy": [
+                211.571,
+                159.837
+              ],
+              "drift_px": 0.1782,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.512,
+                160.073
+              ],
+              "drift_px": 0.0742,
+              "pixel_count": 41,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 67,
+          "sources": [
+            {
+              "detected_xy": [
+                211.571,
+                159.837
+              ],
+              "drift_px": 0.1782,
+              "pixel_count": 49,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.378,
+                159.889
+              ],
+              "drift_px": 0.1652,
+              "pixel_count": 45,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 68,
+          "sources": [
+            {
+              "detected_xy": [
+                211.625,
+                159.896
+              ],
+              "drift_px": 0.1627,
+              "pixel_count": 48,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.302,
+                159.884
+              ],
+              "drift_px": 0.2293,
+              "pixel_count": 43,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 69,
+          "sources": [
+            {
+              "detected_xy": [
+                211.529,
+                159.686
+              ],
+              "drift_px": 0.3151,
+              "pixel_count": 51,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.302,
+                159.884
+              ],
+              "drift_px": 0.2293,
+              "pixel_count": 43,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 70,
+          "sources": [
+            {
+              "detected_xy": [
+                211.529,
+                159.686
+              ],
+              "drift_px": 0.3151,
+              "pixel_count": 51,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.326,
+                159.93
+              ],
+              "drift_px": 0.1879,
+              "pixel_count": 43,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 71,
+          "sources": [
+            {
+              "detected_xy": [
+                211.667,
+                159.686
+              ],
+              "drift_px": 0.3552,
+              "pixel_count": 51,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.304,
+                159.761
+              ],
+              "drift_px": 0.309,
+              "pixel_count": 46,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "frame": 72,
+          "sources": [
+            {
+              "detected_xy": [
+                211.64,
+                159.76
+              ],
+              "drift_px": 0.2778,
+              "pixel_count": 50,
+              "visible": true
+            },
+            {
+              "detected_xy": [
+                364.267,
+                159.822
+              ],
+              "drift_px": 0.2933,
+              "pixel_count": 45,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "threshold_px": 6
+    },
+    {
+      "extent_by_center_px": [
+        [
+          60.0,
+          71.0,
+          84.0,
+          94.0,
+          106.0,
+          115.0,
+          125.0,
+          133.0,
+          127.0
+        ],
+        [
+          60.0,
+          70.0,
+          84.0,
+          95.0,
+          106.0,
+          115.0,
+          124.0,
+          133.0,
+          129.0
+        ]
+      ],
+      "minimum_progress_px": 20,
+      "name": "radial_field_reaches_farther_from_both_sources",
+      "note_zh": "对每个固定点源做同心圆高通能量扫描，比较首尾最外显著波纹半径；它验证总体向外传播，不宣称恢复完整相位。",
+      "passed": true,
+      "progress_by_center_px": [
+        67.0,
+        69.0
+      ],
+      "sample_indices": [
+        0,
+        9,
+        18,
+        27,
+        36,
+        45,
+        54,
+        63,
+        72
+      ]
+    },
+    {
+      "maximum_mae_0_255": 6.7378,
+      "name": "declared_sparse_checkpoint_frames_are_followed",
+      "note_zh": "在合同时间点把模型帧与同一张已验收关键帧逐像素比较；用于判断分段引导是否真的提高中间状态忠实度。",
+      "passed": true,
+      "records": [
+        {
+          "frame_index": 0,
+          "mean_absolute_pixel_error_0_255": 3.9325,
+          "reference": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/PHYS-01/frames/00_start.png"
+        },
+        {
+          "frame_index": 24,
+          "mean_absolute_pixel_error_0_255": 5.232,
+          "reference": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/PHYS-01/frames/01_mechanism.png"
+        },
+        {
+          "frame_index": 48,
+          "mean_absolute_pixel_error_0_255": 6.7277,
+          "reference": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/PHYS-01/frames/02_result.png"
+        },
+        {
+          "frame_index": 72,
+          "mean_absolute_pixel_error_0_255": 6.7378,
+          "reference": "/workspace/Live-Document/modules/video_model/stage3/output/phase-4/PHYS-01/frames/03_end.png"
+        }
+      ],
+      "threshold": 15.0
+    }
+  ],
+  "consecutive_metrics": {
+    "maximum": 5.5116,
+    "mean": 2.3971,
+    "p95": 3.6039
+  },
+  "endpoint_metrics": {
+    "first": {
+      "mean_absolute_pixel_error_0_255": 3.9325
+    },
+    "last": {
+      "mean_absolute_pixel_error_0_255": 6.7378
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-016",
+  "guidance_level": "L2",
+  "motion_contract": {
+    "path": "modules/video_model/stage3/output/phase-5/contracts/PHYS-01/00_start__03_end.json",
+    "sha256": "cc810a705887698da64b492787454516cbc48feca9291262d8ab2e2fc64167ee",
+    "size_bytes": 3738
+  },
+  "passed": true,
+  "preview": {
+    "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/generated-frames.jpg",
+    "sha256": "76a9796d6bd24883f296f92d0614bd9223a3aa5f12bc52f2116c71fa38ed3612",
+    "size_bytes": 191011
+  },
+  "schema_version": "1.0",
+  "video": {
+    "duration_seconds": 3.0416666666666665,
+    "fps": 24.0,
+    "frame_count": 73,
+    "height": 320,
+    "width": 576
+  },
+  "video_artifact": {
+    "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-016/transition.mp4",
+    "sha256": "b3d4adc088398dba322b21c994e0f752aeabf7220e0bb4a03f60906f495e77fb",
+    "size_bytes": 183978
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "case_id": "CHEM-01",
+  "configurations": [
+    {
+      "configuration_id": "auto_control_050",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.5,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_065",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.65,
+      "pipeline_mode": "controlnet_t2i"
+    },
+    {
+      "configuration_id": "auto_control_080",
+      "control_route": "stage3_auto_control",
+      "controlnet_conditioning_scale": 0.8,
+      "pipeline_mode": "controlnet_t2i"
+    }
+  ],
+  "control_derivation": {
+    "path": "controls/derivation.json",
+    "sha256": "151b2ae4e34d99ff4ffe919be991e47add9925daea5adc62e3c18956237417c4",
+    "size_bytes": 838
+  },
+  "controls": {
+    "control_off": {
+      "edge_fraction": 0.0,
+      "path": "controls/control_off.png",
+      "sha256": "43696a8c68cd47b261087f292ee16dc98d79f799181ecca9ba1f96306cfd560f",
+      "size_bytes": 1795
+    },
+    "dense_canny": {
+      "edge_fraction": 0.02801514,
+      "path": "controls/dense_canny.png",
+      "sha256": "a7b534e7cac9f28234c15c875eda3dff706b42abf86dd94b9411543e9ad4009a",
+      "size_bytes": 3314
+    },
+    "sparse_hard_boundary": {
+      "edge_fraction": 0.01679315,
+      "path": "controls/sparse_hard_boundary.png",
+      "sha256": "2f607cabfc4e320744b77b8b09c78b23dd44f072b46825e588a2d0749d88be33",
+      "size_bytes": 2863
+    },
+    "sparse_identity_boundary": {
+      "edge_fraction": 0.02413262,
+      "path": "controls/sparse_identity_boundary.png",
+      "sha256": "848a23cefff27f79d1a64b04d517ef6411ddedf791071d2736c5f030d233397c",
+      "size_bytes": 3084
+    },
+    "stage3_auto_control": {
+      "edge_fraction": 0.02061801,
+      "path": "controls/stage3_auto_control.png",
+      "sha256": "f92b100612853bb34e15a8a42f775251f3113197ff86b914ed9409dfa43cb82f",
+      "size_bytes": 5135
+    }
+  },
+  "experiment_id": "EXP-S3-20260730-008",
+  "negative_prompt": {
+    "path": "inputs/negative_prompt.txt",
+    "sha256": "da62efd2d7f07fc55c2dd2f040b6176fb8226c2ce0b771e9f5872b6d1a801d02",
+    "size_bytes": 291,
+    "text": "pink, magenta, colored liquid, colored lighting, flask, bottle, Erlenmeyer flask, side object, extra vessel, extra burette, extra beaker, fused parts, connecting rod, center ruler, center line inside liquid, pseudo text, labels, arrows, plastic, metal container, crop, tilt, blur, watermark"
+  },
+  "positive_prompt": {
+    "path": "inputs/positive_prompt.txt",
+    "sha256": "7899457d10ede62c2c16191782f8f2ca564cacfad7847ce8a69170b87d83ceef",
+    "size_bytes": 351,
+    "text": "one clear glass beaker, one separate glass burette with seven visible horizontal graduation ticks on its left side, locked straight-on view, thin borosilicate glass, crisp natural highlights, clear liquid, neutral softbox light, empty matte gray backdrop, transparent neutral solution, air gap between burette tip and beaker rim, one of each, no text"
+  },
+  "prompt_parts": {
+    "material_goal": "thin borosilicate glass, crisp natural highlights, clear liquid, neutral softbox light, empty matte gray backdrop",
+    "must_preserve": "air gap between burette tip and beaker rim, one of each, no text",
+    "scene_identity": "one clear glass beaker, one separate glass burette with seven visible horizontal graduation ticks on its left side, locked straight-on view",
+    "state_delta": "transparent neutral solution"
+  },
+  "render": {
+    "dtype": "float16",
+    "guidance_scale": 6.0,
+    "height": 576,
+    "seeds": [
+      7101,
+      7102,
+      7103
+    ],
+    "steps": 30,
+    "strength": 0.5,
+    "width": 1024
+  },
+  "schema_version": "1.0",
+  "source": {
+    "clean_keyframe": {
+      "path": "inputs/clean_keyframe.png",
+      "sha256": "c7494252b335b5313ec2a0cfe0cc0e433facfa6d63fa114c6bff508544b87dea",
+      "size_bytes": 6230
+    },
+    "original_clean_keyframe": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/clean.png",
+      "sha256": "622ce73e40355f52764cd030dd4f2b2d651ecae6e3075d5948858e60b538f64e"
+    },
+    "semantic_layers": {
+      "path": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json",
+      "sha256": "fb522d77fd58c4275b9632200ef731f716b602eb649a718bb16d3841ac852e6c"
+    }
+  }
+}

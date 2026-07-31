@@ -1,0 +1,44 @@
+{
+  "accepted_core": [
+    "region operator",
+    "scalar transfer operator",
+    "object-local material operator",
+    "height-to-normal lighting operator",
+    "G3 state/stability gates"
+  ],
+  "assets": {
+    "chem_process": {
+      "path": "modules/video_model/stage3/output/phase-4/report-assets/chem-state-process.jpg",
+      "sha256": "2eacef8bd3208fb2957a5915879ac343430c44fa8055e5b09f4f11eef5318944",
+      "size_bytes": 132569
+    },
+    "operator_map": {
+      "path": "modules/video_model/stage3/output/phase-4/report-assets/operator-map.jpg",
+      "sha256": "03813bf6a4edf32557ad79f53fede53d59ebd51f9543604bc0a13367eff9c205",
+      "size_bytes": 75605
+    }
+  },
+  "g3": {
+    "path": "modules/video_model/stage3/output/phase-4/g3.json",
+    "sha256": "2b0a514485c420daf8d28f90c028495d5069476c72dc4355a2e22b039db977fb",
+    "size_bytes": 4444
+  },
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "next_phase": "S3.5",
+  "phase": "S3.4",
+  "report": {
+    "path": "modules/video_model/stage3/output/phase-4/report.html",
+    "sha256": "57f826082a62bfd9bd3863dc3dd529ac16b909fce6433db6c6ba8ba6764281e7",
+    "size_bytes": 9695
+  },
+  "schema_version": "1.0",
+  "status": "passed",
+  "visual_audit": {
+    "path": "modules/video_model/stage3/output/phase-4/visual-audit.json",
+    "sha256": "0b3a86f76504f5e6dd8ad60ef4aeaa3af28f70d98a44f4d9b1ad058df51f7338",
+    "size_bytes": 1451
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "all_ten_plus_delta_contract_smoke": true,
+  "contract_checks": [
+    {
+      "case_id": "MATH-01",
+      "exists": true,
+      "sha256": "baeba735fc8e4d9d30faf0d200ed982e970e3987c6b618594db2530c7b85c70b"
+    },
+    {
+      "case_id": "MATH-02",
+      "exists": true,
+      "sha256": "ccd999c9f4f0f87b2583dcef1a774c91bae34e373f5c90fec82c8ce1742debc1"
+    },
+    {
+      "case_id": "PHYS-01",
+      "exists": true,
+      "sha256": "25bc2105c89562b7ec5db0ce2d545354f9920ba7b4f55385747f862c33df4951"
+    },
+    {
+      "case_id": "PHYS-02",
+      "exists": true,
+      "sha256": "571bea359dcfe2d0a228c291bdda80a138512fdd23172076a782d5d4c528ae69"
+    },
+    {
+      "case_id": "CHEM-01",
+      "exists": true,
+      "sha256": "423f0dfcb02d3193bc41fd803223d40a4cbdb0dce9e50efc73ae31ad2b7bd1da"
+    },
+    {
+      "case_id": "CHEM-02",
+      "exists": true,
+      "sha256": "66b10aa53c1c459e7d5b1078a7a0ca18bfc29551b199876563f43296d36fdc74"
+    },
+    {
+      "case_id": "BIO-01",
+      "exists": true,
+      "sha256": "db71c2d937e2e8e0c35be20a0e9b8ce3845d03916eee5e2e74d775cf0b5da393"
+    },
+    {
+      "case_id": "BIO-02",
+      "exists": true,
+      "sha256": "2e1c21b2c48540da1a815760a90a5864a9c2bbe88417778cb8184898d562d0eb"
+    },
+    {
+      "case_id": "GEO-01",
+      "exists": true,
+      "sha256": "b2ec08b6f49f4ef5aa369f1d689e707e6be2917058b6191244723e52ff4b2d72"
+    },
+    {
+      "case_id": "GEO-02",
+      "exists": true,
+      "sha256": "7390dc78c77f7ce8708140db1a1a7b8c41293e553d6512db3a0e3afa3b1dc221"
+    },
+    {
+      "case_id": "GEO-HIST-DELTA-01",
+      "exists": true,
+      "sha256": "d8cfb2f46ca0063199fef6f93f845346e11b5b742c1fc4366b36acb29d6ba083"
+    }
+  ],
+  "passed": true,
+  "purpose_zh": "S3.2 selector 修改不得改变精确数学和连续物理场的既有确定性路线。",
+  "records": [
+    {
+      "artifact": {
+        "path": "modules/video_model/stage2/output/phase-8/route-b-only/MATH-02/variants/frozen_scene_depth/03_end.png",
+        "sha256": "7f570d6f9351d977b3712f42e29b7226d4223899d25d922e269c8ca4878f3c6d",
+        "size_bytes": 292341
+      },
+      "case_id": "MATH-02",
+      "discipline": "mathematics",
+      "gate_zh": "四块对象、面积与 payload 精确；确定性 B 选择不受 CHEM selector 改动。",
+      "passed": true,
+      "selected_id": "frozen_scene_depth"
+    },
+    {
+      "artifact": {
+        "path": "modules/video_model/stage2/output/phase-8/route-b-only/PHYS-01/variants/calm_frozen_water_relief/02_result.png",
+        "sha256": "efc3c089a4952db6c8b141632f9db15a93ba72c8925514a8d541c71bf02f71e6",
+        "size_bytes": 242180
+      },
+      "case_id": "PHYS-01",
+      "discipline": "physics",
+      "gate_zh": "高度场到光学实现相关性为 1.0；确定性 B 选择不受 CHEM selector 改动。",
+      "passed": true,
+      "selected_id": "calm_frozen_water_relief"
+    }
+  ],
+  "schema_version": "1.0"
+}

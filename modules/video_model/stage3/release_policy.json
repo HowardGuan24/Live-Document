@@ -1,0 +1,69 @@
+{
+  "discipline_representatives": [
+    {
+      "case_id": "MATH-02",
+      "discipline_zh": "数学",
+      "g0_input": "passed",
+      "g1_control": "passed",
+      "g2_g3_image": "passed",
+      "g4_motion": "deterministic_fallback",
+      "release_maturity": "validated_with_fallback"
+    },
+    {
+      "case_id": "PHYS-01",
+      "discipline_zh": "物理",
+      "g0_input": "passed",
+      "g1_control": "passed",
+      "g2_g3_image": "passed",
+      "g4_motion": "L1_passed",
+      "release_maturity": "validated"
+    },
+    {
+      "case_id": "CHEM-01",
+      "discipline_zh": "化学",
+      "g0_input": "passed",
+      "g1_control": "passed",
+      "g2_g3_image": "passed",
+      "g4_motion": "deterministic_fallback",
+      "release_maturity": "validated_with_fallback"
+    },
+    {
+      "case_id": "BIO-01",
+      "discipline_zh": "生物",
+      "g0_input": "passed",
+      "g1_control": "passed",
+      "g2_g3_image": "passed",
+      "g4_motion": "full_program_timeline_state_renderer_fallback",
+      "release_maturity": "validated_with_fallback"
+    },
+    {
+      "case_id": "GEO-02",
+      "discipline_zh": "地理",
+      "g0_input": "passed",
+      "g1_control": "passed",
+      "g2_g3_image": "blocked_by_provisional_visual_target",
+      "g4_motion": "not_stage3_validated",
+      "release_maturity": "front_half_only"
+    }
+  ],
+  "historical_regressions": [
+    {
+      "regression_id": "GEO-HIST-DELTA-01",
+      "status": "passed_by_sha256"
+    },
+    {
+      "regression_id": "CHEM-01-PHASE9",
+      "status": "retained"
+    }
+  ],
+  "production_1_0_blockers": [
+    "GEO-02 Visual Target Package is provisional and G2–G4 are not formally validated.",
+    "Five non-sentinel scale cases still have missing Visual Target Packages.",
+    "The deployed video runtime cannot consume program video, object tracks, masks or motion fields."
+  ],
+  "production_1_0_ready": false,
+  "release_claim_zh": "旧 0.1.0-alpha.1 的 S3.6 passed 结论已撤销。当前已补齐 BIO-01 G2/G3，并验证 LTX 失败边界和带写实材质的完整程序时间线回退；尚未满足五学科发布门。",
+  "release_class": "unreleased_candidate",
+  "release_id": "stage3-core-unreleased-s3.6-rerun-1",
+  "schema_version": "1.0"
+}
