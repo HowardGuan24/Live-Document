@@ -11,4 +11,3 @@ web/backend/data/
 
 # Web frontend build artifacts / dependencies
 web/frontend/node_modules/
-web/frontend/dist/
