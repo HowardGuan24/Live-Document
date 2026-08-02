@@ -5,3 +5,10 @@ __pycache__/
 output.json
 outputs/
 media/
+
+# Web backend runtime data (SQLite DB + generated artifacts)
+web/backend/data/
+
+# Web frontend build artifacts / dependencies
+web/frontend/node_modules/
+web/frontend/dist/
