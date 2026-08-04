@@ -4,8 +4,8 @@ import type { Job } from '../types'
 
 function artifactLabel(key: string): string {
   const labels: Record<string, string> = {
-    video: '视频 MP4',
-    gif: '动图 GIF',
+    video: 'MP4 视频',
+    gif: 'GIF 动图',
     preview: '预览',
     normalized_spec: '规范 JSON',
     result: '结果 JSON',
@@ -13,50 +13,147 @@ function artifactLabel(key: string): string {
   return labels[key] ?? key
 }
 
+const STATUS_STYLE: Record<string, string> = {
+  pending: 'border-warn/50 bg-warn/10 text-warn',
+  running: 'border-radeon-500/50 bg-radeon-500/10 text-radeon-400',
+  completed: 'border-ok/50 bg-ok/10 text-ok',
+  failed: 'border-danger/50 bg-danger/10 text-danger',
+}
+
 const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
   function JobCard({ job, highlighted }, ref) {
     const active = job.status === 'pending' || job.status === 'running'
+    const pct = Math.round(job.progress * 100)
+
+    const gifUrl = job.artifacts.gif ? resolveArtifactUrl(job.artifacts.gif) : null
+    const videoUrl = job.artifacts.video ? resolveArtifactUrl(job.artifacts.video) : null
+    const otherArtifacts = Object.entries(job.artifacts).filter(
+      ([k]) => k !== 'gif' && k !== 'video',
+    )
+
     return (
       <article
         ref={ref}
-        className={`job-card ${highlighted ? 'job-highlight' : ''} status-${job.status}`}
+        className={`clip-angled border bg-ink-950 p-5 transition-all ${
+          highlighted ? 'border-radeon-500/70 glow-red' : 'border-line hover:border-line-strong'
+        }`}
       >
-        <header className="job-head">
-          <span className="job-id" title={job.id}>#{job.id}</span>
-          <span className="badge badge-engine">{job.engine}</span>
-          <span className={`badge status-${job.status}`}>{job.status}</span>
-          <span className="muted job-time">{formatTime(job.created_at)}</span>
+        <header className="flex flex-wrap items-center gap-2.5">
+          <span className="font-mono text-xs font-bold text-fg" title={job.id}>
+            #{job.id}
+          </span>
+          <span className="clip-angled-sm border border-line bg-ink-850 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-radeon-400">
+            {job.engine}
+          </span>
+          <span
+            className={`clip-angled-sm border px-2 py-0.5 text-[11px] font-semibold ${STATUS_STYLE[job.status] ?? 'border-line bg-ink-850 text-mut'}`}
+          >
+            {job.status}
+          </span>
+          <span className="ml-auto font-mono text-[11px] text-dim">{formatTime(job.created_at)}</span>
         </header>
-        {job.spec?.learning_goal && <p className="job-goal">{job.spec.learning_goal}</p>}
-        <div className="progress-track">
-          <div className="progress-fill" style={{ width: `${Math.round(job.progress * 100)}%` }} />
-          <span className="progress-label">{Math.round(job.progress * 100)}%</span>
+
+        {job.spec?.learning_goal && (
+          <p className="mt-3 text-sm font-semibold text-fg">{job.spec.learning_goal}</p>
+        )}
+
+        {/* 进度条 */}
+        <div className="relative mt-3 h-3.5 overflow-hidden border border-line bg-ink-850 clip-angled-sm">
+          <div
+            className={`h-full bg-gradient-to-r from-radeon-600 via-radeon-500 to-ember-500 transition-[width] duration-400 ease-out ${
+              active ? 'animate-shimmer' : ''
+            }`}
+            style={
+              active
+                ? {
+                    width: `${Math.max(pct, 8)}%`,
+                    backgroundImage:
+                      'linear-gradient(90deg, #c8102e, #ff3b43, #ff6a00, #ff3b43, #c8102e)',
+                    backgroundSize: '200% 100%',
+                  }
+                : { width: `${pct}%` }
+            }
+          />
+          <span className="absolute inset-0 flex items-center justify-center font-mono text-[10px] font-bold text-fg/90">
+            {pct}%
+          </span>
         </div>
-        <p className="job-message muted">
+        <p className="mt-1.5 text-xs text-dim">
           {job.message ?? ''}
-          {active && '（正在渲染，页面每 3 秒自动刷新…）'}
+          {active && ' · 正在渲染，每 3 秒自动刷新'}
         </p>
+
         {job.error && (
-          <div className="job-error">
+          <div className="mt-3 border border-danger/40 bg-danger/10 px-3 py-2 text-xs text-danger">
             <strong>错误：</strong>
             {job.error.message || job.error.type}
           </div>
         )}
+
         {Object.keys(job.metrics).length > 0 && (
-          <div className="job-metrics muted">
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {Object.entries(job.metrics).map(([k, v]) => (
-              <span key={k} className="metric-pill">
+              <span
+                key={k}
+                className="clip-angled-sm max-w-full truncate border border-line bg-ink-850 px-2 py-0.5 font-mono text-[10px] text-mut"
+              >
                 {k}: {typeof v === 'object' ? JSON.stringify(v) : String(v)}
               </span>
             ))}
           </div>
         )}
+
+        {/* 内嵌预览：视频优先，其次 GIF；未完成不渲染 */}
+        {(videoUrl || gifUrl) && job.status === 'completed' && (
+          <div className="mt-4 border border-line bg-ink-950 p-2 clip-angled-sm">
+            {videoUrl ? (
+              <video
+                src={videoUrl}
+                controls
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="mx-auto block max-h-[360px] w-full"
+              />
+            ) : (
+              <img
+                src={gifUrl!}
+                alt={job.spec?.learning_goal ?? 'rendered animation'}
+                className="mx-auto block max-h-[360px] w-full"
+              />
+            )}
+          </div>
+        )}
+
         {Object.keys(job.artifacts).length > 0 && (
-          <div className="artifact-list">
-            {Object.entries(job.artifacts).map(([key, url]) => (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {videoUrl && (
+              <a
+                className="clip-angled-sm border border-radeon-500/40 bg-radeon-500/10 px-3 py-1.5 text-xs font-semibold text-radeon-400 transition-all hover:glow-red-sm"
+                href={videoUrl}
+                target="_blank"
+                rel="noreferrer"
+                download
+              >
+                ⬇ {artifactLabel('video')}
+              </a>
+            )}
+            {gifUrl && (
+              <a
+                className="clip-angled-sm border border-radeon-500/40 bg-radeon-500/10 px-3 py-1.5 text-xs font-semibold text-radeon-400 transition-all hover:glow-red-sm"
+                href={gifUrl}
+                target="_blank"
+                rel="noreferrer"
+                download
+              >
+                ⬇ {artifactLabel('gif')}
+              </a>
+            )}
+            {otherArtifacts.map(([key, url]) => (
               <a
                 key={key}
-                className="artifact-link"
+                className="clip-angled-sm border border-line bg-ink-850 px-3 py-1.5 text-xs text-mut transition-all hover:border-line-strong hover:text-fg"
                 href={resolveArtifactUrl(url)}
                 target="_blank"
                 rel="noreferrer"

@@ -7,6 +7,30 @@ import { clearToken, getToken, setToken, setUnauthorizedHandler } from './api'
 
 export type Tab = 'planner' | 'jobs' | 'about'
 
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'planner', label: '文档规划' },
+  { id: 'jobs', label: '任务中心' },
+  { id: 'about', label: '运行状态' },
+]
+
+function Brand() {
+  return (
+    <div className="flex items-center gap-3">
+      <div className="clip-angled-sm flex h-9 w-9 shrink-0 items-center justify-center bg-gradient-to-br from-radeon-500 to-ember-600 text-[15px] font-black text-white glow-red-sm">
+        LD
+      </div>
+      <div className="leading-tight">
+        <div className="text-[15px] font-black italic tracking-tight text-fg">
+          LIVE-DOCUMENT
+        </div>
+        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim">
+          文档动态化引擎 · AMD Radeon
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   const [token, setTokenState] = useState<string | null>(() => getToken())
   const [tab, setTab] = useState<Tab>('planner')
@@ -34,57 +58,51 @@ export default function App() {
   }, [])
 
   if (!token) {
-    return (
-      <div className="app">
-        <header className="app-header">
-          <div className="brand">
-            <span className="brand-mark">LD</span>
-            <div>
-              <h1>Live-Document</h1>
-              <p className="subtitle">文档 → LearningSpec → 教学动画 · AMD 多模态内容创作</p>
-            </div>
-          </div>
-        </header>
-        <main className="app-main">
-          <LoginPage onLogin={handleLogin} />
-        </main>
-        <footer className="app-footer">Live-Document Web · 公网访问需登录（Radeon Cloud 规范）</footer>
-      </div>
-    )
+    return <LoginPage onLogin={handleLogin} />
   }
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <div className="brand">
-          <span className="brand-mark">LD</span>
-          <div>
-            <h1>Live-Document</h1>
-            <p className="subtitle">文档 → LearningSpec → 教学动画 · AMD 多模态内容创作</p>
-          </div>
+    <div className="flex min-h-full flex-col">
+      <header className="sticky top-0 z-20 border-b border-line bg-ink-950/85 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+          <Brand />
+          <nav className="flex items-center gap-1">
+            {TABS.map((t) => {
+              const active = tab === t.id
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => setTab(t.id)}
+                  className={`relative px-4 py-2 text-sm transition-colors ${
+                    active ? 'font-semibold text-fg' : 'text-mut hover:text-fg'
+                  }`}
+                >
+                  {t.label}
+                  {active && (
+                    <span className="energy-line absolute inset-x-3 -bottom-px h-[2px] glow-red-sm" />
+                  )}
+                </button>
+              )
+            })}
+            <button
+              onClick={handleLogout}
+              title="退出登录"
+              className="clip-angled-sm ml-2 border border-line px-3.5 py-1.5 text-sm text-mut transition-all hover:border-radeon-500/60 hover:text-radeon-400"
+            >
+              退出
+            </button>
+          </nav>
         </div>
-        <nav className="tabs">
-          <button className={tab === 'planner' ? 'tab active' : 'tab'} onClick={() => setTab('planner')}>
-            文档规划
-          </button>
-          <button className={tab === 'jobs' ? 'tab active' : 'tab'} onClick={() => setTab('jobs')}>
-            任务中心
-          </button>
-          <button className={tab === 'about' ? 'tab active' : 'tab'} onClick={() => setTab('about')}>
-            运行状态
-          </button>
-          <button className="tab tab-logout" onClick={handleLogout} title="退出登录">
-            退出
-          </button>
-        </nav>
       </header>
-      <main className="app-main">
+
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6">
         {tab === 'planner' && <PlannerPage onSubmitted={goJobs} />}
         {tab === 'jobs' && <JobsPage trackedJobId={trackedJobId} />}
         {tab === 'about' && <AboutPage />}
       </main>
-      <footer className="app-footer">
-        Live-Document Web · 本地推理 / Radeon ROCm 就绪 · 前后端分离架构
+
+      <footer className="border-t border-line py-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
+        Live-Document · 本地推理 / Radeon ROCm 就绪 · AMD DevMaster Track 1
       </footer>
     </div>
   )
