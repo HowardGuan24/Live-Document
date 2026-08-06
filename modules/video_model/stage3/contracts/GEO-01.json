@@ -162,7 +162,7 @@
     "source_policy": "Exported directly from deterministic program state; not inferred from the rendered screenshot."
   },
   "visual_target_package": {
-    "path": null,
-    "status": "missing"
+    "path": "modules/video_model/stage3/visual_targets/GEO-01/manifest.json",
+    "status": "accepted_project_baseline"
   }
 }

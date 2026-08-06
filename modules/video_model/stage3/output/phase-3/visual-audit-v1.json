@@ -1,4 +1,0 @@
-{
-  "passed": false,
-  "reason_zh": "正向 prompt 出现 no pink；扩散模型仍会注意 pink 这个 token，九张候选全部产生粉色液体/光照。"
-}

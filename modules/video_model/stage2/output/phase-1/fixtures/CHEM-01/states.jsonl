@@ -1,4 +1,0 @@
-{"fixture_only": true, "meaning_zh": "初始酸性溶液无持续终点颜色", "order": 0, "progress": 0.0, "state_id": "state_00"}
-{"fixture_only": true, "meaning_zh": "一滴碱液造成落点附近的短暂局部颜色", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
-{"fixture_only": true, "meaning_zh": "混合后局部颜色消失并继续接近终点", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
-{"fixture_only": true, "meaning_zh": "最后一小滴混匀后浅色持续存在", "order": 3, "progress": 1.0, "state_id": "state_03"}

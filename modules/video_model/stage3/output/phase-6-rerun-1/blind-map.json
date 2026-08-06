@@ -1,6 +1,0 @@
-{
-  "A": "highpass_statistics candidate",
-  "B": "raw_underlay negative control",
-  "policy_zh": "匿名表只显示 A/B；visual-review.json 保存逐项理由，本文件用于审查后解盲和可复现回放。",
-  "schema_version": "1.0"
-}

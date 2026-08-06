@@ -109,6 +109,14 @@ def _sample_unit_circle(progress: float) -> ProgramSample:
         )
         for value in sample_progress
     ]
+    trace_boundary = _line_mask(
+        [
+            trace_points,
+            [tuple(center), tuple(point)],
+            [tuple(point), (trace_x, trace_y)],
+        ],
+        3,
+    )
     draw.line(trace_points, fill=(42, 139, 133), width=4)
     draw.line(
         (point[0], point[1], trace_x, trace_y),
@@ -218,6 +226,16 @@ def _sample_unit_circle(progress: float) -> ProgramSample:
             "allowed_by_route",
             "模型如需增加纸张质感，只能在空白底纸中贡献限幅细节。",
         ),
+        LayerSample(
+            "math01_trace_boundary",
+            "hard_boundary",
+            "逐步生成的正弦轨迹与圆周对应线",
+            "由当前 progress 直接计算，只包含已经发生的轨迹、半径和同高连接线。",
+            trace_boundary,
+            _binary_preview(trace_boundary, (79, 211, 194)),
+            "allowed_by_route",
+            "让渲染器保留轨迹增长和圆周点到曲线头的对应关系。",
+        ),
         _object_layer(
             "math01_point_identity",
             "圆周点与曲线头身份",
@@ -299,6 +317,20 @@ def _sample_induction(progress: float) -> ProgramSample:
     )
     draw.line((541, 91, *pointer_end), fill=(207, 73, 62, 255), width=4)
     draw.ellipse((536, 86, 546, 96), fill=(57, 75, 78, 255))
+
+    instrument_image = Image.new("L", (WIDTH, HEIGHT), 0)
+    instrument_draw = ImageDraw.Draw(instrument_image)
+    for offset in range(-34, 35, 11):
+        instrument_draw.ellipse(
+            (coil_x + offset - 22, 112, coil_x + offset + 22, 248),
+            outline=255,
+            width=4,
+        )
+    instrument_draw.line((424, 180, 500, 180, 500, 102), fill=255, width=3)
+    instrument_draw.ellipse((480, 30, 602, 150), outline=255, width=3)
+    instrument_draw.line((541, 91, *pointer_end), fill=255, width=4)
+    instrument_draw.ellipse((536, 86, 546, 96), fill=255)
+    instrument_boundary = np.asarray(instrument_image, dtype=np.uint8)
 
     magnet_region_image = Image.new("L", (WIDTH, HEIGHT), 0)
     magnet_region_draw = ImageDraw.Draw(magnet_region_image)
@@ -385,6 +417,16 @@ def _sample_induction(progress: float) -> ProgramSample:
             "供程序验收和视频方向审计，不默认显示箭头。",
         ),
         LayerSample(
+            "phys02_instrument_boundary",
+            "hard_boundary",
+            "线圈、导线、电流表和表针精确边界",
+            "由固定线圈结构与当前 induced_current 直接计算，表针角度随状态变化。",
+            instrument_boundary,
+            _binary_preview(instrument_boundary, (229, 155, 78)),
+            "allowed_by_route",
+            "确保线圈匝数、仪表位置和电流方向在材质渲染后仍可读。",
+        ),
+        LayerSample(
             "phys02_magnet_region",
             "region",
             "移动条形磁铁表面",
@@ -437,6 +479,7 @@ def _validate_induction(samples: list[ProgramSample]) -> list[dict[str, Any]]:
 
 
 _CRYSTAL_CENTERS = ((235, 250), (310, 222), (395, 250), (315, 294))
+_CRYSTAL_ANGLES = (-0.18, 0.11, 0.31, -0.27)
 
 
 def _sample_crystallization(progress: float) -> ProgramSample:
@@ -449,7 +492,15 @@ def _sample_crystallization(progress: float) -> ProgramSample:
         stage = "concentrating"
     else:
         growth = _smoothstep((progress - 0.55) / 0.45)
-        crystal_count = min(4, 1 + int(growth * 3.99))
+        # Four stable potential nuclei activate at fixed growth thresholds.
+        # Each newly activated crystal begins at sub-visible/nucleus scale and
+        # then expands continuously; the previous implementation introduced
+        # every new identity at an already-large five-pixel diamond.
+        activation_thresholds = (0.0, 0.25, 0.50, 0.75)
+        crystal_count = sum(
+            growth + 1e-12 >= threshold
+            for threshold in activation_thresholds
+        )
         stage = "nucleation" if progress < 0.72 else "crystal_growth"
     liquid_solute = 0.48 - 0.16 * growth
     crystal_solute = 0.16 * growth
@@ -471,19 +522,48 @@ def _sample_crystallization(progress: float) -> ProgramSample:
     objects = []
     crystal_region_image = Image.new("L", (WIDTH, HEIGHT), 0)
     crystal_region_draw = ImageDraw.Draw(crystal_region_image)
+    activation_thresholds = (0.0, 0.25, 0.50, 0.75)
+    local_growth_values = []
     for index, (cx, cy) in enumerate(_CRYSTAL_CENTERS[:crystal_count]):
-        size = 5 + growth * (19 + index * 2)
-        points = [
-            [cx, cy - size],
-            [cx + size * 0.7, cy],
-            [cx, cy + size],
-            [cx - size * 0.7, cy],
-        ]
+        threshold = activation_thresholds[index]
+        local_growth = _smoothstep(
+            float(
+                np.clip(
+                    (growth - threshold) / max(1.0 - threshold, 1e-9),
+                    0.0,
+                    1.0,
+                )
+            )
+        )
+        local_growth_values.append(local_growth)
+        size = 1.5 + local_growth * (22 + index * 2)
+        # Pillow's polygon API rejects a list that mixes integer centers and
+        # floating-point vertices on some releases.  Normalize every drawing
+        # coordinate to a plain Python float so arbitrary timeline samples,
+        # not only the four teaching keyframes, remain serializable.
+        # Halite is cubic. In a locked overhead view its top face should read
+        # as a rotated square, not the vertically stretched diamond used by
+        # the first diagram renderer.
+        angle = _CRYSTAL_ANGLES[index]
+        cosine, sine = math.cos(angle), math.sin(angle)
+        points = []
+        for local_x, local_y in (
+            (-size, -size),
+            (size, -size),
+            (size, size),
+            (-size, size),
+        ):
+            points.append(
+                (
+                    float(cx + local_x * cosine - local_y * sine),
+                    float(cy + local_x * sine + local_y * cosine),
+                )
+            )
         # These crystals occupy less than one percent of the full frame. A
         # diffusion texture donor cannot add readable facets at that scale
         # without risking the exact count and outline, so the program owns the
         # coarse material cues as four deterministic faces.
-        center = [cx, cy]
+        center = (float(cx), float(cy))
         facet_colors = (
             (248, 252, 238),
             (221, 232, 216),
@@ -517,6 +597,7 @@ def _sample_crystallization(progress: float) -> ProgramSample:
                 "class_id": "salt_crystal",
                 "geometry": {"kind": "polygon", "points": points},
                 "mass_fraction": round(crystal_solute / max(crystal_count, 1), 8),
+                "growth_fraction": round(local_growth, 8),
             }
         )
     crystal_region = np.asarray(
@@ -568,6 +649,10 @@ def _sample_crystallization(progress: float) -> ProgramSample:
         "solvent_volume": round(solvent, 8),
         "concentration": round(concentration, 8),
         "saturation_ratio": round(saturation, 8),
+        "crystal_growth_fraction": round(growth, 8),
+        "active_crystal_growth_fractions": [
+            round(value, 8) for value in local_growth_values
+        ],
         "crystal_count": crystal_count,
         "liquid_solute_mass": round(liquid_solute, 8),
         "crystal_solute_mass": round(crystal_solute, 8),
@@ -816,7 +901,18 @@ def _validate_stoma(samples: list[ProgramSample]) -> list[dict[str, Any]]:
 # GEO-01: meander neck cutoff creates an isolated oxbow lake
 
 
-def _meander_points() -> list[tuple[float, float]]:
+def _meander_points(migration_fraction: float = 0.0) -> list[tuple[float, float]]:
+    """Return a centerline whose opposing limbs actually approach each other.
+
+    The original teaching program decreased a numeric ``neck_width_px`` field
+    while leaving this centerline fixed.  That made the state JSON pass but
+    gave a viewer no visible meander migration.  The normalized migration
+    fraction now moves only the two opposing limbs and their neighbouring
+    control points; the upstream reach, loop crown and downstream reach stay
+    fixed.
+    """
+
+    migration_fraction = float(np.clip(migration_fraction, 0.0, 1.0))
     anchors = np.asarray(
         [
             (15, 225),
@@ -836,6 +932,10 @@ def _meander_points() -> list[tuple[float, float]]:
         ],
         dtype=float,
     )
+    left_offsets = {3: 4.0, 4: 10.0, 5: 6.0}
+    right_offsets = {9: -6.0, 10: -10.0, 11: -4.0}
+    for index, offset in {**left_offsets, **right_offsets}.items():
+        anchors[index, 0] += offset * migration_fraction
     padded = np.vstack((anchors[0], anchors, anchors[-1]))
     points: list[tuple[float, float]] = []
     for index in range(1, len(padded) - 2):
@@ -919,40 +1019,87 @@ def _water_topology(mask: np.ndarray) -> tuple[int, int, int]:
 
 
 def _sample_oxbow(progress: float) -> ProgramSample:
-    cutoff = _smoothstep(progress)
-    neck_width = 55 * (1 - cutoff) + 8 * cutoff
-    cutoff_complete = progress >= 0.86
+    # Three mechanisms are intentionally separated in time.  This lets a
+    # storyboard explain them independently and prevents the old one-frame
+    # jump from an intact loop to a finished oxbow lake.
+    migration = _smoothstep(min(progress / 0.48, 1.0))
+    breach = _smoothstep(
+        float(np.clip((progress - 0.48) / 0.24, 0.0, 1.0))
+    )
+    sealing = _smoothstep(
+        float(np.clip((progress - 0.72) / 0.28, 0.0, 1.0))
+    )
+    neck_width = 22.0 * (1.0 - migration) + 5.0 * migration
     river = Image.new("L", (WIDTH, HEIGHT), 0)
     draw_river = ImageDraw.Draw(river)
-    points = _meander_points()
+    points = _meander_points(migration)
     _draw_round_channel(draw_river, points, fill=255, width=38)
-    if cutoff > 0:
+    shortcut_left = (292, 190)
+    shortcut_right = (332, 190)
+    if breach > 0:
         draw_river.line(
-            ((282, 190), (342, 190)),
-            fill=int(255 * cutoff),
-            width=max(3, int(36 * cutoff)),
+            (shortcut_left, shortcut_right),
+            fill=255,
+            width=max(3, int(round(36 * breach))),
         )
-    if cutoff_complete:
-        # Draw the new lower shortcut first, then place the two plugs on the
-        # upward old-channel branches. Keeping the plugs slightly above the
-        # shortcut leaves the main left-to-right route connected while the
-        # abandoned loop becomes a distinct water component.
-        draw_river.line(((272, 190), (352, 190)), fill=255, width=36)
-        draw_river.ellipse((247, 135, 297, 185), fill=0)
-        draw_river.ellipse((341, 135, 391, 185), fill=0)
-    water = np.asarray(river, dtype=np.uint8)
+    pre_sealing_water = np.asarray(river, dtype=np.uint8).copy()
+    geometric_plug = np.zeros((HEIGHT, WIDTH), dtype=bool)
+    if sealing > 0:
+        # Deposits grow continuously across the two abandoned entrances.
+        # They sit above the shortcut, so the new left-to-right channel stays
+        # open while the old loop gradually becomes a separate waterbody.
+        plug_specs = (
+            ((278.0, 160.0), (-24.0, -65.0)),
+            ((362.0, 160.0), (-40.0, 45.0)),
+        )
+        grid_y, grid_x = np.mgrid[0:HEIGHT, 0:WIDTH]
+        for (center_x, center_y), (tangent_x, tangent_y) in plug_specs:
+            length = math.hypot(tangent_x, tangent_y)
+            tx, ty = tangent_x / length, tangent_y / length
+            nx, ny = -ty, tx
+            # Early deposition should be visible without already cutting the
+            # channel.  Superlinear cross-channel growth delays full closure
+            # until most of the sealing process has occurred.
+            geometric_growth = sealing**1.6
+            across_half = 31.0 * geometric_growth
+            along_half = 10.5 * geometric_growth
+            relative_x = grid_x - center_x
+            relative_y = grid_y - center_y
+            along = relative_x * tx + relative_y * ty
+            across = relative_x * nx + relative_y * ny
+            geometric_plug |= (
+                (np.abs(across) <= across_half)
+                & (np.abs(along) <= along_half)
+            )
+    water = np.where(geometric_plug, 0, pre_sealing_water).astype(
+        np.uint8
+    )
+    river = Image.fromarray(water, mode="L")
+    # Only the part that occupied the abandoned river channel is sediment;
+    # clipping prevents the topology-cutting bands from leaking onto the
+    # surrounding floodplain.
+    plug_region = np.where(
+        geometric_plug & (pre_sealing_water > 0),
+        255,
+        0,
+    ).astype(np.uint8)
     (
         water_component_count,
         main_channel_components,
         isolated_oxbow_count,
     ) = _water_topology(water)
+    cutoff_complete = (
+        main_channel_components == 1 and isolated_oxbow_count == 1
+    )
     boundary = _edge(water)
     y, x = np.mgrid[0:HEIGHT, 0:WIDTH]
     vector = np.zeros((HEIGHT, WIDTH, 2), dtype=np.float32)
     vector[:, :, 0] = np.where(water > 0, 1.0, 0)
     vector[:, :, 1] = np.where(
         water > 0,
-        0.35 * np.cos((x - 20) / 600 * 2 * math.pi) * (1 - cutoff),
+        0.35
+        * np.cos((x - 20) / 600 * 2 * math.pi)
+        * (1 - breach),
         0,
     )
 
@@ -962,18 +1109,42 @@ def _sample_oxbow(progress: float) -> ProgramSample:
     clean_rgba.paste(water_rgba, mask=river)
     clean = clean_rgba.convert("RGB")
     draw = ImageDraw.Draw(clean, "RGBA")
-    if cutoff > 0.05:
-        alpha = int(210 * cutoff)
-        draw.line(((282, 190), (342, 190)), fill=(55, 142, 178, alpha), width=max(3, int(34 * cutoff)))
-    if cutoff_complete:
-        draw.line(((272, 190), (352, 190)), fill=(55, 142, 178, 255), width=34)
-        draw.ellipse((247, 135, 297, 185), fill=(191, 174, 119, 240))
-        draw.ellipse((341, 135, 391, 185), fill=(191, 174, 119, 240))
+    if breach > 0.05:
+        draw.line(
+            (shortcut_left, shortcut_right),
+            fill=(55, 142, 178, 255),
+            width=max(3, int(round(34 * breach))),
+        )
+    if sealing > 0:
+        sediment_rgba = Image.new(
+            "RGBA", (WIDTH, HEIGHT), (156, 139, 88, 245)
+        )
+        clean_rgba = clean.convert("RGBA")
+        clean_rgba.paste(
+            sediment_rgba,
+            mask=Image.fromarray(plug_region, mode="L"),
+        )
+        clean = clean_rgba.convert("RGB")
+    main_geometry = (
+        {
+            "kind": "polyline",
+            "points": [
+                (15, 225),
+                (190, 235),
+                shortcut_left,
+                shortcut_right,
+                (470, 238),
+                (625, 220),
+            ],
+        }
+        if cutoff_complete
+        else {"kind": "polyline", "points": points}
+    )
     objects = [
         {
             "object_id": "GEO-01-main-channel",
             "class_id": "main_river",
-            "geometry": {"kind": "polyline", "points": points},
+            "geometry": main_geometry,
         }
     ]
     if cutoff_complete:
@@ -998,19 +1169,44 @@ def _sample_oxbow(progress: float) -> ProgramSample:
     program = _overlay_annotations(
         clean,
         annotation,
-        [(16, 16, "cutoff" if cutoff_complete else "neck_narrowing"), (16, 36, f"neck={neck_width:.1f}px")],
+        [
+            (
+                16,
+                16,
+                "oxbow_isolated"
+                if cutoff_complete
+                else "entrance_sealing"
+                if sealing > 0
+                else "shortcut_breach"
+                if breach > 0
+                else "meander_migration",
+            ),
+            (16, 36, f"neck={neck_width:.1f}px"),
+        ],
     )
     state = {
         "case_id": "GEO-01",
         "progress": round(progress, 6),
-        "stage": "oxbow_isolated" if cutoff_complete else "neck_narrowing",
+        "stage": (
+            "oxbow_isolated"
+            if cutoff_complete
+            else "entrance_sealing"
+            if sealing > 0
+            else "shortcut_breach"
+            if breach > 0
+            else "meander_migration"
+        ),
         "neck_width_px": round(neck_width, 8),
-        "cutoff_fraction": round(cutoff, 8),
+        "migration_fraction": round(migration, 8),
+        "breach_fraction": round(breach, 8),
+        "entrance_sealing_fraction": round(sealing, 8),
+        "cutoff_fraction": round(breach, 8),
         "cutoff_complete": cutoff_complete,
         "water_component_count": water_component_count,
         "main_channel_components": main_channel_components,
         "isolated_oxbow_count": isolated_oxbow_count,
         "water_area_px": int((water > 0).sum()),
+        "sediment_plug_area_px": int((plug_region > 0).sum()),
     }
     layers = (
         LayerSample(
@@ -1032,6 +1228,16 @@ def _sample_oxbow(progress: float) -> ProgramSample:
             _binary_preview(water, (64, 155, 186)),
             "allowed_by_route",
             "限定水面材质和连通性。",
+        ),
+        LayerSample(
+            "geo01_sediment_plug_region",
+            "region",
+            "旧河道两端的泥沙塞区域",
+            "洪水切颈后，两处沉积物从小到大封堵废弃河道入口。",
+            plug_region,
+            _binary_preview(plug_region, (156, 139, 88)),
+            "program_only",
+            "让封堵过程在材质成片中可见，并检查沉积面积单调增长。",
         ),
         LayerSample(
             "geo01_flow",

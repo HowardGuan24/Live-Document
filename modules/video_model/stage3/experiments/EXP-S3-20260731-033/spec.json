@@ -1,0 +1,25 @@
+{
+  "assembled_frame_count": 49,
+  "case_id": "CHEM-02",
+  "experiment_id": "EXP-S3-20260731-033",
+  "guidance_level": "L2",
+  "schema_version": "1.0",
+  "segment_specs": [
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-033/spec-segment-1.json",
+      "sha256": "ff0bd943959c87dc4d2a854bc17b2012eaa9430aa6d0eedec136d9c8e2cd1984",
+      "size_bytes": 1931
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-033/spec-segment-2.json",
+      "sha256": "7bd4396e62305d953052cfcec416183dd5f3cdc9c18446a6cfabc470bb86a449",
+      "size_bytes": 1960
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-033/spec-segment-3.json",
+      "sha256": "bdf9485a3882f90d6821f108058f8543f13ab947df2890fee13f313d72471e90",
+      "size_bytes": 1961
+    }
+  ],
+  "single_variable_from_L1": "add the two accepted middle keyframes as three FLF segment boundaries; model and all other settings stay fixed"
+}

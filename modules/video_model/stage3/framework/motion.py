@@ -549,6 +549,140 @@ def audit_object_division(
     }
 
 
+def audit_advected_scalar_event(
+    frames: list[np.ndarray],
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    """Track one colored identity and a localized transient scalar event."""
+    height, width = frames[0].shape[:2]
+    px0, py0, px1, py1 = config["parcel_roi_normalized_xyxy"]
+    parcel_box = (
+        int(round(px0 * width)),
+        int(round(py0 * height)),
+        int(round(px1 * width)),
+        int(round(py1 * height)),
+    )
+    rx0, ry0, rx1, ry1 = config["event_roi_normalized_xyxy"]
+    event_box = (
+        int(round(rx0 * width)),
+        int(round(ry0 * height)),
+        int(round(rx1 * width)),
+        int(round(ry1 * height)),
+    )
+    parcel_centers: list[list[float] | None] = []
+    parcel_pixels: list[int] = []
+    event_pixels: list[int] = []
+    event_centers: list[list[float] | None] = []
+    parcel_color = config["parcel_color"]
+    event_color = config["event_color"]
+    for frame in frames:
+        rgb = frame.astype(np.int16)
+        parcel_crop = rgb[
+            parcel_box[1] : parcel_box[3], parcel_box[0] : parcel_box[2]
+        ]
+        parcel_mask = (
+            (parcel_crop[:, :, 0] >= int(parcel_color["r_min"]))
+            & (parcel_crop[:, :, 1] >= int(parcel_color["g_min"]))
+            & (parcel_crop[:, :, 1] <= int(parcel_color["g_max"]))
+            & (parcel_crop[:, :, 2] <= int(parcel_color["b_max"]))
+            & (
+                parcel_crop[:, :, 0] - parcel_crop[:, :, 1]
+                >= int(parcel_color["minimum_r_minus_g"])
+            )
+        )
+        ys, xs = np.nonzero(parcel_mask)
+        parcel_pixels.append(int(len(xs)))
+        parcel_centers.append(
+            [
+                round(float(xs.mean() + parcel_box[0]), 4),
+                round(float(ys.mean() + parcel_box[1]), 4),
+            ]
+            if len(xs)
+            else None
+        )
+
+        event_crop = rgb[event_box[1] : event_box[3], event_box[0] : event_box[2]]
+        event_mask = (
+            (event_crop[:, :, 2] >= int(event_color["b_min"]))
+            & (
+                event_crop[:, :, 2] - event_crop[:, :, 0]
+                >= int(event_color["minimum_b_minus_r"])
+            )
+            & (
+                event_crop[:, :, 1] - event_crop[:, :, 0]
+                >= int(event_color["minimum_g_minus_r"])
+            )
+        )
+        ys, xs = np.nonzero(event_mask)
+        event_pixels.append(int(len(xs)))
+        event_centers.append(
+            [
+                round(float(xs.mean() + event_box[0]), 4),
+                round(float(ys.mean() + event_box[1]), 4),
+            ]
+            if len(xs)
+            else None
+        )
+
+    visible = all(
+        value >= int(config["minimum_parcel_pixels"])
+        for value in parcel_pixels
+    )
+    x_values = [
+        float(value[0]) for value in parcel_centers if value is not None
+    ]
+    progress = x_values[-1] - x_values[0] if len(x_values) == len(frames) else 0.0
+    maximum_backward_step = max(
+        (left - right for left, right in zip(x_values, x_values[1:])),
+        default=0.0,
+    )
+    parcel_passed = (
+        visible
+        and progress >= float(config["minimum_parcel_progress_px"])
+        and maximum_backward_step <= float(config["maximum_parcel_backward_step_px"])
+    )
+
+    peak_index = int(np.argmax(event_pixels))
+    peak_count = max(event_pixels)
+    initial_fraction = event_pixels[0] / max(peak_count, 1)
+    final_fraction = event_pixels[-1] / max(peak_count, 1)
+    peak_fraction = peak_index / max(len(frames) - 1, 1)
+    peak_center = event_centers[peak_index]
+    event_passed = (
+        peak_count >= int(config["minimum_peak_event_pixels"])
+        and initial_fraction <= float(config["maximum_initial_fraction_of_peak"])
+        and final_fraction <= float(config["maximum_final_fraction_of_peak"])
+        and float(config["peak_time_fraction_range"][0])
+        <= peak_fraction
+        <= float(config["peak_time_fraction_range"][1])
+        and peak_center is not None
+        and peak_center[0] / width
+        <= float(config["maximum_peak_centroid_normalized_x"])
+    )
+    return {
+        "name": "identity_advects_and_localized_scalar_event_rises_then_falls",
+        "passed": parcel_passed and event_passed,
+        "parcel_pixel_count_by_frame": parcel_pixels,
+        "parcel_center_xy_by_frame": parcel_centers,
+        "parcel_progress_px": round(progress, 4),
+        "maximum_parcel_backward_step_px": round(maximum_backward_step, 4),
+        "event_pixel_count_by_frame": event_pixels,
+        "event_center_xy_by_frame": event_centers,
+        "peak_event_frame": peak_index,
+        "peak_time_fraction": round(peak_fraction, 6),
+        "initial_fraction_of_peak": round(initial_fraction, 6),
+        "final_fraction_of_peak": round(final_fraction, 6),
+        "subchecks": {
+            "parcel_visible_and_advects": parcel_passed,
+            "localized_event_rises_on_declared_side_then_falls": event_passed,
+        },
+        "note_zh": (
+            "在冻结颜色范围内追踪同一身份标记的质心，并在声明区域统计短暂标量事件。"
+            "它检查方向、事件峰值、空间侧别和终点衰减，不把整幅图亮度变化冒充机制。"
+        ),
+    }
+
+
 def endpoint_metrics(
     frames: list[np.ndarray],
     first_path: Path,
@@ -678,6 +812,8 @@ def audit_video(
         checks.append(audit_rigid_identity(frames, config))
     elif audit_type == "object_division":
         checks.append(audit_object_division(frames, config))
+    elif audit_type == "advected_scalar_event":
+        checks.append(audit_advected_scalar_event(frames, config))
     else:
         raise ValueError(f"unknown G4 audit type: {audit_type}")
     if sparse_checkpoints:

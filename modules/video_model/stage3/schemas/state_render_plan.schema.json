@@ -44,12 +44,14 @@
           "operator_type": {
             "enum": [
               "region_fill",
+              "raster_overlay",
               "scalar_transfer",
               "object_material",
               "object_overlay",
               "height_normal",
               "region_material",
-              "identity_stroke"
+              "identity_stroke",
+              "scalar_field_overlay"
             ]
           },
           "config": {"type": "object"}

@@ -90,6 +90,62 @@
       "id": "FP-METRIC-CONNECTIVITY-001",
       "symptom_zh": "程序 region 连续，但纹理图用四邻接被误拆成多个区域。",
       "taxonomy": "metric_domain"
+    },
+    {
+      "diagnosis_zh": "首尾帧模型把局部标量事件当成具有实体表面的对象。",
+      "forbidden_fix_zh": "不得因端点和连续性通过就接受；必须检测事件的时间峰值、空间侧别和材料类别。",
+      "id": "FP-VIDEO-FIELD-001",
+      "symptom_zh": "稀疏雨线在生成视频中变成沿地形爬行的实心水带或冰带。",
+      "taxonomy": "motion_or_video"
+    },
+    {
+      "diagnosis_zh": "相邻片段共享边界图像，却不共享对象身份、速度或内部生成状态。",
+      "forbidden_fix_zh": "不得只测接缝关键帧 MAE；必须跨全片追踪同一对象身份与方向。",
+      "id": "FP-VIDEO-IDENTITY-002",
+      "symptom_zh": "分段视频在接缝处的空气团消失、反向或以新身份重现。",
+      "taxonomy": "motion_or_video"
+    },
+    {
+      "diagnosis_zh": "编码或连续采样的最低有效位差异不等于视觉或语义回归。",
+      "forbidden_fix_zh": "不得取消哈希；先测哈希，失配时只允许预冻结的单像素单 LSB 数值等价规则。",
+      "id": "FP-REGRESSION-NUMERIC-001",
+      "symptom_zh": "确定性回放只有一个像素的一个通道相差 1/255，却被纯文件哈希判失败。",
+      "taxonomy": "metric_domain"
+    },
+    {
+      "diagnosis_zh": "高通滤波去除了颜色缓变，却没有去除供体边缘的二维坐标；高频不等于无几何。",
+      "forbidden_fix_zh": "不得逐案例涂掉泄漏对象；必须先确定性打乱或统计化高频残差，再由语义层恢复新案例几何。",
+      "id": "FP-APPEARANCE-SPATIAL-001",
+      "symptom_zh": "只取供体高频残差仍会在新案例里看到供体的三角形、烧杯、细胞器或河道位置。",
+      "taxonomy": "appearance_condition"
+    },
+    {
+      "diagnosis_zh": "程序 provider 只导出了粗边界或对象身份，没有把机制线作为类型化语义层输出。",
+      "forbidden_fix_zh": "不得在最终图片里按案例手绘；回到 provider 增加语义导出、升级输入合同，再执行通用渲染器。",
+      "id": "FP-SEMANTIC-MECHANISM-001",
+      "symptom_zh": "程序截图里有正弦轨迹、线圈或仪表，但生成图缺少这些教学机制。",
+      "taxonomy": "semantic_export"
+    },
+    {
+      "diagnosis_zh": "关键帧 smoke 没有覆盖任意进度；Pillow 版本对混合整数/浮点多边形坐标的容忍度不同。",
+      "forbidden_fix_zh": "不得跳过坏帧或用前后帧插值；所有 provider 必须通过固定 49 点采样，并把绘图坐标规范成普通 Python 数值。",
+      "id": "FP-PROVIDER-TIMELINE-001",
+      "symptom_zh": "四个关键帧都能生成，但第一次采样完整时间线时，结晶 provider 在中间帧因绘图坐标类型报错。",
+      "taxonomy": "semantic_export"
+    },
+    {
+      "diagnosis_zh": "稀疏关键帧相同不代表区间内状态恒定；完整程序在正中间达到 62 的峰值。",
+      "forbidden_fix_zh": "不得从四个样本猜连续函数；G4 必须读取完整 states.jsonl 或逐点调用 provider 后再冻结趋势。",
+      "id": "FP-GATE-SPARSE-ASSUMPTION-001",
+      "symptom_zh": "BIO-02 四个关键帧的开度为 10/49/49/10，旧 G4 因此误以为两个中间关键帧之间应保持 49。",
+      "taxonomy": "metric_domain"
+    },
+    {
+      "diagnosis_zh": "首尾扩散和独立 FLF 片段都没有晶体对象 ID；文字能提示大致事件，却不能守住成核阈值和跨帧身份。",
+      "forbidden_fix_zh": "不得因最终四颗晶体正确就接受；必须检查首次成核帧和逐帧计数，失败后使用完整程序时间线回退。",
+      "id": "FP-VIDEO-NUCLEATION-001",
+      "symptom_zh": "结晶视频端点正确，但晶体过早出现、数量先增后减，分段后仍有微小晶体消失重现。",
+      "taxonomy": "motion_or_video"
     }
   ],
   "schema_version": "1.0"

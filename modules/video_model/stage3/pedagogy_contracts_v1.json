@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "stage3-pedagogical-timeline-v1",
+  "defaults": {
+    "fps": 12,
+    "scene_size": [768, 432],
+    "panel_height": 80,
+    "analysis_samples": 97,
+    "change_weight": 0.72,
+    "minimum_total_seconds": 8.5,
+    "maximum_total_seconds": 12.0,
+    "minimum_hold_seconds": 0.5
+  },
+  "cases": [
+    {
+      "case_id": "MATH-01",
+      "title_zh": "单位圆怎样生成正弦曲线",
+      "summary_zh": "跟踪同一个点的纵坐标：圆周点转一圈，右侧依次留下一个完整正弦周期。",
+      "provider_module": "modules.video_model.stage2.cases.remaining_programs",
+      "source_render_plan": "output/phase-9-scale-motion/MATH-01/state-render-plan.json",
+      "beats": [
+        {"beat_id": "quarter_1", "title_zh": "第一阶段：从零升到波峰", "caption_zh": "圆周点上升；右侧曲线头保持相同纵坐标。", "progress_start": 0.0, "progress_end": 0.25, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["circle_normalized_y", "trace_fraction"]},
+        {"beat_id": "quarter_2", "title_zh": "第二阶段：回到中线", "caption_zh": "圆周点越过最高处，曲线从波峰回到零。", "progress_start": 0.25, "progress_end": 0.5, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["circle_normalized_y", "trace_fraction"]},
+        {"beat_id": "quarter_3", "title_zh": "第三阶段：下降到波谷", "caption_zh": "圆周点进入下半圆，曲线同步得到负值。", "progress_start": 0.5, "progress_end": 0.75, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["circle_normalized_y", "trace_fraction"]},
+        {"beat_id": "quarter_4", "title_zh": "第四阶段：完成一个周期", "caption_zh": "点回到起始高度，已经发生的轨迹保留为完整正弦曲线。", "progress_start": 0.75, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["circle_normalized_y", "trace_fraction"]}
+      ]
+    },
+    {
+      "case_id": "MATH-02",
+      "title_zh": "勾股定理的拼图重排证明",
+      "summary_zh": "四个全等直角三角形不改变面积，只改变摆法；两种空白面积因此相等。",
+      "provider_module": "modules.video_model.stage2.cases.sentinel_programs",
+      "source_render_plan": "output/phase-10-release/sentinel-motion/MATH-02/state-render-plan.json",
+      "beats": [
+        {"beat_id": "c_square", "title_zh": "第一阶段：围出 c²", "caption_zh": "四个全等三角形围成中间正方形，它的边长是斜边 c。", "progress_start": 0.0, "progress_end": 0.34, "dynamic_seconds": 2.3, "hold_seconds": 0.8, "attention_metrics": ["progress"]},
+        {"beat_id": "rearrange", "title_zh": "第二阶段：只重排，不改面积", "caption_zh": "每个三角形保持全等，外部大正方形面积也不变。", "progress_start": 0.34, "progress_end": 0.66, "dynamic_seconds": 2.3, "hold_seconds": 0.8, "attention_metrics": ["progress"]},
+        {"beat_id": "ab_squares", "title_zh": "第三阶段：空白变成 a² 与 b²", "caption_zh": "相同总面积减去相同四个三角形，所以 c² = a² + b²。", "progress_start": 0.66, "progress_end": 1.0, "dynamic_seconds": 2.3, "hold_seconds": 0.8, "attention_metrics": ["progress"]}
+      ]
+    },
+    {
+      "case_id": "PHYS-01",
+      "title_zh": "两个同步振源产生水面波干涉",
+      "summary_zh": "两列同频水波相遇后叠加：同相增强，反相减弱，形成稳定的腹线和节线。",
+      "provider_module": "modules.video_model.stage2.cases.sentinel_programs",
+      "source_render_plan": "output/phase-10-release/sentinel-motion/PHYS-01/state-render-plan.json",
+      "beats": [
+        {"beat_id": "emit", "title_zh": "第一阶段：两个振源同步发波", "caption_zh": "两个固定振源以相同频率向外传播圆形波前。", "progress_start": 0.0, "progress_end": 0.25, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["wavefront_radius_px"]},
+        {"beat_id": "overlap", "title_zh": "第二阶段：两列波开始重叠", "caption_zh": "同一位置同时收到两列波，位移按叠加原理相加。", "progress_start": 0.25, "progress_end": 0.5, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["overlap_pixel_count"]},
+        {"beat_id": "interference", "title_zh": "第三阶段：增强与减弱同时出现", "caption_zh": "同相处振幅更大；反相处彼此抵消。", "progress_start": 0.5, "progress_end": 0.75, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["node_pixel_count", "antinode_pixel_count"]},
+        {"beat_id": "pattern", "title_zh": "第四阶段：干涉条纹扩展", "caption_zh": "波继续传播，节线和腹线的空间关系保持稳定。", "progress_start": 0.75, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["overlap_pixel_count", "wavefront_radius_px"]}
+      ]
+    },
+    {
+      "case_id": "PHYS-02",
+      "title_zh": "磁铁运动为什么在线圈中产生感应电流",
+      "summary_zh": "电流取决于磁通量是否变化，而不只取决于磁铁离线圈有多近。",
+      "provider_module": "modules.video_model.stage2.cases.remaining_programs",
+      "source_render_plan": "output/phase-9-scale-motion/PHYS-02/state-render-plan.json",
+      "beats": [
+        {"beat_id": "approach", "title_zh": "第一阶段：磁铁靠近", "caption_zh": "穿过线圈的磁通增大，电表指针向一个方向偏转。", "progress_start": 0.0, "progress_end": 0.333333, "dynamic_seconds": 2.3, "hold_seconds": 0.8, "attention_metrics": ["magnet_x", "induced_current"]},
+        {"beat_id": "stop", "title_zh": "第二阶段：磁铁停住", "caption_zh": "磁铁虽然很近，但磁通不再改变，所以感应电流回到零。", "progress_start": 0.333333, "progress_end": 0.666667, "dynamic_seconds": 2.3, "hold_seconds": 0.8, "attention_metrics": ["magnetic_flux", "induced_current"]},
+        {"beat_id": "withdraw", "title_zh": "第三阶段：磁铁撤离", "caption_zh": "磁通减小，电流方向与靠近时相反。", "progress_start": 0.666667, "progress_end": 1.0, "dynamic_seconds": 2.3, "hold_seconds": 0.8, "attention_metrics": ["magnet_x", "induced_current"]}
+      ]
+    },
+    {
+      "case_id": "CHEM-01",
+      "title_zh": "酸碱滴定从局部变色到终点",
+      "summary_zh": "酚酞先在液滴附近短暂变粉，混匀后褪色；略过当量点后浅粉色才持续。",
+      "provider_module": "modules.video_model.stage2.cases.sentinel_programs",
+      "source_render_plan": "output/phase-10-release/sentinel-motion/CHEM-01/state-render-plan.json",
+      "beats": [
+        {"beat_id": "drop", "title_zh": "第一阶段：碱液滴入酸性溶液", "caption_zh": "液滴附近的局部 pH 先升高，因此出现一小团粉色。", "progress_start": 0.0, "progress_end": 0.333333, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "analysis_samples": 161, "attention_metrics": ["plume_strength", "indicator_mean_inside_liquid"]},
+        {"beat_id": "mix_clear", "title_zh": "第二阶段：局部颜色扩散并褪去", "caption_zh": "搅拌和扩散消除局部碱性；总体仍偏酸，粉色不能保持。", "progress_start": 0.333333, "progress_end": 0.666667, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "analysis_samples": 161, "attention_metrics": ["plume_integrated_proxy", "indicator_mean_inside_liquid"]},
+        {"beat_id": "near_equivalence", "title_zh": "第三阶段：继续滴定，接近当量点", "caption_zh": "酸逐渐被中和，但在越过变色范围前，主体仍接近无色。", "progress_start": 0.666667, "progress_end": 0.94, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "analysis_samples": 161, "attention_metrics": ["base_volume_ml", "bulk_ph"]},
+        {"beat_id": "persistent_endpoint", "title_zh": "第四阶段：略过当量点，浅粉保持", "caption_zh": "这一小段化学变化很快，因此时间轴自动放慢，避免一帧突然变红。", "progress_start": 0.94, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "analysis_samples": 257, "change_weight": 0.9, "attention_metrics": ["indicator_mean_inside_liquid", "bulk_ph"]}
+      ]
+    },
+    {
+      "case_id": "CHEM-02",
+      "title_zh": "盐溶液蒸发、过饱和与晶体生长",
+      "summary_zh": "先减少溶剂、提高浓度；达到饱和阈值后才出现晶核，随后已有晶体持续长大。",
+      "provider_module": "modules.video_model.stage2.cases.remaining_programs",
+      "source_render_plan": "output/phase-9-scale-motion/CHEM-02/state-render-plan.json",
+      "appearance_override": {
+        "anchor": {"path": "output/phase-11-pedagogy/appearance/CHEM-02/EXP-S3-20260731-035/raw/empty_dish_t2i_controlnet/seed_113503.png", "preprocess": {"mode": "identity"}},
+        "base_canvas": {"mode": "anchor"},
+        "remove_operators": ["fixed_glass_boundary"],
+        "operator_overrides": {
+          "solution_material": {"operator_type": "region_material", "config": {"region_layer_id": "chem02_liquid_region", "transfer_mode": "translucent_tint", "base_rgb": [152, 170, 172], "tint_alpha": 0.16, "depth_radius_px": 28, "depth_gain": 4, "membrane_width_px": 7, "membrane_rgb": [188, 204, 203], "membrane_alpha": 0.14}},
+          "concentration_state": {"operator_type": "scalar_field_overlay", "config": {"scalar_layer_id": "chem02_concentration", "render_mode": "soft_tint", "value_range": [0, 1.6], "threshold": 0.08, "gamma": 0.9, "color_rgb": [126, 151, 154], "maximum_alpha": 0.09, "blur_radius_px": 3, "clip_normalized_xyxy": [0, 0, 1, 1]}},
+          "crystal_identity": {"operator_type": "region_material", "config": {"region_layer_id": "chem02_crystal_region", "transfer_mode": "raw_underlay", "material_source_path": "modules/video_model/stage3/output/phase-11-pedagogy/appearance/CHEM-02/EXP-S3-20260731-038/raw/final_scene_dense_control/seed_113801.png", "material_alpha": 0.92, "membrane_width_px": 3, "membrane_rgb": [214, 224, 221], "membrane_alpha": 0.08, "shadow_alpha": 0.16, "shadow_blur_radius_px": 2.3, "shadow_offset_xy": [3, 4], "shadow_rgb": [68, 75, 74]}}
+        }
+      },
+      "beats": [
+        {"beat_id": "evaporate", "title_zh": "第一阶段：溶剂蒸发", "caption_zh": "水分离开器皿，液面连续下降；溶质总量没有消失。", "progress_start": 0.0, "progress_end": 0.45, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["solvent_volume", "concentration"]},
+        {"beat_id": "saturate", "title_zh": "第二阶段：浓度接近饱和", "caption_zh": "相同溶质被更少溶剂容纳，饱和度逐渐逼近成核条件。", "progress_start": 0.45, "progress_end": 0.56, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["saturation_ratio"]},
+        {"beat_id": "nucleate", "title_zh": "第三阶段：达到阈值后成核", "caption_zh": "首批微小晶核陆续出现；阈值之前不允许提前析晶。", "progress_start": 0.56, "progress_end": 0.75, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["crystal_growth_fraction", "crystal_solute_mass"]},
+        {"beat_id": "grow", "title_zh": "第四阶段：晶体继续生长", "caption_zh": "更多晶核出现并长大，最终保持四个稳定晶体身份。", "progress_start": 0.75, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["crystal_growth_fraction", "crystal_solute_mass"]}
+      ]
+    },
+    {
+      "case_id": "BIO-01",
+      "title_zh": "一个动物细胞的有丝分裂",
+      "summary_zh": "复制后的姐妹染色单体先排列、再分离，最后两个子细胞各得到一套相同遗传物质。",
+      "provider_module": "modules.video_model.stage2.cases.sentinel_programs",
+      "source_render_plan": "output/phase-6-rerun-1/BIO-01/video/deterministic/state-render-plan.json",
+      "beats": [
+        {"beat_id": "condense", "title_zh": "第一阶段：染色体凝缩并排列", "caption_zh": "复制后的染色体移向细胞中央，身份和数量保持可追踪。", "progress_start": 0.0, "progress_end": 0.33, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["progress"]},
+        {"beat_id": "separate", "title_zh": "第二阶段：姐妹染色单体分离", "caption_zh": "着丝点分开，每条复制染色体产生左右各一条染色单体。", "progress_start": 0.33, "progress_end": 0.58, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["left_destination_count", "right_destination_count"]},
+        {"beat_id": "move", "title_zh": "第三阶段：两组遗传物质移向两极", "caption_zh": "左右两组各保持六条，不凭空增加或丢失。", "progress_start": 0.58, "progress_end": 0.82, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["progress"]},
+        {"beat_id": "cytokinesis", "title_zh": "第四阶段：细胞质分裂", "caption_zh": "细胞膜收缩，形成两个各含一套染色体的子细胞。", "progress_start": 0.82, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["progress"]}
+      ]
+    },
+    {
+      "case_id": "BIO-02",
+      "title_zh": "保卫细胞怎样控制气孔开闭",
+      "summary_zh": "保卫细胞吸水后膨压升高并弯曲，中央气孔打开；失水后过程反向。",
+      "provider_module": "modules.video_model.stage2.cases.remaining_programs",
+      "source_render_plan": "output/phase-9-scale-motion/BIO-02/state-render-plan.json",
+      "beats": [
+        {"beat_id": "water_in", "title_zh": "第一阶段：保卫细胞吸水", "caption_zh": "两个保卫细胞膨压同步升高，细胞身份保持不变。", "progress_start": 0.0, "progress_end": 0.25, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["turgor"]},
+        {"beat_id": "open", "title_zh": "第二阶段：气孔逐渐打开", "caption_zh": "细胞壁约束使保卫细胞向外弯曲，中央孔隙连续增大。", "progress_start": 0.25, "progress_end": 0.5, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["aperture_px"]},
+        {"beat_id": "water_out", "title_zh": "第三阶段：保卫细胞失水", "caption_zh": "膨压下降，原来的弯曲开始恢复。", "progress_start": 0.5, "progress_end": 0.75, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["turgor"]},
+        {"beat_id": "close", "title_zh": "第四阶段：气孔关闭", "caption_zh": "中央孔隙连续缩小，回到接近初始开度。", "progress_start": 0.75, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["aperture_px"]}
+      ]
+    },
+    {
+      "case_id": "GEO-01",
+      "title_zh": "曲流怎样形成牛轭湖",
+      "summary_zh": "外侧侵蚀让河曲发展、河颈变窄；洪水切开捷径；泥沙封堵旧河道两端后，旧河湾才成为牛轭湖。",
+      "provider_module": "modules.video_model.stage2.cases.remaining_programs",
+      "source_render_plan": "output/phase-9-scale-motion/GEO-01/state-render-plan.json",
+      "appearance_override": {
+        "anchor": {"path": "output/phase-11-pedagogy/appearance/GEO-01/EXP-S3-20260731-037/raw/floodplain_texture_t2i_free/seed_113701.png", "preprocess": {"mode": "identity"}},
+        "base_canvas": {"mode": "anchor"},
+        "add_operators": [
+          {"operator_id": "sediment_plug_material", "operator_type": "region_material", "config": {"region_layer_id": "geo01_sediment_plug_region", "transfer_mode": "shuffled_highpass_statistics", "base_rgb": [146, 119, 72], "highpass_radius_px": 7, "shuffle_seed": 1901, "smoothing_radius_px": 0.7, "texture_gain_rgb": [7, 6, 4], "depth_radius_px": 12, "depth_gain": 3, "membrane_width_px": 5, "membrane_rgb": [91, 82, 49], "membrane_alpha": 0.34}}
+        ],
+        "operator_overrides": {
+          "river_water_material": {"operator_type": "region_material", "config": {"region_layer_id": "geo01_water_region", "transfer_mode": "translucent_tint", "base_rgb": [31, 83, 96], "tint_alpha": 0.7, "depth_radius_px": 20, "depth_gain": -5, "membrane_width_px": 7, "membrane_rgb": [83, 112, 78], "membrane_alpha": 0.32}},
+          "river_boundary": {"operator_type": "raster_overlay", "config": {"layer_id": "geo01_water_boundary", "threshold": 0, "rgb": [39, 72, 70], "alpha": 0.16, "width_px": 1}}
+        }
+      },
+      "beats": [
+        {"beat_id": "migration", "title_zh": "第一阶段：河曲发展，河颈变窄", "caption_zh": "弯道外侧持续侵蚀，彼此相邻的两段河道真正靠近。", "progress_start": 0.0, "progress_end": 0.48, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["neck_width_px", "migration_fraction"]},
+        {"beat_id": "breach", "title_zh": "第二阶段：洪水切穿狭窄河颈", "caption_zh": "水流打开更短的直达通道；此时旧河湾仍与主河相连。", "progress_start": 0.48, "progress_end": 0.72, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["breach_fraction"]},
+        {"beat_id": "seal", "title_zh": "第三阶段：旧河道两端逐渐淤塞", "caption_zh": "泥沙塞从小到大，不再用一帧突然盖住两端。", "progress_start": 0.72, "progress_end": 0.95, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["entrance_sealing_fraction", "water_area_px"]},
+        {"beat_id": "isolated", "title_zh": "第四阶段：旧河湾成为牛轭湖", "caption_zh": "两端封闭后，主河仍连续，旁边只留下一个独立弯月形水体。", "progress_start": 0.95, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "analysis_samples": 129, "attention_metrics": ["entrance_sealing_fraction", "isolated_oxbow_count"]}
+      ]
+    },
+    {
+      "case_id": "GEO-02",
+      "title_zh": "地形雨与背风坡雨影",
+      "summary_zh": "湿空气被山地抬升后冷却凝结，在迎风坡降雨；越过山顶后下沉变暖，背风坡更干。",
+      "provider_module": "modules.video_model.stage2.cases.sentinel_programs",
+      "source_render_plan": "output/phase-6-rerun-2/GEO-02/video/deterministic/state-render-plan.json",
+      "beats": [
+        {"beat_id": "rise", "title_zh": "第一阶段：湿空气沿迎风坡上升", "caption_zh": "地形迫使空气抬升，气团位置升高、温度下降。", "progress_start": 0.0, "progress_end": 0.35, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["parcel_x_ratio", "temperature_c"]},
+        {"beat_id": "condense", "title_zh": "第二阶段：冷却使水汽凝结", "caption_zh": "相对湿度升高，云和降水主要出现在迎风坡。", "progress_start": 0.35, "progress_end": 0.6, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["relative_humidity", "rain_strength"]},
+        {"beat_id": "peak_rain", "title_zh": "第三阶段：山顶附近降雨最强", "caption_zh": "气团越过高地前释放较多水分，迎风侧更湿。", "progress_start": 0.6, "progress_end": 0.75, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["rain_strength"]},
+        {"beat_id": "rain_shadow", "title_zh": "第四阶段：背风坡下沉变暖", "caption_zh": "空气含水量已经减少，下沉升温后更难凝结，形成雨影区。", "progress_start": 0.75, "progress_end": 1.0, "dynamic_seconds": 1.7, "hold_seconds": 0.7, "attention_metrics": ["temperature_c", "relative_humidity", "rain_strength"]}
+      ]
+    }
+  ]
+}

@@ -1,4 +1,0 @@
-{"fixture_only": true, "meaning_zh": "磁铁远离并静止，电流表指零", "order": 0, "progress": 0.0, "state_id": "state_00"}
-{"fixture_only": true, "meaning_zh": "磁铁靠近，磁通增加且表针向一侧偏转", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
-{"fixture_only": true, "meaning_zh": "磁铁在近处停止，表针回零", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
-{"fixture_only": true, "meaning_zh": "磁铁撤离，表针向相反方向偏转", "order": 3, "progress": 1.0, "state_id": "state_03"}

@@ -1,7 +1,0 @@
-Positive prompt:
-
-Locked orthographic top-down scientific visualization of the exact same shallow blue water field shown in the supplied first and last frames. Exactly two fixed orange point sources remain at the same positions. Smooth circular water ripples propagate radially outward from both sources at the same steady speed and phase. The ripple radius grows continuously from the first supplied state to the last supplied state. Preserve the white rectangular boundary, blue background, framing, scale, colors, source count and source positions. One continuous physically understandable transition. No camera movement.
-
-Negative prompt:
-
-camera movement, pan, zoom, tilt, rotation, perspective change, scene change, moving sources, missing source, third source, duplicated source, source color change, waves moving inward, collapsing rings, reversed motion, random turbulence, ocean horizon, shoreline, objects, text, labels, arrows, flicker, jitter, pulsing brightness, abrupt cut, plastic CGI, blur, watermark

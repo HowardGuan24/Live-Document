@@ -1,5 +1,27 @@
 # Stage 3 changelog
 
+## Validated candidate — 2026-07-31
+
+- Completed image and motion routes for all ten formal mathematics, physics,
+  chemistry, biology and geography cases.
+- Added accepted Visual Target Packages for all five former scale gaps.
+- Added decorrelated appearance-statistic transfer so donor geometry cannot
+  leak into unrelated cases, plus typed raster and scalar operators.
+- Upgraded MATH-01 and PHYS-02 program providers to export missing mechanism
+  lines instead of drawing case-specific repairs on final images.
+- Materialized complete 49-frame, accepted-material timelines for every case;
+  PHYS-01 and GEO-01 use accepted LTX L1 routes, while eight exact, cyclic or
+  identity-sensitive cases use explicit deterministic fallbacks.
+- Preserved and reported rejected CHEM-02 L1/L2 videos: sparse keyframes fixed
+  rough timing but not crystal identity continuity.
+- Passed all eleven contracts, eleven Visual Target Packages, ten G2–G4
+  routes, accepted baseline hashes, historical delta regression and Live
+  Preview resource checks.
+
+Known production limits remain in `release_policy.json`; this release is a
+validated Stage 3 candidate, not production 1.0.
+
+
 ## Unreleased — S3.6 rerun 1
 
 - Superseded the invalid `0.1.0-alpha.1` phase-exit claim; the old output is

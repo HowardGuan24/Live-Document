@@ -1,7 +1,62 @@
+# Python caches and local environments
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
 .venv/
+venv/
 README_local.md
-__pycache__/
-*.pyc
+
+# Editors and operating-system metadata
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build, cache, and temporary directories
+build/
+dist/
+*.egg-info/
+.cache/
+tmp/
+temp/
+*.tmp
+*.log
 output.json
 outputs/
 media/
+
+# Local model weights and large generated media
+*.ckpt
+*.safetensors
+*.onnx
+*.pt
+*.pth
+*.mp4
+*.mov
+*.avi
+*.webm
+*.gif
+
+# Stage 4 is the superseded experimental workspace. The current product
+# workflow is Stage 5 and does not import Stage 4 repository code.
+/modules/video_model/stage4/
+
+# Stage 5 runtime state and development evidence are reproducible outputs,
+# not source. Formal prompts used by the product remain under workflow/.
+/modules/video_model/stage5/runs/
+/modules/video_model/stage5/reports/
+/modules/video_model/stage5/prompt/
+
+# Generated experiment and render artifacts. Keep these on local disks; the
+# source code, prompts, and configuration needed to reproduce them stay tracked.
+/modules/video_model/stage2/output/
+/modules/video_model/stage3/output/
+/modules/video_model/Re_0/phase2/runs/
+/modules/video_model/Re_0/phase1.5/flux demo/**/*.png
+/modules/video_model/stage3/visual_targets/**/style_board.html

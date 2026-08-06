@@ -22,8 +22,8 @@
     {
       "annotated_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/00_start/program.png",
-        "sha256": "323822fbe090ed66a92a5b1575c245ae09ffb3060aa9bcce373651084ee7e4d4",
-        "size_bytes": 5722
+        "sha256": "5db50c951b7ccc967e4b6f8e4d80fc6ec57ae68c33e0527667e20b44b2f7db9f",
+        "size_bytes": 5728
       },
       "clean_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/00_start/clean.png",
@@ -34,8 +34,8 @@
       "order": 0,
       "semantic_layers": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/00_start/semantic_layers.json",
-        "sha256": "bff241d766169d572a6a3917fc2084ca8d77daf63bf09ee81ba0334667e110fc",
-        "size_bytes": 5186
+        "sha256": "59434f7e998b02ed009c93edbdf08c40f2e804e4af734230fc0f7ef0e84750df",
+        "size_bytes": 6541
       },
       "state": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/00_start/state.json",
@@ -46,8 +46,8 @@
     {
       "annotated_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/01_mechanism/program.png",
-        "sha256": "151d495b7732507c51e2cab77c3272b9661cda1773dadc43e3d1b9158cbdb185",
-        "size_bytes": 6863
+        "sha256": "84f8b32009835609afff8ca11fe23b0603f0511ed81826c49ec920df8d1b96a1",
+        "size_bytes": 6862
       },
       "clean_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/01_mechanism/clean.png",
@@ -58,8 +58,8 @@
       "order": 1,
       "semantic_layers": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/01_mechanism/semantic_layers.json",
-        "sha256": "0946a38fb558dadf20d0b9cfdc3c6b7f82af396002fa4fbf210a3dee2e7ae75e",
-        "size_bytes": 5222
+        "sha256": "013a5662ec20cca930ecd42612c5292660bf525ce4744cab2f2695dbce8af155",
+        "size_bytes": 6586
       },
       "state": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/01_mechanism/state.json",
@@ -70,8 +70,8 @@
     {
       "annotated_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/program.png",
-        "sha256": "fbe9735334330250aa28dced07a963fb5a062b5260a252bf58b132a56f4dcbeb",
-        "size_bytes": 6777
+        "sha256": "85d2c9fc2617e61bb882905ea944737e42bb6b3ed18e97bbdba1005986451331",
+        "size_bytes": 6779
       },
       "clean_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/clean.png",
@@ -82,8 +82,8 @@
       "order": 2,
       "semantic_layers": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/semantic_layers.json",
-        "sha256": "abeaf008cf3e97a66385bdf48cecbcee464faddeeeb2b31dd860bcce3165f6f7",
-        "size_bytes": 5195
+        "sha256": "ac57b98105a94ffb4633be350b9702206e9fcde9210c211742f7fb77e81876dd",
+        "size_bytes": 6553
       },
       "state": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/state.json",
@@ -94,8 +94,8 @@
     {
       "annotated_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/03_end/program.png",
-        "sha256": "03ae27b2fd4b44a9e05a28381b310ef023d41cee121ffcf80d354d824e13986c",
-        "size_bytes": 7328
+        "sha256": "2faf6d597d217b124f090c9526c388d5146c191708acaf24e659515fd8aa248c",
+        "size_bytes": 7333
       },
       "clean_program_frame": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/03_end/clean.png",
@@ -106,8 +106,8 @@
       "order": 3,
       "semantic_layers": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/03_end/semantic_layers.json",
-        "sha256": "fdbf3468b39d40bd3a9592c7b8d2cd03e644223bf133e2e348b4e27c01245654",
-        "size_bytes": 5168
+        "sha256": "87c94fe0d456fc5e6c286de894fa2ecc5eb38b8521dbe8802690020631154140",
+        "size_bytes": 6520
       },
       "state": {
         "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/03_end/state.json",
@@ -128,8 +128,8 @@
     },
     "program_manifest": {
       "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/program_manifest.json",
-      "sha256": "2cd55a2c081cb1f189b2f5fcb315ee5787571f68aee02b4aa66f69b4a31500d0",
-      "size_bytes": 38838
+      "sha256": "7b51b2bff1f482f52257a7fd79ac7d0eb188984bc40df90561d600d31d53a983",
+      "size_bytes": 45005
     },
     "root": "modules/video_model/stage2/output/phase-4/programs/MATH-01",
     "sequence_spec": {
@@ -145,7 +145,8 @@
       "math-01_annotation",
       "math01_hard_boundary",
       "math01_paper_region",
-      "math01_point_identity"
+      "math01_point_identity",
+      "math01_trace_boundary"
     ],
     "layer_types": [
       "annotation",
@@ -160,7 +161,7 @@
     "source_policy": "Exported directly from deterministic program state; not inferred from the rendered screenshot."
   },
   "visual_target_package": {
-    "path": null,
-    "status": "missing"
+    "path": "modules/video_model/stage3/visual_targets/MATH-01/manifest.json",
+    "status": "accepted_project_baseline"
   }
 }

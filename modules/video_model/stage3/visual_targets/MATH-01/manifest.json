@@ -1,0 +1,39 @@
+{
+  "case_id": "MATH-01",
+  "geometry_control_separation": {
+    "appearance_source": "appearance_donor_only; donor geometry is forbidden",
+    "geometry_source": "frozen input contract + semantic layers + geometry policy",
+    "leakage_gate": "appearance_to_geometry_leakage"
+  },
+  "negative_refs": [
+    {
+      "label_zh": "坐标轴弯曲、圆不闭合、轨迹与旋转点不同步，或木纹覆盖精确墨线。",
+      "path": "modules/video_model/stage3/output/phase-7-scale-vtp/negative_refs/MATH-01.jpg",
+      "role": "appearance_and_mechanism_negative",
+      "sha256": "03effce47573309bb335ebe16ba4b7a8d1841f89b8502543aa93f0d40bc142ff",
+      "size_bytes": 171893
+    }
+  ],
+  "package_id": "VT-MATH-01-V1",
+  "positive_refs": [
+    {
+      "label_zh": "程序四关键帧：定义对象、状态和顺序。",
+      "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframe-contact-sheet.jpg",
+      "role": "accepted_mechanism_reference",
+      "sha256": "04d9c0553b74d5ecaa12fd67301d1af890129cab2f7d01feedb1ddd6d2f3736c",
+      "size_bytes": 162142
+    },
+    {
+      "label_zh": "外观供体：只借用棚拍光、纸木微纹理和克制阴影。",
+      "path": "modules/video_model/stage2/output/phase-7/route-c/MATH-02/variants/studio_pbr/03_end.png",
+      "role": "appearance_donor_only",
+      "sha256": "0a2f93702638383ceb99a221a9de822043edffda9bfd4f0ac63d7941ecfb37c0",
+      "size_bytes": 55183
+    }
+  ],
+  "rubric": "modules/video_model/stage3/visual_targets/MATH-01/rubric.json",
+  "schema_version": "1.0",
+  "status": "accepted_project_baseline",
+  "style_board": "modules/video_model/stage3/visual_targets/MATH-01/style_board.html",
+  "summary_zh": "暖白绘图纸与精密墨线；圆、坐标轴、旋转点和正弦轨迹必须保持解析几何精度。"
+}

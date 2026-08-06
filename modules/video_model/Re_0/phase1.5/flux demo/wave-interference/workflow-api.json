@@ -1,0 +1,172 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux2_dev_fp8mixed.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "mistral_3_small_flux2_fp4_mixed.safetensors",
+      "type": "flux2",
+      "device": "cpu"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "flux-demo-wave-interference.png"
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Transform the provided flat wave schematic into a realistic, scientifically accurate physics-laboratory visualization of two localized transverse wave packets traveling toward one another on the same long elastic cord.\n\nUse the input image strictly as a structural and compositional reference. Preserve the wide horizontal layout, the straight equilibrium line across the middle, the cyan wave packet on the left, the violet wave packet on the right, the large empty central region between them, and the approximate wavelength, amplitude envelope, and mirrored left-right arrangement of both packets. Keep the two packets separated at this instant and preserve their direction of travel toward the center.\n\nRender a real thin elastic cord stretched horizontally through a dark, controlled laboratory space. The cord should be physically continuous from the left edge to the right edge. Freeze the motion at the same instant shown in the reference: a damped localized transverse oscillation on the left travels rightward, while a comparable localized oscillation on the right travels leftward. Use restrained cyan and violet illumination or tracer coating to distinguish the two prepared pulses without making them appear as two disconnected ropes.\n\nThe central segment must remain nearly straight because the wave packets have not yet overlapped. Make the changing displacement of the same medium scientifically clear: the cord itself moves up and down while the disturbance propagates horizontally. Preserve the relative phase and profile of the source curves closely enough that this frame can serve as the starting state for a later interference demonstration.\n\nInclude subtle realistic laboratory context only where it supports plausibility: distant mechanical wave drivers near the far edges, soft depth of field, a matte optical bench, and faint motion-tracking illumination. Keep the cord and its waveform as the unmistakable subject. Do not add a second spatial dimension of water ripples or turn the wave into sound traveling through air.\n\nVisual style: high-quality semi-photorealistic scientific documentary still, realistic experimental physics visualization, wide straight-on framing, dark neutral laboratory, crisp cord profile, subtle cinematic lighting, high scientific readability.\n\nRemove all Chinese and English text, title bars, equations, labels, arrows, axis marks, dashed center lines, boxes, badges, progress indicators, interface elements, and graphic symbols. Do not reproduce any text.\n\nDo not merge the wave packets yet. Do not change their side positions, propagation directions, relative amplitudes, or overall envelopes. Do not create standing waves, electromagnetic beams, ocean waves, water splashes, musical instruments, people, fantasy energy effects, extra pulses, or broken rope segments. The final image should look like a real laboratory realization of the original diagram while remaining closely aligned with its geometry.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "FluxGuidance",
+    "inputs": {
+      "conditioning": [
+        "5",
+        0
+      ],
+      "guidance": 4.0
+    }
+  },
+  "7": {
+    "class_type": "VAEEncodeTiled",
+    "inputs": {
+      "pixels": [
+        "4",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "8": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ],
+      "latent": [
+        "7",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 420260802
+    }
+  },
+  "11": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 20,
+      "width": 1536,
+      "height": 864
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "13": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1536,
+      "height": 864,
+      "batch_size": 1
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "10",
+        0
+      ],
+      "guider": [
+        "9",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "11",
+        0
+      ],
+      "latent_image": [
+        "13",
+        0
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "16": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "filename_prefix": "flux_demo/wave-interference/realistic"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "case_id": "PHYS-02",
-  "derivations": [],
-  "identity_source_layer": "phys02_object_identity",
-  "identity_source_sha256": "5416086b785766eee62bf42ece6745c1a6efa4f571b1e84865cbcf99b333665d",
-  "schema_version": "1.0",
-  "state_id": "01_mechanism"
-}

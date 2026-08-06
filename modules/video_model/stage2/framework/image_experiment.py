@@ -297,7 +297,8 @@ def prepare_experiment(
         ),
         "dense_canny": (
             "从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；"
-            "它会把每圈波纹都变成硬线，是本轮负对照。"
+            "它会保留底图中的全部明显亮暗边缘，包括主体轮廓、内部结构和辅助线。"
+            "这是高约束控制；若底图有粗糙像素、文字或无关纹理，也会一并约束模型。"
         ),
         "sparse_identity_boundary": (
             "只从锁定画框和 object_identity 语义层的几何生成白线；"
@@ -550,17 +551,22 @@ def _materialize_external_reuse(
         configuration["controlnet_conditioning_scale"]
     ):
         raise ValueError("external reuse ControlNet scale mismatch")
-    reference_strength = float(
-        record.get(
-            "img2img_strength",
-            reference_metadata["render"]["strength"],
+    if configuration.get("pipeline_mode", "controlnet_img2img") == (
+        "controlnet_img2img"
+    ):
+        reference_strength = float(
+            record.get(
+                "img2img_strength",
+                reference_metadata["render"]["strength"],
+            )
         )
-    )
-    current_strength = float(
-        configuration.get("img2img_strength", spec["render"]["strength"])
-    )
-    if reference_strength != current_strength:
-        raise ValueError("external reuse Img2Img strength mismatch")
+        current_strength = float(
+            configuration.get(
+                "img2img_strength", spec["render"]["strength"]
+            )
+        )
+        if reference_strength != current_strength:
+            raise ValueError("external reuse Img2Img strength mismatch")
     source = reference_root / record["path"]
     if sha256_path(source) != record["sha256"]:
         raise ValueError(f"external reuse source hash mismatch: {source}")
@@ -822,23 +828,32 @@ def generate_experiment(
             experiment_root / job["control"]["path"]
         ).convert("RGB")
         candidate_image = Image.open(target).convert("RGB")
+        record_pipeline_mode = configuration.get(
+            "pipeline_mode", "controlnet_img2img"
+        )
         record = {
             "configuration_id": configuration["configuration_id"],
             "control_route": configuration["control_route"],
-            "pipeline_mode": configuration.get(
-                "pipeline_mode", "controlnet_img2img"
-            ),
+            "pipeline_mode": record_pipeline_mode,
             "controlnet_conditioning_scale": configuration[
                 "controlnet_conditioning_scale"
             ],
-            "img2img_strength": float(
-                configuration.get(
-                    "img2img_strength", spec["render"]["strength"]
+            "img2img_strength": (
+                float(
+                    configuration.get(
+                        "img2img_strength", spec["render"]["strength"]
+                    )
                 )
+                if record_pipeline_mode == "controlnet_img2img"
+                else None
             ),
             "seed": job["seed"],
             **artifact_record(target, experiment_root),
-            "classification": "raw SDXL ControlNet Img2Img output",
+            "classification": (
+                "raw SDXL ControlNet Img2Img output"
+                if record_pipeline_mode == "controlnet_img2img"
+                else "raw SDXL ControlNet text-to-image output"
+            ),
             "input_signature": job["signature"],
             "reused": job["reused"],
             "reused_from": job["external_reuse"],

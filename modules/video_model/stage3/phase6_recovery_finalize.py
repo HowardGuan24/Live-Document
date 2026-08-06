@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import html
 import json
-import os
 from pathlib import Path
 from typing import Any
 
@@ -31,10 +31,17 @@ def _font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
     return ImageFont.load_default()
 
 
-def _href(path: Path) -> str:
-    return os.path.relpath(path.resolve(), OUTPUT.resolve()).replace(
-        os.sep, "/"
-    )
+def _media_uri(path: Path) -> str:
+    """Embed report media so Live Preview does not depend on its URL root."""
+    mime_types = {
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".png": "image/png",
+        ".mp4": "video/mp4",
+    }
+    mime_type = mime_types[path.suffix.lower()]
+    payload = base64.b64encode(path.read_bytes()).decode("ascii")
+    return f"data:{mime_type};base64,{payload}"
 
 
 def _blind_sheet() -> tuple[Path, dict[str, Any]]:
@@ -753,12 +760,12 @@ GEO-02 通过 G0/G1，却把 S3.6 标为 passed；这违反 <code>loop.md</code>
 身份。<b>region / mask（区域遮罩）</b>是一张黑白数组：白色像素表示细胞内部，黑色
 表示不能写入细胞材质。<b>object identity（对象身份层）</b>是 JSON：每条对象有 ID、
 中心、线段、父 ID 和左/右目的地；它不是从图片里猜出来的。</p>
-<figure><img src="{_href(REPO_ROOT / 'modules/video_model/stage2/output/phase-2/BIO-01/keyframe-contact-sheet.jpg')}">
+<figure><img src="{_media_uri(REPO_ROOT / 'modules/video_model/stage2/output/phase-2/BIO-01/keyframe-contact-sheet.jpg')}">
 <figcaption>四张程序关键帧：散布的 6 条 X → 中央排列的 6 条 X → 12 条姐妹分离
 → 两个子细胞各 6 条。标签和箭头不进入写实底图。</figcaption></figure>
 <div class="grid">
-<figure><img src="{_href(REPO_ROOT / 'modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/layers/bio01_cell_region_preview.png')}"><figcaption>region 预览：只规定哪里是细胞，不规定细胞质长什么样。</figcaption></figure>
-<figure><img src="{_href(REPO_ROOT / 'modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/layers/bio01_chromosome_identity_preview.png')}"><figcaption>identity 预览：12 条姐妹各有稳定 ID 和父对象。</figcaption></figure>
+<figure><img src="{_media_uri(REPO_ROOT / 'modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/layers/bio01_cell_region_preview.png')}"><figcaption>region 预览：只规定哪里是细胞，不规定细胞质长什么样。</figcaption></figure>
+<figure><img src="{_media_uri(REPO_ROOT / 'modules/video_model/stage2/output/phase-2/BIO-01/keyframes/02_result/layers/bio01_chromosome_identity_preview.png')}"><figcaption>identity 预览：12 条姐妹各有稳定 ID 和父对象。</figcaption></figure>
 </div>
 <p>机器门读到的对象数是 <code>{identity}</code>；把一条复制 X 算作两个谱系单位后，
 四帧总量均为 <code>{lineage}</code>。最终六个父 ID 每个恰好对应两个孩子，左右各 6。</p>
@@ -770,8 +777,8 @@ GEO-02 通过 G0/G1，却把 S3.6 标为 passed；这违反 <code>loop.md</code>
 读取白线和扩散中间状态，返回结构残差给 <b>SDXL Base 1.0</b>；SDXL 同时读取文字，
 最后输出 RGB 图片。</p>
 <div class="grid">
-<figure><img src="{_href(REPO_ROOT / 'modules/video_model/stage2/output/phase-3/EXP-20260729-013/controls/dense_canny.png')}"><figcaption>模型实际看到的 dense Canny 控制图。它只用于当年生成外观供体，本轮 State Renderer 不再读取它。</figcaption></figure>
-<figure><img src="{_href(REPO_ROOT / 'modules/video_model/stage2/output/phase-3/EXP-20260729-013/candidates-labeled.jpg')}"><figcaption>当年四张 raw 模型候选，底部编号是 seed。供体 3104 位于左下。</figcaption></figure>
+<figure><img src="{_media_uri(REPO_ROOT / 'modules/video_model/stage2/output/phase-3/EXP-20260729-013/controls/dense_canny.png')}"><figcaption>模型实际看到的 dense Canny 控制图。它只用于当年生成外观供体，本轮 State Renderer 不再读取它。</figcaption></figure>
+<figure><img src="{_media_uri(REPO_ROOT / 'modules/video_model/stage2/output/phase-3/EXP-20260729-013/candidates-labeled.jpg')}"><figcaption>当年四张 raw 模型候选，底部编号是 seed。供体 3104 位于左下。</figcaption></figure>
 </div>
 <details open><summary>当年模型的完整提示词</summary>
 <p><b>正向：</b></p><pre>{html.escape(prompt_positive)}</pre>
@@ -791,9 +798,9 @@ GEO-02 通过 G0/G1，却把 S3.6 标为 passed；这违反 <code>loop.md</code>
 <p class="flow">负对照 raw_underlay：供体 RGB 直接贴进程序 cell region。<br>
 候选 highpass_statistics：供体 − 5 px 模糊供体 → 除以标准差 → 截断异常值 →
 只把细颗粒残差加到固定细胞质颜色；细胞轮廓和染色体全部来自程序。</p>
-<figure><img src="{_href(OUTPUT / 'report-assets/target-comparison.jpg')}">
+<figure><img src="{_media_uri(OUTPUT / 'report-assets/target-comparison.jpg')}">
 <figcaption>上排负对照带入橙色团块和粉色纵带；下排候选保留颗粒质感，却没有复制供体对象布局。</figcaption></figure>
-<figure><img src="{_href(OUTPUT / 'report-assets/blind-image-comparison.jpg')}">
+<figure><img src="{_media_uri(OUTPUT / 'report-assets/blind-image-comparison.jpg')}">
 <figcaption>可回放的匿名 A/B 表；解盲记录在 <a href="blind-map.json">blind-map.json</a>。</figcaption></figure>
 <table><tr><th>方案</th><th>材质</th><th>光照</th><th>稳定</th><th>不塑料</th><th>教学</th><th>加权</th><th>硬门</th></tr>
 <tr><td>A / 高频统计</td><td>4.2</td><td>4.0</td><td>5.0</td><td>4.1</td><td>4.6</td><td class="pass">{visual['options']['A']['weighted_score']}</td><td class="pass">通过</td></tr>
@@ -827,29 +834,29 @@ GEO-02 通过 G0/G1，却把 S3.6 标为 passed；这违反 <code>loop.md</code>
 <tr><td>seed</td><td>2026073120（L2 后两段 +1/+2）</td><td>固定视频噪声起点，禁止看结果后补抽。</td></tr></table>
 
 <h3>L1：首尾 + 运动合同</h3>
-<figure><img src="{_href(OUTPUT / 'BIO-01/video/L1/generated-frames.jpg')}"><figcaption>
+<figure><img src="{_media_uri(OUTPUT / 'BIO-01/video/L1/generated-frames.jpg')}"><figcaption>
 端点通过，但中段从一个细胞变成中央加左右两个，共三个；洋红身份像素峰值约 2.50 倍。
 最大相邻跳变 {l1['consecutive_metrics']['maximum']} &gt; 12。<span class="fail">拒绝</span></figcaption></figure>
-<video controls preload="metadata" src="{_href(OUTPUT / 'BIO-01/video/L1/transition.mp4')}"></video>
+<video controls preload="metadata" src="{_media_uri(OUTPUT / 'BIO-01/video/L1/transition.mp4')}"></video>
 
 <h3>L2：四张关键帧分成三个相邻片段</h3>
-<figure><img src="{_href(OUTPUT / 'BIO-01/video/L2/generated-frames.jpg')}"><figcaption>
+<figure><img src="{_media_uri(OUTPUT / 'BIO-01/video/L2/generated-frames.jpg')}"><figcaption>
 四个边界 MAE 都小于 10，最大跳变降至 {l2['consecutive_metrics']['maximum']}；但第二段把
 染色体变成大量波浪状结构，身份像素峰值约 2.51 倍。边界正确不等于中间机制正确。
 <span class="fail">拒绝</span></figcaption></figure>
-<video controls preload="metadata" src="{_href(OUTPUT / 'BIO-01/video/L2/transition.mp4')}"></video>
+<video controls preload="metadata" src="{_media_uri(OUTPUT / 'BIO-01/video/L2/transition.mp4')}"></video>
 
 <h3>当前回退：49 个程序状态全部走同一 State Renderer</h3>
 <p>这次没有退回原始绿色程序视频。程序 provider 在每个 <code>frame_index/48</code>
 重新导出 region 与 identity；同一张 SDXL 材质供体、同一 highpass 规则和同一对象样式
 渲染全部 49 帧。也就是说，程序连续帧真正进入了最终写实运动链。</p>
-<figure><img src="{_href(OUTPUT / 'BIO-01/video/deterministic/generated-frames.jpg')}"><figcaption>
+<figure><img src="{_media_uri(OUTPUT / 'BIO-01/video/deterministic/generated-frames.jpg')}"><figcaption>
 一个细胞对齐 6 条 X，分离为 12 条姐妹，膜收腰后成为两个子细胞。端点 MAE
 {fallback['g4']['endpoint_metrics']['first']['mean_absolute_pixel_error_0_255']} /
 {fallback['g4']['endpoint_metrics']['last']['mean_absolute_pixel_error_0_255']}，
 最大跳变 {fallback['g4']['consecutive_metrics']['maximum']}。<span class="pass">通过</span>
 </figcaption></figure>
-<video controls preload="metadata" src="{_href(OUTPUT / 'BIO-01/video/deterministic/transition.mp4')}"></video>
+<video controls preload="metadata" src="{_media_uri(OUTPUT / 'BIO-01/video/deterministic/transition.mp4')}"></video>
 <p class="muted">诚实限制：这是程序确定性运动 + 生成式材质，不是 LTX 生成运动；只在
 BIO/object_division 登记为 case-specific fallback。</p>
 
@@ -877,29 +884,37 @@ BIO/object_division 登记为 case-specific fallback。</p>
 互斥外观选择，Agent 不能自动把 provisional 改成 accepted；在此之前也不允许运行正式模型候选。</p>
 
 <h2>9. 从零复现</h2>
-<pre># 1. 图片：预检、两条确定性对照、硬门和跨案例回归
-.venv/bin/python -m modules.video_model.stage3.phase6_recovery render
+<pre># 0. 自动定位搬迁后的项目；在仓库内任意目录执行均可
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT"
+IMAGE_PYTHON="$REPO_ROOT/.venv/bin/python"
+VIDEO_PYTHON=/workspace/comfyui-rocm-env/bin/python
+
+# 1. 图片：预检、两条确定性对照、硬门和跨案例回归
+"$IMAGE_PYTHON" -m modules.video_model.stage3.phase6_recovery render
 
 # 2. 视频模型预检与候选（需要已部署 ComfyUI 服务）
-PYTHONPATH=/workspace/Live-Document /workspace/comfyui-rocm-env/bin/python \\
+PYTHONPATH="$REPO_ROOT" "$VIDEO_PYTHON" \\
   -m modules.video_model.stage3.phase6_bio_video prepare --level L1
-PYTHONPATH=/workspace/Live-Document /workspace/comfyui-rocm-env/bin/python \\
+PYTHONPATH="$REPO_ROOT" "$VIDEO_PYTHON" \\
   -m modules.video_model.stage3.phase6_bio_video generate --level L1
-PYTHONPATH=/workspace/Live-Document /workspace/comfyui-rocm-env/bin/python \\
+PYTHONPATH="$REPO_ROOT" "$VIDEO_PYTHON" \\
   -m modules.video_model.stage3.phase6_bio_video audit --level L1
 
 # L2 同理，把 L1 改为 L2
 
 # 3. 零模型的 49 帧写实回退
-PYTHONPATH=/workspace/Live-Document /workspace/comfyui-rocm-env/bin/python \\
+PYTHONPATH="$REPO_ROOT" "$VIDEO_PYTHON" \\
   -m modules.video_model.stage3.phase6_bio_fallback
 
 # 4. 账本、报告和测试
-.venv/bin/python -m modules.video_model.stage3.phase6_recovery_finalize
-.venv/bin/python -m pytest -q modules/video_model/stage3/tests</pre>
+"$IMAGE_PYTHON" -m modules.video_model.stage3.phase6_recovery_finalize
+"$IMAGE_PYTHON" -m pytest -q modules/video_model/stage3/tests</pre>
 <p class="small">图片阶段用项目 <code>.venv</code>；视频编解码使用已经部署并登记的
-<code>/workspace/comfyui-rocm-env</code>，因为项目 .venv 没有 <code>av</code>。没有静默安装
-或替换依赖。完整文件哈希见 <a href="phase6-rerun-manifest.json">phase6-rerun-manifest.json</a>。
+<code>VIDEO_PYTHON</code> 指向的外部环境，因为项目 .venv 没有 <code>av</code>。
+本次的已部署值是 <code>/workspace/comfyui-rocm-env/bin/python</code>；如果外部环境也搬家，
+只需修改上面一行，不用改项目路径。没有静默安装或替换依赖。完整文件哈希见
+<a href="phase6-rerun-manifest.json">phase6-rerun-manifest.json</a>。
 </p>
 </main></body></html>"""
     (OUTPUT / "report.html").write_text(page, encoding="utf-8")

@@ -1,0 +1,16 @@
+{
+  "evidence": {
+    "path": "modules/video_model/stage3/output/phase-9-scale-motion/CHEM-02/L2/g4.json",
+    "sha256": "32a6f542f4966f44fc388c8327e3de281305f7564064285f0ac6821b3819c1f5",
+    "size_bytes": 7491
+  },
+  "experiment_id": "EXP-S3-20260731-033",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 3
+  },
+  "passed": false,
+  "reason_zh": "CHEM-02 的 L2 把首次成核推迟到第 21 帧并改善整体时序，但微小晶体仍在相邻帧消失重现，四晶体也短暂变为三个；稀疏边界没有提供跨段对象身份。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}

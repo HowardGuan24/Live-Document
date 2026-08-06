@@ -1,1 +1,0 @@
-changed geometry, extra object, missing object, warped edge, future trace, text, label, plastic, blur, watermark

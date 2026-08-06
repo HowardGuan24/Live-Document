@@ -1,4 +1,0 @@
-{"fixture_only": true, "meaning_zh": "透明溶液中没有可见晶体", "order": 0, "progress": 0.0, "state_id": "state_00"}
-{"fixture_only": true, "meaning_zh": "水位下降且浓度上升但未成核", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
-{"fixture_only": true, "meaning_zh": "少数带身份的晶核首次出现", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
-{"fixture_only": true, "meaning_zh": "已有晶体长大且溶液继续减少", "order": 3, "progress": 1.0, "state_id": "state_03"}

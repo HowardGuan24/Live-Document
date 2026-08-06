@@ -35,6 +35,49 @@ def _luminance(rgb: np.ndarray) -> np.ndarray:
     )
 
 
+def _decorrelated_highpass(
+    anchor: np.ndarray,
+    *,
+    radius: float,
+    seed: int,
+    smoothing_radius: float,
+) -> np.ndarray:
+    """Keep donor residual statistics while destroying donor coordinates."""
+    blurred = np.asarray(
+        Image.fromarray(np.uint8(np.clip(anchor, 0, 255))).filter(
+            ImageFilter.GaussianBlur(radius)
+        ),
+        dtype=np.float32,
+    )
+    residual = anchor - blurred
+    generator = np.random.default_rng(seed)
+    permutation = generator.permutation(residual.shape[0] * residual.shape[1])
+    shuffled = residual.reshape(-1, residual.shape[2])[permutation].reshape(
+        residual.shape
+    )
+    if smoothing_radius > 0:
+        channels = []
+        for channel in range(shuffled.shape[2]):
+            encoded = np.uint8(
+                np.rint(np.clip(shuffled[..., channel] * 6.0 + 128.0, 0, 255))
+            )
+            channels.append(
+                (
+                    np.asarray(
+                        Image.fromarray(encoded, mode="L").filter(
+                            ImageFilter.GaussianBlur(smoothing_radius)
+                        ),
+                        dtype=np.float32,
+                    )
+                    - 128.0
+                )
+                / 6.0
+            )
+        shuffled = np.stack(channels, axis=-1)
+    shuffled /= max(float(shuffled.std()), 1.0)
+    return np.clip(shuffled, -2.5, 2.5)
+
+
 def _bbox(geometry: dict[str, Any]) -> tuple[float, float, float, float]:
     if "bbox_xyxy" in geometry:
         return tuple(float(value) for value in geometry["bbox_xyxy"])
@@ -134,7 +177,11 @@ def _base_canvas(
     """
     if spec is None or spec["mode"] == "anchor":
         return anchor.copy()
-    if spec["mode"] != "constant_with_low_frequency_variation":
+    if spec["mode"] not in {
+        "constant_with_low_frequency_variation",
+        "constant_with_highpass_statistics",
+        "constant_with_shuffled_highpass_statistics",
+    }:
         raise ValueError(f"unsupported base canvas mode: {spec['mode']}")
     height, width = anchor.shape[:2]
     yy, xx = np.mgrid[0:height, 0:width]
@@ -150,6 +197,34 @@ def _base_canvas(
             np.sin(xx / period_x) + np.cos(yy / period_y)
         )
         base += variation[..., None]
+    if spec["mode"] == "constant_with_highpass_statistics":
+        radius = float(spec.get("highpass_radius_px", 7.0))
+        blurred = np.asarray(
+            Image.fromarray(np.uint8(np.clip(anchor, 0, 255))).filter(
+                ImageFilter.GaussianBlur(radius)
+            ),
+            dtype=np.float32,
+        )
+        residual = anchor - blurred
+        residual /= max(float(residual.std()), 1.0)
+        residual = np.clip(residual, -2.5, 2.5)
+        gain = np.asarray(
+            spec.get("texture_gain_rgb", [4.0, 4.0, 4.0]),
+            dtype=np.float32,
+        )
+        base += residual * gain[None, None, :]
+    elif spec["mode"] == "constant_with_shuffled_highpass_statistics":
+        residual = _decorrelated_highpass(
+            anchor,
+            radius=float(spec.get("highpass_radius_px", 7.0)),
+            seed=int(spec.get("shuffle_seed", 0)),
+            smoothing_radius=float(spec.get("smoothing_radius_px", 0.65)),
+        )
+        gain = np.asarray(
+            spec.get("texture_gain_rgb", [4.0, 4.0, 4.0]),
+            dtype=np.float32,
+        )
+        base += residual * gain[None, None, :]
     return np.clip(base, 0, 255)
 
 
@@ -531,7 +606,71 @@ def _object_overlay(
             source_anchor_bbox=source_anchor_bbox,
             target_anchor_bbox=target_anchor_bbox,
         )
-        if "bbox_xyxy" in geometry:
+        split_colors = style.get("split_fill_rgb")
+        if split_colors:
+            object_mask = Image.new("L", output_size, 0)
+            mask_draw = ImageDraw.Draw(object_mask)
+            if "bbox_xyxy" in geometry:
+                mask_draw.ellipse(tuple(geometry["bbox_xyxy"]), fill=alpha)
+            elif "points" in geometry:
+                mask_draw.polygon(
+                    [tuple(value) for value in geometry["points"]], fill=alpha
+                )
+            bounds = _bbox(geometry)
+            axis = style.get("split_axis", "x")
+            fraction = float(style.get("split_fraction", 0.5))
+            colored = Image.new("RGBA", output_size, (0, 0, 0, 0))
+            colored_draw = ImageDraw.Draw(colored)
+            if axis == "x":
+                split = bounds[0] + (bounds[2] - bounds[0]) * fraction
+                rectangles = [
+                    (bounds[0], bounds[1], split, bounds[3]),
+                    (split, bounds[1], bounds[2], bounds[3]),
+                ]
+            elif axis == "y":
+                split = bounds[1] + (bounds[3] - bounds[1]) * fraction
+                rectangles = [
+                    (bounds[0], bounds[1], bounds[2], split),
+                    (bounds[0], split, bounds[2], bounds[3]),
+                ]
+            else:
+                raise ValueError("split_axis must be x or y")
+            for rectangle, rgb in zip(rectangles, split_colors):
+                colored_draw.rectangle(rectangle, fill=tuple(rgb) + (alpha,))
+            colored.putalpha(object_mask)
+            overlay.alpha_composite(colored)
+            if "bbox_xyxy" in geometry:
+                draw.ellipse(
+                    tuple(geometry["bbox_xyxy"]), outline=outline, width=2
+                )
+            else:
+                draw.polygon(
+                    [tuple(value) for value in geometry["points"]],
+                    outline=outline,
+                )
+        elif style.get("facet_fill_rgb") and "points" in geometry:
+            points = [tuple(value) for value in geometry["points"]]
+            center = (
+                sum(point[0] for point in points) / len(points),
+                sum(point[1] for point in points) / len(points),
+            )
+            facet_colors = style["facet_fill_rgb"]
+            for facet_index, point in enumerate(points):
+                next_point = points[(facet_index + 1) % len(points)]
+                rgb = facet_colors[facet_index % len(facet_colors)]
+                draw.polygon(
+                    [center, point, next_point],
+                    fill=tuple(rgb) + (alpha,),
+                )
+            draw.line(points + [points[0]], fill=outline, width=2)
+            highlight = style.get("facet_highlight_rgb")
+            if highlight:
+                draw.line(
+                    [points[0], center, points[-1]],
+                    fill=tuple(highlight) + (alpha,),
+                    width=1,
+                )
+        elif "bbox_xyxy" in geometry:
             box = tuple(geometry["bbox_xyxy"])
             draw.ellipse(box, fill=fill, outline=outline, width=2)
         elif "points" in geometry:
@@ -616,6 +755,93 @@ def _region_fill(
     }
 
 
+def _raster_overlay(
+    image: np.ndarray,
+    contract: dict[str, Any],
+    semantic: dict[str, Any],
+    config: dict[str, Any],
+    repo_root: Path,
+) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """Draw a typed semantic raster without interpreting screenshot edges."""
+    value, record, path = _load_layer_data(
+        contract, semantic, config["layer_id"], repo_root
+    )
+    array = np.asarray(value, dtype=np.float32)
+    if array.ndim != 2:
+        raise ValueError("raster_overlay requires a two-dimensional layer")
+    if array.shape != image.shape[:2]:
+        array = _resize_array(
+            array, (image.shape[1], image.shape[0]), nearest=True
+        )
+    threshold = float(config.get("threshold", 0.0))
+    mask = array > threshold
+    clip = config.get("clip_normalized_xyxy")
+    if clip is not None:
+        height, width = mask.shape
+        x0 = int(round(float(clip[0]) * width))
+        y0 = int(round(float(clip[1]) * height))
+        x1 = int(round(float(clip[2]) * width))
+        y1 = int(round(float(clip[3]) * height))
+        allowed = np.zeros_like(mask)
+        allowed[
+            max(0, y0) : min(height, y1),
+            max(0, x0) : min(width, x1),
+        ] = True
+        mask &= allowed
+    width_px = int(config.get("width_px", 1))
+    if width_px > 1:
+        if width_px % 2 == 0:
+            width_px += 1
+        mask = np.asarray(
+            Image.fromarray(np.uint8(mask) * 255).filter(
+                ImageFilter.MaxFilter(width_px)
+            )
+        ) > 0
+    output = image.copy()
+    shadow_alpha = float(config.get("shadow_alpha", 0.0))
+    shadow_mask = np.zeros_like(mask, dtype=np.float32)
+    if shadow_alpha:
+        shadow_mask = (
+            np.asarray(
+                Image.fromarray(np.uint8(mask) * 255).filter(
+                    ImageFilter.GaussianBlur(
+                        float(config.get("shadow_radius_px", 2.0))
+                    )
+                ),
+                dtype=np.float32,
+            )
+            / 255.0
+        )
+        offset = config.get("shadow_offset_xy", [1, 1])
+        shadow_mask = np.roll(
+            shadow_mask,
+            (int(offset[1]), int(offset[0])),
+            axis=(0, 1),
+        )
+        shadow_rgb = np.asarray(
+            config.get("shadow_rgb", [20, 25, 25]), dtype=np.float32
+        )
+        shadow_strength = np.clip(
+            shadow_mask * shadow_alpha, 0.0, 1.0
+        )
+        output = (
+            output * (1.0 - shadow_strength[..., None])
+            + shadow_rgb * shadow_strength[..., None]
+        )
+    color = np.asarray(config["rgb"], dtype=np.float32)
+    line_alpha = mask.astype(np.float32) * float(config.get("alpha", 1.0))
+    output = output * (1.0 - line_alpha[..., None]) + color * line_alpha[..., None]
+    return np.clip(output, 0, 255), mask | (shadow_mask > 0), {
+        "operator_type": "raster_overlay",
+        "source_layer_type": record["layer_type"],
+        "source_raster": file_record(path, repo_root),
+        "source_pixel_count": int((array > threshold).sum()),
+        "rendered_pixel_count": int(mask.sum()),
+        "clip_normalized_xyxy": clip,
+        "width_px": width_px,
+    }
+
+
 def _connected_component_count(mask: np.ndarray) -> int:
     """Count 8-connected regions without adding a runtime dependency."""
     remaining = mask.astype(bool).copy()
@@ -661,20 +887,72 @@ def _region_material(
             )
             > 0
         )
+    material_source_path = config.get("material_source_path")
+    if material_source_path:
+        material_path = repo_root / material_source_path
+        material_anchor = np.asarray(
+            Image.open(material_path)
+            .convert("RGB")
+            .resize(
+                (anchor.shape[1], anchor.shape[0]),
+                Image.Resampling.LANCZOS,
+            ),
+            dtype=np.float32,
+        )
+    else:
+        material_path = None
+        material_anchor = anchor
     mode = config["transfer_mode"]
     if mode == "raw_underlay":
-        material = anchor.copy()
-    elif mode == "highpass_statistics":
+        material = material_anchor.copy()
+    elif mode == "translucent_tint":
+        # Keep scene-scale reflection and bench detail from an empty-vessel
+        # appearance anchor, then add only a restrained optical tint inside
+        # the program-owned region.  This is useful for transparent media:
+        # replacing every pixel with a flat RGB value makes a photograph look
+        # like a diagram, while copying the raw anchor alone makes the liquid
+        # invisible.
+        tint = np.asarray(config["base_rgb"], dtype=np.float32)
+        tint_alpha = float(config.get("tint_alpha", 0.2))
+        if not 0.0 <= tint_alpha <= 1.0:
+            raise ValueError("translucent_tint tint_alpha must be in [0, 1]")
+        material = (
+            material_anchor * (1.0 - tint_alpha) + tint * tint_alpha
+        )
+        depth_radius = float(config.get("depth_radius_px", 18.0))
+        depth_gain = float(config.get("depth_gain", 0.0))
+        if depth_gain:
+            depth = (
+                np.asarray(
+                    Image.fromarray(np.uint8(mask) * 255).filter(
+                        ImageFilter.GaussianBlur(depth_radius)
+                    ),
+                    dtype=np.float32,
+                )
+                / 255.0
+            )
+            material += depth[..., None] * depth_gain
+    elif mode in {"highpass_statistics", "shuffled_highpass_statistics"}:
         radius = float(config["highpass_radius_px"])
         blurred = np.asarray(
             Image.fromarray(
-                np.uint8(np.clip(anchor, 0, 255)), mode="RGB"
+                np.uint8(np.clip(material_anchor, 0, 255)), mode="RGB"
             ).filter(ImageFilter.GaussianBlur(radius)),
             dtype=np.float32,
         )
-        residual = anchor - blurred
-        residual /= max(float(residual.std()), 1.0)
-        residual = np.clip(residual, -2.5, 2.5)
+        if mode == "shuffled_highpass_statistics":
+            residual = _decorrelated_highpass(
+                material_anchor,
+                radius=radius,
+                seed=int(config.get("shuffle_seed", 0)),
+                smoothing_radius=float(
+                    config.get("smoothing_radius_px", 0.65)
+                ),
+            )
+        else:
+            residual = material_anchor - blurred
+            residual /= max(float(residual.std()), 1.0)
+            residual = np.clip(residual, -2.5, 2.5)
         base_rgb = np.asarray(config["base_rgb"], dtype=np.float32)
         texture_gain = np.asarray(
             config["texture_gain_rgb"], dtype=np.float32
@@ -701,7 +979,40 @@ def _region_material(
         raise ValueError(f"unsupported region material mode: {mode}")
 
     output = image.copy()
-    output[mask] = material[mask]
+    shadow_alpha = float(config.get("shadow_alpha", 0.0))
+    if shadow_alpha:
+        shadow = (
+            np.asarray(
+                Image.fromarray(np.uint8(mask) * 255).filter(
+                    ImageFilter.GaussianBlur(
+                        float(config.get("shadow_blur_radius_px", 2.0))
+                    )
+                ),
+                dtype=np.float32,
+            )
+            / 255.0
+        )
+        offset = config.get("shadow_offset_xy", [2, 2])
+        shadow = np.roll(
+            shadow,
+            (int(offset[1]), int(offset[0])),
+            axis=(0, 1),
+        )
+        shadow_mix = np.clip(shadow * shadow_alpha, 0.0, 1.0)
+        shadow_rgb = np.asarray(
+            config.get("shadow_rgb", [52, 58, 56]), dtype=np.float32
+        )
+        output = (
+            output * (1.0 - shadow_mix[..., None])
+            + shadow_rgb * shadow_mix[..., None]
+        )
+    material_alpha = float(config.get("material_alpha", 1.0))
+    if not 0.0 <= material_alpha <= 1.0:
+        raise ValueError("region material_alpha must be in [0, 1]")
+    output[mask] = (
+        output[mask] * (1.0 - material_alpha)
+        + material[mask] * material_alpha
+    )
     membrane_width = int(config["membrane_width_px"])
     if membrane_width < 3 or membrane_width % 2 == 0:
         raise ValueError("membrane_width_px must be an odd integer >= 3")
@@ -739,8 +1050,17 @@ def _region_material(
         "appearance_source_usage": (
             "full_rgb_underlay"
             if mode == "raw_underlay"
+            else "anchor_reflections_plus_program_region_tint"
+            if mode == "translucent_tint"
             else "normalized_high_frequency_statistics_only"
         ),
+        "material_source": (
+            file_record(material_path, repo_root)
+            if material_path is not None
+            else "appearance_anchor"
+        ),
+        "material_alpha": material_alpha,
+        "shadow_alpha": shadow_alpha,
     }
 
 
@@ -898,7 +1218,19 @@ def _object_material(
         np.asarray(value, dtype=np.float32)
         for value in config["palette_rgb"]
     ]
-    texture = _luminance(anchor)
+    texture_source_path = config.get("texture_source_path")
+    if texture_source_path:
+        texture_path = repo_root / texture_source_path
+        texture_image = np.asarray(
+            Image.open(texture_path)
+            .convert("RGB")
+            .resize((anchor.shape[1], anchor.shape[0]), Image.Resampling.LANCZOS),
+            dtype=np.float32,
+        )
+    else:
+        texture_path = None
+        texture_image = anchor
+    texture = _luminance(texture_image)
     texture = (texture - texture.mean()) / max(float(texture.std()), 1.0)
     yy, xx = np.mgrid[0 : image.shape[0], 0 : image.shape[1]]
     output = image.copy()
@@ -922,6 +1254,28 @@ def _object_material(
             (image.shape[1], image.shape[0]), points
         )
         masks.append(mask)
+        shadow_alpha = float(config.get("shadow_alpha", 0.0))
+        if shadow_alpha:
+            shadow_image = Image.fromarray(np.uint8(mask) * 255).filter(
+                ImageFilter.GaussianBlur(
+                    float(config.get("shadow_blur_radius_px", 2.0))
+                )
+            )
+            shadow = np.asarray(shadow_image, dtype=np.float32) / 255.0
+            offset = config.get("shadow_offset_xy", [2, 2])
+            shadow = np.roll(
+                shadow,
+                (int(offset[1]), int(offset[0])),
+                axis=(0, 1),
+            )
+            alpha = np.clip(shadow * shadow_alpha, 0.0, 1.0)
+            shadow_rgb = np.asarray(
+                config.get("shadow_rgb", [52, 58, 56]), dtype=np.float32
+            )
+            output = (
+                output * (1.0 - alpha[..., None])
+                + shadow_rgb * alpha[..., None]
+            )
         p0, p1, p2 = (
             np.asarray(points[i], dtype=np.float32) for i in range(3)
         )
@@ -952,6 +1306,21 @@ def _object_material(
         colored = palette[index % len(palette)][None, None, :] * value[..., None]
         bevel = _mask_edges(mask, int(config["bevel_width_px"]))
         colored += bevel[..., None] * float(config["bevel_gain"])
+        facet_factors = config.get("facet_light_factors")
+        if facet_factors and len(points) >= 3:
+            center = [
+                sum(point[0] for point in points) / len(points),
+                sum(point[1] for point in points) / len(points),
+            ]
+            for facet_index, point in enumerate(points):
+                triangle = _polygon_mask(
+                    (image.shape[1], image.shape[0]),
+                    [center, point, points[(facet_index + 1) % len(points)]],
+                )
+                factor = float(
+                    facet_factors[facet_index % len(facet_factors)]
+                )
+                colored[triangle] *= factor
         output[mask] = np.clip(colored[mask], 0, 255)
         fixed_uv = [
             (0.18, 0.18),
@@ -1018,7 +1387,13 @@ def _object_material(
         "material_coordinate_system": config[
             "material_coordinate_system"
         ],
+        "texture_source": (
+            file_record(texture_path, repo_root)
+            if texture_path is not None
+            else "appearance_anchor"
+        ),
         "object_local_luminance_samples": samples,
+        "shadow_alpha": float(config.get("shadow_alpha", 0.0)),
     }
 
 
@@ -1085,6 +1460,176 @@ def _height_normal(
     }
 
 
+def _state_value(state: dict[str, Any], dotted_path: str) -> float:
+    value: Any = state
+    for key in dotted_path.split("."):
+        if not isinstance(value, dict) or key not in value:
+            raise ValueError(f"state field is missing: {dotted_path}")
+        value = value[key]
+    if not isinstance(value, (int, float)):
+        raise ValueError(f"state field is not numeric: {dotted_path}")
+    return float(value)
+
+
+def _scalar_field_overlay(
+    image: np.ndarray,
+    contract: dict[str, Any],
+    semantic: dict[str, Any],
+    state: dict[str, Any],
+    config: dict[str, Any],
+    repo_root: Path,
+) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """Render a program scalar field as a soft volume or sparse streaks.
+
+    The core does not attach a scientific meaning to the values.  A versioned
+    Case plan supplies the color, threshold, optional state modulation and
+    allowed normalized canvas region.
+    """
+    field, _, path = _load_layer_data(
+        contract,
+        semantic,
+        config["scalar_layer_id"],
+        repo_root,
+    )
+    field = np.asarray(field, dtype=np.float32)
+    if field.ndim != 2:
+        raise ValueError("scalar_field_overlay requires a two-dimensional field")
+    if field.shape != image.shape[:2]:
+        field = _resize_array(
+            field,
+            (image.shape[1], image.shape[0]),
+        )
+    value_min, value_max = [
+        float(value) for value in config.get("value_range", [0.0, 1.0])
+    ]
+    if value_max <= value_min:
+        raise ValueError("scalar overlay value_range must increase")
+    normalized = np.clip(
+        (field - value_min) / (value_max - value_min), 0.0, 1.0
+    )
+    threshold = float(config["threshold"])
+    if not 0.0 <= threshold < 1.0:
+        raise ValueError("scalar overlay threshold must be in [0, 1)")
+    strength = np.clip(
+        (normalized - threshold) / max(1.0 - threshold, 1e-6),
+        0.0,
+        1.0,
+    ) ** float(config.get("gamma", 1.0))
+
+    state_modulation = config.get("state_modulation")
+    state_value = None
+    state_factor = 1.0
+    if state_modulation:
+        state_value = _state_value(state, state_modulation["field"])
+        lower = float(state_modulation["input_range"][0])
+        upper = float(state_modulation["input_range"][1])
+        if upper <= lower:
+            raise ValueError("state modulation input_range must increase")
+        state_factor = float(
+            np.clip((state_value - lower) / (upper - lower), 0.0, 1.0)
+        ) ** float(state_modulation.get("gamma", 1.0))
+        strength *= state_factor
+
+    height, width = field.shape
+    clip = config.get("clip_normalized_xyxy", [0.0, 0.0, 1.0, 1.0])
+    x0 = int(round(float(clip[0]) * width))
+    y0 = int(round(float(clip[1]) * height))
+    x1 = int(round(float(clip[2]) * width))
+    y1 = int(round(float(clip[3]) * height))
+    if not (0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height):
+        raise ValueError("invalid scalar overlay clip_normalized_xyxy")
+    allowed = np.zeros((height, width), dtype=bool)
+    allowed[y0:y1, x0:x1] = True
+    strength *= allowed
+
+    mode = config["render_mode"]
+    color = np.asarray(config["color_rgb"], dtype=np.float32)
+    maximum_alpha = float(config["maximum_alpha"])
+    if not 0.0 <= maximum_alpha <= 1.0:
+        raise ValueError("maximum_alpha must be in [0, 1]")
+    record: dict[str, Any] = {
+        "operator_type": "scalar_field_overlay",
+        "source_scalar": file_record(path, repo_root),
+        "render_mode": mode,
+        "state_modulation_field": (
+            state_modulation["field"] if state_modulation else None
+        ),
+        "state_modulation_value": state_value,
+        "state_modulation_factor": round(state_factor, 8),
+        "field_min": round(float(field.min()), 8),
+        "field_max": round(float(field.max()), 8),
+    }
+
+    if mode == "soft_tint":
+        alpha_image = Image.fromarray(
+            np.uint8(np.rint(strength * maximum_alpha * 255)),
+            mode="L",
+        )
+        blur_radius = float(config.get("blur_radius_px", 0.0))
+        if blur_radius:
+            alpha_image = alpha_image.filter(
+                ImageFilter.GaussianBlur(blur_radius)
+            )
+        alpha = np.asarray(alpha_image, dtype=np.float32) / 255.0
+        output = (
+            image * (1.0 - alpha[..., None])
+            + color[None, None, :] * alpha[..., None]
+        )
+        mutable = alpha > 0
+        record["active_pixel_count"] = int(mutable.sum())
+    elif mode == "streaks":
+        overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+        draw = ImageDraw.Draw(overlay)
+        grid_x = int(config["grid_step_px"][0])
+        grid_y = int(config["grid_step_px"][1])
+        dx = int(config["line_delta_px"][0])
+        dy = int(config["line_delta_px"][1])
+        line_width = int(config["line_width_px"])
+        if min(grid_x, grid_y, line_width) <= 0:
+            raise ValueError("streak grid and line width must be positive")
+        streak_count = 0
+        for y in range(y0 + grid_y // 2, y1, grid_y):
+            for x in range(x0 + grid_x // 2, x1, grid_x):
+                local = float(strength[y, x])
+                if local <= 0:
+                    continue
+                # Stable spatial thinning avoids a synthetic full grid while
+                # keeping identical inputs byte-reproducible.
+                hashed = ((x * 73856093) ^ (y * 19349663)) & 1023
+                if hashed / 1023.0 > local:
+                    continue
+                alpha = int(round(255 * maximum_alpha * (0.35 + 0.65 * local)))
+                draw.line(
+                    (x, y, x + dx, y + dy),
+                    fill=tuple(int(v) for v in color) + (alpha,),
+                    width=line_width,
+                )
+                streak_count += 1
+        rgba = np.asarray(overlay, dtype=np.float32)
+        alpha = rgba[..., 3] / 255.0
+        output = (
+            image * (1.0 - alpha[..., None])
+            + rgba[..., :3] * alpha[..., None]
+        )
+        mutable = alpha > 0
+        record["streak_count"] = streak_count
+        record["active_pixel_count"] = int(mutable.sum())
+    else:
+        raise ValueError(f"unsupported scalar field overlay mode: {mode}")
+
+    weights = strength * allowed
+    weight_sum = float(weights.sum())
+    if weight_sum > 1e-8:
+        yy, xx = np.mgrid[:height, :width]
+        record["weighted_centroid_normalized_xy"] = [
+            round(float((weights * xx).sum() / weight_sum / width), 8),
+            round(float((weights * yy).sum() / weight_sum / height), 8),
+        ]
+    else:
+        record["weighted_centroid_normalized_xy"] = None
+    return np.clip(output, 0, 255), mutable, record
+
+
 def render_plan(
     plan: dict[str, Any],
     stage3_root: Path,
@@ -1113,6 +1658,7 @@ def render_plan(
         semantic, semantic_path, keyframe = keyframe_semantics(
             contract, keyframe_id, repo_root
         )
+        state = load_json(repo_root / keyframe["state"]["path"])
         image = base.copy()
         mutable = np.zeros(image.shape[:2], dtype=bool)
         operator_records = []
@@ -1141,6 +1687,14 @@ def render_plan(
                 )
             elif operator_type == "region_fill":
                 image, changed, metrics = _region_fill(
+                    image,
+                    contract,
+                    semantic,
+                    operator["config"],
+                    repo_root,
+                )
+            elif operator_type == "raster_overlay":
+                image, changed, metrics = _raster_overlay(
                     image,
                     contract,
                     semantic,
@@ -1178,6 +1732,15 @@ def render_plan(
                     image,
                     contract,
                     semantic,
+                    operator["config"],
+                    repo_root,
+                )
+            elif operator_type == "scalar_field_overlay":
+                image, changed, metrics = _scalar_field_overlay(
+                    image,
+                    contract,
+                    semantic,
+                    state,
                     operator["config"],
                     repo_root,
                 )

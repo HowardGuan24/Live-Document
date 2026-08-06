@@ -1,0 +1,15 @@
+Transform the provided flat schematic into a realistic, scientifically accurate aerial-oblique documentary visualization of a river entering a quiet coastal basin at the beginning of delta formation.
+
+Use the input image strictly as a structural and compositional reference. Preserve the wide horizontal 16:9 layout, the coastline running approximately vertically through the left-center of the frame, the green land occupying the left side, the broad blue water body occupying the right side, and the single meandering river approaching from the far left and opening into the basin near the center. Keep the river mouth, shoreline curvature, channel width, and relative land-water proportions closely aligned with the reference.
+
+Render the land as a plausible low-relief alluvial plain with natural soil, marsh vegetation, subtle floodplain texture, and gently eroded riverbanks. The river must remain a continuous channel flowing from left to right. Give the river realistic muddy blue-green water carrying a visible but natural suspended sediment load.
+
+At the river mouth, preserve the same outward movement of sediment into the standing water. Replace the schematic square particles with a realistic tan-brown sediment plume and graded suspended material spreading just beyond the mouth. Show coarser sand settling close to the channel outlet, finer silt traveling farther, and the finest clay remaining dispersed in the offshore plume. The plume must follow the same general left-to-right path and remain hydrologically connected to the river; do not turn it into smoke, dust, or floating solid blocks.
+
+The receiving basin should look calmer than the river, with subtle surface ripples and a gradual color transition where fresh muddy river water mixes with clearer coastal water. Keep this as an early river-mouth deposition scene, not a fully developed branching delta. The scientifically important story is that flow decelerates on entering the wider basin, transport capacity falls, and sediment begins to settle and build the foundation of a delta.
+
+Visual style: high-quality semi-photorealistic scientific illustration, realistic earth-science documentary rendering, aerial-oblique view, natural daylight, physically plausible hydrology, detailed water and sediment textures, clean depth, high readability, realistic scale.
+
+Remove all Chinese and English text, title bars, subtitles, labels, legends, arrows, progress indicators, boxes, borders, decorative dots, interface panels, and graphic symbols. Do not reproduce any text.
+
+Do not move the river mouth, reverse the flow direction, create an already mature distributary network, add mountains, waterfalls, dams, buildings, roads, boats, people, artificial channels, fantasy colors, or unrelated landforms. Do not convert the view into a geological underground cutaway. The final image must look like a realistic rendering of the original river-mouth diagram while remaining closely aligned with its geometry.

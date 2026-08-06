@@ -4,7 +4,7 @@
     {
       "baseline_id": "CONTRACT-MATH-01-V1",
       "kind": "input_contract",
-      "path": "modules/video_model/stage3/contracts/MATH-01.json",
+      "path": "modules/video_model/stage3/baselines/contracts/MATH-01-v1.json",
       "sha256": "baeba735fc8e4d9d30faf0d200ed982e970e3987c6b618594db2530c7b85c70b",
       "size_bytes": 6571
     },
@@ -25,7 +25,7 @@
     {
       "baseline_id": "CONTRACT-PHYS-02-V1",
       "kind": "input_contract",
-      "path": "modules/video_model/stage3/contracts/PHYS-02.json",
+      "path": "modules/video_model/stage3/baselines/contracts/PHYS-02-v1.json",
       "sha256": "571bea359dcfe2d0a228c291bdda80a138512fdd23172076a782d5d4c528ae69",
       "size_bytes": 6889
     },
@@ -39,7 +39,7 @@
     {
       "baseline_id": "CONTRACT-CHEM-02-V1",
       "kind": "input_contract",
-      "path": "modules/video_model/stage3/contracts/CHEM-02.json",
+      "path": "modules/video_model/stage3/baselines/contracts/CHEM-02-v1.json",
       "sha256": "66b10aa53c1c459e7d5b1078a7a0ca18bfc29551b199876563f43296d36fdc74",
       "size_bytes": 6659
     },
@@ -53,14 +53,14 @@
     {
       "baseline_id": "CONTRACT-BIO-02-V1",
       "kind": "input_contract",
-      "path": "modules/video_model/stage3/contracts/BIO-02.json",
+      "path": "modules/video_model/stage3/baselines/contracts/BIO-02-v1.json",
       "sha256": "2e1c21b2c48540da1a815760a90a5864a9c2bbe88417778cb8184898d562d0eb",
       "size_bytes": 6592
     },
     {
       "baseline_id": "CONTRACT-GEO-01-V1",
       "kind": "input_contract",
-      "path": "modules/video_model/stage3/contracts/GEO-01.json",
+      "path": "modules/video_model/stage3/baselines/contracts/GEO-01-v1.json",
       "sha256": "b2ec08b6f49f4ef5aa369f1d689e707e6be2917058b6191244723e52ff4b2d72",
       "size_bytes": 6627
     },
@@ -277,14 +277,14 @@
     {
       "baseline_id": "CORE-STATE-RENDERER-B-V2",
       "kind": "accepted_core",
-      "path": "modules/video_model/stage3/framework/state_renderer.py",
+      "path": "modules/video_model/stage3/baselines/core/state_renderer-v2.py",
       "sha256": "461779712a277077ba63814ecfdcec3c344d3414a080c211d0dcaa83df2b544f",
       "size_bytes": 41844
     },
     {
       "baseline_id": "CORE-MOTION-COMPILER-V2",
       "kind": "accepted_core",
-      "path": "modules/video_model/stage3/framework/motion.py",
+      "path": "modules/video_model/stage3/baselines/core/motion-v2.py",
       "sha256": "e9a3b55ddb515a4e0fb885ab758cabdd7d0a7a8b9cafb81da7e5bbed2e023124",
       "size_bytes": 23900
     },
@@ -315,6 +315,258 @@
       "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/video/deterministic/transition.mp4",
       "sha256": "4ecb5898690aab37b421dbd09c4be195d214b3cf607b459f545ac10dff8a242e",
       "size_bytes": 168785
+    },
+    {
+      "baseline_id": "CONTRACT-MATH-01-V2",
+      "kind": "input_contract",
+      "path": "modules/video_model/stage3/baselines/contracts/MATH-01-v2.json",
+      "sha256": "22bb36ed75776564935cbebaf3d9519a54e07d5c1880c862ace007112a127771",
+      "size_bytes": 6650
+    },
+    {
+      "baseline_id": "CONTRACT-PHYS-02-V2",
+      "kind": "input_contract",
+      "path": "modules/video_model/stage3/baselines/contracts/PHYS-02-v2.json",
+      "sha256": "9ca3d9cb99f811d8332755724303dfbf9636b1f264e748899a9527df7458aff4",
+      "size_bytes": 6968
+    },
+    {
+      "baseline_id": "CONTRACT-CHEM-02-V2",
+      "kind": "input_contract",
+      "path": "modules/video_model/stage3/contracts/CHEM-02.json",
+      "sha256": "8503d299320b1519d86132d646cc54eccfaefae2b0010b6dfcd4f656fb28b8aa",
+      "size_bytes": 6738
+    },
+    {
+      "baseline_id": "CONTRACT-BIO-02-V2",
+      "kind": "input_contract",
+      "path": "modules/video_model/stage3/contracts/BIO-02.json",
+      "sha256": "6208412885d9928a8199b94f74bb4cf8be66fec99277e6c1cac188e7624f38aa",
+      "size_bytes": 6670
+    },
+    {
+      "baseline_id": "CONTRACT-GEO-01-V2",
+      "kind": "input_contract",
+      "path": "modules/video_model/stage3/contracts/GEO-01.json",
+      "sha256": "1388e76c86e99f8e8770f3985bbc9d027f41fe737230fb72b00bde1b5c968c76",
+      "size_bytes": 6705
+    },
+    {
+      "baseline_id": "CONTRACT-MATH-01-V3",
+      "kind": "input_contract",
+      "path": "modules/video_model/stage3/contracts/MATH-01.json",
+      "sha256": "9a854b0b85561024c9ce795ceaa596d5ad7a161e13e020cd2465454ec177a936",
+      "size_bytes": 6681
+    },
+    {
+      "baseline_id": "CONTRACT-PHYS-02-V3",
+      "kind": "input_contract",
+      "path": "modules/video_model/stage3/contracts/PHYS-02.json",
+      "sha256": "198f315f4a5f3e7f761b665d49b9c42b81bd0b4e5bede2dab7aca10509003531",
+      "size_bytes": 7004
+    },
+    {
+      "baseline_id": "STATE-PLAN-S3.8-SCALE-V1",
+      "kind": "accepted_core_config",
+      "path": "modules/video_model/stage3/scale_state_render_plans_v1.json",
+      "sha256": "ca068afb7c6ae52021b4c1d00a7669e4c2b0d1e898dd0ed24d2d8797d4ed8a38",
+      "size_bytes": 12748
+    },
+    {
+      "baseline_id": "SEQUENCE-MATH-01-S3.8-V1",
+      "kind": "accepted_state_sequence",
+      "path": "modules/video_model/stage3/output/phase-8-scale-image/MATH-01/candidate/sequence.jpg",
+      "sha256": "90314f2a3bcdec955f99b9ec3177c799c9670c5b1bba14d6a83be8edab5b9fad",
+      "size_bytes": 54262
+    },
+    {
+      "baseline_id": "VISUAL-TARGET-MATH-01-V1",
+      "kind": "accepted_visual_target",
+      "path": "modules/video_model/stage3/visual_targets/MATH-01/manifest.json",
+      "sha256": "11b832f9ced6efe0bca59ba2085718693bd34275534ba1e389ad0fe4f8bb10ad",
+      "size_bytes": 1819
+    },
+    {
+      "baseline_id": "SEQUENCE-PHYS-02-S3.8-V1",
+      "kind": "accepted_state_sequence",
+      "path": "modules/video_model/stage3/output/phase-8-scale-image/PHYS-02/candidate/sequence.jpg",
+      "sha256": "19802d533632082567ea1bb8f70331ff961c933374288c41d5b67f0bdb4a5bf1",
+      "size_bytes": 63789
+    },
+    {
+      "baseline_id": "VISUAL-TARGET-PHYS-02-V1",
+      "kind": "accepted_visual_target",
+      "path": "modules/video_model/stage3/visual_targets/PHYS-02/manifest.json",
+      "sha256": "83abf1fa36a304cf2422435190fce3a19af43722d3de11d4ffd65fc5cdc14c87",
+      "size_bytes": 1899
+    },
+    {
+      "baseline_id": "SEQUENCE-CHEM-02-S3.8-V1",
+      "kind": "accepted_state_sequence",
+      "path": "modules/video_model/stage3/output/phase-8-scale-image/CHEM-02/candidate/sequence.jpg",
+      "sha256": "fe6ebf52db93fbcbc2aa0ae17f1b091b9f5b22a58e6d0837e917dd1a62b64fd8",
+      "size_bytes": 58607
+    },
+    {
+      "baseline_id": "VISUAL-TARGET-CHEM-02-V1",
+      "kind": "accepted_visual_target",
+      "path": "modules/video_model/stage3/visual_targets/CHEM-02/manifest.json",
+      "sha256": "840c7412ec3f80036712713c8ff7cad9c295f714709b476e13ee0dcb5ccc6d88",
+      "size_bytes": 1873
+    },
+    {
+      "baseline_id": "SEQUENCE-BIO-02-S3.8-V1",
+      "kind": "accepted_state_sequence",
+      "path": "modules/video_model/stage3/output/phase-8-scale-image/BIO-02/candidate/sequence.jpg",
+      "sha256": "917a220d9d8324930cbb569feb2cac0227bd98d45c70c7399eda226658797f22",
+      "size_bytes": 65066
+    },
+    {
+      "baseline_id": "VISUAL-TARGET-BIO-02-V1",
+      "kind": "accepted_visual_target",
+      "path": "modules/video_model/stage3/visual_targets/BIO-02/manifest.json",
+      "sha256": "00923b20613d99bb7cfea14082f7896df0c53d1f439ae9e8d8c61fb8cc44822e",
+      "size_bytes": 1862
+    },
+    {
+      "baseline_id": "SEQUENCE-GEO-01-S3.8-V1",
+      "kind": "accepted_state_sequence",
+      "path": "modules/video_model/stage3/output/phase-8-scale-image/GEO-01/candidate/sequence.jpg",
+      "sha256": "b5f2f9633c5bdde8554275a58c927f66c14725d2777bfc92fa72d55e4341d384",
+      "size_bytes": 89461
+    },
+    {
+      "baseline_id": "VISUAL-TARGET-GEO-01-V1",
+      "kind": "accepted_visual_target",
+      "path": "modules/video_model/stage3/visual_targets/GEO-01/manifest.json",
+      "sha256": "79c1eba0463c64e79e05497a8c5fc96c80fc99822c7c7a6b3208ccf70993a239",
+      "size_bytes": 1865
+    },
+    {
+      "baseline_id": "CORE-MOTION-COMPILER-V3",
+      "kind": "accepted_core",
+      "path": "modules/video_model/stage3/framework/motion.py",
+      "sha256": "eb25344c82db4bb0553c83accdb8421765b333b1a58bcf3488ace21a4538798b",
+      "size_bytes": 29248
+    },
+    {
+      "baseline_id": "G4-SCALE-MOTION-S3.9-V1",
+      "kind": "accepted_core_evidence",
+      "path": "modules/video_model/stage3/output/phase-9-scale-motion/g4-machine.json",
+      "sha256": "92322430cdf0d23c673cdb6529942a5289513f1a54c2bac10a3fed93afa4ea74",
+      "size_bytes": 2462
+    },
+    {
+      "baseline_id": "VIDEO-GEO-01-L1-S3.9-V1",
+      "kind": "accepted_video_transition",
+      "path": "modules/video_model/stage3/output/phase-9-scale-motion/GEO-01/L1/transition.mp4",
+      "sha256": "d6b93593e1a5a4c86457f712ff542046265ce6b24d0b8f2be729de04d82638aa",
+      "size_bytes": 256138
+    },
+    {
+      "baseline_id": "VIDEO-MATH-01-PROGRAM-TIMELINE-S3.9-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-9-scale-motion/MATH-01/deterministic/transition.mp4",
+      "sha256": "96d0a0632890f7d45fcde3c6b475fa43721eaf0e580ad24f2b8444ebd1b08ee7",
+      "size_bytes": 101976
+    },
+    {
+      "baseline_id": "VIDEO-PHYS-02-PROGRAM-TIMELINE-S3.9-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-9-scale-motion/PHYS-02/deterministic/transition.mp4",
+      "sha256": "82f38c4ef0879147c94b4bbdc48f8b9c8ad971d3582eaffcee1c338f684dba2c",
+      "size_bytes": 86539
+    },
+    {
+      "baseline_id": "VIDEO-CHEM-02-PROGRAM-TIMELINE-S3.9-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-9-scale-motion/CHEM-02/deterministic/transition.mp4",
+      "sha256": "8da88c65fbf99aea224a7680395c185adf52dde2990ce6881e28b58c3d67540d",
+      "size_bytes": 133430
+    },
+    {
+      "baseline_id": "VIDEO-BIO-02-PROGRAM-TIMELINE-S3.9-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-9-scale-motion/BIO-02/deterministic/transition.mp4",
+      "sha256": "9b2df19c1ed0564c31c32ff4d61c27a7141978b91b2c2986ae38f9f7cfc57641",
+      "size_bytes": 167025
+    },
+    {
+      "baseline_id": "VIDEO-GEO-01-PROGRAM-TIMELINE-S3.9-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-9-scale-motion/GEO-01/deterministic/transition.mp4",
+      "sha256": "36f4ad1e0c68d10356a51f4eb6194de481ae73cba621e4c785d2da3e26a9ace8",
+      "size_bytes": 122155
+    },
+    {
+      "baseline_id": "VIDEO-MATH-02-MATERIALIZED-TIMELINE-S3.10-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-10-release/sentinel-motion/MATH-02/deterministic/transition.mp4",
+      "sha256": "7f28f9979e4b93a254a46d39ddf184218813d8fedd32ad709d0347cbf79c2be1",
+      "size_bytes": 167250
+    },
+    {
+      "baseline_id": "VIDEO-PHYS-01-MATERIALIZED-TIMELINE-S3.10-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-10-release/sentinel-motion/PHYS-01/deterministic/transition.mp4",
+      "sha256": "ad872cb730751ee8b37db9b08b6aa657d1b3b44b18405be4eecfacb055f6c6d9",
+      "size_bytes": 198932
+    },
+    {
+      "baseline_id": "VIDEO-CHEM-01-MATERIALIZED-TIMELINE-S3.10-V1",
+      "kind": "accepted_case_specific",
+      "path": "modules/video_model/stage3/output/phase-10-release/sentinel-motion/CHEM-01/deterministic/transition.mp4",
+      "sha256": "9f2acc1b17f44a75519f006edc8df9cc5e7537ee07adabe5e3eefcdb4c097ca9",
+      "size_bytes": 108854
+    },
+    {
+      "baseline_id": "G4-SENTINEL-MATERIALIZATION-S3.10-V1",
+      "kind": "accepted_core_evidence",
+      "path": "modules/video_model/stage3/output/phase-10-release/sentinel-motion/g4-machine.json",
+      "sha256": "d72bf2e776842845a12f2efa8abbf461af76347727e52bf1390eabc451fb1a07",
+      "size_bytes": 916
+    },
+    {
+      "baseline_id": "CORE-STATE-RENDERER-B-V4",
+      "kind": "accepted_core",
+      "path": "modules/video_model/stage3/framework/state_renderer.py",
+      "sha256": "794e26a03d67ce88cc04804c9c4f119b98585229f78e4ce09ddb4815ac76eb78",
+      "size_bytes": 64021
+    },
+    {
+      "baseline_id": "PEDAGOGY-COMPILER-S3.11-V1",
+      "kind": "accepted_core",
+      "path": "modules/video_model/stage3/framework/pedagogy.py",
+      "sha256": "47795ce33d0451f9430c297563aac83a862f518b40e049f2afa7794aac8669fa",
+      "size_bytes": 20426
+    },
+    {
+      "baseline_id": "PEDAGOGY-CONTRACT-S3.11-V1",
+      "kind": "accepted_core",
+      "path": "modules/video_model/stage3/pedagogy_contracts_v1.json",
+      "sha256": "3d467ad059c8d9f11f0d03dddd7f0e679bbd44a9acfc94b416c1e5a127eb9fa2",
+      "size_bytes": 19534
+    },
+    {
+      "baseline_id": "SCALE-PROGRAM-PROVIDER-S3.11-V2",
+      "kind": "accepted_core",
+      "path": "modules/video_model/stage2/cases/remaining_programs.py",
+      "sha256": "20f8a1174a76b0c8cee6987220645a31f9eae5b124dbd4ef993a00d4ab365880",
+      "size_bytes": 46398
+    },
+    {
+      "baseline_id": "SENTINEL-PROGRAM-PROVIDER-S3.11-V1",
+      "kind": "accepted_core",
+      "path": "modules/video_model/stage2/cases/sentinel_programs.py",
+      "sha256": "6130b1fa963f5ef76ae8a230682d09d30700dd08ab6bc13e34065960e7ad657c",
+      "size_bytes": 57040
+    },
+    {
+      "baseline_id": "PEDAGOGY-REPLAY-S3.11-V1",
+      "kind": "accepted_core_evidence",
+      "path": "modules/video_model/stage3/output/phase-11-pedagogy/reproducibility-audit.json",
+      "sha256": "f7aac099803a0ae472f2360404c58011be63c11a0d97f577d34e70d5f1fb85ae",
+      "size_bytes": 1184881
     }
   ],
   "schema_version": "1.0"

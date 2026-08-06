@@ -1,9 +1,0 @@
-{
-  "control_off": "全黑控制图且 ControlNet 强度为 0，表示完全关闭边缘约束。",
-  "dense_canny": "从无标注程序底图灰度化后，用 Canny 阈值 5/15 提取，并膨胀 1 次；它会把每圈波纹都变成硬线，是本轮负对照。",
-  "schema_version": "1.0",
-  "source_semantic_layers": "/workspace/Live-Document/modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/semantic_layers.json",
-  "sparse_hard_boundary": "只合并程序明确声明为 hard_boundary 的数值层；不从成图猜边，也不加入区域、连续场、箭头或文字。",
-  "sparse_identity_boundary": "只从锁定画框和 object_identity 语义层的几何生成白线；不包含波峰、波谷、箭头或文字。",
-  "stage3_auto_control": "frozen geometry control referenced by the trial matrix"
-}

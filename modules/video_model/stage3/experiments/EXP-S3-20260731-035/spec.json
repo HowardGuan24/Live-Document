@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-S3-20260731-035",
+  "case_id": "CHEM-02",
+  "hypothesis_zh": "SDXL 只生成固定空器皿与实验台外观，程序语义层随后加入液体和晶体，可以避免模型篡改析晶机制，同时消除平涂动画感。",
+  "single_variable_zh": "四个候选只改变固定 seed；模型、空器皿提示词、程序导出的器皿边界、ControlNet 强度和采样参数均固定。",
+  "source": {
+    "keyframe_id": "00_start",
+    "clean_frame": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/00_start/clean.png",
+    "semantic_layers": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/00_start/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Top-down laboratory photo of one empty shallow transparent glass crystallizing dish on a neutral matte bench",
+    "material_goal": "clear glass rim, subtle refraction, soft natural light, photographic detail",
+    "state_delta": "empty clean interior reserved for later semantic overlays",
+    "must_preserve": "one complete oval dish, centered overhead, no text"
+  },
+  "negative_artifacts": "water, liquid, crystals, salt, powder, extra dishes, hands, tools, text, arrows, diagram, cartoon, plastic, metal bowl, cropped rim, tilted camera, perspective, blur, watermark",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [113501, 113502, 113503, 113504]
+  },
+  "configurations": [
+    {
+      "configuration_id": "empty_dish_t2i_controlnet",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "sparse_hard_boundary",
+      "controlnet_conditioning_scale": 0.62
+    }
+  ],
+  "blind_shuffle_seed": 2026073135,
+  "budget": {
+    "maximum_new_image_candidates": 4,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  }
+}
