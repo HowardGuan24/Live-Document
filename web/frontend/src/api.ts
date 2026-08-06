@@ -70,11 +70,11 @@ export const api = {
       body: JSON.stringify({ token }),
     }),
   health: () => request<HealthResponse>('/health'),
-  plan: (text: string, filename?: string) =>
+  plan: (text: string) =>
     request<SpecsResponse>('/specs', {
       method: 'POST',
       headers: jsonHeaders,
-      body: JSON.stringify({ text, filename: filename || undefined }),
+      body: JSON.stringify({ text }),
     }),
   createJob: (payload: JobCreate) =>
     request<Job>('/jobs', {

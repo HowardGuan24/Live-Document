@@ -76,7 +76,7 @@ export default function LoginPage({ onLogin }: { onLogin: (token: string) => voi
             <button
               type="submit"
               disabled={busy || !value.trim()}
-              className="clip-angled-sm mt-1 bg-gradient-to-r from-radeon-600 via-radeon-500 to-ember-600 px-4 py-3 text-sm font-bold tracking-wide text-white transition-all hover:glow-red disabled:cursor-not-allowed disabled:opacity-50"
+              className="clip-angled-sm btn-primary mt-1 px-4 py-3 text-sm tracking-wide transition-all hover:glow-red disabled:cursor-not-allowed disabled:opacity-50"
             >
               {busy ? '验证中…' : '进入工作台 →'}
             </button>

@@ -57,6 +57,8 @@ export default function App() {
     setTab('jobs')
   }, [])
 
+  const clearTracked = useCallback(() => setTrackedJobId(null), [])
+
   if (!token) {
     return <LoginPage onLogin={handleLogin} />
   }
@@ -96,9 +98,18 @@ export default function App() {
       </header>
 
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6">
-        {tab === 'planner' && <PlannerPage onSubmitted={goJobs} />}
-        {tab === 'jobs' && <JobsPage trackedJobId={trackedJobId} />}
-        {tab === 'about' && <AboutPage />}
+        {/* Pages stay mounted (hidden) so PlannerPage keeps its in-progress
+            state across tab switches; JobsPage/AboutPage only poll while
+            their tab is active. */}
+        <div className={tab === 'planner' ? '' : 'hidden'}>
+          <PlannerPage onSubmitted={goJobs} />
+        </div>
+        <div className={tab === 'jobs' ? '' : 'hidden'}>
+          <JobsPage trackedJobId={trackedJobId} active={tab === 'jobs'} onTrackedDone={clearTracked} />
+        </div>
+        <div className={tab === 'about' ? '' : 'hidden'}>
+          <AboutPage active={tab === 'about'} />
+        </div>
       </main>
 
       <footer className="border-t border-line py-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-dim">

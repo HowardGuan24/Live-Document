@@ -3,49 +3,105 @@ import { api } from '../api'
 import type { Job } from '../types'
 import JobCard from '../components/JobCard'
 
-export default function JobsPage({ trackedJobId }: { trackedJobId: string | null }) {
+interface Props {
+  trackedJobId: string | null
+  active: boolean
+  onTrackedDone: () => void
+}
+
+const PAGE_SIZE = 20
+const POLL_MS = 3000
+
+export default function JobsPage({ trackedJobId, active, onTrackedDone }: Props) {
   const [jobs, setJobs] = useState<Job[]>([])
   const [total, setTotal] = useState(0)
   const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
+  const [loaded, setLoaded] = useState(false)
   const trackedRef = useRef<HTMLDivElement | null>(null)
-  const timer = useRef<number | null>(null)
+  const lastTrackedStatus = useRef<string | null>(null)
 
-  const load = useCallback(async () => {
-    setLoading(true)
+  const jobsRef = useRef<Job[]>([])
+  jobsRef.current = jobs
+
+  /** Fetch the job list. quiet = background poll (keeps the current list on error). */
+  const loadList = useCallback(async (quiet = false) => {
+    if (!quiet) setRefreshing(true)
     try {
-      const r = await api.listJobs(50, 0)
+      const r = await api.listJobs(PAGE_SIZE, 0)
       setJobs(r.jobs)
       setTotal(r.total)
       setError(null)
+      setLoaded(true)
     } catch (e) {
-      setError(e instanceof Error ? e.message : String(e))
+      if (!quiet) setError(e instanceof Error ? e.message : String(e))
+      // quiet failures keep the last good list instead of wiping the UI
     } finally {
-      setLoading(false)
+      if (!quiet) setRefreshing(false)
     }
   }, [])
 
-  useEffect(() => {
-    void load()
-    return () => {
-      if (timer.current) window.clearInterval(timer.current)
+  /** Poll a single tracked job and merge it into the list (cheap). */
+  const loadTracked = useCallback(async () => {
+    if (!trackedJobId) return
+    try {
+      const job = await api.getJob(trackedJobId)
+      setJobs((prev) => {
+        const i = prev.findIndex((j) => j.id === job.id)
+        if (i >= 0) {
+          const next = [...prev]
+          next[i] = job
+          return next
+        }
+        return [job, ...prev]
+      })
+      setError(null)
+      setLoaded(true)
+      if (job.status === 'completed' || job.status === 'failed') onTrackedDone()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e))
     }
-  }, [load])
+  }, [trackedJobId, onTrackedDone])
 
-  const hasActive = jobs.some((j) => j.status === 'pending' || j.status === 'running')
+  // Activation + polling loop. Only runs while this tab is active.
   useEffect(() => {
-    if (timer.current) window.clearInterval(timer.current)
-    timer.current = null
-    if (hasActive) {
-      timer.current = window.setInterval(() => {
-        void load()
-      }, 3000)
+    if (!active) return
+    if (!loaded) void loadList(false)
+    const timer = window.setInterval(async () => {
+      if (trackedJobId) {
+        await loadTracked()
+        return
+      }
+      const hasActive = jobsRef.current.some(
+        (j) => j.status === 'pending' || j.status === 'running',
+      )
+      if (hasActive) await loadList(true)
+    }, POLL_MS)
+    return () => window.clearInterval(timer)
+  }, [active, trackedJobId, loaded, loadList, loadTracked])
+
+  // Scroll to the tracked job only when its status transitions (not on every poll).
+  useEffect(() => {
+    if (!trackedJobId) return
+    const status = jobs.find((j) => j.id === trackedJobId)?.status ?? null
+    if (status && status !== lastTrackedStatus.current) {
+      trackedRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      lastTrackedStatus.current = status
     }
-  }, [hasActive, load])
-
-  useEffect(() => {
-    if (trackedJobId) trackedRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })
   }, [jobs, trackedJobId])
+
+  const loadMore = useCallback(async () => {
+    try {
+      const r = await api.listJobs(PAGE_SIZE, jobs.length)
+      setJobs((prev) => {
+        const seen = new Set(prev.map((j) => j.id))
+        return [...prev, ...r.jobs.filter((j) => !seen.has(j.id))]
+      })
+      setTotal(r.total)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e))
+    }
+  }, [jobs.length])
 
   const activeCount = jobs.filter((j) => j.status === 'pending' || j.status === 'running').length
   const doneCount = jobs.filter((j) => j.status === 'completed').length
@@ -69,20 +125,38 @@ export default function JobsPage({ trackedJobId }: { trackedJobId: string | null
             </p>
           </div>
           <button
-            onClick={() => void load()}
-            disabled={loading}
+            onClick={() => void loadList(false)}
+            disabled={refreshing}
             className="clip-angled-sm border border-line bg-ink-850 px-4 py-2 text-sm text-mut transition-all hover:border-radeon-500/60 hover:text-fg disabled:opacity-50"
           >
-            {loading ? '刷新中…' : '↻ 刷新'}
+            {refreshing ? '刷新中…' : '↻ 刷新'}
           </button>
         </div>
 
-        {error && <p className="mt-4 text-sm text-danger">{error}</p>}
-        {jobs.length === 0 && !loading && (
+        {error && <p className="mt-4 text-sm text-danger">⚠ {error}（列表可能不是最新）</p>}
+
+        {!loaded && !error && (
+          <div className="mt-4 flex flex-col gap-3" aria-busy="true" aria-label="任务列表加载中">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="clip-angled border border-line bg-ink-950 p-5"
+                aria-hidden="true"
+              >
+                <div className="h-3 w-32 animate-pulse rounded bg-ink-800" />
+                <div className="mt-3 h-3 w-2/3 animate-pulse rounded bg-ink-800" />
+                <div className="mt-4 h-3 w-1/2 animate-pulse rounded bg-ink-800" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {loaded && jobs.length === 0 && (
           <p className="mt-6 text-center text-sm text-dim">
             暂无任务 —— 去「文档规划」提交第一个动画生成任务。
           </p>
         )}
+
         <div className="mt-4 flex flex-col gap-3">
           {jobs.map((job) => (
             <JobCard
@@ -93,6 +167,15 @@ export default function JobsPage({ trackedJobId }: { trackedJobId: string | null
             />
           ))}
         </div>
+
+        {loaded && jobs.length < total && (
+          <button
+            onClick={() => void loadMore()}
+            className="clip-angled-sm mx-auto mt-5 block border border-line bg-ink-850 px-6 py-2 text-sm text-mut transition-all hover:border-radeon-500/60 hover:text-fg"
+          >
+            加载更多（已显示 {jobs.length} / {total}）
+          </button>
+        )}
       </div>
     </section>
   )
