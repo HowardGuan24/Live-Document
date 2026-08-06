@@ -1,0 +1,3 @@
+1
+00:00:00,080 --> 00:00:03,962
+Erosion outside and deposition inside enlarge the bend.
