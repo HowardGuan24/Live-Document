@@ -1,0 +1,57 @@
+{
+  "acceptance": {
+    "all_hard_gates_must_pass": true,
+    "minimum_weighted_score": 4.0
+  },
+  "appearance_dimensions": [
+    {
+      "id": "terrain_and_atmosphere_material",
+      "question_zh": "山体表面、云雾和降水是否像自然地表与大气，而不是塑料模型？",
+      "weight": 0.3
+    },
+    {
+      "id": "lighting_coherence",
+      "question_zh": "阴天散射光、山坡明暗与云雾遮挡是否自洽？",
+      "weight": 0.2
+    },
+    {
+      "id": "camera_and_scene_stability",
+      "question_zh": "四帧的山体、地面、相机和裁切是否固定？",
+      "weight": 0.2
+    },
+    {
+      "id": "realism_without_plasticity",
+      "question_zh": "是否避免玩具山、硬描边、规则雨线网格和扩散伪影？",
+      "weight": 0.2
+    },
+    {
+      "id": "rain_shadow_readability",
+      "question_zh": "不看文字时，是否仍能看出湿空气团越山、迎风降雨、背风端变干？",
+      "weight": 0.1
+    }
+  ],
+  "hard_gates": [
+    {
+      "id": "appearance_to_geometry_leakage",
+      "pass_zh": "外观底图不改写程序的地形侧别、空气团方向和降雨区。"
+    },
+    {
+      "id": "windward_precipitation",
+      "pass_zh": "主降雨质心在山顶左侧，且结果帧为峰值。"
+    },
+    {
+      "id": "leeward_drying",
+      "pass_zh": "终帧空气团在背风侧，湿度和降雨明显低于峰值。"
+    },
+    {
+      "id": "negative_reference_avoidance",
+      "pass_zh": "云雨没有被解读成第二座山、建筑或硬线条。"
+    }
+  ],
+  "schema_version": "1.0",
+  "score_scale": {
+    "1": "明显失败，不能用于教学",
+    "3": "基本可读，但地形、大气或降水仍不稳定",
+    "5": "材质可信，且迎风降雨—背风变干一眼可读"
+  }
+}

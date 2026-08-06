@@ -1,0 +1,180 @@
+{
+  "case_definition": {
+    "capability_tags": [
+      "sign_reversal",
+      "hidden_field",
+      "instrument_readout"
+    ],
+    "discipline": "physics",
+    "discipline_zh": "物理",
+    "slug": "electromagnetic_induction",
+    "title_zh": "磁铁运动为什么在线圈中产生感应电流"
+  },
+  "case_id": "PHYS-02",
+  "geometry_policy": "canonicalize",
+  "hard_gates": [
+    "current_reverses_between_approach_and_withdrawal",
+    "current_is_zero_when_magnet_stops",
+    "apparatus_geometry_is_fixed",
+    "appearance_to_geometry_leakage"
+  ],
+  "keyframes": [
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/00_start/program.png",
+        "sha256": "51c96f975e44e652976a7069148a3e49d45c3a0856bdcb90a42a62011d80e215",
+        "size_bytes": 6178
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/00_start/clean.png",
+        "sha256": "53e7b0045f704cba32342b25650cce7f60c718db789f182e1718665496668d5c",
+        "size_bytes": 3132
+      },
+      "keyframe_id": "00_start",
+      "order": 0,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/00_start/semantic_layers.json",
+        "sha256": "2425d44a8f288f169c9470335f03ccffea479f3a7019f70733e89594b529dcfd",
+        "size_bytes": 7826
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/00_start/state.json",
+        "sha256": "1c281c1f309f4a2fa4465d6516e06cde9be57bb5b78d0f58db060fd7bb7f22c4",
+        "size_bytes": 201
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/01_mechanism/program.png",
+        "sha256": "9f0eb635887e130b33643072e9858bbebf5eec1213c6cc663a69824234d00304",
+        "size_bytes": 6555
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/01_mechanism/clean.png",
+        "sha256": "89a4d21fd3075db61b150ec2f0df623986ce0aed5ac11c5ece93f481fc2f0e29",
+        "size_bytes": 3243
+      },
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "149611a0f8e17a1ae2ac8c9819baab6cca451c2948ff772e4571e6af51cd1266",
+        "size_bytes": 7878
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/01_mechanism/state.json",
+        "sha256": "d07398de19956dc76358c9fa14a9fa7255eced3fc34571f742e1ef4ea68ef101",
+        "size_bytes": 207
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/02_result/program.png",
+        "sha256": "6d26987fe7bb24db84745b8a38695a2dd27254de8f711153e01b1546b838e2ca",
+        "size_bytes": 6470
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/02_result/clean.png",
+        "sha256": "61a52a0db8a79e8edda4890c180c6b38e4d38a794d2524a63fde7c5a3d8920e8",
+        "size_bytes": 3129
+      },
+      "keyframe_id": "02_result",
+      "order": 2,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/02_result/semantic_layers.json",
+        "sha256": "196a09677df3ced8e43796b2f16478e4baf4bdee8b39cbe52c70c652524bced9",
+        "size_bytes": 7839
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/02_result/state.json",
+        "sha256": "32dec4d1d9362923dc7b50087d51aeb54e2d8ec4299ca52baaa8ab92e1f4d89a",
+        "size_bytes": 206
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/03_end/program.png",
+        "sha256": "00205b38b20eddbf57178e7e2d338cd49e51151e24b73516bcb4d7345eee018f",
+        "size_bytes": 6376
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/03_end/clean.png",
+        "sha256": "35cd49d67d097f76d92887dee9078768501f638017aa08bdde3ce5611313c8e0",
+        "size_bytes": 3243
+      },
+      "keyframe_id": "03_end",
+      "order": 3,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/03_end/semantic_layers.json",
+        "sha256": "48f7b5f0507b6ac64c39252eb44dce136b37ff3d70d8fc58e33d3e2c173435c7",
+        "size_bytes": 7800
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/keyframes/03_end/state.json",
+        "sha256": "85597b21ea5e58e02547f6f5dd1a1ec27eca331c576feadd1b7346263106dd65",
+        "size_bytes": 202
+      }
+    }
+  ],
+  "motion_contract": {
+    "path": "modules/video_model/stage3/motion_contracts/PHYS-02.json",
+    "sha256": "c933f1c6e25e9ced3cbbd01480dabbb3f102c662847660a45c7effddf7009525"
+  },
+  "program_source": {
+    "concept_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/PHYS-02/concept_spec.json",
+      "sha256": "b5abfd3953d95a9f6d22a1845aac2ded0dbca033e00e2061a8a50bacff899434",
+      "size_bytes": 1928
+    },
+    "program_manifest": {
+      "path": "modules/video_model/stage2/output/phase-4/programs/PHYS-02/program_manifest.json",
+      "sha256": "911a86781f03cb3c94925ed6917bed0f77699336c94b9f02a1b414e5bfdb1a94",
+      "size_bytes": 51085
+    },
+    "root": "modules/video_model/stage2/output/phase-4/programs/PHYS-02",
+    "sequence_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/PHYS-02/sequence_spec.json",
+      "sha256": "62b376eebf32ec30e05f20b486c20f13bf64d21afed522c5fe0c1f35afac8462",
+      "size_bytes": 2890
+    }
+  },
+  "schema_version": "1.0",
+  "semantic_exports": {
+    "control_object_requirements": [
+      {
+        "cardinality": 1,
+        "class_id": "bar_magnet",
+        "source": "object_identity"
+      },
+      {
+        "cardinality": 1,
+        "class_id": "fixed_coil",
+        "source": "object_identity"
+      }
+    ],
+    "layer_ids": [
+      "phys-02_annotation",
+      "phys02_hard_boundary",
+      "phys02_instrument_boundary",
+      "phys02_magnet_region",
+      "phys02_magnetic_field",
+      "phys02_object_identity"
+    ],
+    "layer_types": [
+      "annotation",
+      "hard_boundary",
+      "object_identity",
+      "region",
+      "vector_field"
+    ],
+    "object_classes": [
+      "bar_magnet",
+      "fixed_coil"
+    ],
+    "source_policy": "Exported directly from deterministic program state; not inferred from the rendered screenshot."
+  },
+  "visual_target_package": {
+    "path": "modules/video_model/stage3/visual_targets/PHYS-02/manifest.json",
+    "status": "accepted_project_baseline"
+  }
+}

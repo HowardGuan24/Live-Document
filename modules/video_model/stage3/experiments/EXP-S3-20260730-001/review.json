@@ -1,0 +1,97 @@
+{
+  "evidence": {
+    "case_id": "CHEM-01",
+    "frames": [
+      {
+        "keyframe_id": "00_start",
+        "object_geometry_in_bounds": true,
+        "requirements": [
+          {
+            "actual": 1,
+            "class_id": "glass_beaker",
+            "expected": 1,
+            "legacy_migration_available": false,
+            "passed": true
+          },
+          {
+            "actual": 0,
+            "class_id": "glass_burette",
+            "expected": 1,
+            "legacy_migration_available": true,
+            "passed": false
+          }
+        ]
+      },
+      {
+        "keyframe_id": "01_mechanism",
+        "object_geometry_in_bounds": true,
+        "requirements": [
+          {
+            "actual": 1,
+            "class_id": "glass_beaker",
+            "expected": 1,
+            "legacy_migration_available": false,
+            "passed": true
+          },
+          {
+            "actual": 0,
+            "class_id": "glass_burette",
+            "expected": 1,
+            "legacy_migration_available": true,
+            "passed": false
+          }
+        ]
+      },
+      {
+        "keyframe_id": "02_result",
+        "object_geometry_in_bounds": true,
+        "requirements": [
+          {
+            "actual": 1,
+            "class_id": "glass_beaker",
+            "expected": 1,
+            "legacy_migration_available": false,
+            "passed": true
+          },
+          {
+            "actual": 0,
+            "class_id": "glass_burette",
+            "expected": 1,
+            "legacy_migration_available": true,
+            "passed": false
+          }
+        ]
+      },
+      {
+        "keyframe_id": "03_end",
+        "object_geometry_in_bounds": true,
+        "requirements": [
+          {
+            "actual": 1,
+            "class_id": "glass_beaker",
+            "expected": 1,
+            "legacy_migration_available": false,
+            "passed": true
+          },
+          {
+            "actual": 0,
+            "class_id": "glass_burette",
+            "expected": 1,
+            "legacy_migration_available": true,
+            "passed": false
+          }
+        ]
+      }
+    ],
+    "passed": false,
+    "policy": "canonicalize"
+  },
+  "experiment_id": "EXP-S3-20260730-001",
+  "model_runs": {
+    "image": 0,
+    "video": 0
+  },
+  "reason_zh": "四个 CHEM-01 关键帧都只有 glass_beaker 身份；硬边界里可见的滴定管没有 glass_burette 身份。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}

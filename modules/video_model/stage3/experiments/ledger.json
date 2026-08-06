@@ -1,0 +1,383 @@
+{
+  "experiments": [
+    {
+      "experiment_id": "EXP-S3-20260730-001",
+      "failure_taxonomy": "semantic_export",
+      "hypothesis_id": "H-S3-0001A",
+      "model_runs": {
+        "image": 0,
+        "video": 0
+      },
+      "phase": "S3.1",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-001/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-002",
+      "hypothesis_id": "H-S3-0001B",
+      "model_runs": {
+        "image": 0,
+        "video": 0
+      },
+      "phase": "S3.1",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-002/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-003",
+      "failure_taxonomy": "gate_or_selector",
+      "hypothesis_id": "H-S3-0002A",
+      "model_runs": {
+        "image_candidates": 9,
+        "video_candidates": 0
+      },
+      "phase": "S3.2",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-003/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-004",
+      "hypothesis_id": "H-S3-0002B",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.2",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-004/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-005",
+      "failure_taxonomy": "prompt_polarity",
+      "hypothesis_id": "H-S3-0003A",
+      "model_runs": {
+        "image_candidates": 9,
+        "video_candidates": 0
+      },
+      "phase": "S3.3",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-005/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-006",
+      "failure_taxonomy": "no_candidate_passed",
+      "hypothesis_id": "H-S3-0003B",
+      "model_runs": {
+        "image_candidates": 9,
+        "video_candidates": 0
+      },
+      "phase": "S3.3",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-006/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-007",
+      "failure_taxonomy": "semantic_landmark_missing",
+      "hypothesis_id": "H-S3-0003C",
+      "model_runs": {
+        "image_candidates": 9,
+        "video_candidates": 0
+      },
+      "phase": "S3.3",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-007/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-008",
+      "hypothesis_id": "H-S3-0003D",
+      "model_runs": {
+        "image_candidates": 9,
+        "video_candidates": 0
+      },
+      "phase": "S3.3",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-008/review.json",
+      "verdict": "accepted_case_specific"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-009",
+      "hypothesis_id": "H-S3-0003E",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.3",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-009/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260730-010",
+      "hypothesis_id": "H-S3-0003F",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.3",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260730-010/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-011",
+      "failure_taxonomy": "metric_domain",
+      "hypothesis_id": "H-S3-0004A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.4",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-011/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-012",
+      "hypothesis_id": "H-S3-0004B",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.4",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-012/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-013",
+      "hypothesis_id": "H-S3-0005A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.5",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-013/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-014",
+      "hypothesis_id": "H-S3-0005A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.5",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-014/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-015",
+      "hypothesis_id": "H-S3-0005A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.5",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-015/review.json",
+      "verdict": "accepted_motion_default"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-016",
+      "hypothesis_id": "H-S3-0005A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.5",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-016/review.json",
+      "verdict": "accepted_optional_not_default"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-017",
+      "hypothesis_id": "H-S3-0005A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.5",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-017/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-018",
+      "hypothesis_id": "H-S3-0005A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.5",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-018/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-019",
+      "hypothesis_id": "H-S3-0006A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.6",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-019/review.json",
+      "superseded_by": "EXP-S3-20260731-020",
+      "verdict": "superseded_invalid_phase_exit"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-020",
+      "hypothesis_id": "H-S3-0007A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.6-rerun-1",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-020/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-021",
+      "failure_taxonomy": "motion_or_video",
+      "hypothesis_id": "H-S3-0007B",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.6-rerun-1",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-021/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-022",
+      "failure_taxonomy": "motion_or_video",
+      "hypothesis_id": "H-S3-0007C",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1,
+        "video_model_calls": 3
+      },
+      "phase": "S3.6-rerun-1",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-022/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-023",
+      "hypothesis_id": "H-S3-0007D",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.6-rerun-1",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-023/review.json",
+      "verdict": "accepted_case_specific"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-024",
+      "hypothesis_id": "H-S3-0008B",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.6-rerun-2",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-024/review.json",
+      "verdict": "accepted_case_specific"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-025",
+      "failure_taxonomy": "motion_or_video",
+      "hypothesis_id": "H-S3-0008C",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.6-rerun-2",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-025/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-026",
+      "failure_taxonomy": "motion_or_video",
+      "hypothesis_id": "H-S3-0008C",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 3
+      },
+      "phase": "S3.6-rerun-2",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-026/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-027",
+      "hypothesis_id": "H-S3-0008D",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.6-rerun-2",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-027/review.json",
+      "verdict": "accepted_case_specific"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-029",
+      "hypothesis_id": "H-S3-0010A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.8",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-029/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-030",
+      "hypothesis_id": "H-S3-0011A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.9",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-030/review.json",
+      "verdict": "accepted_core"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-031",
+      "failure_taxonomy": "motion_or_video",
+      "hypothesis_id": "H-S3-0011B",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.9",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-031/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-032",
+      "hypothesis_id": "H-S3-0011C",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 1
+      },
+      "phase": "S3.9",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-032/review.json",
+      "verdict": "accepted_case_specific"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-033",
+      "failure_taxonomy": "motion_or_video",
+      "hypothesis_id": "H-S3-0011D",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 3
+      },
+      "phase": "S3.9",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-033/review.json",
+      "verdict": "rejected"
+    },
+    {
+      "experiment_id": "EXP-S3-20260731-034",
+      "hypothesis_id": "H-S3-0012A",
+      "model_runs": {
+        "image_candidates": 0,
+        "video_candidates": 0
+      },
+      "phase": "S3.10",
+      "review": "modules/video_model/stage3/experiments/EXP-S3-20260731-034/review.json",
+      "verdict": "accepted_core"
+    }
+  ],
+  "loop_id": "LOOP-S3-0007",
+  "schema_version": "1.0"
+}

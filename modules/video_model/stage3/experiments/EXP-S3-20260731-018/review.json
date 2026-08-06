@@ -1,0 +1,22 @@
+{
+  "evidence": {
+    "decisions": {
+      "path": "modules/video_model/stage3/output/phase-5/guidance-decisions.json",
+      "sha256": "1ff9bda9f2c31209c95c9bfb8e2cef32bf97ca318d94395d104cdf01237091e8",
+      "size_bytes": 1565
+    },
+    "g4_summary": {
+      "path": "modules/video_model/stage3/output/phase-5/g4-summary.json",
+      "sha256": "d8516c4a31d92929db12e6fa1979faea87227359a025b6ff3cb7e90149e14881",
+      "size_bytes": 3044
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-018",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "reason_zh": "三种运动类型均得到确定默认：连续场 L1；液体混合和精确刚体在本模型失败时走确定性程序回退；L2 只作为中间合同帧收益明确时的可选级别；L3 在当前接口禁用。",
+  "schema_version": "1.0",
+  "verdict": "accepted_core"
+}

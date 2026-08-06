@@ -382,9 +382,11 @@
   <div class="card truth">
     <strong>核心设想：</strong>
     程序同时输出画面和事实数据；“控制图生成器”把事实数据变成模型能读的结构线，
-    “提示词生成器”把合同和用户视觉目标变成外观描述。SDXL 只按预先登记的有限参数组合
-    生成候选；检查器按合同淘汰错误图片并冻结一张外观底图。之后所有关键帧都由程序状态
-    和这张同一底图产生。
+    “提示词生成器”把合同和 Visual Target Package 中的正例、反例、材质/光照/相机量表
+    变成外观描述。几何控制只决定物体在哪里，外观参考只决定它看起来像什么。SDXL 只按
+    预先登记的有限参数组合生成候选；检查器按合同淘汰错误图片并冻结一张外观底图。
+    之后所有关键帧都由程序状态和这张同一底图产生。完整程序时间线则被整理为运动合同，
+    在视频阶段规定中间怎样运动，而不是只把两张关键帧和一句模糊提示交给视频模型。
   </div>
 
   <div class="card warning">
@@ -535,6 +537,16 @@
         <td>烧杯外轮廓、滴定管位置和液面大致高度。</td>
       </tr>
       <tr>
+        <td>geometry policy<br>几何策略</td>
+        <td>声明一个程序轮廓应该原样保留、换成规范形状，还是只保留布局。</td>
+        <td>数学圆选择精确保留；程序矩形烧杯选择规范化重建；自然河岸可只保留区域和拓扑。</td>
+      </tr>
+      <tr>
+        <td>geometry resolver<br>几何重建器</td>
+        <td>根据对象类别、位置、相机和必要部件，生成规范、可追溯的几何，不负责材质。</td>
+        <td>根据 <code>lab.beaker</code> 重建椭圆杯口、收窄杯壁和曲面杯底。</td>
+      </tr>
+      <tr>
         <td>region / mask</td>
         <td>一张黑白许可图：白色区域允许某种修改，黑色区域不允许。</td>
         <td>上面四张白色长方形只允许 B 修改杯中液体，不准染到桌面和玻璃外。</td>
@@ -574,6 +586,16 @@
         <td>按固定槽位拼提示词，不让 Agent 每次临场发挥。</td>
         <td>固定写“一只透明玻璃烧杯、一根滴定管、正视相机、实验室光照”，并禁止多余器材、
           文字和塑料感；逐帧粉色状态不写进 Anchor prompt。</td>
+      </tr>
+      <tr>
+        <td>Visual Target Package</td>
+        <td>具体的外观目标包：认可正例/style board、明确反例，以及材质、光照、相机和真实感量表。</td>
+        <td>烧杯选中底图/最终帧是正例；塑料感、硬描边或结构漂移候选是带失败原因的反例。</td>
+      </tr>
+      <tr>
+        <td>外观与几何分离</td>
+        <td>程序几何决定物体在哪里；外观参考只决定材质、光照和相机质感。</td>
+        <td>参考烧杯即使放在画面中央，也不能用它的位置覆盖程序合同中的对象布局。</td>
       </tr>
       <tr>
         <td>seed</td>
@@ -616,6 +638,16 @@
         <td>读取液体 mask 和 pH 场，生成最后那组无色→局部粉→无色→整杯粉。</td>
       </tr>
       <tr>
+        <td>motion contract<br>运动合同</td>
+        <td>从完整程序时间线提取的机器规则，说明相邻关键帧之间谁怎样动、何时变化、谁必须静止。</td>
+        <td>液滴向下，粉色在落点出现后消退；烧杯、滴定管、相机和背景不动。</td>
+      </tr>
+      <tr>
+        <td>sparse intermediate guides<br>稀疏中间引导</td>
+        <td>复杂运动时，从完整程序过程挑少量中间帧、轨迹或运动场帮助视频模型，不默认塞入全部 RGB 帧。</td>
+        <td>颜色扩散路径不清楚时，提供几个中间 mask；简单直线液滴只需轨迹。</td>
+      </tr>
+      <tr>
         <td>surface calibration<br>表面标定</td>
         <td>告诉 B“程序里的区域”在真实底图中对应哪里，避免把矩形数据直接贴到透视物体外面。</td>
         <td>上面的三栏图把程序矩形液体映射到真实烧杯的粉色梯形液面。</td>
@@ -649,6 +681,7 @@
       <tr><td>烧杯/滴定管数量、边界和位置</td><td>G1 检查控制图；G2 检查模型候选</td></tr>
       <tr><td>液体允许变化区域</td><td>步骤 6 限制修改范围；G3 检查杯外是否被改动</td></tr>
       <tr><td>pH 数值及无色→局部粉→无色→整杯粉顺序</td><td>步骤 6 生成状态；G3 检查整组关键帧</td></tr>
+      <tr><td>完整逐帧状态、对象轨迹和事件时间</td><td>T1 生成运动合同；步骤 7 指导视频；G4 检查视频</td></tr>
     </tbody>
   </table>
   <details open>
@@ -658,10 +691,28 @@
     <pre>{
   "case_id": "CHEM-01",
   "required_objects": [
-    {"id": "beaker", "count": 1},
-    {"id": "burette", "count": 1}
+    {
+      "id": "beaker",
+      "class": "lab.beaker",
+      "count": 1,
+      "geometry_policy": "canonicalize",
+      "required_parts": ["open_rim", "side_walls", "curved_base"]
+    },
+    {
+      "id": "burette",
+      "class": "lab.burette",
+      "count": 1,
+      "geometry_policy": "canonicalize",
+      "relation": "above:beaker"
+    }
   ],
   "camera": {"view": "front", "locked": true},
+  "program_timeline": {
+    "preview_video": "program_video.mp4",
+    "states": "states.jsonl",
+    "frame_map": "timeline.json",
+    "object_tracks": "object_tracks.json"
+  },
   "keyframes": [
     {"id": "00_start", "expected_state": "colorless"},
     {"id": "01_mechanism", "expected_state": "local_pink"},
@@ -683,9 +734,10 @@
       "meaning_zh": "每个液体像素的 pH"
     }
   ],
-  "visual_goal": {
-    "material": "realistic clear glass",
-    "lighting": "neutral laboratory"
+  "visual_target_package": {
+    "path": "visual_target/manifest.json",
+    "status": "accepted_project_baseline",
+    "required_dimensions": ["material", "lighting", "camera", "realism"]
   },
   "sequence_rules": [
     "background_must_stay_fixed",
@@ -712,7 +764,8 @@
       <dl class="lineage">
         <dt>谁提供</dt><dd>概念规划器定义要讲什么；程序代码计算每个关键时刻的状态。</dd>
         <dt>程序输入</dt><dd>概念参数和时间点，例如滴定液加入量、初始 pH、终点阈值。</dd>
-        <dt>程序输出</dt><dd>关键帧 PNG；液体 mask；逐像素 pH 数组；烧杯、滴定管等对象记录。</dd>
+        <dt>程序输出</dt><dd>完整预览视频；逐帧状态和帧时间表；关键帧 PNG；液体 mask；
+          逐像素 pH 数组；烧杯、滴定管等对象及轨迹记录。</dd>
         <dt>烧杯例子</dt><dd>同一个 pH 数组既决定程序图哪里变粉，也原样导出为
           <code>ph_field.npy</code>，因此图片和数据来自同一个计算结果。</dd>
       </dl>
@@ -725,11 +778,13 @@
       <h3>把任务、关键帧、数据层和验收标准固定下来</h3>
       <p>把上游程序产物整理成一个有版本、可检查、后续不能偷改的输入包。</p>
       <dl class="lineage">
-        <dt>输入</dt><dd>概念说明、关键帧 PNG、程序状态、语义层文件和用户认可的外观目标。</dd>
+        <dt>输入</dt><dd>概念说明、完整程序视频/逐帧状态、关键帧 PNG、语义层文件、
+          对象轨迹和 Visual Target Package。</dd>
         <dt>处理</dt><dd>写明每个文件是什么、坐标系、取值范围、允许变化和必须保持的内容；
           为全部文件和配置计算数字指纹。</dd>
         <dt>输出</dt><dd><code>input_contract.json</code> + 它引用的
-          <code>program_frames/</code>、<code>layers/</code> 和 <code>states/</code>。</dd>
+          <code>program_frames/</code>、<code>layers/</code>、<code>states/</code>、
+          <code>timeline.json</code> 和 <code>object_tracks.json</code>。</dd>
         <dt>烧杯例子</dt><dd>合同写明一个烧杯、一根滴定管、固定正视相机、四个状态；
           液体 mask 和 pH 文件路径及含义也写在合同中。</dd>
       </dl>
@@ -741,13 +796,40 @@
       <span class="plain-name">不要叫“门禁”：它就是一次输入检查</span>
       <h3>检查输入是否完整、互相一致</h3>
       <dl class="lineage">
-        <dt>读取</dt><dd><code>input_contract.json</code> 以及它列出的全部 PNG/NPY/JSON。</dd>
+        <dt>读取</dt><dd><code>input_contract.json</code> 以及它列出的全部
+          MP4/PNG/NPY/JSON。</dd>
         <dt>检查</dt><dd>文件存在、尺寸和坐标一致、状态顺序完整、每个数据层有名字和含义、
-          pH 数值在声明范围内。</dd>
+          pH 数值在声明范围内；逐帧状态与时间表覆盖整个程序视频。</dd>
         <dt>不检查</dt><dd>这里还没有生成图片，因此不判断玻璃是否真实，也不选择候选。</dd>
         <dt>失败例子</dt><dd>只有一张粉色截图，却没说明粉色代表 pH、哪块是液体或它属于
           第几个状态，流程就在这里停止。</dd>
       </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node det">
+      <div class="index">T1</div>
+      <h3>从完整程序过程提取“中间应该怎样运动”</h3>
+      <p>
+        关键帧只说明几个时刻长什么样；这一步读取整个程序时间线，生成相邻关键帧之间的
+        运动合同。机器优先读取程序的原始逐帧状态和轨迹，MP4 主要供人审计；只有拿不到
+        原始状态时，才从程序视频像素反推运动。
+      </p>
+      <dl class="lineage">
+        <dt>输入</dt><dd><code>states.jsonl</code>、<code>timeline.json</code>、
+          <code>object_tracks.json</code>、逐帧语义层和程序预览视频。</dd>
+        <dt>处理</dt><dd>对每对相邻关键帧提取移动对象、路径、方向、速度范围、事件顺序、
+          变化区域以及必须静止的对象。</dd>
+        <dt>输出</dt><dd><code>motion_contracts/{start}__{end}.json</code>；复杂过程另外输出
+          少量稀疏中间引导帧、轨迹或运动场。</dd>
+        <dt>烧杯例子</dt><dd>液滴向下；落点附近粉色扩大后消退；液面缓慢变化；
+          烧杯、滴定管、相机和背景始终静止。</dd>
+      </dl>
+      <div class="card truth">
+        <strong>不会默认把全部程序 RGB 帧直接送给视频模型。</strong>
+        简单过程使用首尾帧 + 运动合同；路径复杂时增加少量程序中间引导；
+        只有模型明确支持且确有收益时，才输入完整程序视频或运动场。
+      </div>
     </article>
     <div class="arrow"></div>
 
@@ -769,11 +851,13 @@
         <dt>输入</dt><dd>合同中登记的原始语义层，例如
           <code>chem01_liquid_region</code> 和 <code>chem01_ph_field</code>。</dd>
         <dt>处理</dt><dd>按合同声明，把层归类为 boundary、region、scalar field、
-          height/normal 或 object identity；不修改原始数值。</dd>
+          height/normal 或 object identity；同时读取每个对象的几何策略，不修改原始数值。</dd>
         <dt>输出</dt><dd><code>normalized_layers.json</code>：每个通用类型指向哪个原始文件、
-          后面允许用于哪种处理。</dd>
+          后面允许用于哪种处理；<code>normalized_objects.json</code>：对象类别、位置关系、
+          必要部件和几何策略。</dd>
         <dt>烧杯例子</dt><dd>液体许可图归为 region，pH 归为 scalar field，
-          杯壁/滴定管归为 hard boundary，器材数量归为 object identity。</dd>
+          器材数量归为 object identity；程序矩形烧杯的策略标为
+          <code>canonicalize</code>，不要求照抄丑轮廓。</dd>
       </dl>
     </article>
     <div class="arrow"></div>
@@ -781,17 +865,34 @@
     <article class="node det">
       <div class="index">2</div>
       <span class="plain-name">代码模块名可叫 Control Compiler</span>
-      <h3>根据语义层生成图片模型真正要看的控制数据</h3>
+      <h3>先决定怎样处理程序几何，再生成模型控制数据</h3>
+      <div class="mini-flow">
+        <div class="mini"><strong>精确保留 preserve_exact</strong>
+          数学图形、坐标、机械轨迹：程序几何必须原样保留</div>
+        <div class="mini"><strong>规范化重建 canonicalize</strong>
+          烧杯等标准物体：保留位置和关系，换成参数化规范形状</div>
+        <div class="mini"><strong>只保留布局 layout_only</strong>
+          河流、云、细胞膜：保留区域/拓扑，让模型决定自然轮廓</div>
+        <div class="mini"><strong>无法处理 unsupported</strong>
+          没有可靠策略就明确停止，不能临时手画冒充通用流程</div>
+      </div>
       <dl class="lineage">
-        <dt>输入</dt><dd><code>normalized_layers.json</code> 及其指向的边界、region、
-          scalar field、height/normal 和对象数据。</dd>
-        <dt>处理</dt><dd>boundary 生成稀疏黑白结构线；region 保持为独立 mask；
-          height/normal 保持为几何数据；scalar field 留给步骤 6，不画成密集线。</dd>
-        <dt>输出</dt><dd><code>structure_control.png</code>、
+        <dt>输入</dt><dd><code>normalized_layers.json</code>、
+          <code>normalized_objects.json</code> 及其指向的边界、region、scalar field、
+          height/normal 和对象关系。</dd>
+        <dt>2A 策略</dt><dd>根据合同为每个对象选择精确保留、规范化重建或只保留布局；
+          这项选择在生成前冻结，不能看结果后切换。</dd>
+        <dt>2B 几何</dt><dd>规范化重建时，用通用参数化形状库根据对象类别、包围盒、相机、
+          必要部件和相对关系重画；不是按案例写死一组坐标。</dd>
+        <dt>2C 编码</dt><dd>需要固定的边界生成稀疏结构线；region 保持为独立 mask；
+          height/normal 保持为几何数据；scalar field 留给步骤 6。</dd>
+        <dt>输出</dt><dd><code>resolved_geometry.json</code>、
+          <code>structure_control.png</code>、
           <code>regions/*.png</code>、<code>geometry/*</code>、
           <code>anchors.json</code> 和每个输出的推导记录。</dd>
-        <dt>烧杯例子</dt><dd>结构图只保留杯口、杯壁、滴定管和液面；pH 粉色、文字和背景
-          不进入结构控制。</dd>
+        <dt>烧杯例子</dt><dd>程序矩形只提供烧杯的大致位置和液体包含关系；参数化
+          <code>lab.beaker</code> 重建椭圆杯口、略收窄杯壁和曲面杯底，再输出结构线。
+          pH 粉色、文字和背景不进入结构控制。</dd>
       </dl>
       <div class="card warning">
         <strong>Canny 在这里是什么关系？</strong>
@@ -810,14 +911,17 @@
       <span class="plain-name">原名“控制图门禁”</span>
       <h3>检查控制图是否正确</h3>
       <dl class="lineage">
-        <dt>比较双方</dt><dd>步骤 2 生成的结构图，与合同引用的 boundary、对象数量、
-          锚点和禁止内容数据。</dd>
-        <dt>检查方法</dt><dd>比较轮廓覆盖率、连通关系、对象数量、锚点偏差和边缘密度；
-          检查是否混入 annotation、UI 或文字区域。</dd>
+        <dt>比较双方</dt><dd>步骤 2 的已解析几何/结构图，与合同中的几何策略、对象数量、
+          锚点、关系、必要部件和禁止内容。</dd>
+        <dt>精确保留</dt><dd>检查轮廓覆盖率和拓扑是否与程序边界一致。</dd>
+        <dt>规范化重建</dt><dd>不与丑程序轮廓逐像素重合；检查对象类别、数量、包围范围、
+          相对关系、包含关系和必要部件。</dd>
+        <dt>只保留布局</dt><dd>检查区域、拓扑和锚点，不要求自然轮廓与程序线完全一样。</dd>
+        <dt>通用检查</dt><dd>检查边缘密度，以及是否混入 annotation、UI 或文字区域。</dd>
         <dt>不是</dt><dd>不是把 PNG 和 JSON 字符串直接比较。JSON 告诉检查器应读取哪个
           边界数组、期望几个对象和阈值是多少。</dd>
-        <dt>烧杯例子</dt><dd>控制图必须保留一只杯和一根管；缺杯口、管子错位、出现标题
-          或碎线过密，都不能进入生图。</dd>
+        <dt>烧杯例子</dt><dd>不要求真实杯继续像程序矩形；只要求一只规范烧杯、一根管，
+          滴定管在杯上方、液体在杯内、杯口/杯壁/杯底齐全。出现标题或碎线过密也拒绝。</dd>
       </dl>
     </article>
     <div class="arrow"></div>
@@ -826,17 +930,26 @@
       <div class="index">3</div>
       <span class="plain-name">代码模块名可叫 Prompt Compiler</span>
       <h3>根据合同和视觉目标生成外观提示词</h3>
-      <p>提示词有明确来源，不是 Agent 运行到这里临场写一句英文。</p>
+      <p>提示词有明确来源，不是 Agent 运行到这里临场写一句“自然、真实、不塑料”。</p>
       <dl class="lineage">
         <dt>来源一</dt><dd>输入合同：场景是什么、对象数量、固定镜头、必须保留和禁止出现什么。</dd>
-        <dt>来源二</dt><dd>用户认可的视觉目标：例如“材料真实、像纪录片画面、不要塑料感”。</dd>
-        <dt>来源三</dt><dd>Stage 3 版本化模板和材质词典：把上述字段按固定顺序组装。</dd>
+        <dt>来源二</dt><dd>Visual Target Package：用户认可或项目已接受的 style board/正例、
+          带原因的反例，以及材质、光照、相机、真实感的 0–5 量表。</dd>
+        <dt>来源三</dt><dd>Stage 3 版本化模板和材质词典：把合同与视觉目标的具体字段按固定
+          顺序组装，不把整套参考压缩成几个空泛形容词。</dd>
         <dt>输出</dt><dd><code>positive_prompt.txt</code>、
           <code>negative_prompt.txt</code> 和 <code>prompt_manifest.json</code>；
-          manifest 写清每一段词来自哪个合同字段，并检查 token 是否截断。</dd>
+          manifest 写清每一段词来自哪个合同/视觉目标字段，并检查 token 是否截断。</dd>
         <dt>烧杯例子</dt><dd>正向词来自“一只烧杯、一根滴定管、透明玻璃、正视相机、中性实验室
-          光照”；负向词来自“禁止多余器材、文字和塑料感”。逐帧粉色变化不写入外观底图提示词。</dd>
+          光照”和认可正例；负向词与评分项来自塑料/硬描边反例。逐帧粉色变化不写入
+          外观底图提示词。</dd>
       </dl>
+      <div class="card warning">
+        <strong>外观参考和几何控制必须分开：</strong>
+        对象位置、数量、轮廓策略和拓扑只来自合同、Geometry Resolver 和 Control Compiler；
+        style board 只影响材质、光照、相机质感和视觉评分。以后若引入会携带布局的参考图
+        conditioning，必须单独检查参考图是否移动对象或改写程序几何。
+      </div>
     </article>
     <div class="arrow"></div>
 
@@ -862,11 +975,12 @@
       <span class="plain-name">原名“事实硬门禁 + 视觉评分”</span>
       <h3>检查候选图是否符合合同，再按固定规则排序</h3>
       <dl class="lineage">
-        <dt>输入</dt><dd>六张模型候选、输入合同、对象/边界数据，以及版本化视觉评分表。</dd>
+        <dt>输入</dt><dd>六张模型候选、输入合同、对象/边界数据，以及 Visual Target
+          Package 的正例、反例和版本化评分表。</dd>
         <dt>事实检查</dt><dd>读取合同中的对象数量、位置、镜头、禁止文字和裁切范围；
           多画、漏画或结构错误的候选直接拒绝。</dd>
-        <dt>视觉比较</dt><dd>只比较事实检查通过的图片：材料自然度、塑料感、光照、
-          控制线残留和动画使用价值。</dd>
+        <dt>视觉比较</dt><dd>只比较事实检查通过的图片：逐项对照 style board 正例/反例的
+          材质、光照、相机、真实感、控制线残留和动画使用价值，不做跨 Case 像素相似。</dd>
         <dt>输出</dt><dd>每张候选的通过/拒绝状态、逐项分数和原因。分数相同则按预先固定的
           配置 ID、seed 顺序裁决。</dd>
         <dt>烧杯例子</dt><dd>器材多画或缺失先淘汰；剩下的再比玻璃和反射，最终固定选中
@@ -952,12 +1066,30 @@
       <div class="index">7</div>
       <h3>用通过检查的相邻关键帧生成视频过渡</h3>
       <dl class="lineage">
-        <dt>输入</dt><dd>通过 G3 的相邻两张关键帧、这段过程允许发生的运动和禁止变化。</dd>
-        <dt>处理</dt><dd>使用固定视频模型、提示词、seed 和有限候选数生成过渡。</dd>
-        <dt>检查</dt><dd>首尾对应、是否换场、对象是否丢失、运动方向和过程约束。</dd>
+        <dt>输入</dt><dd>通过 G3 的相邻两张关键帧、T1 生成的运动合同，以及合同要求的
+          稀疏中间引导/轨迹/运动场（如果需要）。</dd>
+        <dt>简单过程</dt><dd>首尾关键帧 + 运动合同即可，不额外输入程序 RGB 连续帧。</dd>
+        <dt>复杂过程</dt><dd>增加少量程序中间引导、对象轨迹或运动场；只有模型明确支持且
+          测试证明有益时，才输入完整程序视频。</dd>
+        <dt>处理</dt><dd>使用固定视频模型、提示词、seed 和有限候选数生成过渡；
+          每段采用哪一级引导在运行前写入配置。</dd>
         <dt>失败处理</dt><dd>模型候选全部失败则回退到确定性程序动画，不牺牲教学事实。</dd>
         <dt>烧杯例子</dt><dd>模型只能补全液滴落下和颜色扩散，不能把一只杯变成两只，
           也不能在结束时丢掉滴定管。</dd>
+      </dl>
+    </article>
+    <div class="arrow"></div>
+
+    <article class="node gate">
+      <div class="index">G4</div>
+      <h3>把生成视频与程序时间线和运动合同比较</h3>
+      <dl class="lineage">
+        <dt>输入</dt><dd>模型视频、首尾关键帧、T1 运动合同、程序逐帧状态和静态对象清单。</dd>
+        <dt>检查</dt><dd>首尾是否对应；对象路径、方向和事件顺序是否正确；变化是否只发生在
+          允许区域；背景和固定对象是否漂移；是否出现程序中不存在的事件。</dd>
+        <dt>输出</dt><dd>通过的视频，或精确到时间段、对象和运动规则的失败报告。</dd>
+        <dt>烧杯例子</dt><dd>液滴必须向下，粉色先在落点附近出现再扩散/消退；
+          烧杯、滴定管和背景不能晃动或换场。</dd>
       </dl>
     </article>
     <div class="arrow"></div>
@@ -966,8 +1098,9 @@
       <div class="index">8</div>
       <h3>交付图片、视频和一份能从头追到尾的报告</h3>
       <dl class="lineage">
-        <dt>收集</dt><dd>输入包、标准化语义层、控制图、提示词、模型参数、未修改候选、
-          拒绝原因、冻结底图、状态投影和最终视频。</dd>
+        <dt>收集</dt><dd>输入包、完整程序时间线、运动合同、标准化语义层、几何策略与
+          重建结果、控制图、提示词、模型参数、未修改候选、拒绝原因、冻结底图、
+          状态投影和最终视频。</dd>
         <dt>输出</dt><dd>最终交付文件、manifest、文件哈希和新人可读 HTML；报告链接也自动检查。</dd>
         <dt>烧杯例子</dt><dd>读者在一页内看到本页开头的程序图、控制对比、六张候选、
           mask、pH、映射和最终四帧，并能回答每张图从哪里来、下一步去了哪里。</dd>
@@ -987,8 +1120,8 @@
     <tbody>
       <tr>
         <td>烧杯控制图由固定坐标模板单独绘制</td>
-        <td>控制图必须由标准语义层通过 Control Compiler 自动派生</td>
-        <td>每条线/区域都有来源 layer、算法、参数和哈希；可反查到程序状态</td>
+        <td>合同先声明几何策略；规范化对象由参数化形状库重建，再自动生成控制图</td>
+        <td>每个对象都有类别、策略、几何参数、来源 layer、算法和哈希</td>
       </tr>
       <tr>
         <td>Agent 看候选后临时决定继续怎么试</td>
@@ -997,22 +1130,33 @@
       </tr>
       <tr>
         <td>“好不好看”主要依赖临场判断</td>
-        <td>固定硬门禁、冻结视觉标尺、版本化评分器和唯一 tie-break</td>
-        <td>每个候选都有逐项分数与拒绝原因；生产选择无需重新人工挑选</td>
+        <td>每个 Case 使用 Visual Target Package：正例、反例、具体量表、版本化评分器和唯一 tie-break</td>
+        <td>每个候选逐项对照材质、光照、相机和真实感目标；生产选择无需重新人工挑选</td>
+      </tr>
+      <tr>
+        <td>外观参考同时被当作构图或几何参考</td>
+        <td>几何只来自程序合同与控制；外观参考只进入提示词、外观条件和视觉评分</td>
+        <td>单独检查 appearance-to-geometry leakage：数量、位置、比例和拓扑不得被参考图改写</td>
+      </tr>
+      <tr>
+        <td>视频阶段只使用首尾关键帧和一句语言提示</td>
+        <td>完整程序时间线先生成运动合同；复杂过程按需增加稀疏中间引导</td>
+        <td>视频逐项检查对象路径、方向、事件顺序、变化区域和静态背景</td>
       </tr>
     </tbody>
   </table>
 
-  <h2>Control Compiler 是 Stage 3 的第一核心</h2>
+  <h2>“几何处理 + 控制图生成”是 Stage 3 的第一核心</h2>
   <p>
     Stage 2 的烧杯结果证明：语义干净、信息充分的稀疏线稿比 dense Canny 更有潜力；
-    但它还没有证明线稿能够从程序自动得到。因此 Stage 3 的第一个真正实验不应该继续
-    调 prompt，而应比较同一批程序输入的三种控制：
+    但它还没有证明好线稿能够从粗糙程序几何自动得到。因此 Stage 3 的第一个真正实验
+    不应该继续调 prompt，而应比较同一批程序输入的三种控制：
   </p>
   <ol>
     <li><strong>负对照：</strong>直接从程序截图得到的 dense Canny。</li>
     <li><strong>当前上限：</strong>Phase 9 中的人工固定器材模板。</li>
-    <li><strong>目标路线：</strong>由统一语义层自动编译的 sparse semantic control。</li>
+    <li><strong>目标路线：</strong>先按几何策略保留/规范化/放松轮廓，再由统一语义层
+      自动生成 sparse semantic control。</li>
   </ol>
   <p>
     目标路线只有在化学案例接近或达到人工模板，同时在至少两个其他学科案例不退化，
@@ -1022,15 +1166,43 @@
   <details open>
     <summary>Control Compiler 的通用规则草案</summary>
     <ul>
+      <li><code>preserve_exact</code>：数学/工程几何原样保留，按程序轮廓检查。</li>
+      <li><code>canonicalize</code>：根据对象类别、包围盒、相机、部件和关系进行参数化重建。</li>
+      <li><code>layout_only</code>：只固定区域、拓扑和锚点，让模型形成自然轮廓。</li>
       <li><code>hard_boundary</code>：保留外轮廓、拓扑节点和必要内轮廓；按画布比例控制线宽。</li>
       <li><code>region</code>：输出独立 mask，不把整片区域纹理转成密集边缘。</li>
       <li><code>scalar_field</code>：保留原始浮点数据供 B 使用；默认不送 Canny。</li>
       <li><code>height_or_normal</code>：输出深度/法线；只把大尺度遮挡边界送结构控制。</li>
       <li><code>object_identity</code>：输出中心、包围盒、数量和跨帧 ID，供硬门禁检查。</li>
       <li><code>annotation</code>：从模型控制中排除，写实化完成后再由程序叠加。</li>
-      <li>任何案例插件只允许提供语义数据，不能偷偷提供一张无法追溯的最终控制图。</li>
+      <li>任何案例插件只能提供语义数据和已声明的对象类别/几何参数，不能偷偷提供一张
+        无法追溯的最终控制图。</li>
     </ul>
   </details>
+
+  <h2>已由十案例校准的新层：教学时间线</h2>
+  <div class="card">
+    <h3>为什么四张关键帧还不够</h3>
+    <p>关键帧适合冻结状态节点和外观，但观众需要看到中间因果过程。现在完整流程会为每个
+      Case 再读取一份 <code>pedagogy_contract</code>：阶段名称、普通话解释、关注状态量、动态
+      时间和阅读停留。通用编译器只重排展示速度，不发明科学状态；每个展示帧都会重新调用
+      原程序，导出该时刻的 state 和语义层，再经过同一冻结 State Renderer。</p>
+  </div>
+  <div class="main-flow" style="margin-top:16px">
+    <div class="node deterministic"><h3>程序科学进度 0–1</h3><p>连续 state、region、scalar、identity；机制真值。</p></div>
+    <div class="flow-arrow">→</div>
+    <div class="node artifact"><h3>教学合同</h3><p>3–5 个命名阶段、字幕、关注状态、动态时间、停留。</p></div>
+    <div class="flow-arrow">→</div>
+    <div class="node deterministic"><h3>自适应展示时钟</h3><p>变化快处增加帧；阶段末保留同一状态供阅读。</p></div>
+    <div class="flow-arrow">→</div>
+    <div class="node deterministic"><h3>逐状态材质渲染</h3><p>冻结外观只写入当帧 mask，不在首尾图之间猜测。</p></div>
+    <div class="flow-arrow">→</div>
+    <div class="node gate"><h3>故事门 + 机制门 + Replay</h3><p>8.5–12 秒、无大跳帧、守恒/拓扑/身份正确、两轮目录哈希一致。</p></div>
+  </div>
+  <p>已校准实例和全部真实产物见
+    <a href="output/phase-11-pedagogy/report.html">Stage 3.11 新人报告</a>。报告把 Stage 1
+    三角洲参考、旧/新视频、牛轭湖四阶段、滴定终点慢放、结晶程序图、Canny、四个 SDXL
+    候选、入选材质和十个成片全部内嵌，因此 Live Preview 不依赖相对媒体路径。</p>
 
   <h2>“保证得到想要的结果”的准确边界</h2>
   <pre>Stage 3 可以保证：
@@ -1042,6 +1214,8 @@
 → 同一门禁和排序
 → 同一选中 ID / 同一失败结论
 → 同一确定性 B 关键帧
+→ 同一运动合同和视频引导等级
+→ 同一视频候选集合 / 同一回退结论
 
 Stage 3 不能诚实保证：
 任意新概念第一次输入
@@ -1059,8 +1233,8 @@ Stage 3 不能诚实保证：
       <p>冻结 Phase 9 烧杯目标、跨学科回归输入、目录 schema、质量门禁和失败定义。</p>
     </article>
     <article class="phase">
-      <h3>S3.1 Control Compiler</h3>
-      <p>先不改模型和提示词，只验证程序语义能否自动生成达到人工模板上限的控制。</p>
+      <h3>S3.1 Geometry Resolver + Control Compiler</h3>
+      <p>先实现几何策略与重建器，再验证程序语义能否自动产生接近人工模板上限的控制。</p>
     </article>
     <article class="phase">
       <h3>S3.2 固定搜索与选择</h3>
@@ -1075,14 +1249,19 @@ Stage 3 不能诚实保证：
       <p>统一区域、标量、对象和法线四类算子，验证一张 Anchor 能稳定产生多关键帧。</p>
     </article>
     <article class="phase">
-      <h3>S3.5 跨学科发布门</h3>
+      <h3>S3.5 运动合同与视频引导</h3>
+      <p>从完整程序时间线提取轨迹、事件和静态对象，按复杂度比较关键帧、稀疏引导和完整控制。</p>
+    </article>
+    <article class="phase">
+      <h3>S3.6 跨学科发布门</h3>
       <p>至少覆盖数学、物理、化学、生物、地理代表案例，并回归三角洲和 Phase 9 烧杯。</p>
     </article>
   </div>
 
   <p class="small">
     文档状态：Stage 3 流程设计草案。创建本页不运行图片或视频模型，也不修改 Stage 2
-    的任何冻结结果。
+    的任何冻结结果。Agent 的执行循环草案见
+    <a href="loop.md">Stage 3 Loop Engineer 提示词</a>。
   </p>
 </main>
 </body>

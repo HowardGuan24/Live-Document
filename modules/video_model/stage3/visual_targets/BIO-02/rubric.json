@@ -1,0 +1,53 @@
+{
+  "acceptance": {
+    "all_hard_gates_must_pass": true,
+    "minimum_weighted_score": 4.0
+  },
+  "appearance_dimensions": [
+    {
+      "id": "material",
+      "question_zh": "是否像显微镜下的植物表皮，而不是两个塑料豆？",
+      "weight": 0.25
+    },
+    {
+      "id": "mechanism_readability",
+      "question_zh": "两个保卫细胞是否始终是同一对对象？",
+      "weight": 0.25
+    },
+    {
+      "id": "camera_stability",
+      "question_zh": "中央孔隙的开闭是否清晰但不过度发光？",
+      "weight": 0.25
+    },
+    {
+      "id": "artifact_avoidance",
+      "question_zh": "背景细胞质感是否克制且不抢机制？",
+      "weight": 0.25
+    }
+  ],
+  "case_id": "BIO-02",
+  "hard_gates": [
+    {
+      "id": "gate_1",
+      "pass_zh": "guard_cell_count 始终等于 2。"
+    },
+    {
+      "id": "gate_2",
+      "pass_zh": "孔隙宽度必须按 10、49、49、10 px 的状态变化。"
+    },
+    {
+      "id": "gate_3",
+      "pass_zh": "开、开、关的阶段顺序不能改变。"
+    },
+    {
+      "id": "gate_4",
+      "pass_zh": "不得从外观供体复制额外细胞器或对象。"
+    }
+  ],
+  "schema_version": "1.0",
+  "score_scale": {
+    "1": "明显失败，外观或机制不能用于教学",
+    "3": "基本可读，但材质、稳定性或机制有明显弱点",
+    "5": "外观可信，且不看文字也能正确读出机制"
+  }
+}

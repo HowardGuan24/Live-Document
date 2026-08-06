@@ -1,0 +1,168 @@
+{
+  "case_definition": {
+    "capability_tags": [
+      "paired_identity",
+      "constrained_deformation",
+      "hidden_variable"
+    ],
+    "discipline": "biology",
+    "discipline_zh": "生物",
+    "slug": "stomatal_opening",
+    "title_zh": "气孔保卫细胞吸水后怎样打开气孔"
+  },
+  "case_id": "BIO-02",
+  "geometry_policy": "layout_only",
+  "hard_gates": [
+    "pore_area_follows_turgor",
+    "exactly_two_guard_cells",
+    "guard_cell_adjacency_is_fixed",
+    "appearance_to_geometry_leakage"
+  ],
+  "keyframes": [
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/00_start/program.png",
+        "sha256": "33ecd256447782d6b02a1e4f2a05c564934934d6292e4b788c3cc5fd2a00f73c",
+        "size_bytes": 6163
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/00_start/clean.png",
+        "sha256": "39af103ae68326ec10203bc8675786873c264f7e5685a578a0b0a9bd7f11a563",
+        "size_bytes": 2695
+      },
+      "keyframe_id": "00_start",
+      "order": 0,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/00_start/semantic_layers.json",
+        "sha256": "d555bd59cb5e4ffb60122c099ba331b8590398cc579c1037c171617bae3110f0",
+        "size_bytes": 7519
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/00_start/state.json",
+        "sha256": "a1ff2c85cf9fa485b27b8093264130f41ab8c2af157d67b90233965d56f8e3f0",
+        "size_bytes": 155
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/program.png",
+        "sha256": "d6921ecb829b2cb52a2da58014fff80a3fee8312f1a563ced0cacd1da8c477bd",
+        "size_bytes": 6502
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/clean.png",
+        "sha256": "c3d48872743e84ce44b77ce07c46556a9f680a899931de0b1876ccb2919c5ade",
+        "size_bytes": 3020
+      },
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "ad654efce18e197ac18ea231817b7f28b318f71745ea6229c35b2157e46833ff",
+        "size_bytes": 7577
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/01_mechanism/state.json",
+        "sha256": "c88d0ab1837f3504727f342bead773ee54dba4c7280edf55415b50ff9899026a",
+        "size_bytes": 160
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/02_result/program.png",
+        "sha256": "37b4ec278fbfa818c342763f72e05d2cf9b0acdfd8f803a20eb4ee9d51c8eb57",
+        "size_bytes": 6625
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/02_result/clean.png",
+        "sha256": "c3d48872743e84ce44b77ce07c46556a9f680a899931de0b1876ccb2919c5ade",
+        "size_bytes": 3020
+      },
+      "keyframe_id": "02_result",
+      "order": 2,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/02_result/semantic_layers.json",
+        "sha256": "dbd0d21039ff16977c3ab074b339a6d3aaf23291b8dc97cde4f1892ac3635b0f",
+        "size_bytes": 7538
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/02_result/state.json",
+        "sha256": "4e3e93fb012279b3592fcc16239008bf4573824b65b17fe9951c6b95f000e38d",
+        "size_bytes": 160
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/03_end/program.png",
+        "sha256": "4fdbb9267c7049ba754c258401f4f3dfb888d469bf73feb63285d325dd13787e",
+        "size_bytes": 6133
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/03_end/clean.png",
+        "sha256": "39af103ae68326ec10203bc8675786873c264f7e5685a578a0b0a9bd7f11a563",
+        "size_bytes": 2695
+      },
+      "keyframe_id": "03_end",
+      "order": 3,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/03_end/semantic_layers.json",
+        "sha256": "f572cda3c07b602544b47733bcf9941992971b84d67428524f55d558f7397474",
+        "size_bytes": 7493
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframes/03_end/state.json",
+        "sha256": "61c4faf318b0a6debb08acaa773139cac93df152b7b6863fa38617bd972cc4cf",
+        "size_bytes": 155
+      }
+    }
+  ],
+  "motion_contract": {
+    "path": "modules/video_model/stage3/motion_contracts/BIO-02.json",
+    "sha256": "5af91f59018ecee5ea9fbe7343594af4ee16e9927c4b4142ab0d5c9c3c3eb28b"
+  },
+  "program_source": {
+    "concept_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/BIO-02/concept_spec.json",
+      "sha256": "23604f4790f357c72a5236f725788e95552378199d2decd01b2c11da42fe9bdc",
+      "size_bytes": 1930
+    },
+    "program_manifest": {
+      "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/program_manifest.json",
+      "sha256": "b116499e9bdb56dfb1132ae78d934f916ee5261e01be7d78598ae68eb208207f",
+      "size_bytes": 49753
+    },
+    "root": "modules/video_model/stage2/output/phase-4/programs/BIO-02",
+    "sequence_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/BIO-02/sequence_spec.json",
+      "sha256": "dbf348c7db341dbf4d7f5e819de4002722702580c923e1b7e4bf876fb951b447",
+      "size_bytes": 2862
+    }
+  },
+  "schema_version": "1.0",
+  "semantic_exports": {
+    "control_object_requirements": [],
+    "layer_ids": [
+      "bio-02_annotation",
+      "bio02_guard_boundary",
+      "bio02_guard_identity",
+      "bio02_guard_region",
+      "bio02_pore_region",
+      "bio02_turgor"
+    ],
+    "layer_types": [
+      "annotation",
+      "hard_boundary",
+      "object_identity",
+      "region",
+      "scalar_field"
+    ],
+    "object_classes": [
+      "guard_cell"
+    ],
+    "source_policy": "Exported directly from deterministic program state; not inferred from the rendered screenshot."
+  },
+  "visual_target_package": {
+    "path": null,
+    "status": "missing"
+  }
+}

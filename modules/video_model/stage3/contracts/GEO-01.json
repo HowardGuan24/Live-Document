@@ -1,0 +1,168 @@
+{
+  "case_definition": {
+    "capability_tags": [
+      "boundary_evolution",
+      "erosion_deposition",
+      "water_topology"
+    ],
+    "discipline": "geography",
+    "discipline_zh": "地理",
+    "slug": "oxbow_lake_formation",
+    "title_zh": "曲流发展、裁弯取直与牛轭湖形成"
+  },
+  "case_id": "GEO-01",
+  "geometry_policy": "layout_only",
+  "hard_gates": [
+    "neck_width_decreases_before_cutoff",
+    "water_connectivity_changes_at_cutoff",
+    "main_flow_uses_new_shorter_channel",
+    "appearance_to_geometry_leakage"
+  ],
+  "keyframes": [
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/program.png",
+        "sha256": "24d3f6b832d766725b91dc243669dc43f34062f53c0649f8faf8be092a4ef4f1",
+        "size_bytes": 6989
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/clean.png",
+        "sha256": "a3d982adee43fa37197aba50f5bc17f70e4546420f9f318a3904ac7d7991fab7",
+        "size_bytes": 3423
+      },
+      "keyframe_id": "00_start",
+      "order": 0,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/semantic_layers.json",
+        "sha256": "183f663a64b1127538122fe400f72035a8ebc5696f7ffb0a9b5ca5269d6b3ffe",
+        "size_bytes": 6338
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/state.json",
+        "sha256": "e05b04f4d9dde8920aa4c2c97354922f8280319bb0e845d366e7a1d463aa16dd",
+        "size_bytes": 270
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/01_mechanism/program.png",
+        "sha256": "c5f937a2a1e99343fbb2bc4cd4e665b84bc6511cb06b49e25f5241aeb7f12312",
+        "size_bytes": 7146
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/01_mechanism/clean.png",
+        "sha256": "bce5c9efb86125d1ec5652d91b20ec0845e022626786b5331c123b7a047bee67",
+        "size_bytes": 3480
+      },
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/01_mechanism/semantic_layers.json",
+        "sha256": "c1e97b4b348d489254acf7fe5e33f67df2332761bc7634557eeaeb93e0ba02c3",
+        "size_bytes": 6382
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/01_mechanism/state.json",
+        "sha256": "7e38861a37013dc3c59bf6df4e5a359f03690db166870c617a589f8f5b243e45",
+        "size_bytes": 289
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/02_result/program.png",
+        "sha256": "9ebf50f45104417946ebc1dfb0b2b1935677609448836f9e7069267606fa1fe3",
+        "size_bytes": 7046
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/02_result/clean.png",
+        "sha256": "eb4f8c5b48244021623d82640275ce4664d78774ab3af38b2d5716f1ee41c7e9",
+        "size_bytes": 3482
+      },
+      "keyframe_id": "02_result",
+      "order": 2,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/02_result/semantic_layers.json",
+        "sha256": "d8a69948e4f4fb991b40fa685ed7e8b6e8f80724c667a1b5702a84826510bcc5",
+        "size_bytes": 6349
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/02_result/state.json",
+        "sha256": "fcaaf168888daed3033063979b46b62a1e1f0ea4a1d7e489ae25fa4741adb709",
+        "size_bytes": 289
+      }
+    },
+    {
+      "annotated_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/program.png",
+        "sha256": "f17dcdec82c0ceaba34f0b07569bc428776a44f92c1204a5d8f77e6bc0c63d1a",
+        "size_bytes": 6725
+      },
+      "clean_program_frame": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/clean.png",
+        "sha256": "89a85fcc9f7ca7faa0bb9f234c2e64eb153be6d8f020955febad6bb37eef0b1a",
+        "size_bytes": 3748
+      },
+      "keyframe_id": "03_end",
+      "order": 3,
+      "semantic_layers": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/semantic_layers.json",
+        "sha256": "f73e9d2f686eea5f9991d94e9d74a98848495a742a9118f1dc9c324b8d0feefe",
+        "size_bytes": 6308
+      },
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/03_end/state.json",
+        "sha256": "9e4c35e426016a0080ca5a431150123161851d234d96120cef83714d2dcc20df",
+        "size_bytes": 268
+      }
+    }
+  ],
+  "motion_contract": {
+    "path": "modules/video_model/stage3/motion_contracts/GEO-01.json",
+    "sha256": "04f6462ea4eef78cfe3819f11069272e0138d566b97ca4364c005fd8b6a8ac50"
+  },
+  "program_source": {
+    "concept_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/GEO-01/concept_spec.json",
+      "sha256": "d590751b904e03fba7d64d3e92303f5e1524122a0afa2283ace5540d8f72a29f",
+      "size_bytes": 1911
+    },
+    "program_manifest": {
+      "path": "modules/video_model/stage2/output/phase-4/programs/GEO-01/program_manifest.json",
+      "sha256": "6d3407020ba264d82e4b59bd822d045f20f2171cf5c0e2f76c67e8ab56f4c05a",
+      "size_bytes": 44177
+    },
+    "root": "modules/video_model/stage2/output/phase-4/programs/GEO-01",
+    "sequence_spec": {
+      "path": "modules/video_model/stage2/output/phase-1/fixtures/GEO-01/sequence_spec.json",
+      "sha256": "0e5372d2cebbaa547b1adcd7d9a60e6574b6f392def83c0629038d850227264d",
+      "size_bytes": 2874
+    }
+  },
+  "schema_version": "1.0",
+  "semantic_exports": {
+    "control_object_requirements": [],
+    "layer_ids": [
+      "geo-01_annotation",
+      "geo01_flow",
+      "geo01_water_boundary",
+      "geo01_water_region",
+      "geo01_waterbody_identity"
+    ],
+    "layer_types": [
+      "annotation",
+      "hard_boundary",
+      "object_identity",
+      "region",
+      "vector_field"
+    ],
+    "object_classes": [
+      "isolated_oxbow_lake",
+      "main_river"
+    ],
+    "source_policy": "Exported directly from deterministic program state; not inferred from the rendered screenshot."
+  },
+  "visual_target_package": {
+    "path": "modules/video_model/stage3/visual_targets/GEO-01/manifest.json",
+    "status": "accepted_project_baseline"
+  }
+}

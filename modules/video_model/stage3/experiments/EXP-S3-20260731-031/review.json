@@ -1,0 +1,16 @@
+{
+  "evidence": {
+    "path": "modules/video_model/stage3/output/phase-9-scale-motion/CHEM-02/L1/g4.json",
+    "sha256": "00071d6371e0a2c3c5de9d4874ef7a18ca69a484ca13aa69362decd3bf25cfb1",
+    "size_bytes": 8604
+  },
+  "experiment_id": "EXP-S3-20260731-031",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 1
+  },
+  "passed": false,
+  "reason_zh": "CHEM-02 的 L1 首尾和连续性通过，液面也下降，但第 12/49 帧就出现晶体，且计数发生 1→5→3→2；扩散视频没有守住成核时刻和晶体身份。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}

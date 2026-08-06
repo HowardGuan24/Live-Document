@@ -1,0 +1,55 @@
+{
+  "accepted_core_version": "stage3-validated-candidate-2026-07-31",
+  "active_loop_id": "LOOP-S3-0007",
+  "budget": {
+    "image_candidate_limit": 0,
+    "preflight_before_gpu_work": true,
+    "video_candidate_limit_per_guidance_level": 0
+  },
+  "consecutive_no_progress_loops": 0,
+  "current_case_cohort": {
+    "historical_regression": "GEO-HIST-DELTA-01",
+    "route_regressions": [
+      "BIO-02",
+      "GEO-01"
+    ],
+    "target": "MATH-01"
+  },
+  "current_cohort": {
+    "historical": "GEO-HIST-DELTA-01",
+    "regressions": [
+      "BIO-02",
+      "GEO-01"
+    ],
+    "target": "MATH-01"
+  },
+  "current_hypothesis": {
+    "falsification_zh": "任一案例缺路线、任一接受基线失配或任一新人报告资源失效都阻止阶段发布。",
+    "hypothesis_id": "H-S3-0012A",
+    "statement_zh": "若十案 G0-G4、已接受文件哈希和历史回归一次通过，则 Stage 3 可形成确定流程候选版。"
+  },
+  "current_hypothesis_id": "H-S3-0012A",
+  "current_problem": null,
+  "current_problem_id": null,
+  "exit_criteria": [
+    "All five discipline representatives pass complete formal release regression",
+    "Delta and Phase 9 historical regressions pass",
+    "All accepted baselines and newcomer report links resolve"
+  ],
+  "loop_id": "LOOP-S3-0007",
+  "next_action": "Stage 3 exit passed. Continue only with a new production-realism or richer video-conditioning objective.",
+  "open_problem_ids": [
+    "S3-PROBLEM-PRODUCTION-REALISM-001",
+    "S3-PROBLEM-VIDEO-CONDITIONING-001",
+    "S3-PROBLEM-TOKEN-INTEGRITY-001"
+  ],
+  "phase": "S3.10",
+  "phase_exit_criteria": [
+    "Math, physics, chemistry, biology and geography representatives complete G0–G4 or an explicitly accepted fallback",
+    "No representative relies on a provisional Visual Target Package"
+  ],
+  "phase_status": "passed",
+  "remaining_image_budget": 0,
+  "remaining_video_budget": 0,
+  "schema_version": "1.0"
+}

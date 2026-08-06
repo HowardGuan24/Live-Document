@@ -1,0 +1,64 @@
+{
+  "case_id": "CHEM-01",
+  "keyframe_selection": [
+    {
+      "keyframe_id": "00_start",
+      "order": 0,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/00_start/state.json",
+        "sha256": "9caeb4274fa934739ca413c63c96a96444fd36ceb93b5a1a16103b5be57a78af",
+        "size_bytes": 363
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/01_mechanism/state.json",
+        "sha256": "52f69bca495b58be974af0d2c998101fb65c3a021a90de5ef06c36162da38d9f",
+        "size_bytes": 377
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "order": 2,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/02_result/state.json",
+        "sha256": "4850240ee0caa0a3d7704b50763953146a5bdeb177d48a49dd45e521587ba2ae",
+        "size_bytes": 373
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "order": 3,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-2/CHEM-01/keyframes/03_end/state.json",
+        "sha256": "43590476875bb87a50ded44392834314060b4c5e2987311569f22725f4f71061",
+        "size_bytes": 375
+      }
+    }
+  ],
+  "model_input_policy": "The full timeline is used to extract direction, topology, speed trend, and occlusion constraints. Raw program video is not a default pixel input to an image or video model.",
+  "motion_classes": [
+    "liquid_mixing",
+    "state_transition"
+  ],
+  "program_video": {
+    "path": "modules/video_model/stage2/output/phase-2/CHEM-01/program-animation.mp4",
+    "sha256": "853ae7e21c1c113b97544c35d3d4c393b5dabb9ab46f87c86b07ba80d0f0d59b",
+    "size_bytes": 23798
+  },
+  "schema_version": "1.0",
+  "state_timeline": {
+    "path": "modules/video_model/stage2/output/phase-2/CHEM-01/states.jsonl",
+    "sha256": "bcc9a9616a6fe3e715c32aff4c5da1dc52209d014cfbccc7a99f00efc95356cb",
+    "size_bytes": 16643
+  },
+  "temporal_gates": [
+    "added_volume_is_monotonic",
+    "pre_endpoint_color_can_dissipate",
+    "endpoint_color_persists_after_mixing",
+    "camera_and_background_remain_fixed",
+    "no_uncontracted_object_birth_or_loss"
+  ]
+}

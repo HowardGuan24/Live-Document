@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://live-document.local/stage3/visual-target.schema.json",
+  "title": "Stage 3 visual target package",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "package_id",
+    "case_id",
+    "status",
+    "geometry_control_separation",
+    "style_board",
+    "positive_refs",
+    "negative_refs",
+    "rubric"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "package_id": {"type": "string", "minLength": 1},
+    "case_id": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": [
+        "user_approved",
+        "accepted_project_baseline",
+        "provisional",
+        "missing"
+      ]
+    },
+    "geometry_control_separation": {
+      "type": "object",
+      "required": ["geometry_source", "appearance_source", "leakage_gate"]
+    },
+    "style_board": {"type": "string", "minLength": 1},
+    "positive_refs": {"type": "array"},
+    "negative_refs": {"type": "array"},
+    "rubric": {"type": "string", "minLength": 1}
+  }
+}

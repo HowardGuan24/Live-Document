@@ -1,0 +1,16 @@
+{
+  "evidence": {
+    "path": "modules/video_model/stage3/output/phase-7-scale-vtp/vtp-audit.json",
+    "sha256": "0028c16bb68f8930cba136bc04818efb3146ed263ce4593f662585907ba509b3",
+    "size_bytes": 2774
+  },
+  "experiment_id": "EXP-S3-20260731-028",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "passed": true,
+  "reason_zh": "五个案例都有独立机制正例、反例、量表和硬门，外观供体仅以 appearance_donor_only 引用；十一份输入合同通过。",
+  "schema_version": "1.0",
+  "verdict": "accepted_core"
+}

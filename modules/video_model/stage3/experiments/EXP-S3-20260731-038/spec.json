@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-S3-20260731-038",
+  "case_id": "CHEM-02",
+  "hypothesis_zh": "受最终程序边界约束的 SDXL 场景可提供位置对齐的真实晶体像素，程序 region 仍锁定晶体数量和生长范围。",
+  "single_variable_zh": "四个候选只改变预先冻结的 seed；模型、最终程序控制图、提示词、ControlNet 强度和采样参数相同。",
+  "source": {
+    "keyframe_id": "03_end",
+    "clean_frame": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/03_end/clean.png",
+    "semantic_layers": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/03_end/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Top-down laboratory photo of one shallow oval glass crystallizing dish",
+    "material_goal": "clear solution, realistic glass refraction, four small translucent cubic salt crystals",
+    "state_delta": "exactly four separate crystals rest on the dish bottom",
+    "must_preserve": "centered overhead view, one dish, four crystals, no text"
+  },
+  "negative_artifacts": "extra dishes, extra crystals, fewer than four crystals, crystal pile, gemstones, diamonds, jewelry, powder, hands, tools, text, arrows, diagram, cartoon, plastic, metal bowl, cropped rim, tilted camera, perspective, blur, watermark",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [113801, 113802, 113803, 113804]
+  },
+  "configurations": [
+    {
+      "configuration_id": "final_scene_dense_control",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "dense_canny",
+      "controlnet_conditioning_scale": 0.58
+    }
+  ],
+  "blind_shuffle_seed": 2026073138,
+  "budget": {
+    "maximum_new_image_candidates": 4,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  }
+}

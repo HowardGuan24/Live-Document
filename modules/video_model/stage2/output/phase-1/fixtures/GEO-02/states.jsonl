@@ -1,4 +1,0 @@
-{"fixture_only": true, "meaning_zh": "湿润气流从迎风侧接近山地", "order": 0, "progress": 0.0, "state_id": "state_00"}
-{"fixture_only": true, "meaning_zh": "空气沿坡抬升、冷却并开始凝结", "order": 1, "progress": 0.3333333333333333, "state_id": "state_01"}
-{"fixture_only": true, "meaning_zh": "迎风坡出现主要降水", "order": 2, "progress": 0.6666666666666666, "state_id": "state_02"}
-{"fixture_only": true, "meaning_zh": "背风侧空气下沉增温并形成雨影", "order": 3, "progress": 1.0, "state_id": "state_03"}

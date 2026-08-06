@@ -1,0 +1,16 @@
+{
+  "evidence": {
+    "path": "modules/video_model/stage3/output/phase-9-scale-motion/g4-machine.json",
+    "sha256": "92322430cdf0d23c673cdb6529942a5289513f1a54c2bac10a3fed93afa4ea74",
+    "size_bytes": 2462
+  },
+  "experiment_id": "EXP-S3-20260731-030",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "passed": true,
+  "reason_zh": "五案共 245 个程序状态全部完成类型化语义导出、State Renderer 重建、MP4 编解码与 G4；关键帧、连续性、身份、守恒和拓扑通过，旧运动基线未退化。",
+  "schema_version": "1.0",
+  "verdict": "accepted_core"
+}

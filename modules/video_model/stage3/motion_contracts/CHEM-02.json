@@ -1,0 +1,63 @@
+{
+  "case_id": "CHEM-02",
+  "keyframe_selection": [
+    {
+      "keyframe_id": "00_start",
+      "order": 0,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/00_start/state.json",
+        "sha256": "c689e851fe7dc6c950bceef117942d1fb261b3884c83f56d1d08e440d93355ec",
+        "size_bytes": 269
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/01_mechanism/state.json",
+        "sha256": "72b9786756cb36a77f992c12a3ab6732ab75f4adfbadfe1b4e73867cafdfbdb4",
+        "size_bytes": 287
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "order": 2,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/02_result/state.json",
+        "sha256": "aea86651b8607e72994132eefcec2590aefa9f66d08dd5e99c7786eac0999412",
+        "size_bytes": 297
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "order": 3,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframes/03_end/state.json",
+        "sha256": "2a592ab20ccc4b8a2e0627141087cc98c6a22d9f6f92dbb3754f94b56c1342cd",
+        "size_bytes": 278
+      }
+    }
+  ],
+  "model_input_policy": "The full timeline is used to extract direction, topology, speed trend, and occlusion constraints. Raw program video is not a default pixel input to an image or video model.",
+  "motion_classes": [
+    "material_phase_growth"
+  ],
+  "program_video": {
+    "path": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/program-animation.mp4",
+    "sha256": "caa4fb867f055fa4b9e05e43b1e4b9784eab65fbb2e5429fc2afefa2dc8f3b56",
+    "size_bytes": 79517
+  },
+  "schema_version": "1.0",
+  "state_timeline": {
+    "path": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/states.jsonl",
+    "sha256": "ac88db5b795cf8996b9393cbb7a632f386b25c6a079d9801dda005b90e83eef9",
+    "size_bytes": 12175
+  },
+  "temporal_gates": [
+    "no_crystal_before_supersaturation",
+    "crystal_identity_is_stable_after_nucleation",
+    "solute_mass_is_conserved",
+    "camera_and_background_remain_fixed",
+    "no_uncontracted_object_birth_or_loss"
+  ]
+}

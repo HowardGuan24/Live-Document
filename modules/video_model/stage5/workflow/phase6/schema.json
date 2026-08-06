@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://live-document.local/stage5/phase6/schema.json",
+  "title": "Stage 5 Phase 6 deterministic delivery contracts",
+  "$ref": "#/$defs/delivery_manifest",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "artifact_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "size_bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "size_bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "passed", "evidence"],
+      "properties": {
+        "check_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "passed": {"const": true},
+        "evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "input_bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantic_contract", "sequence_archive", "sequence_manifest",
+        "presentation", "teaching_manifest", "phase4_human_decision",
+        "appearance_plan", "appearance_execution", "appearance_review",
+        "appearance_pack", "phase5_human_decision"
+      ],
+      "properties": {
+        "semantic_contract": {"$ref": "#/$defs/artifact_ref"},
+        "sequence_archive": {"$ref": "#/$defs/artifact_ref"},
+        "sequence_manifest": {"$ref": "#/$defs/artifact_ref"},
+        "presentation": {"$ref": "#/$defs/artifact_ref"},
+        "teaching_manifest": {"$ref": "#/$defs/artifact_ref"},
+        "phase4_human_decision": {"$ref": "#/$defs/artifact_ref"},
+        "appearance_plan": {"$ref": "#/$defs/artifact_ref"},
+        "appearance_execution": {"$ref": "#/$defs/artifact_ref"},
+        "appearance_review": {"$ref": "#/$defs/artifact_ref"},
+        "appearance_pack": {"$ref": "#/$defs/artifact_ref"},
+        "phase5_human_decision": {"$ref": "#/$defs/artifact_ref"}
+      }
+    },
+    "frame_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_index", "artifact", "source_teaching_sha256",
+        "semantic_state_sha256", "overlay_mismatch_pixels",
+        "changed_outside_authorized_mask_pixels", "width", "height", "mode"
+      ],
+      "properties": {
+        "frame_index": {"type": "integer", "minimum": 0},
+        "artifact": {"$ref": "#/$defs/artifact_ref"},
+        "source_teaching_sha256": {"$ref": "#/$defs/sha256"},
+        "semantic_state_sha256": {"$ref": "#/$defs/sha256"},
+        "overlay_mismatch_pixels": {"const": 0},
+        "changed_outside_authorized_mask_pixels": {"const": 0},
+        "width": {"const": 880},
+        "height": {"const": 600},
+        "mode": {"const": "RGB"}
+      }
+    },
+    "frame_sequence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "directory", "filename_pattern", "frame_count", "fps",
+        "duration_seconds", "width", "height", "mode", "tree_sha256", "frames"
+      ],
+      "properties": {
+        "directory": {"type": "string", "minLength": 1},
+        "filename_pattern": {"const": "frame-%06d.png"},
+        "frame_count": {"type": "integer", "minimum": 1},
+        "fps": {"const": 12},
+        "duration_seconds": {"type": "number", "minimum": 8, "maximum": 12},
+        "width": {"const": 880},
+        "height": {"const": 600},
+        "mode": {"const": "RGB"},
+        "tree_sha256": {"$ref": "#/$defs/sha256"},
+        "frames": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/frame_record"}}
+      }
+    },
+    "media_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact", "media_type", "codec", "pixel_format", "width", "height",
+        "frame_count", "fps", "duration_seconds", "stream_count",
+        "audio_stream_count", "decode_passed", "fast_start", "looping"
+      ],
+      "properties": {
+        "artifact": {"$ref": "#/$defs/artifact_ref"},
+        "media_type": {"enum": ["video/mp4", "image/gif"]},
+        "codec": {"enum": ["h264", "gif"]},
+        "pixel_format": {"type": "string", "minLength": 1},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "frame_count": {"type": "integer", "minimum": 1},
+        "fps": {"type": "number", "exclusiveMinimum": 0},
+        "duration_seconds": {"type": "number", "minimum": 7.9, "maximum": 12.1},
+        "stream_count": {"const": 1},
+        "audio_stream_count": {"const": 0},
+        "decode_passed": {"const": true},
+        "fast_start": {"type": "boolean"},
+        "looping": {"type": "boolean"}
+      }
+    },
+    "deterministic_replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "first_digest", "second_digest", "sampled_frame_indices", "matched"],
+      "properties": {
+        "algorithm": {"const": "sha256-frame-index-rgb-bytes-v1"},
+        "first_digest": {"$ref": "#/$defs/sha256"},
+        "second_digest": {"$ref": "#/$defs/sha256"},
+        "sampled_frame_indices": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+        "matched": {"const": true}
+      }
+    },
+    "temporal_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "frame_count", "appearance_role_metrics",
+        "changed_pixels_outside_authorized_masks_max", "overlay_mismatch_pixels_max",
+        "protected_role_changed_pixels_max", "maximum_frame_to_frame_material_region_change",
+        "material_coordinate_policy", "random_flicker_detected",
+        "unapproved_texture_movement_detected", "mechanism_prominence",
+        "subject_versus_text_visual_weight", "phase5_probe_fidelity", "replay_digest", "status"
+      ],
+      "properties": {
+        "schema_version": {"const": "stage5-phase6-temporal-metrics-1"},
+        "frame_count": {"type": "integer", "minimum": 1},
+        "appearance_role_metrics": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+        "changed_pixels_outside_authorized_masks_max": {"const": 0},
+        "overlay_mismatch_pixels_max": {"const": 0},
+        "protected_role_changed_pixels_max": {"const": 0},
+        "maximum_frame_to_frame_material_region_change": {"type": "object"},
+        "material_coordinate_policy": {"const": "fixed_output_coordinate_resize_v1"},
+        "random_flicker_detected": {"const": false},
+        "unapproved_texture_movement_detected": {"const": false},
+        "mechanism_prominence": {"type": "object"},
+        "subject_versus_text_visual_weight": {"type": "object"},
+        "phase5_probe_fidelity": {"type": "object"},
+        "replay_digest": {"$ref": "#/$defs/sha256"},
+        "status": {"const": "passed"}
+      }
+    },
+    "final_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "semantic_preservation", "teaching_overlay_integrity",
+        "appearance_pack_fidelity", "temporal_stability", "mechanism_prominence",
+        "media_validity", "known_visual_warnings", "human_acceptance_recorded", "status"
+      ],
+      "properties": {
+        "schema_version": {"const": "stage5-phase6-final-evaluation-1"},
+        "semantic_preservation": {"type": "object"},
+        "teaching_overlay_integrity": {"type": "object"},
+        "appearance_pack_fidelity": {"type": "object"},
+        "temporal_stability": {"type": "object"},
+        "mechanism_prominence": {"type": "object"},
+        "media_validity": {"type": "object"},
+        "known_visual_warnings": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "human_acceptance_recorded": {"const": false},
+        "status": {"enum": ["ready_for_human_delivery_review", "ready_with_warnings_for_human_delivery_review", "not_ready"]}
+      }
+    },
+    "delivery_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "artifact_type", "phase", "input_bindings", "selection",
+        "timeline", "final_frames", "delivery_artifacts", "diagnostics",
+        "evaluation", "deterministic_replay", "lineage_checks", "checks",
+        "renderer_policy", "environment", "status"
+      ],
+      "properties": {
+        "schema_version": {"const": "stage5-phase6-delivery-manifest-2"},
+        "artifact_type": {"const": "final_delivery"},
+        "phase": {"const": "phase6"},
+        "input_bindings": {"$ref": "#/$defs/input_bindings"},
+        "selection": {
+          "type": "object", "additionalProperties": false,
+          "required": ["layout_style_id", "appearance_candidate_ids"],
+          "properties": {
+            "layout_style_id": {"type": "string", "minLength": 1},
+            "appearance_candidate_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+          }
+        },
+        "timeline": {
+          "type": "object", "additionalProperties": false,
+          "required": ["frame_count", "fps", "duration_seconds", "width", "height"],
+          "properties": {
+            "frame_count": {"type": "integer", "minimum": 1},
+            "fps": {"const": 12},
+            "duration_seconds": {"type": "number", "minimum": 8, "maximum": 12},
+            "width": {"const": 880}, "height": {"const": 600}
+          }
+        },
+        "final_frames": {"$ref": "#/$defs/frame_sequence"},
+        "delivery_artifacts": {
+          "type": "object", "additionalProperties": false,
+          "required": ["mp4", "gif"],
+          "properties": {"mp4": {"$ref": "#/$defs/media_artifact"}, "gif": {"$ref": "#/$defs/media_artifact"}}
+        },
+        "diagnostics": {
+          "type": "object", "additionalProperties": false,
+          "required": ["temporal_metrics", "final_evaluation"],
+          "properties": {"temporal_metrics": {"$ref": "#/$defs/artifact_ref"}, "final_evaluation": {"$ref": "#/$defs/artifact_ref"}}
+        },
+        "evaluation": {"$ref": "#/$defs/final_evaluation"},
+        "deterministic_replay": {"$ref": "#/$defs/deterministic_replay"},
+        "lineage_checks": {"type": "array", "minItems": 8, "items": {"$ref": "#/$defs/check"}},
+        "checks": {"type": "array", "minItems": 10, "items": {"$ref": "#/$defs/check"}},
+        "renderer_policy": {
+          "type": "object", "additionalProperties": false,
+          "required": [
+            "new_appearance_logic_allowed", "semantic_state_source", "teaching_pixel_source",
+            "material_mapping", "image_model_executed", "network_used"
+          ],
+          "properties": {
+            "new_appearance_logic_allowed": {"const": false},
+            "semantic_state_source": {"const": "phase3_sequence"},
+            "teaching_pixel_source": {"const": "selected_phase4_frames_exact"},
+            "material_mapping": {"const": "approved_phase5_plan_fixed_output_coordinates"},
+            "image_model_executed": {"const": false},
+            "network_used": {"const": false}
+          }
+        },
+        "environment": {
+          "type": "object", "additionalProperties": false,
+          "required": ["python_path", "python_version", "numpy_version", "pillow_version", "opencv_version", "jsonschema_version", "ffmpeg_version", "ffprobe_version"],
+          "properties": {
+            "python_path": {"type": "string", "minLength": 1}, "python_version": {"type": "string", "minLength": 1},
+            "numpy_version": {"type": "string", "minLength": 1}, "pillow_version": {"type": "string", "minLength": 1},
+            "opencv_version": {"type": "string", "minLength": 1}, "jsonschema_version": {"type": "string", "minLength": 1},
+            "ffmpeg_version": {"type": "string", "minLength": 1}, "ffprobe_version": {"type": "string", "minLength": 1}
+          }
+        },
+        "status": {"enum": ["ready_for_human_delivery_review", "ready_with_warnings_for_human_delivery_review"]}
+      }
+    }
+  }
+}

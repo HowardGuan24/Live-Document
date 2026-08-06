@@ -1,0 +1,25 @@
+{
+  "assembled_frame_count": 73,
+  "case_id": "PHYS-01",
+  "experiment_id": "EXP-S3-20260731-016",
+  "guidance_level": "L2",
+  "implementation": "three adjacent LTX FLF segments; remove duplicate boundary frames and concatenate",
+  "schema_version": "1.0",
+  "segment_specs": [
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-016/spec-segment-1.json",
+      "sha256": "406c8a1d24b4d6a9385300caf210d542e6e181573e9f31b76ce65d458fc75684",
+      "size_bytes": 2399
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-016/spec-segment-2.json",
+      "sha256": "5e129d6b37cd416b0522cff6cd00889322ea6b4c225fa4a6780f695fb808240f",
+      "size_bytes": 2401
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-016/spec-segment-3.json",
+      "sha256": "02133aee7857c425ef8afb8a3eace584cba46d88a373611d4c9988342687737f",
+      "size_bytes": 2389
+    }
+  ]
+}

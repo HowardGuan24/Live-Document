@@ -1,0 +1,18 @@
+{
+  "evidence": {
+    "path": "modules/video_model/stage3/output/phase-6-rerun-1/BIO-01/video/L2/g4.json",
+    "sha256": "9a908607248af881a56c55a28e8486af77eb3c94c13ff61d677599ef52aa068b",
+    "size_bytes": 9856
+  },
+  "experiment_id": "EXP-S3-20260731-022",
+  "failure_taxonomy": "motion_or_video",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 1,
+    "video_model_calls": 3
+  },
+  "passed": false,
+  "reason_zh": "L2 命中四个关键帧并降低跳变，但分离段产生大量波浪状洋红结构，身份像素峰值约为起点 2.51 倍。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}

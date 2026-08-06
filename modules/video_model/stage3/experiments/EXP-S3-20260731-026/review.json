@@ -1,0 +1,16 @@
+{
+  "evidence": {
+    "path": "modules/video_model/stage3/output/phase-6-rerun-2/GEO-02/video/L2/g4.json",
+    "sha256": "a6ac3cf4b79a5775d8468f5b2482f5d85a3e51564653ae1f447abc18756479b7",
+    "size_bytes": 12223
+  },
+  "experiment_id": "EXP-S3-20260731-026",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 3
+  },
+  "passed": false,
+  "reason_zh": "三段 LTX 提高了关键帧边界贴合，但各片段不共享对象隐状态，空气团出现反向、消失和重现，身份与轨迹门禁失败。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}

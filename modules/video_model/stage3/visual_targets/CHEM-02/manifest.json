@@ -1,0 +1,39 @@
+{
+  "case_id": "CHEM-02",
+  "geometry_control_separation": {
+    "appearance_source": "appearance_donor_only; donor geometry is forbidden",
+    "geometry_source": "frozen input contract + semantic layers + geometry policy",
+    "leakage_gate": "appearance_to_geometry_leakage"
+  },
+  "negative_refs": [
+    {
+      "label_zh": "液面升高、晶体提前出现、晶体数量乱增，或蒸发皿形状在帧间改变。",
+      "path": "modules/video_model/stage3/output/phase-7-scale-vtp/negative_refs/CHEM-02.jpg",
+      "role": "appearance_and_mechanism_negative",
+      "sha256": "79158b4da53cbdd13ba0b886ee78e15a13a5822b26310d3109c861d86cab1759",
+      "size_bytes": 161524
+    }
+  ],
+  "package_id": "VT-CHEM-02-V1",
+  "positive_refs": [
+    {
+      "label_zh": "程序四关键帧：定义对象、状态和顺序。",
+      "path": "modules/video_model/stage2/output/phase-4/programs/CHEM-02/keyframe-contact-sheet.jpg",
+      "role": "accepted_mechanism_reference",
+      "sha256": "0297c37469fc0dff69ed0d1d3a12f40eb51d1c57fa988264e47c9f7863cb6ed8",
+      "size_bytes": 151902
+    },
+    {
+      "label_zh": "外观供体：真实玻璃边缘、液体高光和中性实验室照明。",
+      "path": "modules/video_model/stage2/output/phase-7/route-a/experiments/EXP-P7-A-chem-01-00_start/raw/semantic_control_065/seed_7101.png",
+      "role": "appearance_donor_only",
+      "sha256": "42f00932056e2614b70b706bbd5e836135689d1f7de1a36e8dbdfd8549674e35",
+      "size_bytes": 653970
+    }
+  ],
+  "rubric": "modules/video_model/stage3/visual_targets/CHEM-02/rubric.json",
+  "schema_version": "1.0",
+  "status": "accepted_project_baseline",
+  "style_board": "modules/video_model/stage3/visual_targets/CHEM-02/style_board.html",
+  "summary_zh": "透明蒸发皿、逐渐降低的液面和清晰盐晶体；浓度、晶体数量与总溶质质量由程序守恒。"
+}

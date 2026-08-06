@@ -1,0 +1,19 @@
+{
+  "evidence": {
+    "landmark_replay": {
+      "path": "modules/video_model/stage3/output/phase-3/selection-v3-landmark-audit/selection.json",
+      "sha256": "695eb5f5a089e0f0ebab3a43b9abc34a6d51742e3f1c7f1c75e7511f3696590b",
+      "size_bytes": 34591
+    },
+    "old_selected": "auto_control_080-s7102"
+  },
+  "experiment_id": "EXP-S3-20260730-007",
+  "failure_taxonomy": "semantic_landmark_missing",
+  "model_runs": {
+    "image_candidates": 9,
+    "video_candidates": 0
+  },
+  "reason_zh": "旧 selector 选出一张干净图，但独立语义复核发现滴定管刻度丢失。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}

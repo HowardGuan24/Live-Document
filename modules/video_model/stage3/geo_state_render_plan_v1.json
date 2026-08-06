@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "status": "frozen_before_EXP-S3-20260731-024",
+  "plan": {
+    "schema_version": "1.0",
+    "plan_id": "S3.6R2-GEO-02-SCALAR-FIELD-V1",
+    "case_id": "GEO-02",
+    "role": "candidate",
+    "contract": "contracts/GEO-02.json",
+    "anchor": {
+      "path": "../stage2/output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result-terrain_only/raw/semantic_control_045/seed_7101.png",
+      "preprocess": {
+        "mode": "identity"
+      }
+    },
+    "keyframe_ids": [
+      "00_start",
+      "01_mechanism",
+      "02_result",
+      "03_end"
+    ],
+    "operators": [
+      {
+        "operator_id": "humidity_and_cloud_volume",
+        "operator_type": "scalar_field_overlay",
+        "config": {
+          "scalar_layer_id": "geo02_humidity_cloud_rain",
+          "render_mode": "soft_tint",
+          "value_range": [0.0, 1.0],
+          "threshold": 0.12,
+          "gamma": 0.82,
+          "color_rgb": [232, 237, 238],
+          "maximum_alpha": 0.5,
+          "blur_radius_px": 8.0,
+          "clip_normalized_xyxy": [0.0, 0.02, 1.0, 0.82]
+        }
+      },
+      {
+        "operator_id": "windward_precipitation",
+        "operator_type": "scalar_field_overlay",
+        "config": {
+          "scalar_layer_id": "geo02_humidity_cloud_rain",
+          "render_mode": "streaks",
+          "value_range": [0.0, 1.0],
+          "threshold": 0.2,
+          "gamma": 0.75,
+          "state_modulation": {
+            "field": "rain_strength",
+            "input_range": [0.0, 1.0],
+            "gamma": 0.7
+          },
+          "color_rgb": [75, 137, 187],
+          "maximum_alpha": 0.82,
+          "clip_normalized_xyxy": [0.2, 0.23, 0.54, 0.82],
+          "grid_step_px": [14, 17],
+          "line_delta_px": [-4, 18],
+          "line_width_px": 2
+        }
+      },
+      {
+        "operator_id": "moving_air_parcel",
+        "operator_type": "object_overlay",
+        "config": {
+          "identity_layer_id": "geo02_parcel_identity",
+          "include_class_ids": ["moving_air_parcel"],
+          "projection": {
+            "mode": "canvas_scale"
+          },
+          "style": {
+            "fill_rgb": [239, 164, 75],
+            "outline_rgb": [255, 244, 211],
+            "alpha": 0.82
+          }
+        }
+      }
+    ],
+    "gates": {
+      "terrain_source_hash_must_be_fixed": true,
+      "parcel_x_must_increase": true,
+      "rain_peak_keyframe_id": "02_result",
+      "rain_centroid_must_be_windward_of_terrain_peak": true,
+      "leeward_rain_maximum_fraction_of_peak": 0.2,
+      "outside_declared_mutable_max_difference_0_255": 0
+    }
+  },
+  "negative_control": {
+    "id": "frozen_appearance_without_program_state",
+    "only_changed_variable": "program_state_overlay_port_enabled=false",
+    "construction": "Repeat the exact frozen appearance anchor for every keyframe without cloud, precipitation or parcel operators."
+  },
+  "candidate": {
+    "id": "frozen_appearance_plus_program_state",
+    "only_changed_variable": "program_state_overlay_port_enabled=true"
+  }
+}

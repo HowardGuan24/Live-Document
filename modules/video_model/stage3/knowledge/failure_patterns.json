@@ -1,0 +1,152 @@
+{
+  "patterns": [
+    {
+      "diagnosis_zh": "控制图没有从 typed semantic objects 编译。",
+      "forbidden_fix_zh": "不得把新案例的最终坐标再次手写进模板。",
+      "id": "FP-GEOMETRY-001",
+      "symptom_zh": "固定器材模板好看，但换案例或画布后无法复现。",
+      "taxonomy": "geometry"
+    },
+    {
+      "diagnosis_zh": "整张程序截图被错误地当成统一几何源。",
+      "forbidden_fix_zh": "不得只调 Canny 阈值后继续把全图边缘输入模型。",
+      "id": "FP-CONTROL-001",
+      "symptom_zh": "密集 Canny 把文字、箭头、雨线或纹理当作物体边界。",
+      "taxonomy": "control_encoding"
+    },
+    {
+      "diagnosis_zh": "禁用名词 pink 出现在正向 conditioning，模型仍注意该 token。",
+      "forbidden_fix_zh": "不得只换 seed；把禁用概念移入 negative slot 并冻结词段所有权。",
+      "id": "FP-PROMPT-001",
+      "symptom_zh": "要求“不要粉色”却生成整批粉色图。",
+      "taxonomy": "prompt_polarity"
+    },
+    {
+      "diagnosis_zh": "宽泛的 laboratory/apparatus 场景词诱发模型补全常见共现物。",
+      "forbidden_fix_zh": "不得逐图修补；使用最小场景词和明确空背景。",
+      "id": "FP-PROMPT-002",
+      "symptom_zh": "目标器材之外出现烧瓶、瓶子或实验室杂物。",
+      "taxonomy": "prompt_scene_leakage"
+    },
+    {
+      "diagnosis_zh": "selector 只测轮廓覆盖，没有读取 primitive 的内部标志合同。",
+      "forbidden_fix_zh": "不得靠人工记住每个 Case；provider 必须输出可计算 landmark 声明。",
+      "id": "FP-LANDMARK-001",
+      "symptom_zh": "外轮廓正确，但器材刻度等身份部件消失。",
+      "taxonomy": "semantic_landmark"
+    },
+    {
+      "diagnosis_zh": "只数 ROI 内边缘组，没有与 provider 的预期位置对齐。",
+      "forbidden_fix_zh": "不得事后挑 seed；先冻结 expected positions 和容差，再回放完整集合。",
+      "id": "FP-LANDMARK-002",
+      "symptom_zh": "玻璃反光横带被误判成多条刻度。",
+      "taxonomy": "gate_false_positive"
+    },
+    {
+      "diagnosis_zh": "解析量与栅格量混用，或连续图像用最近邻像素抽样。",
+      "forbidden_fix_zh": "不得事后放宽阈值；先确认事实属于解析域、栅格域还是连续采样域，再修正量表。",
+      "id": "FP-METRIC-001",
+      "symptom_zh": "视觉和合同几何正确，但面积或材质稳定性门禁小幅失败。",
+      "taxonomy": "metric_domain"
+    },
+    {
+      "diagnosis_zh": "FLF 模型满足首尾像素，不等于遵守浓度或质量的逐帧单调约束。",
+      "forbidden_fix_zh": "不得只看尾帧或放宽峰值门禁；用逐帧标量质量检查，失败则回退确定性状态渲染。",
+      "id": "FP-VIDEO-LIQUID-001",
+      "symptom_zh": "液体显色最后消失，但中途先变大或分裂成额外色块。",
+      "taxonomy": "motion_guidance"
+    },
+    {
+      "diagnosis_zh": "首尾帧扩散视频没有原生对象 ID、刚体面积或轨迹约束。",
+      "forbidden_fix_zh": "不得以端点 MAE 通过替代对象身份门禁；精确刚体失败时保留程序动画。",
+      "id": "FP-VIDEO-RIGID-001",
+      "symptom_zh": "首尾四块拼图正确，中间却闪回、融合、消失或重生。",
+      "taxonomy": "motion_guidance"
+    },
+    {
+      "diagnosis_zh": "多个独立 FLF 片段共享关键帧像素，却不共享隐状态或速度。",
+      "forbidden_fix_zh": "不得只报告中间帧误差；同时检查边界相邻帧跳变，没有机制增益时维持较低指导级别。",
+      "id": "FP-VIDEO-SEGMENT-001",
+      "symptom_zh": "稀疏分段提高中间帧忠实度，但边界出现速度或相位接缝。",
+      "taxonomy": "motion_guidance"
+    },
+    {
+      "diagnosis_zh": "外观供体被当作整幅 underlay，而不是仅提供材质统计。",
+      "forbidden_fix_zh": "不得靠遮掉个别器官修图；先隔离低频几何，只迁移审核过的高频材质或在声明区域内做表面统计。",
+      "id": "FP-APPEARANCE-DONOR-001",
+      "symptom_zh": "材质更丰富，但供体的细胞器、色带或对象布局进入所有状态。",
+      "taxonomy": "appearance_condition"
+    },
+    {
+      "diagnosis_zh": "FLF 模型没有原生对象谱系、拓扑或逐帧身份守恒控制；稀疏关键帧只约束片段边界。",
+      "forbidden_fix_zh": "不得用端点 MAE 或更平滑掩盖中间复制；预算内失败后改用完整程序时间线 State Renderer 回退。",
+      "id": "FP-VIDEO-DIVISION-001",
+      "symptom_zh": "对象分裂视频端点正确，中间却出现额外细胞或身份纹理倍增。",
+      "taxonomy": "motion_or_video"
+    },
+    {
+      "diagnosis_zh": "有机填充区域的像素连通定义与语义层八邻接定义不一致。",
+      "forbidden_fix_zh": "不得放宽对象数量阈值；应固定连通定义，并保留旧错杀结果。",
+      "id": "FP-METRIC-CONNECTIVITY-001",
+      "symptom_zh": "程序 region 连续，但纹理图用四邻接被误拆成多个区域。",
+      "taxonomy": "metric_domain"
+    },
+    {
+      "diagnosis_zh": "首尾帧模型把局部标量事件当成具有实体表面的对象。",
+      "forbidden_fix_zh": "不得因端点和连续性通过就接受；必须检测事件的时间峰值、空间侧别和材料类别。",
+      "id": "FP-VIDEO-FIELD-001",
+      "symptom_zh": "稀疏雨线在生成视频中变成沿地形爬行的实心水带或冰带。",
+      "taxonomy": "motion_or_video"
+    },
+    {
+      "diagnosis_zh": "相邻片段共享边界图像，却不共享对象身份、速度或内部生成状态。",
+      "forbidden_fix_zh": "不得只测接缝关键帧 MAE；必须跨全片追踪同一对象身份与方向。",
+      "id": "FP-VIDEO-IDENTITY-002",
+      "symptom_zh": "分段视频在接缝处的空气团消失、反向或以新身份重现。",
+      "taxonomy": "motion_or_video"
+    },
+    {
+      "diagnosis_zh": "编码或连续采样的最低有效位差异不等于视觉或语义回归。",
+      "forbidden_fix_zh": "不得取消哈希；先测哈希，失配时只允许预冻结的单像素单 LSB 数值等价规则。",
+      "id": "FP-REGRESSION-NUMERIC-001",
+      "symptom_zh": "确定性回放只有一个像素的一个通道相差 1/255，却被纯文件哈希判失败。",
+      "taxonomy": "metric_domain"
+    },
+    {
+      "diagnosis_zh": "高通滤波去除了颜色缓变，却没有去除供体边缘的二维坐标；高频不等于无几何。",
+      "forbidden_fix_zh": "不得逐案例涂掉泄漏对象；必须先确定性打乱或统计化高频残差，再由语义层恢复新案例几何。",
+      "id": "FP-APPEARANCE-SPATIAL-001",
+      "symptom_zh": "只取供体高频残差仍会在新案例里看到供体的三角形、烧杯、细胞器或河道位置。",
+      "taxonomy": "appearance_condition"
+    },
+    {
+      "diagnosis_zh": "程序 provider 只导出了粗边界或对象身份，没有把机制线作为类型化语义层输出。",
+      "forbidden_fix_zh": "不得在最终图片里按案例手绘；回到 provider 增加语义导出、升级输入合同，再执行通用渲染器。",
+      "id": "FP-SEMANTIC-MECHANISM-001",
+      "symptom_zh": "程序截图里有正弦轨迹、线圈或仪表，但生成图缺少这些教学机制。",
+      "taxonomy": "semantic_export"
+    },
+    {
+      "diagnosis_zh": "关键帧 smoke 没有覆盖任意进度；Pillow 版本对混合整数/浮点多边形坐标的容忍度不同。",
+      "forbidden_fix_zh": "不得跳过坏帧或用前后帧插值；所有 provider 必须通过固定 49 点采样，并把绘图坐标规范成普通 Python 数值。",
+      "id": "FP-PROVIDER-TIMELINE-001",
+      "symptom_zh": "四个关键帧都能生成，但第一次采样完整时间线时，结晶 provider 在中间帧因绘图坐标类型报错。",
+      "taxonomy": "semantic_export"
+    },
+    {
+      "diagnosis_zh": "稀疏关键帧相同不代表区间内状态恒定；完整程序在正中间达到 62 的峰值。",
+      "forbidden_fix_zh": "不得从四个样本猜连续函数；G4 必须读取完整 states.jsonl 或逐点调用 provider 后再冻结趋势。",
+      "id": "FP-GATE-SPARSE-ASSUMPTION-001",
+      "symptom_zh": "BIO-02 四个关键帧的开度为 10/49/49/10，旧 G4 因此误以为两个中间关键帧之间应保持 49。",
+      "taxonomy": "metric_domain"
+    },
+    {
+      "diagnosis_zh": "首尾扩散和独立 FLF 片段都没有晶体对象 ID；文字能提示大致事件，却不能守住成核阈值和跨帧身份。",
+      "forbidden_fix_zh": "不得因最终四颗晶体正确就接受；必须检查首次成核帧和逐帧计数，失败后使用完整程序时间线回退。",
+      "id": "FP-VIDEO-NUCLEATION-001",
+      "symptom_zh": "结晶视频端点正确，但晶体过早出现、数量先增后减，分段后仍有微小晶体消失重现。",
+      "taxonomy": "motion_or_video"
+    }
+  ],
+  "schema_version": "1.0"
+}

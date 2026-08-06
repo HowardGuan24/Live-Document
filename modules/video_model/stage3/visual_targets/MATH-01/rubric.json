@@ -1,0 +1,53 @@
+{
+  "acceptance": {
+    "all_hard_gates_must_pass": true,
+    "minimum_weighted_score": 4.0
+  },
+  "appearance_dimensions": [
+    {
+      "id": "material",
+      "question_zh": "是否像真实绘图纸上的精密教学图，而不是发光 UI？",
+      "weight": 0.25
+    },
+    {
+      "id": "mechanism_readability",
+      "question_zh": "圆、坐标轴与正弦轨迹是否仍清楚且线宽稳定？",
+      "weight": 0.25
+    },
+    {
+      "id": "camera_stability",
+      "question_zh": "材质微纹理是否没有推动或扭曲几何线？",
+      "weight": 0.25
+    },
+    {
+      "id": "artifact_avoidance",
+      "question_zh": "相机、纸面和光线在四帧中是否固定？",
+      "weight": 0.25
+    }
+  ],
+  "case_id": "MATH-01",
+  "hard_gates": [
+    {
+      "id": "gate_1",
+      "pass_zh": "圆和坐标轴必须来自 hard_boundary，不允许模型重画。"
+    },
+    {
+      "id": "gate_2",
+      "pass_zh": "旋转点与曲线头的位置必须来自 object_identity。"
+    },
+    {
+      "id": "gate_3",
+      "pass_zh": "已出现的正弦轨迹只能增长，不能提前出现或回缩。"
+    },
+    {
+      "id": "gate_4",
+      "pass_zh": "appearance_to_geometry_leakage 必须为零。"
+    }
+  ],
+  "schema_version": "1.0",
+  "score_scale": {
+    "1": "明显失败，外观或机制不能用于教学",
+    "3": "基本可读，但材质、稳定性或机制有明显弱点",
+    "5": "外观可信，且不看文字也能正确读出机制"
+  }
+}

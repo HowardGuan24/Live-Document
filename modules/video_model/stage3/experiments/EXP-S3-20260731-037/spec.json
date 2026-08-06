@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-S3-20260731-037",
+  "case_id": "GEO-01",
+  "hypothesis_zh": "把目标收紧为正射地表纹理样本，可减少上一轮出现的河流、透视和大型田界。",
+  "single_variable_zh": "相对 EXP-S3-20260731-036 只改变版本化提示词和四个预先冻结的新 seed；模型、关闭 ControlNet、尺寸、步数和 CFG 不变。",
+  "source": {
+    "keyframe_id": "00_start",
+    "clean_frame": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/clean.png",
+    "semantic_layers": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Orthographic remote-sensing texture sample of natural floodplain meadow, edge to edge",
+    "material_goal": "small mottled grass, damp soil speckles, realistic fine ground detail",
+    "state_delta": "flat uninterrupted land texture without large features",
+    "must_preserve": "nadir view, even scale, seamless surface, no horizon or text"
+  },
+  "negative_artifacts": "river, creek, lake, pond, canal, road, path, field boundary, crop rows, buildings, trees, animals, vehicles, text, arrows, diagram, cartoon, repeated tiling, perspective, horizon, blur, watermark",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [113701, 113702, 113703, 113704]
+  },
+  "configurations": [
+    {
+      "configuration_id": "floodplain_texture_t2i_free",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0
+    }
+  ],
+  "blind_shuffle_seed": 2026073137,
+  "budget": {
+    "maximum_new_image_candidates": 4,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-S3-20260731-036",
+  "case_id": "GEO-01",
+  "hypothesis_zh": "无河流的俯视洪泛平原照片可作为冻结地表外观，程序水体层随后控制河道拓扑，从而兼顾自然地貌和机制可复现性。",
+  "single_variable_zh": "四个候选只改变固定 seed；关闭 ControlNet，因为本实验只生成无结构地表外观。",
+  "source": {
+    "keyframe_id": "00_start",
+    "clean_frame": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/clean.png",
+    "semantic_layers": "modules/video_model/stage2/output/phase-4/programs/GEO-01/keyframes/00_start/semantic_layers.json"
+  },
+  "prompt_parts": {
+    "scene_identity": "Nadir aerial photo of a flat natural green floodplain filling the frame",
+    "material_goal": "irregular meadow vegetation, damp soil patches, fine realistic ground texture",
+    "state_delta": "uninterrupted land reserved for a deterministic river overlay",
+    "must_preserve": "orthographic overhead view, even scale, no horizon or text"
+  },
+  "negative_artifacts": "river, creek, lake, pond, canal, road, buildings, trees, animals, vehicles, text, arrows, diagram, cartoon, repeated tiling, perspective, horizon, blur, watermark",
+  "render": {
+    "width": 1024,
+    "height": 576,
+    "steps": 30,
+    "strength": 0.5,
+    "guidance_scale": 6.0,
+    "dtype": "float16",
+    "seeds": [113601, 113602, 113603, 113604]
+  },
+  "configurations": [
+    {
+      "configuration_id": "floodplain_t2i_free",
+      "pipeline_mode": "controlnet_t2i",
+      "control_route": "control_off",
+      "controlnet_conditioning_scale": 0.0
+    }
+  ],
+  "blind_shuffle_seed": 2026073136,
+  "budget": {
+    "maximum_new_image_candidates": 4,
+    "actual_planned_image_candidates": 4,
+    "planned_external_reuse": 0,
+    "maximum_new_generation": 4,
+    "maximum_video_trials": 0
+  }
+}

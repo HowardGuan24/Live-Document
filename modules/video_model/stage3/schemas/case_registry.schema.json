@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://live-document.local/stage3/case-registry.schema.json",
+  "title": "Stage 3 case registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "suite_id", "cases"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "suite_id": {"type": "string", "minLength": 1},
+    "cases": {
+      "type": "array",
+      "minItems": 11,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "discipline",
+          "role",
+          "input_contract",
+          "geometry_policy",
+          "visual_target_status",
+          "completeness"
+        ]
+      }
+    }
+  }
+}

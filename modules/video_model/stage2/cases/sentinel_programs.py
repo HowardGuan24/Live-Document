@@ -814,13 +814,21 @@ _TITRATION_KEY_PLUME = (0.0, 1.0, 0.0, 0.0)
 def _bulk_ph(base_volume_ml: float) -> float:
     base_moles = _BASE_MOLARITY * base_volume_ml / 1000.0
     total_volume = _INITIAL_VOLUME_L + base_volume_ml / 1000.0
-    difference = base_moles - _ACID_MOLES
-    if abs(difference) < 1e-12:
-        return 7.0
-    if difference < 0:
-        return -math.log10((-difference) / total_volume)
-    poh = -math.log10(difference / total_volume)
-    return 14.0 - poh
+    # Solve charge balance together with water autoionization instead of
+    # switching between two excess-reagent formulas at equivalence.  The old
+    # branch produced a numerical pH spike just below equality, reset to 7 at
+    # equality, then jumped basic.  That non-physical discontinuity survived
+    # every amount of video oversampling.
+    strong_acid_excess = (_ACID_MOLES - base_moles) / total_volume
+    kw = 1e-14
+    discriminant = math.sqrt(strong_acid_excess**2 + 4.0 * kw)
+    if strong_acid_excess >= 0:
+        hydrogen = 0.5 * (strong_acid_excess + discriminant)
+    else:
+        # Algebraically equivalent stable form avoids cancellation on the
+        # basic side of the equivalence point.
+        hydrogen = 2.0 * kw / (discriminant - strong_acid_excess)
+    return -math.log10(max(hydrogen, 1e-14))
 
 
 def _titration_parameters(progress: float) -> tuple[float, float]:
