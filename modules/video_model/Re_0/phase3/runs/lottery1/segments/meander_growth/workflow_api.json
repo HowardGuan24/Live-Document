@@ -1,0 +1,358 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "LTXAVTextEncoderLoader",
+    "inputs": {
+      "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+      "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A fixed true vertical aerial view of the exact same late-spring river floodplain. The video begins exactly from the first reference image and ends exactly at the second reference image. Over time, the main meander loop expands smoothly upward and to the right as the outer bank erodes and the inner bank accumulates sediment. The channel centerline migrates gradually; the loop becomes broader and rounder without breaking continuity. Keep the camera, lighting, vegetation, river identity, water color, downstream channel and all terrain away from the moving banks completely locked. Only the banks around the developing loop migrate. One slow physically understandable meander-growth process.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "4": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "camera movement, zoom, pan, tilt, rotation, scene cut, sudden morph, whole-frame warping, terrain breathing, flicker, jitter, cutoff channel, water crossing the neck, isolated lake, disappearing river, new tributaries, new branches, islands, flood, sediment dam, buildings, roads, bridges, boats, people, text, labels, arrows, UI, watermark, blurry, low quality",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "5": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "3",
+        0
+      ],
+      "negative": [
+        "4",
+        0
+      ],
+      "frame_rate": 24.0
+    }
+  },
+  "6": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "lora_name": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+      "strength_model": 0.5
+    }
+  },
+  "7": {
+    "class_type": "LTXVAudioVAELoader",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+    }
+  },
+  "8": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "phase3_lottery1_meander_growth_start.png"
+    }
+  },
+  "9": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "phase3_lottery1_meander_growth_end.png"
+    }
+  },
+  "10": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "8",
+        0
+      ],
+      "upscale_method": "bicubic",
+      "width": 512,
+      "height": 288,
+      "crop": "center"
+    }
+  },
+  "11": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "9",
+        0
+      ],
+      "upscale_method": "bicubic",
+      "width": 512,
+      "height": 288,
+      "crop": "center"
+    }
+  },
+  "12": {
+    "class_type": "LTXVPreprocess",
+    "inputs": {
+      "image": [
+        "10",
+        0
+      ],
+      "img_compression": 10
+    }
+  },
+  "13": {
+    "class_type": "LTXVPreprocess",
+    "inputs": {
+      "image": [
+        "11",
+        0
+      ],
+      "img_compression": 10
+    }
+  },
+  "14": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 512,
+      "height": 288,
+      "length": 97,
+      "batch_size": 1
+    }
+  },
+  "15": {
+    "class_type": "LTXVEmptyLatentAudio",
+    "inputs": {
+      "frames_number": 97,
+      "frame_rate": 24.0,
+      "batch_size": 1,
+      "audio_vae": [
+        "7",
+        0
+      ]
+    }
+  },
+  "16": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "5",
+        1
+      ],
+      "vae": [
+        "1",
+        2
+      ],
+      "latent": [
+        "14",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "frame_idx": 0,
+      "strength": 0.85
+    }
+  },
+  "17": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "16",
+        0
+      ],
+      "negative": [
+        "16",
+        1
+      ],
+      "vae": [
+        "1",
+        2
+      ],
+      "latent": [
+        "16",
+        2
+      ],
+      "image": [
+        "13",
+        0
+      ],
+      "frame_idx": -1,
+      "strength": 0.85
+    }
+  },
+  "18": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {
+      "video_latent": [
+        "17",
+        2
+      ],
+      "audio_latent": [
+        "15",
+        0
+      ]
+    }
+  },
+  "19": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20260808
+    }
+  },
+  "20": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "6",
+        0
+      ],
+      "positive": [
+        "17",
+        0
+      ],
+      "negative": [
+        "17",
+        1
+      ],
+      "cfg": 1.0
+    }
+  },
+  "21": {
+    "class_type": "SamplerEulerAncestral",
+    "inputs": {
+      "eta": 0.0,
+      "s_noise": 1.0
+    }
+  },
+  "22": {
+    "class_type": "ManualSigmas",
+    "inputs": {
+      "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+    }
+  },
+  "23": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "19",
+        0
+      ],
+      "guider": [
+        "20",
+        0
+      ],
+      "sampler": [
+        "21",
+        0
+      ],
+      "sigmas": [
+        "22",
+        0
+      ],
+      "latent_image": [
+        "18",
+        0
+      ]
+    }
+  },
+  "24": {
+    "class_type": "LTXVSeparateAVLatent",
+    "inputs": {
+      "av_latent": [
+        "23",
+        1
+      ]
+    }
+  },
+  "25": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "17",
+        0
+      ],
+      "negative": [
+        "17",
+        1
+      ],
+      "latent": [
+        "24",
+        0
+      ]
+    }
+  },
+  "26": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "25",
+        2
+      ],
+      "vae": [
+        "1",
+        2
+      ],
+      "tile_size": 768,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 4
+    }
+  },
+  "27": {
+    "class_type": "LTXVAudioVAEDecode",
+    "inputs": {
+      "samples": [
+        "24",
+        1
+      ],
+      "audio_vae": [
+        "7",
+        0
+      ]
+    }
+  },
+  "28": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "26",
+        0
+      ],
+      "audio": [
+        "27",
+        0
+      ],
+      "fps": 24.0,
+      "bit_depth": 8
+    }
+  },
+  "29": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "28",
+        0
+      ],
+      "filename_prefix": "live_document_phase3/lottery1_meander_growth",
+      "format": "mp4",
+      "codec": "h264"
+    }
+  }
+}

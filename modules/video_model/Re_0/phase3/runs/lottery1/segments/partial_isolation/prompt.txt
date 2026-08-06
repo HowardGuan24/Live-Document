@@ -1,0 +1,7 @@
+POSITIVE
+
+A fixed true vertical aerial view of the exact same late-spring river floodplain after the cutoff. The video begins exactly from the first reference image and ends exactly at the second reference image. The active river continues steadily through the short cutoff channel and must not move. Flow in the large old meander weakens. At its two former mouths near left-center, irregular bank-connected silt and mud bars grow slowly inward from the banks, narrowing both water openings while leaving a small visible water connection at each mouth in the final frame. Keep the camera, lighting, vegetation, main river, shortcut, large loop shape and all terrain outside the two mouths completely locked. Only the two local sediment bars grow.
+
+NEGATIVE
+
+camera movement, zoom, pan, tilt, rotation, scene cut, sudden morph, terrain breathing, flicker, jitter, moving main river, closing the cutoff, complete oxbow isolation, both mouths fully closed, dry old loop, floating brown objects, artificial dams, new tributaries, disappearing water, buildings, roads, bridges, boats, people, text, labels, arrows, UI, watermark, blurry, low quality

@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "engine": "local ComfyUI LTX-2.3 first/last-frame",
+  "model": "ltx-2.3-22b-dev-fp8.safetensors",
+  "textEncoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+  "distilledLora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+  "settings": {
+    "width": 512,
+    "height": 288,
+    "fps": 24,
+    "frameCount": 73,
+    "seed": 20260810,
+    "guideStrength": 0.85,
+    "imageCompression": 10,
+    "loraStrength": 0.5
+  },
+  "source": {
+    "start": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/partial_isolation/start.png",
+    "startSha256": "37421f774f7509d1a3499ce4bac7293dc7380864a84f97e6fb9f5c78530051f3",
+    "end": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/partial_isolation/end.png",
+    "endSha256": "91ddd60ea6aa4cbbc29e8b0d6fc246da3403f7596f9d90f84126d7dc24b630db"
+  },
+  "workflow": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/partial_isolation/workflow_api.json",
+  "promptId": "0fca4742-722e-47d5-b527-bb8a52156b2c",
+  "generationSeconds": 75.192,
+  "comfyOutput": "/persistent/ComfyUI/output/live_document_phase3/lottery1_partial_isolation_00001_.mp4",
+  "video": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/partial_isolation/video.mp4",
+  "videoSha256": "a619c1e7ace82a24a5e29b4aaa351cf3f9f14fded81b3028ce26a3708f582a11"
+}

@@ -1,0 +1,7 @@
+POSITIVE
+
+A fixed true vertical aerial view of the exact same late-spring river floodplain. The video begins exactly from the first reference image and ends exactly at the second reference image. Over time, the main meander loop expands smoothly upward and to the right as the outer bank erodes and the inner bank accumulates sediment. The channel centerline migrates gradually; the loop becomes broader and rounder without breaking continuity. Keep the camera, lighting, vegetation, river identity, water color, downstream channel and all terrain away from the moving banks completely locked. Only the banks around the developing loop migrate. One slow physically understandable meander-growth process.
+
+NEGATIVE
+
+camera movement, zoom, pan, tilt, rotation, scene cut, sudden morph, whole-frame warping, terrain breathing, flicker, jitter, cutoff channel, water crossing the neck, isolated lake, disappearing river, new tributaries, new branches, islands, flood, sediment dam, buildings, roads, bridges, boats, people, text, labels, arrows, UI, watermark, blurry, low quality

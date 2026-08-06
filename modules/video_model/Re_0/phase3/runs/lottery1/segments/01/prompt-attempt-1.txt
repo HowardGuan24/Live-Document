@@ -1,0 +1,11 @@
+POSITIVE
+
+A fixed true vertical top-down aerial view of the exact same late-spring river floodplain shown in both reference images. The video begins exactly from the first reference image and ends exactly at the second reference image.
+
+During the transition, floodwater progressively overtops and erodes only the very narrow land neck at left-center. A small wet notch appears, becomes a shallow cross-neck flow, and widens smoothly into one short continuous cutoff channel. The active flow increasingly favors this shorter route while the large older meander loop remains fully visible, water-filled, and still connected at both former entrances at the end.
+
+Keep the camera completely locked. Preserve the surrounding vegetation, lighting, terrain, river identity, large loop, downstream channel, shoreline positions outside the neck, aerial scale, and natural dark-water appearance. Only the neck area, local flood wetness, and local water flow may change. One continuous physically understandable river-cutoff event with no scene cut and no sudden morph.
+
+NEGATIVE
+
+camera movement, pan, zoom, tilt, roll, rotation, perspective change, oblique view, scene cut, time jump, sudden morphing, terrain breathing, flicker, jitter, pulsing banks, whole-frame warping, new tributaries, new branches outside the neck, disappearing river sections, old meander isolation, sediment plugs, oxbow lake already formed, dry old channel, restored land across the final shortcut, islands, roads, buildings, bridges, boats, people, text, labels, arrows, UI, watermark, blurry, low quality

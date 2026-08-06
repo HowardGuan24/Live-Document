@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "engine": "local ComfyUI LTX-2.3 first/last-frame",
+  "model": "ltx-2.3-22b-dev-fp8.safetensors",
+  "textEncoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+  "distilledLora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+  "settings": {
+    "width": 512,
+    "height": 288,
+    "fps": 24,
+    "frameCount": 97,
+    "seed": 20260806,
+    "guideStrength": 0.7,
+    "imageCompression": 25,
+    "loraStrength": 0.5
+  },
+  "source": {
+    "start": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/01/start.png",
+    "startSha256": "84ca5a9b4f347739a0b32ef9c8d63a9a04b3dd8642503bf335ed0693ed220177",
+    "end": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/01/end.png",
+    "endSha256": "37421f774f7509d1a3499ce4bac7293dc7380864a84f97e6fb9f5c78530051f3"
+  },
+  "workflow": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/01/workflow_api.json",
+  "promptId": "11e789b1-b50b-4fcc-a34c-3d89f0ff2afc",
+  "generationSeconds": 195.322,
+  "comfyOutput": "/persistent/ComfyUI/output/live_document_phase3/lottery1_01_00001_.mp4",
+  "video": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/01/video.mp4",
+  "videoSha256": "a040e57e624708ca15ec481d62d8768238e4a6254db1660c23edde46048abc32"
+}

@@ -1,0 +1,7 @@
+POSITIVE
+
+A fixed true vertical aerial view of the exact same late-spring river floodplain. The video begins exactly from the first reference image and ends exactly at the second reference image. The mature meander continues a small, slow lateral migration. At left-center, the upper incoming river limb and the returning lower limb move gradually closer together, narrowing the intervening land neck. The land neck must remain visibly continuous and dry through the final frame; no water crosses it. Keep the large loop, downstream river, vegetation, lighting, shoreline away from the neck, aerial scale and camera completely locked. Only subtle bank migration near the neck occurs.
+
+NEGATIVE
+
+camera movement, zoom, pan, tilt, rotation, scene cut, sudden morph, whole-frame warping, terrain breathing, flicker, jitter, water across the neck, shortcut channel, cutoff, disconnected loop, oxbow lake, sediment plugs, new tributaries, disappearing river, flood, buildings, roads, bridges, boats, people, text, labels, arrows, UI, watermark, blurry, low quality

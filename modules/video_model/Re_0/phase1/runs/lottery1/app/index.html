@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>牛轭湖是怎样形成的？</title>
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+<canvas id="stage" width="1280" height="720" aria-label="牛轭湖形成过程教学动画"></canvas>
+<script>
+(() => {
+  const W = 1280, H = 720, DURATION = 40, FPS = 24;
+  const canvas = document.getElementById('stage');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  const FONT = '"Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif';
+
+  const subtitles = [
+    [0, 4.5, '牛轭湖，起源于平原河流不断摆动的曲流。'],
+    [4.5, 10.5, '弯道外侧水流较快，侵蚀凹岸；内侧水流较慢，泥沙在凸岸堆积。'],
+    [10.5, 16.5, '长期侵蚀与堆积让弯道越来越弯，并向两侧迁移。'],
+    [16.5, 21.5, '弯道两端逐渐靠近，中间只剩一条狭窄的曲流颈。'],
+    [21.5, 27, '洪水期水位和流量上升，河水冲开曲流颈，沿更短的通道截弯取直。'],
+    [27, 33, '主流改走新河道，旧河道两端流速降低，泥沙逐渐淤积并封堵入口。'],
+    [33, 40.01, '旧弯道最终与主河道分离，留下弯月形水体——牛轭湖。']
+  ];
+
+  const stages = [
+    [0, 4.5, '01  初始曲流'], [4.5, 16.5, '02  曲流扩大'],
+    [16.5, 21.5, '03  颈部变窄'], [21.5, 27, '04  洪水截弯'],
+    [27, 33, '05  泥沙封堵'], [33, 40.01, '06  牛轭湖形成']
+  ];
+
+  const early = [
+    [-80,330],[95,328],[245,285],[410,250],[570,235],[720,255],[800,330],
+    [770,405],[665,455],[535,455],[430,420],[355,390],[325,420],[245,485],
+    [300,565],[470,595],[700,585],[965,535],[1360,470]
+  ];
+  const mature = [
+    [-80,330],[100,330],[280,320],[380,220],[545,135],[735,155],[885,255],
+    [925,405],[820,525],[650,570],[485,525],[365,435],[310,375],[245,485],
+    [300,565],[470,595],[700,585],[965,535],[1360,470]
+  ];
+
+  const clamp = (v, a=0, b=1) => Math.max(a, Math.min(b, v));
+  const smooth = x => { x = clamp(x); return x*x*(3-2*x); };
+  const mix = (a,b,p) => a+(b-a)*p;
+  const mixPts = (a,b,p) => a.map((q,i)=>[mix(q[0],b[i][0],p),mix(q[1],b[i][1],p)]);
+
+  function pathThrough(points) {
+    const p = new Path2D();
+    p.moveTo(points[0][0], points[0][1]);
+    for (let i=0; i<points.length-1; i++) {
+      const p0 = points[Math.max(0,i-1)], p1=points[i], p2=points[i+1], p3=points[Math.min(points.length-1,i+2)];
+      p.bezierCurveTo(
+        p1[0]+(p2[0]-p0[0])/6, p1[1]+(p2[1]-p0[1])/6,
+        p2[0]-(p3[0]-p1[0])/6, p2[1]-(p3[1]-p1[1])/6,
+        p2[0],p2[1]
+      );
+    }
+    return p;
+  }
+
+  function strokePath(path, width, color, alpha=1) {
+    ctx.save(); ctx.globalAlpha=alpha; ctx.strokeStyle=color; ctx.lineWidth=width;
+    ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke(path); ctx.restore();
+  }
+
+  function drawFloodplain(t, flood) {
+    const g=ctx.createLinearGradient(0,0,W,H);
+    g.addColorStop(0, flood ? '#88b69c' : '#a9c98e');
+    g.addColorStop(.55, flood ? '#7dac91' : '#93bd79');
+    g.addColorStop(1, flood ? '#6d9f82' : '#83ad69');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    ctx.save(); ctx.globalAlpha=.14; ctx.strokeStyle='#466c45'; ctx.lineWidth=1;
+    for(let i=0;i<26;i++) {
+      const y=90+(i*83)%560, x=(i*197)%W;
+      ctx.beginPath(); ctx.ellipse(x,y,80+(i%4)*25,24+(i%3)*8,(i%5)*.18,0,Math.PI*2); ctx.stroke();
+    }
+    ctx.globalAlpha=.2; ctx.fillStyle='#3f7148';
+    for(let i=0;i<130;i++) {
+      const x=(i*83+37)%W, y=86+((i*137+23)%520);
+      ctx.beginPath(); ctx.arc(x,y,1.3+(i%3)*.7,0,Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+    if(flood){ ctx.fillStyle='rgba(68,137,157,.12)'; ctx.fillRect(0,80,W,540); }
+  }
+
+  function drawBankAndWater(path, flood=0, alpha=1, lake=false) {
+    strokePath(path, 64+flood*12, lake?'#8c9f86':'#d8bd7e', alpha*.72);
+    strokePath(path, 52+flood*12, lake?'#4f8e9d':'#208eae', alpha);
+    strokePath(path, 35+flood*8, lake?'#62a9b6':'#43b5d1', alpha*.9);
+    strokePath(path, 5, '#9adceb', alpha*.62);
+  }
+
+  function flowDots(points, t, alpha=1) {
+    const segments=[]; let total=0;
+    for(let i=0;i<points.length-1;i++){
+      const d=Math.hypot(points[i+1][0]-points[i][0],points[i+1][1]-points[i][1]);
+      segments.push(d); total+=d;
+    }
+    ctx.save(); ctx.fillStyle='#d9f7ff'; ctx.globalAlpha=.72*alpha;
+    for(let k=0;k<19;k++){
+      let d=((k/19+t*.085)%1)*total, i=0;
+      while(i<segments.length-1 && d>segments[i]) d-=segments[i++];
+      const p=d/segments[i], x=mix(points[i][0],points[i+1][0],p), y=mix(points[i][1],points[i+1][1],p);
+      ctx.beginPath(); ctx.ellipse(x,y,7,2.4,Math.atan2(points[i+1][1]-points[i][1],points[i+1][0]-points[i][0]),0,Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawSedimentBar(x,y,rotation,amount) {
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rotation); ctx.globalAlpha=amount;
+    const g=ctx.createLinearGradient(-35,0,35,0); g.addColorStop(0,'#8d7147'); g.addColorStop(.5,'#d2ad64'); g.addColorStop(1,'#94764b');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(0,0,42*amount+8,18*amount+4,0,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='rgba(244,216,145,.55)';
+    for(let i=0;i<8;i++){ctx.beginPath();ctx.arc(-25+i*7,((i*7)%9)-4,2,0,Math.PI*2);ctx.fill();}
+    ctx.restore();
+  }
+
+  function drawWorld(t) {
+    const bend=smooth((t-3.5)/13);
+    const flood=smooth((t-20.8)/2.2)*(1-smooth((t-26)/2));
+    const cut=smooth((t-22.2)/3.1);
+    const plug=smooth((t-27)/6);
+    const pts=mixPts(early,mature,bend);
+    drawFloodplain(t, flood>.05);
+
+    if(cut < .98) {
+      const full=pathThrough(pts); drawBankAndWater(full,flood,1,false); flowDots(pts,t);
+      if(cut>0){
+        const shortcut=[pts[2],[mix(pts[2][0],pts[12][0],.5),mix(pts[2][1],pts[12][1],.5)],pts[12]];
+        const sp=pathThrough(shortcut); drawBankAndWater(sp,flood,cut,false);
+        flowDots(shortcut,t,cut);
+      }
+    } else {
+      const oldPts=pts.slice(2,13), oldPath=pathThrough(oldPts);
+      drawBankAndWater(oldPath,0,1-.18*plug,true);
+      if(plug>0) {
+        drawSedimentBar(301,335,-.42,plug);
+        drawSedimentBar(326,397,-.42,plug);
+      }
+      const mainPts=[...pts.slice(0,3),[292,347],...pts.slice(12)];
+      const mainPath=pathThrough(mainPts); drawBankAndWater(mainPath,0,1,false); flowDots(mainPts,t);
+    }
+
+    // Fixed landscape cues maintain a stable world without distracting from the river.
+    ctx.save(); ctx.globalAlpha=.45; ctx.fillStyle='#547d48';
+    for(let i=0;i<22;i++){
+      const x=48+(i*179)%1190, y=98+((i*113)%490);
+      if(x>210&&x<980&&y>110&&y<590) continue;
+      ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#6a5136';ctx.fillRect(x-1,y+4,2,7);ctx.fillStyle='#547d48';
+    }
+    ctx.restore();
+  }
+
+  function roundRect(x,y,w,h,r,fill,stroke=null) {
+    ctx.beginPath(); ctx.roundRect(x,y,w,h,r); ctx.fillStyle=fill; ctx.fill();
+    if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();}
+  }
+
+  function label(text,x,y,tx,ty,color='#f8fafc',side='right') {
+    ctx.save(); ctx.font=`600 18px ${FONT}`; const tw=ctx.measureText(text).width;
+    const bx=side==='left'?x-tw-30:x, by=y-20;
+    roundRect(bx,by,tw+24,38,10,'rgba(15,37,48,.88)','rgba(255,255,255,.18)');
+    ctx.fillStyle=color;ctx.fillText(text,bx+12,by+25);
+    ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();
+    const sx=side==='left'?bx+tw+24:bx, sy=y; ctx.moveTo(sx,sy);ctx.lineTo(tx,ty);ctx.stroke();
+    ctx.fillStyle=color;ctx.beginPath();ctx.arc(tx,ty,4,0,Math.PI*2);ctx.fill();ctx.restore();
+  }
+
+  function arrow(x1,y1,x2,y2,color,width=5) {
+    const a=Math.atan2(y2-y1,x2-x1); ctx.save();ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=width;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-14*Math.cos(a-.55),y2-14*Math.sin(a-.55));ctx.lineTo(x2-14*Math.cos(a+.55),y2-14*Math.sin(a+.55));ctx.closePath();ctx.fill();ctx.restore();
+  }
+
+  function drawOverlay(t, includeSubtitle) {
+    const stage=(stages.find(s=>t>=s[0]&&t<s[1])||stages.at(-1))[2];
+    const bend=smooth((t-3.5)/13), flood=smooth((t-20.8)/2.2)*(1-smooth((t-26)/2)), plug=smooth((t-27)/6);
+    const pts=mixPts(early,mature,bend);
+
+    const top=ctx.createLinearGradient(0,0,0,105);top.addColorStop(0,'rgba(8,25,36,.92)');top.addColorStop(1,'rgba(8,25,36,0)');ctx.fillStyle=top;ctx.fillRect(0,0,W,120);
+    ctx.fillStyle='#f3fafc';ctx.font=`700 34px ${FONT}`;ctx.fillText('牛轭湖是怎样形成的？',44,55);
+    ctx.fillStyle='#b7d8df';ctx.font=`500 16px ${FONT}`;ctx.fillText('俯视河流 · 时间推进中的同一条河道',46,82);
+    roundRect(1000,28,232,48,24,'rgba(10,44,56,.86)','rgba(129,230,217,.38)');
+    ctx.fillStyle='#9ff3e5';ctx.font=`700 18px ${FONT}`;ctx.textAlign='center';ctx.fillText(stage,1116,59);ctx.textAlign='left';
+
+    // Direction and bank-process annotations.
+    if(t<4.5){
+      arrow(86,382,180,361,'#d9f7ff',4);ctx.fillStyle='#eafcff';ctx.font=`600 17px ${FONT}`;ctx.fillText('河水流向',72,412);
+      label('较缓的曲流',500,210,590,245,'#f8fafc');
+    } else if(t<16.5){
+      ctx.strokeStyle='#ff6b67';ctx.lineWidth=9;ctx.lineCap='round';ctx.beginPath();ctx.arc(748,331,174,-1.12,.62);ctx.stroke();
+      arrow(922,340,948,345,'#ff8d87',4);label('凹岸侵蚀',1035,276,900,276,'#ff9b96','left');
+      ctx.strokeStyle='#ffd166';ctx.lineWidth=9;ctx.beginPath();ctx.arc(617,345,112,-.9,.65);ctx.stroke();
+      arrow(542,441,520,455,'#ffe08c',4);label('凸岸堆积',470,490,548,441,'#ffe08c','left');
+      ctx.fillStyle='rgba(9,37,48,.82)';roundRect(42,116,305,68,14,'rgba(9,37,48,.82)');
+      ctx.fillStyle='#f7fbfc';ctx.font=`600 17px ${FONT}`;ctx.fillText('外侧快 → 侵蚀　内侧慢 → 堆积',64,145);ctx.fillStyle='#b8dce3';ctx.font=`15px ${FONT}`;ctx.fillText('两者共同推动弯道侧向迁移',64,170);
+    } else if(t<21.5){
+      const a=pts[2],b=pts[12];arrow(a[0]+42,a[1]+4,a[0]+12,a[1]+17,'#ffdd7e',4);arrow(b[0]-38,b[1]+7,b[0]-10,b[1]-5,'#ffdd7e',4);
+      ctx.setLineDash([6,5]);ctx.strokeStyle='#fff3b0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();ctx.setLineDash([]);
+      label('曲流颈不断变窄',520,320,296,349,'#fff0a6','left');
+    } else if(t<27){
+      ctx.fillStyle='rgba(68,137,157,.14)';ctx.fillRect(0,90,W,520);
+      label('洪水水位上升',1090,134,910,185,'#bceeff','left');
+      arrow(255,318,313,374,'#ffffff',7);label('冲开最短通道',520,332,300,354,'#ffffff','left');
+      roundRect(44,116,230,44,12,'rgba(19,62,76,.88)');ctx.fillStyle='#bceeff';ctx.font=`700 17px ${FONT}`;ctx.fillText('洪水触发：截弯取直',64,144);
+    } else if(t<33){
+      arrow(235,300,321,386,'#d9f7ff',6);label('主流改走新河道',540,294,302,352,'#d9f7ff','left');
+      label('泥沙在两端淤积',522,433,326,397,'#ffe09a','left');
+      ctx.fillStyle='#ffe09a';ctx.font=`600 16px ${FONT}`;ctx.fillText(`封堵进度  ${Math.round(plug*100)}%`,54,142);
+      roundRect(44,116,176,42,12,'rgba(75,55,33,.84)');
+    } else {
+      label('牛轭湖',790,238,748,230,'#d8f8ff','left');
+      label('新主河道',525,380,304,353,'#d8f8ff','left');
+      label('封堵沙洲',520,456,326,397,'#ffe09a','left');
+      roundRect(868,466,326,94,16,'rgba(11,42,52,.86)','rgba(177,232,239,.24)');
+      ctx.fillStyle='#f4fbfc';ctx.font=`700 22px ${FONT}`;ctx.fillText('形成条件缺一不可',892,498);
+      ctx.fillStyle='#c2e4e8';ctx.font=`500 17px ${FONT}`;ctx.fillText('曲流发展 → 洪水截弯 → 泥沙封堵',892,530);
+    }
+
+    if(includeSubtitle){
+      const cue=subtitles.find(s=>t>=s[0]&&t<s[1]);
+      if(cue){
+        const g=ctx.createLinearGradient(0,595,0,720);g.addColorStop(0,'rgba(7,24,34,0)');g.addColorStop(.38,'rgba(7,24,34,.87)');g.addColorStop(1,'rgba(7,24,34,.96)');ctx.fillStyle=g;ctx.fillRect(0,585,W,135);
+        ctx.textAlign='center';ctx.font=`600 25px ${FONT}`;ctx.fillStyle='#ffffff';ctx.fillText(cue[2],W/2,668);ctx.textAlign='left';
+      }
+      const p=clamp(t/DURATION);ctx.fillStyle='rgba(255,255,255,.16)';ctx.fillRect(44,696,1192,4);ctx.fillStyle='#67e8d3';ctx.fillRect(44,696,1192*p,4);
+    }
+  }
+
+  window.LIVE_DOCUMENT_META={duration:DURATION,fps:FPS,width:W,height:H};
+  window.LIVE_DOCUMENT_BRIDGE={
+    version:1,
+    route:'realizable',
+    targetStyle:'scientific_realism',
+    reason:'统一俯视洪泛平原中的河道形态演化可由科学真实感稳定表达；字幕、标签、箭头已与主体世界分层。',
+    worldContinuity:[
+      '固定俯视视角与同一片绿色洪泛平原',
+      '河流始终从画面左侧流入，最终经左中部短通道转向右下方流出',
+      '大型曲流环位于画面中央偏右，曲流颈位于中央偏左',
+      '活动河道保持蓝绿色，沉积沙洲保持黄褐色，牛轭湖保留原曲流轮廓'
+    ],
+    posterMomentId:'oxbow_lake',
+    keyMoments:[
+      {id:'gentle_meander',time:3.8,kind:'stable_state',description:'河流仍为较缓曲流，是后续侧向迁移的初始状态。',eventId:null,visibleObjects:['floodplain','active_river','gentle_meander'],preserve:['单一连续河道','左侧流入、右下流出','中央偏右的缓弯'],realizable:true},
+      {id:'expanded_meander',time:14.8,kind:'stable_state',description:'凹岸侵蚀与凸岸堆积使曲流环显著扩大。',eventId:null,visibleObjects:['floodplain','active_river','expanded_loop'],preserve:['曲流环向右侧扩展','河道仍连续','曲流颈尚未贯通'],realizable:true},
+      {id:'narrow_neck',time:20.3,kind:'pre_event',description:'洪水截弯前，曲流两端仅隔一条狭窄曲流颈。',eventId:'cutoff_event',visibleObjects:['active_river','meander_neck','expanded_loop'],preserve:['曲流颈处两段水体仍由陆地分隔','旧河道完整连续','大弯轮廓清楚'],realizable:true},
+      {id:'cutoff_channel',time:26.3,kind:'stable_state',description:'洪水已经冲开短通道，主流开始截弯取直，旧大弯仍留有水体。',eventId:null,visibleObjects:['new_channel','old_meander','active_river'],preserve:['新通道跨过原曲流颈','旧大弯仍含水','主流改走短通道'],realizable:true},
+      {id:'oxbow_lake',time:36.5,kind:'post_event',description:'旧河道两端被泥沙封堵，与主河道分离形成弯月形牛轭湖。',eventId:'cutoff_event',visibleObjects:['oxbow_lake','new_main_channel','sediment_plugs','floodplain'],preserve:['牛轭湖沿原大弯呈弯月形','两端各有封堵沙洲','新主河道连续且更短','湖泊与主河道分离'],realizable:true}
+    ],
+    events:[
+      {id:'cutoff_event',type:'topology_change',objects:['active_river','meander_neck','new_channel','oxbow_lake','sediment_plugs'],preMomentId:'narrow_neck',postMomentId:'oxbow_lake'}
+    ]
+  };
+
+  window.renderFrame=async function(t,options={}){
+    t=clamp(Number(t)||0,0,DURATION); const mode=options.mode??'presentation';
+    ctx.clearRect(0,0,W,H);
+    if(mode!=='overlay') drawWorld(t);
+    if(mode!=='clean') drawOverlay(t,mode==='presentation');
+  };
+  window.renderFrame(0);
+  window.__LIVE_DOCUMENT_READY__=true;
+})();
+</script>
+</body>
+</html>

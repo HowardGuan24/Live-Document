@@ -1,0 +1,18 @@
+Phase 1 已完整交付并通过验证。
+
+- [成片 video.mp4](/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase1/runs/seed-germination-1/video.mp4)：52 秒，1920×1080，24 fps
+- [可运行源码](/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase1/runs/seed-germination-1/app/index.html)
+- [制作摘要 brief.md](/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase1/runs/seed-germination-1/brief.md)
+- [字幕 subtitles.srt](/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase1/runs/seed-germination-1/subtitles.srt)：13 条
+- [海报 poster.png](/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase1/runs/seed-germination-1/poster.png)
+- [Bridge manifest](/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase1/runs/seed-germination-1/bridge/manifest.json)
+- [Bridge contact sheet](/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase1/runs/seed-germination-1/bridge/contact_sheet.png)
+
+最终 route 为 `realizable`，包含 10 个关键时刻、5 个前后状态事件，以及对应的 presentation、clean、透明 overlay 资产。
+
+验证结果：
+
+- Phase 1 outputs：PASS
+- Bridge outputs：PASS
+
+另有一条非阻塞警告：环境未安装 Pillow，因此验证器通过 PNG 结构检查透明通道；实际 overlay 帧也已人工检查。
