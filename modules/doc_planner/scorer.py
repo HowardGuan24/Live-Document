@@ -39,6 +39,10 @@ PROCESS_PATTERNS = [
     r"\b(?:first|then|next|finally|step|phase|stage|process)\b",
     r"→|->|=>|⇒",
     r"\d+[\.\)、]",
+    # 过程/演变/成因描述（自然现象、地质过程等）
+    r"从.+?(?:到|直至).+?(?:最终|最后|逐渐|随后)",
+    r"过程|演变|演化|成因|形成|经过|经历",
+    r"最终|随后|逐渐|先后|逐步|依次",
 ]
 
 DATA_PATTERNS = [
@@ -55,6 +59,8 @@ SPATIAL_PATTERNS = [
     r"\b(?:position|direction|coordinate|above|below|left|right|center|move|rotate|scale)\b",
     r"曲线|图形|节点|连线|箭头|路径",
     r"\b(?:curve|graph|node|edge|arrow|path)\b",
+    # 地理/地质形态变化
+    r"弯曲|变窄|变宽|截弯取直|河道|河曲|河岸|谷地|冲蚀|侵蚀|下切|堆积|淤积",
 ]
 
 DYNAMIC_PATTERNS = [
@@ -62,6 +68,8 @@ DYNAMIC_PATTERNS = [
     r"\b(?:change|evolve|increase|decrease|converge|diverge|iterate|loop|repeat|gradually)\b",
     r"更新|下降|上升|传播|扩散|流动|迁移|传递|消失|控制|解决|防止|计算|运行|估计|提取|降维|映射|得到",
     r"\b(?:update|decrease|rise|propagate|diffuse|flow|migrate|transfer)\b",
+    # 自然过程动态词
+    r"形成|封堵|弯曲|变窄|截弯|冲刷|侵蚀|堆积|沉积|沉积物|泥沙|洪水|涨落|冲刷",
 ]
 
 

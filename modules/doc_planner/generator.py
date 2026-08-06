@@ -23,6 +23,7 @@ ENTITY_PATTERNS = [
     # 自然/地理
     r"水流|河流|泥沙|沉积|河口|三角洲|海洋|水域|陆地|沙洲|海岸",
     r"风|雨|云|冰|雪|水蒸气|大气|地壳|岩浆|板块",
+    r"牛轭湖|曲流|河曲|河道|河岸|洪水|洪水期|堰塞湖|冲积扇",
     # 机器学习
     r"梯度|损失函数|参数|权重|偏置|学习率|激活函数|卷积|池化|注意力",
     r"输入层|输出层|隐藏层|全连接层|卷积层|编码器|解码器",
@@ -126,6 +127,33 @@ def _infer_visual_evidence(change_text: str) -> str:
     return "相应对象发生变化"
 
 
+def _extract_chain(text: str) -> List[str]:
+    """提取「从A，到B、C、D，最终E」链式结构，返回按序的阶段列表。
+
+    适用于自然过程/成因描述，例如：
+    从逐渐弯曲，到曲流颈部变窄、洪水期河流截弯取直、旧河道被泥沙封堵，
+    最终形成牛轭湖 → ["逐渐弯曲", "曲流颈部变窄", "洪水期河流截弯取直",
+    "旧河道被泥沙封堵", "形成牛轭湖"]
+    """
+    m = re.search(r"从(.+?)[，,]\s*(?:到|直至|逐渐)(.+?)(?:最终|最后|随后|终于)(.+?)(?:[。；]|$)", text)
+    if not m:
+        return []
+    start = m.group(1).strip().rstrip("的")
+    middle = m.group(2).strip()
+    end = m.group(3).strip().rstrip("的完整过程").rstrip("的过程")
+    stages: List[str] = []
+    if start:
+        stages.append(start)
+    # 中间可含多个「、」分隔的阶段
+    for part in re.split(r"[、，,]", middle):
+        part = part.strip()
+        if part:
+            stages.append(part)
+    if end:
+        stages.append(end)
+    return stages
+
+
 def _extract_causal_steps(text: str) -> List[dict]:
     """
     从文本中提取因果步骤链。
@@ -160,6 +188,19 @@ def _extract_causal_steps(text: str) -> List[dict]:
                 "cause": cause,
                 "change": action,
                 "visual_evidence": _infer_visual_evidence(action),
+            })
+        return steps
+
+    # 退化：从X，到Y、Z、W，最终V 的链式结构（自然过程/成因描述）
+    # 例：从逐渐弯曲，到颈部变窄、洪水期截弯取直、旧河道被泥沙封堵，最终形成牛轭湖
+    chain = _extract_chain(text)
+    if chain:
+        for i, change in enumerate(chain):
+            cause = chain[i - 1] if i > 0 else "起始状态"
+            steps.append({
+                "cause": cause,
+                "change": change,
+                "visual_evidence": _infer_visual_evidence(change),
             })
         return steps
 
