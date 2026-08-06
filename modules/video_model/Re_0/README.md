@@ -14,13 +14,42 @@ Phase 3：真实感连续视频与最终合成
 
 统一使用 `Phase 1`、`Phase 2`、`Phase 3` 命名。新的基础文件、脚本和文档不得再使用旧的阶段命名。所有 GPU 图片和视频任务同时遵循 [`GPU_GENERATION_POLICY.md`](GPU_GENERATION_POLICY.md)。
 
+## 一条命令运行完整流程
+
+把自然语言请求保存为 Markdown，然后运行：
+
+```bash
+python3 run_pipeline.py --request REQUEST.example.md --run-id seed-demo
+```
+
+也可以直接传入短文本或从标准输入读取：
+
+```bash
+python3 run_pipeline.py --text "种子是怎样萌发并成长为幼苗的？"
+python3 run_pipeline.py --request - --run-id seed-demo
+```
+
+默认使用 `release` 质量并根据 Phase 1 route 自动选择路径。常用控制参数：
+
+- `--quality smoke`：使用保守规格跑通所有必要片段并生成最终视频；
+- `--target realistic`：若 Phase 1 判定不适合真实化则明确失败；
+- `--stop-after phase1|phase2`：在阶段边界停止；
+- `--resume --run-id <id>`：使用原输入和原配置继续失败或主动停止的 run；
+- `--dry-run`：只检查输入并显示预定路径，不启动 Agent 或 GPU。
+
+总控状态位于 `runs/<run-id>/pipeline.json`，里程碑位于 `events.jsonl`，最终交付为 `runs/<run-id>/final_video.mp4`。默认不会读取其他历史 runs。
+
 ## 目录
 
 ```text
 Re_0/
 ├── README.md
 ├── AGENTS.md
+├── PIPELINE_PROMPT.md
 ├── GPU_GENERATION_POLICY.md
+├── REQUEST.example.md
+├── run_pipeline.py
+├── runs/
 ├── phase1/
 │   ├── PHASE1_PROMPT.md
 │   ├── AGENTS.md

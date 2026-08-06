@@ -193,7 +193,6 @@ def main() -> int:
         raise FileNotFoundError(source_video)
     segment_video = segment_dir / "video.mp4"
     shutil.copy2(source_video, segment_video)
-    shutil.copy2(segment_video, run_dir / "base_video.mp4")
     prepared.update({
         "status": "complete",
         "promptId": prompt_id,

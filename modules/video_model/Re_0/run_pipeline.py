@@ -104,7 +104,10 @@ def update_phase(run_dir: Path, state: dict[str, Any], name: str, status: str, *
     save_state(run_dir, state)
 
 
-def run_logged(command: list[str], cwd: Path, log_path: Path, stdin_path: Path | None = None) -> None:
+def run_logged(
+    command: list[str], cwd: Path, log_path: Path, stdin_path: Path | None = None,
+    event_run_dir: Path | None = None,
+) -> None:
     log_path.parent.mkdir(parents=True, exist_ok=True)
     stdin_handle = stdin_path.open("r", encoding="utf-8") if stdin_path else None
     try:
@@ -126,6 +129,10 @@ def run_logged(command: list[str], cwd: Path, log_path: Path, stdin_path: Path |
                 sys.stdout.flush()
                 log.write(line)
                 log.flush()
+                if event_run_dir and line.startswith("[MILESTONE]"):
+                    record = {"time": utc_now(), "event": "agent_milestone", "message": line[len("[MILESTONE]"):].strip()}
+                    with (event_run_dir / "events.jsonl").open("a", encoding="utf-8") as handle:
+                        handle.write(json.dumps(record, ensure_ascii=False) + "\n")
             code = process.wait()
             if code:
                 raise PipelineError(f"command failed with exit code {code}; see {log_path}")
@@ -159,13 +166,18 @@ Use only the declared source runs. Do not inspect, select, or reuse outputs from
 Actually run the required local generation workflows and finish all required artifacts. Do not stop after planning or writing prompts. Reuse the generic tools in this stage when applicable, preserve generation metadata, and validate the result before finishing.
 """
     if stage == "phase2":
-        current += "\nPrefer `../../tools/run_flux_image.py` for generic FLUX.2 image generation.\n"
+        current += """
+
+Prefer `../../tools/run_flux_image.py` for generic FLUX.2 image generation.
+After `world_reference.png` has been generated and checked, print exactly one line beginning with `[MILESTONE] Phase 2 world reference ready:` followed by its path.
+"""
     else:
         current += """
 
 For pipeline quality `smoke`, use conservative settings but still generate and assemble every necessary adjacent-anchor segment so that `final_video.mp4` exists. The standalone one-segment minimum-test clause does not end a full pipeline run.
 
 Prefer `../../tools/run_all_segments.py`, `../../tools/compose_segment.sh`, `../../tools/assemble_phase3.py`, and `../../tools/validate_phase3.py` where applicable.
+After the representative smoke segment has been generated and checked, print exactly one line beginning with `[MILESTONE] Phase 3 smoke passed:` followed by its segment ID.
 """
     prompt_path = run_dir / "agent-prompt.md"
     write_text_atomic(
@@ -175,7 +187,7 @@ Prefer `../../tools/run_all_segments.py`, `../../tools/compose_segment.sh`, `../
     return prompt_path
 
 
-def run_agent(stage: str, run_dir: Path, prompt_path: Path, log_path: Path) -> None:
+def run_agent(stage: str, run_dir: Path, prompt_path: Path, log_path: Path, pipeline_run_dir: Path) -> None:
     if shutil.which("codex") is None:
         raise PipelineError("codex CLI was not found in PATH")
     command = [
@@ -183,7 +195,7 @@ def run_agent(stage: str, run_dir: Path, prompt_path: Path, log_path: Path) -> N
         "--skip-git-repo-check", "--cd", str(run_dir),
         "--output-last-message", str(run_dir / "agent-final.txt"), "-",
     ]
-    run_logged(command, run_dir, log_path, prompt_path)
+    run_logged(command, run_dir, log_path, prompt_path, event_run_dir=pipeline_run_dir)
 
 
 def validate_phase1(run_dir: Path, log_path: Path) -> dict[str, Any]:
@@ -206,6 +218,8 @@ def stop_requested(args: argparse.Namespace, phase: str) -> bool:
 
 
 def execute(args: argparse.Namespace) -> int:
+    if args.resume and not args.run_id:
+        raise PipelineError("--resume requires --run-id")
     run_id = validate_run_id(args.run_id or datetime.now().strftime("%Y%m%d-%H%M%S"))
     run_dir = PIPELINE_RUNS / run_id
     state_path = run_dir / "pipeline.json"
@@ -229,6 +243,8 @@ def execute(args: argparse.Namespace) -> int:
             supplied = load_request(args)
             if sha256_bytes(supplied.encode("utf-8")) != state["request"]["sha256"]:
                 raise PipelineError("resume request does not match the original input hash")
+        args.quality = state.get("options", {}).get("quality", args.quality)
+        args.target = state.get("options", {}).get("target", args.target)
     else:
         if run_dir.exists() or any((PHASE_DIRS[name] / "runs" / run_id).exists() for name in PHASE_DIRS):
             raise PipelineError(f"run {run_id!r} already exists; choose another id or use --resume")
@@ -280,7 +296,7 @@ def execute(args: argparse.Namespace) -> int:
                 shutil.copy2(request_path, phase2_run / "request.md")
                 prompt = agent_prompt("phase2", phase2_run, request_path, phase1_run, None, args.quality)
                 update_phase(run_dir, state, "phase2", "running", startedAt=utc_now())
-                run_agent("phase2", phase2_run, prompt, run_dir / "logs/phase2.log")
+                run_agent("phase2", phase2_run, prompt, run_dir / "logs/phase2.log", run_dir)
                 run_logged(
                     [sys.executable, str(PHASE_DIRS["phase2"] / "tools/validate_phase2.py"), str(phase2_run), "--source-run", str(phase1_run)],
                     ROOT, run_dir / "logs/phase2-validation.log",
@@ -293,20 +309,26 @@ def execute(args: argparse.Namespace) -> int:
                 save_state(run_dir, state)
                 return 0
 
-            if not phase_is_complete(state, "phase3"):
+            selected = json.loads((phase2_run / "selected_anchors.json").read_text(encoding="utf-8"))
+            if state["route"] == "hybrid" and len(selected.get("anchors", [])) < 2:
+                update_phase(run_dir, state, "phase3", "skipped", reason="Hybrid route has fewer than two realistic anchors")
+                shutil.copy2(phase1_run / "video.mp4", run_dir / "final_video.mp4")
+                emit(run_dir, "phase3_skipped", "Phase 3 skipped: fewer than two realistic anchors; preserving the complete Phase 1 video")
+            elif not phase_is_complete(state, "phase3"):
                 phase3_run.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(request_path, phase3_run / "request.md")
                 prompt = agent_prompt("phase3", phase3_run, request_path, phase1_run, phase2_run, args.quality)
                 update_phase(run_dir, state, "phase3", "running", startedAt=utc_now())
                 emit(run_dir, "phase3_started", "Phase 3 generation started; representative smoke runs before the remaining segments", path=str(phase3_run))
-                run_agent("phase3", phase3_run, prompt, run_dir / "logs/phase3.log")
+                run_agent("phase3", phase3_run, prompt, run_dir / "logs/phase3.log", run_dir)
                 run_logged(
                     [sys.executable, str(PHASE_DIRS["phase3"] / "tools/validate_phase3.py"), str(phase3_run), "--phase1-run", str(phase1_run), "--phase2-run", str(phase2_run)],
                     ROOT, run_dir / "logs/phase3-validation.log",
                 )
                 update_phase(run_dir, state, "phase3", "complete", completedAt=utc_now())
                 emit(run_dir, "phase3_complete", "Phase 3 segments and final composition ready", path=str(phase3_run))
-            shutil.copy2(phase3_run / "final_video.mp4", run_dir / "final_video.mp4")
+            if state["phases"]["phase3"]["status"] == "complete":
+                shutil.copy2(phase3_run / "final_video.mp4", run_dir / "final_video.mp4")
 
         state["status"] = "complete"
         state["finalVideo"] = str(run_dir / "final_video.mp4")

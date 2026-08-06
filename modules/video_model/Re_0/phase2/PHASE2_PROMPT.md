@@ -251,6 +251,8 @@ anchors/
 
 优先复用项目中现有的 FLUX.2、ComfyUI 和调用脚本。不得伪造模型输出。
 
+通用全图生成优先使用 `tools/run_flux_image.py`。该工具只负责执行已经确定的参考图、Prompt 和参数；anchor 选择与 Prompt 语义仍由本阶段根据当前 Phase 1 run 决定。案例名称开头的历史脚本不得用于其他主题。
+
 ---
 
 ## 10. 完成标准

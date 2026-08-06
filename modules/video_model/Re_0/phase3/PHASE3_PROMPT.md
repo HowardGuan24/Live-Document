@@ -15,6 +15,8 @@ Phase 1 决定发生什么、如何变化和事件顺序；Phase 2 决定首尾�
 
 默认按相邻锚点分段生成，不要把四五张关键帧一次塞进一条长视频。
 
+对于 `hybrid` route，只生成 `realizable: true` 的相邻变化。最终视频必须按 Phase 1 的原顺序保留必要的程序片段；程序片段可在 `timeline.json` 中标为 `sourceType: "programmatic"`，生成片段标为 `sourceType: "generated"`。不得因没有真实锚点而删去必要教学内容。
+
 ## 2. 生成前预检
 
 提交 GPU 任务前必须确认：
@@ -139,6 +141,8 @@ totalFrames = firstSegmentFrames + sum(otherSegmentFrames - 1)
 
 分段生成的音轨默认不直接拼接，除非已有音频连续性处理方案。
 
+通用执行优先使用 `tools/run_all_segments.py` 串行生成，用 `tools/compose_segment.sh` 合成单段教学覆盖层，再用 `tools/assemble_phase3.py` 按时间线拼接。不得让单段生成器直接覆盖整条 `base_video.mp4`。
+
 ## 11. 可追溯性
 
 每个片段至少保留：
@@ -177,6 +181,8 @@ report.md
 ```
 
 `base_video.mp4` 是去除重复端帧后的真实感基础视频；`final_video.mp4` 是重新叠加 Phase 1 overlay 和字幕后的教学版本。
+
+完成后运行 `tools/validate_phase3.py`，核对片段来源、格式和去重后的总帧数。
 
 ## 13. 完成标准
 

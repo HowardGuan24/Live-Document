@@ -7,6 +7,7 @@ This directory implements the three-phase Live Document workflow. Use `Phase 1`,
 - Phase 1: `phase1/PHASE1_PROMPT.md`
 - Phase 2: `phase2/PHASE2_PROMPT.md`
 - Phase 3: `phase3/PHASE3_PROMPT.md`
+- Full pipeline: `PIPELINE_PROMPT.md`
 - Shared GPU generation policy: `GPU_GENERATION_POLICY.md`
 
 Read the applicable prompt completely before taking phase-specific actions. Before any GPU image or video generation, also read `GPU_GENERATION_POLICY.md`. The nested `phase1/AGENTS.md` also applies to work inside `phase1/`.
@@ -20,6 +21,8 @@ Use Phase 2 when the user supplies an existing Phase 1 run and asks for realisti
 Use Phase 3 when the user supplies Phase 1 process definitions and Phase 2 realistic anchors and asks for interpolated video, segment assembly, or final overlay and subtitle composition.
 
 If the user asks for the full pipeline, complete and validate each phase in order. Start Phase 2 only when the Phase 1 route permits it, and start Phase 3 only after its selected anchors are usable.
+
+For a natural-language end-to-end run, use `run_pipeline.py`. Treat `runs/<run-id>/pipeline.json` as the orchestration state, never overwrite an existing run without explicit `--resume`, and never select assets from undeclared historical runs.
 
 ## Phase 1 workflow
 
