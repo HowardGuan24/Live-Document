@@ -1,0 +1,304 @@
+{
+  "version": 1,
+  "meta": {
+    "duration": 52,
+    "fps": 24,
+    "width": 1920,
+    "height": 1080
+  },
+  "route": "realizable",
+  "targetStyle": "scientific_realism",
+  "reason": "同一颗豆类种子在固定土壤剖面中连续萌发，主体的形态、方向和空间拓扑清楚，可在不改变教学结构的前提下转换为科学真实感；教学标注与字幕已独立分层。",
+  "worldContinuity": [
+    "固定的侧视土壤剖面、地表高度与柔和晨光方向保持不变",
+    "同一颗棕褐色双子叶种子始终位于画面中央，其胚根端朝右下方",
+    "主根由种子向下延伸并形成侧根，绿色胚轴由同一胚体向上穿出地表",
+    "子叶先于第一片真叶展开；真叶位于两片子叶上方并保留清楚叶脉"
+  ],
+  "posterMomentId": "true_leaf_post",
+  "keyMoments": [
+    {
+      "id": "coat_pre",
+      "time": 10.4,
+      "kind": "pre_event",
+      "description": "种子完成吸胀但种皮仍完整，是破裂前的稳定状态。",
+      "eventId": "coat_rupture",
+      "visibleObjects": [
+        "hydrated_seed",
+        "intact_seed_coat",
+        "soil_profile"
+      ],
+      "preserve": [
+        "种子位于地表下中央",
+        "种皮完整且胚根端朝右下",
+        "种子较初始状态明显膨大"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/coat_pre.png",
+        "clean": "clean/coat_pre.png",
+        "overlay": "overlay/coat_pre.png"
+      }
+    },
+    {
+      "id": "coat_post",
+      "time": 14.4,
+      "kind": "post_event",
+      "description": "种皮在胚根端形成稳定裂口，内部子叶可见。",
+      "eventId": "coat_rupture",
+      "visibleObjects": [
+        "split_seed_coat",
+        "cotyledons",
+        "soil_profile"
+      ],
+      "preserve": [
+        "裂口只位于胚根端",
+        "两片子叶仍在种皮内",
+        "镜头与土壤位置不变"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/coat_post.png",
+        "clean": "clean/coat_post.png",
+        "overlay": "overlay/coat_post.png"
+      }
+    },
+    {
+      "id": "radicle_pre",
+      "time": 14.7,
+      "kind": "pre_event",
+      "description": "种皮已经裂开，但胚根尚未形成可见长度。",
+      "eventId": "radicle_appearance",
+      "visibleObjects": [
+        "split_seed_coat",
+        "embryo_root_tip"
+      ],
+      "preserve": [
+        "裂口与胚根尖端相连",
+        "主根尚未向深层土壤延伸"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/radicle_pre.png",
+        "clean": "clean/radicle_pre.png",
+        "overlay": "overlay/radicle_pre.png"
+      }
+    },
+    {
+      "id": "radicle_post",
+      "time": 22.2,
+      "kind": "post_event",
+      "description": "胚根已稳定向下延伸，并出现根冠和根毛。",
+      "eventId": "radicle_appearance",
+      "visibleObjects": [
+        "main_root",
+        "root_cap",
+        "root_hairs",
+        "seed"
+      ],
+      "preserve": [
+        "主根由种子裂口连续向下",
+        "根冠位于最下端",
+        "根毛分布在较成熟根段"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/radicle_post.png",
+        "clean": "clean/radicle_post.png",
+        "overlay": "overlay/radicle_post.png"
+      }
+    },
+    {
+      "id": "shoot_pre",
+      "time": 23.4,
+      "kind": "pre_event",
+      "description": "地下根系已建立，胚芽尚未穿出地表。",
+      "eventId": "shoot_emergence",
+      "visibleObjects": [
+        "seed",
+        "main_root",
+        "side_root_buds",
+        "soil_surface"
+      ],
+      "preserve": [
+        "地表完整",
+        "根系和种子保持连接",
+        "胚芽位于地下"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/shoot_pre.png",
+        "clean": "clean/shoot_pre.png",
+        "overlay": "overlay/shoot_pre.png"
+      }
+    },
+    {
+      "id": "shoot_post",
+      "time": 34,
+      "kind": "post_event",
+      "description": "弯钩状胚轴穿出地表并开始伸直。",
+      "eventId": "shoot_emergence",
+      "visibleObjects": [
+        "hypocotyl_hook",
+        "soil_surface",
+        "root_system",
+        "cotyledon_bud"
+      ],
+      "preserve": [
+        "胚轴从原种子连续向上",
+        "弯钩顶端在地表之上",
+        "根系保持向下"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/shoot_post.png",
+        "clean": "clean/shoot_post.png",
+        "overlay": "overlay/shoot_post.png"
+      }
+    },
+    {
+      "id": "cotyledon_pre",
+      "time": 34.4,
+      "kind": "pre_event",
+      "description": "胚轴已经出土，子叶仍合拢在顶部。",
+      "eventId": "cotyledon_opening",
+      "visibleObjects": [
+        "upright_hypocotyl",
+        "closed_cotyledons",
+        "root_system"
+      ],
+      "preserve": [
+        "合拢子叶位于胚轴顶端",
+        "茎根轴线连续"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/cotyledon_pre.png",
+        "clean": "clean/cotyledon_pre.png",
+        "overlay": "overlay/cotyledon_pre.png"
+      }
+    },
+    {
+      "id": "cotyledon_post",
+      "time": 38.4,
+      "kind": "post_event",
+      "description": "两片子叶在地表上方完整展开。",
+      "eventId": "cotyledon_opening",
+      "visibleObjects": [
+        "open_cotyledons",
+        "hypocotyl",
+        "root_system"
+      ],
+      "preserve": [
+        "两片子叶左右展开",
+        "子叶低于后续真叶位置",
+        "根茎仍与原种子相连"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/cotyledon_post.png",
+        "clean": "clean/cotyledon_post.png",
+        "overlay": "overlay/cotyledon_post.png"
+      }
+    },
+    {
+      "id": "true_leaf_pre",
+      "time": 40.4,
+      "kind": "pre_event",
+      "description": "子叶稳定展开，中央生长点尚无完整真叶。",
+      "eventId": "true_leaf_appearance",
+      "visibleObjects": [
+        "open_cotyledons",
+        "apical_bud",
+        "root_system"
+      ],
+      "preserve": [
+        "中央生长点位于两片子叶之间",
+        "尚无展开真叶"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/true_leaf_pre.png",
+        "clean": "clean/true_leaf_pre.png",
+        "overlay": "overlay/true_leaf_pre.png"
+      }
+    },
+    {
+      "id": "true_leaf_post",
+      "time": 47.4,
+      "kind": "post_event",
+      "description": "第一片真叶在子叶上方稳定展开，幼苗结构完整。",
+      "eventId": "true_leaf_appearance",
+      "visibleObjects": [
+        "first_true_leaves",
+        "open_cotyledons",
+        "stem",
+        "branched_root_system"
+      ],
+      "preserve": [
+        "真叶位于子叶上方",
+        "真叶有清楚叶脉且左右展开",
+        "地上与地下器官由同一轴线相连"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/true_leaf_post.png",
+        "clean": "clean/true_leaf_post.png",
+        "overlay": "overlay/true_leaf_post.png"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "coat_rupture",
+      "type": "topology_change",
+      "objects": [
+        "seed_coat",
+        "cotyledons"
+      ],
+      "preMomentId": "coat_pre",
+      "postMomentId": "coat_post"
+    },
+    {
+      "id": "radicle_appearance",
+      "type": "object_appearance",
+      "objects": [
+        "main_root",
+        "root_cap",
+        "root_hairs"
+      ],
+      "preMomentId": "radicle_pre",
+      "postMomentId": "radicle_post"
+    },
+    {
+      "id": "shoot_emergence",
+      "type": "topology_change",
+      "objects": [
+        "hypocotyl_hook",
+        "soil_surface"
+      ],
+      "preMomentId": "shoot_pre",
+      "postMomentId": "shoot_post"
+    },
+    {
+      "id": "cotyledon_opening",
+      "type": "topology_change",
+      "objects": [
+        "left_cotyledon",
+        "right_cotyledon"
+      ],
+      "preMomentId": "cotyledon_pre",
+      "postMomentId": "cotyledon_post"
+    },
+    {
+      "id": "true_leaf_appearance",
+      "type": "object_appearance",
+      "objects": [
+        "first_true_leaves"
+      ],
+      "preMomentId": "true_leaf_pre",
+      "postMomentId": "true_leaf_post"
+    }
+  ],
+  "contactSheet": "contact_sheet.png"
+}

@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "meta": {
+    "duration": 40,
+    "fps": 24,
+    "width": 1280,
+    "height": 720
+  },
+  "route": "realizable",
+  "targetStyle": "scientific_realism",
+  "reason": "统一俯视洪泛平原中的河道形态演化可由科学真实感稳定表达；字幕、标签、箭头已与主体世界分层。",
+  "worldContinuity": [
+    "固定俯视视角与同一片绿色洪泛平原",
+    "河流始终从画面左侧流入，最终经左中部短通道转向右下方流出",
+    "大型曲流环位于画面中央偏右，曲流颈位于中央偏左",
+    "活动河道保持蓝绿色，沉积沙洲保持黄褐色，牛轭湖保留原曲流轮廓"
+  ],
+  "posterMomentId": "oxbow_lake",
+  "keyMoments": [
+    {
+      "id": "gentle_meander",
+      "time": 3.8,
+      "kind": "stable_state",
+      "description": "河流仍为较缓曲流，是后续侧向迁移的初始状态。",
+      "eventId": null,
+      "visibleObjects": [
+        "floodplain",
+        "active_river",
+        "gentle_meander"
+      ],
+      "preserve": [
+        "单一连续河道",
+        "左侧流入、右下流出",
+        "中央偏右的缓弯"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/gentle_meander.png",
+        "clean": "clean/gentle_meander.png",
+        "overlay": "overlay/gentle_meander.png"
+      }
+    },
+    {
+      "id": "expanded_meander",
+      "time": 14.8,
+      "kind": "stable_state",
+      "description": "凹岸侵蚀与凸岸堆积使曲流环显著扩大。",
+      "eventId": null,
+      "visibleObjects": [
+        "floodplain",
+        "active_river",
+        "expanded_loop"
+      ],
+      "preserve": [
+        "曲流环向右侧扩展",
+        "河道仍连续",
+        "曲流颈尚未贯通"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/expanded_meander.png",
+        "clean": "clean/expanded_meander.png",
+        "overlay": "overlay/expanded_meander.png"
+      }
+    },
+    {
+      "id": "narrow_neck",
+      "time": 20.3,
+      "kind": "pre_event",
+      "description": "洪水截弯前，曲流两端仅隔一条狭窄曲流颈。",
+      "eventId": "cutoff_event",
+      "visibleObjects": [
+        "active_river",
+        "meander_neck",
+        "expanded_loop"
+      ],
+      "preserve": [
+        "曲流颈处两段水体仍由陆地分隔",
+        "旧河道完整连续",
+        "大弯轮廓清楚"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/narrow_neck.png",
+        "clean": "clean/narrow_neck.png",
+        "overlay": "overlay/narrow_neck.png"
+      }
+    },
+    {
+      "id": "cutoff_channel",
+      "time": 26.3,
+      "kind": "stable_state",
+      "description": "洪水已经冲开短通道，主流开始截弯取直，旧大弯仍留有水体。",
+      "eventId": null,
+      "visibleObjects": [
+        "new_channel",
+        "old_meander",
+        "active_river"
+      ],
+      "preserve": [
+        "新通道跨过原曲流颈",
+        "旧大弯仍含水",
+        "主流改走短通道"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/cutoff_channel.png",
+        "clean": "clean/cutoff_channel.png",
+        "overlay": "overlay/cutoff_channel.png"
+      }
+    },
+    {
+      "id": "oxbow_lake",
+      "time": 36.5,
+      "kind": "post_event",
+      "description": "旧河道两端被泥沙封堵，与主河道分离形成弯月形牛轭湖。",
+      "eventId": "cutoff_event",
+      "visibleObjects": [
+        "oxbow_lake",
+        "new_main_channel",
+        "sediment_plugs",
+        "floodplain"
+      ],
+      "preserve": [
+        "牛轭湖沿原大弯呈弯月形",
+        "两端各有封堵沙洲",
+        "新主河道连续且更短",
+        "湖泊与主河道分离"
+      ],
+      "realizable": true,
+      "assets": {
+        "presentation": "presentation/oxbow_lake.png",
+        "clean": "clean/oxbow_lake.png",
+        "overlay": "overlay/oxbow_lake.png"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "cutoff_event",
+      "type": "topology_change",
+      "objects": [
+        "active_river",
+        "meander_neck",
+        "new_channel",
+        "oxbow_lake",
+        "sediment_plugs"
+      ],
+      "preMomentId": "narrow_neck",
+      "postMomentId": "oxbow_lake"
+    }
+  ],
+  "contactSheet": "contact_sheet.png"
+}

@@ -1,0 +1,34 @@
+{
+  "phase1_source": "phase1/runs/lottery1",
+  "route": "realizable",
+  "target_style": "scientific_realism",
+  "world_reference_anchor": "expanded_meander",
+  "anchors": [
+    {
+      "id": "gentle_meander",
+      "time": 3.8,
+      "description": "河流仍为较缓曲流，是后续侧向迁移的初始状态。"
+    },
+    {
+      "id": "expanded_meander",
+      "time": 14.8,
+      "description": "凹岸侵蚀与凸岸堆积使曲流环显著扩大。",
+      "reuse": "world_reference.png"
+    },
+    {
+      "id": "narrow_neck",
+      "time": 20.3,
+      "description": "洪水截弯前，曲流两端仅隔一条狭窄曲流颈。"
+    },
+    {
+      "id": "cutoff_channel",
+      "time": 26.3,
+      "description": "洪水已经冲开短通道，主流开始截弯取直，旧大弯仍留有水体。"
+    },
+    {
+      "id": "oxbow_lake",
+      "time": 36.5,
+      "description": "旧河道两端被泥沙封堵，与主河道分离形成弯月形牛轭湖。"
+    }
+  ]
+}

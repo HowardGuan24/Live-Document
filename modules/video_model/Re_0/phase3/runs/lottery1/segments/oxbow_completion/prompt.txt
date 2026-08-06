@@ -1,0 +1,7 @@
+POSITIVE
+
+A fixed true vertical aerial view of the exact same late-spring river floodplain. The video begins exactly from the first reference image and ends exactly at the second reference image. The two partially grown sediment bars at the former mouths of the old meander continue extending inward until each opening is completely sealed by continuous natural silt, mud, sand and sparse pioneer grass. The old curved channel loses its connections and becomes one fully isolated crescent-shaped oxbow lake. The active shortcut and lower main river remain continuously open and completely unchanged. Keep the camera, lighting, vegetation, lake outline, active river, banks away from the two plugs and aerial scale locked. Only the two closure zones change.
+
+NEGATIVE
+
+camera movement, zoom, pan, tilt, rotation, scene cut, sudden morph, whole-frame warping, terrain breathing, flicker, jitter, moving main river, closing the active shortcut, reconnecting the lake, open old-channel mouth in the final frame, disappearing lake, drying the lake, floating brown ovals, artificial barriers, new tributaries, new branches, buildings, roads, bridges, boats, people, text, labels, arrows, UI, watermark, blurry, low quality

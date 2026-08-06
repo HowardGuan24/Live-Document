@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "engine": "local ComfyUI LTX-2.3 first/last-frame",
+  "model": "ltx-2.3-22b-dev-fp8.safetensors",
+  "textEncoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+  "distilledLora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+  "settings": {
+    "width": 512,
+    "height": 288,
+    "fps": 24,
+    "frameCount": 97,
+    "seed": 20260808,
+    "guideStrength": 0.85,
+    "imageCompression": 10,
+    "loraStrength": 0.5
+  },
+  "source": {
+    "start": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/meander_growth/start.png",
+    "startSha256": "91eab84415fb3acca2c78e7e0448506904d45390d7f09794af9945a8db053988",
+    "end": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/meander_growth/end.png",
+    "endSha256": "33145e50ac08b14ec1aec2c32f518dc9867ce4338cae8a496194f62de91c4117"
+  },
+  "workflow": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/meander_growth/workflow_api.json",
+  "promptId": "9703a995-9d8e-4428-a6ec-42576bb613bd",
+  "generationSeconds": 95.195,
+  "comfyOutput": "/persistent/ComfyUI/output/live_document_phase3/lottery1_meander_growth_00001_.mp4",
+  "video": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/meander_growth/video.mp4",
+  "videoSha256": "8de87b8d443a97a92a0d04be643e6492171698a7a6e4f7dca25d06dc132b870d"
+}

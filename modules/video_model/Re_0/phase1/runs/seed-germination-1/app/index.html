@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>种子如何萌发并成长为幼苗</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <svg id="scene" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="种子萌发土壤剖面动画">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c9eff3"/><stop offset="1" stop-color="#f4f2d8"/></linearGradient>
+      <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8e5e36"/><stop offset=".5" stop-color="#654125"/><stop offset="1" stop-color="#3d2b22"/></linearGradient>
+      <radialGradient id="seedFill" cx="38%" cy="30%" r="75%"><stop stop-color="#d9aa69"/><stop offset=".58" stop-color="#a96536"/><stop offset="1" stop-color="#704124"/></radialGradient>
+      <linearGradient id="rootFill" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f8efca"/><stop offset=".55" stop-color="#e9d6a6"/><stop offset="1" stop-color="#c5a878"/></linearGradient>
+      <linearGradient id="stemFill" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#88bf57"/><stop offset=".55" stop-color="#c8dc75"/><stop offset="1" stop-color="#5c943c"/></linearGradient>
+      <linearGradient id="leafFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a9d86f"/><stop offset=".55" stop-color="#4c9d4d"/><stop offset="1" stop-color="#24693c"/></linearGradient>
+      <pattern id="soilTexture" width="96" height="72" patternUnits="userSpaceOnUse">
+        <circle cx="13" cy="18" r="3" fill="#b98652" opacity=".38"/><circle cx="59" cy="46" r="5" fill="#372319" opacity=".25"/><circle cx="83" cy="13" r="2" fill="#d1aa72" opacity=".36"/><path d="M28 60q11-9 22 0" fill="none" stroke="#bb8755" stroke-width="3" opacity=".18"/>
+      </pattern>
+      <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="12" stdDeviation="13" flood-color="#14271d" flood-opacity=".28"/></filter>
+      <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="14"/></filter>
+      <filter id="smallShadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#13231b" flood-opacity=".25"/></filter>
+      <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#d7f28b"/></marker>
+      <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#6ee1ee"/></marker>
+      <clipPath id="worldClip"><rect x="0" y="0" width="1920" height="1080"/></clipPath>
+    </defs>
+
+    <g id="world" clip-path="url(#worldClip)">
+      <rect width="1920" height="370" fill="url(#sky)"/>
+      <circle id="sunHalo" cx="1600" cy="150" r="105" fill="#ffe79c" opacity=".24" filter="url(#softGlow)"/>
+      <circle cx="1600" cy="150" r="58" fill="#ffe380" opacity=".92"/>
+      <g opacity=".4" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"><path d="M182 137h164q38 0 38 28H150q0-28 32-28Z"/><path d="M1180 95h143q35 0 35 26h-211q0-26 33-26Z"/></g>
+      <path d="M0 339C260 326 418 350 632 337C869 322 1090 348 1308 336C1532 324 1735 343 1920 332V1080H0Z" fill="url(#soil)"/>
+      <path d="M0 339C260 326 418 350 632 337C869 322 1090 348 1308 336C1532 324 1735 343 1920 332" fill="none" stroke="#b98a52" stroke-width="20"/>
+      <rect x="0" y="345" width="1920" height="735" fill="url(#soilTexture)" opacity=".9"/>
+      <g id="soilStones" opacity=".8">
+        <ellipse cx="250" cy="595" rx="34" ry="18" fill="#9d7655"/><ellipse cx="1595" cy="508" rx="45" ry="23" fill="#836147"/><ellipse cx="1385" cy="848" rx="33" ry="20" fill="#9a7453"/><ellipse cx="476" cy="915" rx="28" ry="16" fill="#6e503b"/><ellipse cx="1180" cy="650" rx="23" ry="14" fill="#b0845c"/>
+      </g>
+      <g id="waterDrops" fill="#64d4e5" stroke="#d5fbff" stroke-width="3" opacity="0"></g>
+      <g id="oxygenBubbles" opacity="0"></g>
+      <g id="metabolicGlow" opacity="0"><ellipse cx="960" cy="570" rx="170" ry="125" fill="#f4cf69" opacity=".2" filter="url(#softGlow)"/><g fill="#ffe994"><circle cx="910" cy="540" r="7"/><circle cx="1008" cy="602" r="5"/><circle cx="972" cy="523" r="6"/></g></g>
+
+      <g id="rootSystem" fill="none" stroke="url(#rootFill)" stroke-linecap="round" stroke-linejoin="round" filter="url(#smallShadow)">
+        <path id="mainRoot" d="M963 618C947 690 980 750 958 824C948 864 924 907 930 972" stroke-width="24"/>
+        <path id="sideRoot1" d="M958 755C900 766 853 795 820 840" stroke-width="13"/>
+        <path id="sideRoot2" d="M959 822C1021 835 1062 870 1090 915" stroke-width="12"/>
+        <path id="sideRoot3" d="M939 891C891 902 859 929 844 957" stroke-width="9"/>
+        <path id="sideRoot4" d="M980 700C1013 710 1041 727 1060 750" stroke-width="10"/>
+      </g>
+      <g id="rootHairs" stroke="#ead9ae" stroke-width="4" stroke-linecap="round" opacity="0">
+        <path d="M950 736l-28-13M953 762l-31 9M955 792l-30 18M953 832l-31 3M945 862l-28 17M938 901l-25-3M968 736l29-14M969 778l30 9M967 812l27 15M960 850l25 20M948 886l25 11"/>
+      </g>
+      <path id="stem" d="M968 577C1000 530 1040 497 1028 438C1019 386 995 350 1012 291C1025 245 1060 226 1064 185" fill="none" stroke="url(#stemFill)" stroke-width="34" stroke-linecap="round" filter="url(#smallShadow)"/>
+      <path id="stemHighlight" d="M962 578C989 526 1024 492 1014 441C1004 389 982 350 998 295C1008 259 1031 239 1041 215" fill="none" stroke="#d8e990" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+      <g id="closedBud" opacity="0" filter="url(#smallShadow)">
+        <path d="M1063 193C1037 179 1028 153 1042 132C1065 143 1074 165 1063 193Z" fill="#82b852" stroke="#477d39" stroke-width="6"/>
+        <path d="M1064 193C1088 178 1097 153 1084 133C1062 145 1054 167 1064 193Z" fill="#9ac968" stroke="#477d39" stroke-width="6"/>
+      </g>
+
+      <g id="seed" transform="translate(960 570) rotate(-8)" filter="url(#shadow)">
+        <path id="seedCoat" d="M-148 4C-142-82-69-128 26-111C119-95 164-28 142 52C121 130 20 151-75 122C-128 106-154 64-148 4Z" fill="url(#seedFill)" stroke="#5e321f" stroke-width="14"/>
+        <path id="seedSheen" d="M-94-55C-49-92 8-91 48-76" fill="none" stroke="#f3cf8b" stroke-width="18" stroke-linecap="round" opacity=".34"/>
+        <path id="hilum" d="M118 13q-5 33-36 50" fill="none" stroke="#4d2b1e" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+        <g id="cotyledonCore" opacity="0">
+          <path d="M-116 2C-106-64-44-95 17-84C34-42 28 45 1 98C-61 110-123 80-116 2Z" fill="#e5ba70" stroke="#784727" stroke-width="7"/>
+          <path d="M20-84C91-73 125-26 113 39C104 90 57 108 4 97C29 42 35-38 20-84Z" fill="#efcb80" stroke="#784727" stroke-width="7"/>
+          <path d="M4 92C10 45 20-9 46-43" fill="none" stroke="#8db65f" stroke-width="10" stroke-linecap="round"/>
+        </g>
+        <path id="coatCrack" d="M107 55C91 51 84 72 68 73C53 74 47 94 30 91" fill="none" stroke="#2f201a" stroke-width="8" stroke-linecap="round" opacity="0"/>
+        <g id="coatFlaps" opacity="0" fill="none" stroke="#6b3b24" stroke-width="9" stroke-linecap="round"><path d="M105 50q33 18 43 49"/><path d="M70 76q28 33 17 61"/></g>
+      </g>
+
+      <g id="cotyledonLeaves" filter="url(#smallShadow)" opacity="0">
+        <path id="cotLeft" d="M1057 234C992 217 939 232 909 272C962 300 1023 291 1064 252Z" fill="#8fb95c" stroke="#4f7837" stroke-width="7"/>
+        <path id="cotRight" d="M1067 235C1126 205 1182 210 1218 244C1179 281 1117 285 1070 253Z" fill="#9cc664" stroke="#4f7837" stroke-width="7"/>
+        <path d="M1061 243L934 265M1067 243l127-5" stroke="#d8e7a2" stroke-width="5" fill="none"/>
+      </g>
+      <g id="trueLeaves" filter="url(#smallShadow)" opacity="0">
+        <path id="leafLeft" d="M1060 187C1007 158 945 106 913 34C999 43 1055 94 1068 168Z" fill="url(#leafFill)" stroke="#22663b" stroke-width="8"/>
+        <path id="leafRight" d="M1067 187C1112 144 1185 115 1252 124C1216 196 1144 221 1072 204Z" fill="url(#leafFill)" stroke="#22663b" stroke-width="8"/>
+        <path d="M1061 175L939 62M1076 191l146-52M1011 128l-5-50M1038 151l-51 1M1144 169l24-35M1177 157l22 12" fill="none" stroke="#bee29a" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+      </g>
+      <g id="rootCap" opacity="0"><path d="M916 955q12 37 14 43q18-11 18-38Z" fill="#d3b98c"/></g>
+    </g>
+
+    <g id="overlay">
+      <g id="header">
+        <rect x="70" y="56" width="690" height="118" rx="28" fill="#102d2d" opacity=".92"/>
+        <text x="112" y="112" class="eyebrow">LIVE DOCUMENT · 植物生物学</text>
+        <text x="112" y="154" class="title">一颗种子，如何成为幼苗？</text>
+      </g>
+      <g id="stageChip" transform="translate(1488 70)"><rect width="360" height="88" rx="25" fill="#f7f1db" opacity=".95"/><circle cx="48" cy="44" r="19" fill="#62a34a"/><text id="stageNumber" x="48" y="51" text-anchor="middle" class="stageNum">1</text><text id="stageText" x="82" y="54" class="stageText">萌发条件</text></g>
+      <g id="conditionPanel" transform="translate(92 238)">
+        <g class="condition" id="conditionWater"><rect width="275" height="78" rx="22"/><circle cx="41" cy="39" r="24" fill="#65d5e7"/><path d="M41 18C32 31 24 39 24 49a17 17 0 0034 0c0-10-8-18-17-31Z" fill="#eaffff"/><text x="82" y="34">水</text><text x="82" y="59" class="small">恢复细胞活动</text></g>
+        <g class="condition" id="conditionTemp" transform="translate(0 94)"><rect width="275" height="78" rx="22"/><circle cx="41" cy="39" r="24" fill="#f1b45f"/><path d="M41 19v27m-8 6a8 8 0 1016 0 8 8 0 00-16 0Z" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><text x="82" y="34">适宜温度</text><text x="82" y="59" class="small">保证酶的活性</text></g>
+        <g class="condition" id="conditionOxygen" transform="translate(0 188)"><rect width="275" height="78" rx="22"/><circle cx="41" cy="39" r="24" fill="#789fe5"/><text x="41" y="48" text-anchor="middle" class="oxygenIcon">O₂</text><text x="82" y="34">氧气</text><text x="82" y="59" class="small">呼吸释放能量</text></g>
+      </g>
+      <g id="callout" opacity="0"><path id="calloutLine" d="M1284 495C1197 490 1100 520 1030 558" fill="none" stroke="#e4f397" stroke-width="5" marker-end="url(#arrowGreen)"/><rect id="calloutBox" x="1280" y="415" width="485" height="122" rx="25" fill="#143938" opacity=".94"/><text id="calloutTitle" x="1320" y="465" class="callTitle">吸水膨胀</text><text id="calloutBody" x="1320" y="505" class="callBody">体积增大，内部代谢重新启动</text></g>
+      <g id="directionArrows" opacity="0">
+        <path id="downArrow" d="M760 646C724 735 724 850 760 944" fill="none" stroke="#d7f28b" stroke-width="6" stroke-dasharray="12 12" marker-end="url(#arrowGreen)"/><text x="630" y="815" class="directionText">根：向重力方向</text>
+        <path id="upArrow" d="M1262 544C1300 463 1300 337 1263 246" fill="none" stroke="#d7f28b" stroke-width="6" stroke-dasharray="12 12" marker-end="url(#arrowGreen)"/><text x="1302" y="388" class="directionText">芽：向光伸展</text>
+      </g>
+      <g id="organLabels" opacity="0">
+        <g id="rootLabel"><path d="M1112 786L1010 806" class="labelLine"/><rect x="1110" y="743" width="210" height="76" rx="18" class="labelBox"/><text x="1140" y="790" class="labelText">主根与侧根</text></g>
+        <g id="cotLabel"><path d="M1370 256L1212 248" class="labelLine"/><rect x="1365" y="213" width="180" height="76" rx="18" class="labelBox"/><text x="1413" y="260" class="labelText">子叶</text></g>
+        <g id="leafLabel"><path d="M1320 226L1222 170" class="labelLine"/><rect x="1315" y="188" width="250" height="76" rx="18" class="labelBox"/><text x="1349" y="236" class="labelText">第一片真叶</text></g>
+      </g>
+      <g id="progress" transform="translate(515 989)">
+        <rect width="890" height="10" rx="5" fill="#edf3db" opacity=".38"/><rect id="progressFill" width="0" height="10" rx="5" fill="#d7f28b"/>
+        <g class="ticks"><circle cx="0" cy="5" r="8"/><circle cx="178" cy="5" r="8"/><circle cx="356" cy="5" r="8"/><circle cx="534" cy="5" r="8"/><circle cx="712" cy="5" r="8"/><circle cx="890" cy="5" r="8"/></g>
+      </g>
+    </g>
+
+    <g id="subtitles">
+      <rect id="subtitlePlate" x="350" y="886" width="1220" height="82" rx="24" fill="#102828" opacity=".9"/>
+      <text id="subtitleText" x="960" y="938" text-anchor="middle" class="subtitle"></text>
+    </g>
+  </svg>
+  <script src="app.js"></script>
+</body>
+</html>
