@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "engine": "local ComfyUI LTX-2.3 first/last-frame",
+  "model": "ltx-2.3-22b-dev-fp8.safetensors",
+  "textEncoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+  "distilledLora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+  "settings": {
+    "width": 512,
+    "height": 288,
+    "fps": 24,
+    "frameCount": 73,
+    "seed": 20260809,
+    "guideStrength": 0.85,
+    "imageCompression": 10,
+    "loraStrength": 0.5
+  },
+  "source": {
+    "start": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/neck_narrowing/start.png",
+    "startSha256": "33145e50ac08b14ec1aec2c32f518dc9867ce4338cae8a496194f62de91c4117",
+    "end": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/neck_narrowing/end.png",
+    "endSha256": "84ca5a9b4f347739a0b32ef9c8d63a9a04b3dd8642503bf335ed0693ed220177"
+  },
+  "workflow": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/neck_narrowing/workflow_api.json",
+  "promptId": "3f7fb7cb-5f5b-4771-b53b-ab6eaf6fb67c",
+  "generationSeconds": 80.199,
+  "comfyOutput": "/persistent/ComfyUI/output/live_document_phase3/lottery1_neck_narrowing_00001_.mp4",
+  "video": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/neck_narrowing/video.mp4",
+  "videoSha256": "eb0c7f21cf140be40973f7de7aa49e12f87cd253d4662ffad14afe5b3f947dd9"
+}

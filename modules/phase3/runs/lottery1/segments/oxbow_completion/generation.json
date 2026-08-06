@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "engine": "local ComfyUI LTX-2.3 first/last-frame",
+  "model": "ltx-2.3-22b-dev-fp8.safetensors",
+  "textEncoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+  "distilledLora": "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+  "settings": {
+    "width": 512,
+    "height": 288,
+    "fps": 24,
+    "frameCount": 73,
+    "seed": 20260811,
+    "guideStrength": 0.85,
+    "imageCompression": 10,
+    "loraStrength": 0.5
+  },
+  "source": {
+    "start": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/oxbow_completion/start.png",
+    "startSha256": "91ddd60ea6aa4cbbc29e8b0d6fc246da3403f7596f9d90f84126d7dc24b630db",
+    "end": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/oxbow_completion/end.png",
+    "endSha256": "0cfec87c195e26971b2a7453baee98dd3c5682f91987709c0033bded95cc43d2"
+  },
+  "workflow": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/oxbow_completion/workflow_api.json",
+  "promptId": "d9855ebf-7a93-4bb2-b326-f390f421769a",
+  "generationSeconds": 75.135,
+  "comfyOutput": "/persistent/ComfyUI/output/live_document_phase3/lottery1_oxbow_completion_00001_.mp4",
+  "video": "/persistent/workspace-project/Live-Document/modules/video_model/Re_0/phase3/runs/lottery1/segments/oxbow_completion/video.mp4",
+  "videoSha256": "49c45990175b943e29d29a5682b17892d77fa7693b2543fe4b9606140b4ef92d"
+}

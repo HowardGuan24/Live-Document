@@ -32,8 +32,8 @@ def health() -> HealthResponse:
         gpu=gen,
         engines={
             "deterministic": EngineHealth(
-                available=_module_available("manim"),
-                detail="Manim DSL engine",
+                available=False,
+                detail="legacy engine removed; requests fall back to procedural",
             ),
             "generative": EngineHealth(available=gen["available"], detail=gen["detail"]),
             "procedural": EngineHealth(

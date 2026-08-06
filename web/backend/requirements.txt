@@ -1,6 +1,4 @@
 # Backend web API for Live-Document
-# Repo root requirements (manim, imageio-ffmpeg, pytest) are pulled via -r
--r ../../requirements.txt
 
 fastapi>=0.115,<1
 uvicorn[standard]>=0.30,<1

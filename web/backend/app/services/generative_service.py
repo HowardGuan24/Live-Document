@@ -34,7 +34,7 @@ def probe() -> dict[str, Any]:
 def run_generative(job_id: str, spec: dict[str, Any], style: dict[str, Any]) -> dict[str, Any]:
     """Run the LTX/Wan pipeline.
 
-    The full LTX integration lives in modules/video_model. The web wrapper
+    The full three-phase integration lives directly in modules/. The web wrapper
     calls it when the ROCm stack is present; otherwise it raises
     GenerativeUnavailableError so the job manager can fall back.
     """
@@ -43,7 +43,7 @@ def run_generative(job_id: str, spec: dict[str, Any], style: dict[str, Any]) -> 
         raise GenerativeUnavailableError(
             f"Generative engine unavailable: {info['detail']}"
         )
-    # TODO(M3): call modules.video_model LTX/Wan backend with spec-derived prompts.
+    # TODO(M3): call modules/run_pipeline.py with spec-derived prompts.
     raise GenerativeUnavailableError(
         "Generative engine detected but web LTX integration is not wired yet (M3)"
     )
