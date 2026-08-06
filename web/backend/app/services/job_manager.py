@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from app.config import JOBS_DIR
+from app.config import JOBS_DIR, WORKER_COUNT
 from app.services import animation_service, generative_service, procedural_service
 from app.storage import JobStore
 
@@ -21,38 +21,48 @@ class JobManager:
     def __init__(self, store: JobStore):
         self.store = store
         self.queue: asyncio.Queue[str] = asyncio.Queue()
-        self._task: asyncio.Task | None = None
+        self._tasks: list[asyncio.Task] = []
 
     def start(self) -> None:
-        if self._task is None:
-            self._mark_stale_failed()
-            self._task = asyncio.create_task(self._worker(), name="job-worker")
+        if self._tasks:
+            return
+        self._mark_stale_failed()
+        # Run WORKER_COUNT consumers so slow Manim renders don't serialize the
+        # whole queue; each job still runs in its own thread.
+        self._tasks = [
+            asyncio.create_task(self._worker(), name=f"job-worker-{i}")
+            for i in range(WORKER_COUNT)
+        ]
 
     async def shutdown(self) -> None:
-        """Drain the queue with a timeout, then cancel the worker task."""
+        """Drain the queue with a timeout, then cancel the worker tasks."""
         try:
             await asyncio.wait_for(self.queue.join(), timeout=15)
         except asyncio.TimeoutError:
             pass
-        if self._task is not None:
-            self._task.cancel()
-            try:
-                await self._task
-            except (asyncio.CancelledError, RuntimeError):
-                pass
-            self._task = None
+        for task in self._tasks:
+            task.cancel()
+        if self._tasks:
+            await asyncio.gather(*self._tasks, return_exceptions=True)
+        self._tasks = []
 
     def _mark_stale_failed(self) -> None:
         """Mark jobs left in pending/running by a previous process as failed."""
-        for job in self.store.list(limit=500):
-            if job.get("status") in ("pending", "running"):
-                self.store.update(job["id"], {
-                    "status": "failed",
-                    "progress": 1.0,
-                    "message": "server restarted before completion",
-                    "error": {"type": "StaleJob", "message": "interrupted by server restart"},
-                    "updated_at": utcnow(),
-                })
+        offset = 0
+        while True:
+            jobs = self.store.list(limit=200, offset=offset)
+            for job in jobs:
+                if job.get("status") in ("pending", "running"):
+                    self.store.update(job["id"], {
+                        "status": "failed",
+                        "progress": 1.0,
+                        "message": "server restarted before completion",
+                        "error": {"type": "StaleJob", "message": "interrupted by server restart"},
+                        "updated_at": utcnow(),
+                    })
+            if len(jobs) < 200:
+                break
+            offset += len(jobs)
 
     async def submit(self, job: dict[str, Any]) -> None:
         self.store.create(job)
@@ -132,6 +142,10 @@ def _collect_artifacts(job_id: str, result: dict[str, Any]) -> dict[str, str]:
     for key, path in outputs.items():
         name = Path(str(path)).name
         artifacts[key] = f"{base}/{name}"
+    # Canonical `video` alias so the frontend <video> preview resolves (the
+    # deterministic renderer names its primary output `mp4`).
+    if "mp4" in artifacts and "video" not in artifacts:
+        artifacts["video"] = artifacts["mp4"]
     for name in ("normalized_spec.json", "result.json"):
         if (job_dir / name).exists():
             artifacts.setdefault(name.removesuffix(".json"), f"{base}/{name}")
@@ -140,7 +154,7 @@ def _collect_artifacts(job_id: str, result: dict[str, Any]) -> dict[str, str]:
 
 def new_job(engine: str, spec: dict[str, Any], style: dict[str, Any]) -> dict[str, Any]:
     return {
-        "id": uuid.uuid4().hex[:12],
+        "id": uuid.uuid4().hex[:16],
         "engine": engine,
         "status": "pending",
         "progress": 0.0,

@@ -23,6 +23,9 @@ DB_PATH = DATA_DIR / "live_document.db"
 HOST = os.getenv("LIVE_DOC_HOST", "127.0.0.1")
 PORT = int(os.getenv("LIVE_DOC_PORT", "8000"))
 
+# How many jobs render in parallel (each runs in its own worker thread).
+WORKER_COUNT = int(os.getenv("LIVE_DOC_WORKERS", "2"))
+
 # Comma-separated list of allowed CORS origins; "*" allows all.
 CORS_ORIGINS = [
     o.strip() for o in os.getenv("LIVE_DOC_CORS_ORIGINS", "*").split(",") if o.strip()

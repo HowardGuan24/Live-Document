@@ -6,6 +6,7 @@ from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse
+from starlette.concurrency import run_in_threadpool
 
 from app.config import JOBS_DIR
 from app.schemas import JobCreate, JobListResponse, JobOut
@@ -29,7 +30,9 @@ async def create_job(request: Request, req: JobCreate) -> JobOut:
     if spec is None:
         if not req.text:
             raise HTTPException(status_code=422, detail="provide `text` or `spec`")
-        spec = first_suitable(req.text)
+        # first_suitable is CPU-bound rule-based planning; keep it off the
+        # event loop so polling/other requests stay responsive.
+        spec = await run_in_threadpool(first_suitable, req.text)
         if spec is None:
             raise HTTPException(
                 status_code=422,
