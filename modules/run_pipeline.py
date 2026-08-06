@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the three-stage Live Document pipeline from one natural-language request."""
+"""Run the three-stage Live Science pipeline from one natural-language request."""
 
 from __future__ import annotations
 
@@ -370,7 +370,7 @@ def main() -> int:
             try:
                 fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             except BlockingIOError as error:
-                raise PipelineError("another Live Document pipeline currently holds the GPU lock") from error
+                raise PipelineError("another Live Science pipeline currently holds the GPU lock") from error
             return execute(args)
     except (PipelineError, FileNotFoundError, json.JSONDecodeError) as error:
         print(f"Error: {error}", file=sys.stderr)

@@ -194,7 +194,7 @@ def main() -> int:
         destination = comfy_input / f"phase2_{token}_start{start.suffix.lower()}"
         shutil.copy2(start, destination)
         copied_start = destination.name
-    args.output_prefix = f"live_document_phase2/{token}"
+    args.output_prefix = f"live_science_phase2/{token}"
     workflow, save_node = build_workflow(args, copied_references, copied_start)
     workflow_path.write_text(json.dumps(workflow, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     metadata: dict[str, Any] = {
@@ -216,7 +216,7 @@ def main() -> int:
     queue = request_json(args.server, "/queue")
     if queue.get("queue_running") or queue.get("queue_pending"):
         raise RuntimeError("ComfyUI queue is not empty; refusing to add a GPU-heavy job")
-    queued = request_json(args.server, "/prompt", {"prompt": workflow, "client_id": "live-document-phase2"})
+    queued = request_json(args.server, "/prompt", {"prompt": workflow, "client_id": "live-science-phase2"})
     prompt_id = queued["prompt_id"]
     print(f"Queued FLUX.2 prompt: {prompt_id}", flush=True)
     started = time.monotonic()

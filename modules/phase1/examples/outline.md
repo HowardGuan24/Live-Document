@@ -1,16 +1,16 @@
-# Live Document Phase 1 Request
+# Live Science Phase 1 Request
 
 ## Input
 
-主题：喀斯特地貌形成
+Topic: formation of karst landforms
 
-大致流程：
+Rough process:
 
-1. 雨水吸收二氧化碳，带有弱酸性；
-2. 水沿石灰岩裂缝向下渗；
-3. 石灰岩被溶蚀，裂缝逐渐扩大；
-4. 最终形成喀斯特地貌。
+1. Rainwater absorbs carbon dioxide and becomes weakly acidic;
+2. water seeps downward along cracks in the limestone;
+3. the limestone is dissolved and the cracks gradually widen;
+4. eventually karst landforms form.
 
 ## Optional context
 
-以同一个山体剖面持续演化。根据教学需要补足中间过程、洞穴内部现象和地表结果。
+Use one mountain cross-section that keeps evolving. Based on teaching needs, fill in the intermediate processes, cave-interior phenomena, and surface results.

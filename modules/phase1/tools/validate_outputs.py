@@ -108,8 +108,8 @@ def main() -> int:
     )
     if "renderFrame" not in source_text:
         errors.append("app source does not appear to expose renderFrame(t)")
-    if "LIVE_DOCUMENT_META" not in source_text:
-        errors.append("app source does not appear to define LIVE_DOCUMENT_META")
+    if "LIVE_SCIENCE_META" not in source_text:
+        errors.append("app source does not appear to define LIVE_SCIENCE_META")
 
     try:
         subtitles = parse_srt(run_dir / "subtitles.srt")

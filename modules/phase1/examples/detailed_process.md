@@ -1,11 +1,11 @@
-# Live Document Phase 1 Request
+# Live Science Phase 1 Request
 
 ## Input
 
-石灰岩的主要成分是碳酸钙。雨水在经过空气和富含二氧化碳的土壤时，形成含有少量碳酸的水。水沿石灰岩中的节理和裂隙下渗，与碳酸钙反应，生成可溶性的碳酸氢钙并随水流带走。经过长期溶蚀，裂隙不断扩大，相互连通，逐步形成地下通道、溶洞和地下河。
+The main component of limestone is calcium carbonate. When rainwater passes through air and soil rich in carbon dioxide, it forms water containing a little carbonic acid. This water seeps downward along the joints and fissures of the limestone and reacts with calcium carbonate, producing soluble calcium bicarbonate that is carried away by the water flow. Through long-term dissolution, the fissures keep widening and become connected, gradually forming underground passages, caves, and underground rivers.
 
-洞穴中的含碳酸氢钙水滴接触空气后，二氧化碳逸出，碳酸钙重新沉积。洞顶逐渐形成钟乳石，洞底逐渐形成石笋，二者相接可以形成石柱。地下空腔继续扩大或洞顶失稳时，地表可能发生塌陷，形成落水洞、漏斗或天坑。地表岩体在长期溶蚀和侵蚀作用下，可形成峰丛、峰林以及其间的洼地。
+When droplets of calcium-bicarbonate-bearing cave water contact the air, carbon dioxide escapes and calcium carbonate deposits again. Stalactites gradually form on the cave ceiling and stalagmites on the floor; when the two join they can form a stone column. When the underground cavity keeps enlarging or the cave roof becomes unstable, the surface may collapse, forming sinkholes, dolines, or tiankeng (giant sinkholes). Under long-term dissolution and erosion, surface rock can form peak clusters, peak forests, and the depressions between them.
 
 ## Optional context
 
-尽量忠实呈现上述流程，同时优化可视化顺序。面向高中地理课程，不需要展开复杂水化学平衡。
+Present the above process as faithfully as possible while optimizing the visualization order. Aimed at a high-school geography course; no need to expand into complex aqueous chemistry equilibria.

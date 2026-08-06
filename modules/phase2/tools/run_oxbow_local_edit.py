@@ -120,9 +120,9 @@ def find_moments(manifest_path: Path) -> tuple[dict, dict, dict]:
     event = candidates[0]
     before = moments[event["preMomentId"]]
     after = moments[event["postMomentId"]]
-    if "未封死" not in before.get("description", ""):
+    if "not sealed" not in before.get("description", ""):
         raise RuntimeError(f"Pre-event description does not describe open entrances: {before}")
-    if "封堵" not in after.get("description", "") and "分离" not in after.get("description", ""):
+    if "sealed" not in after.get("description", "") and "separated" not in after.get("description", ""):
         raise RuntimeError(f"Post-event description does not describe isolation: {after}")
     return manifest, before, after
 

@@ -41,7 +41,7 @@ export default function AboutPage({ active }: { active: boolean }) {
             <span className="clip-angled-sm flex h-7 w-7 items-center justify-center bg-gradient-to-br from-radeon-500 to-ember-600 text-sm text-white glow-red-sm">
               ◎
             </span>
-            运行状态
+            Runtime status
           </h2>
           <span className="energy-line h-px flex-1 opacity-30" />
           <button
@@ -49,19 +49,19 @@ export default function AboutPage({ active }: { active: boolean }) {
             disabled={refreshing}
             className="clip-angled-sm border border-line bg-ink-850 px-3 py-1.5 text-xs text-mut transition-all hover:border-radeon-500/60 hover:text-fg disabled:opacity-50"
           >
-            {refreshing ? '刷新中…' : '↻ 刷新'}
+            {refreshing ? 'Refreshing…' : '↻ Refresh'}
           </button>
         </div>
 
         {error && <p className="text-sm text-danger">{error}</p>}
-        {!health && !error && <p className="text-sm text-dim">正在读取健康信息…</p>}
+        {!health && !error && <p className="text-sm text-dim">Loading health info…</p>}
 
         {health && (
           <>
             <div className="grid gap-3 sm:grid-cols-3">
-              {/* 服务 */}
+              {/* service */}
               <div className="clip-angled border border-line bg-ink-950 p-4">
-                <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim">服务</div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim">Service</div>
                 <div className="mt-1 text-xl font-bold text-ok">{health.status}</div>
                 <div className="mt-1 text-xs text-mut">API · FastAPI</div>
               </div>
@@ -69,9 +69,9 @@ export default function AboutPage({ active }: { active: boolean }) {
               <div className="clip-angled border border-line bg-ink-950 p-4">
                 <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim">Python</div>
                 <div className="mt-1 text-xl font-bold text-fg">{health.python}</div>
-                <div className="mt-1 text-xs text-mut">运行时</div>
+                <div className="mt-1 text-xs text-mut">Runtime</div>
               </div>
-              {/* GPU / ROCm — 突出 */}
+              {/* GPU / ROCm */}
               <div
                 className={`clip-angled relative border p-4 ${
                   gpuOk
@@ -86,19 +86,19 @@ export default function AboutPage({ active }: { active: boolean }) {
                       gpuOk ? 'bg-ok animate-pulse-glow' : 'bg-warn'
                     }`}
                   />
-                  {gpuOk ? '可用' : '不可用'}
+                  {gpuOk ? 'Available' : 'Unavailable'}
                 </div>
                 <div className="mt-1 text-xs text-mut">{health.gpu.detail}</div>
               </div>
             </div>
 
-            {/* 引擎可用性 */}
+            {/* engine availability */}
             <h3 className="mt-6 mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-dim">
-              渲染引擎
+              Rendering engines
             </h3>
             <div className="flex flex-col gap-2">
               {Object.keys(health.engines).length === 0 ? (
-                <p className="text-sm text-dim">暂无引擎信息。</p>
+                <p className="text-sm text-dim">No engine info.</p>
               ) : (
                 Object.entries(health.engines).map(([name, info]) => (
                   <div
@@ -124,24 +124,25 @@ export default function AboutPage({ active }: { active: boolean }) {
         )}
       </div>
 
-      {/* 关于本项目 */}
+      {/* about */}
       <div className="clip-angled border border-line bg-ink-900 p-6">
         <h2 className="mb-3 flex items-center gap-3 text-base font-bold text-fg">
-          关于本项目
+          About this project
           <span className="energy-line h-px flex-1 opacity-30" />
         </h2>
         <p className="text-sm leading-relaxed text-mut">
-          Live-Document 是一个面向{' '}
-          <span className="font-semibold text-radeon-400">AMD DevMaster Hackathon · Track 1</span>{' '}
-          的<b className="text-fg">多模态内容创作工具</b>：把教学文档解析为结构化的
-          LearningSpec（实体、状态变量、因果链、不变式），再交由多种渲染引擎生成教学动画或短视频。
+          Live-Science is a <b className="text-fg">multimodal content creation tool</b> for the{' '}
+          <span className="font-semibold text-radeon-400">AMD DevMaster Hackathon · Track 1</span>:
+          it feeds teaching documents/concepts through a three-phase pipeline
+          (Phase 1 program video + Bridge route decision → Phase 2 FLUX keyframes → Phase 3 LTX video)
+          to produce teaching animations or short videos.
         </p>
         <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
           {[
-            ['◆ 架构', '前后端分离：React (Vite) + FastAPI + SQLite 任务存储'],
-            ['◈ Deterministic', 'Manim 渲染，关键推理过程在本地完成'],
-            ['✦ Generative', 'LTX / Wan 视频生成（需 AMD Radeon + ROCm）'],
-            ['⚡ Procedural', 'PIL 程序化 GIF 兜底，任何环境都能出片'],
+            ['◆ Architecture', 'Frontend/backend split: React (Vite) + FastAPI + SQLite job store'],
+            ['◎ Auto', 'Phase 1 picks program vs model route from the final render (bridge route)'],
+            ['◈ Deterministic', 'Phase 1 program video (DeepSeek generates program → local render)'],
+            ['✦ Generative', 'Local FLUX keyframes + LTX video (AMD Radeon + ROCm)'],
           ].map(([t, d]) => (
             <div key={t} className="clip-angled-sm border border-line bg-ink-950 px-4 py-3">
               <div className="font-mono text-xs font-bold text-radeon-400">{t}</div>

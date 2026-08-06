@@ -1,12 +1,12 @@
 # Phase 1 repository instructions
 
-This directory implements Live Document Phase 1.
+This directory implements Live Science Phase 1.
 
 For every generation run:
 
 - Treat `PHASE1_PROMPT.md` as the authoritative product and quality specification.
 - Never hand-write or fake `bridge/manifest.json`; export it from the app's
-  `LIVE_DOCUMENT_BRIDGE` with `tools/export_bridge.mjs` so it matches rendered state.
+  `LIVE_SCIENCE_BRIDGE` with `tools/export_bridge.mjs` so it matches rendered state.
 - Treat the request file supplied for the run as the user input.
 - Work end to end: understand, expand when educationally necessary, plan briefly, implement, render, inspect, repair, and validate.
 - Write generated artifacts only inside the current run directory.

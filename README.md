@@ -1,4 +1,4 @@
-# Live-Document
+# Live-Science
 
 将技术或教学文档中的概念转换为动态教学视频。仓库以 `modules/` 中的三阶段流程为核心制作管线，`web/` 为产品界面。
 

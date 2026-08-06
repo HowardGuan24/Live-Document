@@ -1,48 +1,48 @@
-# Live Document · GPU 生成通用策略
+# Live Science · Common GPU Generation Policy
 
-本策略适用于 `modules/` 核心流程中的所有图片和视频生成任务。阶段 Prompt 决定内容与质量要求；本文件只规定通用的调度、加速、显存安全和记录方式。发生冲突时，以阶段 Prompt 的更严格要求为准。
+This policy applies to all image and video generation tasks in `Re_0`. The phase prompts determine content and quality requirements; this file only specifies common scheduling, acceleration, VRAM safety, and recording practices. In case of conflict, the stricter requirement of the phase prompt takes precedence.
 
-## 1. 优化顺序
+## 1. Optimization order
 
-按以下顺序优化：
+Optimize in the following order:
 
-1. 避免 OOM、失败和无效重跑；
-2. 用低成本 smoke 验证输入、语义和 workflow；
-3. 复用热加载模型与稳定配置；
-4. 最后才优化单次推理耗时。
+1. Avoid OOMs, failures, and wasted reruns;
+2. Use low-cost smoke runs to validate input, semantics, and workflow;
+3. Reuse hot-loaded models and stable configurations;
+4. Only last, optimize single-inference latency.
 
-不得用降低关键语义、结构正确性、首尾约束或可追溯性的方式换取速度。
+Do not trade speed by degrading key semantics, structural correctness, start/end constraints, or traceability.
 
-## 2. 提交任务前
+## 2. Before submitting a task
 
-- 确认输入、模型、workflow、输出路径和关键参数；
-- 确认 GPU 没有其他高显存任务，ComfyUI 队列不会造成重叠；
-- 优先复用已验证的本地环境和 workflow，不为单个任务安装平行框架；
-- 输入提前统一到目标宽高比和合法尺寸，避免流程内重复缩放；
-- 先保留安全显存余量，再选择分辨率、批量、帧数和解码方式。
+- Confirm the input, model, workflow, output path, and key parameters;
+- Confirm the GPU has no other high-VRAM tasks and the ComfyUI queue will not overlap;
+- Prefer reusing a validated local environment and workflow; do not install parallel frameworks for a single task;
+- Normalize inputs to the target aspect ratio and valid dimensions up front to avoid repeated rescaling inside the pipeline;
+- Reserve a safe VRAM margin first, then choose resolution, batch size, frame count, and decoding method.
 
-高显存生成必须串行。可以连续排队同配置任务，但不得让它们并发占用显存。
+High-VRAM generation must be serial. You may queue tasks with the same configuration back-to-back, but they must not occupy VRAM concurrently.
 
-完整流水线通过 `modules/.pipeline-gpu.lock` 防止多个 run 同时占用 GPU；阶段脚本仍须检查实际 ComfyUI 队列，不能只依赖文件锁。
+The full pipeline uses `Re_0/.pipeline-gpu.lock` to prevent multiple runs from occupying the GPU at the same time; phase scripts must still check the actual ComfyUI queue and cannot rely on the file lock alone.
 
-## 3. 快速验证与批量执行
+## 3. Fast validation and batch execution
 
-- 先用一个具有代表性的困难样本做 smoke；
-- smoke 使用足以判断结果的最低合理分辨率、批量、帧数或时长；
-- smoke 失败时先修正输入、Prompt、锚点或 workflow，不用盲目提高规格补救；
-- smoke 通过后，按相同模型和 workflow 分组连续运行，复用 checkpoint、文本编码器和节点缓存；
-- 不默认生成多个 seed、无目的变体或重复参考。
+- Run a smoke test first on one representative, difficult sample;
+- Smoke runs use the lowest reasonable resolution, batch size, frame count, or duration sufficient to judge the result;
+- When a smoke fails, first fix the input, prompt, anchors, or workflow; do not blindly raise specs to compensate;
+- After a smoke passes, run continuously in groups sharing the same model and workflow, reusing checkpoints, text encoders, and node caches;
+- Do not generate multiple seeds, purposeless variants, or duplicate references by default.
 
-## 4. 显存策略
+## 4. VRAM strategy
 
-从已经稳定工作的配置开始。只有显存不足或接近风险阈值时，才依次降低批量或规格、启用 tiled decode、增加模型 offload，或把文本编码器、VAE 移到 CPU。
+Start from a configuration that is already working reliably. Only when VRAM is insufficient or near the risk threshold should you, in order, reduce batch size or specs, enable tiled decode, increase model offload, or move the text encoders and VAE to CPU.
 
-CPU offload、CPU VAE、tiled decode 和较大显存预留主要是稳定措施，可能降低速度，不应被描述为加速。不要在同一批任务中无理由反复切换显存策略，也不要为了追求满载而吃掉安全余量。
+CPU offload, CPU VAE, tiled decode, and larger VRAM reservations are mainly stability measures; they may reduce speed and should not be described as acceleration. Do not switch VRAM strategies back and forth without reason within the same batch of tasks, and do not consume the safety margin just to chase full utilization.
 
-## 5. 重试与记录
+## 5. Retries and recording
 
-- 每个生成资产最多一次有明确目的的重试，除非阶段 Prompt 更严格；
-- 一次只针对一个主要失败原因调整，不同时扰动大量参数；
-- 保留首次结果、Prompt、workflow、参数和失败原因；
-- 至少记录模型与 workflow、分辨率、批量或帧数、冷/热启动耗时，以及可获得时的最低剩余显存；
-- 不得把未运行的 smoke、重试、高清阶段或检查写成已完成。
+- Each generated asset gets at most one retry with a clear purpose, unless a phase prompt is stricter;
+- Adjust for only one primary failure cause at a time; do not perturb many parameters at once;
+- Keep the first result, prompt, workflow, parameters, and failure reason;
+- Record at minimum the model and workflow, resolution, batch size or frame count, cold/hot start times, and the lowest remaining VRAM when available;
+- Do not record smoke runs, retries, upscale phases, or checks that were not actually executed as complete.

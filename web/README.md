@@ -1,151 +1,166 @@
-# Live-Document Web（前后端分离版）
+# Live-Science Web (frontend/backend split)
 
-面向 **AMD Dev Contest 2026 · Track 1（Multimodal Content Creation Tools）** 的 Web 交付形态：
-把教学文档解析为轻量 **LearningSpec**，再交给现有渲染流程生成教学动画/短视频。
+The **AMD Dev Contest 2026 · Track 1 (Multimodal Content Creation Tools)** web deliverable:
+feeds teaching documents/concepts through a three-phase pipeline (Phase 1 program video + Bridge
+route decision → Phase 2 FLUX keyframes → Phase 3 LTX video) to produce teaching animations or
+short videos.
 
 ```
 ┌─────────────────────┐         ┌──────────────────────────────┐
-│  React SPA (Vite)   │  /api   │  FastAPI 后端                 │
-│  web/frontend/dist  │ ──────▶ │  - 文档规划 → LearningSpec     │
-│  （dev: Vite 代理）  │ ◀────── │  - 任务队列（asyncio + worker）│
-└─────────────────────┘  JSON   │  - SQLite 任务存储（JobStore） │
-                                │  - 渲染引擎：deterministic /   │
-                                │    generative / procedural     │
+│  React SPA (Vite)   │  /api   │  FastAPI backend             │
+│  web/frontend/dist  │ ──────▶ │  - job queue (asyncio + worker)│
+│  (dev: Vite proxy)  │ ◀────── │  - SQLite job store (JobStore)│
+└─────────────────────┘  JSON   │  - engines: auto /            │
+                                │    deterministic /            │
+                                │    generative / procedural    │
                                 └──────────────────────────────┘
 ```
 
-## 目录结构
+## Directory layout
 
-| 路径 | 说明 |
+| Path | Description |
 |---|---|
-| `backend/app` | FastAPI 应用（API、服务、任务管理） |
-| `backend/requirements.txt` | 后端完整依赖（FastAPI / Manim / Pillow 等） |
-| `frontend/` | React + Vite + TypeScript 前端（SPA） |
-| `frontend/dist/` | 前端构建产物（由后端静态托管） |
-| `backend/data/` | 运行时数据（SQLite + 任务产物，已 gitignore） |
+| `backend/app` | FastAPI app (API, services, job management) |
+| `backend/requirements.txt` | Backend deps (includes repo-root deps: manim / Pillow, etc.) |
+| `frontend/` | React + Vite + TypeScript frontend (SPA) |
+| `frontend/dist/` | Frontend build output (served by the backend) |
+| `backend/data/` | Runtime data (SQLite + job artifacts, gitignored) |
 
-## 快速开始
+## Quick start
 
-### 1. 后端
+### 1. Backend
 
 ```bash
 cd web/backend
-python -m venv .venv && . .venv/bin/activate   # 或复用仓库根 .venv
+python -m venv .venv && . .venv/bin/activate   # or reuse the repo-root .venv
 pip install -r requirements.txt
 
-# 仅 API（前端另起 dev server）
+# API only (frontend runs in its own dev server)
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 
-# 或同时托管构建好的前端（生产模式）
-LIVE_DOC_SERVE_FRONTEND=1 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+# or also serve the built frontend (production mode)
+LIVE_SCIENCE_SERVE_FRONTEND=1 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-环境变量：
+Environment variables:
 
-| 变量 | 默认 | 说明 |
+| Variable | Default | Description |
 |---|---|---|
-| `LIVE_DOC_SERVE_FRONTEND` | `0` | `1` 时在 `/` 托管 `frontend/dist` |
-| `LIVE_DOC_DATA_DIR` | `backend/data` | 运行时数据目录（DB + 产物） |
-| `LIVE_DOC_HOST` / `LIVE_DOC_PORT` | `127.0.0.1:8000` | 监听地址 |
-| `LIVE_DOC_CORS_ORIGINS` | `*` | 允许的 CORS 源（逗号分隔） |
+| `LIVE_SCIENCE_SERVE_FRONTEND` | `0` | When `1`, serve `frontend/dist` at `/` |
+| `LIVE_SCIENCE_DATA_DIR` | `backend/data` | Runtime data dir (DB + artifacts) |
+| `LIVE_SCIENCE_HOST` / `LIVE_SCIENCE_PORT` | `127.0.0.1:8000` | Listen address |
+| `LIVE_SCIENCE_CORS_ORIGINS` | `*` | Allowed CORS origins (comma-separated) |
+| `DEEPSEEK_API_KEY` | empty | DeepSeek key (required for auto/deterministic/generative Phase 1) |
+| `DEEPSEEK_BASE_URL` / `DEEPSEEK_MODEL` | `https://api.deepseek.com` / `deepseek-chat` | Phase 1 LLM (OpenAI-compatible) |
+| `COMFYUI_URL` | `http://127.0.0.1:8188` | Local ComfyUI (FLUX/LTX model generation) |
 
-### 2. 前端（开发模式）
+### 2. Frontend (dev mode)
 
 ```bash
 cd web/frontend
 npm install
-npm run dev        # http://localhost:5173，/api 代理到 127.0.0.1:8000
+npm run dev        # http://localhost:5173, /api proxied to 127.0.0.1:8000
 ```
 
-### 3. 前端（生产构建）
+### 3. Frontend (production build)
 
 ```bash
 cd web/frontend
 npm install
-npm run build      # 产出 dist/，由后端 LIVE_DOC_SERVE_FRONTEND=1 托管
+npm run build      # outputs dist/, served by the backend with LIVE_SCIENCE_SERVE_FRONTEND=1
 ```
 
-## API 一览
+## API overview
 
-| 方法 | 路径 | 说明 |
+| Method | Path | Description |
 |---|---|---|
-| `GET` | `/api/v1/health` | 服务 / GPU(ROCm) / 引擎可用性 |
-| `POST` | `/api/v1/specs` | 文本 → LearningSpec 列表（`suitable` 为可动画化数） |
-| `POST` | `/api/v1/jobs` | 提交渲染任务（`engine` + `text` 或 `spec`） |
-| `GET` | `/api/v1/jobs` | 任务列表（`?limit=&offset=`） |
-| `GET` | `/api/v1/jobs/{id}` | 任务状态（进度 / 产物 / 错误） |
-| `GET` | `/api/v1/jobs/{id}/files/{name}` | 下载产物（mp4 / gif / json） |
+| `GET` | `/api/v1/health` | Service / GPU(ROCm) / engine availability |
+| `POST` | `/api/v1/jobs` | Submit a generation job (`engine` + `text`) |
+| `GET` | `/api/v1/jobs` | Job list (`?limit=&offset=`) |
+| `GET` | `/api/v1/jobs/{id}` | Job status (progress / artifacts / manifest / error) |
+| `GET` | `/api/v1/jobs/{id}/files/{name}` | Download artifact (mp4 / gif / manifest / keyframes) |
 
-交互式文档：`http://localhost:8000/docs`
+Interactive docs: `http://localhost:8000/docs`
 
-## 渲染引擎
+## Rendering engines
 
-| 引擎 | 实现 | 说明 |
+| Engine | Implementation | Description |
 |---|---|---|
-| `deterministic` | procedural 兼容回退 | 旧 Manim 模块已移除；请求会明确回退到 PIL GIF |
-| `procedural` | PIL 程序化渲染 | 无模型依赖的轻量兜底 GIF，始终可用 |
-| `generative` | 三阶段流程（`modules/`，M3 接入中） | 生成式视频，需要 AMD Radeon GPU + ROCm；当前不可用时自动回退 procedural（`metrics.fallback_reason`） |
+| `auto` | Phase 1 → route | Decides from the final render: `programmatic` → program video, `realizable/hybrid` → FLUX+LTX model video |
+| `deterministic` | Phase 1 (DeepSeek → program → render) | Generates a subtitled programmatic teaching video (MP4 + SRT + poster) |
+| `generative` | Local ComfyUI (FLUX keyframes + LTX video) | Model video; needs AMD Radeon GPU + ROCm + ComfyUI |
+| `procedural` | PIL programmatic renderer | Lightweight fallback GIF with no model dependency, always available |
 
-任务状态机：`pending → running → completed / failed`。服务重启后遗留的 pending/running 任务会被标记为 failed（`StaleJob`）。
+Job state machine: `pending → running → completed / failed`. After a server restart, leftover
+pending/running jobs are marked failed (`StaleJob`).
 
-## 部署到公网（Radeon Cloud）
+## Deploy to the public internet (Radeon Cloud)
 
-官方 Radeon Cloud 提供 `rc-tunnel` 公网暴露，一次只能暴露**一个端口**，因此推荐**单端口一体化部署**（FastAPI 同时托管 API + 前端静态资源）：
+Official Radeon Cloud exposes a public URL via `rc-tunnel`, and only **one port** can be exposed,
+so a **single-port all-in-one deployment** is recommended (FastAPI serves both the API and the
+frontend static assets):
 
 ```bash
 cd web/backend
-LIVE_DOC_SERVE_FRONTEND=1 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+LIVE_SCIENCE_SERVE_FRONTEND=1 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-# 另开终端（Radeon Cloud 环境）
+# in a separate terminal (Radeon Cloud environment)
 rc-tunnel expose --port 8000
-# → 得到 https://rc-*.radeon.firstdg.ai 公网地址
+# → gives a public URL like https://rc-*.radeon.firstdg.ai
 ```
 
-- 该公网 URL 任何人都可访问，系统内**必须**加登录/鉴权后才能对外开放（建议在 FastAPI 层加简单 Bearer Token 中间件，前端登录后携带 token）。
-- 前端 `VITE_API_BASE` 默认 `/api/v1`（同源），公网单端口部署无需额外配置。
+- Anyone can reach that public URL, so the app **must** enforce login before going public
+  (the FastAPI layer uses a simple Bearer token; the frontend logs in and carries the token).
+- `VITE_API_BASE` defaults to `/api/v1` (same origin), so single-port deployment needs no extra config.
 
-## 比赛规范对照（Track 1）
+## Track 1 compliance notes
 
-- ✅ Web UI 交付形态：React SPA + FastAPI，前后端分离
-- ✅ 关键推理在本地：轻量文档规划与程序化渲染均在本地完成，无封闭在线 API 依赖
-- ✅ AMD Radeon GPU + ROCm：`generative` 引擎面向 `modules/` 三阶段流程，`/api/v1/health` 上报 GPU 可用性
-- ✅ 提交物配套：源码仓库（本目录）+ 演示视频（可用 deterministic 引擎生成）+ PPT/Poster
+- ✅ Web UI deliverable: React SPA + FastAPI, frontend/backend split
+- ✅ Local inference: Phase 1 program video renders locally; model generation uses local ComfyUI
+  (FLUX/LTX) — no closed online API dependency
+- ✅ AMD Radeon GPU + ROCm: `generative` engine hooks into local ComfyUI; `/api/v1/health`
+  reports GPU/engine availability
+- ✅ Deliverables: source repo (this dir) + `competition.md` + demo video (generated with the
+  deterministic/auto engine) + PPT/Poster
 
-## 公网部署（Radeon Cloud rc-tunnel）
+## Public deployment (Radeon Cloud rc-tunnel)
 
-官方要求（Radeon Cloud 用户指南）：公网 URL 可达互联网，**应用自身必须强制登录**。
-本系统已内置 Bearer Token 登录：所有 `/api/*`（除 `/api/v1/auth/login`）都要求
-`Authorization: Bearer <token>`；前端未登录只显示登录页。
+Per the official Radeon Cloud guide: the public URL is reachable from the internet, and the app
+**must enforce login itself**. The system has built-in Bearer-token login: every `/api/*` route
+(except `/api/v1/auth/login`) requires `Authorization: Bearer <token>`; the frontend shows only
+the login page until authenticated.
 
-### 前置条件
+### Prerequisites
 
-- Notebook 必须是**新创建**的 Pod（旧 Pod 无 `FRP_BROKER_URL` 环境变量，`rc-tunnel` 无法安装）。
-  验证：`env | grep FRP_BROKER_URL`。
-- 每 Pod 只能暴露一个端口 → 使用一体化模式（后端托管前端，端口 8000）。
+- The notebook must be a **newly created** Pod (old Pods lack the `FRP_BROKER_URL` env var, so
+  `rc-tunnel` cannot be installed). Verify: `env | grep FRP_BROKER_URL`.
+- Each Pod can only expose one port → use all-in-one mode (backend serves the frontend, port 8000).
 
-### 一键部署
+### One-command deploy
 
 ```bash
 git clone https://github.com/HowardGuan24/Live-Document.git
-cd Live-Document
+cd Live-Science
 bash web/deploy-public.sh
 ```
 
-脚本会：构建前端 → 启动后端（自动生成/读取访问令牌）→ 安装 rc-tunnel → 暴露端口 8000，
-最后打印公网地址（形如 `https://rc-xxxx.radeon.firstdg.ai`）与访问令牌。
+The script builds the frontend → starts the backend (auto-generating/reading the access token) →
+installs `rc-tunnel` → exposes port 8000, then prints the public URL
+(`https://rc-xxxx.radeon.firstdg.ai`) and the access token.
 
-### 手动部署
+### Manual deploy
 
 ```bash
 cd web/frontend && npm install && npm run build && cd ..
 cd backend
-LIVE_DOC_AUTH_TOKEN=your-token LIVE_DOC_SERVE_FRONTEND=1 \
+LIVE_SCIENCE_AUTH_TOKEN=your-token LIVE_SCIENCE_SERVE_FRONTEND=1 \
   /path/to/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
-# 新终端：
+# new terminal:
 $HOME/.local/bin/rc-tunnel expose --port 8000
 ```
 
-- 令牌来源：优先环境变量 `LIVE_DOC_AUTH_TOKEN`；未设置则自动生成并持久化到
-  `web/backend/data/auth_token.txt`，启动日志也会打印。
-- 产物（视频/GIF）下载接受 `?access_token=` 查询参数（浏览器 `<video>/<a>` 无法带请求头）。
-- 本地开发可设 `LIVE_DOC_AUTH_DISABLED=1` 关闭鉴权。
+- Token sources, in order: env var `LIVE_SCIENCE_AUTH_TOKEN`; otherwise auto-generated and persisted
+  to `web/backend/data/auth_token.txt`.
+- Artifact downloads (video/GIF) accept a `?access_token=` query param (browser `<video>/<a>` tags
+  cannot send custom headers).
+- For local development, set `LIVE_SCIENCE_AUTH_DISABLED=1` to turn off auth.

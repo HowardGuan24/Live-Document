@@ -1,151 +1,151 @@
-# Live Document · Phase 3
+# Live Science · Phase 3
 
-Phase 3 把 Phase 1 的过程定义当作**运动真相**，把 Phase 2 的真实关键帧当作**视觉锚点**。目标不是重新设计教学过程，而是让相邻状态按照正确机制连续变化，并产出可追溯、可拼接的真实感视频片段。
+Phase 3 treats Phase 1's process definition as the **motion truth** and Phase 2's realistic keyframes as the **visual anchors**. The goal is not to redesign the teaching process, but to make adjacent states change continuously according to the correct mechanism and to produce traceable, spliceable realistic video segments.
 
-开始执行前，同时完整读取 `../GPU_GENERATION_POLICY.md`。该文件规定图片与视频生成共享的调度、smoke、显存安全和记录要求；本 Prompt 只补充 Phase 3 的视频生成规则。
+Before starting, also read `../GPU_GENERATION_POLICY.md` in full. That file defines the scheduling, smoke, VRAM-safety, and logging requirements shared by image and video generation; this Prompt only adds Phase 3's video-generation rules.
 
-## 1. 输入与边界
+## 1. Input and boundaries
 
-每次运行先读取：
+Read the following at the start of every run:
 
-- Phase 1：`brief.md`、`bridge/manifest.json`、事件关系、字幕、overlay；必要时读取程序视频或确定性 `renderFrame`。
-- Phase 2：选中的 realistic anchors、`world_reference.png`、锚点清单和报告。
+- Phase 1: `brief.md`, `bridge/manifest.json`, event relationships, subtitles, and overlays; read the programmatic video or the deterministic `renderFrame` when necessary.
+- Phase 2: the selected realistic anchors, `world_reference.png`, the anchor list, and the report.
 
-Phase 1 决定发生什么、如何变化和事件顺序；Phase 2 决定首尾状态长什么样。不得修改 Phase 1 或 Phase 2，不得凭空增加新事件，也不得让后续状态提前发生。
+Phase 1 determines what happens, how it changes, and the order of events; Phase 2 determines what the start and end states look like. Do not modify Phase 1 or Phase 2, do not add new events out of thin air, and do not let later states happen early.
 
-默认按相邻锚点分段生成，不要把四五张关键帧一次塞进一条长视频。
+By default, generate in segments between adjacent anchors; do not cram four or five keyframes into one long video at once.
 
-对于 `hybrid` route，只生成 `realizable: true` 的相邻变化。最终视频必须按 Phase 1 的原顺序保留必要的程序片段；程序片段可在 `timeline.json` 中标为 `sourceType: "programmatic"`，生成片段标为 `sourceType: "generated"`。不得因没有真实锚点而删去必要教学内容。
+For the `hybrid` route, only generate adjacent changes marked `realizable: true`. The final video must preserve the necessary programmatic segments in Phase 1's original order; programmatic segments may be labeled `sourceType: "programmatic"` and generated segments `sourceType: "generated"` in `timeline.json`. Do not drop necessary teaching content just because no realistic anchor exists.
 
-## 2. 生成前预检
+## 2. Pre-generation checks
 
-提交 GPU 任务前必须确认：
+Before submitting a GPU job, you must confirm:
 
-1. 首尾锚点存在，尺寸与宽高比兼容；
-2. 锚点顺序、状态含义和事件方向与 Phase 1 一致；
-3. `../GPU_GENERATION_POLICY.md` 的任务、队列、参数和显存预检已经通过；
-4. 输入与历史产物来源明确，不复用来源不清的生成视频。
+1. The start and end anchors exist and their dimensions and aspect ratios are compatible;
+2. Anchor order, state meaning, and event direction are consistent with Phase 1;
+3. The job, queue, parameter, and VRAM pre-checks in `../GPU_GENERATION_POLICY.md` have passed;
+4. The sources of inputs and historical artifacts are clear; do not reuse generated videos of unclear origin.
 
-沿用经过验证的本地视频 workflow；具体显存策略由共享策略统一规定。
+Continue using the validated local video workflow; the specific VRAM strategy is uniformly governed by the shared policy.
 
-## 3. 片段难度分类
+## 3. Segment difficulty classification
 
-每个片段生成前先分类：
+Classify each segment before generating it:
 
-- `appearance_only`：光照、天气、颜色或材质变化；
-- `continuous_motion`：流动、生长、迁移或连续变形；
-- `topology_change`：出现、消失、连接、断开、分裂、合并或塌陷。
+- `appearance_only`: lighting, weather, color, or material changes;
+- `continuous_motion`: flow, growth, migration, or continuous deformation;
+- `topology_change`: appearance, disappearance, connection, disconnection, splitting, merging, or collapse.
 
-对于 `topology_change`，必须判断首尾跨度是否过大。如果一个片段要求模型同时完成多个关键动作，应从 Phase 1 选择或派生一个语义明确的中间锚点，再拆成更短片段。
+For `topology_change`, you must judge whether the span between start and end is too large. If a segment requires the model to complete multiple key actions at once, select or derive a semantically clear intermediate anchor from Phase 1, then split it into shorter segments.
 
-派生锚点必须记录：
+Derived anchors must record:
 
-- Phase 1 来源时间和状态；
-- 结构来源；
-- 视觉风格来源；
-- 生成 Prompt；
-- 是否回写 Phase 2，默认不回写。
+- The Phase 1 source time and state;
+- The structural source;
+- The visual style source;
+- The generation prompt;
+- Whether it is written back to Phase 2; by default it is not.
 
-## 4. 每段 Prompt 的约束
+## 4. Constraints on each segment's prompt
 
-每段 Prompt 必须明确：
+Each segment's prompt must clearly state:
 
-- 视频严格从首帧开始并在尾帧结束；
-- 必须发生的变化及其顺序；
-- 允许变化的对象和空间区域；
-- 必须保持不动的对象和区域；
-- 摄像机是否锁定；
-- 不得提前发生的后续事件；
-- 禁止新增、消失或错误连接的结构。
+- The video strictly starts from the first frame and ends at the last frame;
+- The changes that must occur and their order;
+- The objects and spatial regions allowed to change;
+- The objects and regions that must remain still;
+- Whether the camera is locked;
+- Later events that must not occur early;
+- Structures that must not be added, removed, or wrongly connected.
 
-对于局部事件，应明确写出“只允许某个局部区域变化”。不要笼统描述整个场景都在变化，否则模型可能把运动错误分配到背景、植被或无关结构。
+For local events, explicitly write "only a certain local region is allowed to change." Do not vaguely describe the entire scene as changing, or the model may mis-assign motion to the background, vegetation, or unrelated structures.
 
-## 5. Smoke 与 Release 分离
+## 5. Separation of smoke and release
 
-默认先运行保守的单阶段 smoke 配置，用于验证：
+By default, first run a conservative single-stage smoke configuration to verify:
 
-- 首尾约束是否生效；
-- 事件方向是否正确；
-- 摄像机和非目标区域是否稳定；
-- 是否出现明显幻觉；
-- 显存配置是否安全。
+- Whether the start/end constraints take effect;
+- Whether the event direction is correct;
+- Whether the camera and non-target regions are stable;
+- Whether obvious hallucinations appear;
+- Whether the VRAM configuration is safe.
 
-Smoke 成功后，再决定是否运行两阶段高清管线。不得把低分辨率 smoke 描述为最终高质量成片。
+After smoke succeeds, then decide whether to run the two-stage high-definition pipeline. Do not describe a low-resolution smoke as the final high-quality result.
 
-如果 smoke 中的事件语义不清楚，优先调整锚点、分段和 Prompt。不要假设提高分辨率能够修复错误的运动或拓扑。
+If the event semantics in smoke are unclear, first adjust the anchors, segments, and prompts. Do not assume that raising the resolution will fix wrong motion or topology.
 
-## 6. GPU 性能与显存策略
+## 6. GPU performance and VRAM strategy
 
-所有通用调度、缓存、显存和重试规则遵循 `../GPU_GENERATION_POLICY.md`。Phase 3 另有以下视频约束：
+All general scheduling, caching, VRAM, and retry rules follow `../GPU_GENERATION_POLICY.md`. Phase 3 additionally has the following video constraints:
 
-- 首次验证使用足以判断运动语义的最低合理分辨率、最短合理时长和最少合法帧数；
-- 视频尺寸必须满足当前模型的空间倍数要求；LTX 帧数必须满足 `8n+1`；
-- 相同模型、分辨率和采样配置的片段应连续生成，以利用热加载；
-- 高风险拓扑变化优先增加中间锚点，通常比反复重试更快、更稳定；
-- smoke 通过后，高清输出优先采用“低分辨率时序生成 → 官方空间放大或第二阶段细化 → 最终编码”，不要默认直接以最高分辨率生成完整时序；
-- Phase 3 若生成派生图片锚点，同样受共享策略约束，并沿用 Phase 2 的全图优先和一次定向重试原则。
+- For first validation, use the lowest reasonable resolution, shortest reasonable duration, and minimum legal frame count that suffice to judge the motion semantics;
+- Video dimensions must satisfy the current model's spatial-multiple requirements; LTX frame counts must satisfy `8n+1`;
+- Segments sharing the same model, resolution, and sampling configuration should be generated consecutively to exploit hot loading;
+- For high-risk topology changes, prefer adding intermediate anchors, which is usually faster and more stable than repeatedly retrying;
+- After smoke passes, prefer the "low-resolution temporal generation → official spatial upscaling or second-stage refinement → final encoding" path for high-definition output; do not default to generating the full temporal sequence directly at the highest resolution;
+- If Phase 3 generates derived image anchors, they are likewise governed by the shared policy and follow Phase 2's full-image-first and one-targeted-retry principles.
 
-## 7. 重试规则
+## 7. Retry rules
 
-每个片段最多进行一次有明确目的的重试。重试前将主要失败归为：
+Each segment may have at most one retry with a clear purpose. Before retrying, classify the primary failure as one of:
 
-- `endpoint_drift`：首尾锚点约束不足；
-- `camera_drift`：摄像机发生移动；
-- `background_motion`：非目标区域发生变化；
-- `topology_failure`：连接、断开或对象存在关系错误；
-- `hallucinated_object`：出现无关对象；
-- `temporal_artifact`：闪烁、呼吸或突然跳变。
+- `endpoint_drift`: insufficient start/end anchor constraints;
+- `camera_drift`: the camera has moved;
+- `background_motion`: non-target regions have changed;
+- `topology_failure`: wrong connection, disconnection, or object-existence relationships;
+- `hallucinated_object`: unrelated objects appear;
+- `temporal_artifact`: flickering, breathing, or sudden jumps.
 
-一次重试只针对一个主要问题。可以提高首尾引导、降低输入压缩、缩小允许变化区域、加强负向约束，或改用拆段和中间锚点。不得无依据地同时修改大量参数。
+One retry may target only one primary problem. You may strengthen the start/end guidance, reduce input compression, narrow the region allowed to change, strengthen negative constraints, or switch to segment splitting and intermediate anchors. Do not modify many parameters at once without basis.
 
-首次结果、首次 Prompt、首次 workflow、生成元数据和失败原因必须保留。
+The first result, first prompt, first workflow, generation metadata, and failure reason must be preserved.
 
 ## 8. Fast QA
 
-每段生成后，只抽取少量等时间间隔帧进行检查：
+After each segment is generated, extract only a small number of equally time-spaced frames to check:
 
-1. 不阅读 Prompt 时，能否大体理解发生了什么；
-2. 变化是否发生在正确区域；
-3. 变化方向是否正确；
-4. 首尾状态是否到达；
-5. 镜头、背景和对象身份是否稳定；
-6. 是否出现新增对象、结构消失或错误连接；
-7. 是否提前发生后续阶段。
+1. Without reading the prompt, can one broadly understand what happened;
+2. Did the change occur in the correct region;
+3. Is the change direction correct;
+4. Were the start and end states reached;
+5. Are the camera, background, and object identities stable;
+6. Do added objects, disappeared structures, or wrong connections appear;
+7. Did later stages happen early.
 
-技术链路成功不等于教学表达成功。即使视频能够播放，如果观察者无法理解关键过程，也应记录为语义失败。
+A successful technical pipeline is not the same as successful teaching expression. Even if the video can play, if an observer cannot understand the key process, it should be recorded as a semantic failure.
 
-## 9. Overlay 与字幕自动映射
+## 9. Automatic overlay and subtitle mapping
 
-以 `timeline.json` 作为 Phase 3 合成的唯一时间真相。
+Use `timeline.json` as the single temporal truth for Phase 3 compositing.
 
-对于每个片段：
+For each segment:
 
-1. 根据 `phase1StartTime` 和 `phase1EndTime` 截取 Phase 1 字幕；
-2. 将字幕时间按比例映射到 Phase 3 片段时长；
-3. 根据阅读速度压缩无法读完的字幕；
-4. 优先从 Phase 1 的确定性接口生成连续 overlay；
-5. 将 overlay 和字幕叠加到写实基础视频；
-6. 拼接后重新计算完整字幕时间。
+1. Slice the Phase 1 subtitles according to `phase1StartTime` and `phase1EndTime`;
+2. Proportionally map the subtitle times to the Phase 3 segment duration;
+3. Compress subtitles that cannot be read in full based on reading speed;
+4. Preferably generate continuous overlays from Phase 1's deterministic interface;
+5. Overlay the overlays and subtitles onto the realistic base video;
+6. Recompute the full subtitle timing after splicing.
 
-时间截取、缩放、映射和烧录应自动完成。字幕语义压缩可以由模型完成，但不得改变原知识含义。只有无法获得连续 overlay 时，才退回首尾 overlay 淡变，并在报告中说明。
+Time slicing, scaling, mapping, and burning should be done automatically. Semantic compression of subtitles may be done by the model, but it must not change the original meaning of the knowledge. Only when a continuous overlay cannot be obtained should you fall back to a start/end overlay fade, and note this in the report.
 
-## 10. 拼接契约
+## 10. Splicing contract
 
-所有片段必须使用兼容的分辨率、帧率、像素格式和摄像机方向。拼接顺序只由 `timeline.json` 决定，不依赖目录名称排序。
+All segments must use compatible resolution, frame rate, pixel format, and camera direction. The splicing order is determined only by `timeline.json`, not by directory-name ordering.
 
-除第一段外，每个片段删除第一个重复端帧。最终帧数应满足：
+Except for the first segment, remove the first duplicated end frame from each segment. The final frame count must satisfy:
 
 ```text
 totalFrames = firstSegmentFrames + sum(otherSegmentFrames - 1)
 ```
 
-分段生成的音轨默认不直接拼接，除非已有音频连续性处理方案。
+Audio tracks produced per segment are not directly spliced by default, unless an existing audio-continuity handling solution is in place.
 
-通用执行优先使用 `tools/run_all_segments.py` 串行生成，用 `tools/compose_segment.sh` 合成单段教学覆盖层，再用 `tools/assemble_phase3.py` 按时间线拼接。不得让单段生成器直接覆盖整条 `base_video.mp4`。
+For general execution, prefer generating serially with `tools/run_all_segments.py`, compositing the per-segment teaching overlay with `tools/compose_segment.sh`, then splicing according to the timeline with `tools/assemble_phase3.py`. Do not let a single-segment generator directly overwrite the entire `base_video.mp4`.
 
-## 11. 可追溯性
+## 11. Traceability
 
-每个片段至少保留：
+Preserve at least the following for each segment:
 
 ```text
 segments/<id>/
@@ -158,7 +158,7 @@ segments/<id>/
   preview/
 ```
 
-发生重试时，还必须保留：
+When a retry occurs, you must also preserve:
 
 ```text
 attempt-1.mp4
@@ -166,11 +166,11 @@ prompt-attempt-1.txt
 generation-attempt-1.json
 ```
 
-报告中记录失败原因、修改内容和最终选择理由。不得把未执行的生成、重试或检查描述为已经完成。
+In the report, record the failure reason, the changes made, and the rationale for the final choice. Do not describe unexecuted generation, retries, or checks as already completed.
 
-## 12. 输出
+## 12. Output
 
-Phase 3 run 至少包含：
+A Phase 3 run must at least contain:
 
 ```text
 timeline.json
@@ -180,22 +180,22 @@ final_video.mp4
 report.md
 ```
 
-`base_video.mp4` 是去除重复端帧后的真实感基础视频；`final_video.mp4` 是重新叠加 Phase 1 overlay 和字幕后的教学版本。
+`base_video.mp4` is the realistic base video after removing duplicated end frames; `final_video.mp4` is the teaching version with Phase 1 overlays and subtitles re-applied.
 
-完成后运行 `tools/validate_phase3.py`，核对片段来源、格式和去重后的总帧数。
+After completion, run `tools/validate_phase3.py` to verify segment sources, formats, and the total frame count after deduplication.
 
-## 13. 完成标准
+## 13. Completion criteria
 
-Phase 3 完成时应满足：
+When Phase 3 is complete, the following must hold:
 
-- 所有必要阶段均有对应片段；
-- 相邻阶段的变化方向可辨；
-- 关键事件无需阅读 Prompt 也能大体看懂；
-- 没有提前发生后续事件；
-- 变化没有错误扩散到背景；
-- 困难拓扑事件已通过拆段或中间锚点降低跨度；
-- 重复端帧已删除；
-- overlay 和字幕已按时间线重新映射；
-- 所有尝试、参数和已知问题均已诚实记录。
+- Every necessary stage has a corresponding segment;
+- The change direction between adjacent stages is discernible;
+- Key events can be broadly understood without reading the prompt;
+- No later events happen early;
+- Changes do not wrongly spread to the background;
+- Difficult topology events have had their spans reduced via segment splitting or intermediate anchors;
+- Duplicated end frames have been removed;
+- Overlays and subtitles have been re-mapped according to the timeline;
+- All attempts, parameters, and known issues have been truthfully recorded.
 
-对于最小测试，只生成 Phase 1 中一个重要事件的 `pre_event → post_event` 片段。优先使用保守的单阶段工作规格，并明确记录它不是两阶段高清发布路径。
+For a minimal test, generate only the `pre_event → post_event` segment for one important event in Phase 1. Prefer a conservative single-stage job spec, and explicitly record that it is not the two-stage high-definition release path.

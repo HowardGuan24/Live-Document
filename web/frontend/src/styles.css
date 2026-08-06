@@ -1,26 +1,27 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Live-Document · AMD Radeon 能量风设计系统（Tailwind v4）
-   深色金属底 + Radeon 红/橙能量点缀 + 锐利切角 + 红光晕
+   Live-Science · AMD Radeon energy design system (Tailwind v4)
+   Dark metallic base + Radeon red/orange energy accents +
+   sharp chamfered corners + red glow
    ============================================================ */
 
 @theme {
-  /* 背景 / 面板 */
+  /* background / panels */
   --color-ink-950: #08080a;
   --color-ink-900: #0e0e11;
   --color-ink-850: #121216;
   --color-ink-800: #16161b;
   --color-ink-700: #1d1d24;
 
-  /* 边框 / 文字 */
+  /* borders / text */
   --color-line: #232329;
   --color-line-strong: #2f2f3a;
   --color-fg: #f4f4f5;
   --color-mut: #a1a1aa;
   --color-dim: #6d6d78;
 
-  /* Radeon 红 + 能量橙 */
+  /* Radeon red + energy orange */
   --color-radeon-600: #c8102e;
   --color-radeon-500: #ed1c24;
   --color-radeon-400: #ff3b43;
@@ -28,7 +29,7 @@
   --color-ember-500: #ff6a00;
   --color-ember-400: #fb923c;
 
-  /* 语义 */
+  /* semantic */
   --color-ok: #22c55e;
   --color-warn: #f59e0b;
   --color-danger: #ef4444;
@@ -52,7 +53,7 @@
     font-size: 14px;
     line-height: 1.6;
     background-color: var(--color-ink-950);
-    /* 顶部 Radeon 红光晕 + 细网格电路纹理 */
+    /* top Radeon red glow + fine circuit-grid texture */
     background-image:
       radial-gradient(ellipse 90% 55% at 50% -12%, rgba(237, 28, 36, 0.14), transparent 60%),
       linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
@@ -75,7 +76,7 @@
   }
 }
 
-/* ---- 锐利切角（呼应 Radeon 显卡棱角） ---- */
+/* ---- sharp chamfered corners (echo Radeon card edges) ---- */
 @utility clip-angled {
   clip-path: polygon(
     0 0,
@@ -97,7 +98,7 @@
   );
 }
 
-/* ---- 红光晕 ---- */
+/* ---- red glow ---- */
 @utility glow-red {
   box-shadow: 0 0 0 1px rgba(237, 28, 36, 0.4), 0 0 26px -4px rgba(237, 28, 36, 0.45);
 }
@@ -105,7 +106,7 @@
   box-shadow: 0 0 16px -4px rgba(237, 28, 36, 0.5);
 }
 
-/* ---- 能量渐变文字（红→橙） ---- */
+/* ---- energy gradient text (red to orange) ---- */
 @utility text-energy {
   background: linear-gradient(92deg, var(--color-radeon-400), var(--color-ember-400));
   -webkit-background-clip: text;
@@ -113,19 +114,19 @@
   color: transparent;
 }
 
-/* ---- 主操作按钮（红→橙渐变） ---- */
+/* ---- primary button (red to orange gradient) ---- */
 @utility btn-primary {
   background-image: linear-gradient(90deg, var(--color-radeon-600), var(--color-radeon-500), var(--color-ember-600));
   color: #fff;
   font-weight: 700;
 }
 
-/* ---- 能量下划线（激活导航 / 标题强调） ---- */
+/* ---- energy underline (active nav / heading accent) ---- */
 @utility energy-line {
   background: linear-gradient(90deg, var(--color-radeon-500), var(--color-ember-500));
 }
 
-/* ---- 动效 ---- */
+/* ---- animations ---- */
 @keyframes fade-up {
   from {
     opacity: 0;

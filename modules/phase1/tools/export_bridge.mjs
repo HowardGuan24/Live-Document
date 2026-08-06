@@ -131,7 +131,7 @@ function expectStringArray(value, label) {
 }
 
 function normalizeMeta(source) {
-  const meta = expectObject(source, "LIVE_DOCUMENT_META");
+  const meta = expectObject(source, "LIVE_SCIENCE_META");
   const result = {
     duration: meta.duration,
     fps: meta.fps,
@@ -139,25 +139,25 @@ function normalizeMeta(source) {
     height: meta.height,
   };
   if (!Number.isFinite(result.duration) || result.duration <= 0) {
-    throw new Error("LIVE_DOCUMENT_META.duration must be a positive number.");
+    throw new Error("LIVE_SCIENCE_META.duration must be a positive number.");
   }
   if (!Number.isFinite(result.fps) || result.fps <= 0 || result.fps > 60) {
-    throw new Error("LIVE_DOCUMENT_META.fps must be in (0, 60].");
+    throw new Error("LIVE_SCIENCE_META.fps must be in (0, 60].");
   }
   if (!Number.isInteger(result.width) || !Number.isInteger(result.height)) {
-    throw new Error("LIVE_DOCUMENT_META width and height must be integers.");
+    throw new Error("LIVE_SCIENCE_META width and height must be integers.");
   }
   if (result.width < 1 || result.height < 1) {
-    throw new Error("LIVE_DOCUMENT_META width and height must be positive.");
+    throw new Error("LIVE_SCIENCE_META width and height must be positive.");
   }
   return result;
 }
 
 function normalizeBridge(source, meta) {
-  const bridge = expectObject(source, "LIVE_DOCUMENT_BRIDGE");
-  if (bridge.version !== 1) throw new Error("LIVE_DOCUMENT_BRIDGE.version must be 1.");
+  const bridge = expectObject(source, "LIVE_SCIENCE_BRIDGE");
+  if (bridge.version !== 1) throw new Error("LIVE_SCIENCE_BRIDGE.version must be 1.");
   if (!ROUTES.has(bridge.route)) {
-    throw new Error(`LIVE_DOCUMENT_BRIDGE.route is invalid: ${String(bridge.route)}`);
+    throw new Error(`LIVE_SCIENCE_BRIDGE.route is invalid: ${String(bridge.route)}`);
   }
 
   const targetStyle = expectString(bridge.targetStyle, "targetStyle", { nullable: true });
@@ -388,18 +388,18 @@ async function main() {
     });
     await page.waitForFunction(
       () =>
-        window.__LIVE_DOCUMENT_READY__ === true &&
+        window.__LIVE_SCIENCE_READY__ === true &&
         typeof window.renderFrame === "function" &&
-        window.LIVE_DOCUMENT_META &&
-        window.LIVE_DOCUMENT_BRIDGE,
+        window.LIVE_SCIENCE_META &&
+        window.LIVE_SCIENCE_BRIDGE,
       null,
       { timeout: 30_000 },
     );
     const snapshot = await page.evaluate(() => {
       try {
         return JSON.parse(JSON.stringify({
-          meta: window.LIVE_DOCUMENT_META,
-          bridge: window.LIVE_DOCUMENT_BRIDGE,
+          meta: window.LIVE_SCIENCE_META,
+          bridge: window.LIVE_SCIENCE_BRIDGE,
         }));
       } catch (error) {
         throw new Error(`Bridge metadata is not JSON-serializable: ${String(error)}`);

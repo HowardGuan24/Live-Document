@@ -1,14 +1,15 @@
-# Live Document Phase 1
+# Live Science Phase 1
 
-Phase 1 使用一个无记忆 Codex Agent，在一次运行中完成：
+Phase 1 uses a memoryless Codex Agent to complete in one run:
 
 ```text
-理解 → 必要补全 → 简短规划 → 编码 → 渲染 → 检查 → 修正
+Understand → necessary completion → brief planning → code → render → check → fix
 ```
 
-输入可以是概念、粗略流程或详细流程。输出是带画面内字幕的程序视频、源码和独立 SRT 字幕。
+The input can be a concept, a rough process, or a detailed process. The output is a programmatic
+video with in-frame subtitles, the source code, and a standalone SRT subtitle track.
 
-## 目录
+## Directory
 
 ```text
 phase1/
@@ -29,7 +30,7 @@ phase1/
 └── runs/
 ```
 
-一次运行只产生：
+One run only produces:
 
 ```text
 runs/<run-id>/
@@ -48,35 +49,35 @@ runs/<run-id>/
 └── agent-final.txt
 ```
 
-`programmatic` route 只要求 `bridge/manifest.json`，不一定生成图片目录和
-`contact_sheet.png`。
+The `programmatic` route only requires `bridge/manifest.json`; the image directories and
+`contact_sheet.png` are not necessarily generated.
 
-## 环境
+## Environment
 
-需要：
+Requires:
 
 - Codex CLI
 - Node.js 18+
-- FFmpeg 与 ffprobe
+- FFmpeg and ffprobe
 - Playwright Chromium
 
-在 `phase1` 下安装一次渲染依赖：
+Install the rendering dependencies once under `phase1`:
 
 ```bash
 npm install
 npx playwright install chromium
 ```
 
-## 使用
+## Usage
 
-复制并编辑请求：
+Copy and edit the request:
 
 ```bash
 cp REQUEST.example.md REQUEST.md
 ./run_phase1.sh REQUEST.md
 ```
 
-也可以运行示例：
+You can also run the examples:
 
 ```bash
 ./run_phase1.sh examples/concept.md karst-concept
@@ -84,28 +85,32 @@ cp REQUEST.example.md REQUEST.md
 ./run_phase1.sh examples/detailed_process.md karst-detailed
 ```
 
-第二个参数是可选的 run id。省略时自动使用时间戳。
+The second argument is an optional run id. When omitted, a timestamp is used automatically.
 
-脚本使用 `codex exec --ephemeral --sandbox workspace-write`。模型和 reasoning effort 默认继承你的 Codex 配置，因此不会覆盖你已经选择的 GPT-5.6 Sol Extra High。
+The script uses `codex exec --ephemeral --sandbox workspace-write`. The model and reasoning
+effort inherit from your Codex configuration by default, so it will not override the model you
+have already chosen.
 
-## 设计原则
+## Design principles
 
-Phase 1 只固定“窄腰接口”：
+Phase 1 fixes only a "narrow-waist interface":
 
-- 输入文件；
-- `renderFrame(t, options)`；
-- 必要输出文件；
-- 渲染器和验证器。
+- the input file;
+- `renderFrame(t, options)`;
+- the required output files;
+- the renderer and validators.
 
-内容范围、场景数、时长、对象数量、具体动画方式由 Agent 根据教学需要自行决定。
+Content scope, number of scenes, duration, number of objects, and the specific animation approach
+are decided by the Agent based on teaching needs.
 
 ## Bridge route
 
-- `programmatic`：程序视觉最适合教学，不要求真实化关键帧资产。
-- `realizable`：所有关键时刻都导出 presentation、clean 和 overlay 资产。
-- `hybrid`：只为标记为可真实化的关键时刻导出三种资产。
+- `programmatic`: programmatic visuals best serve the teaching, and realistic keyframe assets are
+  not required.
+- `realizable`: every key moment exports presentation, clean, and overlay assets.
+- `hybrid`: only key moments marked realizable export the three asset sets.
 
-手动重新导出并验证 Bridge：
+Manually re-export and validate the Bridge:
 
 ```bash
 node tools/export_bridge.mjs \
@@ -115,6 +120,7 @@ node tools/export_bridge.mjs \
 python3 tools/validate_bridge.py runs/<run-id>
 ```
 
-Phase 1 Agent 负责定义关键教学时刻。Exporter 不重新选择关键帧或设计分镜，
-只把网页已经定义的时刻兑现为后续图像和视频真实化阶段使用的资产。字幕继续由
-`subtitles.srt` 管理，不进入 overlay。
+The Phase 1 Agent is responsible for defining the key teaching moments. The exporter does not
+re-select keyframes or design storyboards; it only realizes the moments already defined by the
+web page as assets for the downstream image and video realization stages. Subtitles continue to be
+managed by `subtitles.srt` and do not enter the overlay.

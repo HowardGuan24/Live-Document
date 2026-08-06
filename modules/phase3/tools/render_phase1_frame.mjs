@@ -34,8 +34,8 @@ const browser=await chromium.launch({headless:true});
 try {
   const page=await browser.newPage({viewport:{width:1280,height:720},deviceScaleFactor:1});
   await page.goto(`http://127.0.0.1:${address.port}/${encodeURIComponent(basename(appPath))}`,{waitUntil:"networkidle"});
-  await page.waitForFunction(()=>window.__LIVE_DOCUMENT_READY__===true&&typeof window.renderFrame==="function");
-  const meta=await page.evaluate(()=>window.LIVE_DOCUMENT_META);
+  await page.waitForFunction(()=>window.__LIVE_SCIENCE_READY__===true&&typeof window.renderFrame==="function");
+  const meta=await page.evaluate(()=>window.LIVE_SCIENCE_META);
   await page.setViewportSize({width:meta.width,height:meta.height});
   await page.evaluate(async ({time,mode})=>window.renderFrame(time,{mode}),{time,mode});
   await page.screenshot({path:output,type:"png",omitBackground:mode==="overlay",animations:"disabled",captureBeyondViewport:false});

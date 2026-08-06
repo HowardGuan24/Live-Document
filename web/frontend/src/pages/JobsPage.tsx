@@ -115,13 +115,13 @@ export default function JobsPage({ trackedJobId, active, onTrackedDone }: Props)
               <span className="clip-angled-sm flex h-7 w-7 items-center justify-center bg-gradient-to-br from-radeon-500 to-ember-600 text-sm text-white glow-red-sm">
                 ⚡
               </span>
-              任务中心
+              Jobs
             </h2>
             <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-dim">
-              共 {total} 个 ·{' '}
-              <span className={activeCount ? 'text-radeon-400' : 'text-dim'}>{activeCount} 渲染中</span>{' '}
+              {total} total ·{' '}
+              <span className={activeCount ? 'text-radeon-400' : 'text-dim'}>{activeCount} rendering</span>{' '}
               ·{' '}
-              <span className={doneCount ? 'text-ok' : 'text-dim'}>{doneCount} 已完成</span>
+              <span className={doneCount ? 'text-ok' : 'text-dim'}>{doneCount} completed</span>
             </p>
           </div>
           <button
@@ -129,14 +129,14 @@ export default function JobsPage({ trackedJobId, active, onTrackedDone }: Props)
             disabled={refreshing}
             className="clip-angled-sm border border-line bg-ink-850 px-4 py-2 text-sm text-mut transition-all hover:border-radeon-500/60 hover:text-fg disabled:opacity-50"
           >
-            {refreshing ? '刷新中…' : '↻ 刷新'}
+            {refreshing ? 'Refreshing…' : '↻ Refresh'}
           </button>
         </div>
 
-        {error && <p className="mt-4 text-sm text-danger">⚠ {error}（列表可能不是最新）</p>}
+        {error && <p className="mt-4 text-sm text-danger">⚠ {error} (list may be stale)</p>}
 
         {!loaded && !error && (
-          <div className="mt-4 flex flex-col gap-3" aria-busy="true" aria-label="任务列表加载中">
+          <div className="mt-4 flex flex-col gap-3" aria-busy="true" aria-label="Loading job list">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
@@ -153,7 +153,7 @@ export default function JobsPage({ trackedJobId, active, onTrackedDone }: Props)
 
         {loaded && jobs.length === 0 && (
           <p className="mt-6 text-center text-sm text-dim">
-            暂无任务 —— 去「文档规划」提交第一个动画生成任务。
+            No jobs yet — go to the Create tab to submit your first video.
           </p>
         )}
 
@@ -173,7 +173,7 @@ export default function JobsPage({ trackedJobId, active, onTrackedDone }: Props)
             onClick={() => void loadMore()}
             className="clip-angled-sm mx-auto mt-5 block border border-line bg-ink-850 px-6 py-2 text-sm text-mut transition-all hover:border-radeon-500/60 hover:text-fg"
           >
-            加载更多（已显示 {jobs.length} / {total}）
+            Load more (showing {jobs.length} / {total})
           </button>
         )}
       </div>

@@ -1,1 +1,1 @@
-"""Live-Document web backend package."""
+"""Live-Science web backend package."""

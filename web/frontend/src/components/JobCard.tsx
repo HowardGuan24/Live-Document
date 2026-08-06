@@ -4,12 +4,13 @@ import type { Job, JobStatus } from '../types'
 
 function artifactLabel(key: string): string {
   const labels: Record<string, string> = {
-    video: 'MP4 视频',
-    gif: 'GIF 动图',
-    preview: '预览',
-    normalized_spec: '规范 JSON',
-    result: '结果 JSON',
+    video: 'MP4 Video',
+    gif: 'GIF',
+    poster: 'Poster',
+    subtitles: 'Subtitles (SRT)',
+    manifest: 'Bridge manifest',
   }
+  if (key.startsWith('keyframe_')) return 'Keyframe ' + key.slice('keyframe_'.length)
   return labels[key] ?? key
 }
 
@@ -49,14 +50,28 @@ const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
             className={`clip-angled-sm border px-2 py-0.5 text-[11px] font-semibold ${STATUS_STYLE[job.status] ?? 'border-line bg-ink-850 text-mut'}`}
           >
             {job.status}
-          </span>          <span className="ml-auto font-mono text-[11px] text-dim">{formatTime(job.created_at)}</span>
+          </span>
+          {job.manifest?.route && (
+            <span className="clip-angled-sm border border-ember-500/40 bg-ember-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-ember-400">
+              {job.manifest.route}
+            </span>
+          )}
+          <span className="ml-auto font-mono text-[11px] text-dim">{formatTime(job.created_at)}</span>
         </header>
 
-        {job.spec?.learning_goal && (
-          <p className="mt-3 text-sm font-semibold text-fg">{job.spec.learning_goal}</p>
+        {job.text && (
+          <p className="mt-3 line-clamp-2 text-sm font-semibold text-fg" title={job.text}>
+            {job.text}
+          </p>
         )}
 
-        {/* 进度条 */}
+        {job.manifest?.reason && (
+          <p className="mt-1 text-xs text-mut" title={job.manifest.reason}>
+            {job.manifest.reason}
+          </p>
+        )}
+
+        {/* progress bar */}
         <div className="relative mt-3 h-3.5 overflow-hidden border border-line bg-ink-850 clip-angled-sm">
           <div
             className={`h-full bg-gradient-to-r from-radeon-600 via-radeon-500 to-ember-500 transition-[width] duration-400 ease-out ${
@@ -79,12 +94,12 @@ const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
         </div>
         <p className="mt-1.5 text-xs text-dim">
           {job.message ?? ''}
-          {active && ' · 正在渲染，完成前自动刷新'}
+          {active && ' · rendering, auto-refreshing'}
         </p>
 
         {job.error && (
           <div className="mt-3 border border-danger/40 bg-danger/10 px-3 py-2 text-xs text-danger">
-            <strong>错误：</strong>
+            <strong>Error: </strong>
             {job.error.message || job.error.type}
           </div>
         )}
@@ -102,8 +117,9 @@ const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
           </div>
         )}
 
-        {/* 内嵌预览：视频优先，其次 GIF；未完成不渲染。
-            仅被跟踪（highlighted）的视频自动播放，其余保持暂停以减少并发负载。 */}
+        {/* Inline preview: video first, GIF fallback; hidden until completed.
+            Only the tracked (highlighted) video autoplays; others stay paused
+            to reduce concurrency load. */}
         {(videoUrl || gifUrl) && job.status === 'completed' && (
           <div className="mt-4 border border-line bg-ink-950 p-2 clip-angled-sm">
             {videoUrl ? (
@@ -120,7 +136,7 @@ const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
             ) : gifUrl ? (
               <img
                 src={gifUrl}
-                alt={job.spec?.learning_goal ?? 'rendered animation'}
+                alt={job.text ?? 'rendered animation'}
                 className="mx-auto block max-h-[360px] w-full"
               />
             ) : null}

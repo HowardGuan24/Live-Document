@@ -1,4 +1,4 @@
-import type { HealthResponse, Job, JobCreate, JobListResponse, SpecsResponse } from './types'
+import type { HealthResponse, Job, JobCreate, JobListResponse } from './types'
 
 // Default: same-origin /api/v1 (works with the Vite dev proxy and with the
 // FastAPI static hosting). Override with VITE_API_BASE for full separation
@@ -6,7 +6,7 @@ import type { HealthResponse, Job, JobCreate, JobListResponse, SpecsResponse } f
 export const API_BASE: string =
   (import.meta.env.VITE_API_BASE as string | undefined) ?? '/api/v1'
 
-const TOKEN_KEY = 'live_doc_access_token'
+const TOKEN_KEY = 'live_science_access_token'
 
 export function getToken(): string | null {
   try {
@@ -44,7 +44,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   if (res.status === 401) {
     clearToken()
     unauthorizedHandler?.()
-    throw new Error('登录已失效，请重新登录')
+    throw new Error('Session expired, please log in again')
   }
   if (!res.ok) {
     let detail = `${res.status} ${res.statusText}`
@@ -70,12 +70,6 @@ export const api = {
       body: JSON.stringify({ token }),
     }),
   health: () => request<HealthResponse>('/health'),
-  plan: (text: string) =>
-    request<SpecsResponse>('/specs', {
-      method: 'POST',
-      headers: jsonHeaders,
-      body: JSON.stringify({ text }),
-    }),
   createJob: (payload: JobCreate) =>
     request<Job>('/jobs', {
       method: 'POST',

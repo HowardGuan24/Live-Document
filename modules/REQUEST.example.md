@@ -1,12 +1,11 @@
 ## Input
 
-种子是怎样萌发并成长为幼苗的？
+How does a seed germinate and grow into a seedling?
 
 ## Optional context
 
-面向中学生和大学低年级学生。
+For middle school students and lower-level undergraduates.
 
-完整展示种子吸水膨胀、种皮破裂、胚根萌发、根系向下生长、胚芽向上伸展、子叶展开和第一片真叶出现的过程。解释水、适宜温度和氧气在萌发中的作用。
+Fully show the process of the seed absorbing water and swelling, the seed coat breaking, the radicle germinating, the root system growing downward, the plumule extending upward, the cotyledons unfolding, and the first true leaf appearing. Explain the roles of water, suitable temperature, and oxygen in germination.
 
-使用同一颗种子和同一块土壤持续演化，优先采用土壤剖面与延时摄影结合的视觉方式。不要做成方框流程图。
-
+Use the same seed and the same piece of soil to evolve continuously; prefer a visual style combining a soil cross-section with time-lapse photography. Do not make it a box-and-arrow flowchart.

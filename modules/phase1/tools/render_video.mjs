@@ -117,7 +117,7 @@ if (!existsSync(appPath)) throw new Error(`App entry not found: ${appPath}`);
 requireCommand("ffmpeg");
 
 const { server, url } = await startStaticServer(appDir);
-const frameRoot = mkdtempSync(join(tmpdir(), "live-document-frames-"));
+const frameRoot = mkdtempSync(join(tmpdir(), "live-science-frames-"));
 const browser = await chromium.launch({ headless: true });
 
 try {
@@ -139,15 +139,15 @@ try {
   });
   await page.waitForFunction(
     () =>
-      window.__LIVE_DOCUMENT_READY__ === true &&
+      window.__LIVE_SCIENCE_READY__ === true &&
       typeof window.renderFrame === "function" &&
-      window.LIVE_DOCUMENT_META,
+      window.LIVE_SCIENCE_META,
     null,
     { timeout: 30_000 },
   );
 
   const meta = await page.evaluate(() => {
-    const source = window.LIVE_DOCUMENT_META ?? {};
+    const source = window.LIVE_SCIENCE_META ?? {};
     return {
       duration: Number(source.duration),
       fps: Number(source.fps ?? 30),
@@ -157,10 +157,10 @@ try {
   });
 
   if (!Number.isFinite(meta.duration) || meta.duration <= 0) {
-    throw new Error("LIVE_DOCUMENT_META.duration must be a positive number.");
+    throw new Error("LIVE_SCIENCE_META.duration must be a positive number.");
   }
   if (!Number.isFinite(meta.fps) || meta.fps <= 0 || meta.fps > 60) {
-    throw new Error("LIVE_DOCUMENT_META.fps must be in (0, 60].");
+    throw new Error("LIVE_SCIENCE_META.fps must be in (0, 60].");
   }
   if (
     !Number.isFinite(meta.width) ||
@@ -181,7 +181,7 @@ try {
   let posterMoment = null;
   try {
     const bridge = await page.evaluate(() => {
-      const source = window.LIVE_DOCUMENT_BRIDGE;
+      const source = window.LIVE_SCIENCE_BRIDGE;
       if (!source || typeof source !== "object") return null;
       return {
         posterMomentId: source.posterMomentId,
@@ -197,11 +197,11 @@ try {
       const posterId = bridge.posterMomentId;
       if (typeof posterId !== "string" || !/^[A-Za-z0-9_-]+$/.test(posterId)) {
         console.warn(
-          "Warning: LIVE_DOCUMENT_BRIDGE.posterMomentId is missing or invalid; using the default poster time.",
+          "Warning: LIVE_SCIENCE_BRIDGE.posterMomentId is missing or invalid; using the default poster time.",
         );
       } else if (!Array.isArray(bridge.keyMoments)) {
         console.warn(
-          "Warning: LIVE_DOCUMENT_BRIDGE.keyMoments is invalid; using the default poster time.",
+          "Warning: LIVE_SCIENCE_BRIDGE.keyMoments is invalid; using the default poster time.",
         );
       } else {
         const matches = bridge.keyMoments.filter((moment) => moment.id === posterId);
@@ -223,7 +223,7 @@ try {
     }
   } catch (error) {
     console.warn(
-      `Warning: could not inspect LIVE_DOCUMENT_BRIDGE for poster selection (${String(error)}); using the default poster time.`,
+      `Warning: could not inspect LIVE_SCIENCE_BRIDGE for poster selection (${String(error)}); using the default poster time.`,
     );
   }
 

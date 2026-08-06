@@ -2,15 +2,11 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse
-from starlette.concurrency import run_in_threadpool
 
 from app.config import JOBS_DIR
 from app.schemas import JobCreate, JobListResponse, JobOut
-from app.services.doc_planner_service import first_suitable
 from app.services.job_manager import JobManager, new_job
 
 router = APIRouter(prefix="/api/v1/jobs", tags=["jobs"])
@@ -26,21 +22,9 @@ def _manager(request: Request) -> JobManager:
 
 @router.post("", response_model=JobOut)
 async def create_job(request: Request, req: JobCreate) -> JobOut:
-    spec = req.spec
-    if spec is None:
-        if not req.text:
-            raise HTTPException(status_code=422, detail="provide `text` or `spec`")
-        # first_suitable is CPU-bound rule-based planning; keep it off the
-        # event loop so polling/other requests stay responsive.
-        spec = await run_in_threadpool(first_suitable, req.text)
-        if spec is None:
-            raise HTTPException(
-                status_code=422,
-                detail="no suitable segment found for animation (all fallback)",
-            )
-    spec_dict = spec.model_dump() if hasattr(spec, "model_dump") else dict(spec)
-
-    job = new_job(req.engine, spec_dict, req.style)
+    if not req.text or not req.text.strip():
+        raise HTTPException(status_code=422, detail="provide `text`")
+    job = new_job(req.engine, req.text.strip(), req.style)
     await _manager(request).submit(job)
     return JobOut(**{k: job[k] for k in JobOut.model_fields if k in job})
 

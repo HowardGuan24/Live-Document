@@ -8,9 +8,9 @@ import { clearToken, getToken, setToken, setUnauthorizedHandler } from './api'
 export type Tab = 'planner' | 'jobs' | 'about'
 
 const TABS: { id: Tab; label: string }[] = [
-  { id: 'planner', label: '文档规划' },
-  { id: 'jobs', label: '任务中心' },
-  { id: 'about', label: '运行状态' },
+  { id: 'planner', label: 'Create' },
+  { id: 'jobs', label: 'Jobs' },
+  { id: 'about', label: 'Status' },
 ]
 
 function Brand() {
@@ -21,10 +21,10 @@ function Brand() {
       </div>
       <div className="leading-tight">
         <div className="text-[15px] font-black italic tracking-tight text-fg">
-          LIVE-DOCUMENT
+          LIVE-SCIENCE
         </div>
         <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim">
-          文档动态化引擎 · AMD Radeon
+          Document-to-video engine · AMD Radeon
         </div>
       </div>
     </div>
@@ -88,10 +88,10 @@ export default function App() {
             })}
             <button
               onClick={handleLogout}
-              title="退出登录"
+              title="Log out"
               className="clip-angled-sm ml-2 border border-line px-3.5 py-1.5 text-sm text-mut transition-all hover:border-radeon-500/60 hover:text-radeon-400"
             >
-              退出
+              Log out
             </button>
           </nav>
         </div>
@@ -113,7 +113,7 @@ export default function App() {
       </main>
 
       <footer className="border-t border-line py-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
-        Live-Document · 本地推理 / Radeon ROCm 就绪 · AMD DevMaster Track 1
+        Live-Science · Local inference / Radeon ROCm ready · AMD DevMaster Track 1
       </footer>
     </div>
   )

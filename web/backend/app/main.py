@@ -1,4 +1,4 @@
-"""Live-Document web backend — FastAPI application.
+"""Live-Science web backend — FastAPI application.
 
 Run:
     python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
@@ -14,7 +14,7 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.api import health, jobs, specs
+from app.api import health, jobs
 from app.auth import router as auth_router, require_token
 from app.config import (
     AUTH_ENABLED,
@@ -67,10 +67,10 @@ async def lifespan(app: FastAPI):
     manager.start()
     app.state.manager = manager
     if AUTH_ENABLED:
-        logger.info("Auth enabled. Access token available via LIVE_DOC_AUTH_TOKEN or data/auth_token.txt")
+        logger.info("Auth enabled. Access token available via LIVE_SCIENCE_AUTH_TOKEN or data/auth_token.txt")
     else:
         logger.warning(
-            "Auth DISABLED (LIVE_DOC_AUTH_DISABLED=1) — public URLs will be unprotected!"
+            "Auth DISABLED (LIVE_SCIENCE_AUTH_DISABLED=1) — public URLs will be unprotected!"
         )
     yield
     # allow in-flight work to finish (bounded), then cancel the worker
@@ -78,7 +78,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Live-Document API",
+    title="Live-Science API",
     description="Document -> LearningSpec -> animation/video generation web API",
     version="0.2.0",
     lifespan=lifespan,
@@ -95,7 +95,6 @@ app.add_middleware(
 # Public: token login only.
 app.include_router(auth_router)
 # Everything else under /api/v1 requires a valid token.
-app.include_router(specs.router, dependencies=[Depends(require_token)])
 app.include_router(jobs.router, dependencies=[Depends(require_token)])
 app.include_router(health.router, dependencies=[Depends(require_token)])
 
@@ -104,10 +103,9 @@ if not (SERVE_FRONTEND and FRONTEND_DIST.is_dir()):
     @app.get("/", include_in_schema=False)
     def root() -> dict:
         return {
-            "name": "Live-Document API",
+            "name": "Live-Science API",
             "docs": "/docs",
             "health": "/api/v1/health",
-            "specs": "/api/v1/specs",
             "jobs": "/api/v1/jobs",
         }
 

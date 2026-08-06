@@ -1,23 +1,23 @@
-# Live Document Phase 1 Request
+# Live Science Phase 1 Request
 
 ## Input
 
-在这里输入以下任意一种内容：
+Enter any one of the following here:
 
-- 一个概念；
-- 一个不太详细的流程；
-- 一段较详细的课本、讲义或说明文字。
+- a concept;
+- a rough outline of a process;
+- a fairly detailed textbook passage, lecture notes, or explanatory text.
 
-Agent 会自行判断输入详细程度，不需要额外标注类型。
+The Agent will judge the level of detail by itself; no type label is needed.
 
 ## Optional context
 
-可选填写：
+Optional fields:
 
-- 特定课程或年级；
-- 必须保留的术语或原文重点；
-- 平台规定的时长、比例或分辨率；
-- 希望避免的视觉风格；
-- 可用的本地资料或素材路径。
+- the specific course or grade level;
+- terms or original emphasis that must be preserved;
+- platform-required duration, aspect ratio, or resolution;
+- visual styles to avoid;
+- available local materials or asset paths.
 
-没有外部硬性限制时，让 Agent 根据教学需要自行决定内容范围、场景、时长和元素密度。
+When there are no hard external constraints, let the Agent decide content scope, scenes, duration, and element density based on teaching needs.

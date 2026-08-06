@@ -1,36 +1,20 @@
-export type EngineName = 'deterministic' | 'generative' | 'procedural'
-
-export interface CausalStep {
-  cause?: string
-  change?: string
-  visual_evidence?: string
-  [k: string]: unknown
-}
-
-export interface Spec {
-  learning_goal: string | null
-  entities: string[]
-  state_variables: string[]
-  causal_steps: CausalStep[]
-  invariants: string[]
-  comprehension_questions: string[]
-  fallback_reason: string | null
-}
-
-export interface SpecsResponse {
-  specs: Spec[]
-  count: number
-  suitable: number
-}
+export type EngineName = 'auto' | 'deterministic' | 'generative'
 
 export interface JobCreate {
-  text?: string
-  spec?: Spec
+  text: string
   engine: EngineName
   style?: Record<string, unknown>
 }
 
 export type JobStatus = 'pending' | 'running' | 'completed' | 'failed'
+
+export interface BridgeManifest {
+  route?: string
+  reason?: string
+  meta?: Record<string, unknown>
+  keyMoments?: unknown[]
+  events?: unknown[]
+}
 
 export interface Job {
   id: string
@@ -40,7 +24,8 @@ export interface Job {
   message: string | null
   created_at: string | null
   updated_at: string | null
-  spec: Spec | null
+  text: string | null
+  manifest: BridgeManifest | null
   artifacts: Record<string, string>
   metrics: Record<string, unknown>
   error: { type: string; message: string } | null

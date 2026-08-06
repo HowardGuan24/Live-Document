@@ -1,4 +1,4 @@
-"""Bearer-token authentication for the public Live-Document deployment.
+"""Bearer-token authentication for the public Live-Science deployment.
 
 Radeon Cloud's rc-tunnel exposes a public URL reachable from the internet, and
 the platform requires the app itself to enforce login. Every /api/* endpoint

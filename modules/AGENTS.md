@@ -1,6 +1,6 @@
-# Live Document core agent workflow
+# Live Science core agent workflow
 
-This directory implements the three-phase Live Document workflow. Use `Phase 1`, `Phase 2`, and `Phase 3` consistently in new filenames, documentation, logs, and user-facing messages. Do not introduce alternate phase terminology.
+This directory implements the three-phase Live Science workflow. Use `Phase 1`, `Phase 2`, and `Phase 3` consistently in new filenames, documentation, logs, and user-facing messages. Do not introduce alternate phase terminology.
 
 ## Authoritative specifications
 
@@ -29,7 +29,7 @@ For a natural-language end-to-end run, use `run_pipeline.py`. Treat `runs/<run-i
 1. Read `phase1/PHASE1_PROMPT.md` and the current request.
 2. Create a new directory under `phase1/runs/<run-id>/`.
 3. Build the teaching narrative, deterministic app, subtitles, video, poster, and Bridge metadata.
-4. Expose `renderFrame(t, options)`, `LIVE_DOCUMENT_META`, and `LIVE_DOCUMENT_BRIDGE`.
+4. Expose `renderFrame(t, options)`, `LIVE_SCIENCE_META`, and `LIVE_SCIENCE_BRIDGE`.
 5. Render and visually inspect presentation, clean, and overlay modes when required.
 6. Export `bridge/manifest.json` with `phase1/tools/export_bridge.mjs`; never hand-write it.
 7. Run the Phase 1 output and Bridge validators and repair failures.

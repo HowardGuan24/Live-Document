@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 import asyncio
+import json
+import shutil
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from app.config import JOBS_DIR, WORKER_COUNT
-from app.services import animation_service, generative_service, procedural_service
+from app.services import generative_service, phase1_service
 from app.storage import JobStore
 
 
@@ -27,8 +29,7 @@ class JobManager:
         if self._tasks:
             return
         self._mark_stale_failed()
-        # Run WORKER_COUNT consumers so slow Manim renders don't serialize the
-        # whole queue; each job still runs in its own thread.
+        # Run WORKER_COUNT consumers; each job runs in its own thread.
         self._tasks = [
             asyncio.create_task(self._worker(), name=f"job-worker-{i}")
             for i in range(WORKER_COUNT)
@@ -83,36 +84,55 @@ class JobManager:
             finally:
                 self.queue.task_done()
 
+    def _set(self, job_id: str, **patch: Any) -> None:
+        patch["updated_at"] = utcnow()
+        self.store.update(job_id, patch)
+
     def _run(self, job_id: str) -> None:
         job = self.store.get(job_id)
         if job is None:
             return
-        self.store.update(job_id, {
-            "status": "running",
-            "progress": 0.15,
-            "message": "started",
-            "updated_at": utcnow(),
-        })
-        spec = job.get("spec") or {}
-        style = job.get("style") or {}
-        try:
-            engine = job.get("engine", "deterministic")
-            fallback_reason: str | None = None
-            if engine == "generative":
-                try:
-                    result = generative_service.run_generative(job_id, spec, style)
-                except generative_service.GenerativeUnavailableError as exc:
-                    result = procedural_service.run_procedural(job_id, spec, style)
-                    fallback_reason = str(exc)
-            elif engine == "procedural":
-                result = procedural_service.run_procedural(job_id, spec, style)
-            else:
-                result = animation_service.run_deterministic(job_id, spec, style)
+        text = job.get("text") or ""
+        engine = job.get("engine", "auto")
+        self._set(job_id, status="running", progress=0.1, message="started")
 
+        try:
+            manifest: dict[str, Any] | None = None
+            # Phase 1: DeepSeek program video + bridge route (auto/deterministic/generative)
+            self._set(job_id, progress=0.25, message="Phase 1 · generating program video")
+            phase1 = phase1_service.run_phase1(job_id, text)
+            manifest = phase1.get("manifest") or {}
+            route = manifest.get("route")
+
+            needs_model = engine == "generative" or (
+                engine == "auto" and route in ("realizable", "hybrid")
+            )
+            if needs_model:
+                self._set(
+                    job_id,
+                    progress=0.55,
+                    message=f"route={route} · FLUX keyframes + LTX video",
+                )
+                result = generative_service.run_generative(
+                    job_id, manifest, text, phase1["run_dir"]
+                )
+            else:
+                self._set(job_id, progress=0.7, message=f"route={route} · using program video")
+                result = {
+                    "outputs": {
+                        "video": phase1["video"],
+                        "poster": phase1.get("poster"),
+                        "subtitles": phase1.get("subtitles"),
+                    },
+                    "metrics": {"route": route, "attempts": phase1.get("attempts")},
+                }
+
+            result = _normalize_outputs(job_id, result)
             artifacts = _collect_artifacts(job_id, result)
             metrics = dict(result.get("metrics") or {})
-            if fallback_reason:
-                metrics["fallback_reason"] = fallback_reason
+            if manifest:
+                _write_manifest(job_id, manifest)
+                artifacts.setdefault("manifest", f"/api/v1/jobs/{job_id}/files/manifest.json")
 
             self.store.update(job_id, {
                 "status": "completed",
@@ -120,6 +140,7 @@ class JobManager:
                 "message": "done",
                 "artifacts": artifacts,
                 "metrics": metrics,
+                "manifest": manifest,
                 "error": None,
                 "updated_at": utcnow(),
             })
@@ -133,26 +154,43 @@ class JobManager:
             })
 
 
+def _normalize_outputs(job_id: str, result: dict[str, Any]) -> dict[str, Any]:
+    """Copy result outputs that live outside the job dir into job_dir root."""
+    job_dir = JOBS_DIR / job_id
+    job_dir.mkdir(parents=True, exist_ok=True)
+    outputs = dict(result.get("outputs") or {})
+    for key, value in list(outputs.items()):
+        if not isinstance(value, Path):
+            continue
+        if value.is_file() and not value.parent.resolve().is_relative_to(job_dir.resolve()):
+            dest = job_dir / value.name
+            shutil.copy2(value, dest)
+            outputs[key] = dest
+    result["outputs"] = outputs
+    return result
+
+
+def _write_manifest(job_id: str, manifest: dict[str, Any]) -> None:
+    (JOBS_DIR / job_id / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+
 def _collect_artifacts(job_id: str, result: dict[str, Any]) -> dict[str, str]:
     """Expose job artifacts as download URLs under /api/v1/jobs/<id>/files/<name>."""
-    job_dir = JOBS_DIR / job_id
     base = f"/api/v1/jobs/{job_id}/files"
     artifacts: dict[str, str] = {}
     outputs = result.get("outputs") or {}
     for key, path in outputs.items():
         name = Path(str(path)).name
         artifacts[key] = f"{base}/{name}"
-    # Canonical `video` alias so the frontend <video> preview resolves (the
-    # deterministic renderer names its primary output `mp4`).
+    # Canonical `video` alias so the frontend <video> preview resolves.
     if "mp4" in artifacts and "video" not in artifacts:
         artifacts["video"] = artifacts["mp4"]
-    for name in ("normalized_spec.json", "result.json"):
-        if (job_dir / name).exists():
-            artifacts.setdefault(name.removesuffix(".json"), f"{base}/{name}")
     return artifacts
 
 
-def new_job(engine: str, spec: dict[str, Any], style: dict[str, Any]) -> dict[str, Any]:
+def new_job(engine: str, text: str, style: dict[str, Any]) -> dict[str, Any]:
     return {
         "id": uuid.uuid4().hex[:16],
         "engine": engine,
@@ -161,9 +199,10 @@ def new_job(engine: str, spec: dict[str, Any], style: dict[str, Any]) -> dict[st
         "message": "queued",
         "created_at": utcnow(),
         "updated_at": utcnow(),
-        "spec": spec,
+        "text": text,
+        "style": style,
+        "manifest": None,
         "artifacts": {},
         "metrics": {},
         "error": None,
-        "style": style,
     }
