@@ -33,6 +33,18 @@ const ENGINES: { id: EngineName; label: string; hint: string; icon: string; tag:
 
 const STEPS = ['输入文档', '选择片段', '微调与生成']
 
+/** Build the editable spec from the parsed base + user's goal/vars edits. */
+function buildEditedSpec(base: Spec, goal: string, vars: string): Spec {
+  return {
+    ...base,
+    learning_goal: goal.trim() || null,
+    state_variables: vars
+      .split(/[,，]/)
+      .map((s) => s.trim())
+      .filter(Boolean),
+  }
+}
+
 function StepTitle({ n, title, hint }: { n: string; title: string; hint?: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
@@ -85,7 +97,6 @@ function Stepper({ current }: { current: number }) {
 
 export default function PlannerPage({ onSubmitted }: Props) {
   const [text, setText] = useState('')
-  const [filename, setFilename] = useState('')
   const [loading, setLoading] = useState(false)
   const [resp, setResp] = useState<SpecsResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -114,7 +125,7 @@ export default function PlannerPage({ onSubmitted }: Props) {
     }
     setLoading(true)
     try {
-      const r = await api.plan(text.trim(), filename.trim() || undefined)
+      const r = await api.plan(text.trim())
       setResp(r)
       if (r.suitable > 0) {
         const idx = r.specs.findIndex((s) => s.fallback_reason == null)
@@ -129,15 +140,7 @@ export default function PlannerPage({ onSubmitted }: Props) {
 
   async function submit() {
     if (resp == null || selected == null) return
-    const base = resp.specs[selected]
-    const spec: Spec = {
-      ...base,
-      learning_goal: goalEdit.trim() || null,
-      state_variables: varsEdit
-        .split(/[,，]/)
-        .map((s) => s.trim())
-        .filter(Boolean),
-    }
+    const spec = buildEditedSpec(resp.specs[selected], goalEdit, varsEdit)
     setSubmitting(true)
     setSubmitError(null)
     try {
@@ -151,16 +154,7 @@ export default function PlannerPage({ onSubmitted }: Props) {
   }
 
   const editedSpec: Spec | null =
-    resp != null && selected != null
-      ? {
-          ...resp.specs[selected],
-          learning_goal: goalEdit.trim() || null,
-          state_variables: varsEdit
-            .split(/[,，]/)
-            .map((s) => s.trim())
-            .filter(Boolean),
-        }
-      : null
+    resp != null && selected != null ? buildEditedSpec(resp.specs[selected], goalEdit, varsEdit) : null
 
   const currentStep = editedSpec != null ? 3 : resp != null ? 2 : 1
 
@@ -171,7 +165,11 @@ export default function PlannerPage({ onSubmitted }: Props) {
       {/* ① 输入文档 */}
       <div className="clip-angled border border-line bg-ink-900 p-6">
         <StepTitle n="01" title="输入文档" hint="粘贴教学文档 / 章节文本" />
+        <label htmlFor="doc-text" className="sr-only">
+          教学文档文本
+        </label>
         <textarea
+          id="doc-text"
           rows={8}
           placeholder="粘贴需要动态化展示的教学文档/章节文本，例如：梯度下降沿负梯度方向更新参数，直到收敛到最小值。…"
           value={text}
@@ -179,16 +177,10 @@ export default function PlannerPage({ onSubmitted }: Props) {
           className="clip-angled-sm w-full resize-y border border-line bg-ink-950 px-4 py-3 text-sm text-fg outline-none transition-all placeholder:text-dim focus:border-radeon-500/70 focus:glow-red-sm"
         />
         <div className="mt-3 flex flex-wrap items-center gap-3">
-          <input
-            placeholder="可选：文档文件名（如 gradient-descent.md）"
-            value={filename}
-            onChange={(e) => setFilename(e.target.value)}
-            className="clip-angled-sm min-w-56 flex-1 border border-line bg-ink-950 px-4 py-2.5 text-sm text-fg outline-none transition-all placeholder:text-dim focus:border-radeon-500/70"
-          />
           <button
             onClick={analyze}
             disabled={loading}
-            className="clip-angled-sm bg-gradient-to-r from-radeon-600 via-radeon-500 to-ember-600 px-6 py-2.5 text-sm font-bold text-white transition-all hover:glow-red disabled:cursor-not-allowed disabled:opacity-50"
+            className="clip-angled-sm btn-primary px-6 py-2.5 text-sm transition-all hover:glow-red disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? '分析中…' : '分析并生成 LearningSpec →'}
           </button>
@@ -304,7 +296,7 @@ export default function PlannerPage({ onSubmitted }: Props) {
           <button
             onClick={submit}
             disabled={submitting}
-            className="clip-angled mt-5 w-full bg-gradient-to-r from-radeon-600 via-radeon-500 to-ember-600 px-6 py-3.5 text-base font-bold tracking-wide text-white transition-all hover:glow-red disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+            className="clip-angled btn-primary mt-5 w-full px-6 py-3.5 text-base tracking-wide transition-all hover:glow-red disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
           >
             {submitting ? '提交中…' : '⚡ 提交动画生成任务'}
           </button>

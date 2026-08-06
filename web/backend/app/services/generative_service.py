@@ -6,6 +6,7 @@ procedural renderer (explicit `success_fallback`), keeping the demo honest.
 
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Any
 
 
@@ -13,6 +14,7 @@ class GenerativeUnavailableError(RuntimeError):
     """Raised when the generative model stack is not available."""
 
 
+@lru_cache(maxsize=1)
 def probe() -> dict[str, Any]:
     try:
         import torch  # noqa: F401

@@ -21,6 +21,8 @@ README_local.md
 # Build, cache, and temporary directories
 build/
 dist/
+# web/frontend/dist is intentionally committed (no-node deployment fallback)
+!web/frontend/dist/
 *.egg-info/
 .cache/
 tmp/
@@ -30,12 +32,6 @@ temp/
 output.json
 outputs/
 media/
-
-# Web backend runtime data (SQLite DB + generated artifacts)
-web/backend/data/
-
-# Web frontend build artifacts / dependencies
-web/frontend/node_modules/
 
 # Local model weights and large generated media
 *.ckpt
@@ -48,6 +44,12 @@ web/frontend/node_modules/
 *.avi
 *.webm
 *.gif
+
+# Web backend runtime data (SQLite DB + generated artifacts)
+web/backend/data/
+
+# Web frontend build artifacts / dependencies
+web/frontend/node_modules/
 
 # Stage 4 is the superseded experimental workspace. The current product
 # workflow is Stage 5 and does not import Stage 4 repository code.

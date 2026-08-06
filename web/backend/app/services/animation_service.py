@@ -16,6 +16,15 @@ from modules.animation_engine.pipeline import generate_animation
 ENTITY_COLORS = ["#48CAE4", "#7C9EFF", "#FF8FB1", "#FFD166", "#7AE582", "#B388EB"]
 
 
+def _style_int(style: dict[str, Any], key: str, default: int, lo: int, hi: int) -> int:
+    """Read an int from a client-supplied style dict, clamped to [lo, hi]."""
+    try:
+        val = int(style.get(key, default))
+    except (TypeError, ValueError):
+        return default
+    return max(lo, min(hi, val))
+
+
 def _build_objects(spec: dict[str, Any], style: dict[str, Any]) -> list[dict[str, Any]]:
     goal = (spec.get("learning_goal") or "Concept animation")[:64]
     entities = [e for e in (spec.get("entities") or []) if e][:6]
@@ -26,7 +35,7 @@ def _build_objects(spec: dict[str, Any], style: dict[str, Any]) -> list[dict[str
             "id": "title",
             "type": "text",
             "content": goal,
-            "font_size": int(style.get("title_font_size", 32)),
+            "font_size": _style_int(style, "title_font_size", 32, 16, 72),
             "color": "#F7F9FC",
             "position": [0.0, 3.3, 0.0],
         }
@@ -121,10 +130,10 @@ def _build_timeline(spec: dict[str, Any]) -> list[dict[str, Any]]:
 def build_dsl(spec: dict[str, Any], job_id: str, style: dict[str, Any]) -> dict[str, Any]:
     """Convert a LearningSpec into a valid animation DSL document."""
     output = {
-        "width": int(style.get("width", 960)),
-        "height": int(style.get("height", 540)),
-        "fps": int(style.get("fps", 30)),
-        "gif_fps": int(style.get("gif_fps", 15)),
+        "width": _style_int(style, "width", 960, 320, 1920),
+        "height": _style_int(style, "height", 540, 240, 1080),
+        "fps": _style_int(style, "fps", 30, 12, 60),
+        "gif_fps": _style_int(style, "gif_fps", 15, 5, 30),
         "formats": ["mp4", "gif"],
     }
     return {

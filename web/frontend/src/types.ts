@@ -34,7 +34,7 @@ export type JobStatus = 'pending' | 'running' | 'completed' | 'failed'
 
 export interface Job {
   id: string
-  engine: string
+  engine: EngineName
   status: JobStatus
   progress: number
   message: string | null

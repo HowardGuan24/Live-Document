@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { formatTime, resolveArtifactUrl } from '../api'
-import type { Job } from '../types'
+import type { Job, JobStatus } from '../types'
 
 function artifactLabel(key: string): string {
   const labels: Record<string, string> = {
@@ -13,7 +13,7 @@ function artifactLabel(key: string): string {
   return labels[key] ?? key
 }
 
-const STATUS_STYLE: Record<string, string> = {
+const STATUS_STYLE: Record<JobStatus, string> = {
   pending: 'border-warn/50 bg-warn/10 text-warn',
   running: 'border-radeon-500/50 bg-radeon-500/10 text-radeon-400',
   completed: 'border-ok/50 bg-ok/10 text-ok',
@@ -49,8 +49,7 @@ const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
             className={`clip-angled-sm border px-2 py-0.5 text-[11px] font-semibold ${STATUS_STYLE[job.status] ?? 'border-line bg-ink-850 text-mut'}`}
           >
             {job.status}
-          </span>
-          <span className="ml-auto font-mono text-[11px] text-dim">{formatTime(job.created_at)}</span>
+          </span>          <span className="ml-auto font-mono text-[11px] text-dim">{formatTime(job.created_at)}</span>
         </header>
 
         {job.spec?.learning_goal && (
@@ -80,7 +79,7 @@ const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
         </div>
         <p className="mt-1.5 text-xs text-dim">
           {job.message ?? ''}
-          {active && ' · 正在渲染，每 3 秒自动刷新'}
+          {active && ' · 正在渲染，完成前自动刷新'}
         </p>
 
         {job.error && (
@@ -103,26 +102,28 @@ const JobCard = forwardRef<HTMLDivElement, { job: Job; highlighted: boolean }>(
           </div>
         )}
 
-        {/* 内嵌预览：视频优先，其次 GIF；未完成不渲染 */}
+        {/* 内嵌预览：视频优先，其次 GIF；未完成不渲染。
+            仅被跟踪（highlighted）的视频自动播放，其余保持暂停以减少并发负载。 */}
         {(videoUrl || gifUrl) && job.status === 'completed' && (
           <div className="mt-4 border border-line bg-ink-950 p-2 clip-angled-sm">
             {videoUrl ? (
               <video
                 src={videoUrl}
                 controls
-                autoPlay
+                autoPlay={highlighted}
                 loop
                 muted
                 playsInline
+                preload={highlighted ? 'auto' : 'metadata'}
                 className="mx-auto block max-h-[360px] w-full"
               />
-            ) : (
+            ) : gifUrl ? (
               <img
-                src={gifUrl!}
+                src={gifUrl}
                 alt={job.spec?.learning_goal ?? 'rendered animation'}
                 className="mx-auto block max-h-[360px] w-full"
               />
-            )}
+            ) : null}
           </div>
         )}
 

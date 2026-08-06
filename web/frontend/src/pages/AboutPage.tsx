@@ -1,30 +1,57 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
 import type { HealthResponse } from '../types'
 
-export default function AboutPage() {
+export default function AboutPage({ active }: { active: boolean }) {
   const [health, setHealth] = useState<HealthResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [refreshing, setRefreshing] = useState(false)
+
+  const load = useCallback(async () => {
+    setRefreshing(true)
+    try {
+      const h = await api.health()
+      setHealth(h)
+      setError(null)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e))
+    } finally {
+      setRefreshing(false)
+    }
+  }, [])
 
   useEffect(() => {
-    api
-      .health()
-      .then(setHealth)
-      .catch((e) => setError(e instanceof Error ? e.message : String(e)))
-  }, [])
+    void load()
+  }, [load])
+
+  // Keep status fresh while the tab is visible (probe is cached server-side).
+  useEffect(() => {
+    if (!active) return
+    const timer = window.setInterval(() => void load(), 20000)
+    return () => window.clearInterval(timer)
+  }, [active, load])
 
   const gpuOk = health?.gpu.available
 
   return (
     <section className="animate-fade-up flex flex-col gap-5">
       <div className="clip-angled border border-line bg-ink-900 p-6">
-        <h2 className="mb-4 flex items-center gap-3 text-base font-bold text-fg">
-          <span className="clip-angled-sm flex h-7 w-7 items-center justify-center bg-gradient-to-br from-radeon-500 to-ember-600 text-sm text-white glow-red-sm">
-            ◎
-          </span>
-          运行状态
+        <div className="mb-4 flex items-center gap-3">
+          <h2 className="flex items-center gap-3 text-base font-bold text-fg">
+            <span className="clip-angled-sm flex h-7 w-7 items-center justify-center bg-gradient-to-br from-radeon-500 to-ember-600 text-sm text-white glow-red-sm">
+              ◎
+            </span>
+            运行状态
+          </h2>
           <span className="energy-line h-px flex-1 opacity-30" />
-        </h2>
+          <button
+            onClick={() => void load()}
+            disabled={refreshing}
+            className="clip-angled-sm border border-line bg-ink-850 px-3 py-1.5 text-xs text-mut transition-all hover:border-radeon-500/60 hover:text-fg disabled:opacity-50"
+          >
+            {refreshing ? '刷新中…' : '↻ 刷新'}
+          </button>
+        </div>
 
         {error && <p className="text-sm text-danger">{error}</p>}
         {!health && !error && <p className="text-sm text-dim">正在读取健康信息…</p>}
@@ -70,24 +97,28 @@ export default function AboutPage() {
               渲染引擎
             </h3>
             <div className="flex flex-col gap-2">
-              {Object.entries(health.engines).map(([name, info]) => (
-                <div
-                  key={name}
-                  className="clip-angled-sm flex items-center gap-3 border border-line bg-ink-950 px-4 py-2.5"
-                >
-                  <code className="font-mono text-sm font-bold text-radeon-400">{name}</code>
-                  <span
-                    className={`clip-angled-sm border px-2 py-0.5 text-[11px] font-semibold ${
-                      info.available
-                        ? 'border-ok/50 bg-ok/10 text-ok'
-                        : 'border-warn/50 bg-warn/10 text-warn'
-                    }`}
+              {Object.keys(health.engines).length === 0 ? (
+                <p className="text-sm text-dim">暂无引擎信息。</p>
+              ) : (
+                Object.entries(health.engines).map(([name, info]) => (
+                  <div
+                    key={name}
+                    className="clip-angled-sm flex items-center gap-3 border border-line bg-ink-950 px-4 py-2.5"
                   >
-                    {info.available ? 'available' : 'unavailable'}
-                  </span>
-                  <span className="ml-auto text-right text-xs text-mut">{info.detail}</span>
-                </div>
-              ))}
+                    <code className="font-mono text-sm font-bold text-radeon-400">{name}</code>
+                    <span
+                      className={`clip-angled-sm border px-2 py-0.5 text-[11px] font-semibold ${
+                        info.available
+                          ? 'border-ok/50 bg-ok/10 text-ok'
+                          : 'border-warn/50 bg-warn/10 text-warn'
+                      }`}
+                    >
+                      {info.available ? 'available' : 'unavailable'}
+                    </span>
+                    <span className="ml-auto text-right text-xs text-mut">{info.detail}</span>
+                  </div>
+                ))
+              )}
             </div>
           </>
         )}
