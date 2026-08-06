@@ -51,8 +51,9 @@ web/backend/data/
 # Web frontend build artifacts / dependencies
 web/frontend/node_modules/
 
-# Re_0 pipeline runtime artifacts (reproducible outputs, kept off the repo)
-/modules/video_model/Re_0/phase2/runs/
-/modules/video_model/Re_0/phase3/runs/
-/modules/video_model/Re_0/.pipeline-gpu.lock
-/modules/video_model/Re_0/phase1.5/flux demo/**/*.png
+# Core pipeline runtime artifacts (reproducible outputs, kept off the repo)
+/modules/runs/
+/modules/phase2/runs/
+/modules/phase3/runs/
+/modules/.pipeline-gpu.lock
+/modules/phase1.5/flux demo/**/*.png

@@ -1,7 +1,7 @@
 # Live-Document Web（前后端分离版）
 
 面向 **AMD Dev Contest 2026 · Track 1（Multimodal Content Creation Tools）** 的 Web 交付形态：
-把教学文档解析为结构化 **LearningSpec**，再交给多种渲染引擎生成教学动画/短视频。
+把教学文档解析为轻量 **LearningSpec**，再交给现有渲染流程生成教学动画/短视频。
 
 ```
 ┌─────────────────────┐         ┌──────────────────────────────┐
@@ -19,7 +19,7 @@
 | 路径 | 说明 |
 |---|---|
 | `backend/app` | FastAPI 应用（API、服务、任务管理） |
-| `backend/requirements.txt` | 后端依赖（含仓库根依赖：manim / Pillow 等） |
+| `backend/requirements.txt` | 后端完整依赖（FastAPI / Manim / Pillow 等） |
 | `frontend/` | React + Vite + TypeScript 前端（SPA） |
 | `frontend/dist/` | 前端构建产物（由后端静态托管） |
 | `backend/data/` | 运行时数据（SQLite + 任务产物，已 gitignore） |
@@ -82,9 +82,9 @@ npm run build      # 产出 dist/，由后端 LIVE_DOC_SERVE_FRONTEND=1 托管
 
 | 引擎 | 实现 | 说明 |
 |---|---|---|
-| `deterministic` | Manim DSL（`modules/animation_engine`） | 确定性教学动画，MP4+GIF，比赛演示主力 |
+| `deterministic` | procedural 兼容回退 | 旧 Manim 模块已移除；请求会明确回退到 PIL GIF |
 | `procedural` | PIL 程序化渲染 | 无模型依赖的轻量兜底 GIF，始终可用 |
-| `generative` | LTX / Wan（`modules/video_model`，M3 接入中） | 生成式视频，需要 AMD Radeon GPU + ROCm；当前不可用时自动回退 procedural（`metrics.fallback_reason`） |
+| `generative` | 三阶段流程（`modules/`，M3 接入中） | 生成式视频，需要 AMD Radeon GPU + ROCm；当前不可用时自动回退 procedural（`metrics.fallback_reason`） |
 
 任务状态机：`pending → running → completed / failed`。服务重启后遗留的 pending/running 任务会被标记为 failed（`StaleJob`）。
 
@@ -107,9 +107,9 @@ rc-tunnel expose --port 8000
 ## 比赛规范对照（Track 1）
 
 - ✅ Web UI 交付形态：React SPA + FastAPI，前后端分离
-- ✅ 关键推理在本地：文档规划（规则化 NLP）与 Manim 渲染均在本地完成，无封闭在线 API 依赖
-- ✅ AMD Radeon GPU + ROCm：`generative` 引擎接入 `modules/video_model`（LTX/Wan），`/api/v1/health` 上报 GPU 可用性
-- ✅ 提交物配套：源码仓库（本目录）+ `competition.md` + 演示视频（可用 deterministic 引擎生成）+ PPT/Poster
+- ✅ 关键推理在本地：轻量文档规划与程序化渲染均在本地完成，无封闭在线 API 依赖
+- ✅ AMD Radeon GPU + ROCm：`generative` 引擎面向 `modules/` 三阶段流程，`/api/v1/health` 上报 GPU 可用性
+- ✅ 提交物配套：源码仓库（本目录）+ 演示视频（可用 deterministic 引擎生成）+ PPT/Poster
 
 ## 公网部署（Radeon Cloud rc-tunnel）
 

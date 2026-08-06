@@ -1,0 +1,67 @@
+{
+  "phase1Source": "phase1/runs/lottery1",
+  "phase2Source": "phase2/runs/lottery1",
+  "mode": "complete_adjacent_anchor_sequence",
+  "segments": [
+    {
+      "id": "meander_growth",
+      "startAnchor": "gentle_meander",
+      "endAnchor": "expanded_meander",
+      "phase1StartTime": 3.8,
+      "phase1EndTime": 14.8,
+      "duration": 4,
+      "process": "Outer-bank erosion and inner-bank deposition enlarge the meander and move it laterally.",
+      "camera": "fixed true vertical aerial view",
+      "outputPrefix": "live_document_phase3/lottery1_meander_growth",
+      "settings": {"width": 512, "height": 288, "fps": 24, "frameCount": 97, "seed": 20260808, "guideStrength": 0.85, "imageCompression": 10, "loraStrength": 0.5}
+    },
+    {
+      "id": "neck_narrowing",
+      "startAnchor": "expanded_meander",
+      "endAnchor": "narrow_neck",
+      "phase1StartTime": 14.8,
+      "phase1EndTime": 20.3,
+      "duration": 3,
+      "process": "Continued lateral migration brings the two channel limbs closer while the narrowing land neck remains intact.",
+      "camera": "fixed true vertical aerial view",
+      "outputPrefix": "live_document_phase3/lottery1_neck_narrowing",
+      "settings": {"width": 512, "height": 288, "fps": 24, "frameCount": 73, "seed": 20260809, "guideStrength": 0.85, "imageCompression": 10, "loraStrength": 0.5}
+    },
+    {
+      "id": "01",
+      "startAnchor": "narrow_neck",
+      "endAnchor": "cutoff_channel",
+      "phase1StartTime": 20.3,
+      "phase1EndTime": 26.3,
+      "duration": 4,
+      "process": "Floodwater crosses and erodes the narrow neck until a continuous shortcut channel opens; the main flow begins shifting into it while the old bend remains water-filled and connected.",
+      "camera": "fixed true vertical aerial view",
+      "outputPrefix": "live_document_phase3/lottery1_cutoff_opening",
+      "settings": {"width": 512, "height": 288, "fps": 24, "frameCount": 97, "seed": 20260807, "guideStrength": 0.85, "imageCompression": 10, "loraStrength": 0.5}
+    },
+    {
+      "id": "partial_isolation",
+      "startAnchor": "cutoff_channel",
+      "endAnchor": "partial_isolation",
+      "phase1StartTime": 26.3,
+      "phase1EndTime": 30.5,
+      "duration": 3,
+      "process": "The main flow stabilizes in the shortcut; slower water at both entrances allows sediment bars to grow inward while small openings remain.",
+      "camera": "fixed true vertical aerial view",
+      "outputPrefix": "live_document_phase3/lottery1_partial_isolation",
+      "settings": {"width": 512, "height": 288, "fps": 24, "frameCount": 73, "seed": 20260810, "guideStrength": 0.85, "imageCompression": 10, "loraStrength": 0.5}
+    },
+    {
+      "id": "oxbow_completion",
+      "startAnchor": "partial_isolation",
+      "endAnchor": "oxbow_lake",
+      "phase1StartTime": 30.5,
+      "phase1EndTime": 36.5,
+      "duration": 3,
+      "process": "Continued sediment deposition seals both ends of the former channel, isolating the crescent-shaped water body from the active river.",
+      "camera": "fixed true vertical aerial view",
+      "outputPrefix": "live_document_phase3/lottery1_oxbow_completion",
+      "settings": {"width": 512, "height": 288, "fps": 24, "frameCount": 73, "seed": 20260811, "guideStrength": 0.85, "imageCompression": 10, "loraStrength": 0.5}
+    }
+  ]
+}
