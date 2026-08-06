@@ -1,0 +1,172 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux2_dev_fp8mixed.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "mistral_3_small_flux2_fp4_mixed.safetensors",
+      "type": "flux2",
+      "device": "cpu"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "flux-demo-endocytosis-exocytosis.png"
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Transform the provided flat schematic into a realistic, scientifically accurate molecular-cellular cutaway showing a plasma membrane prepared for vesicular transport, with extracellular cargo above and intracellular cargo below.\n\nUse the input image strictly as a structural and compositional reference. Preserve the wide horizontal layout, the plasma membrane running almost perfectly horizontally across the center, the extracellular region above, the cytoplasmic region below, the four orange cargo particles grouped above the left-center of the membrane, the four purple membrane receptors directly beneath that cargo, and the three green intracellular cargo particles grouped below the right-center. Keep their relative positions, spacing, scale relationships, and top-versus-bottom organization recognizable.\n\nRender the central boundary as a scientifically plausible phospholipid bilayer viewed in cross-section. Show two layers of phospholipid heads and hydrophobic tails with natural molecular irregularity and membrane fluidity, while keeping the overall membrane flat at this initial instant. The purple structures must become realistic transmembrane receptor proteins embedded in the bilayer, with extracellular binding domains facing upward. The orange cargo molecules should remain outside the cell, close to but not yet fully bound to the receptors.\n\nBelow the membrane, render a softly detailed cytoplasmic environment. Preserve the three green intracellular cargo particles as molecular contents associated with an approaching secretory transport compartment or subtle vesicular context, but do not show completed exocytosis yet. This frame represents the starting state: no deep endocytic pit, no pinched-off endocytic vesicle, and no open fusion pore. The membrane is ready to bend and fuse in later stages.\n\nUse realistic nanoscale materials and lighting: hydrated extracellular fluid above, softly scattering cytosol below, detailed lipid heads and tails, protein surface texture, molecular depth, and plausible relative scale. Keep the membrane, receptors, and cargo as the dominant subjects.\n\nVisual style: high-quality semi-photorealistic scientific illustration, realistic molecular-biology documentary visualization, clean side cutaway, soft indirect cellular illumination, detailed membrane and protein textures, restrained color coding inherited from the reference, high readability.\n\nRemove all Chinese and English text, title bars, subtitles, labels, arrows, boxes, badges, progress indicators, interface elements, decorative particles, borders, and graphic symbols. Do not reproduce any text.\n\nDo not move the cargo groups to opposite sides, flip the extracellular and cytoplasmic regions, bend the membrane into a mature pit, complete vesicle scission or fusion, add nuclei, mitochondria, bacteria, viruses, immune cells, fantasy energy, oversized proteins, or unrelated organelles. Do not turn the lipid bilayer into a solid wall. The final image should look like a realistic rendering of the original starting-state diagram while remaining closely aligned with its geometry.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "FluxGuidance",
+    "inputs": {
+      "conditioning": [
+        "5",
+        0
+      ],
+      "guidance": 4.0
+    }
+  },
+  "7": {
+    "class_type": "VAEEncodeTiled",
+    "inputs": {
+      "pixels": [
+        "4",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "8": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ],
+      "latent": [
+        "7",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 420260804
+    }
+  },
+  "11": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 20,
+      "width": 1536,
+      "height": 864
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "13": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1536,
+      "height": 864,
+      "batch_size": 1
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "10",
+        0
+      ],
+      "guider": [
+        "9",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "11",
+        0
+      ],
+      "latent_image": [
+        "13",
+        0
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "16": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "filename_prefix": "flux_demo/endocytosis-exocytosis/realistic"
+    }
+  }
+}

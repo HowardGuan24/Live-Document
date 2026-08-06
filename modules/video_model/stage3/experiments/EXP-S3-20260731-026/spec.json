@@ -1,0 +1,24 @@
+{
+  "case_id": "GEO-02",
+  "experiment_id": "EXP-S3-20260731-026",
+  "guidance_level": "L2",
+  "schema_version": "1.0",
+  "segment_specs": [
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-026/spec-segment-1.json",
+      "sha256": "aacb7e2b978bd0f193c59ce148b1c75999ac644844522a0fcfdca512bd6577d8",
+      "size_bytes": 3854
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-026/spec-segment-2.json",
+      "sha256": "1db84c21c1b218d1780f7b571243f1fd4395f4114fcb97c3c1f99139617f70cd",
+      "size_bytes": 3856
+    },
+    {
+      "path": "modules/video_model/stage3/experiments/EXP-S3-20260731-026/spec-segment-3.json",
+      "sha256": "01f8f03627cf78a1e0a611e571b3fdb85b3da88a6f67e3d8dd3b7c961e8f698d",
+      "size_bytes": 3844
+    }
+  ],
+  "single_variable_from_L1": "add the two accepted middle keyframes as segment boundaries; keep model, prompt, settings and total 73 assembled frames fixed"
+}

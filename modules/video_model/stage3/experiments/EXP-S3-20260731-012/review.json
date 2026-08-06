@@ -1,0 +1,22 @@
+{
+  "evidence": {
+    "g3": {
+      "path": "modules/video_model/stage3/output/phase-4/g3.json",
+      "sha256": "2b0a514485c420daf8d28f90c028495d5069476c72dc4355a2e22b039db977fb",
+      "size_bytes": 4444
+    },
+    "visual_audit": {
+      "path": "modules/video_model/stage3/output/phase-4/visual-audit.json",
+      "sha256": "0b3a86f76504f5e6dd8ad60ef4aeaa3af28f70d98a44f4d9b1ad058df51f7338",
+      "size_bytes": 1451
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-012",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "reason_zh": "三案例、四类算子和十一份合同 smoke 全部通过；视觉复核无硬失败。",
+  "schema_version": "1.0",
+  "verdict": "accepted_core"
+}

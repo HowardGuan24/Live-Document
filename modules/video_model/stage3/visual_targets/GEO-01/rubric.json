@@ -1,0 +1,53 @@
+{
+  "acceptance": {
+    "all_hard_gates_must_pass": true,
+    "minimum_weighted_score": 4.0
+  },
+  "appearance_dimensions": [
+    {
+      "id": "material",
+      "question_zh": "河水、湿岸和地表是否像自然俯视场景？",
+      "weight": 0.25
+    },
+    {
+      "id": "mechanism_readability",
+      "question_zh": "颈部逐渐收窄是否一眼可见？",
+      "weight": 0.25
+    },
+    {
+      "id": "camera_stability",
+      "question_zh": "终帧主河道与牛轭湖是否能分别辨认？",
+      "weight": 0.25
+    },
+    {
+      "id": "artifact_avoidance",
+      "question_zh": "材质是否没有把别的三角洲几何带入本案例？",
+      "weight": 0.25
+    }
+  ],
+  "case_id": "GEO-01",
+  "hard_gates": [
+    {
+      "id": "gate_1",
+      "pass_zh": "前三帧水体一个连通分量，终帧两个。"
+    },
+    {
+      "id": "gate_2",
+      "pass_zh": "颈部宽度按 55、42.8、20.2、8 px 收窄。"
+    },
+    {
+      "id": "gate_3",
+      "pass_zh": "终帧必须存在且只存在一个 isolated_oxbow_lake。"
+    },
+    {
+      "id": "gate_4",
+      "pass_zh": "主河道从左到右始终连通。"
+    }
+  ],
+  "schema_version": "1.0",
+  "score_scale": {
+    "1": "明显失败，外观或机制不能用于教学",
+    "3": "基本可读，但材质、稳定性或机制有明显弱点",
+    "5": "外观可信，且不看文字也能正确读出机制"
+  }
+}

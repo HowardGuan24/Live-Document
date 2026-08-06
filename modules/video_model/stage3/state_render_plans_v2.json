@@ -1,0 +1,294 @@
+{
+  "schema_version": "1.0",
+  "status": "frozen_before_EXP-S3-20260731-020",
+  "experiment_id": "EXP-S3-20260731-020",
+  "single_changed_variable": "region_material.transfer_mode",
+  "cohort": {
+    "target": "BIO-01",
+    "route_regressions": [
+      "CHEM-01",
+      "MATH-02"
+    ],
+    "historical_regression": "GEO-HIST-DELTA-01"
+  },
+  "appearance_anchor_provenance": {
+    "path": "../stage2/output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+    "source_experiment": "../stage2/output/phase-3/EXP-20260729-013/_work/generate.json",
+    "positive_prompt": "../stage2/output/phase-3/EXP-20260729-013/inputs/positive_prompt.txt",
+    "negative_prompt": "../stage2/output/phase-3/EXP-20260729-013/inputs/negative_prompt.txt",
+    "control": "../stage2/output/phase-3/EXP-20260729-013/controls/dense_canny.png",
+    "model_fingerprints": "../stage2/output/phase-3/EXP-20260729-013/_work/model_fingerprints.json",
+    "selection_reason_zh": "沿用 Visual Target Package 已登记正例的同一外观供体；本轮不重新抽 seed，也不把供体里的对象几何当作程序事实。"
+  },
+  "plans": [
+    {
+      "schema_version": "1.0",
+      "plan_id": "S3.6R1-BIO-01-RAW-UNDERLAY",
+      "case_id": "BIO-01",
+      "role": "negative_control",
+      "contract": "contracts/BIO-01.json",
+      "anchor": {
+        "path": "../stage2/output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+        "preprocess": {
+          "mode": "resize",
+          "size": [
+            640,
+            360
+          ]
+        }
+      },
+      "base_canvas": {
+        "mode": "constant_with_low_frequency_variation",
+        "rgb": [
+          22,
+          31,
+          41
+        ],
+        "variation_amplitude": 2.0,
+        "variation_period_x_px": 39.0,
+        "variation_period_y_px": 27.0
+      },
+      "keyframe_ids": [
+        "00_start",
+        "01_mechanism",
+        "02_result",
+        "03_end"
+      ],
+      "operators": [
+        {
+          "operator_id": "cell_material",
+          "operator_type": "region_material",
+          "config": {
+            "region_layer_id": "bio01_cell_region",
+            "transfer_mode": "raw_underlay",
+            "highpass_radius_px": 5.0,
+            "base_rgb": [
+              66,
+              136,
+              111
+            ],
+            "texture_gain_rgb": [
+              9,
+              17,
+              13
+            ],
+            "depth_radius_px": 28.0,
+            "depth_gain": 24.0,
+            "membrane_width_px": 9,
+            "membrane_rgb": [
+              151,
+              224,
+              181
+            ],
+            "membrane_alpha": 0.85
+          }
+        },
+        {
+          "operator_id": "chromosome_lineage",
+          "operator_type": "identity_stroke",
+          "config": {
+            "identity_layer_id": "bio01_chromosome_identity",
+            "style_field": "shape",
+            "styles": {
+              "replicated_x": {
+                "rgb": [
+                  216,
+                  60,
+                  222
+                ],
+                "width_px": 5,
+                "glow_rgb": [
+                  255,
+                  148,
+                  255
+                ],
+                "glow_width_px": 9,
+                "glow_alpha": 0.28,
+                "lineage_units": 2
+              },
+              "sister_chromatid": {
+                "rgb": [
+                  216,
+                  60,
+                  222
+                ],
+                "width_px": 5,
+                "glow_rgb": [
+                  255,
+                  148,
+                  255
+                ],
+                "glow_width_px": 9,
+                "glow_alpha": 0.28,
+                "lineage_units": 1
+              }
+            }
+          }
+        }
+      ],
+      "gates": {
+        "cell_connected_components": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "identity_object_counts": [
+          6,
+          6,
+          12,
+          12
+        ],
+        "lineage_unit_counts": [
+          12,
+          12,
+          12,
+          12
+        ],
+        "sisters_per_parent_at_result_and_end": 2,
+        "left_right_destination_counts_at_result_and_end": [
+          6,
+          6
+        ],
+        "outside_declared_mutable_max_difference_0_255": 0
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "plan_id": "S3.6R1-BIO-01-HIGHPASS-STATISTICS",
+      "case_id": "BIO-01",
+      "role": "candidate",
+      "contract": "contracts/BIO-01.json",
+      "anchor": {
+        "path": "../stage2/output/phase-3/EXP-20260729-013/raw/t2i_dense_cell_and_chromatids/seed_3104.png",
+        "preprocess": {
+          "mode": "resize",
+          "size": [
+            640,
+            360
+          ]
+        }
+      },
+      "base_canvas": {
+        "mode": "constant_with_low_frequency_variation",
+        "rgb": [
+          22,
+          31,
+          41
+        ],
+        "variation_amplitude": 2.0,
+        "variation_period_x_px": 39.0,
+        "variation_period_y_px": 27.0
+      },
+      "keyframe_ids": [
+        "00_start",
+        "01_mechanism",
+        "02_result",
+        "03_end"
+      ],
+      "operators": [
+        {
+          "operator_id": "cell_material",
+          "operator_type": "region_material",
+          "config": {
+            "region_layer_id": "bio01_cell_region",
+            "transfer_mode": "highpass_statistics",
+            "highpass_radius_px": 5.0,
+            "base_rgb": [
+              66,
+              136,
+              111
+            ],
+            "texture_gain_rgb": [
+              9,
+              17,
+              13
+            ],
+            "depth_radius_px": 28.0,
+            "depth_gain": 24.0,
+            "membrane_width_px": 9,
+            "membrane_rgb": [
+              151,
+              224,
+              181
+            ],
+            "membrane_alpha": 0.85
+          }
+        },
+        {
+          "operator_id": "chromosome_lineage",
+          "operator_type": "identity_stroke",
+          "config": {
+            "identity_layer_id": "bio01_chromosome_identity",
+            "style_field": "shape",
+            "styles": {
+              "replicated_x": {
+                "rgb": [
+                  216,
+                  60,
+                  222
+                ],
+                "width_px": 5,
+                "glow_rgb": [
+                  255,
+                  148,
+                  255
+                ],
+                "glow_width_px": 9,
+                "glow_alpha": 0.28,
+                "lineage_units": 2
+              },
+              "sister_chromatid": {
+                "rgb": [
+                  216,
+                  60,
+                  222
+                ],
+                "width_px": 5,
+                "glow_rgb": [
+                  255,
+                  148,
+                  255
+                ],
+                "glow_width_px": 9,
+                "glow_alpha": 0.28,
+                "lineage_units": 1
+              }
+            }
+          }
+        }
+      ],
+      "gates": {
+        "cell_connected_components": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "identity_object_counts": [
+          6,
+          6,
+          12,
+          12
+        ],
+        "lineage_unit_counts": [
+          12,
+          12,
+          12,
+          12
+        ],
+        "sisters_per_parent_at_result_and_end": 2,
+        "left_right_destination_counts_at_result_and_end": [
+          6,
+          6
+        ],
+        "outside_declared_mutable_max_difference_0_255": 0
+      }
+    }
+  ],
+  "regression_plan_source": "state_render_plans.json",
+  "regression_plan_ids": [
+    "S3.4-CHEM-01-V1",
+    "S3.4-MATH-02-V1"
+  ]
+}

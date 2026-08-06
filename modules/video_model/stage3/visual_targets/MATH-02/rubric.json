@@ -1,0 +1,49 @@
+{
+  "acceptance": {
+    "all_hard_gates_must_pass": true,
+    "minimum_weighted_score": 4.0
+  },
+  "appearance_dimensions": [
+    {
+      "id": "material_legibility",
+      "question_zh": "新人能否一眼识别主要材料（水、玻璃、木、细胞或地形）？",
+      "weight": 0.3
+    },
+    {
+      "id": "lighting_coherence",
+      "question_zh": "光源方向、阴影、反光和透明关系是否自洽？",
+      "weight": 0.2
+    },
+    {
+      "id": "camera_and_scene_stability",
+      "question_zh": "相机、背景和未变化对象是否在关键帧间保持固定？",
+      "weight": 0.2
+    },
+    {
+      "id": "realism_without_plasticity",
+      "question_zh": "是否避免蜡质、塑料感、过饱和与无意义高光？",
+      "weight": 0.2
+    },
+    {
+      "id": "teaching_readability",
+      "question_zh": "材质增强是否仍让关键机制比装饰细节更醒目？",
+      "weight": 0.1
+    }
+  ],
+  "hard_gates": [
+    {
+      "id": "appearance_to_geometry_leakage",
+      "pass_zh": "外观参考没有改变对象数量、几何、拓扑、相机或状态边界。"
+    },
+    {
+      "id": "negative_reference_avoidance",
+      "pass_zh": "未复现视觉目标包中标注的反例缺陷。"
+    }
+  ],
+  "schema_version": "1.0",
+  "score_scale": {
+    "1": "明显失败，不能用于教学",
+    "3": "基本可读，但材质、光照或真实感仍不稳定",
+    "5": "达到本项目可进入视频阶段的质量"
+  }
+}

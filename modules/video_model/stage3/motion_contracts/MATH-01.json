@@ -1,0 +1,63 @@
+{
+  "case_id": "MATH-01",
+  "keyframe_selection": [
+    {
+      "keyframe_id": "00_start",
+      "order": 0,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/00_start/state.json",
+        "sha256": "d4be3e9d0d1bc91e6a7e78cfdeeac5d821e1adf0551c7e0b4ade8755203f71ed",
+        "size_bytes": 246
+      }
+    },
+    {
+      "keyframe_id": "01_mechanism",
+      "order": 1,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/01_mechanism/state.json",
+        "sha256": "386b0b8470e907cf03918cc2bc5c1d24e79d1adf8946ad178224676e0edfacb7",
+        "size_bytes": 282
+      }
+    },
+    {
+      "keyframe_id": "02_result",
+      "order": 2,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/02_result/state.json",
+        "sha256": "bdae2cd5672a8f8f39cef79881f0e2470e8e0b16ea5496fcbc4d5b06039af773",
+        "size_bytes": 286
+      }
+    },
+    {
+      "keyframe_id": "03_end",
+      "order": 3,
+      "state": {
+        "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/keyframes/03_end/state.json",
+        "sha256": "7aefa0c889651d07d487f3192fc88b74a33f75e6a40cd0e4c64aaff152579223",
+        "size_bytes": 255
+      }
+    }
+  ],
+  "model_input_policy": "The full timeline is used to extract direction, topology, speed trend, and occlusion constraints. Raw program video is not a default pixel input to an image or video model.",
+  "motion_classes": [
+    "rigid_motion"
+  ],
+  "program_video": {
+    "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/program-animation.mp4",
+    "sha256": "1bfd3e172540fec15a4a3ca6f7fa93c9a2e2137773e7050f504f02add0b8566f",
+    "size_bytes": 125058
+  },
+  "schema_version": "1.0",
+  "state_timeline": {
+    "path": "modules/video_model/stage2/output/phase-4/programs/MATH-01/states.jsonl",
+    "sha256": "562d12f84fe727a1355e1fecc156efb9f976a2b9b4cf81d9b48cda3c73bcedff",
+    "size_bytes": 11024
+  },
+  "temporal_gates": [
+    "curve_y_matches_circle_point_y",
+    "one_rotation_equals_one_period",
+    "trace_never_draws_future",
+    "camera_and_background_remain_fixed",
+    "no_uncontracted_object_birth_or_loss"
+  ]
+}

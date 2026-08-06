@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://live-document.local/stage5/phase3/schema.json",
+  "title": "Stage 5 Phase 3 Full Semantic Sequence Contracts",
+  "$ref": "#/$defs/sequence_manifest",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "artifact_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "size_bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "size_bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "progress_values": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
+      "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["anchor_id", "progress_values"],
+      "properties": {
+        "anchor_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+        "progress_values": {"$ref": "#/$defs/progress_values"}
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_anchor", "to_anchor", "transition_frames", "easing"],
+      "properties": {
+        "from_anchor": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+        "to_anchor": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+        "transition_frames": {"type": "integer", "minimum": 1},
+        "easing": {"type": "string", "enum": ["linear", "smoothstep"]}
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration_seconds", "fps", "frame_count", "start_hold_frames",
+        "anchors", "segments", "end_hold_frames"
+      ],
+      "properties": {
+        "duration_seconds": {"type": "number", "minimum": 8, "maximum": 12, "multipleOf": 0.5},
+        "fps": {"const": 12},
+        "frame_count": {"type": "integer", "minimum": 96, "maximum": 144},
+        "start_hold_frames": {"type": "integer", "minimum": 0},
+        "anchors": {"type": "array", "minItems": 3, "maxItems": 10, "uniqueItems": true, "items": {"$ref": "#/$defs/anchor"}},
+        "segments": {"type": "array", "minItems": 2, "maxItems": 9, "items": {"$ref": "#/$defs/segment"}},
+        "end_hold_frames": {"type": "integer", "minimum": 0}
+      }
+    },
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority", "duration_seconds", "fps", "frame_count",
+        "start_hold_frames", "anchors", "segments", "end_hold_frames"
+      ],
+      "properties": {
+        "authority": {"const": "explicit_schedule_artifact"},
+        "duration_seconds": {"type": "number", "minimum": 8, "maximum": 12, "multipleOf": 0.5},
+        "fps": {"const": 12},
+        "frame_count": {"type": "integer", "minimum": 96, "maximum": 144},
+        "start_hold_frames": {"type": "integer", "minimum": 0},
+        "anchors": {"type": "array", "minItems": 3, "maxItems": 10, "uniqueItems": true, "items": {"$ref": "#/$defs/anchor"}},
+        "segments": {"type": "array", "minItems": 2, "maxItems": 9, "items": {"$ref": "#/$defs/segment"}},
+        "end_hold_frames": {"type": "integer", "minimum": 0}
+      }
+    },
+    "field_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name", "kind", "dtype", "state_shape", "archive_shape",
+        "consumers", "content_sha256"
+      ],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
+        "kind": {"type": "string", "enum": ["authoritative", "derived"]},
+        "dtype": {"type": "string", "minLength": 1},
+        "state_shape": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+        "archive_shape": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 0}},
+        "consumers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "content_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "runtime_field_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "source_state_key", "dtype", "archive_shape", "content_sha256"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^__runtime_[A-Za-z0-9_]+$"},
+        "source_state_key": {"type": ["string", "null"]},
+        "dtype": {"type": "string", "minLength": 1},
+        "archive_shape": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 0}},
+        "content_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "anchor_interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_anchor", "to_anchor"],
+      "properties": {
+        "from_anchor": {"type": "string", "minLength": 1},
+        "to_anchor": {"type": "string", "minLength": 1}
+      }
+    },
+    "frame_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_index", "frame_id", "presentation_time_seconds",
+        "semantic_normalized_time", "source_anchor_interval",
+        "interpolation_value", "progress_values"
+      ],
+      "properties": {
+        "frame_index": {"type": "integer", "minimum": 0},
+        "frame_id": {"type": "string", "pattern": "^frame-[0-9]{6}$"},
+        "presentation_time_seconds": {"type": "number", "minimum": 0},
+        "semantic_normalized_time": {"type": "number", "minimum": 0, "maximum": 1},
+        "source_anchor_interval": {"$ref": "#/$defs/anchor_interval"},
+        "interpolation_value": {"type": "number", "minimum": 0, "maximum": 1},
+        "progress_values": {"$ref": "#/$defs/progress_values"}
+      }
+    },
+    "invariant_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "claim", "passed", "evidence"],
+      "properties": {
+        "check_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "claim": {"type": "string", "minLength": 1},
+        "passed": {"const": true},
+        "evidence": {"type": "string", "minLength": 1},
+        "observed_count": {"type": "integer", "minimum": 0},
+        "denominator": {"type": "integer", "minimum": 1},
+        "state_fields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "rendered": {"type": "boolean"},
+        "sample_id": {"type": ["string", "null"]},
+        "worst_sample_id": {"type": ["string", "null"]},
+        "location": {"type": "string", "minLength": 1}
+      }
+    },
+    "factual_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "passed", "evidence"],
+      "properties": {
+        "check_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "passed": {"const": true},
+        "evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "runtime_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime_version", "runtime_sha256", "interpreter", "python_version", "packages"],
+      "properties": {
+        "runtime_version": {"const": "stage5-phase3-runtime-1"},
+        "runtime_sha256": {"$ref": "#/$defs/sha256"},
+        "interpreter": {"type": "string", "minLength": 1},
+        "python_version": {"type": "string", "minLength": 1},
+        "packages": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["numpy", "jsonschema"],
+          "properties": {
+            "numpy": {"type": "string", "minLength": 1},
+            "jsonschema": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "sequence_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "artifact_type", "phase", "source", "lineage",
+        "frozen_config", "timeline", "semantic_fields", "runtime_fields",
+        "frames", "sequence_archive", "replay", "invariant_results",
+        "checks", "runtime", "status"
+      ],
+      "properties": {
+        "schema_version": {"const": "stage5-phase3-sequence-manifest-1"},
+        "artifact_type": {"const": "semantic_sequence"},
+        "phase": {"const": "phase3"},
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "semantic_contract", "executable_spec", "supplemental_plan",
+            "prototype", "source_probe_result", "source_selection", "schedule"
+          ],
+          "properties": {
+            "semantic_contract": {"$ref": "#/$defs/artifact_ref"},
+            "executable_spec": {"$ref": "#/$defs/artifact_ref"},
+            "supplemental_plan": {"$ref": "#/$defs/artifact_ref"},
+            "prototype": {"$ref": "#/$defs/artifact_ref"},
+            "source_probe_result": {"$ref": "#/$defs/artifact_ref"},
+            "source_selection": {"$ref": "#/$defs/artifact_ref"},
+            "schedule": {"$ref": "#/$defs/artifact_ref"}
+          }
+        },
+        "lineage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["implementation_attempt_id", "selected_candidate_id", "plan_binding_rule", "prototype_resolution_rule"],
+          "properties": {
+            "implementation_attempt_id": {"type": "string", "pattern": "^implementation-attempt-[0-9]{3}$"},
+            "selected_candidate_id": {"type": "string", "pattern": "^candidate-[0-9]{3}$"},
+            "plan_binding_rule": {"const": "explicit_legacy_plan_cross_check_v1"},
+            "prototype_resolution_rule": {"const": "explicit_path_hash_and_plan_match_v1"}
+          }
+        },
+        "frozen_config": {"type": "object", "minProperties": 1},
+        "timeline": {"$ref": "#/$defs/timeline"},
+        "semantic_fields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/field_descriptor"}},
+        "runtime_fields": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"$ref": "#/$defs/runtime_field_descriptor"}},
+        "frames": {"type": "array", "minItems": 96, "maxItems": 144, "items": {"$ref": "#/$defs/frame_record"}},
+        "sequence_archive": {"$ref": "#/$defs/artifact_ref"},
+        "replay": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["algorithm", "first_digest", "second_digest", "matched"],
+          "properties": {
+            "algorithm": {"const": "sha256-field-name-dtype-shape-c-bytes-v1"},
+            "first_digest": {"$ref": "#/$defs/sha256"},
+            "second_digest": {"$ref": "#/$defs/sha256"},
+            "matched": {"const": true}
+          }
+        },
+        "invariant_results": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/invariant_result"}},
+        "checks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/factual_check"}},
+        "runtime": {"$ref": "#/$defs/runtime_record"},
+        "status": {"const": "complete"}
+      }
+    },
+    "failure_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "phase", "status", "error_type", "message", "inputs", "traceback"],
+      "properties": {
+        "schema_version": {"const": "stage5-phase3-failure-1"},
+        "phase": {"const": "phase3"},
+        "status": {"const": "failed"},
+        "error_type": {"type": "string", "minLength": 1},
+        "message": {"type": "string", "minLength": 1},
+        "inputs": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+        "traceback": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

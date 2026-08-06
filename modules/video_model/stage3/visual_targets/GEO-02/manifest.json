@@ -1,0 +1,39 @@
+{
+  "case_id": "GEO-02",
+  "geometry_control_separation": {
+    "appearance_source": "only the positive/negative references in this package",
+    "geometry_source": "frozen input contract + semantic layers + geometry policy",
+    "leakage_gate": "appearance_to_geometry_leakage"
+  },
+  "negative_refs": [
+    {
+      "label_zh": "反例：把雨线和云边一起编码，模型会把它们误读成山脊或建筑。",
+      "path": "modules/video_model/stage2/output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result/raw/semantic_control_045/seed_7101.png",
+      "role": "appearance_negative",
+      "sha256": "70a5aa76b91ead6f9270ba5c2a983ce6f18f5668561cbd41abeecd495375d94c",
+      "size_bytes": 529077
+    }
+  ],
+  "package_id": "VT-GEO-02-V2",
+  "positive_refs": [
+    {
+      "label_zh": "外观供体：只提供山体材质、阴天光照和空气透视，不提供机制几何。",
+      "path": "modules/video_model/stage2/output/phase-7/route-a/experiments/EXP-P7-A-geo-02-02_result-terrain_only/raw/semantic_control_045/seed_7101.png",
+      "role": "appearance_donor_only",
+      "sha256": "9b7f21848efedc8c3e44dc9261dae608ca4b48074dc8936e30d5b3d7fd2ea2db",
+      "size_bytes": 663922
+    },
+    {
+      "label_zh": "已评审四帧：山体固定，空气团左到右，迎风坡降雨达峰后背风端变干。",
+      "path": "modules/video_model/stage3/output/phase-6-rerun-2/GEO-02/candidate/sequence.jpg",
+      "role": "accepted_mechanism_complete_sequence",
+      "sha256": "d72c7a0c2b755d4b6d0984f62398f8650a1b480bb2d1298531cef876364e5ae4",
+      "size_bytes": 140767
+    }
+  ],
+  "rubric": "modules/video_model/stage3/visual_targets/GEO-02/rubric.json",
+  "schema_version": "1.0",
+  "status": "accepted_project_baseline",
+  "style_board": "modules/video_model/stage3/visual_targets/GEO-02/style_board.html",
+  "summary_zh": "冻结 SDXL 山体外观，由程序标量场和对象身份层添加迎风降雨、越山与背风变干。"
+}

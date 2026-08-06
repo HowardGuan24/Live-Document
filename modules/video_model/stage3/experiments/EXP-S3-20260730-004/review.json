@@ -1,0 +1,14 @@
+{
+  "experiment_id": "EXP-S3-20260730-004",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 0
+  },
+  "selected_candidate_id": "auto_control_080-s7103",
+  "verdict": "accepted_core",
+  "visual_audit": {
+    "path": "modules/video_model/stage3/output/phase-2/visual-audit.json",
+    "sha256": "cf4e7ce234066dffe9b56d644dea28d2788bf62046fe8fd84a3a4edb82118484",
+    "size_bytes": 1905
+  }
+}

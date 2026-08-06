@@ -1,0 +1,27 @@
+{
+  "engine": "local ComfyUI",
+  "server": "http://127.0.0.1:8188",
+  "blueprint_basis": "Image Edit (Flux.2 Dev)",
+  "model": "flux2_dev_fp8mixed.safetensors",
+  "text_encoder": "mistral_3_small_flux2_fp4_mixed.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "steps": 20,
+  "guidance": 4.0,
+  "sampler": "euler",
+  "seed": 420260804,
+  "width": 1536,
+  "height": 864,
+  "prompt_id": "292b4004-6853-4cf1-b6d8-1ac2038587b0",
+  "elapsed_seconds": 635.41,
+  "memory_profile": {
+    "text_encoder_device": "cpu",
+    "vae_device": "cpu (ComfyUI --cpu-vae)",
+    "vae_tiled": true,
+    "vae_tile_size": 512,
+    "vae_tile_overlap": 64,
+    "unet_loading": "DynamicVRAM (10 GB headroom), CPU text encoder, CPU tiled VAE"
+  },
+  "source_frame": "input-first-frame.png",
+  "model_input": "model-input-1536x864.png",
+  "output": "flux-output.png"
+}

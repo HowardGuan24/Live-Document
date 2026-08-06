@@ -1,0 +1,172 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux2_dev_fp8mixed.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "mistral_3_small_flux2_fp4_mixed.safetensors",
+      "type": "flux2",
+      "device": "cpu"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "flux-demo-delta-formation.png"
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Transform the provided flat schematic into a realistic, scientifically accurate aerial-oblique documentary visualization of a river entering a quiet coastal basin at the beginning of delta formation.\n\nUse the input image strictly as a structural and compositional reference. Preserve the wide horizontal 16:9 layout, the coastline running approximately vertically through the left-center of the frame, the green land occupying the left side, the broad blue water body occupying the right side, and the single meandering river approaching from the far left and opening into the basin near the center. Keep the river mouth, shoreline curvature, channel width, and relative land-water proportions closely aligned with the reference.\n\nRender the land as a plausible low-relief alluvial plain with natural soil, marsh vegetation, subtle floodplain texture, and gently eroded riverbanks. The river must remain a continuous channel flowing from left to right. Give the river realistic muddy blue-green water carrying a visible but natural suspended sediment load.\n\nAt the river mouth, preserve the same outward movement of sediment into the standing water. Replace the schematic square particles with a realistic tan-brown sediment plume and graded suspended material spreading just beyond the mouth. Show coarser sand settling close to the channel outlet, finer silt traveling farther, and the finest clay remaining dispersed in the offshore plume. The plume must follow the same general left-to-right path and remain hydrologically connected to the river; do not turn it into smoke, dust, or floating solid blocks.\n\nThe receiving basin should look calmer than the river, with subtle surface ripples and a gradual color transition where fresh muddy river water mixes with clearer coastal water. Keep this as an early river-mouth deposition scene, not a fully developed branching delta. The scientifically important story is that flow decelerates on entering the wider basin, transport capacity falls, and sediment begins to settle and build the foundation of a delta.\n\nVisual style: high-quality semi-photorealistic scientific illustration, realistic earth-science documentary rendering, aerial-oblique view, natural daylight, physically plausible hydrology, detailed water and sediment textures, clean depth, high readability, realistic scale.\n\nRemove all Chinese and English text, title bars, subtitles, labels, legends, arrows, progress indicators, boxes, borders, decorative dots, interface panels, and graphic symbols. Do not reproduce any text.\n\nDo not move the river mouth, reverse the flow direction, create an already mature distributary network, add mountains, waterfalls, dams, buildings, roads, boats, people, artificial channels, fantasy colors, or unrelated landforms. Do not convert the view into a geological underground cutaway. The final image must look like a realistic rendering of the original river-mouth diagram while remaining closely aligned with its geometry.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "FluxGuidance",
+    "inputs": {
+      "conditioning": [
+        "5",
+        0
+      ],
+      "guidance": 4.0
+    }
+  },
+  "7": {
+    "class_type": "VAEEncodeTiled",
+    "inputs": {
+      "pixels": [
+        "4",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "8": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ],
+      "latent": [
+        "7",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 420260801
+    }
+  },
+  "11": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 20,
+      "width": 1536,
+      "height": 864
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "13": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1536,
+      "height": 864,
+      "batch_size": 1
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "10",
+        0
+      ],
+      "guider": [
+        "9",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "11",
+        0
+      ],
+      "latent_image": [
+        "13",
+        0
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "16": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "filename_prefix": "flux_demo/delta-formation/realistic"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "policy_id": "S3.6R1-BIO-OBJECT-DIVISION-V1",
+  "case_id": "BIO-01",
+  "motion_class": "object_division",
+  "segment_id": "00_start__03_end",
+  "keyframes": [
+    "00_start",
+    "01_mechanism",
+    "02_result",
+    "03_end"
+  ],
+  "brief_prompt": "One green cell divides into two while six replicated chromosomes separate into twelve sister chromatids, six moving into each daughter cell.",
+  "scene_lock": "Locked straight-on scientific microscopy illustration of the exact same green cell material on the exact same dark background in every supplied frame.",
+  "entities": [
+    {
+      "id": "cell_region",
+      "class": "deformable_cell_region",
+      "count": 1
+    },
+    {
+      "id": "chromosome_lineage",
+      "class": "replicated_chromosome_lineage",
+      "count": 6
+    }
+  ],
+  "ordered_events": [
+    "The six magenta X-shaped replicated chromosomes move to and align along the center of the one cell.",
+    "Each X separates into exactly two sister chromatids without any chromosome lineage appearing or disappearing.",
+    "Exactly six sister chromatids move left and exactly six move right.",
+    "Only after that allocation, the single green cell membrane pinches into exactly two daughter cells, each containing six sister chromatids."
+  ],
+  "state_trends": [
+    "cell_region_count: one_then_two_once",
+    "replicated_chromosome_count: six_to_zero",
+    "sister_chromatid_count: zero_to_twelve",
+    "lineage_unit_count: constant_twelve",
+    "left_destination_count: zero_to_six",
+    "right_destination_count: zero_to_six"
+  ],
+  "invariants": [
+    "dark background, green cell material and mint membrane",
+    "magenta chromosome identity color",
+    "framing, scale, lighting and camera",
+    "six parent lineages and their two-child mapping"
+  ],
+  "forbidden": [
+    "extra or missing chromosome lineage",
+    "more than two daughter cells",
+    "cell fusion after division",
+    "chromosomes dissolving, multiplying, turning into organelles or leaving the cell",
+    "orange organelles or pink vertical donor bands",
+    "camera movement or scene change"
+  ],
+  "g4": {
+    "audit_type": "object_division",
+    "maximum_endpoint_mae_0_255": 15,
+    "maximum_consecutive_frame_mae_0_255": 12,
+    "region_color": {
+      "g_min": 70,
+      "minimum_g_minus_r": 18,
+      "minimum_g_minus_b": -5
+    },
+    "minimum_region_component_pixels": 1000,
+    "identity_color": {
+      "r_min": 150,
+      "b_min": 150,
+      "minimum_r_minus_g": 40,
+      "minimum_b_minus_g": 40
+    },
+    "minimum_identity_component_pixels": 8,
+    "minimum_identity_mass_fraction": 0.35,
+    "maximum_identity_mass_fraction": 2.2,
+    "minimum_final_identity_pixels_per_side": 100
+  },
+  "comparison": {
+    "L1": "one first/last-frame model call using the structured motion contract",
+    "L2": "three adjacent first/last-frame calls using the same structured prompt, then deterministic concatenation",
+    "L3": "unsupported by the deployed runtime; the 49-frame program animation is retained as deterministic fallback"
+  }
+}

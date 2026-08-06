@@ -1,0 +1,17 @@
+{
+  "evidence": {
+    "g4": {
+      "path": "modules/video_model/stage3/output/phase-5/experiments/EXP-S3-20260731-014/g4.json",
+      "sha256": "146e9b0f860a5b8284c3c499e7c5cbe249c71e0d2abd8282de0e11ca0d3745ff",
+      "size_bytes": 2964
+    }
+  },
+  "experiment_id": "EXP-S3-20260731-014",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 1
+  },
+  "reason_zh": "L1 结构化文本没有修复液体扩散，峰值反而达到 1.465116 倍；不能把更长提示词当作更强运动控制。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}

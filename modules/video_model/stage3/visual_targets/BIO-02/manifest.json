@@ -1,0 +1,39 @@
+{
+  "case_id": "BIO-02",
+  "geometry_control_separation": {
+    "appearance_source": "appearance_donor_only; donor geometry is forbidden",
+    "geometry_source": "frozen input contract + semantic layers + geometry policy",
+    "leakage_gate": "appearance_to_geometry_leakage"
+  },
+  "negative_refs": [
+    {
+      "label_zh": "供体细胞器进入画面、保卫细胞复制或消失、孔隙位置漂移，或开闭次序反转。",
+      "path": "modules/video_model/stage3/output/phase-7-scale-vtp/negative_refs/BIO-02.jpg",
+      "role": "appearance_and_mechanism_negative",
+      "sha256": "aeef1833af86c77b8058efaff0861ec40579e99f92906a790c354250325aebec",
+      "size_bytes": 141485
+    }
+  ],
+  "package_id": "VT-BIO-02-V1",
+  "positive_refs": [
+    {
+      "label_zh": "程序四关键帧：定义对象、状态和顺序。",
+      "path": "modules/video_model/stage2/output/phase-4/programs/BIO-02/keyframe-contact-sheet.jpg",
+      "role": "accepted_mechanism_reference",
+      "sha256": "ee9eb994127b2cd17e02b2d3633019be35dc922df0b56d86c3d8e1cb40f3080e",
+      "size_bytes": 120937
+    },
+    {
+      "label_zh": "外观供体：只迁移细胞表面的高频统计、膜高光和柔和显微镜深度。",
+      "path": "modules/video_model/stage2/output/phase-7/route-b/BIO-01/variants/stable_material_plus_depth/02_result.png",
+      "role": "appearance_donor_only",
+      "sha256": "55c29429c5908129bc619336c3223633b50bcaf4eae3701687050113d61564de",
+      "size_bytes": 169706
+    }
+  ],
+  "rubric": "modules/video_model/stage3/visual_targets/BIO-02/rubric.json",
+  "schema_version": "1.0",
+  "status": "accepted_project_baseline",
+  "style_board": "modules/video_model/stage3/visual_targets/BIO-02/style_board.html",
+  "summary_zh": "显微镜式叶表皮与两个保卫细胞；细胞身份不变，膨压只控制形变和中央孔隙。"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://live-document.local/stage3/state.schema.json",
+  "title": "Stage 3 loop state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "loop_id",
+    "phase",
+    "phase_status",
+    "exit_criteria",
+    "budget",
+    "current_problem",
+    "current_hypothesis",
+    "current_cohort",
+    "next_action"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "loop_id": {"type": "string", "minLength": 1},
+    "phase": {"type": "string", "minLength": 1},
+    "phase_status": {
+      "enum": ["not_started", "in_progress", "passed", "failed", "blocked"]
+    },
+    "exit_criteria": {"type": "array", "minItems": 1},
+    "budget": {"type": "object"},
+    "current_problem": {"type": ["object", "null"]},
+    "current_hypothesis": {"type": ["object", "null"]},
+    "current_cohort": {"type": ["object", "null"]},
+    "next_action": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "evidence": {
+    "path": "modules/video_model/stage3/output/phase-6-rerun-2/GEO-02/video/L1/g4.json",
+    "sha256": "a0d422586d396d240c8afd47bcb4364c6b10943bd8cd95925306f0ae7353e12c",
+    "size_bytes": 12031
+  },
+  "experiment_id": "EXP-S3-20260731-025",
+  "model_runs": {
+    "image_candidates": 0,
+    "video_candidates": 1
+  },
+  "passed": false,
+  "reason_zh": "LTX 首尾帧和像素连续性通过，但把蓝色降雨解释成贴着山坡移动的实体水带；空气团身份门禁也失败。端点相似不能替代机制正确。",
+  "schema_version": "1.0",
+  "verdict": "rejected"
+}
