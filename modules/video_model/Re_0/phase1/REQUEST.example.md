@@ -1,4 +1,4 @@
-# Live Document Stage 1 Request
+# Live Document Phase 1 Request
 
 ## Input
 

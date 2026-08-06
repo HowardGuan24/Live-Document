@@ -137,7 +137,7 @@ def main() -> int:
             errors.append("video.mp4 duration is not positive")
         if width < 1280 or height < 720:
             errors.append(
-                f"video resolution {width}×{height} is below the Stage 1 minimum 1280×720"
+                f"video resolution {width}×{height} is below the Phase 1 minimum 1280×720"
             )
         if subtitles and subtitles[-1].end > duration + 1.5:
             errors.append(
@@ -171,7 +171,7 @@ def main() -> int:
             fail(error)
         return 1
 
-    print("PASS: Stage 1 outputs are structurally valid.")
+    print("PASS: Phase 1 outputs are structurally valid.")
     print(f"  video: {width}×{height}, {duration:.2f}s")
     print(f"  subtitles: {len(subtitles)} cues")
     print(f"  run directory: {run_dir}")

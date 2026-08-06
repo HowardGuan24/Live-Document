@@ -23,14 +23,14 @@ cp "$REQUEST_PATH" "$RUN_DIR/REQUEST.md"
 PROMPT_FILE="$(mktemp)"
 trap 'rm -f "$PROMPT_FILE"' EXIT
 
-cat "$ROOT/STAGE1_PROMPT.md" > "$PROMPT_FILE"
+cat "$ROOT/PHASE1_PROMPT.md" > "$PROMPT_FILE"
 cat >> "$PROMPT_FILE" <<'PROMPT_EOF'
 
 ---
 
 # Current task
 
-Read `REQUEST.md` in the current working directory and complete Live Document Stage 1.
+Read `REQUEST.md` in the current working directory and complete Live Document Phase 1.
 
 Work autonomously through content design, implementation, rendering, visual inspection, repair, and validation. Write all required artifacts into the current directory. Do not stop after planning.
 
@@ -79,7 +79,7 @@ PY
 )"
 
 echo
-echo "Stage 1 completed"
+echo "Phase 1 completed"
 echo "  run directory: $RUN_DIR"
 echo "  video: $RUN_DIR/video.mp4"
 echo "  bridge manifest: $RUN_DIR/bridge/manifest.json"

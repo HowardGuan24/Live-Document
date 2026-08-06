@@ -1,16 +1,16 @@
-# Stage 1 repository instructions
+# Phase 1 repository instructions
 
-This directory implements Live Document Stage 1.
+This directory implements Live Document Phase 1.
 
 For every generation run:
 
-- Treat `STAGE1_PROMPT.md` as the authoritative product and quality specification.
+- Treat `PHASE1_PROMPT.md` as the authoritative product and quality specification.
 - Never hand-write or fake `bridge/manifest.json`; export it from the app's
   `LIVE_DOCUMENT_BRIDGE` with `tools/export_bridge.mjs` so it matches rendered state.
 - Treat the request file supplied for the run as the user input.
 - Work end to end: understand, expand when educationally necessary, plan briefly, implement, render, inspect, repair, and validate.
 - Write generated artifacts only inside the current run directory.
-- Do not modify Stage 1 infrastructure, prompts, examples, or previous runs unless the task explicitly asks for infrastructure work.
+- Do not modify Phase 1 infrastructure, prompts, examples, or previous runs unless the task explicitly asks for infrastructure work.
 - Prefer practical autonomy over lengthy status narration.
 - Do not stop after producing a plan or a partially working animation.
 - Use the provided renderer and validator when compatible; repair the app until validation passes.

@@ -1,6 +1,6 @@
-# Live Document Stage 1
+# Live Document Phase 1
 
-Stage 1 使用一个无记忆 Codex Agent，在一次运行中完成：
+Phase 1 使用一个无记忆 Codex Agent，在一次运行中完成：
 
 ```text
 理解 → 必要补全 → 简短规划 → 编码 → 渲染 → 检查 → 修正
@@ -13,9 +13,9 @@ Stage 1 使用一个无记忆 Codex Agent，在一次运行中完成：
 ```text
 phase1/
 ├── AGENTS.md
-├── STAGE1_PROMPT.md
+├── PHASE1_PROMPT.md
 ├── REQUEST.example.md
-├── run_stage1.sh
+├── run_phase1.sh
 ├── package.json
 ├── tools/
 │   ├── render_video.mjs
@@ -73,15 +73,15 @@ npx playwright install chromium
 
 ```bash
 cp REQUEST.example.md REQUEST.md
-./run_stage1.sh REQUEST.md
+./run_phase1.sh REQUEST.md
 ```
 
 也可以运行示例：
 
 ```bash
-./run_stage1.sh examples/concept.md karst-concept
-./run_stage1.sh examples/outline.md karst-outline
-./run_stage1.sh examples/detailed_process.md karst-detailed
+./run_phase1.sh examples/concept.md karst-concept
+./run_phase1.sh examples/outline.md karst-outline
+./run_phase1.sh examples/detailed_process.md karst-detailed
 ```
 
 第二个参数是可选的 run id。省略时自动使用时间戳。
@@ -90,7 +90,7 @@ cp REQUEST.example.md REQUEST.md
 
 ## 设计原则
 
-Stage 1 只固定“窄腰接口”：
+Phase 1 只固定“窄腰接口”：
 
 - 输入文件；
 - `renderFrame(t, options)`；
@@ -115,6 +115,6 @@ node tools/export_bridge.mjs \
 python3 tools/validate_bridge.py runs/<run-id>
 ```
 
-Stage 1 Agent 负责定义关键教学时刻。Exporter 不重新选择关键帧或设计分镜，
+Phase 1 Agent 负责定义关键教学时刻。Exporter 不重新选择关键帧或设计分镜，
 只把网页已经定义的时刻兑现为后续图像和视频真实化阶段使用的资产。字幕继续由
 `subtitles.srt` 管理，不进入 overlay。

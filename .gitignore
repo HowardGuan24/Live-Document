@@ -58,5 +58,6 @@ media/
 /modules/video_model/stage2/output/
 /modules/video_model/stage3/output/
 /modules/video_model/Re_0/phase2/runs/
+/modules/video_model/Re_0/phase3/runs/
 /modules/video_model/Re_0/phase1.5/flux demo/**/*.png
 /modules/video_model/stage3/visual_targets/**/style_board.html
