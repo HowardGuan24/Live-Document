@@ -1,6 +1,0 @@
-photorealistic satellite image, orthographic top-down,
-one river crosses sand from left into blue-green coastal sea,
-natural water and earth texture,
-opaque rust-brown sediment water fills river from left edge to mid-channel,
-downstream river and sea stay clear blue-green,
-no delta island, branches, text, arrows

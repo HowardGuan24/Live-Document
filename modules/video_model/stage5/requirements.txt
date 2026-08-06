@@ -1,7 +1,0 @@
-# Core Stage 5 deterministic runtimes
-numpy>=2.1,<3
-Pillow>=11,<13
-jsonschema>=4.23,<5
-
-# Phase 5 local generation additionally requires a separately provisioned
-# PyTorch/Diffusers ROCm or CUDA environment and local model weights.

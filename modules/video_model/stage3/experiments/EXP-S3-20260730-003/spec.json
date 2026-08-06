@@ -1,9 +1,0 @@
-{
-  "candidate_count": 9,
-  "matrix": {
-    "path": "modules/video_model/stage3/candidate_matrix.json",
-    "sha256": "0fb441fb3ba3e92294ee7829609531ff922dac16d6138b6394badca8bc61da30",
-    "size_bytes": 3597
-  },
-  "selector": "stage3_candidate_selector_v1"
-}

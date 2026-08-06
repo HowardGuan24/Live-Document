@@ -1,5 +1,0 @@
-photorealistic scientific aerial view, strict orthographic top-down,
-preserve the supplied single river mouth and continuous coastline,
-a broad ochre sediment plume follows the supplied outflow into shallow blue-green water,
-realistic earth and water textures, natural turbidity and depth gradients,
-no emerged land, extra channels, text, arrows, boats, buildings, or people
