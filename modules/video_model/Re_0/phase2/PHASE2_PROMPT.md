@@ -14,8 +14,6 @@
 
 Phase 2 不重新设计教学过程和分镜，不修改 Phase 1。
 
-开始执行前，同时完整读取 `../GPU_GENERATION_POLICY.md`。该文件规定图片与视频生成共享的调度、smoke、显存安全和记录要求；本 Prompt 只补充 Phase 2 的图片生成规则。
-
 ---
 
 ## 1. 最小输入
@@ -34,7 +32,7 @@ bridge/clean/
 - `manifest.json`：理解 key moments、时间顺序和事件关系；
 - `clean/`：提供每个状态的构图和主体结构。
 
-只有当 key moment 明显处于淡入淡出、转场或对象半生成状态时，才检查 `presentation`、`overlay`、视频或附近时间。不要默认逐帧搜索。
+只有当 key moment 明显处于淡入淡出、转场或**复杂对象（生图模型难以构建的对象，比如圆）半生成状态**时，才检查 `presentation`、`overlay`、视频或附近时间。不要默认逐帧搜索。
 
 不得修改 Phase 1 的源码或产物。
 
@@ -42,7 +40,7 @@ bridge/clean/
 
 ## 2. Generation anchor 选择
 
-直接从现有 key moments 中选择 **4～5 个最必要的 anchors**，不要均匀抽帧，也不要真实化全部候选。
+直接从现有 key moments 中选择 **最必要的 anchors**，具体数量由场景重要性决定。不要均匀抽帧，也不要真实化全部候选。
 
 典型过程优先选择：
 
@@ -50,6 +48,7 @@ bridge/clean/
 2. 一个重要事件发生前；
 3. 同一事件发生后；
 4. 第二个关键事件发生前或发生后；
+
 5. 最终稳定状态。
 
 如果实际 ID 不同，按 `description`、事件关系和 clean 画面选择对应阶段。
@@ -159,8 +158,6 @@ Fast Mode 使用硬预算：
 - 每张图最多进行 **一次有明确目的的重试**；
 - 不在多个 seed、denoise 或 prompt 之间无限抽卡；
 - 不为非关键细节阻塞整个 run。
-
-图片生成按 `../GPU_GENERATION_POLICY.md` 串行调度。先用 world reference 或一个代表性困难 anchor 验证 workflow；通过后保持服务和模型热加载，以相同尺寸和配置连续生成其余 anchors。输入图在提交前统一尺寸，避免每次生成重复预处理。
 
 重试只能针对一个明确问题，例如：
 
